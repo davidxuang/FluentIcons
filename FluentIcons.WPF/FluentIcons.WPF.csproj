@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462;net472;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+    <VersionPrefix>1.1.164</VersionPrefix>
+    <Description>FluentUI System Icons wrapper for WPF.</Description>
+    <Authors>davidxuang</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>Icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>Fluent;UI;Icon;WPF</PackageTags>
+    <RepositoryUrl>https://github.com/davidxuang/FluentIcons</RepositoryUrl>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Include="Icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <Resource Include="..\upstream\fonts\FluentSystemIcons-Filled.ttf">
+      <Link>FluentSystemIcons-Filled.ttf</Link>
+    </Resource>
+    <Resource Include="..\upstream\fonts\FluentSystemIcons-Regular.ttf">
+      <Link>FluentSystemIcons-Regular.ttf</Link>
+    </Resource>
+  </ItemGroup>
+
+</Project>

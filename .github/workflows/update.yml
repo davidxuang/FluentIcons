@@ -1,0 +1,26 @@
+on:
+  schedule:
+    - cron: '42 0 * * *'
+
+name: Update
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  update:
+    name: Update
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: true
+      - name: Update
+        run: ./Invoke-Update.ps1
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          tags: true
