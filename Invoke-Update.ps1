@@ -1,5 +1,7 @@
 $jsonPath = '.\upstream\fonts\FluentSystemIcons-Regular.json'
 $enumPath = '.\FluentIcons.Common\Symbol.cs'
+git config --global user.email 'davidxuang@live.com'
+git config --global user.name 'David Xuang'
 
 function Invoke-PatchCsproj {
     param (
@@ -16,6 +18,7 @@ function Invoke-PatchCsproj {
 $tag = git describe --tags --abbrev=0
 Write-Output "Local at $($tag)"
 Set-Location .\upstream
+git checkout master
 git pull
 $upstreamTag = git describe --tags --abbrev=0
 Set-Location ..
@@ -34,7 +37,7 @@ if ($tag -ne $upstreamTag) {
     (Get-Content $jsonPath | ConvertFrom-Json).PSObject.Properties | ForEach-Object {
         if ($_.Name.EndsWith('_20_regular')) {
             $name = ($_.Name -replace 'ic_fluent_|_20_regular') -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }
-            "        $($name) = $($_.Value)," >> $enumPath
+            "        $($name) = $($_.Value -replace '0x1([0-9a-z]{4})', '0x$1')," >> $enumPath
         }
     }
 

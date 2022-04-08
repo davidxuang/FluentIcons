@@ -1,6 +1,7 @@
 on:
   schedule:
     - cron: '42 0 * * *'
+  workflow_dispatch:
 
 name: Update
 
@@ -18,6 +19,7 @@ jobs:
         with:
           fetch-depth: 0
           submodules: true
+          token: ${{ secrets.TOKEN }}
       - name: Update
         run: ./Invoke-Update.ps1
       - name: Push

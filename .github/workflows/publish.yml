@@ -1,0 +1,30 @@
+on:
+  push:
+    tags:
+      - '*'
+
+name: Publish
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Build and pack
+        run: |
+          dotnet pack -c Release -o . FluentIcons.Common/FluentIcons.Common.csproj
+          dotnet pack -c Release -o . FluentIcons.Avalonia/FluentIcons.Avalonia.csproj
+          dotnet pack -c Release -o . FluentIcons.WPF/FluentIcons.WPF.csproj
+      - name: Publish
+        run: |
+          dotnet nuget push FluentIcons.Common*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push FluentIcons.Avalonia*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push FluentIcons.WPF*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
