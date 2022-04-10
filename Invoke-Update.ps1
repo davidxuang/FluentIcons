@@ -1,5 +1,3 @@
-$jsonPath = '.\upstream\fonts\FluentSystemIcons-Regular.json'
-$enumPath = '.\FluentIcons.Common\Symbol.cs'
 git config --global user.email 'davidxuang@live.com'
 git config --global user.name 'David Xuang'
 
@@ -29,6 +27,9 @@ if ($tag -ne $upstreamTag) {
     Copy-Item .\upstream\fonts\*.ttf .\FluentIcons.Avalonia\Fonts -Force
 
     # Update enum
+$jsonPath = '.\upstream\fonts\FluentSystemIcons-Regular.json'
+$enumPath = '.\FluentIcons.Common\Symbol.cs'
+
 'namespace FluentIcons.Common
 {
     public enum Symbol : int
@@ -37,6 +38,24 @@ if ($tag -ne $upstreamTag) {
     (Get-Content $jsonPath | ConvertFrom-Json).PSObject.Properties | ForEach-Object {
         if ($_.Name.EndsWith('_20_regular')) {
             $name = ($_.Name -replace 'ic_fluent_|_20_regular') -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }
+            "        $($name) = $($_.Value -replace '0x1([0-9a-z]{4})', '0x$1')," >> $enumPath
+        }
+    }
+
+'    }
+}' >> $enumPath
+
+$jsonPath = '.\upstream\fonts\FluentSystemIcons-Filled.json'
+$enumPath = '.\FluentIcons.Common\Internals\FilledSymbol.cs'
+
+'namespace FluentIcons.Common.Internals
+{
+    internal enum FilledSymbol : int
+    {' > $enumPath
+
+    (Get-Content $jsonPath | ConvertFrom-Json).PSObject.Properties | ForEach-Object {
+        if ($_.Name.EndsWith('_20_filled')) {
+            $name = ($_.Name -replace 'ic_fluent_|_20_filled') -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }
             "        $($name) = $($_.Value -replace '0x1([0-9a-z]{4})', '0x$1')," >> $enumPath
         }
     }

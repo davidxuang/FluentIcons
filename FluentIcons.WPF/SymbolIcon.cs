@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using FluentIcons.Common;
+using FluentIcons.Common.Internals;
 
 namespace FluentIcons.WPF
 {
@@ -27,7 +28,7 @@ namespace FluentIcons.WPF
         {
             SetValue(TextOptions.TextRenderingModeProperty, TextRenderingMode.Grayscale);
             SetValue(FontFamilyProperty, IsFilled ? _filledFont : _regularFont);
-            SetValue(TextProperty, char.ConvertFromUtf32((int)Symbol).ToString());
+            SetValue(TextProperty, char.ConvertFromUtf32(IsFilled ? (int)Symbol.ToFilledSymbol() : (int)Symbol).ToString());
             SetValue(TextAlignmentProperty, TextAlignment.Center);
         }
 
@@ -47,7 +48,7 @@ namespace FluentIcons.WPF
         {
             if (d is SymbolIcon inst)
             {
-                d.SetValue(TextProperty, char.ConvertFromUtf32((int)inst.Symbol).ToString());
+                d.SetValue(TextProperty, char.ConvertFromUtf32(inst.IsFilled ? (int)inst.Symbol.ToFilledSymbol() : (int)inst.Symbol).ToString());
             }
         }
 

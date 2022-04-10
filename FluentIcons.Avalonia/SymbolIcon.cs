@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
 using FluentIcons.Common;
+using FluentIcons.Common.Internals;
 
 namespace FluentIcons.Avalonia
 {
@@ -82,7 +83,7 @@ namespace FluentIcons.Avalonia
 
         private void OnInvalidateText()
         {
-            var glyph = char.ConvertFromUtf32((int)Symbol).ToString();
+            var glyph = char.ConvertFromUtf32(IsFilled ? (int)Symbol.ToFilledSymbol() : (int)Symbol).ToString();
 
             _textLayout = new TextLayout(
                 glyph,
