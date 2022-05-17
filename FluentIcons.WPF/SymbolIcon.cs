@@ -9,10 +9,8 @@ namespace FluentIcons.WPF
 {
     public class SymbolIcon : TextBlock
     {
-        private static readonly FontFamily _filledFont = 
-            new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./#FluentSystemIcons-Filled");
-        private static readonly FontFamily _regularFont =
-            new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./#FluentSystemIcons-Regular");
+        private static readonly FontFamily _font =
+            new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./#FluentSystemIcons-Resizable");
 
         static SymbolIcon()
         {
@@ -27,7 +25,7 @@ namespace FluentIcons.WPF
         public SymbolIcon()
         {
             SetValue(TextOptions.TextRenderingModeProperty, TextRenderingMode.Grayscale);
-            SetValue(FontFamilyProperty, IsFilled ? _filledFont : _regularFont);
+            SetValue(FontFamilyProperty, _font);
             SetValue(TextProperty, char.ConvertFromUtf32(IsFilled ? (int)Symbol.ToFilledSymbol() : (int)Symbol).ToString());
             SetValue(TextAlignmentProperty, TextAlignment.Center);
         }
@@ -56,7 +54,7 @@ namespace FluentIcons.WPF
         {
             if (d is SymbolIcon inst)
             {
-                d.SetValue(FontFamilyProperty, inst.IsFilled ? _filledFont : _regularFont);
+                d.SetValue(FontFamilyProperty, _font);
             }
         }
     }

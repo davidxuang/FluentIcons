@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net462;net472;netcoreapp3.1;net6.0-windows</TargetFrameworks>
-    <VersionPrefix>1.1.170</VersionPrefix>
+    <VersionPrefix>1.1.170.1</VersionPrefix>
     <Description>FluentUI System Icons wrapper for WPF.</Description>
     <Authors>davidxuang</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -26,11 +26,8 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <Resource Include="..\upstream\fonts\FluentSystemIcons-Filled.ttf">
-      <Link>FluentSystemIcons-Filled.ttf</Link>
-    </Resource>
-    <Resource Include="..\upstream\fonts\FluentSystemIcons-Regular.ttf">
-      <Link>FluentSystemIcons-Regular.ttf</Link>
+    <Resource Include="..\upstream\fonts\FluentSystemIcons-Resizable.ttf">
+      <Link>FluentSystemIcons-Resizable.ttf</Link>
     </Resource>
   </ItemGroup>
 

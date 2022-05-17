@@ -24,44 +24,53 @@ Write-Output "Upstream at $($upstreamTag)"
 
 if ($tag -ne $upstreamTag) {
     # Copy assets
-    Copy-Item .\upstream\fonts\*.ttf .\FluentIcons.Avalonia\Fonts -Force
+    Copy-Item .\upstream\fonts\FluentSystemIcons-Resizable.ttf .\FluentIcons.Avalonia\Fonts -Force
 
     # Update enum
-$jsonPath = '.\upstream\fonts\FluentSystemIcons-Regular.json'
-$enumPath = '.\FluentIcons.Common\Symbol.cs'
+    $resizableJson = '.\upstream\fonts\FluentSystemIcons-Resizable.json'
+    $regularEnum = '.\FluentIcons.Common\Symbol.cs'
+    $filledEnum = '.\FluentIcons.Common\Internals\FilledSymbol.cs'
+
+    $regularGlyphs = New-Object System.Collections.Generic.Dictionary"[string,int]"
+    $filledGlyphs = New-Object System.Collections.Generic.Dictionary"[string,int]"
+    (Get-Content $resizableJson | ConvertFrom-Json).PSObject.Properties | ForEach-Object {
+        if ($_.Name.EndsWith('_20_regular')) {
+            $name = ($_.Name -replace 'ic_fluent_|_20_regular') -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }
+            $regularGlyphs.Add($name, ([int]$_.Value))
+        } elseif ($_.Name.EndsWith('_20_filled')) {
+            $name = ($_.Name -replace 'ic_fluent_|_20_filled') -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }
+            $filledGlyphs.Add($name, ([int]$_.Value))
+        }
+    }
+
 
 'namespace FluentIcons.Common
 {
     public enum Symbol : int
-    {' > $enumPath
-
-    (Get-Content $jsonPath | ConvertFrom-Json).PSObject.Properties | ForEach-Object {
-        if ($_.Name.EndsWith('_20_regular')) {
-            $name = ($_.Name -replace 'ic_fluent_|_20_regular') -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }
-            "        $($name) = $($_.Value -replace '0x1([0-9a-z]{4})', '0x$1')," >> $enumPath
-        }
-    }
-
-'    }
-}' >> $enumPath
-
-$jsonPath = '.\upstream\fonts\FluentSystemIcons-Filled.json'
-$enumPath = '.\FluentIcons.Common\Internals\FilledSymbol.cs'
-
+    {' > $regularEnum
 'namespace FluentIcons.Common.Internals
 {
     internal enum FilledSymbol : int
-    {' > $enumPath
+    {' > $filledEnum
 
-    (Get-Content $jsonPath | ConvertFrom-Json).PSObject.Properties | ForEach-Object {
-        if ($_.Name.EndsWith('_20_filled')) {
-            $name = ($_.Name -replace 'ic_fluent_|_20_filled') -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }
-            "        $($name) = $($_.Value -replace '0x1([0-9a-z]{4})', '0x$1')," >> $enumPath
+    foreach ($key in $regularGlyphs.Keys) {
+        "        $($key) = $('0x{0:X}' -f $regularGlyphs[$key])," >> $regularEnum
+        if (-not $filledGlyphs.ContainsKey($key)) {
+            "        $($key) = $('0x{0:X}' -f $regularGlyphs[$key])," >> $filledEnum
+        }
+    }
+    foreach ($key in $filledGlyphs.Keys) {
+        "        $($key) = $('0x{0:X}' -f $filledGlyphs[$key])," >> $filledEnum
+        if (-not $regularGlyphs.ContainsKey($key)) {
+            "        $($key) = $('0x{0:X}' -f $filledGlyphs[$key])," >> $regularEnum
         }
     }
 
 '    }
-}' >> $enumPath
+}' >> $regularEnum
+'    }
+}' >> $filledEnum
+
 
     # Patch project version
     Invoke-PatchCsproj -Project './FluentIcons.Common/FluentIcons.Common.csproj' -VersionPrefix $upstreamTag

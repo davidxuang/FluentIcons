@@ -13,10 +13,8 @@ namespace FluentIcons.Avalonia
     [TypeConverter(typeof(SymbolIconConverter))]
     public class SymbolIcon : IconElement
     {
-        private static readonly Typeface _filledFont
-            = new Typeface(new FontFamily("avares://FluentIcons.Avalonia/Fonts#FluentSystemIcons-Filled"));
-        private static readonly Typeface _regularFont
-            = new Typeface(new FontFamily("avares://FluentIcons.Avalonia/Fonts#FluentSystemIcons-Regular"));
+        private static readonly Typeface _font
+            = new Typeface(new FontFamily("avares://FluentIcons.Avalonia/Fonts#FluentSystemIcons-Resizable"));
 
         private TextLayout _textLayout;
 
@@ -87,7 +85,7 @@ namespace FluentIcons.Avalonia
 
             _textLayout = new TextLayout(
                 glyph,
-                IsFilled ? _filledFont : _regularFont,
+                _font,
                 FontSize,
                 Foreground,
                 TextAlignment.Center);

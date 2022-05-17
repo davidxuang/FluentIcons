@@ -2,15 +2,13 @@
 
 A multi-framework wrapper of [fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).
 
-`Symbol` enum was built per the regular variant; thus [some mappings](./FluentIcons.Common/Internals/SymbolConversion.cs#L14) has been made for using filled symbols.
-
 ## Packages
 
-| Package              |                                 Version                                  |
-| -------------------- | :----------------------------------------------------------------------: |
-| FluentIcons.Common   |   ![FluentIcons.Common](https://badgen.net/nuget/v/FluentIcons.Common)   |
-| FluentIcons.Avalonia | ![FluentIcons.Avalonia](https://badgen.net/nuget/v/FluentIcons.Avalonia) |
-| FluentIcons.WPF      |      ![FluentIcons.WPF](https://badgen.net/nuget/v/FluentIcons.WPF)      |
+| Package              |                                                             Version                                                              |
+| -------------------- | :------------------------------------------------------------------------------------------------------------------------------: |
+| FluentIcons.Common   |    [![FluentIcons.Common](https://badgen.net/nuget/v/FluentIcons.Common)](https://www.nuget.org/packages/FluentIcons.Common/)    |
+| FluentIcons.Avalonia | [![FluentIcons.Avalonia](https://badgen.net/nuget/v/FluentIcons.Avalonia)](https://www.nuget.org/packages/FluentIcons.Avalonia/) |
+| FluentIcons.WPF      |        [![FluentIcons.WPF](https://badgen.net/nuget/v/FluentIcons.WPF)](https://www.nuget.org/packages/FluentIcons.WPF/)         |
 
 ## Usage
 

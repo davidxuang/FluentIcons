@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <VersionPrefix>1.1.170</VersionPrefix>
+    <VersionPrefix>1.1.170.1</VersionPrefix>
     <Description>FluentUI System Icons wrapper for Avalonia.</Description>
     <Authors>davidxuang</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -29,7 +29,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <AvaloniaResource Include="Fonts\*.ttf" />
+    <AvaloniaResource Include="Fonts\FluentSystemIcons-Resizable.ttf" />
   </ItemGroup>
 
 </Project>
