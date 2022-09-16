@@ -16,9 +16,9 @@ function Invoke-PatchCsproj {
 $tag = git describe --tags --abbrev=0
 Write-Output "Local at $($tag)"
 Set-Location .\upstream
-git checkout master
-git pull
-$upstreamTag = git describe --tags --abbrev=0
+git fetch --tags
+$upstreamTag = git describe --tags (git rev-list --tags --max-count=1)
+git checkout $upstreamTag
 Set-Location ..
 Write-Output "Upstream at $($upstreamTag)"
 
