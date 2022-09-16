@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Documents;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
 using FluentIcons.Common;
@@ -40,18 +41,14 @@ namespace FluentIcons.Avalonia
             set => SetValue(IsFilledProperty, value);
         }
 
-        protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
+        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
             base.OnPropertyChanged(change);
 
-            if (change.Property == TextBlock.FontSizeProperty ||
+            if (change.Property == TextElement.FontSizeProperty ||
+                change.Property == TextElement.ForegroundProperty ||
                 change.Property == SymbolProperty ||
                 change.Property == IsFilledProperty)
-            {
-                OnSymbolChanged();
-                InvalidateMeasure();                
-            }
-            else if (change.Property == TextBlock.ForegroundProperty)
             {
                 OnSymbolChanged();
             }
@@ -62,7 +59,7 @@ namespace FluentIcons.Avalonia
             if (_textLayout == null)
                 OnSymbolChanged();
 
-            return _textLayout.Size;
+            return _textLayout.Bounds.Size;
         }
 
         public override void Render(DrawingContext context)
@@ -72,11 +69,9 @@ namespace FluentIcons.Avalonia
 
             var canvas = new Rect(Bounds.Size);
             using (context.PushClip(canvas))
-            using (context.PushPreTransform(Matrix.CreateTranslation(
-                canvas.Center.X - _textLayout.Size.Width / 2,
-                canvas.Center.Y - _textLayout.Size.Height / 2)))
             {
-                _textLayout.Draw(context);
+                var origin = new Point(canvas.Center.X - _textLayout.Bounds.Size.Width / 2, canvas.Center.Y - _textLayout.Bounds.Size.Height / 2);
+                _textLayout.Draw(context, origin);
             }
         }
 

@@ -75,8 +75,8 @@ if ($tag -ne $upstreamTag) {
 
     # Patch project version
     Update-CsprojVersion -Project './FluentIcons.Common/FluentIcons.Common.csproj' -VersionPrefix $upstreamTag
-    Update-CsprojVersion -Project './FluentIcons.Avalonia/FluentIcons.Avalonia.csproj' -VersionPrefix $upstreamTag
-    Update-CsprojVersion -Project './FluentIcons.FluentAvalonia/FluentIcons.FluentAvalonia.csproj' -VersionPrefix $upstreamTag
+    Update-CsprojVersion -Project './FluentIcons.Avalonia/FluentIcons.Avalonia.csproj' -VersionPrefix "$upstreamTag-preview"
+    Update-CsprojVersion -Project './FluentIcons.FluentAvalonia/FluentIcons.FluentAvalonia.csproj' -VersionPrefix "$upstreamTag-preview"
     Update-CsprojVersion -Project './FluentIcons.WPF/FluentIcons.WPF.csproj' -VersionPrefix $upstreamTag
 
     # Commit

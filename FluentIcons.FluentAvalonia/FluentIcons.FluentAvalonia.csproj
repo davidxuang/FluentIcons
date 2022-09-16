@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <VersionPrefix>1.1.181</VersionPrefix>
+    <VersionPrefix>1.1.181-preview</VersionPrefix>
     <Description>FluentUI System Icons wrapper for FluentAvalonia.</Description>
     <Authors>davidxuang</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -13,11 +13,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAvaloniaUI" Version="1.3.0" />
+    <PackageReference Include="FluentAvaloniaUI" Version="2.0.0-preview1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" />
+    <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" ExactVersion="true" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,5 +31,16 @@
     </None>
     <AvaloniaResource Include="Fonts\FluentSystemIcons-Resizable.ttf" />
   </ItemGroup>
+
+  <Target Name="UseExplicitPackageVersions" BeforeTargets="GenerateNuspec">
+    <ItemGroup>
+      <_ProjectReferenceWithExactPackageVersion Include="@(ProjectReference->'%(FullPath)')" Condition="'%(ProjectReference.ExactVersion)' == 'true'" />
+      <_ProjectReferenceWithReassignedVersion Include="@(_ProjectReferencesWithVersions)" Condition="'%(Identity)' != '' And '@(_ProjectReferenceWithExactPackageVersion)' == '@(_ProjectReferencesWithVersions)'">
+        <ProjectVersion>[@(_ProjectReferencesWithVersions->'%(ProjectVersion)')]</ProjectVersion>
+      </_ProjectReferenceWithReassignedVersion>
+      <_ProjectReferencesWithVersions Remove="@(_ProjectReferenceWithReassignedVersion)" />
+      <_ProjectReferencesWithVersions Include="@(_ProjectReferenceWithReassignedVersion)" />
+    </ItemGroup>
+  </Target>
 
 </Project>
