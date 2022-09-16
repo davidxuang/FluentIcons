@@ -1,24 +1,27 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net462;net472;netcoreapp3.1;net6.0-windows</TargetFrameworks>
-    <VersionPrefix>1.1.181.1</VersionPrefix>
-    <Description>FluentUI System Icons wrapper for WPF.</Description>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <VersionPrefix>1.1.181</VersionPrefix>
+    <Description>FluentUI System Icons wrapper for FluentAvalonia.</Description>
     <Authors>davidxuang</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>Icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>Fluent;UI;Icon;WPF</PackageTags>
+    <PackageTags>Fluent;UI;Icon;Avalonia</PackageTags>
     <RepositoryUrl>https://github.com/davidxuang/FluentIcons</RepositoryUrl>
-    <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAvaloniaUI" Version="1.3.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" />
   </ItemGroup>
-    
+
   <ItemGroup>
-    <None Include="Icon.png">
+    <None Update="Icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
@@ -26,9 +29,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <Resource Include="..\upstream\fonts\FluentSystemIcons-Resizable.ttf">
-      <Link>FluentSystemIcons-Resizable.ttf</Link>
-    </Resource>
+    <AvaloniaResource Include="Fonts\FluentSystemIcons-Resizable.ttf" />
   </ItemGroup>
 
 </Project>

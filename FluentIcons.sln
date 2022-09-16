@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Common", "Fluen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Avalonia", "FluentIcons.Avalonia\FluentIcons.Avalonia.csproj", "{4F5C2910-0A49-49EB-AB1E-E38621676F6E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.FluentAvalonia", "FluentIcons.FluentAvalonia\FluentIcons.FluentAvalonia.csproj", "{999609A7-C529-4E33-B3C6-3C648D318194}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.WPF", "FluentIcons.WPF\FluentIcons.WPF.csproj", "{A351E592-DB78-4BEE-8DB3-5B7CD7FE870C}"
 EndProject
 Global
@@ -23,6 +25,10 @@ Global
 		{4F5C2910-0A49-49EB-AB1E-E38621676F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F5C2910-0A49-49EB-AB1E-E38621676F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F5C2910-0A49-49EB-AB1E-E38621676F6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{999609A7-C529-4E33-B3C6-3C648D318194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{999609A7-C529-4E33-B3C6-3C648D318194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{999609A7-C529-4E33-B3C6-3C648D318194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{999609A7-C529-4E33-B3C6-3C648D318194}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A351E592-DB78-4BEE-8DB3-5B7CD7FE870C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A351E592-DB78-4BEE-8DB3-5B7CD7FE870C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A351E592-DB78-4BEE-8DB3-5B7CD7FE870C}.Release|Any CPU.ActiveCfg = Release|Any CPU

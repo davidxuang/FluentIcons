@@ -18,9 +18,9 @@ namespace FluentIcons.WPF
         }
 
         public static readonly DependencyProperty SymbolProperty =
-            DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(OnSymbolPropertyChanged));
+            DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(OnSymbolChanged));
         public static readonly DependencyProperty IsFilledProperty =
-            DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnIsFilledPropertyChanged));
+            DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolChanged));
 
         public SymbolIcon()
         {
@@ -42,19 +42,11 @@ namespace FluentIcons.WPF
             set { SetValue(SymbolProperty, value); }
         }
 
-        private static void OnSymbolPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnSymbolChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is SymbolIcon inst)
             {
                 d.SetValue(TextProperty, char.ConvertFromUtf32(inst.IsFilled ? (int)inst.Symbol.ToFilledSymbol() : (int)inst.Symbol).ToString());
-            }
-        }
-
-        private static void OnIsFilledPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is SymbolIcon inst)
-            {
-                d.SetValue(FontFamilyProperty, _font);
             }
         }
     }

@@ -1,7 +1,7 @@
 git config --global user.email 'davidxuang@live.com'
 git config --global user.name 'David Xuang'
 
-function Invoke-PatchCsproj {
+function Update-CsprojVersion {
     param (
         [string]
         $Project,
@@ -25,6 +25,7 @@ Write-Output "Upstream at $($upstreamTag)"
 if ($tag -ne $upstreamTag) {
     # Copy assets
     Copy-Item .\upstream\fonts\FluentSystemIcons-Resizable.ttf .\FluentIcons.Avalonia\Fonts -Force
+    Copy-Item .\upstream\fonts\FluentSystemIcons-Resizable.ttf .\FluentIcons.FluentAvalonia\Fonts -Force
 
     # Update enum
     $resizableJson = '.\upstream\fonts\FluentSystemIcons-Resizable.json'
@@ -73,9 +74,10 @@ if ($tag -ne $upstreamTag) {
 
 
     # Patch project version
-    Invoke-PatchCsproj -Project './FluentIcons.Common/FluentIcons.Common.csproj' -VersionPrefix $upstreamTag
-    Invoke-PatchCsproj -Project './FluentIcons.Avalonia/FluentIcons.Avalonia.csproj' -VersionPrefix $upstreamTag
-    Invoke-PatchCsproj -Project './FluentIcons.WPF/FluentIcons.WPF.csproj' -VersionPrefix $upstreamTag
+    Update-CsprojVersion -Project './FluentIcons.Common/FluentIcons.Common.csproj' -VersionPrefix $upstreamTag
+    Update-CsprojVersion -Project './FluentIcons.Avalonia/FluentIcons.Avalonia.csproj' -VersionPrefix $upstreamTag
+    Update-CsprojVersion -Project './FluentIcons.FluentAvalonia/FluentIcons.FluentAvalonia.csproj' -VersionPrefix $upstreamTag
+    Update-CsprojVersion -Project './FluentIcons.WPF/FluentIcons.WPF.csproj' -VersionPrefix $upstreamTag
 
     # Commit
     git add -A

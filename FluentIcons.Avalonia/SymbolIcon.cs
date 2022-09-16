@@ -45,21 +45,22 @@ namespace FluentIcons.Avalonia
             base.OnPropertyChanged(change);
 
             if (change.Property == TextBlock.FontSizeProperty ||
-                change.Property == SymbolProperty)
+                change.Property == SymbolProperty ||
+                change.Property == IsFilledProperty)
             {
-                OnInvalidateText();
+                OnSymbolChanged();
                 InvalidateMeasure();                
             }
             else if (change.Property == TextBlock.ForegroundProperty)
             {
-                OnInvalidateText();
+                OnSymbolChanged();
             }
         }
 
         protected override Size MeasureOverride(Size availableSize)
         {
             if (_textLayout == null)
-                OnInvalidateText();
+                OnSymbolChanged();
 
             return _textLayout.Size;
         }
@@ -67,7 +68,7 @@ namespace FluentIcons.Avalonia
         public override void Render(DrawingContext context)
         {
             if (_textLayout == null)
-                OnInvalidateText();
+                OnSymbolChanged();
 
             var canvas = new Rect(Bounds.Size);
             using (context.PushClip(canvas))
@@ -79,7 +80,7 @@ namespace FluentIcons.Avalonia
             }
         }
 
-        private void OnInvalidateText()
+        private void OnSymbolChanged()
         {
             var glyph = char.ConvertFromUtf32(IsFilled ? (int)Symbol.ToFilledSymbol() : (int)Symbol).ToString();
 
