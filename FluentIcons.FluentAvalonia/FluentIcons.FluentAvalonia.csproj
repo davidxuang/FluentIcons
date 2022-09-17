@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <VersionPrefix>1.1.181-preview</VersionPrefix>
+    <VersionPrefix>1.1.182-preview</VersionPrefix>
     <Description>FluentUI System Icons wrapper for FluentAvalonia.</Description>
     <Authors>davidxuang</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
