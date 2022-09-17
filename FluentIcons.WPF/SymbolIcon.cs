@@ -26,7 +26,7 @@ namespace FluentIcons.WPF
         {
             SetValue(TextOptions.TextRenderingModeProperty, TextRenderingMode.Grayscale);
             SetValue(FontFamilyProperty, _font);
-            SetValue(TextProperty, char.ConvertFromUtf32(IsFilled ? (int)Symbol.ToFilledSymbol() : (int)Symbol).ToString());
+            SetValue(TextProperty, Symbol.ToString(IsFilled));
             SetValue(TextAlignmentProperty, TextAlignment.Center);
         }
 
@@ -46,7 +46,7 @@ namespace FluentIcons.WPF
         {
             if (d is SymbolIcon inst)
             {
-                d.SetValue(TextProperty, char.ConvertFromUtf32(inst.IsFilled ? (int)inst.Symbol.ToFilledSymbol() : (int)inst.Symbol).ToString());
+                d.SetValue(TextProperty, inst.Symbol.ToString(inst.IsFilled));
             }
         }
     }

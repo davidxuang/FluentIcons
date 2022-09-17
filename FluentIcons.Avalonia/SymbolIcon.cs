@@ -77,7 +77,7 @@ namespace FluentIcons.Avalonia
 
         private void OnSymbolChanged()
         {
-            var glyph = char.ConvertFromUtf32(IsFilled ? (int)Symbol.ToFilledSymbol() : (int)Symbol).ToString();
+            var glyph = Symbol.ToString(IsFilled);
 
             _textLayout = new TextLayout(
                 glyph,
