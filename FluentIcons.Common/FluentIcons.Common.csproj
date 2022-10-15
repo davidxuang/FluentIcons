@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <VersionPrefix>1.1.184</VersionPrefix>
+    <VersionPrefix>1.1.185</VersionPrefix>
     <Description>A shared library for FluentUI System Icons wrapper.</Description>
     <Authors>davidxuang</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
