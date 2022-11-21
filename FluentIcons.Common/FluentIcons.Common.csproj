@@ -13,6 +13,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="FluentIcons.Avalonia" />
+    <InternalsVisibleTo Include="FluentIcons.FluentAvalonia" />
+    <InternalsVisibleTo Include="FluentIcons.WPF" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

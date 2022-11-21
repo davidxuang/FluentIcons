@@ -12,23 +12,10 @@ namespace FluentIcons.WPF
         private static readonly FontFamily _font =
             new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./#FluentSystemIcons-Resizable");
 
-        static SymbolIcon()
-        {
-            FontSizeProperty.OverrideMetadata(typeof(SymbolIcon), new FrameworkPropertyMetadata(20d));
-        }
-
         public static readonly DependencyProperty SymbolProperty =
             DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(OnSymbolChanged));
         public static readonly DependencyProperty IsFilledProperty =
             DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolChanged));
-
-        public SymbolIcon()
-        {
-            SetValue(TextOptions.TextRenderingModeProperty, TextRenderingMode.Grayscale);
-            SetValue(FontFamilyProperty, _font);
-            SetValue(TextProperty, Symbol.ToString(IsFilled));
-            SetValue(TextAlignmentProperty, TextAlignment.Center);
-        }
 
         public Symbol Symbol
         {
@@ -46,7 +33,10 @@ namespace FluentIcons.WPF
         {
             if (d is SymbolIcon inst)
             {
+                d.SetValue(TextOptions.TextRenderingModeProperty, TextRenderingMode.Grayscale);
+                d.SetValue(FontFamilyProperty, _font);
                 d.SetValue(TextProperty, inst.Symbol.ToString(inst.IsFilled));
+                d.SetValue(TextAlignmentProperty, TextAlignment.Center);
             }
         }
     }

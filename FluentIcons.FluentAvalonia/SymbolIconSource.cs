@@ -1,31 +1,28 @@
-using System;
 using Avalonia;
+using Avalonia.Controls.Documents;
 using Avalonia.Media;
 using FluentAvalonia.UI.Controls;
-using FluentIcons.Common.Internals;
 using Symbol = FluentIcons.Common.Symbol;
 
 namespace FluentIcons.FluentAvalonia
 {
-    public class SymbolIconSource : FontIconSource
+    public class SymbolIconSource : IconSource
     {
         private static readonly FontFamily _font
             = new FontFamily("avares://FluentIcons.FluentAvalonia/Fonts#FluentSystemIcons-Resizable");
 
+        public static readonly StyledProperty<double> FontSizeProperty =
+            TextElement.FontSizeProperty.AddOwner<SymbolIconSource>();
+
         public static readonly StyledProperty<Symbol> SymbolProperty =
-            SymbolIcon.SymbolProperty.AddOwner<FontIconSource>();
+            SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
         public static readonly StyledProperty<bool> IsFilledProperty =
-            SymbolIcon.IsFilledProperty.AddOwner<FontIconSource>();
+            SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();
 
-        static SymbolIconSource()
+        public double FontSize
         {
-            FontSizeProperty.OverrideDefaultValue<SymbolIconSource>(20d);
-        }
-
-        public SymbolIconSource()
-        {
-            base.FontFamily = _font;
-            OnSymbolChanged();
+            get => GetValue(FontSizeProperty);
+            set => SetValue(FontSizeProperty, value);
         }
 
         public Symbol Symbol
@@ -38,36 +35,6 @@ namespace FluentIcons.FluentAvalonia
         {
             get => GetValue(IsFilledProperty);
             set => SetValue(IsFilledProperty, value);
-        }
-
-        [Obsolete]
-        public new FontFamily FontFamily
-        {
-            get => base.FontFamily;
-            set { }
-        }
-
-        [Obsolete]
-        public new string Glyph
-        {
-            get => base.Glyph;
-            set { }
-        }
-
-        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-        {
-            if (change.Property == SymbolIcon.SymbolProperty ||
-                change.Property == SymbolIcon.IsFilledProperty)
-            {
-                OnSymbolChanged();
-            }
-
-            base.OnPropertyChanged(change);
-        }
-
-        private void OnSymbolChanged()
-        {
-            base.Glyph = Symbol.ToString(IsFilled);
         }
     }
 }

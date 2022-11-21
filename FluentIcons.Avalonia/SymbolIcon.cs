@@ -17,12 +17,8 @@ namespace FluentIcons.Avalonia
         private static readonly Typeface _font
             = new Typeface(new FontFamily("avares://FluentIcons.Avalonia/Fonts#FluentSystemIcons-Resizable"));
 
+        private bool _suspendCreate = true;
         private TextLayout _textLayout;
-
-        static SymbolIcon()
-        {
-            FontSizeProperty.OverrideDefaultValue<SymbolIcon>(20d);
-        }
 
         public static readonly StyledProperty<Symbol> SymbolProperty =
             AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol));
@@ -43,48 +39,54 @@ namespace FluentIcons.Avalonia
 
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
-            base.OnPropertyChanged(change);
-
             if (change.Property == TextElement.FontSizeProperty ||
                 change.Property == TextElement.ForegroundProperty ||
                 change.Property == SymbolProperty ||
                 change.Property == IsFilledProperty)
             {
-                OnSymbolChanged();
+                InvalidateText();
             }
+
+            base.OnPropertyChanged(change);
         }
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (_textLayout == null)
-                OnSymbolChanged();
+            if (_suspendCreate || _textLayout == null)
+            {
+                _suspendCreate = false;
+                InvalidateText();
+            }
 
-            return _textLayout.Bounds.Size;
+            return new Size(FontSize, FontSize);
         }
 
         public override void Render(DrawingContext context)
         {
             if (_textLayout == null)
-                OnSymbolChanged();
+                return;
 
             var canvas = new Rect(Bounds.Size);
             using (context.PushClip(canvas))
             {
-                var origin = new Point(canvas.Center.X - _textLayout.Bounds.Size.Width / 2, canvas.Center.Y - _textLayout.Bounds.Size.Height / 2);
+                var origin = new Point(canvas.Center.X - _textLayout.Bounds.Width / 2, 0);
                 _textLayout.Draw(context, origin);
             }
         }
 
-        private void OnSymbolChanged()
+        private void InvalidateText()
         {
-            var glyph = Symbol.ToString(IsFilled);
+            if (_suspendCreate)
+                return;
 
             _textLayout = new TextLayout(
-                glyph,
+                Symbol.ToString(IsFilled),
                 _font,
                 FontSize,
                 Foreground,
                 TextAlignment.Center);
+
+            InvalidateVisual();
         }
     }
 
@@ -92,15 +94,24 @@ namespace FluentIcons.Avalonia
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
-            return sourceType == typeof(string);
+            if (sourceType == typeof(string) || sourceType == typeof(Symbol))
+            {
+                return true;
+            }
+            return base.CanConvertFrom(context, sourceType);
         }
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            return new SymbolIcon
+            if (value is string val)
             {
-                Symbol = (Symbol)Enum.Parse(typeof(Symbol), value as string),
-            };
+                return new SymbolIcon { Symbol = (Symbol)Enum.Parse(typeof(Symbol), val) };
+            }
+            else if (value is Symbol symbol)
+            {
+                return new SymbolIcon { Symbol = symbol };
+            }
+            return base.ConvertFrom(context, culture, value);
         }
     }
 }
