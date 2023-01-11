@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net462;net472;netcoreapp3.1;net6.0-windows</TargetFrameworks>
-    <VersionPrefix>1.1.190</VersionPrefix>
+    <VersionPrefix>1.1.191</VersionPrefix>
     <Description>FluentUI System Icons wrapper for WPF.</Description>
     <Authors>davidxuang</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
