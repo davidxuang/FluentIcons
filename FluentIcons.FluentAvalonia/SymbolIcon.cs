@@ -80,7 +80,7 @@ namespace FluentIcons.FluentAvalonia
             var canvas = new Rect(Bounds.Size);
             using (context.PushClip(canvas))
             {
-                var origin = new Point(canvas.Center.X - _textLayout.Bounds.Width / 2, 0);
+                var origin = new Point(canvas.Center.X - _textLayout.Width / 2, 0);
                 _textLayout.Draw(context, origin);
             }
         }
