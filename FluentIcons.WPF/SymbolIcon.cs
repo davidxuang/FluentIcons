@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,6 +9,7 @@ using FluentIcons.Common.Internals;
 
 namespace FluentIcons.WPF
 {
+    [TypeConverter(typeof(SymbolIconConverter))]
     public class SymbolIcon : FrameworkElement
     {
         private static readonly Typeface _font = new(
@@ -95,6 +97,31 @@ namespace FluentIcons.WPF
                 VisualTreeHelper.GetDpi(this).PixelsPerDip);
 
             InvalidateVisual();
+        }
+    }
+
+    public class SymbolIconConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
+        {
+            if (sourceType == typeof(string) || sourceType == typeof(Symbol))
+            {
+                return true;
+            }
+            return base.CanConvertFrom(context, sourceType);
+        }
+
+        public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
+        {
+            if (value is string val)
+            {
+                return new SymbolIcon { Symbol = (Symbol)Enum.Parse(typeof(Symbol), val) };
+            }
+            else if (value is Symbol symbol)
+            {
+                return new SymbolIcon { Symbol = symbol };
+            }
+            return base.ConvertFrom(context, culture, value);
         }
     }
 }

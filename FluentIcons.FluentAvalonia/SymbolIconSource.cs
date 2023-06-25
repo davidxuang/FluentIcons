@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel;
+using System.Globalization;
 using Avalonia;
 using Avalonia.Media;
 using FluentAvalonia.UI.Controls;
@@ -7,6 +9,7 @@ using Symbol = FluentIcons.Common.Symbol;
 
 namespace FluentIcons.FluentAvalonia
 {
+    [TypeConverter(typeof(SymbolIconSourceConverter))]
     public class SymbolIconSource : PathIconSource
     {
         private static readonly IGlyphTypeface _typeface = new Typeface("avares://FluentIcons.FluentAvalonia/Fonts#FluentSystemIcons-Resizable").GlyphTypeface;
@@ -54,5 +57,30 @@ namespace FluentIcons.FluentAvalonia
             AvaloniaProperty.Register<SymbolIconSource, Geometry>(nameof(Data));
 
         [Obsolete("Do not use.")] public new Geometry Data { get => base.Data; set { } }
+    }
+
+    public class SymbolIconSourceConverter : TypeConverter
+    {
+        public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
+        {
+            if (sourceType == typeof(string) || sourceType == typeof(Symbol))
+            {
+                return true;
+            }
+            return base.CanConvertFrom(context, sourceType);
+        }
+
+        public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
+        {
+            if (value is string val)
+            {
+                return new SymbolIconSource { Symbol = (Symbol)Enum.Parse(typeof(Symbol), val) };
+            }
+            else if (value is Symbol symbol)
+            {
+                return new SymbolIconSource { Symbol = symbol };
+            }
+            return base.ConvertFrom(context, culture, value);
+        }
     }
 }

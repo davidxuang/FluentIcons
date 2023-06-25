@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAvaloniaUI" Version="2.0.0-rc1" />
-    <PackageReference Include="System.Reactive.Linq" Version="6.0.*" />
   </ItemGroup>
 
   <ItemGroup>

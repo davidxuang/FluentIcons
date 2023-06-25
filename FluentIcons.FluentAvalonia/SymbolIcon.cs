@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
-using System.Reactive.Linq;
 using Avalonia;
 using Avalonia.Controls.Documents;
-using Avalonia.Data;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
 using FluentAvalonia.UI.Controls;
@@ -102,16 +100,16 @@ namespace FluentIcons.FluentAvalonia
 
     public class SymbolIconConverter : TypeConverter
     {
-        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+        public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
         {
-            if (sourceType == typeof(string) || sourceType == typeof(Symbol) || sourceType == typeof(SymbolIconSource))
+            if (sourceType == typeof(string) || sourceType == typeof(Symbol))
             {
                 return true;
             }
             return base.CanConvertFrom(context, sourceType);
         }
 
-        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
         {
             if (value is string val)
             {
@@ -120,27 +118,6 @@ namespace FluentIcons.FluentAvalonia
             else if (value is Symbol symbol)
             {
                 return new SymbolIcon { Symbol = symbol };
-            }
-            else if (value is SymbolIconSource source)
-            {
-                var icon = new SymbolIcon
-                {
-                    [!TextElement.FontSizeProperty]   = source[!TextElement.FontSizeProperty],
-                    [!SymbolIcon.SymbolProperty]      = source[!SymbolIcon.SymbolProperty],
-                    [!SymbolIcon.IsFilledProperty]    = source[!SymbolIcon.IsFilledProperty],
-                };
-
-                if (source.IsSet(IconSource.ForegroundProperty))
-                {
-                    icon.Bind(TextElement.ForegroundProperty, source.GetBindingObservable(IconSource.ForegroundProperty),
-                        priority: BindingPriority.LocalValue);
-                }
-                else
-                {
-                    icon.Bind(TextElement.ForegroundProperty, source.GetBindingObservable(IconSource.ForegroundProperty).Skip(1),
-                        priority: BindingPriority.LocalValue);
-                }
-                return source;
             }
             return base.ConvertFrom(context, culture, value);
         }
