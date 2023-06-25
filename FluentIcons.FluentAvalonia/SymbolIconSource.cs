@@ -1,28 +1,23 @@
+using System;
 using Avalonia;
-using Avalonia.Controls.Documents;
 using Avalonia.Media;
 using FluentAvalonia.UI.Controls;
+using FluentIcons.Common.Internals;
 using Symbol = FluentIcons.Common.Symbol;
 
 namespace FluentIcons.FluentAvalonia
 {
-    public class SymbolIconSource : IconSource
+    public class SymbolIconSource : PathIconSource
     {
-        private static readonly FontFamily _font
-            = new FontFamily("avares://FluentIcons.FluentAvalonia/Fonts#FluentSystemIcons-Resizable");
+        private static readonly IGlyphTypeface _typeface = new Typeface("avares://FluentIcons.FluentAvalonia/Fonts#FluentSystemIcons-Resizable").GlyphTypeface;
 
-        public static readonly StyledProperty<double> FontSizeProperty =
-            TextElement.FontSizeProperty.AddOwner<SymbolIconSource>();
+        public static readonly StyledProperty<Symbol> SymbolProperty = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
+        public static readonly StyledProperty<bool> IsFilledProperty = SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();
 
-        public static readonly StyledProperty<Symbol> SymbolProperty =
-            SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
-        public static readonly StyledProperty<bool> IsFilledProperty =
-            SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();
-
-        public double FontSize
+        public SymbolIconSource()
         {
-            get => GetValue(FontSizeProperty);
-            set => SetValue(FontSizeProperty, value);
+            base.Stretch = Stretch.None;
+            InvalidateData();
         }
 
         public Symbol Symbol
@@ -36,5 +31,28 @@ namespace FluentIcons.FluentAvalonia
             get => GetValue(IsFilledProperty);
             set => SetValue(IsFilledProperty, value);
         }
+
+        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+        {
+            base.OnPropertyChanged(change);
+
+            if (change.Property == SymbolProperty || change.Property == IsFilledProperty)
+            {
+                InvalidateData();
+            }
+        }
+
+        private void InvalidateData()
+        {
+            var codepoint = Symbol.ToChar(IsFilled);
+            var glyphRun = new GlyphRun(_typeface, 20, new[] { codepoint }, new[] { _typeface.GetGlyph(codepoint) });
+            base.Data = glyphRun.BuildGeometry();
+        }
+
+        [Obsolete("Do not use.")]
+        public new static readonly StyledProperty<Geometry> DataProperty =
+            AvaloniaProperty.Register<SymbolIconSource, Geometry>(nameof(Data));
+
+        [Obsolete("Do not use.")] public new Geometry Data { get => base.Data; set { } }
     }
 }
