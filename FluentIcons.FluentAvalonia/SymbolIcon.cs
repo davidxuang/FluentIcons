@@ -2,7 +2,9 @@
 using System.ComponentModel;
 using System.Globalization;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Media;
+using Avalonia.Media.TextFormatting;
 using FluentAvalonia.UI.Controls;
 using FluentIcons.Common.Internals;
 using Symbol = FluentIcons.Common.Symbol;
@@ -10,20 +12,26 @@ using Symbol = FluentIcons.Common.Symbol;
 namespace FluentIcons.FluentAvalonia
 {
     [TypeConverter(typeof(SymbolIconConverter))]
-    public class SymbolIcon : FontIcon
+    public partial class SymbolIcon : global::FluentAvalonia.UI.Controls.IconElement
     {
-        private static readonly FontFamily _font
-            = new FontFamily("avares://FluentIcons.FluentAvalonia/Fonts#FluentSystemIcons-Resizable");
+        private static readonly Typeface _font = new(new FontFamily("avares://FluentIcons.FluentAvalonia/Fonts#FluentSystemIcons-Resizable"));
 
-        static SymbolIcon()
-        {
-            FontSizeProperty.OverrideDefaultValue<SymbolIcon>(20d);
-        }
+        private bool _suspendCreate = true;
+        private TextLayout? _textLayout;
+
+        public static readonly StyledProperty<double> FontSizeProperty =
+            TextBlock.FontSizeProperty.AddOwner<FontIcon>();
 
         public static readonly StyledProperty<Symbol> SymbolProperty =
-            AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol));
+            AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
         public static readonly StyledProperty<bool> IsFilledProperty =
             AvaloniaProperty.Register<SymbolIcon, bool>(nameof(IsFilled));
+
+        public double FontSize
+        {
+            get => GetValue(FontSizeProperty);
+            set => SetValue(FontSizeProperty, value);
+        }
 
         public Symbol Symbol
         {
@@ -37,44 +45,87 @@ namespace FluentIcons.FluentAvalonia
             set => SetValue(IsFilledProperty, value);
         }
 
-        protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
-        {
-            base.OnAttachedToVisualTree(e);
-
-            FontFamily = _font;
-            OnSymbolChanged();
-        }
-
         protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
         {
-            base.OnPropertyChanged(change);
-
-            if (change.Property == SymbolProperty ||
+            if (change.Property == TextBlock.FontSizeProperty)
+            {
+                InvalidateMeasure();
+                InvalidateText();
+            }
+            else if (change.Property == TextBlock.ForegroundProperty ||
+                change.Property == SymbolProperty ||
                 change.Property == IsFilledProperty)
             {
-                OnSymbolChanged();
+                InvalidateText();
+            }
+
+            base.OnPropertyChanged(change);
+        }
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            if (_suspendCreate || _textLayout is null)
+            {
+                _suspendCreate = false;
+                InvalidateText();
+            }
+
+            return new Size(FontSize, FontSize);
+        }
+
+        public override void Render(DrawingContext context)
+        {
+            if (_textLayout is null)
+                return;
+
+            var canvas = new Rect(Bounds.Size);
+            using (context.PushClip(canvas))
+            using (context.PushPreTransform(Matrix.CreateTranslation(
+                canvas.Center.X - _textLayout.Size.Width / 2,
+                canvas.Center.Y - _textLayout.Size.Height / 2)))
+            {
+                _textLayout.Draw(context);
             }
         }
 
-        private void OnSymbolChanged()
+        private void InvalidateText()
         {
-            Glyph = char.ConvertFromUtf32(IsFilled ? (int)Symbol.ToFilledSymbol() : (int)Symbol).ToString();
+            if (_suspendCreate)
+                return;
+
+            _textLayout = new TextLayout(
+                Symbol.ToString(IsFilled),
+                _font,
+                FontSize,
+                Foreground,
+                TextAlignment.Center);
+
+            InvalidateVisual();
         }
     }
 
     public class SymbolIconConverter : TypeConverter
     {
-        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+        public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
         {
-            return sourceType == typeof(string);
+            if (sourceType == typeof(string) || sourceType == typeof(Symbol))
+            {
+                return true;
+            }
+            return base.CanConvertFrom(context, sourceType);
         }
 
-        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
         {
-            return new SymbolIcon
+            if (value is string val)
             {
-                Symbol = (Symbol)Enum.Parse(typeof(Symbol), value as string),
-            };
+                return new SymbolIcon { Symbol = (Symbol)Enum.Parse(typeof(Symbol), val) };
+            }
+            else if (value is Symbol symbol)
+            {
+                return new SymbolIcon { Symbol = symbol };
+            }
+            return base.ConvertFrom(context, culture, value);
         }
     }
 }

@@ -1,5 +1,5 @@
 git config --global user.email 'davidxuang@live.com'
-git config --global user.name 'David Xuang'
+git config --global user.name 'David Huang'
 
 function Update-CsprojVersion {
     param (
@@ -75,8 +75,8 @@ if ($tag -ne $upstreamTag) {
 
     # Patch project version
     Update-CsprojVersion -Project './FluentIcons.Common/FluentIcons.Common.csproj' -VersionPrefix $upstreamTag
-    Update-CsprojVersion -Project './FluentIcons.Avalonia/FluentIcons.Avalonia.csproj' -VersionPrefix $upstreamTag
-    Update-CsprojVersion -Project './FluentIcons.FluentAvalonia/FluentIcons.FluentAvalonia.csproj' -VersionPrefix $upstreamTag
+    Update-CsprojVersion -Project './FluentIcons.Avalonia/FluentIcons.Avalonia.csproj' -VersionPrefix "$upstreamTag-rc"
+    Update-CsprojVersion -Project './FluentIcons.FluentAvalonia/FluentIcons.FluentAvalonia.csproj' -VersionPrefix "$upstreamTag-rc"
     Update-CsprojVersion -Project './FluentIcons.WPF/FluentIcons.WPF.csproj' -VersionPrefix $upstreamTag
 
     # Commit

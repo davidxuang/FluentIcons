@@ -13,18 +13,13 @@ namespace FluentIcons.Avalonia
     [TypeConverter(typeof(SymbolIconConverter))]
     public class SymbolIcon : IconElement
     {
-        private static readonly Typeface _font
-            = new Typeface(new FontFamily("avares://FluentIcons.Avalonia/Fonts#FluentSystemIcons-Resizable"));
+        private static readonly Typeface _font = new(new FontFamily("avares://FluentIcons.Avalonia/Fonts#FluentSystemIcons-Resizable"));
 
-        private TextLayout _textLayout;
-
-        static SymbolIcon()
-        {
-            FontSizeProperty.OverrideDefaultValue<SymbolIcon>(20d);
-        }
+        private bool _suspendCreate = true;
+        private TextLayout? _textLayout;
 
         public static readonly StyledProperty<Symbol> SymbolProperty =
-            AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol));
+            AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
         public static readonly StyledProperty<bool> IsFilledProperty =
             AvaloniaProperty.Register<SymbolIcon, bool>(nameof(IsFilled));
 
@@ -42,33 +37,37 @@ namespace FluentIcons.Avalonia
 
         protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
         {
-            base.OnPropertyChanged(change);
 
-            if (change.Property == TextBlock.FontSizeProperty ||
+            if (change.Property == TextBlock.FontSizeProperty)
+            {
+                InvalidateMeasure();
+                InvalidateText();
+            }
+            else if (change.Property == TextBlock.ForegroundProperty ||
                 change.Property == SymbolProperty ||
                 change.Property == IsFilledProperty)
             {
-                OnSymbolChanged();
-                InvalidateMeasure();                
+                InvalidateText();
             }
-            else if (change.Property == TextBlock.ForegroundProperty)
-            {
-                OnSymbolChanged();
-            }
+
+            base.OnPropertyChanged(change);
         }
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (_textLayout == null)
-                OnSymbolChanged();
+            if (_suspendCreate || _textLayout is null)
+            {
+                _suspendCreate = false;
+                InvalidateText();
+            }
 
-            return _textLayout.Size;
+            return new Size(FontSize, FontSize);
         }
 
         public override void Render(DrawingContext context)
         {
-            if (_textLayout == null)
-                OnSymbolChanged();
+            if (_textLayout is null)
+                return;
 
             var canvas = new Rect(Bounds.Size);
             using (context.PushClip(canvas))
@@ -80,32 +79,44 @@ namespace FluentIcons.Avalonia
             }
         }
 
-        private void OnSymbolChanged()
+        private void InvalidateText()
         {
-            var glyph = char.ConvertFromUtf32(IsFilled ? (int)Symbol.ToFilledSymbol() : (int)Symbol).ToString();
+            if (_suspendCreate)
+                return;
 
             _textLayout = new TextLayout(
-                glyph,
+                Symbol.ToString(IsFilled),
                 _font,
                 FontSize,
                 Foreground,
                 TextAlignment.Center);
+
+            InvalidateVisual();
         }
     }
 
     public class SymbolIconConverter : TypeConverter
     {
-        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+        public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
         {
-            return sourceType == typeof(string);
+            if (sourceType == typeof(string) || sourceType == typeof(Symbol))
+            {
+                return true;
+            }
+            return base.CanConvertFrom(context, sourceType);
         }
 
-        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
         {
-            return new SymbolIcon
+            if (value is string val)
             {
-                Symbol = (Symbol)Enum.Parse(typeof(Symbol), value as string),
-            };
+                return new SymbolIcon { Symbol = (Symbol)Enum.Parse(typeof(Symbol), val) };
+            }
+            else if (value is Symbol symbol)
+            {
+                return new SymbolIcon { Symbol = symbol };
+            }
+            return base.ConvertFrom(context, culture, value);
         }
     }
 }

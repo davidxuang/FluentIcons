@@ -2,7 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <VersionPrefix>1.1.181.1</VersionPrefix>
+    <VersionPrefix>1.1.203</VersionPrefix>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
     <Description>A shared library for FluentUI System Icons wrapper.</Description>
     <Authors>davidxuang</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -13,14 +15,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Icon.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <InternalsVisibleTo Include="FluentIcons.Avalonia" />
+    <InternalsVisibleTo Include="FluentIcons.FluentAvalonia" />
+    <InternalsVisibleTo Include="FluentIcons.WPF" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Icon.png" Pack="true" PackagePath="" />
+    <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
