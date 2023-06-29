@@ -12,6 +12,6 @@ namespace FluentIcons.Common.Internals
             => char.ConvertFromUtf32(isFilled ? (int)symbol.ToFilledSymbol() : (int)symbol).Single();
 
         internal static string ToString(this Symbol symbol, bool isFilled)
-            => char.ConvertFromUtf32(isFilled ? (int)symbol.ToFilledSymbol() : (int)symbol).ToString();
+            => char.ConvertFromUtf32(isFilled ? (int)symbol.ToFilledSymbol() : (int)symbol);
     }
 }

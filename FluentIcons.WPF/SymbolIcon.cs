@@ -10,18 +10,17 @@ namespace FluentIcons.WPF
 {
     public class SymbolIcon : FrameworkElement
     {
-        private static readonly Typeface _font =
-            new Typeface(
-                new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./#FluentSystemIcons-Resizable"),
-                FontStyles.Normal,
-                FontWeights.Normal,
-                FontStretches.Normal);
+        private static readonly Typeface _font = new(
+            new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./#FluentSystemIcons-Resizable"),
+            FontStyles.Normal,
+            FontWeights.Normal,
+            FontStretches.Normal);
 
         private bool _suspendCreate = true;
-        private FormattedText _formattedText;
+        private FormattedText? _formattedText;
 
         public static readonly DependencyProperty SymbolProperty =
-            DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(OnSymbolPropertiesChanged));
+            DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
         public static readonly DependencyProperty IsFilledProperty =
             DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
         public static readonly DependencyProperty FontSizeProperty =
@@ -60,7 +59,7 @@ namespace FluentIcons.WPF
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (_suspendCreate || _formattedText == null)
+            if (_suspendCreate || _formattedText is null)
             {
                 _suspendCreate = false;
                 InvalidateText();
@@ -71,7 +70,7 @@ namespace FluentIcons.WPF
 
         protected override void OnRender(DrawingContext context)
         {
-            if (_formattedText == null)
+            if (_formattedText is null)
                 return;
 
             var canvas = RenderTransform.TransformBounds(new Rect(0, 0, ActualWidth, ActualHeight));

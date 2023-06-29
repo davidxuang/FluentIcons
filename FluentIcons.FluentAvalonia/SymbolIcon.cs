@@ -16,17 +16,16 @@ namespace FluentIcons.FluentAvalonia
     [TypeConverter(typeof(SymbolIconConverter))]
     public partial class SymbolIcon : FAIconElement
     {
-        private static readonly Typeface _font
-            = new Typeface(new FontFamily("avares://FluentIcons.FluentAvalonia/Fonts#FluentSystemIcons-Resizable"));
+        private static readonly Typeface _font = new(new FontFamily("avares://FluentIcons.FluentAvalonia/Fonts#FluentSystemIcons-Resizable"));
 
         private bool _suspendCreate = true;
-        private TextLayout _textLayout;
+        private TextLayout? _textLayout;
 
         public static readonly StyledProperty<double> FontSizeProperty =
             TextElement.FontSizeProperty.AddOwner<FontIcon>();
 
         public static readonly StyledProperty<Symbol> SymbolProperty =
-            AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol));
+            AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
         public static readonly StyledProperty<bool> IsFilledProperty =
             AvaloniaProperty.Register<SymbolIcon, bool>(nameof(IsFilled));
 
@@ -63,7 +62,7 @@ namespace FluentIcons.FluentAvalonia
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (_suspendCreate || _textLayout == null)
+            if (_suspendCreate || _textLayout is null)
             {
                 _suspendCreate = false;
                 InvalidateText();
@@ -74,7 +73,7 @@ namespace FluentIcons.FluentAvalonia
 
         public override void Render(DrawingContext context)
         {
-            if (_textLayout == null)
+            if (_textLayout is null)
                 return;
 
             var canvas = new Rect(Bounds.Size);
