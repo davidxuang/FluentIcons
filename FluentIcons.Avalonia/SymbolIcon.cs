@@ -38,8 +38,12 @@ namespace FluentIcons.Avalonia
 
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
-            if (change.Property == TextElement.FontSizeProperty ||
-                change.Property == TextElement.ForegroundProperty ||
+            if (change.Property == TextElement.FontSizeProperty)
+            {
+                InvalidateMeasure();
+                InvalidateText();
+            }
+            else if (change.Property == TextElement.ForegroundProperty ||
                 change.Property == SymbolProperty ||
                 change.Property == IsFilledProperty)
             {
