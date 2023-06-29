@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using Avalonia;
+using Avalonia.Controls.Documents;
 using Avalonia.Media;
 using FluentAvalonia.UI.Controls;
 using FluentIcons.Common.Internals;
@@ -16,10 +17,12 @@ namespace FluentIcons.FluentAvalonia
 
         public static readonly StyledProperty<Symbol> SymbolProperty = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
         public static readonly StyledProperty<bool> IsFilledProperty = SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();
+        public static readonly StyledProperty<double> FontSizeProperty = TextElement.FontSizeProperty.AddOwner<SymbolIconSource>();
 
         public SymbolIconSource()
         {
             base.Stretch = Stretch.None;
+            FontSize = 20; // Override value inherited from visual parents.
             InvalidateData();
         }
 
@@ -35,6 +38,12 @@ namespace FluentIcons.FluentAvalonia
             set => SetValue(IsFilledProperty, value);
         }
 
+        public double FontSize
+        {
+            get => GetValue(FontSizeProperty);
+            set => SetValue(FontSizeProperty, value);
+        }
+
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
             base.OnPropertyChanged(change);
@@ -48,7 +57,7 @@ namespace FluentIcons.FluentAvalonia
         private void InvalidateData()
         {
             var codepoint = Symbol.ToChar(IsFilled);
-            var glyphRun = new GlyphRun(_typeface, 20, new[] { codepoint }, new[] { _typeface.GetGlyph(codepoint) });
+            var glyphRun = new GlyphRun(_typeface, FontSize, new[] { codepoint }, new[] { _typeface.GetGlyph(codepoint) });
             base.Data = glyphRun.BuildGeometry();
         }
 
