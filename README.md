@@ -1,5 +1,7 @@
 # FluentIcons
 
+**This is a backports release for Avalonia 0.10.\* series.**
+
 A multi-framework wrapper of [fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).
 
 ## Packages
