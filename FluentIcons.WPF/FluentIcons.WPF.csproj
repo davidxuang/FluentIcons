@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net462;net472;netcoreapp3.1;net6.0-windows</TargetFrameworks>
-    <VersionPrefix>1.1.204</VersionPrefix>
+    <VersionPrefix>1.1.205</VersionPrefix>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <Description>FluentUI System Icons wrapper for WPF.</Description>
