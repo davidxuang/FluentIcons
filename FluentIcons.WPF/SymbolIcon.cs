@@ -73,7 +73,10 @@ namespace FluentIcons.WPF
                 InvalidateText();
             }
 
-            return new Size(FontSize, FontSize);
+            double w = Math.Min(availableSize.Width, FontSize);
+            double h = Math.Min(availableSize.Height, FontSize);
+
+            return new Size(w, h);
         }
 
         protected override void OnRender(DrawingContext context)
