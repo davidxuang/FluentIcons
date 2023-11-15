@@ -70,7 +70,9 @@ namespace FluentIcons.FluentAvalonia
                 InvalidateText();
             }
 
-            return new Size(FontSize, FontSize);
+            return new Size(
+                Math.Min(availableSize.Width, FontSize),
+                Math.Min(availableSize.Height, FontSize));
         }
 
         public override void Render(DrawingContext context)
