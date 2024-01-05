@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
@@ -39,7 +39,7 @@ namespace FluentIcons.WPF
         public bool IsFilled
         {
             get { return (bool)GetValue(IsFilledProperty); }
-            set { SetValue(SymbolProperty, value); }
+            set { SetValue(IsFilledProperty, value); }
         }
 
         public double FontSize
