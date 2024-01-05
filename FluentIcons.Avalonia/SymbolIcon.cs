@@ -14,7 +14,7 @@ namespace FluentIcons.Avalonia
     [TypeConverter(typeof(SymbolIconConverter))]
     public class SymbolIcon : IconElement
     {
-        private static readonly Typeface _font = new(new FontFamily("avares://FluentIcons.Avalonia/Fonts#FluentSystemIcons-Resizable"));
+        private static readonly Typeface _font = new(new FontFamily("avares://FluentIcons.Avalonia/Assets#FluentSystemIcons-Resizable"));
 
         private bool _suspendCreate = true;
         private TextLayout? _textLayout;

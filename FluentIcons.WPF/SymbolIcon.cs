@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
@@ -13,7 +13,7 @@ namespace FluentIcons.WPF
     public class SymbolIcon : FrameworkElement
     {
         private static readonly Typeface _font = new(
-            new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./#FluentSystemIcons-Resizable"),
+            new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./Assets/#FluentSystemIcons-Resizable"),
             FontStyles.Normal,
             FontWeights.Normal,
             FontStretches.Normal);

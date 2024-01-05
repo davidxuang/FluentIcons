@@ -24,8 +24,8 @@ Write-Output "Upstream at $($upstreamTag)"
 
 if ($tag -ne $upstreamTag) {
     # Copy assets
-    Copy-Item .\upstream\fonts\FluentSystemIcons-Resizable.ttf .\FluentIcons.Avalonia\Fonts -Force
-    Copy-Item .\upstream\fonts\FluentSystemIcons-Resizable.ttf .\FluentIcons.FluentAvalonia\Fonts -Force
+    Copy-Item .\upstream\fonts\FluentSystemIcons-Resizable.ttf .\FluentIcons.Avalonia\Assets -Force
+    Copy-Item .\upstream\fonts\FluentSystemIcons-Resizable.ttf .\FluentIcons.FluentAvalonia\Assets -Force
 
     # Update enum
     $resizableJson = '.\upstream\fonts\FluentSystemIcons-Resizable.json'

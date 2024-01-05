@@ -13,7 +13,7 @@ namespace FluentIcons.FluentAvalonia
     [TypeConverter(typeof(SymbolIconSourceConverter))]
     public class SymbolIconSource : PathIconSource
     {
-        private static readonly IGlyphTypeface _typeface = new Typeface("avares://FluentIcons.FluentAvalonia/Fonts#FluentSystemIcons-Resizable").GlyphTypeface;
+        private static readonly IGlyphTypeface _typeface = new Typeface("avares://FluentIcons.FluentAvalonia/Assets#FluentSystemIcons-Resizable").GlyphTypeface;
 
         public static readonly StyledProperty<Symbol> SymbolProperty = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
         public static readonly StyledProperty<bool> IsFilledProperty = SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();
