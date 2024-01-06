@@ -19,10 +19,11 @@ namespace FluentIcons.FluentAvalonia
         public static readonly StyledProperty<bool> IsFilledProperty = SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();
         public static readonly StyledProperty<double> FontSizeProperty = TextElement.FontSizeProperty.AddOwner<SymbolIconSource>();
 
+        private Geometry _data;
+
         public SymbolIconSource()
         {
-            base.Stretch = Stretch.None;
-            FontSize = 20; // Override value inherited from visual parents.
+            Stretch = Stretch.None;
             InvalidateData();
         }
 
@@ -52,20 +53,22 @@ namespace FluentIcons.FluentAvalonia
             {
                 InvalidateData();
             }
+            else if (change.Property == DataProperty || _data != change.NewValue as Geometry)
+            {
+                Data = _data;
+            }
+            else if (change.Property == StretchProperty || Stretch.None != (Stretch)change.NewValue)
+            {
+                Stretch = Stretch.None;
+            }
         }
 
         private void InvalidateData()
         {
             var codepoint = Symbol.ToChar(IsFilled);
             var glyphRun = new GlyphRun(_typeface, FontSize, new[] { codepoint }, new[] { _typeface.GetGlyph(codepoint) });
-            base.Data = glyphRun.BuildGeometry();
+            Data = _data = glyphRun.BuildGeometry();
         }
-
-        [Obsolete("Do not use.")]
-        public new static readonly StyledProperty<Geometry> DataProperty =
-            AvaloniaProperty.Register<SymbolIconSource, Geometry>(nameof(Data));
-
-        [Obsolete("Do not use.")] public new Geometry Data { get => base.Data; set { } }
     }
 
     public class SymbolIconSourceConverter : TypeConverter

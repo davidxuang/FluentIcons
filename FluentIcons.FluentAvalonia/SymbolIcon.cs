@@ -16,9 +16,6 @@ namespace FluentIcons.FluentAvalonia
     {
         private static readonly Typeface _font = new(new FontFamily("avares://FluentIcons.FluentAvalonia/Assets#FluentSystemIcons-Resizable"));
 
-        private bool _suspendCreate = true;
-        private TextLayout? _textLayout;
-
         public static readonly StyledProperty<double> FontSizeProperty =
             TextElement.FontSizeProperty.AddOwner<FontIcon>();
 
@@ -26,6 +23,9 @@ namespace FluentIcons.FluentAvalonia
             AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
         public static readonly StyledProperty<bool> IsFilledProperty =
             AvaloniaProperty.Register<SymbolIcon, bool>(nameof(IsFilled));
+
+        private bool _suspendCreate = true;
+        private TextLayout? _textLayout;
 
         public double FontSize
         {
