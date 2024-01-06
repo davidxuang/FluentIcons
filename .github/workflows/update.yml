@@ -20,8 +20,10 @@ jobs:
           fetch-depth: 0
           submodules: true
           token: ${{ secrets.TOKEN }}
+      - name: Setup
+        run: pip install fonttools
       - name: Update
-        run: ./Invoke-Update.ps1
+        run: ./updater/Invoke-Update.ps1
       - name: Push
         uses: ad-m/github-push-action@master
         with:

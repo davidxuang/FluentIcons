@@ -1,3 +1,0 @@
-[submodule "upstream"]
-	path = upstream
-	url = https://github.com/microsoft/fluentui-system-icons.git
