@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">$(TargetFrameworks);net6.0-windows10.0.17763.0;net7.0-windows10.0.17763.0</TargetFrameworks>
+    <TargetFrameworks>$(TargetFrameworks);net7.0;net7.0-ios;net7.0-maccatalyst;net7.0-android</TargetFrameworks>
+    <CheckEolWorkloads>false</CheckEolWorkloads>
+    <VersionPrefix>1.1.224</VersionPrefix>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <Description>FluentUI System Icons wrapper for WinUI.</Description>
+    <Authors>davidxuang</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>Icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>Fluent;UI;Icon;WinUI</PackageTags>
+    <RepositoryUrl>https://github.com/davidxuang/FluentIcons</RepositoryUrl>
+    <RootNamespace>FluentIcons.WinUI</RootNamespace>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <GenerateLibraryLayout>true</GenerateLibraryLayout>
+    <ContentTargetFolders>contentFiles</ContentTargetFolders>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludeAssetsInNuGetPackage</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+  
+  <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.755" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'">
+    <PackageReference Include="Uno.WinUI" Version="5.0.19" />
+  </ItemGroup>
+  
+  <UsingTask TaskName="Microsoft.NET.Build.Tasks.GetNuGetShortFolderName" AssemblyFile="$(MicrosoftNETBuildTasksAssembly)" />
+  
+  <Target Name="IncludeAssetsInNuGetPackage" Condition="'$(IncludeBuildOutput)' != 'false'">
+    <GetNuGetShortFolderName TargetFrameworkMoniker="$(TargetFrameworkMoniker)" TargetPlatformMoniker="$(TargetPlatformMoniker)">
+      <Output TaskParameter="NuGetShortFolderName" PropertyName="NuGetShortFolderName" />
+    </GetNuGetShortFolderName>
+
+    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+      <TfmSpecificPackageFile Include="../updater/FluentSystemIcons-Resizable.ttf">
+        <Link>$(PackageId)/Assets/FluentSystemIcons-Resizable.ttf</Link>
+        <PackagePath>contentFiles/any/$(NuGetShortFolderName)/%(Link)</PackagePath>
+        <BuildAction>Content</BuildAction>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+    
+    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'">
+      <TfmSpecificPackageFile Include="../updater/FluentSystemIcons-Resizable.ttf">
+        <Link>Assets/FluentSystemIcons-Resizable.ttf</Link>
+        <PackagePath>lib/$(NuGetShortFolderName)/$(PackageId)/%(Link)</PackagePath>
+      </TfmSpecificPackageFile>
+      <TfmSpecificPackageFile Include="FluentIcons.WinUI.uprimarker">
+        <PackagePath>lib/$(NuGetShortFolderName)/</PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
+      
+  <ItemGroup>
+    <None Include="Icon.png" Pack="true" PackagePath="" />
+    <None Include="..\README.md" Pack="true" PackagePath="" />
+    <!-- <Content Include="../updater/FluentSystemIcons-Resizable.ttf">
+      <Link>Assets/FluentSystemIcons-Resizable.ttf</Link>
+    </Content> -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" />
+  </ItemGroup>
+</Project>
