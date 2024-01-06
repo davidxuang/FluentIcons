@@ -66,7 +66,7 @@ namespace FluentIcons.FluentAvalonia
         private void InvalidateData()
         {
             var codepoint = Symbol.ToChar(IsFilled);
-            var glyphRun = new GlyphRun(_typeface, FontSize, new[] { codepoint }, new[] { _typeface.GetGlyph(codepoint) });
+            using var glyphRun = new GlyphRun(_typeface, FontSize, new[] { codepoint }, new[] { _typeface.GetGlyph(codepoint) });
             Data = _data = glyphRun.BuildGeometry();
         }
     }
