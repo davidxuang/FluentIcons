@@ -23,6 +23,8 @@ namespace FluentIcons.Avalonia
             AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
         public static readonly StyledProperty<bool> IsFilledProperty =
             AvaloniaProperty.Register<SymbolIcon, bool>(nameof(IsFilled));
+        public static readonly new StyledProperty<double> FontSizeProperty =
+            AvaloniaProperty.Register<SymbolIcon, double>(nameof(FontSize), 20d, false);
 
         public Symbol Symbol
         {
@@ -36,9 +38,15 @@ namespace FluentIcons.Avalonia
             set => SetValue(IsFilledProperty, value);
         }
 
+        public new double FontSize
+        {
+            get => GetValue(FontSizeProperty);
+            set => SetValue(FontSizeProperty, value);
+        }
+
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
-            if (change.Property == TextElement.FontSizeProperty)
+            if (change.Property == FontSizeProperty)
             {
                 InvalidateMeasure();
                 InvalidateText();

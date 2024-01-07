@@ -16,22 +16,15 @@ namespace FluentIcons.FluentAvalonia
     {
         private static readonly Typeface _font = new(new FontFamily("avares://FluentIcons.FluentAvalonia/Assets#FluentSystemIcons-Resizable"));
 
-        public static readonly StyledProperty<double> FontSizeProperty =
-            TextElement.FontSizeProperty.AddOwner<FontIcon>();
-
         public static readonly StyledProperty<Symbol> SymbolProperty =
             AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
         public static readonly StyledProperty<bool> IsFilledProperty =
             AvaloniaProperty.Register<SymbolIcon, bool>(nameof(IsFilled));
+        public static readonly StyledProperty<double> FontSizeProperty =
+            AvaloniaProperty.Register<SymbolIcon, double>(nameof(FontSize), 20d, false);
 
         private bool _suspendCreate = true;
         private TextLayout? _textLayout;
-
-        public double FontSize
-        {
-            get => GetValue(FontSizeProperty);
-            set => SetValue(FontSizeProperty, value);
-        }
 
         public Symbol Symbol
         {
@@ -43,6 +36,12 @@ namespace FluentIcons.FluentAvalonia
         {
             get => GetValue(IsFilledProperty);
             set => SetValue(IsFilledProperty, value);
+        }
+
+        public double FontSize
+        {
+            get => GetValue(FontSizeProperty);
+            set => SetValue(FontSizeProperty, value);
         }
 
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)

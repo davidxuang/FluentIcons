@@ -17,15 +17,17 @@ namespace FluentIcons.FluentAvalonia
 
         public static readonly StyledProperty<Symbol> SymbolProperty = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
         public static readonly StyledProperty<bool> IsFilledProperty = SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();
-        public static readonly StyledProperty<double> FontSizeProperty = TextElement.FontSizeProperty.AddOwner<SymbolIconSource>();
+        public static readonly StyledProperty<double> FontSizeProperty = SymbolIcon.FontSizeProperty.AddOwner<SymbolIconSource>();
 
         private Geometry _data;
 
+#pragma warning disable CS8618
         public SymbolIconSource()
         {
             Stretch = Stretch.None;
             InvalidateData();
         }
+#pragma warning restore CS8618
 
         public Symbol Symbol
         {
@@ -49,7 +51,7 @@ namespace FluentIcons.FluentAvalonia
         {
             base.OnPropertyChanged(change);
 
-            if (change.Property == SymbolProperty || change.Property == IsFilledProperty)
+            if (change.Property == SymbolProperty || change.Property == IsFilledProperty || change.Property == FontSizeProperty)
             {
                 InvalidateData();
             }

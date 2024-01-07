@@ -26,7 +26,12 @@ namespace FluentIcons.WPF
         public static readonly DependencyProperty IsFilledProperty =
             DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
         public static readonly DependencyProperty FontSizeProperty =
-            TextBlock.FontSizeProperty.AddOwner(typeof(SymbolIcon), new FrameworkPropertyMetadata(20d, OnSizePropertiesChanged));
+            TextBlock.FontSizeProperty.AddOwner(
+                typeof(SymbolIcon),
+                new FrameworkPropertyMetadata(
+                    20d,
+                    FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                    OnSizePropertiesChanged));
         public static readonly DependencyProperty ForegroundProperty =
             TextBlock.ForegroundProperty.AddOwner(typeof(SymbolIcon), new FrameworkPropertyMetadata(OnSymbolPropertiesChanged));
 
