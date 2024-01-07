@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="FluentIcons.Avalonia" />
-    <InternalsVisibleTo Include="FluentIcons.FluentAvalonia" />
+    <InternalsVisibleTo Include="FluentIcons.Avalonia.Fluent" />
     <InternalsVisibleTo Include="FluentIcons.WinUI" />
     <InternalsVisibleTo Include="FluentIcons.WPF" />
   </ItemGroup>

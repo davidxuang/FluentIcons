@@ -29,13 +29,13 @@ jobs:
         run: |
           dotnet pack -c Release -o . FluentIcons.Common/FluentIcons.Common.csproj
           dotnet pack -c Release -o . FluentIcons.Avalonia/FluentIcons.Avalonia.csproj
-          dotnet pack -c Release -o . FluentIcons.FluentAvalonia/FluentIcons.FluentAvalonia.csproj
+          dotnet pack -c Release -o . FluentIcons.Avalonia.Fluent/FluentIcons.Avalonia.Fluent.csproj
           dotnet pack -c Release -o . FluentIcons.WinUI/FluentIcons.WinUI.csproj
           dotnet pack -c Release -o . FluentIcons.WPF/FluentIcons.WPF.csproj
       - name: Publish
         run: |
           dotnet nuget push FluentIcons.Common*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
           dotnet nuget push FluentIcons.Avalonia*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-          dotnet nuget push FluentIcons.FluentAvalonia*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push FluentIcons.Avalonia.Fluent*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
           dotnet nuget push FluentIcons.WinUI*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
           dotnet nuget push FluentIcons.WPF*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json

@@ -9,12 +9,12 @@ using FluentAvalonia.UI.Controls;
 using FluentIcons.Common.Internals;
 using Symbol = FluentIcons.Common.Symbol;
 
-namespace FluentIcons.FluentAvalonia
+namespace FluentIcons.Avalonia.Fluent
 {
     [TypeConverter(typeof(SymbolIconConverter))]
     public partial class SymbolIcon : FAIconElement
     {
-        private static readonly Typeface _font = new(new FontFamily("avares://FluentIcons.FluentAvalonia/Assets#FluentSystemIcons-Resizable"));
+        private static readonly Typeface _font = new(new FontFamily("avares://FluentIcons.Avalonia.Fluent/Assets#FluentSystemIcons-Resizable"));
 
         public static readonly StyledProperty<Symbol> SymbolProperty =
             AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);

@@ -38,7 +38,7 @@ try {
     $patchedTTF = "$PSScriptRoot/FluentSystemIcons-Resizable.ttf"
     & python "$PSScriptRoot/patch.py" $upstreamTTF $patchedTTF
     Copy-Item $patchedTTF "$PSScriptRoot/../FluentIcons.Avalonia/Assets" -Force
-    Copy-Item $patchedTTF "$PSScriptRoot/../FluentIcons.FluentAvalonia/Assets" -Force
+    Copy-Item $patchedTTF "$PSScriptRoot/../FluentIcons.Avalonia.Fluent/Assets" -Force
 
     # Updating enum
     $regularSymbolCs = "$PSScriptRoot/../FluentIcons.Common/Symbol.cs"

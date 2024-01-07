@@ -1,5 +1,4 @@
 import sys
-from os import path
 from fontTools import ttLib
 
 if __name__ == '__main__':

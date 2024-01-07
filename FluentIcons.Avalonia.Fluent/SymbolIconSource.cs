@@ -8,12 +8,12 @@ using FluentAvalonia.UI.Controls;
 using FluentIcons.Common.Internals;
 using Symbol = FluentIcons.Common.Symbol;
 
-namespace FluentIcons.FluentAvalonia
+namespace FluentIcons.Avalonia.Fluent
 {
     [TypeConverter(typeof(SymbolIconSourceConverter))]
     public class SymbolIconSource : PathIconSource
     {
-        private static readonly IGlyphTypeface _typeface = new Typeface("avares://FluentIcons.FluentAvalonia/Assets#FluentSystemIcons-Resizable").GlyphTypeface;
+        private static readonly IGlyphTypeface _typeface = new Typeface("avares://FluentIcons.Avalonia.Fluent/Assets#FluentSystemIcons-Resizable").GlyphTypeface;
 
         public static readonly StyledProperty<Symbol> SymbolProperty = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
         public static readonly StyledProperty<bool> IsFilledProperty = SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();

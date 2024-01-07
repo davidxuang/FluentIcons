@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Common", "Fluen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Avalonia", "FluentIcons.Avalonia\FluentIcons.Avalonia.csproj", "{4F5C2910-0A49-49EB-AB1E-E38621676F6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.FluentAvalonia", "FluentIcons.FluentAvalonia\FluentIcons.FluentAvalonia.csproj", "{999609A7-C529-4E33-B3C6-3C648D318194}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Avalonia.Fluent", "FluentIcons.Avalonia.Fluent\FluentIcons.Avalonia.Fluent.csproj", "{999609A7-C529-4E33-B3C6-3C648D318194}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.WinUI", "FluentIcons.WinUI\FluentIcons.WinUI.csproj", "{BCA0EB9E-A440-4294-9241-1CF2A1B3889E}"
 EndProject
