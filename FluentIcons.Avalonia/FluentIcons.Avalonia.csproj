@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
-    <VersionPrefix>1.1.224</VersionPrefix>
+    <VersionPrefix>1.1.225</VersionPrefix>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <Description>FluentUI System Icons wrapper for Avalonia.</Description>

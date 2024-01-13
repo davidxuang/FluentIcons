@@ -85,7 +85,7 @@ try {
 
     # Patch project version
     Get-ChildItem -Directory | ForEach-Object {
-        Get-ChildItem *.csproj | ForEach-Object {
+        Get-ChildItem -Path $_ -Filter *.csproj | ForEach-Object {
             Update-CsprojVersion -Project $_ -VersionPrefix $upstreamTag
         }
     }
