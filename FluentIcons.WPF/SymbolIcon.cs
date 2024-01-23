@@ -90,7 +90,9 @@ namespace FluentIcons.WPF
 
             var canvas = RenderTransform.TransformBounds(new Rect(0, 0, ActualWidth, ActualHeight));
             context.PushClip(new RectangleGeometry(canvas));
-            var origin = new Point(canvas.Right - canvas.Width / 2 - _formattedText.Width / 2, canvas.Bottom - canvas.Height / 2 - _formattedText.Height / 2);
+            var origin = FlowDirection == FlowDirection.LeftToRight
+                ? new Point(canvas.Left + (canvas.Width - _formattedText.Width) / 2, canvas.Top + (canvas.Height - _formattedText.Height) / 2)
+                : new Point(canvas.Right - (canvas.Width - _formattedText.Width) / 2, canvas.Top + (canvas.Height - _formattedText.Height) / 2);
             context.DrawText(_formattedText, origin);
             context.Pop();
         }
@@ -103,7 +105,7 @@ namespace FluentIcons.WPF
             _formattedText = new FormattedText(
                 Symbol.ToString(IsFilled),
                 CultureInfo.CurrentCulture,
-                CultureInfo.CurrentCulture.TextInfo.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight,
+                FlowDirection,
                 _font,
                 FontSize,
                 Foreground,
