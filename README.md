@@ -26,3 +26,11 @@ A multi-framework wrapper of [fluentui-system-icons](https://github.com/microsof
     <ic:SymbolIcon Symbol="ArrowLeft" IsFilled="True" />
 </Window>
 ```
+
+This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platforms with `<IconSource>`, which generally provide following properties:
+
+- **Symbol** : [Symbol](./FluentIcons.Common/Symbol.cs)
+- **IsFilled** : bool
+- **FontSize** : double
+    - *Breaking change since 1.1.225: no longer inherit value from parent element to match WinUI behaviours.*
+- **Foreground** : Brush
