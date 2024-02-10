@@ -3,7 +3,7 @@
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">$(TargetFrameworks);net6.0-windows10.0.17763.0;net7.0-windows10.0.17763.0</TargetFrameworks>
     <TargetFrameworks>$(TargetFrameworks);net7.0;net7.0-ios;net7.0-maccatalyst;net7.0-android</TargetFrameworks>
     <CheckEolWorkloads>false</CheckEolWorkloads>
-    <VersionPrefix>1.1.226</VersionPrefix>
+    <VersionPrefix>1.1.227</VersionPrefix>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <Description>FluentUI System Icons wrapper for WinUI.</Description>
