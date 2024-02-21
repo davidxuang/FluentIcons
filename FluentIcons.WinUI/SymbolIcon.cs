@@ -9,21 +9,33 @@ namespace FluentIcons.WinUI
 {
     public partial class SymbolIcon : FontIcon
     {
-        internal static readonly FontFamily Font = new("ms-appx:///FluentIcons.WinUI/Assets/FluentSystemIcons-Resizable.ttf#FluentSystemIcons-Resizable");
+        internal static readonly FontFamily System = new("ms-appx:///FluentIcons.WinUI/Assets/FluentSystemIcons.ttf#Fluent System Icons");
+        internal static readonly FontFamily Seagull = new("ms-appx:///FluentIcons.WinUI/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
+        internal static bool UseSegoeMetricsDefaultValue = false;
 
         public static readonly DependencyProperty SymbolProperty =
             DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
         public static readonly DependencyProperty IsFilledProperty =
             DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
+#if WINDOWS
+        public static readonly DependencyProperty UseSegoeMetricsProperty =
+            DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), PropertyMetadata.Create(() => UseSegoeMetricsDefaultValue, OnSymbolPropertiesChanged));
+#else
+        public static readonly DependencyProperty UseSegoeMetricsProperty =
+            DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
+#endif
 
         private string _glyph;
 
         public SymbolIcon()
         {
-            FontFamily = Font;
+#if !WINDOWS
+            UseSegoeMetrics = UseSegoeMetricsDefaultValue;
+#endif
+            FontFamily = UseSegoeMetrics ? Seagull : System;
             FontStyle = Windows.UI.Text.FontStyle.Normal;
             FontWeight = FontWeights.Normal;
-            Glyph = _glyph = Symbol.ToString(IsFilled);
+            Glyph = _glyph = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft);
             IsTextScaleFactorEnabled = false;
             MirroredWhenRightToLeft = false;
 
@@ -47,19 +59,30 @@ namespace FluentIcons.WinUI
             set { SetValue(IsFilledProperty, value); }
         }
 
+        public bool UseSegoeMetrics
+        {
+            get { return (bool)GetValue(UseSegoeMetricsProperty); }
+            set { SetValue(UseSegoeMetricsProperty, value); }
+        }
+
         private static void OnSymbolPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is SymbolIcon inst)
             {
-                inst.Glyph = inst._glyph = inst.Symbol.ToString(inst.IsFilled);
+                inst.FontFamily = inst.UseSegoeMetrics ? Seagull : System;
+                inst.Glyph = inst._glyph = inst.Symbol.ToString(inst.IsFilled, inst.FlowDirection == FlowDirection.RightToLeft);
             }
         }
 
         private static void OnFontFamilyChanged(DependencyObject sender, DependencyProperty dp)
         {
-            if (sender is SymbolIcon inst && inst.FontFamily != Font)
+            if (sender is SymbolIcon inst)
             {
-                inst.FontFamily = Font;
+                var font = inst.UseSegoeMetrics ? Seagull : System;
+                if (inst.FontFamily != font)
+                {
+                    inst.FontFamily = font;
+                }
             }
         }
 

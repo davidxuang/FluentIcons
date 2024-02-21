@@ -12,19 +12,24 @@ namespace FluentIcons.WPF
     [TypeConverter(typeof(SymbolIconConverter))]
     public class SymbolIcon : FrameworkElement
     {
-        private static readonly Typeface _font = new(
-            new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./Assets/#FluentSystemIcons-Resizable"),
+        private static readonly Typeface _system = new(
+            new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./Assets/#Fluent System Icons"),
             FontStyles.Normal,
             FontWeights.Normal,
             FontStretches.Normal);
-
-        private bool _suspendCreate = true;
-        private FormattedText? _formattedText;
+        private static readonly Typeface _seagull = new(
+            new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./Assets/#Seagull Fluent Icons"),
+            FontStyles.Normal,
+            FontWeights.Normal,
+            FontStretches.Normal);
+        internal static bool UseSegoeMetricsDefaultValue = false;
 
         public static readonly DependencyProperty SymbolProperty =
             DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
         public static readonly DependencyProperty IsFilledProperty =
             DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
+        public static readonly DependencyProperty UseSegoeMetricsProperty =
+            DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSizePropertiesChanged));
         public static readonly DependencyProperty FontSizeProperty =
             TextBlock.FontSizeProperty.AddOwner(
                 typeof(SymbolIcon),
@@ -34,6 +39,14 @@ namespace FluentIcons.WPF
                     OnSizePropertiesChanged));
         public static readonly DependencyProperty ForegroundProperty =
             TextBlock.ForegroundProperty.AddOwner(typeof(SymbolIcon), new FrameworkPropertyMetadata(OnSymbolPropertiesChanged));
+
+        private bool _suspendCreate = true;
+        private FormattedText? _formattedText;
+
+        public SymbolIcon()
+        {
+            UseSegoeMetrics = UseSegoeMetricsDefaultValue;
+        }
 
         public Symbol Symbol
         {
@@ -45,6 +58,12 @@ namespace FluentIcons.WPF
         {
             get { return (bool)GetValue(IsFilledProperty); }
             set { SetValue(IsFilledProperty, value); }
+        }
+
+        public bool UseSegoeMetrics
+        {
+            get { return (bool)GetValue(UseSegoeMetricsProperty); }
+            set { SetValue(UseSegoeMetricsProperty, value); }
         }
 
         public double FontSize
@@ -103,10 +122,10 @@ namespace FluentIcons.WPF
                 return;
 
             _formattedText = new FormattedText(
-                Symbol.ToString(IsFilled),
+                Symbol.ToString(IsFilled, FlowDirection == FlowDirection.LeftToRight),
                 CultureInfo.CurrentCulture,
                 FlowDirection,
-                _font,
+                UseSegoeMetrics ? _seagull : _system,
                 FontSize,
                 Foreground,
                 VisualTreeHelper.GetDpi(this).PixelsPerDip);

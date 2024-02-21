@@ -25,13 +25,16 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+      - uses: olegtarasov/get-tag@v2.1.2
+        id: tag_name
       - name: Build and pack
         run: |
-          dotnet pack -c Release -o . FluentIcons.Common/FluentIcons.Common.csproj
-          dotnet pack -c Release -o . FluentIcons.Avalonia/FluentIcons.Avalonia.csproj
-          dotnet pack -c Release -o . FluentIcons.Avalonia.Fluent/FluentIcons.Avalonia.Fluent.csproj
-          dotnet pack -c Release -o . FluentIcons.WinUI/FluentIcons.WinUI.csproj
-          dotnet pack -c Release -o . FluentIcons.WPF/FluentIcons.WPF.csproj
+          $suffix = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
+          dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.Common/FluentIcons.Common.csproj
+          dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.Avalonia/FluentIcons.Avalonia.csproj
+          dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.Avalonia.Fluent/FluentIcons.Avalonia.Fluent.csproj
+          dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.WinUI/FluentIcons.WinUI.csproj
+          dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.WPF/FluentIcons.WPF.csproj
       - name: Publish
         run: |
           dotnet nuget push FluentIcons.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json

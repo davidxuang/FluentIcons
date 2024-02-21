@@ -1,17 +1,17 @@
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace FluentIcons.Common.Internals
 {
     internal static class SymbolConversion
     {
-        private static FilledSymbol ToFilledSymbol(this Symbol symbol)
-            => (FilledSymbol)Enum.Parse(typeof(FilledSymbol), Enum.GetName(typeof(Symbol), symbol));
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static char ToChar(this Symbol symbol, bool isFilled, bool isRtl)
+            => char.ConvertFromUtf32((int)symbol + Convert.ToInt32(isFilled) + (Convert.ToInt32(isRtl) << 1)).Single();
 
-        internal static char ToChar(this Symbol symbol, bool isFilled)
-            => char.ConvertFromUtf32(isFilled ? (int)symbol.ToFilledSymbol() : (int)symbol).Single();
-
-        internal static string ToString(this Symbol symbol, bool isFilled)
-            => char.ConvertFromUtf32(isFilled ? (int)symbol.ToFilledSymbol() : (int)symbol);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static string ToString(this Symbol symbol, bool isFilled, bool isRtl)
+            => char.ConvertFromUtf32((int)symbol + Convert.ToInt32(isFilled) + (Convert.ToInt32(isRtl) << 1));
     }
 }

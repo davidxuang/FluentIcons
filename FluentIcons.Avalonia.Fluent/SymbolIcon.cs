@@ -14,12 +14,15 @@ namespace FluentIcons.Avalonia.Fluent
     [TypeConverter(typeof(SymbolIconConverter))]
     public partial class SymbolIcon : FAIconElement
     {
-        private static readonly Typeface _font = new(new FontFamily("avares://FluentIcons.Avalonia.Fluent/Assets#FluentSystemIcons-Resizable"));
+        internal static readonly Typeface System = new(new FontFamily("avares://FluentIcons.Avalonia/Assets#Fluent System Icons"));
+        internal static readonly Typeface Seagull = new(new FontFamily("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons"));
 
         public static readonly StyledProperty<Symbol> SymbolProperty =
             AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
         public static readonly StyledProperty<bool> IsFilledProperty =
             AvaloniaProperty.Register<SymbolIcon, bool>(nameof(IsFilled));
+        public static readonly StyledProperty<bool> UseSegoeMetricsProperty =
+            AvaloniaProperty.Register<SymbolIcon, bool>(nameof(UseSegoeMetrics));
         public static readonly StyledProperty<double> FontSizeProperty =
             AvaloniaProperty.Register<SymbolIcon, double>(nameof(FontSize), 20d, false);
 
@@ -36,6 +39,12 @@ namespace FluentIcons.Avalonia.Fluent
         {
             get => GetValue(IsFilledProperty);
             set => SetValue(IsFilledProperty, value);
+        }
+
+        public bool UseSegoeMetrics
+        {
+            get => GetValue(UseSegoeMetricsProperty);
+            set => SetValue(UseSegoeMetricsProperty, value);
         }
 
         public double FontSize
@@ -93,8 +102,8 @@ namespace FluentIcons.Avalonia.Fluent
                 return;
 
             _textLayout = new TextLayout(
-                Symbol.ToString(IsFilled),
-                _font,
+                Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft),
+                UseSegoeMetrics ? Seagull : System,
                 FontSize,
                 Foreground,
                 TextAlignment.Center);

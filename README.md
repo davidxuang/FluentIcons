@@ -30,7 +30,14 @@ A multi-framework wrapper of [fluentui-system-icons](https://github.com/microsof
 This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platforms with `<IconSource>`, which generally provide following properties:
 
 - **Symbol** : [Symbol](./FluentIcons.Common/Symbol.cs)
+    - *Breaking change since 1.1.229: LTR/RTL specific values are removed, use `FlowDirection` instead.*
 - **IsFilled** : bool
+- **UseSegoeMetrics**: bool
+    - *New feature since 1.1.229: match the metrics of [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font). see also: [Seagull Icons](./seagull-icons/README.md)*
+- **FlowDirection** : FlowDirection
+    - *New feature since 1.1.229: switch between LTR/RTL icon variant.*
 - **FontSize** : double
     - *Breaking change since 1.1.225: no longer inherit value from parent element to match WinUI behaviours.*
 - **Foreground** : Brush
+
+You may also enable `UseSegoeMetrics` globally using the extension method `UseSegoeMetrics()` provided for `IHostBuilder` / `AppBuilder` (Avalonia) / `Application` (WPF).

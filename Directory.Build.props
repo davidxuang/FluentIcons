@@ -1,0 +1,21 @@
+<Project>
+
+  <PropertyGroup>
+    <VersionPrefix>1.1.228</VersionPrefix>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <Authors>davidxuang</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>Icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>Fluent;UI;Icon</PackageTags>
+    <RepositoryUrl>https://github.com/davidxuang/FluentIcons</RepositoryUrl>
+    <AndroidSdkDirectory Condition="'$(ANDROID_SDK_ROOT)' != ''">$(ANDROID_SDK_ROOT)</AndroidSdkDirectory>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Assets\Icon.png" Pack="true" PackagePath="" />
+    <None Include="..\README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>

@@ -14,7 +14,8 @@ namespace FluentIcons.Avalonia
     [TypeConverter(typeof(SymbolIconConverter))]
     public class SymbolIcon : IconElement
     {
-        private static readonly Typeface _font = new(new FontFamily("avares://FluentIcons.Avalonia/Assets#FluentSystemIcons-Resizable"));
+        private static readonly Typeface _system = new(new FontFamily("avares://FluentIcons.Avalonia/Assets#Fluent System Icons"));
+        private static readonly Typeface _seagull = new(new FontFamily("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons"));
 
         private bool _suspendCreate = true;
         private TextLayout? _textLayout;
@@ -23,6 +24,8 @@ namespace FluentIcons.Avalonia
             AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
         public static readonly StyledProperty<bool> IsFilledProperty =
             AvaloniaProperty.Register<SymbolIcon, bool>(nameof(IsFilled));
+        public static readonly StyledProperty<bool> UseSegoeMetricsProperty =
+            AvaloniaProperty.Register<SymbolIcon, bool>(nameof(UseSegoeMetrics));
         public static readonly new StyledProperty<double> FontSizeProperty =
             AvaloniaProperty.Register<SymbolIcon, double>(nameof(FontSize), 20d, false);
 
@@ -36,6 +39,12 @@ namespace FluentIcons.Avalonia
         {
             get => GetValue(IsFilledProperty);
             set => SetValue(IsFilledProperty, value);
+        }
+
+        public bool UseSegoeMetrics
+        {
+            get => GetValue(UseSegoeMetricsProperty);
+            set => SetValue(UseSegoeMetricsProperty, value);
         }
 
         public new double FontSize
@@ -93,8 +102,8 @@ namespace FluentIcons.Avalonia
                 return;
 
             _textLayout = new TextLayout(
-                Symbol.ToString(IsFilled),
-                _font,
+                Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft),
+                UseSegoeMetrics ? _seagull : _system,
                 FontSize,
                 Foreground,
                 TextAlignment.Center);

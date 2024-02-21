@@ -2,7 +2,6 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using Avalonia;
-using Avalonia.Controls.Documents;
 using Avalonia.Media;
 using FluentAvalonia.UI.Controls;
 using FluentIcons.Common.Internals;
@@ -13,10 +12,13 @@ namespace FluentIcons.Avalonia.Fluent
     [TypeConverter(typeof(SymbolIconSourceConverter))]
     public class SymbolIconSource : PathIconSource
     {
-        private static readonly IGlyphTypeface _typeface = new Typeface("avares://FluentIcons.Avalonia.Fluent/Assets#FluentSystemIcons-Resizable").GlyphTypeface;
+        private static readonly IGlyphTypeface _system = SymbolIcon.System.GlyphTypeface;
+        private static readonly IGlyphTypeface _seagull = SymbolIcon.Seagull.GlyphTypeface;
 
         public static readonly StyledProperty<Symbol> SymbolProperty = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
         public static readonly StyledProperty<bool> IsFilledProperty = SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();
+        public static readonly StyledProperty<bool> UseSegoeMetricsProperty = SymbolIcon.UseSegoeMetricsProperty.AddOwner<SymbolIconSource>();
+        public static readonly StyledProperty<FlowDirection> FlowDirectionProperty = Visual.FlowDirectionProperty.AddOwner<SymbolIconSource>();
         public static readonly StyledProperty<double> FontSizeProperty = SymbolIcon.FontSizeProperty.AddOwner<SymbolIconSource>();
 
         private Geometry _data;
@@ -39,6 +41,18 @@ namespace FluentIcons.Avalonia.Fluent
         {
             get => GetValue(IsFilledProperty);
             set => SetValue(IsFilledProperty, value);
+        }
+
+        public bool UseSegoeMetrics
+        {
+            get => GetValue(UseSegoeMetricsProperty);
+            set => SetValue(UseSegoeMetricsProperty, value);
+        }
+
+        public FlowDirection FlowDirection
+        {
+            get => GetValue(FlowDirectionProperty);
+            set => SetValue(FlowDirectionProperty, value);
         }
 
         public double FontSize
@@ -67,8 +81,9 @@ namespace FluentIcons.Avalonia.Fluent
 
         private void InvalidateData()
         {
-            var codepoint = Symbol.ToChar(IsFilled);
-            using var glyphRun = new GlyphRun(_typeface, FontSize, new[] { codepoint }, new[] { _typeface.GetGlyph(codepoint) });
+            var codepoint = Symbol.ToChar(IsFilled, FlowDirection == FlowDirection.RightToLeft);
+            var typeface = UseSegoeMetrics ? _seagull : _system;
+            using var glyphRun = new GlyphRun(typeface, FontSize, new[] { codepoint }, new[] { typeface.GetGlyph(codepoint) });
             Data = _data = glyphRun.BuildGeometry();
         }
     }

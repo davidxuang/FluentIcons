@@ -1,0 +1,14 @@
+<Project>
+
+  <Target Name="UseExplicitPackageVersions" BeforeTargets="GenerateNuspec">
+    <ItemGroup>
+      <_ProjectReferenceWithExactPackageVersion Include="@(ProjectReference->'%(FullPath)')" Condition="'%(ProjectReference.ExactVersion)' == 'true'" />
+      <_ProjectReferenceWithReassignedVersion Include="@(_ProjectReferencesWithVersions)" Condition="'%(Identity)' != '' And '@(_ProjectReferenceWithExactPackageVersion)' == '@(_ProjectReferencesWithVersions)'">
+        <ProjectVersion>[@(_ProjectReferencesWithVersions->'%(ProjectVersion)')]</ProjectVersion>
+      </_ProjectReferenceWithReassignedVersion>
+      <_ProjectReferencesWithVersions Remove="@(_ProjectReferenceWithReassignedVersion)" />
+      <_ProjectReferencesWithVersions Include="@(_ProjectReferenceWithReassignedVersion)" />
+    </ItemGroup>
+  </Target>
+
+</Project>

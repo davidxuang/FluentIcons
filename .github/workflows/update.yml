@@ -23,7 +23,7 @@ jobs:
       - name: Setup
         run: pip install fonttools
       - name: Update
-        run: ./updater/Invoke-Update.ps1
+        run: ./update.ps1
       - name: Push
         uses: ad-m/github-push-action@master
         with:
