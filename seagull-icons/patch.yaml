@@ -1,0 +1,1405 @@
+map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/Source/Data/Mappings/SegoeFluent.json
+  0xE700: [navigation, 0] # GlobalNavButton
+  0xE701: [wifi_1, 0] # Wifi
+  0xE702: [bluetooth, 0] # Bluetooth
+  0xE703: [phone_tablet, 0] # Connect
+  # 0xE704: # InternetSharing
+  0xE705: [shield_keyhole, 0] # VPN
+  0xE706: [weather_sunny, 0] # Brightness
+  0xE707: [location, 0] # MapPin
+  0xE708: [weather_moon, 0] # QuietHours
+  0xE709: [airplane, 0] # Airplane
+  0xE70A: [tablet, 0] # Tablet
+  0xE70B: [note, 0] # QuickNote
+  # 0xE70C: # RememberedDevice
+  0xE70D: [chevron_down, 0] # ChevronDown
+  0xE70E: [chevron_up, 0] # ChevronUp
+  0xE70F: [edit, 0] # Edit
+  0xE710: [add, 0] # Add
+  0xE711: [dismiss, 0] # Cancel
+  0xE712: [more_horizontal, 0] # More
+  0xE713: [settings, 0] # Settings
+  0xE714: [video, 0] # Video
+  0xE715: [mail, 0] # Mail
+  0xE716: [people, 0] # People
+  0xE717: [call, 0] # Phone
+  0xE718: [pin, 0] # Pin
+  0xE719: [shopping_bag, 0] # Shop
+  0xE71A: [stop, 0] # Stop
+  0xE71B: [link, 0] # Link
+  0xE71C: [filter, 0] # Filter
+  0xE71D: [apps_list, 0] # AllApps
+  0xE71E: [search, 0] # Zoom
+  0xE71F: [zoom_out, 0] # ZoomOut
+  0xE720: [mic, 0] # Microphone
+  0xE721: [search, 0] # Search
+  0xE722: [camera, 0] # Camera
+  0xE723: [attach, 0] # Attach
+  0xE724: [send, 0] # Send
+  0xE725: [send, 1] # SendFill
+  0xE726: [person_walking, 1] # WalkSolid
+  0xE727: [window_inprivate, 0] # InPrivate
+  0xE728: [star_line_horizontal_3, 0] # FavoriteList
+  0xE729: [document, 1] # PageSolid
+  0xE72A: [arrow_right, 0] # Forward
+  0xE72B: [arrow_left, 0] # Back
+  0xE72C: [arrow_clockwise, 0] # Refresh
+  0xE72D: [share, 0] # Share
+  0xE72E: [lock_closed, 0] # Lock
+  0xE730: [shield_error, 0] # ReportHacked
+  0xE731: [building, 0] # EMI
+  0xE734: [star, 0] # FavoriteStar
+  0xE735: [star, 1] # FavoriteStarFill
+  0xE736: [book_open, 0] # ReadingMode
+  0xE737: [window, 0] # Favicon
+  0xE738: [subtract, 0] # Remove
+  0xE739: [checkbox_unchecked, 0] # Checkbox
+  0xE73A: [checkbox_checked, 0] # CheckboxComposite
+  0xE73B: [stop, 1] # CheckboxFill
+  0xE73C: [checkbox_indeterminate, 0] # CheckboxIndeterminate
+  0xE73D: [checkbox_checked, 1] # CheckboxCompositeReversed
+  0xE73E: [checkmark, 0] # CheckMark
+  0xE73F: [arrow_minimize, 0] # BackToWindow
+  0xE740: [arrow_maximize, 0] # FullScreen
+  0xE741: [arrow_down_left, 0] # ResizeTouchLarger
+  0xE742: [arrow_up_left, 0] # ResizeTouchSmaller
+  # 0xE743: # ResizeMouseSmall
+  0xE744: [layout_cell_four_focus_bottom_left, 1] # ResizeMouseMedium
+  0xE745: [layout_row_two_focus_bottom, 1] # ResizeMouseWide
+  0xE746: [layout_column_two_focus_left, 1] # ResizeMouseTall
+  0xE747: [layout_cell_four, 1] # ResizeMouseLarge
+  0xE748: [person_swap, 0] # SwitchUser
+  0xE749: [print, 0] # Print
+  0xE74A: [arrow_up, 0] # Up
+  0xE74B: [arrow_down, 0] # Down
+  0xE74C: [apps, 0] # OEM
+  0xE74D: [delete, 0] # Delete
+  0xE74E: [save, 0] # Save
+  0xE74F: [speaker_mute, 0] # Mute
+  0xE750: [backspace, 0] # BackSpaceQWERTY
+  0xE751: [arrow_enter_left, 0] # ReturnKey
+  0xE752: [keyboard_shift_uppercase, 0] # UpArrowShiftKey
+  0xE753: [cloud, 0] # Cloud
+  0xE754: [flashlight, 0] # Flashlight
+  # 0xE755: # RotationLock
+  0xE756: [window_console, 0] # CommandPrompt
+  # 0xE759: # SIPMove
+  # 0xE75A: # SIPUndock
+  # 0xE75B: # SIPRedock
+  0xE75C: [eraser, 0] # EraseTool
+  0xE75D: [spacebar, 0] # UnderscoreSpace
+  # 0xE75E: # GripperTool
+  0xE75F: [dialpad, 0] # Dialpad
+  0xE760: [arrow_circle_left, 0] # PageLeft
+  0xE761: [arrow_circle_right, 0] # PageRight
+  0xE762: [multiselect, 0] # MultiSelect
+  0xE763: [keyboard_layout_one_handed_left, 0] # KeyboardLeftHanded
+  # 0xE764: # KeyboardRightHanded
+  0xE765: [keyboard, 0] # KeyboardClassic
+  0xE766: [keyboard_layout_split, 0] # KeyboardSplit
+  0xE767: [speaker_2, 0] # Volume
+  0xE768: [play, 0] # Play
+  0xE769: [pause, 0] # Pause
+  0xE76B: [chevron_left, 0] # ChevronLeft
+  0xE76C: [chevron_right, 0] # ChevronRight
+  0xE76D: [inking_tool, 0] # InkingTool
+  0xE76E: [emoji, 0] # Emoji2
+  # 0xE76F: # GripperBarHorizontal
+  0xE770: [laptop, 0] # System
+  # 0xE771: # Personalize
+  # 0xE772] = 'keyboard_mouse' # Devices
+  0xE773: [search_square, 0] # SearchAndApps
+  0xE774: [globe, 0] # Globe
+  # 0xE775: # TimeLanguage
+  0xE776: [accessibility, 0] # EaseOfAccess
+  0xE777: [arrow_counterclockwise, 0] # UpdateRestore
+  0xE778: [call_end, 0] # HangUp
+  0xE779: [person_info, 0] # ContactInfo
+  0xE77A: [pin_off, 0] # Unpin
+  0xE77B: [person, 0] # Contact
+  0xE77C: [voicemail, 0] # Memo
+  0xE77E: [call_inbound, 0] # IncomingCall
+  0xE77F: [clipboard_paste, 0] # Paste
+  0xE780: [book_contacts, 0] # PhoneBook
+  # 0xE781: # LEDLight
+  0xE783: [error_circle, 0] # Error
+  # 0xE784: # GripperBarVertical
+  0xE785: [lock_open, 0] # Unlock
+  0xE786: [projection_screen, 0] # Slideshow
+  0xE787: [calendar, 0] # Calendar
+  0xE788: [caret_down_right, 0] # GripperResize
+  0xE789: [megaphone, 0] # Megaphone
+  # 0xE78A: # Trim
+  0xE78B: [share_screen_start, 0] # NewWindow
+  0xE78C: [save_arrow_right, 0] # SaveLocal
+  0xE790: [color, 0] # Color
+  # 0xE791: # DataSense
+  0xE792: [save_edit, 0] # SaveAs
+  0xE793: [weather_sunny, 0] # Light
+  0xE799: [ratio_one_to_one, 0] # AspectRatio
+  # 0xE7A5: # DataSenseBar
+  0xE7A6: [arrow_redo, 0] # Redo
+  0xE7A7: [arrow_undo, 0] # Undo
+  0xE7A8: [crop, 0] # Crop
+  # 0xE7AC: # OpenWith
+  0xE7AD: [arrow_rotate_clockwise, 0] # Rotate
+  0xE7B3: [eye, 0] # RedEye
+  # 0xE7B5: # SetlockScreen
+  # 0xE7B7: # MapPin2
+  # 0xE7B8: # Package
+  0xE7BA: [warning, 0] # Warning
+  0xE7BC: [reading_list, 0] # ReadingList
+  0xE7BE: [hat_graduation, 0] # Education
+  0xE7BF: [cart, 0] # ShoppingCart
+  0xE7C0: [vehicle_subway, 0] # Train
+  0xE7C1: [flag, 0] # Flag
+  0xE7C2: [arrow_move, 0] # Move
+  0xE7C3: [document, 0] # Page
+  # 0xE7C4: # TaskView
+  0xE7C5: [image_search, 0] # BrowsePhotos
+  # 0xE7C6: # HalfStarLeft
+  # 0xE7C7: # HalfStarRight
+  0xE7C8: [radio_button, 1] # Record
+  # 0xE7C9: # TouchPointer
+  # 0xE7DE: # LangJPN
+  0xE7E3: [vehicle_ship, 0] # Ferry
+  0xE7E6: [highlight, 0] # Highlight
+  0xE7E7: [chat, 1] # ActionCenterNotification
+  0xE7E8: [power, 0] # PowerButton
+  0xE7EA: [arrow_left, 0] # ResizeTouchNarrower
+  0xE7EB: [arrow_up, 0] # ResizeTouchShorter
+  0xE7EC: [vehicle_car, 0] # DrivingMode
+  0xE7ED: [alert_off, 0] # RingerSilent
+  0xE7EE: [calendar_person, 0] # OtherUser
+  0xE7EF: [window_shield, 0] # Admin
+  0xE7F0: [closed_caption, 0] # CC
+  # 0xE7F1: # SDCard
+  0xE7F2: [call_forward, 0] # CallForwarding
+  # 0xE7F3: # SettingsDisplaySound
+  0xE7F4: [tv, 0] # TVMonitor
+  # 0xE7F5: # Speakers
+  0xE7F6: [headphones, 0] # Headphone
+  0xE7F7: [laptop, 0] # DeviceLaptopPic
+  0xE7F8: [laptop, 0] # DeviceLaptopNoPic
+  0xE7F9: [tv, 0] # DeviceMonitorRightPic
+  0xE7FA: [tv, 0] # DeviceMonitorLeftPic
+  0xE7FB: [tv, 0] # DeviceMonitorNoPic
+  0xE7FC: [games, 0] # Game
+  0xE7FD: [arrow_import, 0] # HorizontalTabKey
+  # 0xE802: # StreetsideSplitMinimize
+  # 0xE803: # StreetsideSplitExpand
+  0xE804: [vehicle_car, 0] # Car
+  0xE805: [person_walking, 0] # Walk
+  0xE806: [vehicle_bus, 0] # Bus
+  # 0xE809: # TiltUp
+  0xE80A: [table, 0] # TiltDown
+  # 0xE80B: # CallControl
+  0xE80C: [arrow_curve_down_left, 0] # RotateMapRight
+  0xE80D: [arrow_curve_down_right, 0] # RotateMapLeft
+  0xE80F: [home, 0] # Home
+  0xE811: [vehicle_car_profile, 2] # ParkingLocation
+  # 0xE812: # MapCompassTop
+  # 0xE813: # MapCompassBottom
+  0xE814: [warning, 1] # IncidentTriangle
+  0xE815: [hand_draw, 0] # Touch
+  0xE816: [directions, 0] # MapDirections
+  # 0xE819: # StartPoint
+  # 0xE81A: # StopPoint
+  0xE81B: [flag, 0] # EndPoint
+  0xE81C: [history, 0] # History
+  0xE81D: [radio_button, 1] # Location
+  0xE81E: [layer, 0] # MapLayers
+  0xE81F: [vehicle_car_collision, 0] # Accident
+  0xE821: [briefcase, 0] # Work
+  0xE822: [road_cone, 0] # Construction
+  0xE823: [clock, 0] # Recent
+  0xE825: [building_bank, 0] # Bank
+  0xE826: [map, 0] # DownloadMap
+  0xE829: [inking_tool, 1] # InkingToolFill2
+  # 0xE82A: # HighlightFill2
+  0xE82B: [eraser, 1] # EraseToolFill
+  0xE82C: [eraser, 1] # EraseToolFill2
+  0xE82D: [book, 0] # Dictionary
+  0xE82E: [book_add, 0] # DictionaryAdd
+  0xE82F: [lightbulb, 0] # ToolTip
+  0xE830: [arrow_left, 0] # ChromeBack
+  # 0xE835: # ProvisioningPackage
+  # 0xE836: # AddRemoteDevice
+  0xE838: [folder_open, 0] # FolderOpen
+  # 0xE839: # Ethernet
+  # 0xE83A: # ShareBroadband
+  0xE83B: [server, 0] # DirectAccess
+  # 0xE83C: # DialUp
+  0xE83D: [shield_task, 1] # DefenderApp
+  0xE83E: [battery_9, 0] # BatteryCharging9
+  0xE83F: [battery_10, 0] # Battery10
+  0xE840: [pin, 0] # Pinned
+  0xE841: [pin, 1] # PinFill
+  0xE842: [pin, 1] # PinnedFill
+  # 0xE843: # PeriodKey
+  # 0xE844: # PuncKey
+  0xE845: [arrow_hook_up_left, 0] # RevToggleKey
+  # 0xE846: # RightArrowKeyTime1
+  # 0xE847: # RightArrowKeyTime2
+  # 0xE848: # LeftQuote
+  # 0xE849: # RightQuote
+  # 0xE84A: # DownShiftKey
+  # 0xE84B: # UpShiftKey
+  # 0xE84C: # PuncKey0
+  # 0xE84D: # PuncKeyLeftBottom
+  # 0xE84E: # RightArrowKeyTime3
+  # 0xE84F: # RightArrowKeyTime4
+  0xE850: [battery_0, 0] # Battery0
+  0xE851: [battery_1, 0] # Battery1
+  0xE852: [battery_2, 0] # Battery2
+  0xE853: [battery_3, 0] # Battery3
+  0xE854: [battery_4, 0] # Battery4
+  0xE855: [battery_5, 0] # Battery5
+  0xE856: [battery_6, 0] # Battery6
+  0xE857: [battery_7, 0] # Battery7
+  0xE858: [battery_8, 0] # Battery8
+  0xE859: [battery_9, 0] # Battery9
+  0xE85A: [battery_charge, 0] # BatteryCharging0
+  0xE85B: [battery_1, 0] # BatteryCharging1
+  0xE85C: [battery_2, 0] # BatteryCharging2
+  0xE85D: [battery_3, 0] # BatteryCharging3
+  0xE85E: [battery_4, 0] # BatteryCharging4
+  0xE85F: [battery_5, 0] # BatteryCharging5
+  0xE860: [battery_6, 0] # BatteryCharging6
+  0xE861: [battery_7, 0] # BatteryCharging7
+  0xE862: [battery_8, 0] # BatteryCharging8
+  0xE863: [battery_saver, 0] # BatterySaver0
+  0xE864: [battery_saver, 0] # BatterySaver1
+  0xE865: [battery_saver, 0] # BatterySaver2
+  0xE866: [battery_saver, 0] # BatterySaver3
+  0xE867: [battery_saver, 0] # BatterySaver4
+  0xE868: [battery_saver, 0] # BatterySaver5
+  0xE869: [battery_saver, 0] # BatterySaver6
+  0xE86A: [battery_saver, 0] # BatterySaver7
+  0xE86B: [battery_saver, 0] # BatterySaver8
+  0xE86C: [cellular_data_5, 0] # SignalBars1
+  0xE86D: [cellular_data_4, 0] # SignalBars2
+  0xE86E: [cellular_data_3, 0] # SignalBars3
+  0xE86F: [cellular_data_2, 0] # SignalBars4
+  0xE870: [cellular_data_1, 0] # SignalBars5
+  0xE871: [cellular_off, 0] # SignalNotConnected
+  0xE872: [wifi_4, 0] # Wifi1
+  0xE873: [wifi_3, 0] # Wifi2
+  0xE874: [wifi_2, 0] # Wifi3
+  # 0xE875: # MobSIMLock
+  # 0xE876: # MobSIMMissing
+  # 0xE877: # Vibrate
+  0xE878: [triangle, 1] # RoamingInternational
+  0xE879: [triangle, 0] # RoamingDomestic
+  # 0xE87A: # CallForwardInternational
+  # 0xE87B: # CallForwardRoaming
+  # 0xE87C: # JpnRomanji
+  # 0xE87D: # JpnRomanjiLock
+  # 0xE87E: # JpnRomanjiShift
+  0xE87F: [keyboard_shift_uppercase, 1] # JpnRomanjiShiftLock
+  # 0xE880: # StatusDataTransfer
+  # 0xE881: # StatusDataTransferVPN
+  # 0xE882: # StatusDualSIM2
+  # 0xE883: # StatusDualSIM2VPN
+  # 0xE884: # StatusDualSIM1
+  # 0xE885: # StatusDualSIM1VPN
+  # 0xE886: # StatusSGLTE
+  # 0xE887: # StatusSGLTECell
+  # 0xE888: # StatusSGLTEDataVPN
+  # 0xE889: # StatusVPN
+  # 0xE88A: # WifiHotspot
+  # 0xE88B: # LanguageKor
+  # 0xE88C: # LanguageCht
+  # 0xE88D: # LanguageChs
+  0xE88E: [usb_stick, 0] # USB
+  0xE88F: [inking_tool_accent, 1] # InkingToolFill
+  0xE890: [eye, 0] # View
+  0xE891: [highlight, 1] # HighlightFill
+  0xE892: [previous, 0] # Previous
+  0xE893: [next, 0] # Next
+  0xE894: [dismiss, 0] # Clear
+  0xE895: [arrow_sync, 0] # Sync
+  0xE896: [arrow_download, 0] # Download
+  0xE897: [question, 0] # Help
+  0xE898: [arrow_upload, 0] # Upload
+  0xE899: [emoji_laugh, 0] # Emoji
+  0xE89A: [document_landscape_split, 0] # TwoPage
+  0xE89B: [chat_arrow_back, 0] # LeaveChat
+  0xE89C: [mail_arrow_forward, 0] # MailForward
+  0xE89E: [camera_switch, 0] # RotateCamera
+  # 0xE89F: # ClosePane
+  # 0xE8A0: # OpenPane
+  0xE8A1: [preview_link, 0] # PreviewLink
+  0xE8A2: [camera_add, 0] # AttachCamera
+  0xE8A3: [zoom_in, 0] # ZoomIn
+  0xE8A4: [text_bullet_list_tree, 0] # Bookmarks
+  0xE8A5: [document, 0] # Document
+  0xE8A6: [document_lock, 0] # ProtectedDocument
+  0xE8A7: [open, 0] # OpenInNewWindow
+  0xE8A8: [mail, 1] # MailFill
+  0xE8A9: [border_all, 0] # ViewAll
+  # 0xE8AA: # VideoChat
+  0xE8AB: [arrow_swap, 0] # Switch
+  0xE8AC: [rename, 0] # Rename
+  0xE8AD: [arrow_up_right, 0] # Go
+  # 0xE8AE: # SurfaceHub
+  0xE8AF: [remote, 0] # Remote
+  0xE8B0: [cursor, 0] # Click
+  0xE8B1: [arrow_shuffle, 0] # Shuffle
+  0xE8B2: [movies_and_tv, 0] # Movies
+  0xE8B3: [select_all_on, 0] # SelectAll
+  0xE8B4: [orientation, 0] # Orientation
+  0xE8B5: [arrow_import, 0] # Import
+  0xE8B6: [arrow_import, 0] # ImportAll
+  0xE8B7: [folder, 0] # Folder
+  0xE8B8: [camera, 0] # Webcam
+  0xE8B9: [picture_in_picture, 0] # Picture
+  # 0xE8BA: # Caption
+  0xE8BB: [dismiss, 0] # ChromeClose
+  0xE8BC: [text_bullet_list, 0] # ShowResults
+  0xE8BD: [chat, 0] # Message
+  0xE8BE: [leaf_one, 0] # Leaf
+  0xE8BF: [calendar_day, 0] # CalendarDay
+  0xE8C0: [calendar_3_day, 0] # CalendarWeek
+  0xE8C1: [local_language, 0] # Characters
+  0xE8C2: [mail_arrow_double_back, 0] # MailReplyAll
+  0xE8C3: [mail_read, 0] # Read
+  # 0xE8C4: # ShowBcc
+  # 0xE8C5: # HideBcc
+  0xE8C6: [cut, 0] # Cut
+  # 0xE8C7: # PaymentCard
+  0xE8C8: [document_copy, 0] # Copy
+  0xE8C9: [important, 0] # Important
+  0xE8CA: [arrow_reply, 0] # MailReply
+  0xE8CB: [arrow_sort, 0] # Sort
+  0xE8CC: [phone_tablet, 0] # MobileTablet
+  # 0xE8CD: # DisconnectDrive
+  0xE8CE: [map_drive, 0] # MapDrive
+  # 0xE8CF: # ContactPresence
+  # 0xE8D0: # Priority
+  0xE8D1: [calendar_today, 0] # GotoToday
+  0xE8D2: [text_font, 0] # Font
+  0xE8D3: [text_color, 0] # FontColor
+  0xE8D4: [book_contacts, 0] # Contact2
+  0xE8D5: [folder, 1] # FolderFill
+  0xE8D6: [music_note_2, 0] # Audio
+  0xE8D7: [key, 0] # Permissions
+  # 0xE8D8: # DisableUpdates
+  0xE8D9: [star_off, 1] # Unfavorite
+  0xE8DA: [folder_arrow_up, 0] # OpenLocal
+  0xE8DB: [text_italic, 0] # Italic
+  0xE8DC: [text_underline, 0] # Underline
+  0xE8DD: [text_bold, 0] # Bold
+  0xE8DE: [folder_arrow_right, 0] # MoveToFolder
+  # 0xE8DF: # LikeDislike
+  0xE8E0: [thumb_dislike, 0] # Dislike
+  0xE8E1: [thumb_like, 0] # Like
+  0xE8E2: [text_align_right, 0] # AlignRight
+  0xE8E3: [text_align_center, 0] # AlignCenter
+  0xE8E4: [text_align_left, 0] # AlignLeft
+  0xE8E5: [document_arrow_up, 0] # OpenFile
+  0xE8E6: [select_all_off, 0] # ClearSelection
+  0xE8E7: [font_decrease, 0] # FontDecrease
+  0xE8E8: [font_increase, 0] # FontIncrease
+  0xE8E9: [text_font, 0] # FontSize
+  0xE8EA: [phone, 0] # CellPhone
+  # 0xE8EB: # Reshare
+  0xE8EC: [tag, 0] # Tag
+  0xE8ED: [arrow_repeat_1, 0] # RepeatOne
+  0xE8EE: [arrow_repeat_all, 0] # RepeatAll
+  0xE8EF: [calculator, 0] # Calculator
+  0xE8F0: [directions, 0] # Directions
+  0xE8F1: [library, 0] # Library
+  0xE8F2: [chat_bubbles_question, 0] # ChatBubbles
+  # 0xE8F3: # PostUpdate
+  0xE8F4: [folder_add, 0] # NewFolder
+  0xE8F5: [calendar_reply, 0] # CalendarReply
+  # 0xE8F6: # UnsyncFolder
+  0xE8F7: [folder_sync, 0] # SyncFolder
+  0xE8F8: [person_prohibited, 0] # BlockContact
+  # 0xE8F9: # SwitchApps
+  0xE8FA: [person_add, 0] # AddFriend
+  0xE8FB: [checkmark, 0] # Accept
+  # 0xE8FC: # GoToStart
+  0xE8FD: [text_bullet_list, 0] # BulletedList
+  0xE8FE: [scan, 0] # Scan
+  0xE8FF: [document_split_hint, 0] # Preview
+  0xE902: [people_community, 0] # Group
+  0xE904: [cellular_data_5, 0] # ZeroBars
+  0xE905: [cellular_data_4, 0] # OneBar
+  0xE906: [cellular_data_3, 0] # TwoBars
+  0xE907: [cellular_data_2, 0] # ThreeBars
+  0xE908: [cellular_data_1, 0] # FourBars
+  0xE909: [earth, 0] # World
+  0xE90A: [comment, 0] # Comment
+  # 0xE90B: # MusicInfo
+  0xE90C: [panel_left, 0] # DockLeft
+  0xE90D: [panel_right, 0] # DockRight
+  0xE90E: [panel_bottom, 0] # DockBottom
+  0xE90F: [wrench, 0] # Repair
+  0xE910: [mention, 0] # Accounts
+  # 0xE911: # DullSound
+  0xE912: [calendar_toolbox, 0] # Manage
+  # 0xE913: # Street
+  # 0xE914: # Printer3D
+  0xE915: [radio_button, 1] # RadioBullet
+  0xE916: [timer, 0] # Stopwatch
+  # 0xE91B: # Photo
+  0xE91C: [comment, 0] # ActionCenter
+  0xE91F: [circle, 1] # FullCircleMask
+  0xE921: [subtract, 0] # ChromeMinimize
+  0xE922: [square, 0] # ChromeMaximize
+  0xE923: [square_multiple, 0] # ChromeRestore
+  0xE924: [screen_cut, 0] # Annotation
+  0xE925: [backspace, 0] # BackSpaceQWERTYSm
+  0xE926: [backspace, 0] # BackSpaceQWERTYMd
+  0xE927: [swipe_right, 0] # Swipe
+  0xE928: [fingerprint, 0] # Fingerprint
+  # 0xE929: # Handwriting
+  0xE92C: [arrow_minimize, 0] # ChromeBackToWindow
+  0xE92D: [arrow_maximize, 0] # ChromeFullScreen
+  0xE92E: [keyboard, 0] # KeyboardStandard
+  0xE92F: [keyboard_dock, 0] # KeyboardDismiss
+  0xE930: [checkmark_circle, 0] # Completed
+  0xE931: [screen_cut, 0] # ChromeAnnotate
+  # 0xE932: # Label
+  # 0xE933: # IBeam
+  # 0xE934: # IBeamOutline
+  # 0xE935: # FlickDown
+  # 0xE936: # FlickUp
+  # 0xE937: # FlickLeft
+  # 0xE938: # FlickRight
+  0xE939: [person_feedback, 0] # FeedbackApp
+  # 0xE93C: # MusicAlbum
+  # 0xE93E: # Streaming
+  0xE943: [braces, 0] # Code
+  # 0xE944: # ReturnToWindow
+  # 0xE945: # LightningBolt
+  0xE946: [info, 0] # Info
+  0xE947: [dismiss, 0] # CalculatorMultiply
+  0xE948: [add, 0] # CalculatorAddition
+  0xE949: [subtract, 0] # CalculatorSubtract
+  # 0xE94A: # CalculatorDivide
+  # 0xE94B: # CalculatorSquareroot
+  # 0xE94C: # CalculatorPercentage
+  # 0xE94D: # CalculatorNegate
+  0xE94E: [equal_circle, 0] # CalculatorEqualTo
+  0xE94F: [backspace, 0] # CalculatorBackspace
+  # 0xE950: # Component
+  # 0xE951: # DMC
+  # 0xE952: # Dock
+  # 0xE953: # MultimediaDMS
+  # 0xE954: # MultimediaDVR
+  # 0xE955: # MultimediaPMP
+  # 0xE956: # PrintfaxPrinterFile
+  # 0xE957: # Sensor
+  # 0xE958: # StorageOptical
+  # 0xE95A: # Communications
+  0xE95B: [headset, 0] # Headset
+  # 0xE95D: # Projector
+  0xE95E: [heart_pulse, 0] # Health
+  # 0xE95F: # Wire
+  0xE960: [camera, 0] # Webcam2
+  # 0xE961: [keyboard_mouse, 0] # Input
+  # 0xE962: # Mouse
+  # 0xE963: # Smartcard
+  # 0xE964: # SmartcardVirtual
+  # 0xE965: # MediaStorageTower
+  0xE966: [arrow_enter_left, 0] # ReturnKeySm
+  0xE967: [storage, 0] # GameConsole
+  # 0xE968: # Network
+  # 0xE969: # StorageNetworkWireless
+  # 0xE96A: # StorageTape
+  0xE96D: [chevron_up, 0] # ChevronUpSmall
+  0xE96E: [chevron_down, 0] # ChevronDownSmall
+  0xE96F: [chevron_left, 0] # ChevronLeftSmall
+  0xE970: [chevron_right, 0] # ChevronRightSmall
+  0xE971: [chevron_up, 0] # ChevronUpMed
+  0xE972: [chevron_down, 0] # ChevronDownMed
+  0xE973: [chevron_left, 0] # ChevronLeftMed
+  0xE974: [chevron_right, 0] # ChevronRightMed
+  0xE975: [phone_laptop, 0] # Devices2
+  # 0xE976: # ExpandTile
+  # 0xE977: # PC1
+  0xE978: [square, 1] # PresenceChicklet
+  0xE979: [video, 1] # PresenceChickletVideo
+  0xE97A: [arrow_reply, 0] # Reply
+  # 0xE97B: # SetTile
+  # 0xE97C: # Type
+  # 0xE97D: # Korean
+  # 0xE97E: # HalfAlpha
+  # 0xE97F: # FullAlpha
+  # 0xE980: # Key12On
+  # 0xE981: # ChineseChangjie
+  # 0xE982: # QWERTYOn
+  # 0xE983: # QWERTYOff
+  # 0xE984: # ChineseQuick
+  # 0xE985: # Japanese
+  # 0xE986: # FullHiragana
+  # 0xE987: # FullKatakana
+  # 0xE988: # HalfKatakana
+  # 0xE989: # ChineseBoPoMoFo
+  # 0xE98A: # ChinesePinyin
+  0xE98F: [road_cone, 0] # ConstructionCone
+  0xE990: [xbox_console, 0] # XboxOneConsole
+  0xE992: [speaker_0, 0] # Volume0
+  0xE993: [speaker_1, 0] # Volume1
+  0xE994: [speaker_2, 0] # Volume2
+  0xE995: [speaker_2, 0] # Volume3
+  # 0xE996: # BatteryUnknown
+  # 0xE998: # WifiAttentionOverlay
+  0xE99A: [bot, 0] # Robot
+  # 0xE9A1: # TapAndSend
+  0xE9A6: [page_fit, 0] # FitPage
+  # 0xE9A8: # PasswordKeyShow
+  # 0xE9A9: # PasswordKeyHide
+  # 0xE9AA: # BidiLtr
+  # 0xE9AB: # BidiRtl
+  0xE9AC: [arrow_right, 0] # ForwardSm
+  # 0xE9AD: # CommaKey
+  # 0xE9AE: # DashKey
+  # 0xE9AF: # DullSoundKey
+  # 0xE9B0: # HalfDullSound
+  # 0xE9B1: # RightDoubleQuote
+  # 0xE9B2: # LeftDoubleQuote
+  # 0xE9B3: # PuncKeyRightBottom
+  # 0xE9B4: # PuncKey1
+  # 0xE9B5: # PuncKey2
+  # 0xE9B6: # PuncKey3
+  # 0xE9B7: # PuncKey4
+  # 0xE9B8: # PuncKey5
+  # 0xE9B9: # PuncKey6
+  # 0xE9BA: # PuncKey9
+  # 0xE9BB: # PuncKey7
+  # 0xE9BC: # PuncKey8
+  0xE9CA: [temperature, 0] # Frigid
+  0xE9CE: [question_circle, 0] # Unknown
+  0xE9D2: [data_area, 0] # AreaChart
+  0xE9D5: [task_list, 0] # CheckList
+  0xE9D9: [pulse_square, 0] # Diagnostic
+  0xE9E9: [options, 0] # Equalizer
+  # 0xE9F3: # Process
+  0xE9F5: [settings, 0] # Processing
+  0xE9F9: [document_data, 0] # ReportDocument
+  0xEA0C: [video, 1] # VideoSolid
+  # 0xEA0D: # MixedMediaBadge
+  # 0xEA14: # DisconnectDisplay
+  0xEA18: [shield, 0] # Shield
+  0xEA1F: [info, 0] # Info2
+  # 0xEA21: # ActionCenterAsterisk
+  # 0xEA24: # Beta
+  0xEA35: [save_copy, 0] # SaveCopy
+  0xEA37: [list, 0] # List
+  0xEA38: [text_asterisk, 0] # Asterisk
+  0xEA39: [dismiss_circle, 0] # ErrorBadge
+  0xEA3A: [circle, 0] # CircleRing
+  0xEA3B: [circle, 1] # CircleFill
+  # 0xEA3C: # MergeCall
+  # 0xEA3D: # PrivateCall
+  0xEA3F: [circle, 0] # Record2
+  0xEA40: [apps_list, 2] # AllAppsMirrored
+  0xEA41: [text_bullet_list_tree, 2] # BookmarksMirrored
+  0xEA42: [text_bullet_list, 2] # BulletedListMirrored
+  # 0xEA43: # CallForwardInternationalMirrored
+  # 0xEA44: # CallForwardRoamingMirrored
+  0xEA47: [arrow_right, 0] # ChromeBackMirrored
+  # 0xEA48: # ClearSelectionMirrored
+  # 0xEA49: # ClosePaneMirrored
+  # 0xEA4A: # ContactInfoMirrored
+  0xEA4B: [panel_left, 0] # DockRightMirrored
+  0xEA4C: [panel_right, 0] # DockLeftMirrored
+  0xEA4E: [arrow_step_in_right, 0] # ExpandTileMirrored
+  0xEA4F: [arrow_up_left, 0] # GoMirrored
+  # 0xEA50: # GripperResizeMirrored
+  # 0xEA51: # HelpMirrored
+  # 0xEA52: # ImportMirrored
+  # 0xEA53: # ImportAllMirrored
+  # 0xEA54: # LeaveChatMirrored
+  0xEA55: [text_align_right, 0] # ListMirrored
+  # 0xEA56: # MailForwardMirrored
+  # 0xEA57: # MailReplyMirrored
+  # 0xEA58: # MailReplyAllMirrored
+  # 0xEA5B: # OpenPaneMirrored
+  # 0xEA5C: # OpenWithMirrored
+  0xEA5E: [vehicle_car_parking, 0] # ParkingLocationMirrored
+  # 0xEA5F: # ResizeMouseMediumMirrored
+  # 0xEA60: # ResizeMouseSmallMirrored
+  # 0xEA61: # ResizeMouseTallMirrored
+  0xEA62: [arrow_right, 0] # ResizeTouchNarrowerMirrored
+  0xEA63: [send, 2] # SendMirrored
+  0xEA64: [send, 3] # SendFillMirrored
+  # 0xEA65: # ShowResultsMirrored
+  # 0xEA69: # Media
+  # 0xEA6A: # SyncError
+  0xEA6C: [phone_desktop, 0] # Devices3
+  0xEA79: [animal_turtle, 0] # SlowMotionOn
+  0xEA80: [lightbulb, 0] # Lightbulb
+  # 0xEA81: # StatusCircle
+  # 0xEA82: # StatusTriangle
+  # 0xEA83: # StatusError
+  # 0xEA84: # StatusWarning
+  0xEA86: [puzzle_piece, 0] # Puzzle
+  0xEA89: [calendar, 1] # CalendarSolid
+  0xEA8A: [home, 1] # HomeSolid
+  0xEA8B: [vehicle_car_parking, 1] # ParkingLocationSolid
+  0xEA8C: [person, 1] # ContactSolid
+  0xEA8D: [road_cone, 1] # ConstructionSolid
+  0xEA8E: [vehicle_car_collision, 1] # AccidentSolid
+  0xEA8F: [alert, 0] # Ringer
+  0xEA90: [document_pdf, 0] # PDF
+  # 0xEA91: # ThoughtBubble
+  0xEA92: [heart_broken, 0] # HeartBroken
+  # 0xEA93: # BatteryCharging10
+  0xEA94: [battery_saver, 0] # BatterySaver9
+  0xEA95: [battery_saver, 1] # BatterySaver10
+  # 0xEA97: # CallForwardingMirrored
+  # 0xEA98: # MultiSelectMirrored
+  0xEA99: [broom, 0] # Broom
+  0xEAC2: [arrow_up, 0] # ForwardCall
+  # 0xEADF: # Trackers
+  0xEAFC: [arrow_trending, 0] # Market
+  0xEB05: [data_pie, 0] # PieSingle
+  0xEB0F: [caret_up, 1] # StockDown
+  0xEB11: [caret_down, 1] # StockUp
+  # 0xEB3C: # Design
+  # 0xEB41: # Website
+  0xEB42: [drop, 1] # Drop
+  0xEB44: [radar, 0] # Radar
+  0xEB47: [vehicle_bus, 1] # BusSolid
+  0xEB48: [vehicle_ship, 1] # FerrySolid
+  # 0xEB49: # StartPointSolid
+  # 0xEB4A: # StopPointSolid
+  0xEB4B: [flag, 1] # EndPointSolid
+  0xEB4C: [airplane, 1] # AirplaneSolid
+  0xEB4D: [vehicle_subway, 1] # TrainSolid
+  0xEB4E: [briefcase, 1] # WorkSolid
+  0xEB4F: [lightbulb, 1] # ReminderFill
+  0xEB50: [lightbulb, 0] # Reminder
+  0xEB51: [heart, 0] # Heart
+  0xEB52: [heart, 1] # HeartFill
+  # 0xEB55: # EthernetError
+  # 0xEB56: # EthernetWarning
+  # 0xEB57: # StatusConnecting1
+  # 0xEB58: # StatusConnecting2
+  # 0xEB59: # StatusUnsecure
+  # 0xEB5A: # WifiError0
+  # 0xEB5B: # WifiError1
+  # 0xEB5C: # WifiError2
+  # 0xEB5D: # WifiError3
+  # 0xEB5E: # WifiError4
+  # 0xEB5F: # WifiWarning0
+  # 0xEB60: # WifiWarning1
+  # 0xEB61: # WifiWarning2
+  # 0xEB62: # WifiWarning3
+  0xEB63: [wifi_warning, 0] # WifiWarning4
+  # 0xEB66: # Devices4
+  # 0xEB67: # NUIIris
+  # 0xEB68: # NUIFace
+  # 0xEB77: # GatewayRouter
+  0xEB7E: [edit, 2] # EditMirrored
+  # 0xEB82: # NUIFPStartSlideHand
+  # 0xEB83: # NUIFPStartSlideAction
+  # 0xEB84: # NUIFPContinueSlideHand
+  # 0xEB85: # NUIFPContinueSlideAction
+  # 0xEB86: # NUIFPRollRightHand
+  # 0xEB87: # NUIFPRollRightHandAction
+  # 0xEB88: # NUIFPRollLeftHand
+  # 0xEB89: # NUIFPRollLeftAction
+  # 0xEB8A: # NUIFPPressHand
+  # 0xEB8B: # NUIFPPressAction
+  # 0xEB8C: # NUIFPPressRepeatHand
+  # 0xEB8D: # NUIFPPressRepeatAction
+  0xEB90: [dismiss_circle, 1] # StatusErrorFull
+  # 0xEB91: # TaskViewExpanded
+  # 0xEB95: # Certificate
+  0xEB96: [backspace, 0] # BackSpaceQWERTYLg
+  0xEB97: [arrow_enter_left, 0] # ReturnKeyLg
+  0xEB9D: [fast_forward, 0] # FastForward
+  0xEB9E: [rewind, 0] # Rewind
+  # 0xEB9F: # Photo2
+  0xEBA0: [battery_0, 0] # MobBattery0
+  0xEBA1: [battery_1, 0] # MobBattery1
+  0xEBA2: [battery_2, 0] # MobBattery2
+  0xEBA3: [battery_3, 0] # MobBattery3
+  0xEBA4: [battery_4, 0] # MobBattery4
+  0xEBA5: [battery_5, 0] # MobBattery5
+  0xEBA6: [battery_6, 0] # MobBattery6
+  0xEBA7: [battery_7, 0] # MobBattery7
+  0xEBA8: [battery_8, 0] # MobBattery8
+  0xEBA9: [battery_9, 0] # MobBattery9
+  0xEBAA: [battery_10, 0] # MobBattery10
+  # 0xEBAB: # MobBatteryCharging0
+  # 0xEBAC: # MobBatteryCharging1
+  # 0xEBAD: # MobBatteryCharging2
+  # 0xEBAE: # MobBatteryCharging3
+  # 0xEBAF: # MobBatteryCharging4
+  # 0xEBB0: # MobBatteryCharging5
+  # 0xEBB1: # MobBatteryCharging6
+  # 0xEBB2: # MobBatteryCharging7
+  # 0xEBB3: # MobBatteryCharging8
+  # 0xEBB4: # MobBatteryCharging9
+  # 0xEBB5: # MobBatteryCharging10
+  # 0xEBB6: # MobBatterySaver0
+  # 0xEBB7: # MobBatterySaver1
+  # 0xEBB8: # MobBatterySaver2
+  # 0xEBB9: # MobBatterySaver3
+  # 0xEBBA: # MobBatterySaver4
+  # 0xEBBB: # MobBatterySaver5
+  # 0xEBBC: # MobBatterySaver6
+  # 0xEBBD: # MobBatterySaver7
+  # 0xEBBE: # MobBatterySaver8
+  # 0xEBBF: # MobBatterySaver9
+  # 0xEBC0: # MobBatterySaver10
+  # 0xEBC3: # DictionaryCloud
+  # 0xEBC4: # ResetDrive
+  # 0xEBC5: # VolumeBars
+  # 0xEBC6: # Project
+  # 0xEBD2: # AdjustHologram
+  0xEBD3: [cloud_arrow_down, 0] # CloudDownload
+  # 0xEBD4: # MobWifiCallBars
+  # 0xEBD5: # MobWifiCall0
+  # 0xEBD6: # MobWifiCall1
+  # 0xEBD7: # MobWifiCall2
+  # 0xEBD8: # MobWifiCall3
+  # 0xEBD9: # MobWifiCall4
+  0xEBDA: [people_community, 0] # Family
+  # 0xEBDB: # LockFeedback
+  # 0xEBDE: # DeviceDiscovery
+  # 0xEBE6: # WindDirection
+  0xEBE7: [arrow_right, 0] # RightArrowKeyTime0
+  0xEBE8: [bug, 0] # Bug
+  # 0xEBFC: # TabletMode
+  # 0xEBFD: # StatusCircleLeft
+  # 0xEBFE: # StatusTriangleLeft
+  # 0xEBFF: # StatusErrorLeft
+  # 0xEC00: # StatusWarningLeft
+  # 0xEC02: # MobBatteryUnknown
+  # 0xEC05: # NetworkTower
+  0xEC06: [city, 0] # CityNext
+  0xEC07: [building_skyscraper, 0] # CityNext2
+  0xEC08: [building_bank, 0] # Courthouse
+  # 0xEC09: # Groceries
+  0xEC0A: [leaf_two, 0] # Sustainable
+  # 0xEC0B: # BuildingEnergy
+  # 0xEC11: # ToggleFilled
+  # 0xEC12: # ToggleBorder
+  # 0xEC13: # SliderThumb
+  # 0xEC14: # ToggleThumb
+  0xEC15: [cast, 0] # MiracastLogoSmall
+  0xEC16: [cast, 0] # MiracastLogoLarge
+  # 0xEC19: # PLAP
+  # 0xEC1B: # Badge
+  # 0xEC1E: # SignalRoaming
+  # 0xEC20: # MobileLocked
+  # 0xEC24: # InsiderHubApp
+  0xEC25: [folder_person, 0] # PersonalFolder
+  # 0xEC26: # HomeGroup
+  # 0xEC27: # MyNetwork
+  0xEC31: [keyboard, 1] # KeyboardFull
+  0xEC32: [drink_coffee, 0] # Cafe
+  0xEC37: [cellular_data_5, 0] # MobSignal1
+  0xEC38: [cellular_data_4, 0] # MobSignal2
+  0xEC39: [cellular_data_3, 0] # MobSignal3
+  0xEC3A: [cellular_data_2, 0] # MobSignal4
+  0xEC3B: [cellular_data_1, 0] # MobSignal5
+  0xEC3C: [wifi_4, 0] # MobWifi1
+  0xEC3D: [wifi_3, 0] # MobWifi2
+  0xEC3E: [wifi_2, 0] # MobWifi3
+  0xEC3F: [wifi_1, 0] # MobWifi4
+  0xEC40: [airplane, 0] # MobAirplane
+  0xEC41: [bluetooth, 0] # MobBluetooth
+  # 0xEC42: # MobActionCenter
+  0xEC43: [radio_button, 1] # MobLocation
+  # 0xEC44: # MobWifiHotspot
+  # 0xEC45: # LanguageJpn
+  0xEC46: [weather_moon, 0] # MobQuietHours
+  0xEC47: [vehicle_car, 0] # MobDrivingMode
+  # 0xEC48: # SpeedOff
+  # 0xEC49: # SpeedMedium
+  0xEC4A: [top_speed, 0] # SpeedHigh
+  # 0xEC4E: # ThisPC
+  0xEC4F: [music_note_1, 0] # MusicNote
+  0xEC50: [folder, 0] # FileExplorer
+  0xEC51: [folder, 1] # FileExplorerApp
+  0xEC52: [arrow_left, 0] # LeftArrowKeyTime0
+  0xEC54: [mic_prohibited, 0] # MicOff
+  # 0xEC55: # MicSleep
+  # 0xEC56: # MicError
+  0xEC57: [replay, 0] # PlaybackRate1x
+  0xEC58: [replay, 1] # PlaybackRateOther
+  0xEC59: [money, 0] # CashDrawer
+  # 0xEC5A: # BarcodeScanner
+  # 0xEC5B: # ReceiptPrinter
+  # 0xEC5C: # MagStripeReader
+  0xEC61: [checkmark_circle, 1] # CompletedSolid
+  # 0xEC64: # CompanionApp
+  # 0xEC6C: # Favicon2
+  # 0xEC6D: # SwipeRevealArt
+  0xEC71: [mic, 1] # MicOn
+  # 0xEC72: # MicClipping
+  # 0xEC74: # TabletSelected
+  # 0xEC75: # MobileSelected
+  # 0xEC76: # LaptopSelected
+  # 0xEC77: # TVMonitorSelected
+  0xEC7A: [window_dev_tools, 0] # DeveloperTools
+  0xEC7E: [call_forward, 0] # MobCallForwarding
+  # 0xEC7F: # MobCallForwardingMirrored
+  # 0xEC80: # BodyCam
+  # 0xEC81: # PoliceCar
+  # 0xEC87: # Draw
+  # 0xEC88: # DrawSolid
+  # 0xEC8A: # LowerBrightness
+  0xEC8F: [chevron_up_down, 0] # ScrollUpDown
+  0xEC92: [calendar_clock, 0] # DateTime
+  # 0xEC94: # HoloLens
+  0xECA5: [glance_horizontal, 0] # Tiles
+  # 0xECA7: # PartyLeader
+  # 0xECAA: # AppIconDefault
+  0xECAD: [fire, 0] # Calories
+  0xECAF: [location, 0] # POI
+  0xECB9: [battery_0, 0] # BandBattery0
+  0xECBA: [battery_1, 0] # BandBattery1
+  0xECBB: [battery_3, 0] # BandBattery2
+  0xECBC: [battery_5, 0] # BandBattery3
+  0xECBD: [battery_7, 0] # BandBattery4
+  0xECBE: [battery_8, 0] # BandBattery5
+  0xECBF: [battery_10, 0] # BandBattery6
+  # 0xECC4: # AddSurfaceHub
+  # 0xECC5: # DevUpdate
+  0xECC6: [ruler, 0] # Unit
+  0xECC8: [add_circle, 0] # AddTo
+  0xECC9: [subtract_circle, 0] # RemoveFrom
+  0xECCA: [radio_button, 0] # RadioBtnOff
+  0xECCB: [radio_button, 1] # RadioBtnOn
+  0xECCC: [radio_button, 1] # RadioBullet2
+  0xECCD: [add_square_multiple, 0] # ExploreContent
+  0xECE4: [subtract_circle, 0] # Blocked2
+  # 0xECE7: # ScrollMode
+  # 0xECE8: # ZoomMode
+  # 0xECE9: # PanMode
+  # 0xECF0: # WiredUSB
+  # 0xECF1: # WirelessUSB
+  # 0xECF3: # USBSafeConnect
+  # 0xED0C: # ActionCenterNotificationMirrored
+  # 0xED0D: # ActionCenterMirrored
+  # 0xED0E: # SubscriptionAdd
+  # 0xED10: # ResetDevice
+  # 0xED11: # SubscriptionAddMirrored
+  0xED14: [qr_code, 0] # QRCode
+  0xED15: [person_feedback, 0] # Feedback
+  0xED1A: [eye_off, 0] # Hide
+  0xED1E: [chat, 0] # Subtitles
+  0xED1F: [textbox_align_bottom, 0] # SubtitlesAudio
+  0xED25: [folder_open, 0] # OpenFolderHorizontal
+  0xED28: [calendar, 2] # CalendarMirrored
+  # 0xED2A: # MobeSIM
+  # 0xED2B: # MobeSIMNoProfile
+  # 0xED2C: # MobeSIMLocked
+  # 0xED2D: # MobeSIMBusy
+  # 0xED2E: # SignalError
+  # 0xED2F: # StreamingEnterprise
+  # 0xED30: # Headphone0
+  # 0xED31: # Headphone1
+  # 0xED32: # Headphone2
+  # 0xED33: # Headphone3
+  # 0xED35: # Apps
+  # 0xED39: # KeyboardBrightness
+  # 0xED3A: # KeyboardLowerBrightness
+  0xED3C: [skip_back_10, 0] # SkipBack10
+  0xED3D: [skip_forward_30, 0] # SkipForward30
+  0xED41: [folder, 0] # TreeFolderFolder
+  0xED42: [folder, 1] # TreeFolderFolderFill
+  0xED43: [folder_open_vertical, 0] # TreeFolderFolderOpen
+  0xED44: [folder_open_vertical, 1] # TreeFolderFolderOpenFill
+  # 0xED47: # MultimediaDMP
+  # 0xED4C: # KeyboardOneHanded
+  # 0xED4D: # Narrator
+  # 0xED53: # EmojiTabPeople
+  0xED54: [emoji_laugh, 0] # EmojiTabSmilesAnimals
+  # 0xED55: # EmojiTabCelebrationObjects
+  0xED56: [food_pizza, 0] # EmojiTabFoodPlants
+  0xED57: [vehicle_car_profile, 0] # EmojiTabTransitPlaces
+  # 0xED58: # EmojiTabSymbols
+  # 0xED59: # EmojiTabTextSmiles
+  0xED5A: [clock, 0] # EmojiTabFavorites
+  0xED5B: [square, 0] # EmojiSwatch
+  # 0xED5C: # ConnectApp
+  # 0xED5D: # CompanionDeviceFramework
+  0xED5E: [ruler, 0] # Ruler
+  # 0xED5F: # FingerInking
+  # 0xED60: # StrokeErase
+  # 0xED61: # PointErase
+  # 0xED62: # ClearAllInk
+  # 0xED63: # Pencil
+  # 0xED64: # Marker
+  # 0xED65: # InkingCaret
+  # 0xED66: # InkingColorOutline
+  # 0xED67: # InkingColorFill
+  0xEDA2: [hard_drive, 0] # HardDrive
+  # 0xEDA3: # NetworkAdapter
+  # 0xEDA4: # Touchscreen
+  # 0xEDA5: # NetworkPrinter
+  # 0xEDA6: # CloudPrinter
+  # 0xEDA7: # KeyboardShortcut
+  # 0xEDA8: # BrushSize
+  # 0xEDA9: # NarratorForward
+  # 0xEDAA: # NarratorForwardMirrored
+  # 0xEDAB: # SyncBadge12
+  # 0xEDAC: # RingerBadge12
+  # 0xEDAD: # AsteriskBadge12
+  # 0xEDAE: # ErrorBadge12
+  0xEDAF: [circle, 1] # CircleRingBadge12
+  # 0xEDB0: # CircleFillBadge12
+  # 0xEDB1: # ImportantBadge12
+  0xEDB3: [mail, 0] # MailBadge12
+  0xEDB4: [pause, 0] # PauseBadge12
+  0xEDB5: [play, 0] # PlayBadge12
+  # 0xEDC6: # PenWorkspace
+  0xEDD5: [caret_left, 0] # CaretLeft8
+  0xEDD6: [caret_right, 0] # CaretRight8
+  0xEDD7: [caret_up, 0] # CaretUp8
+  0xEDD8: [caret_down, 0] # CaretDown8
+  0xEDD9: [caret_left, 1] # CaretLeftSolid8
+  0xEDDA: [caret_right, 1] # CaretRightSolid8
+  0xEDDB: [caret_up, 1] # CaretUpSolid8
+  0xEDDC: [caret_down, 1] # CaretDownSolid8
+  0xEDE0: [text_strikethrough, 0] # Strikethrough
+  0xEDE1: [arrow_export, 0] # Export
+  # 0xEDE2: # ExportMirrored
+  # 0xEDE3: # ButtonMenu
+  # 0xEDE4: # CloudSearch
+  # 0xEDE5: # PinyinIMELogo
+  0xEDFB: [calligraphy_pen, 0] # CalligraphyPen
+  0xEE35: [arrow_forward, 0] # ReplyMirrored
+  # 0xEE3F: # LockscreenDesktop
+  0xEE40: [square_multiple, 0] # TaskViewSettings
+  # 0xEE47: # MiniExpand2Mirrored
+  # 0xEE49: # MiniContract2Mirrored
+  0xEE4A: [play, 0] # Play36
+  # 0xEE56: # PenPalette
+  # 0xEE57: # GuestUser
+  0xEE63: [battery_0, 0] # SettingsBattery
+  # 0xEE64: # TaskbarPhone
+  # 0xEE65: # LockScreenGlance
+  # 0xEE6F: # GenericScan
+  # 0xEE71: # ImageExport
+  # 0xEE77: # WifiEthernet
+  # 0xEE79: # ActionCenterQuiet
+  # 0xEE7A: # ActionCenterQuietNotification
+  # 0xEE92: # TrackersMirrored
+  0xEE93: [calendar_clock, 2] # DateTimeMirrored
+  # 0xEE94: # Wheel
+  # 0xEEA3: # VirtualMachineGroup
+  # 0xEECA: # ButtonView2
+  # 0xEF15: # PenWorkspaceMirrored
+  # 0xEF16: # PenPaletteMirrored
+  # 0xEF17: # StrokeEraseMirrored
+  # 0xEF18: # PointEraseMirrored
+  # 0xEF19: # ClearAllInkMirrored
+  # 0xEF1F: # BackgroundToggle
+  # 0xEF20: # Marquee
+  0xEF2C: [dismiss, 1] # ChromeCloseContrast
+  0xEF2D: [subtract, 1] # ChromeMinimizeContrast
+  0xEF2E: [square, 0] # ChromeMaximizeContrast
+  0xEF2F: [square_multiple, 1] # ChromeRestoreContrast
+  # 0xEF31: # TrafficLight
+  0xEF3B: [replay, 0] # Replay
+  0xEF3C: [eyedropper, 0] # Eyedropper
+  # 0xEF3D: # LineDisplay
+  # 0xEF3E: # PINPad
+  # 0xEF3F: # SignatureCapture
+  # 0xEF40: # ChipCardCreditCardReader
+  # 0xEF42: # MarketDown
+  # 0xEF58: # PlayerSettings
+  0xEF6B: [document_landscape, 0] # LandscapeOrientation
+  0xEF90: [flow, 0] # Flow
+  # 0xEFA5: # Touchpad
+  0xEFA9: [person_voice, 0] # Speech
+  # 0xF000: # KnowledgeArticle
+  0xF003: [share_android, 0] # Relationship
+  0xF012: [folder_zip, 0] # ZipFolder
+  # 0xF080: # DefaultAPN
+  # 0xF081: # UserAPN
+  # 0xF085: # DoublePinyin
+  # 0xF08C: # BlueLight
+  0xF08D: [caret_left, 1] # CaretSolidLeft
+  0xF08E: [caret_down, 1] # CaretSolidDown
+  0xF08F: [caret_right, 1] # CaretSolidRight
+  0xF090: [caret_up, 1] # CaretSolidUp
+  # 0xF093: # ButtonA
+  # 0xF094: # ButtonB
+  # 0xF095: # ButtonY
+  # 0xF096: # ButtonX
+  0xF0AD: [arrow_up, 1] # ArrowUp8
+  0xF0AE: [arrow_down, 1] # ArrowDown8
+  0xF0AF: [arrow_right, 1] # ArrowRight8
+  0xF0B0: [arrow_left, 1] # ArrowLeft8
+  # 0xF0B2: # QuarentinedItems
+  # 0xF0B3: # QuarentinedItemsMirrored
+  # 0xF0B4: # Protractor
+  0xF0B5: [task_list, 2] # ChecklistMirrored
+  # 0xF0B6: # StatusCircle7
+  # 0xF0B7: # StatusCheckmark7
+  # 0xF0B8: # StatusErrorCircle7
+  # 0xF0B9: # Connected
+  # 0xF0C6: # PencilFill
+  # 0xF0C7: # CalligraphyFill
+  # 0xF0CA: # QuarterStarLeft
+  # 0xF0CB: # QuarterStarRight
+  # 0xF0CC: # ThreeQuarterStarLeft
+  # 0xF0CD: # ThreeQuarterStarRight
+  0xF0CE: [weather_moon, 0] # QuietHoursBadge12
+  0xF0D2: [arrow_right, 0] # BackMirrored
+  0xF0D3: [arrow_left, 0] # ForwardMirrored
+  0xF0D5: [arrow_left, 1] # ChromeBackContrast
+  0xF0D6: [arrow_right, 1] # ChromeBackContrastMirrored
+  0xF0D7: [arrow_minimize, 1] # ChromeBackToWindowContrast
+  0xF0D8: [arrow_maximize, 1] # ChromeFullScreenContrast
+  0xF0E2: [grid, 0] # GridView
+  0xF0E3: [clipboard_bullet_list, 0] # ClipboardList
+  # 0xF0E4: # ClipboardListMirrored
+  0xF0E5: [star_one_quarter, 0] # OutlineQuarterStarLeft
+  # 0xF0E6: # OutlineQuarterStarRight
+  0xF0E7: [star_half, 0] # OutlineHalfStarLeft
+  # 0xF0E8: # OutlineHalfStarRight
+  0xF0E9: [star_three_quarter, 0] # OutlineThreeQuarterStarLeft
+  # 0xF0EA: # OutlineThreeQuarterStarRight
+  # 0xF0EB: # SpatialVolume0
+  # 0xF0EC: # SpatialVolume1
+  # 0xF0ED: # SpatialVolume2
+  # 0xF0EE: # SpatialVolume3
+  # 0xF0EF: # ApplicationGuard
+  # 0xF0F7: # OutlineStarLeftHalf
+  # 0xF0F8: # OutlineStarRightHalf
+  0xF0F9: [screen_cut, 1] # ChromeAnnotateContrast
+  # 0xF0FB: # DefenderBadge12
+  # 0xF103: # DetachablePC
+  0xF108: [add, 0] # LeftStick
+  0xF109: [add, 0] # RightStick
+  # 0xF10A: # TriggerLeft
+  # 0xF10B: # TriggerRight
+  # 0xF10C: # BumperLeft
+  # 0xF10D: # BumperRight
+  # 0xF10E: # Dpad
+  # 0xF110: # EnglishPunctuation
+  # 0xF111: # ChinesePunctuation
+  # 0xF119: # HMD
+  # 0xF11B: # CtrlSpatialRight
+  0xF126: [circle, 0] # PaginationDotOutline10
+  0xF127: [circle, 1] # PaginationDotSolid10
+  # 0xF128: # StrokeErase2
+  # 0xF129: # SmallErase
+  # 0xF12A: # LargeErase
+  0xF12B: [folder, 0] # FolderHorizontal
+  0xF12E: [mic, 0] # MicrophoneListening
+  # 0xF12F: # StatusExclamationCircle7
+  # 0xF131: # Video360
+  # 0xF133: # GiftboxOpen
+  # 0xF136: # StatusCircleOuter
+  # 0xF137: # StatusCircleInner
+  # 0xF138: # StatusCircleRing
+  # 0xF139: # StatusTriangleOuter
+  # 0xF13A: # StatusTriangleInner
+  # 0xF13B: # StatusTriangleExclamation
+  # 0xF13C: # StatusCircleExclamation
+  # 0xF13D: # StatusCircleErrorX
+  # 0xF13E: # StatusCircleCheckmark
+  # 0xF13F: # StatusCircleInfo
+  0xF140: [presence_blocked, 0] # StatusCircleBlock
+  0xF141: [subtract_circle, 0] # StatusCircleBlock2
+  # 0xF142: # StatusCircleQuestionMark
+  # 0xF143: # StatusCircleSync
+  # 0xF146: # Dial1
+  # 0xF147: # Dial2
+  # 0xF148: # Dial3
+  # 0xF149: # Dial4
+  # 0xF14A: # Dial5
+  # 0xF14B: # Dial6
+  # 0xF14C: # Dial7
+  # 0xF14D: # Dial8
+  # 0xF14E: # Dial9
+  # 0xF14F: # Dial10
+  # 0xF150: # Dial11
+  # 0xF151: # Dial12
+  # 0xF152: # Dial13
+  # 0xF153: # Dial14
+  # 0xF154: # Dial15
+  # 0xF155: # Dial16
+  # 0xF156: # DialShape1
+  # 0xF157: # DialShape2
+  # 0xF158: # DialShape3
+  # 0xF159: # DialShape4
+  # 0xF15F: # ClosedCaptionsInternational
+  # 0xF161: # TollSolid
+  # 0xF163: # TrafficCongestionSolid
+  0xF164: [add_square, 0] # ExploreContentSingle
+  # 0xF165: # CollapseContent
+  # 0xF166: # CollapseContentSingle
+  0xF167: [info, 1] # InfoSolid
+  0xF168: [group_list, 0] # GroupList
+  # 0xF169: # CaretBottomRightSolidCenter8
+  # 0xF16A: # ProgressRingDots
+  0xF16B: [checkbox_unchecked, 0] # Checkbox14
+  0xF16C: [checkbox_checked, 0] # CheckboxComposite14
+  0xF16D: [checkbox_indeterminate, 0] # CheckboxIndeterminateCombo14
+  0xF16E: [checkbox_indeterminate, 0] # CheckboxIndeterminateCombo
+  # 0xF175: # StatusPause7
+  # 0xF17F: # CharacterAppearance
+  # 0xF180: # Lexicon
+  # 0xF182: # ScreenTime
+  # 0xF191: # HeadlessDevice
+  # 0xF193: # NetworkSharing
+  # 0xF19D: # EyeGaze
+  0xF19E: [toggle_left, 0] # ToggleLeft
+  0xF19F: [toggle_right, 0] # ToggleRight
+  0xF1AD: [animal_cat, 0] # WindowsInsider
+  0xF1CB: [arrow_swap, 0] # ChromeSwitch
+  0xF1CC: [arrow_swap, 1] # ChromeSwitchContast
+  # 0xF1D8: # StatusCheckmark
+  # 0xF1D9: # StatusCheckmarkLeft
+  # 0xF1DB: # UniversalCaptions
+  0xF20C: [keyboard_layout_one_handed_left, 0] # KeyboardLeftAligned
+  # 0xF20D: # KeyboardRightAligned
+  # 0xF210: # KeyboardSettings
+  # 0xF211: # NetworkPhysical
+  # 0xF22C: # IOT
+  # 0xF22E: # UnknownMirrored
+  # 0xF246: # ViewDashboard
+  # 0xF259: # ExploitProtectionSettings
+  # 0xF260: # KeyboardNarrow
+  # 0xF261: # Keyboard12Key
+  # 0xF26B: # KeyboardDock
+  # 0xF26C: # KeyboardUndock
+  # 0xF26D: # KeyboardLeftDock
+  # 0xF26E: # KeyboardRightDock
+  # 0xF270: # Ear
+  # 0xF271: # PointerHand
+  0xF272: [target_arrow, 0] # Bullseye
+  0xF28B: [document_checkmark, 0] # DocumentApproval
+  # 0xF2B7: # LocaleLanguage
+  # 0xF32A: # PassiveAuthentication
+  0xF354: [color, 1] # ColorSolid
+  # 0xF384: # NetworkOffline
+  # 0xF385: # NetworkConnected
+  # 0xF386: # NetworkConnectedCheckmark
+  0xF3B1: [sign_out, 0] # SignOut
+  # 0xF3CC: # StatusInfo
+  # 0xF3CD: # StatusInfoLeft
+  # 0xF3E2: # NearbySharing
+  # 0xF3E7: # CtrlSpatialLeft
+  # 0xF404: # InteractiveDashboard
+  0xF405: [call_end, 0] # DeclineCall
+  0xF406: [screen_cut, 0] # ClippingTool
+  # 0xF407: # RectangularClipping
+  # 0xF408: # FreeFormClipping
+  0xF413: [copy_arrow_right, 0] # CopyTo
+  # 0xF427: # IDBadge
+  # 0xF439: # DynamicLock
+  # 0xF45E: # PenTips
+  # 0xF45F: # PenTipsMirrored
+  # 0xF460: # HWPJoin
+  # 0xF461: # HWPInsert
+  # 0xF462: # HWPStrikeThrough
+  # 0xF463: # HWPScratchOut
+  # 0xF464: # HWPSplit
+  # 0xF465: # HWPNewLine
+  # 0xF466: # HWPOverwrite
+  # 0xF473: # MobWifiWarning1
+  # 0xF474: # MobWifiWarning2
+  # 0xF475: # MobWifiWarning3
+  0xF476: [wifi_warning, 0] # MobWifiWarning4
+  # 0xF47F: # MicLocationCombo
+  # 0xF49A: # Globe2
+  # 0xF4A5: # SpecialEffectSize
+  0xF4A9: [gif, 0] # GIF
+  0xF4AA: [sticker, 0] # Sticker2
+  # 0xF4BE: # SurfaceHubSelected
+  # 0xF4BF: # HoloLensSelected
+  0xF4C0: [surface_earbuds, 0] # Earbud
+  # 0xF4C3: # MixVolumes
+  # 0xF540: # Safe
+  # 0xF552: # LaptopSecure
+  # 0xF56D: # PrintDefault
+  0xF56E: [document, 2] # PageMirrored
+  0xF56F: [document_landscape, 2] # LandscapeOrientationMirrored
+  # 0xF570: # ColorOff
+  # 0xF571: # PrintAllPages
+  # 0xF572: # PrintCustomRange
+  # 0xF573: # PageMarginPortraitNarrow
+  # 0xF574: # PageMarginPortraitNormal
+  # 0xF575: # PageMarginPortraitModerate
+  # 0xF576: # PageMarginPortraitWide
+  # 0xF577: # PageMarginLandscapeNarrow
+  # 0xF578: # PageMarginLandscapeNormal
+  # 0xF579: # PageMarginLandscapeModerate
+  # 0xF57A: # PageMarginLandscapeWide
+  # 0xF57B: # CollateLandscape
+  # 0xF57C: # CollatePortrait
+  # 0xF57D: # CollatePortraitSeparated
+  # 0xF57E: # DuplexLandscapeOneSided
+  # 0xF57F: # DuplexLandscapeOneSidedMirrored
+  # 0xF580: # DuplexLandscapeTwoSidedLongEdge
+  # 0xF581: # DuplexLandscapeTwoSidedLongEdgeMirrored
+  # 0xF582: # DuplexLandscapeTwoSidedShortEdge
+  # 0xF583: # DuplexLandscapeTwoSidedShortEdgeMirrored
+  0xF584: [document_one_page, 2] # DuplexPortraitOneSided
+  # 0xF585: # DuplexPortraitOneSidedMirrored
+  # 0xF586: # DuplexPortraitTwoSidedLongEdge
+  # 0xF587: # DuplexPortraitTwoSidedLongEdgeMirrored
+  # 0xF588: # DuplexPortraitTwoSidedShortEdge
+  # 0xF589: # DuplexPortraitTwoSidedShortEdgeMirrored
+  # 0xF58A: # PPSOneLandscape
+  # 0xF58B: # PPSTwoLandscape
+  # 0xF58C: # PPSTwoPortrait
+  # 0xF58D: # PPSFourLandscape
+  # 0xF58E: # PPSFourPortrait
+  # 0xF58F: # HolePunchOff
+  # 0xF590: # HolePunchPortraitLeft
+  # 0xF591: # HolePunchPortraitRight
+  # 0xF592: # HolePunchPortraitTop
+  # 0xF593: # HolePunchPortraitBottom
+  # 0xF594: # HolePunchLandscapeLeft
+  # 0xF595: # HolePunchLandscapeRight
+  # 0xF596: # HolePunchLandscapeTop
+  # 0xF597: # HolePunchLandscapeBottom
+  # 0xF598: # StaplingOff
+  # 0xF599: # StaplingPortraitTopLeft
+  # 0xF59A: # StaplingPortraitTopRight
+  # 0xF59B: # StaplingPortraitBottomRight
+  # 0xF59C: # StaplingPortraitTwoLeft
+  # 0xF59D: # StaplingPortraitTwoRight
+  # 0xF59E: # StaplingPortraitTwoTop
+  # 0xF59F: # StaplingPortraitTwoBottom
+  # 0xF5A0: # StaplingPortraitBookBinding
+  # 0xF5A1: # StaplingLandscapeTopLeft
+  # 0xF5A2: # StaplingLandscapeTopRight
+  # 0xF5A3: # StaplingLandscapeBottomLeft
+  # 0xF5A4: # StaplingLandscapeBottomRight
+  # 0xF5A5: # StaplingLandscapeTwoLeft
+  # 0xF5A6: # StaplingLandscapeTwoRight
+  # 0xF5A7: # StaplingLandscapeTwoTop
+  # 0xF5A8: # StaplingLandscapeTwoBottom
+  # 0xF5A9: # StaplingLandscapeBookBinding
+  # 0xF5AA: # StatusDataTransferRoaming
+  # 0xF5AB: # MobSIMError
+  # 0xF5AC: # CollateLandscapeSeparated
+  # 0xF5AD: # PPSOnePortrait
+  # 0xF5AE: # StaplingPortraitBottomLeft
+  0xF5B0: [play, 1] # PlaySolid
+  0xF5E7: [arrow_repeat_all_off, 0] # RepeatOff
+  0xF5ED: [square_multiple, 0] # Set
+  0xF5EE: [square_multiple, 1] # SetSolid
+  # 0xF5EF: # FuzzyReading
+  # 0xF5F2: # VerticalBattery0
+  # 0xF5F3: # VerticalBattery1
+  # 0xF5F4: # VerticalBattery2
+  # 0xF5F5: # VerticalBattery3
+  # 0xF5F6: # VerticalBattery4
+  # 0xF5F7: # VerticalBattery5
+  # 0xF5F8: # VerticalBattery6
+  # 0xF5F9: # VerticalBattery7
+  # 0xF5FA: # VerticalBattery8
+  # 0xF5FB: # VerticalBattery9
+  # 0xF5FC: # VerticalBattery10
+  # 0xF5FD: # VerticalBatteryCharging0
+  # 0xF5FE: # VerticalBatteryCharging1
+  # 0xF5FF: # VerticalBatteryCharging2
+  # 0xF600: # VerticalBatteryCharging3
+  # 0xF601: # VerticalBatteryCharging4
+  # 0xF602: # VerticalBatteryCharging5
+  # 0xF603: # VerticalBatteryCharging6
+  # 0xF604: # VerticalBatteryCharging7
+  # 0xF605: # VerticalBatteryCharging8
+  # 0xF606: # VerticalBatteryCharging9
+  # 0xF607: # VerticalBatteryCharging10
+  # 0xF608: # VerticalBatteryUnknown
+  # 0xF618: # SIMError
+  # 0xF619: # SIMMissing
+  # 0xF61A: # SIMLock
+  # 0xF61B: # eSIM
+  # 0xF61C: # eSIMNoProfile
+  # 0xF61D: # eSIMLocked
+  # 0xF61E: # eSIMBusy
+  # 0xF61F: # NoiseCancelation
+  # 0xF620: # NoiseCancelationOff
+  # 0xF623: # MusicSharing
+  # 0xF624: # MusicSharingOff
+  0xF63C: [circle, 1] # CircleShapeSolid
+  # 0xF657: # WifiCallBars
+  # 0xF658: # WifiCall0
+  # 0xF659: # WifiCall1
+  # 0xF65A: # WifiCall2
+  # 0xF65B: # WifiCall3
+  # 0xF65C: # WifiCall4
+  # 0xF69E: # CHTLanguageBar
+  # 0xF6A9: # ComposeMode
+  # 0xF6B8: # ExpressiveInputEntry
+  # 0xF6BA: # EmojiTabMoreSymbols
+  0xF6FA: [globe_search, 0] # WebSearch
+  # 0xF712: # Kiosk
+  # 0xF714: # RTTLogo
+  0xF715: [call_outbound, 0] # VoiceCall
+  # 0xF716: # GoToMessage
+  0xF71A: [arrow_hook_up_right, 0] # ReturnToCall
+  0xF71C: [share_screen_start, 0] # StartPresenting
+  0xF71D: [share_screen_stop, 0] # StopPresenting
+  # 0xF71E: # ProductivityMode
+  0xF738: [history, 0] # SetHistoryStatus
+  # 0xF739: # SetHistoryStatus2
+  # 0xF73D: # Keyboardsettings20
+  # 0xF73E: # OneHandedRight20
+  0xF73F: [keyboard_layout_one_handed_left, 0] # OneHandedLeft20
+  0xF740: [keyboard_layout_split, 0] # Split20
+  0xF741: [keyboard, 0] # Full20
+  # 0xF742: # Handwriting20
+  0xF743: [chevron_left, 0] # ChevronLeft20
+  0xF744: [chevron_left, 0] # ChevronLeft32
+  0xF745: [chevron_right, 0] # ChevronRight20
+  0xF746: [chevron_right, 0] # ChevronRight32
+  0xF763: [calendar, 0] # Event12
+  0xF781: [mic_off, 0] # MicOff2
+  # 0xF785: # DeliveryOptimization
+  0xF78A: [dismiss, 0] # CancelMedium
+  0xF78B: [search, 0] # SearchMedium
+  0xF78C: [checkmark, 0] # AcceptMedium
+  0xF78D: [eye, 0] # RevealPasswordMedium
+  # 0xF7AD: # DeleteWord
+  # 0xF7AE: # DeleteWordFill
+  0xF7AF: [delete_lines, 0] # DeleteLines
+  0xF7B0: [delete_lines, 1] # DeleteLinesFill
+  # 0xF7B1: # InstertWords
+  # 0xF7B2: # InstertWordsFill
+  # 0xF7B3: # JoinWords
+  # 0xF7B4: # JoinWordsFill
+  # 0xF7B5: # OverwriteWords
+  # 0xF7B6: # OverwriteWordsFill
+  # 0xF7B7: # AddNewLine
+  # 0xF7B8: # AddNewLineFill
+  # 0xF7B9: # OverwriteWordsKorean
+  # 0xF7BA: # OverwriteWordsFillKorean
+  # 0xF7BB: # EducationIcon
+  # 0xF7ED: # WindowSnipping
+  # 0xF7EE: # VideoCapture
+  # 0xF809: # StatusSecured
+  # 0xF83B: # NarratorApp
+  # 0xF83D: # PowerButtonUpdate
+  # 0xF83E: # RestartUpdate
+  # 0xF83F: # UpdateStatusDot
+  0xF847: [arrow_eject, 0] # Eject
+  0xF87B: [text_proofing_tools, 0] # Spelling
+  # 0xF87C: # SpellingKorean
+  # 0xF87D: # SpellingSerbian
+  # 0xF87E: # SpellingChinese
+  # 0xF89A: # FolderSelect
+  # 0xF8A5: # SmartScreen
+  # 0xF8A6: # ExploitProtection
+  0xF8AA: [add, 1] # AddBold
+  0xF8AB: [subtract, 1] # SubtractBold
+  0xF8AC: [previous, 1] # BackSolidBold
+  0xF8AD: [next, 1] # ForwardSolidBold
+  0xF8AE: [pause, 1] # PauseBold
+  0xF8AF: [cursor, 1] # ClickSolid
+  0xF8B0: [settings, 1] # SettingsSolid
+  0xF8B1: [mic, 1] # MicrophoneSolidBold
+  0xF8B2: [person_voice, 1] # SpeechSolidBold
+  # 0xF8B3: # ClickedOutLoudSolidBold

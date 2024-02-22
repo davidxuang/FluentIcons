@@ -27,7 +27,7 @@ jobs:
       - name: Setup
         run: |
           npx corepack enable
-          pip install fonttools
+          pip install fonttools PyYAML
       - name: Update
         run: ./update.ps1
       - name: Push
