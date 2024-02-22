@@ -20,8 +20,14 @@ jobs:
           fetch-depth: 0
           submodules: true
           token: ${{ secrets.TOKEN }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
       - name: Setup
-        run: pip install fonttools
+        run: |
+          npx corepack enable
+          pip install fonttools
       - name: Update
         run: ./update.ps1
       - name: Push
