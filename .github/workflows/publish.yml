@@ -19,7 +19,7 @@ jobs:
         with:
           submodules: true
       - name: Setup .NET
-        run:  dotnet workload install android ios maccatalyst
+        run:  dotnet workload install android ios maccatalyst macos
       - name: Setup Java
         uses: actions/setup-java@v4
         with:

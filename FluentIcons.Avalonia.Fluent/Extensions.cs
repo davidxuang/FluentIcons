@@ -6,8 +6,7 @@ namespace FluentIcons.Avalonia.Fluent
     {
         public static AppBuilder UseSegoeMetrics(this AppBuilder builder)
         {
-            SymbolIcon.UseSegoeMetricsProperty.OverrideDefaultValue(typeof(SymbolIcon), true);
-            SymbolIcon.UseSegoeMetricsProperty.OverrideDefaultValue(typeof(SymbolIconSource), true);
+            SymbolIcon.UseSegoeMetricsDefaultValue = true;
             return builder;
         }
     }

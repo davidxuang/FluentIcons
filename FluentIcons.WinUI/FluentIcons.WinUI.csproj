@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">$(TargetFrameworks);net6.0-windows10.0.17763.0;net7.0-windows10.0.17763.0</TargetFrameworks>
-    <TargetFrameworks>$(TargetFrameworks);net7.0;net7.0-ios;net7.0-maccatalyst;net7.0-android</TargetFrameworks>
+    <TargetFrameworks>$(TargetFrameworks);net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
     <Description>FluentUI System Icons wrapper for WinUI.</Description>
     <PackageTags>$(PackageTags);WinUI</PackageTags>
     <RootNamespace>FluentIcons.WinUI</RootNamespace>

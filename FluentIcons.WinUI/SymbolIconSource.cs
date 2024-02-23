@@ -32,7 +32,7 @@ namespace FluentIcons.WinUI
             FontFamily = UseSegoeMetrics ? SymbolIcon.Seagull : SymbolIcon.System;
             FontStyle = Windows.UI.Text.FontStyle.Normal;
             FontWeight = FontWeights.Normal;
-            Glyph = _glyph = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.LeftToRight);
+            Glyph = _glyph = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft);
             IsTextScaleFactorEnabled = false;
             MirroredWhenRightToLeft = false;
 
@@ -73,7 +73,7 @@ namespace FluentIcons.WinUI
             if (d is SymbolIconSource inst)
             {
                 inst.FontFamily = inst.UseSegoeMetrics ? SymbolIcon.Seagull : SymbolIcon.System;
-                inst.Glyph = inst._glyph = inst.Symbol.ToString(inst.IsFilled, inst.FlowDirection == FlowDirection.LeftToRight);
+                inst.Glyph = inst._glyph = inst.Symbol.ToString(inst.IsFilled, inst.FlowDirection == FlowDirection.RightToLeft);
             }
         }
 

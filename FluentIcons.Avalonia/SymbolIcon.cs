@@ -14,11 +14,9 @@ namespace FluentIcons.Avalonia
     [TypeConverter(typeof(SymbolIconConverter))]
     public class SymbolIcon : IconElement
     {
-        private static readonly Typeface _system = new(new FontFamily("avares://FluentIcons.Avalonia/Assets#Fluent System Icons"));
-        private static readonly Typeface _seagull = new(new FontFamily("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons"));
-
-        private bool _suspendCreate = true;
-        private TextLayout? _textLayout;
+        private static readonly Typeface _system = new("avares://FluentIcons.Avalonia/Assets#Fluent System Icons");
+        private static readonly Typeface _seagull = new("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons");
+        internal static bool UseSegoeMetricsDefaultValue = false;
 
         public static readonly StyledProperty<Symbol> SymbolProperty =
             AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
@@ -28,6 +26,14 @@ namespace FluentIcons.Avalonia
             AvaloniaProperty.Register<SymbolIcon, bool>(nameof(UseSegoeMetrics));
         public static readonly new StyledProperty<double> FontSizeProperty =
             AvaloniaProperty.Register<SymbolIcon, double>(nameof(FontSize), 20d, false);
+
+        private bool _suspendCreate = true;
+        private TextLayout? _textLayout;
+
+        public SymbolIcon()
+        {
+            UseSegoeMetrics = UseSegoeMetricsDefaultValue;
+        }
 
         public Symbol Symbol
         {
@@ -62,11 +68,12 @@ namespace FluentIcons.Avalonia
             }
             else if (change.Property == TextElement.ForegroundProperty ||
                 change.Property == SymbolProperty ||
-                change.Property == IsFilledProperty)
+                change.Property == IsFilledProperty ||
+                change.Property == UseSegoeMetricsProperty)
             {
                 InvalidateText();
             }
-
+            
             base.OnPropertyChanged(change);
         }
 

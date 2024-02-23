@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Avalonia;
 using Avalonia.Media;
@@ -10,26 +11,25 @@ using Symbol = FluentIcons.Common.Symbol;
 namespace FluentIcons.Avalonia.Fluent
 {
     [TypeConverter(typeof(SymbolIconSourceConverter))]
-    public class SymbolIconSource : PathIconSource
+    public class SymbolIconSource : FontIconSource
     {
-        private static readonly IGlyphTypeface _system = SymbolIcon.System.GlyphTypeface;
-        private static readonly IGlyphTypeface _seagull = SymbolIcon.Seagull.GlyphTypeface;
-
         public static readonly StyledProperty<Symbol> SymbolProperty = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
         public static readonly StyledProperty<bool> IsFilledProperty = SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();
         public static readonly StyledProperty<bool> UseSegoeMetricsProperty = SymbolIcon.UseSegoeMetricsProperty.AddOwner<SymbolIconSource>();
         public static readonly StyledProperty<FlowDirection> FlowDirectionProperty = Visual.FlowDirectionProperty.AddOwner<SymbolIconSource>();
-        public static readonly StyledProperty<double> FontSizeProperty = SymbolIcon.FontSizeProperty.AddOwner<SymbolIconSource>();
+        public static new readonly StyledProperty<double> FontSizeProperty = SymbolIcon.FontSizeProperty.AddOwner<SymbolIconSource>();
 
-        private Geometry _data;
+        private string _glyph;
 
-#pragma warning disable CS8618
         public SymbolIconSource()
         {
-            Stretch = Stretch.None;
-            InvalidateData();
+            UseSegoeMetrics = SymbolIcon.UseSegoeMetricsDefaultValue;
+            base.FontSize = FontSize;
+            FontFamily = UseSegoeMetrics ? SymbolIcon.Seagull.FontFamily : SymbolIcon.System.FontFamily;
+            FontStyle = FontStyle.Normal;
+            FontWeight = FontWeight.Regular;
+            InvalidateGlyph();
         }
-#pragma warning restore CS8618
 
         public Symbol Symbol
         {
@@ -55,7 +55,7 @@ namespace FluentIcons.Avalonia.Fluent
             set => SetValue(FlowDirectionProperty, value);
         }
 
-        public double FontSize
+        public new double FontSize
         {
             get => GetValue(FontSizeProperty);
             set => SetValue(FontSizeProperty, value);
@@ -63,28 +63,68 @@ namespace FluentIcons.Avalonia.Fluent
 
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
-            base.OnPropertyChanged(change);
+            if (change.Property == SymbolProperty
+            || change.Property == IsFilledProperty
+            || change.Property == UseSegoeMetricsProperty
+            || change.Property == FontSizeProperty)
+            {
+                InvalidateGlyph();
+                return;
+            }
+            else if (change.Property == FontSizeProperty)
+            {
+                base.FontSize = FontSize;
+                return;
+            }
+            else if (change.Property == FontIconSource.FontSizeProperty)
+            {
+                if (base.FontSize != FontSize)
+                {
+                    base.FontSize = FontSize;
+                    return;
+                }
+            }
+            else if (change.Property == GlyphProperty)
+            {
+                if (Glyph != _glyph)
+                {
+                    Glyph = _glyph;
+                    return;
+                }
+            }
+            else if (change.Property == FontFamilyProperty)
+            {
+                var ff = UseSegoeMetrics ? SymbolIcon.Seagull.FontFamily : SymbolIcon.System.FontFamily;
+                if (FontFamily != ff)
+                {
+                    FontFamily = ff;
+                    return;
+                }
+            }
+            else if (change.Property == FontStyleProperty)
+            {
+                if (FontStyle != FontStyle.Normal)
+                {
+                    FontStyle = FontStyle.Normal;
+                    return;
+                }
+            }
+            else if (change.Property == FontWeightProperty)
+            {
+                if (FontWeight != FontWeight.Regular)
+                {
+                    FontWeight = FontWeight.Regular;
+                    return;
+                }
+            }
 
-            if (change.Property == SymbolProperty || change.Property == IsFilledProperty || change.Property == FontSizeProperty)
-            {
-                InvalidateData();
-            }
-            else if (change.Property == DataProperty || _data != change.NewValue as Geometry)
-            {
-                Data = _data;
-            }
-            else if (change.Property == StretchProperty || Stretch.None != (Stretch)change.NewValue)
-            {
-                Stretch = Stretch.None;
-            }
+            base.OnPropertyChanged(change);
         }
 
-        private void InvalidateData()
+        [MemberNotNull(nameof(_glyph))]
+        private void InvalidateGlyph()
         {
-            var codepoint = Symbol.ToChar(IsFilled, FlowDirection == FlowDirection.RightToLeft);
-            var typeface = UseSegoeMetrics ? _seagull : _system;
-            using var glyphRun = new GlyphRun(typeface, FontSize, new[] { codepoint }, new[] { typeface.GetGlyph(codepoint) });
-            Data = _data = glyphRun.BuildGeometry();
+            Glyph = _glyph = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft);
         }
     }
 

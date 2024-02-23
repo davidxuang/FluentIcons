@@ -12,11 +12,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" ExactVersion="true" />
+    <SharedAssets Include="../seagull-icons/assets/*.ttf" />
   </ItemGroup>
+  
+  <Target Name="CopySharedAssets" BeforeTargets="AddAvaloniaResources">
+    <Copy SourceFiles="@(SharedAssets)" DestinationFolder="Assets" UseHardlinksIfPossible="true" />
+  </Target>
 
   <ItemGroup>
-    <AvaloniaResource Include="Assets\FluentSystemIcons.ttf" />
-    <AvaloniaResource Include="Assets\SeagullFluentIcons.ttf" />
+    <AvaloniaResource Include="Assets\*.ttf" />
   </ItemGroup>
 
 </Project>

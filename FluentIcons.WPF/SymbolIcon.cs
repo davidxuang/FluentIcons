@@ -122,7 +122,7 @@ namespace FluentIcons.WPF
                 return;
 
             _formattedText = new FormattedText(
-                Symbol.ToString(IsFilled, FlowDirection == FlowDirection.LeftToRight),
+                Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft),
                 CultureInfo.CurrentCulture,
                 FlowDirection,
                 UseSegoeMetrics ? _seagull : _system,

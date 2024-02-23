@@ -23,6 +23,7 @@ try {
     
     python "$PSScriptRoot/patch.py" "$PSScriptRoot/obj/FluentSystemIcons.ttf" "$PSScriptRoot/obj/codepoints.json"
     python "$PSScriptRoot/patch.py" "$PSScriptRoot/obj/SeagullFluentIcons.ttf" "$PSScriptRoot/obj/codepoints.json"
+
     ttx -m "$PSScriptRoot/obj/FluentSystemIcons.ttf" -o "$PSScriptRoot/obj/FluentSystemIcons.ttf" "$PSScriptRoot/obj/colr/colr.ttx"
     ttx -m "$PSScriptRoot/obj/SeagullFluentIcons.ttf" -o "$PSScriptRoot/obj/SeagullFluentIcons.ttf" "$PSScriptRoot/obj/colr/colr.ttx"
     
