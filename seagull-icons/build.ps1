@@ -15,8 +15,6 @@ Push-Location .
 Set-Location $PSScriptRoot
 
 try {
-    pnpm i
-
     pnpm collect
     pnpm transform
     pnpm layerize

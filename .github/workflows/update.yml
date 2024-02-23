@@ -15,19 +15,24 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 16
+          fetch-tags: true
           submodules: true
           token: ${{ secrets.TOKEN }}
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 'lts/*'
-      - name: Setup
-        run: |
-          npx corepack enable
-          pip install fonttools PyYAML
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.4.0
+        with:
+          version: 8
+          run_install: |
+            - cwd: seagull-icons
+      - name: Setup Python packages
+        run: pip install fonttools PyYAML
       - name: Update
         run: ./update.ps1
       - name: Push
