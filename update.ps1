@@ -21,6 +21,7 @@ try {
     Write-Host "Local at $localTag"
 
     Set-Location "$PSScriptRoot/seagull-icons/upstream"
+    git checkout main
     git pull --ff-only
     $upstreamTag = git describe --tag --abbrev=0
     Write-Host "Upstream at $upstreamTag"
