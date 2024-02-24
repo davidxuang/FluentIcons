@@ -25,7 +25,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - uses: olegtarasov/get-tag@v2.1.2
+      - uses: olegtarasov/get-tag@v2-release
         id: tag_name
       - name: Build and pack
         run: |
