@@ -5,7 +5,7 @@ import { Parser } from 'xml2js';
 import * as xmlbuilder from 'xmlbuilder';
 import * as color from 'color-string';
 import * as paper from 'paper';
-import { Doc, Path, Visible } from './types';
+import { Doc, Visible } from './types';
 import { ensure, forEachDrawable, getPathData } from './utils';
 
 const argv = yargs

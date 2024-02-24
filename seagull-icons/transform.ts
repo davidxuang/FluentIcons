@@ -4,7 +4,7 @@ import * as yargs from 'yargs';
 import { parse } from 'yaml';
 import { Parser } from 'xml2js';
 import * as paper from 'paper';
-import { Doc, Path, Visible } from './types';
+import { Doc, Visible } from './types';
 import { ensure, getPathData } from './utils';
 
 const argv = yargs

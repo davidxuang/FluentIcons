@@ -5,6 +5,7 @@
   "scripts": {
     "collect": "ts-node collect.ts --source=./upstream/assets --system=./obj/system --seagull=./obj/seagull-override --codepoints=./obj/codepoints.json",
     "transform": "ts-node transform.ts --yaml=./transform.yaml --source=./obj/system --override-source=./override/component --override-source=./override/mono --override-source=./override/universal --dest=./obj/seagull --override-dest=./override/mono --override-dest=./override/universal",
+    "test": "ts-node test.ts --source=./obj/seagull",
     "layerize": "ts-node layerize.ts --mono=./override/mono --source=./obj/system --colr20=./obj/colr/system --colr16=./obj/colr/seagull --ttx=./obj/colr/colr.ttx",
     "generate:system": "ts-node generate.ts --source=./obj/system --override=./override/mono --codepoints=./obj/codepoints.json --colr=./obj/colr/system --name=FluentSystemIcons --font-height=2000 --dest=./obj",
     "generate:seagull": "ts-node generate.ts --source=./obj/seagull --override=./obj/seagull-override --codepoints=./obj/codepoints.json --colr=./obj/colr/seagull --name=SeagullFluentIcons --font-height=2048 --dest=./obj"
