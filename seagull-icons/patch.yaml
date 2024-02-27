@@ -106,8 +106,8 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xE76E: [emoji, 0] # Emoji2
   # 0xE76F: # GripperBarHorizontal
   0xE770: [laptop, 0] # System
-  # 0xE771: # Personalize
-  # 0xE772] = 'keyboard_mouse' # Devices
+  0xE771: [paint_brush, 0] # Personalize
+  # 0xE772: # Devices
   0xE773: [search_square, 0] # SearchAndApps
   0xE774: [globe, 0] # Globe
   # 0xE775: # TimeLanguage
@@ -146,7 +146,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xE7B3: [eye, 0] # RedEye
   # 0xE7B5: # SetlockScreen
   # 0xE7B7: # MapPin2
-  # 0xE7B8: # Package
+  0xE7B8: [archive, 0] # Package
   0xE7BA: [warning, 0] # Warning
   0xE7BC: [reading_list, 0] # ReadingList
   0xE7BE: [hat_graduation, 0] # Education
@@ -157,7 +157,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xE7C3: [document, 0] # Page
   # 0xE7C4: # TaskView
   0xE7C5: [image_search, 0] # BrowsePhotos
-  # 0xE7C6: # HalfStarLeft
+  0xE7C6: [star_half, 0] # HalfStarLeft
   # 0xE7C7: # HalfStarRight
   0xE7C8: [radio_button, 1] # Record
   # 0xE7C9: # TouchPointer
@@ -177,7 +177,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xE7F2: [call_forward, 0] # CallForwarding
   # 0xE7F3: # SettingsDisplaySound
   0xE7F4: [tv, 0] # TVMonitor
-  # 0xE7F5: # Speakers
+  0xE7F5: [speaker_box, 0] # Speakers
   0xE7F6: [headphones, 0] # Headphone
   0xE7F7: [laptop, 0] # DeviceLaptopPic
   0xE7F8: [laptop, 0] # DeviceLaptopNoPic
@@ -288,7 +288,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xE874: [wifi_2, 0] # Wifi3
   # 0xE875: # MobSIMLock
   # 0xE876: # MobSIMMissing
-  # 0xE877: # Vibrate
+  0xE877: [phone_vibrate, 0] # Vibrate
   0xE878: [triangle, 1] # RoamingInternational
   0xE879: [triangle, 0] # RoamingDomestic
   # 0xE87A: # CallForwardInternational
@@ -444,7 +444,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xE914: # Printer3D
   0xE915: [radio_button, 1] # RadioBullet
   0xE916: [timer, 0] # Stopwatch
-  # 0xE91B: # Photo
+  0xE91B: [image, 0] # Photo
   0xE91C: [comment, 0] # ActionCenter
   0xE91F: [circle, 1] # FullCircleMask
   0xE921: [subtract, 0] # ChromeMinimize
@@ -474,7 +474,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xE93E: # Streaming
   0xE943: [braces, 0] # Code
   # 0xE944: # ReturnToWindow
-  # 0xE945: # LightningBolt
+  0xE945: [flash, 0] # LightningBolt
   0xE946: [info, 0] # Info
   0xE947: [dismiss, 0] # CalculatorMultiply
   0xE948: [add, 0] # CalculatorAddition
@@ -485,7 +485,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xE94D: # CalculatorNegate
   0xE94E: [equal_circle, 0] # CalculatorEqualTo
   0xE94F: [backspace, 0] # CalculatorBackspace
-  # 0xE950: # Component
+  0xE950: [developer_board, 0] # Component
   # 0xE951: # DMC
   # 0xE952: # Dock
   # 0xE953: # MultimediaDMS
@@ -494,13 +494,13 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xE956: # PrintfaxPrinterFile
   # 0xE957: # Sensor
   # 0xE958: # StorageOptical
-  # 0xE95A: # Communications
+  0xE95A: [communication, 0] # Communications
   0xE95B: [headset, 0] # Headset
   # 0xE95D: # Projector
   0xE95E: [heart_pulse, 0] # Health
   # 0xE95F: # Wire
   0xE960: [camera, 0] # Webcam2
-  # 0xE961: [keyboard_mouse, 0] # Input
+  0xE961: [keyboard_mouse, 0] # Input
   # 0xE962: # Mouse
   # 0xE963: # Smartcard
   # 0xE964: # SmartcardVirtual
@@ -518,9 +518,9 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xE972: [chevron_down, 0] # ChevronDownMed
   0xE973: [chevron_left, 0] # ChevronLeftMed
   0xE974: [chevron_right, 0] # ChevronRightMed
-  0xE975: [phone_laptop, 0] # Devices2
+  0xE975: [tablet_laptop, 0] # Devices2
   # 0xE976: # ExpandTile
-  # 0xE977: # PC1
+  0xE977: [desktop_tower, 0] # PC1
   0xE978: [square, 1] # PresenceChicklet
   0xE979: [video, 1] # PresenceChickletVideo
   0xE97A: [arrow_reply, 0] # Reply
@@ -578,14 +578,14 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xE9D5: [task_list, 0] # CheckList
   0xE9D9: [pulse_square, 0] # Diagnostic
   0xE9E9: [options, 0] # Equalizer
-  # 0xE9F3: # Process
-  0xE9F5: [settings, 0] # Processing
+  0xE9F3: [arrow_clockwise_dashes, 0] # Process
+  0xE9F5: [settings_cog_multiple, 0] # Processing
   0xE9F9: [document_data, 0] # ReportDocument
   0xEA0C: [video, 1] # VideoSolid
   # 0xEA0D: # MixedMediaBadge
   # 0xEA14: # DisconnectDisplay
   0xEA18: [shield, 0] # Shield
-  0xEA1F: [info, 0] # Info2
+  # 0xEA1F: [info, 0] # Info2
   # 0xEA21: # ActionCenterAsterisk
   # 0xEA24: # Beta
   0xEA35: [save_copy, 0] # SaveCopy
@@ -597,7 +597,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEA3C: # MergeCall
   # 0xEA3D: # PrivateCall
   0xEA3F: [circle, 0] # Record2
-  0xEA40: [apps_list, 2] # AllAppsMirrored
+  # 0xEA40: [apps_list, 2] # AllAppsMirrored
   0xEA41: [text_bullet_list_tree, 2] # BookmarksMirrored
   0xEA42: [text_bullet_list, 2] # BulletedListMirrored
   # 0xEA43: # CallForwardInternationalMirrored
@@ -626,8 +626,8 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEA60: # ResizeMouseSmallMirrored
   # 0xEA61: # ResizeMouseTallMirrored
   0xEA62: [arrow_right, 0] # ResizeTouchNarrowerMirrored
-  0xEA63: [send, 2] # SendMirrored
-  0xEA64: [send, 3] # SendFillMirrored
+  # 0xEA63: [send, 2] # SendMirrored
+  # 0xEA64: [send, 3] # SendFillMirrored
   # 0xEA65: # ShowResultsMirrored
   # 0xEA69: # Media
   # 0xEA6A: # SyncError
@@ -656,7 +656,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEA98: # MultiSelectMirrored
   0xEA99: [broom, 0] # Broom
   0xEAC2: [arrow_up, 0] # ForwardCall
-  # 0xEADF: # Trackers
+  0xEADF: [task_list_square, 0] # Trackers
   0xEAFC: [arrow_trending, 0] # Market
   0xEB05: [data_pie, 0] # PieSingle
   0xEB0F: [caret_up, 1] # StockDown
@@ -696,7 +696,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEB67: # NUIIris
   # 0xEB68: # NUIFace
   # 0xEB77: # GatewayRouter
-  0xEB7E: [edit, 2] # EditMirrored
+  # 0xEB7E: [edit, 2] # EditMirrored
   # 0xEB82: # NUIFPStartSlideHand
   # 0xEB83: # NUIFPStartSlideAction
   # 0xEB84: # NUIFPContinueSlideHand
@@ -711,12 +711,12 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEB8D: # NUIFPPressRepeatAction
   0xEB90: [dismiss_circle, 1] # StatusErrorFull
   # 0xEB91: # TaskViewExpanded
-  # 0xEB95: # Certificate
+  0xEB95: [certificate, 0] # Certificate
   0xEB96: [backspace, 0] # BackSpaceQWERTYLg
   0xEB97: [arrow_enter_left, 0] # ReturnKeyLg
   0xEB9D: [fast_forward, 0] # FastForward
   0xEB9E: [rewind, 0] # Rewind
-  # 0xEB9F: # Photo2
+  0xEB9F: [image, 0] # Photo2
   0xEBA0: [battery_0, 0] # MobBattery0
   0xEBA1: [battery_1, 0] # MobBattery1
   0xEBA2: [battery_2, 0] # MobBattery2
@@ -787,8 +787,8 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEC14: # ToggleThumb
   0xEC15: [cast, 0] # MiracastLogoSmall
   0xEC16: [cast, 0] # MiracastLogoLarge
-  # 0xEC19: # PLAP
-  # 0xEC1B: # Badge
+  0xEC19: [lock_closed_key, 0] # PLAP
+  0xEC1B: [badge, 0] # Badge
   # 0xEC1E: # SignalRoaming
   # 0xEC20: # MobileLocked
   # 0xEC24: # InsiderHubApp
@@ -841,13 +841,13 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEC75: # MobileSelected
   # 0xEC76: # LaptopSelected
   # 0xEC77: # TVMonitorSelected
-  0xEC7A: [window_dev_tools, 0] # DeveloperTools
+  0xEC7A: [wrench_screwdriver, 0] # DeveloperTools
   0xEC7E: [call_forward, 0] # MobCallForwarding
   # 0xEC7F: # MobCallForwardingMirrored
   # 0xEC80: # BodyCam
   # 0xEC81: # PoliceCar
-  # 0xEC87: # Draw
-  # 0xEC88: # DrawSolid
+  0xEC87: [draw_shape, 0] # Draw
+  0xEC88: [draw_shape, 1] # DrawSolid
   # 0xEC8A: # LowerBrightness
   0xEC8F: [chevron_up_down, 0] # ScrollUpDown
   0xEC92: [calendar_clock, 0] # DateTime
@@ -883,16 +883,16 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xED0C: # ActionCenterNotificationMirrored
   # 0xED0D: # ActionCenterMirrored
   # 0xED0E: # SubscriptionAdd
-  # 0xED10: # ResetDevice
+  0xED10: [phone_eraser, 0] # ResetDevice
   # 0xED11: # SubscriptionAddMirrored
   0xED14: [qr_code, 0] # QRCode
   0xED15: [person_feedback, 0] # Feedback
   0xED1A: [eye_off, 0] # Hide
-  0xED1E: [chat, 0] # Subtitles
-  0xED1F: [textbox_align_bottom, 0] # SubtitlesAudio
+  0xED1E: [subtitles, 0] # Subtitles
+  # 0xED1F: # SubtitlesAudio
   0xED25: [folder_open, 0] # OpenFolderHorizontal
   0xED28: [calendar, 2] # CalendarMirrored
-  # 0xED2A: # MobeSIM
+  0xED2A: [sim, 0] # MobeSIM
   # 0xED2B: # MobeSIMNoProfile
   # 0xED2C: # MobeSIMLocked
   # 0xED2D: # MobeSIMBusy
@@ -902,7 +902,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xED31: # Headphone1
   # 0xED32: # Headphone2
   # 0xED33: # Headphone3
-  # 0xED35: # Apps
+  0xED35: [apps, 0] # Apps
   # 0xED39: # KeyboardBrightness
   # 0xED3A: # KeyboardLowerBrightness
   0xED3C: [skip_back_10, 0] # SkipBack10
@@ -913,7 +913,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xED44: [folder_open_vertical, 1] # TreeFolderFolderOpenFill
   # 0xED47: # MultimediaDMP
   # 0xED4C: # KeyboardOneHanded
-  # 0xED4D: # Narrator
+  0xED4D: [desktop_speaker, 0] # Narrator
   # 0xED53: # EmojiTabPeople
   0xED54: [emoji_laugh, 0] # EmojiTabSmilesAnimals
   # 0xED55: # EmojiTabCelebrationObjects
@@ -982,12 +982,12 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEE64: # TaskbarPhone
   # 0xEE65: # LockScreenGlance
   # 0xEE6F: # GenericScan
-  # 0xEE71: # ImageExport
+  0xEE71: [image_arrow_back, 0] # ImageExport
   # 0xEE77: # WifiEthernet
   # 0xEE79: # ActionCenterQuiet
   # 0xEE7A: # ActionCenterQuietNotification
   # 0xEE92: # TrackersMirrored
-  0xEE93: [calendar_clock, 2] # DateTimeMirrored
+  # 0xEE93: [calendar_clock, 2] # DateTimeMirrored
   # 0xEE94: # Wheel
   # 0xEEA3: # VirtualMachineGroup
   # 0xEECA: # ButtonView2
@@ -1041,7 +1041,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xF0B6: # StatusCircle7
   # 0xF0B7: # StatusCheckmark7
   # 0xF0B8: # StatusErrorCircle7
-  # 0xF0B9: # Connected
+  0xF0B9: [connected, 0] # Connected
   # 0xF0C6: # PencilFill
   # 0xF0C7: # CalligraphyFill
   # 0xF0CA: # QuarterStarLeft
@@ -1129,7 +1129,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xF157: # DialShape2
   # 0xF158: # DialShape3
   # 0xF159: # DialShape4
-  # 0xF15F: # ClosedCaptionsInternational
+  0xF15F: [subtitles, 0] # ClosedCaptionsInternational
   # 0xF161: # TollSolid
   # 0xF163: # TrafficCongestionSolid
   0xF164: [add_square, 0] # ExploreContentSingle
@@ -1137,7 +1137,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xF166: # CollapseContentSingle
   0xF167: [info, 1] # InfoSolid
   0xF168: [group_list, 0] # GroupList
-  # 0xF169: # CaretBottomRightSolidCenter8
+  0xF169: [caret_down_right, 1] # CaretBottomRightSolidCenter8
   # 0xF16A: # ProgressRingDots
   0xF16B: [checkbox_unchecked, 0] # Checkbox14
   0xF16C: [checkbox_checked, 0] # CheckboxComposite14
@@ -1162,7 +1162,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xF20D: # KeyboardRightAligned
   # 0xF210: # KeyboardSettings
   # 0xF211: # NetworkPhysical
-  # 0xF22C: # IOT
+  0xF22C: [iot, 0] # IOT
   # 0xF22E: # UnknownMirrored
   # 0xF246: # ViewDashboard
   # 0xF259: # ExploitProtectionSettings
@@ -1220,8 +1220,8 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xF540: # Safe
   # 0xF552: # LaptopSecure
   # 0xF56D: # PrintDefault
-  0xF56E: [document, 2] # PageMirrored
-  0xF56F: [document_landscape, 2] # LandscapeOrientationMirrored
+  # 0xF56E: [document, 2] # PageMirrored
+  # 0xF56F: [document_landscape, 2] # LandscapeOrientationMirrored
   # 0xF570: # ColorOff
   # 0xF571: # PrintAllPages
   # 0xF572: # PrintCustomRange
@@ -1316,7 +1316,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xF618: # SIMError
   # 0xF619: # SIMMissing
   # 0xF61A: # SIMLock
-  # 0xF61B: # eSIM
+  0xF61B: [sim, 0] # eSIM
   # 0xF61C: # eSIMNoProfile
   # 0xF61D: # eSIMLocked
   # 0xF61E: # eSIMBusy
