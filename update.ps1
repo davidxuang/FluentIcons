@@ -41,7 +41,7 @@ try {
         $symbolMap.Add(($_.Name -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }),
             [int]$_.Value)
     }
-    
+
     @'
 namespace FluentIcons.Common
 {
@@ -52,7 +52,7 @@ namespace FluentIcons.Common
     foreach ($key in $symbolMap.Keys) {
         "        $key = $('0x{0:X}' -f $symbolMap[$key])," >> $symbolCs
     }
-    
+
     @'
     }
 }

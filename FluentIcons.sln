@@ -1,5 +1,4 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -9,9 +8,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Avalonia", "Flu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Avalonia.Fluent", "FluentIcons.Avalonia.Fluent\FluentIcons.Avalonia.Fluent.csproj", "{999609A7-C529-4E33-B3C6-3C648D318194}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Maui", "FluentIcons.Maui\FluentIcons.Maui.csproj", "{0147C878-92EA-4F88-B5EF-8B1A63C9C462}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.WinUI", "FluentIcons.WinUI\FluentIcons.WinUI.csproj", "{BCA0EB9E-A440-4294-9241-1CF2A1B3889E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.WPF", "FluentIcons.WPF\FluentIcons.WPF.csproj", "{A351E592-DB78-4BEE-8DB3-5B7CD7FE870C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1AB4B495-5E45-400D-9535-90641016E8AD}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +38,10 @@ Global
 		{999609A7-C529-4E33-B3C6-3C648D318194}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{999609A7-C529-4E33-B3C6-3C648D318194}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{999609A7-C529-4E33-B3C6-3C648D318194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0147C878-92EA-4F88-B5EF-8B1A63C9C462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0147C878-92EA-4F88-B5EF-8B1A63C9C462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0147C878-92EA-4F88-B5EF-8B1A63C9C462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0147C878-92EA-4F88-B5EF-8B1A63C9C462}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BCA0EB9E-A440-4294-9241-1CF2A1B3889E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BCA0EB9E-A440-4294-9241-1CF2A1B3889E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCA0EB9E-A440-4294-9241-1CF2A1B3889E}.Release|Any CPU.ActiveCfg = Release|Any CPU

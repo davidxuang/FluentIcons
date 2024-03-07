@@ -9,6 +9,7 @@ A multi-framework wrapper of [fluentui-system-icons](https://github.com/microsof
 | `FluentIcons.Common`          | [![FluentIcons.Common](https://badgen.net/nuget/v/FluentIcons.Common)](https://www.nuget.org/packages/FluentIcons.Common/)                            |
 | `FluentIcons.Avalonia`        | [![FluentIcons.Avalonia](https://badgen.net/nuget/v/FluentIcons.Avalonia)](https://www.nuget.org/packages/FluentIcons.Avalonia/)                      |
 | `FluentIcons.Avalonia.Fluent` | [![FluentIcons.Avalonia.Fluent](https://badgen.net/nuget/v/FluentIcons.Avalonia.Fluent)](https://www.nuget.org/packages/FluentIcons.Avalonia.Fluent/) |
+| `FluentIcons.Maui`            | [![FluentIcons.Maui](https://badgen.net/nuget/v/FluentIcons.Maui)](https://www.nuget.org/packages/FluentIcons.Maui/)                                  |
 | `FluentIcons.WinUI`           | [![FluentIcons.WinUI](https://badgen.net/nuget/v/FluentIcons.WinUI)](https://www.nuget.org/packages/FluentIcons.WinUI/)                               |
 | `FluentIcons.WPF`             | [![FluentIcons.WPF](https://badgen.net/nuget/v/FluentIcons.WPF)](https://www.nuget.org/packages/FluentIcons.WPF/)                                     |
 
