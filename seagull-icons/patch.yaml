@@ -500,7 +500,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xE95E: [heart_pulse, 0] # Health
   # 0xE95F: # Wire
   0xE960: [camera, 0] # Webcam2
-  0xE961: [keyboard_mouse, 0] # Input
+  # 0xE961: [keyboard_mouse, 0] # Input
   # 0xE962: # Mouse
   # 0xE963: # Smartcard
   # 0xE964: # SmartcardVirtual
