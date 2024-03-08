@@ -82,15 +82,13 @@ namespace FluentIcons.Maui
             {
                 LayoutAlignment.Start => bounds.Left + Padding.Left,
                 LayoutAlignment.End => bounds.Right - FontSize - Padding.Right,
-                LayoutAlignment.Center or LayoutAlignment.Fill => bounds.Center.X - (FontSize + Padding.Right - Padding.Left) / 2,
-                _ => throw new NotSupportedException()
+                _ => bounds.Center.X - (FontSize + Padding.Right - Padding.Left) / 2
             };
             var top = VerticalOptions.Alignment switch
             {
                 LayoutAlignment.Start => bounds.Top + Padding.Top,
                 LayoutAlignment.End => bounds.Bottom - FontSize - Padding.Right,
-                LayoutAlignment.Center or LayoutAlignment.Fill => bounds.Center.Y - (FontSize + Padding.Bottom - Padding.Top) / 2,
-                _ => throw new NotSupportedException()
+                _ => bounds.Center.Y - (FontSize + Padding.Bottom - Padding.Top) / 2
             };
             _label.Arrange(new(new(left, top), new(FontSize, FontSize)));
             return base.ArrangeOverride(bounds);

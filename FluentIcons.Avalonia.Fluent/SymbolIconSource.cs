@@ -71,51 +71,30 @@ namespace FluentIcons.Avalonia.Fluent
                 InvalidateGlyph();
                 return;
             }
-            else if (change.Property == FontSizeProperty)
+            else if (change.Property == FontSizeProperty || change.Property == FontIconSource.FontSizeProperty)
             {
                 base.FontSize = FontSize;
                 return;
             }
-            else if (change.Property == FontIconSource.FontSizeProperty)
-            {
-                if (base.FontSize != FontSize)
-                {
-                    base.FontSize = FontSize;
-                    return;
-                }
-            }
             else if (change.Property == GlyphProperty)
             {
-                if (Glyph != _glyph)
-                {
-                    Glyph = _glyph;
-                    return;
-                }
+                Glyph = _glyph;
+                return;
             }
             else if (change.Property == FontFamilyProperty)
             {
-                var ff = UseSegoeMetrics ? SymbolIcon.Seagull.FontFamily : SymbolIcon.System.FontFamily;
-                if (FontFamily != ff)
-                {
-                    FontFamily = ff;
-                    return;
-                }
+                FontFamily = UseSegoeMetrics ? SymbolIcon.Seagull.FontFamily : SymbolIcon.System.FontFamily;
+                return;
             }
             else if (change.Property == FontStyleProperty)
             {
-                if (FontStyle != FontStyle.Normal)
-                {
-                    FontStyle = FontStyle.Normal;
-                    return;
-                }
+                FontStyle = FontStyle.Normal;
+                return;
             }
             else if (change.Property == FontWeightProperty)
             {
-                if (FontWeight != FontWeight.Regular)
-                {
-                    FontWeight = FontWeight.Regular;
-                    return;
-                }
+                FontWeight = FontWeight.Regular;
+                return;
             }
 
             base.OnPropertyChanged(change);

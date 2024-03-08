@@ -453,5 +453,4 @@ $RECYCLE.BIN/
 # !.vscode/launch.json
 # !.vscode/extensions.json
 
-
-*Avalonia*/Assets/*.ttf
+FluentIcons.Avalonia*/Assets/*.ttf

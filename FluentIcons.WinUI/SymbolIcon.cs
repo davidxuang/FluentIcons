@@ -65,9 +65,9 @@ namespace FluentIcons.WinUI
             set { SetValue(UseSegoeMetricsProperty, value); }
         }
 
-        private static void OnSymbolPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnSymbolPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            if (d is SymbolIcon inst)
+            if (sender is SymbolIcon inst)
             {
                 inst.FontFamily = inst.UseSegoeMetrics ? Seagull : System;
                 inst.Glyph = inst._glyph = inst.Symbol.ToString(inst.IsFilled, inst.FlowDirection == FlowDirection.RightToLeft);
@@ -88,7 +88,7 @@ namespace FluentIcons.WinUI
 
         private static void OnFontStyleChanged(DependencyObject sender, DependencyProperty dp)
         {
-            if (sender is SymbolIcon inst && inst.FontStyle != Windows.UI.Text.FontStyle.Normal)
+            if (sender is SymbolIcon inst)
             {
                 inst.FontStyle = Windows.UI.Text.FontStyle.Normal;
             }
@@ -96,7 +96,7 @@ namespace FluentIcons.WinUI
 
         private static void OnFontWeightChanged(DependencyObject sender, DependencyProperty dp)
         {
-            if (sender is SymbolIcon inst && inst.FontWeight != FontWeights.Normal)
+            if (sender is SymbolIcon inst)
             {
                 inst.FontWeight = FontWeights.Normal;
             }
@@ -104,7 +104,7 @@ namespace FluentIcons.WinUI
 
         private static void OnGlyphChanged(DependencyObject sender, DependencyProperty dp)
         {
-            if (sender is SymbolIcon inst && inst.Glyph != inst._glyph)
+            if (sender is SymbolIcon inst)
             {
                 inst.Glyph = inst._glyph;
             }
@@ -112,7 +112,7 @@ namespace FluentIcons.WinUI
 
         private static void OnIsTextScaleFactorEnabledChanged(DependencyObject sender, DependencyProperty dp)
         {
-            if (sender is SymbolIcon inst && inst.IsTextScaleFactorEnabled != false)
+            if (sender is SymbolIcon inst)
             {
                 inst.IsTextScaleFactorEnabled = false;
             }
@@ -120,7 +120,7 @@ namespace FluentIcons.WinUI
 
         private static void OnMirroredWhenRightToLeftChanged(DependencyObject sender, DependencyProperty dp)
         {
-            if (sender is SymbolIcon inst && inst.MirroredWhenRightToLeft != false)
+            if (sender is SymbolIcon inst)
             {
                 inst.MirroredWhenRightToLeft = false;
             }

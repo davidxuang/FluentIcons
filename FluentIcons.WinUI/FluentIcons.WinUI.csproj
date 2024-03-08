@@ -14,18 +14,18 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
   </ItemGroup>
-  
+
   <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.1" />
   </ItemGroup>
-  
+
   <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'">
     <PackageReference Include="Uno.WinUI" Version="5.0.19" />
   </ItemGroup>
-  
+
   <UsingTask TaskName="Microsoft.NET.Build.Tasks.GetNuGetShortFolderName" AssemblyFile="$(MicrosoftNETBuildTasksAssembly)" />
-  
+
   <Target Name="IncludeAssetsInNuGetPackage" Condition="'$(IncludeBuildOutput)' != 'false'">
     <GetNuGetShortFolderName TargetFrameworkMoniker="$(TargetFrameworkMoniker)" TargetPlatformMoniker="$(TargetPlatformMoniker)">
       <Output TaskParameter="NuGetShortFolderName" PropertyName="NuGetShortFolderName" />
@@ -43,7 +43,7 @@
         <BuildAction>Content</BuildAction>
       </TfmSpecificPackageFile>
     </ItemGroup>
-    
+
     <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'">
       <TfmSpecificPackageFile Include="../seagull-icons/assets/FluentSystemIcons.ttf">
         <Link>Assets/FluentSystemIcons.ttf</Link>
@@ -58,7 +58,7 @@
       </TfmSpecificPackageFile>
     </ItemGroup>
   </Target>
-      
+
   <!-- <ItemGroup>
     <Content Include="../updater/FluentSystemIcons.ttf">
       <Link>Assets/FluentSystemIcons.ttf</Link>

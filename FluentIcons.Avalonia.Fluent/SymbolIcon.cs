@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Globalization;
 using Avalonia;
 using Avalonia.Controls.Documents;
+using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
 using FluentAvalonia.UI.Controls;
@@ -59,6 +61,21 @@ namespace FluentIcons.Avalonia.Fluent
             set => SetValue(FontSizeProperty, value);
         }
 
+        protected override void OnLoaded(RoutedEventArgs e)
+        {
+            _suspendCreate = false;
+            InvalidateText();
+            base.OnLoaded(e);
+        }
+
+        protected override void OnUnloaded(RoutedEventArgs e)
+        {
+            _suspendCreate = true;
+            _textLayout?.Dispose();
+            _textLayout = null;
+            base.OnUnloaded(e);
+        }
+
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
             if (change.Property == FontSizeProperty)
@@ -85,9 +102,14 @@ namespace FluentIcons.Avalonia.Fluent
                 InvalidateText();
             }
 
+            double size = FontSize;
             return new Size(
-                Math.Min(availableSize.Width, FontSize),
-                Math.Min(availableSize.Height, FontSize));
+                HorizontalAlignment == HorizontalAlignment.Stretch
+                    ? availableSize.Width.Or(size)
+                    : Math.Min(availableSize.Width, size),
+                VerticalAlignment == VerticalAlignment.Stretch
+                    ? availableSize.Height.Or(size)
+                    : Math.Min(availableSize.Height, size));
         }
 
         public override void Render(DrawingContext context)
@@ -95,10 +117,23 @@ namespace FluentIcons.Avalonia.Fluent
             if (_textLayout is null)
                 return;
 
-            var canvas = new Rect(Bounds.Size);
-            using (context.PushClip(canvas))
+            double size = FontSize;
+            Rect bounds = Bounds;
+            using (context.PushClip(new Rect(bounds.Size)))
             {
-                var origin = new Point(canvas.Center.X - _textLayout.Width / 2, 0);
+                var origin = new Point(
+                    HorizontalAlignment switch
+                    {
+                        HorizontalAlignment.Left => 0,
+                        HorizontalAlignment.Right => bounds.Width - size,
+                        _ => (bounds.Width - size) / 2,
+                    },
+                    VerticalAlignment switch
+                    {
+                        VerticalAlignment.Top => 0,
+                        VerticalAlignment.Bottom => bounds.Height - size,
+                        _ => (bounds.Height - size) / 2,
+                    });
                 _textLayout.Draw(context, origin);
             }
         }
@@ -108,6 +143,7 @@ namespace FluentIcons.Avalonia.Fluent
             if (_suspendCreate)
                 return;
 
+            _textLayout?.Dispose();
             _textLayout = new TextLayout(
                 Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft),
                 UseSegoeMetrics ? Seagull : System,

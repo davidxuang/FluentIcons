@@ -80,8 +80,11 @@ namespace FluentIcons.WPF
 
         private static void OnSizePropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            (d as SymbolIcon)?.InvalidateMeasure();
-            (d as SymbolIcon)?.InvalidateText();
+            if (d is SymbolIcon icon)
+            {
+                icon.InvalidateMeasure();
+                icon.InvalidateText();
+            }
         }
 
         private static void OnSymbolPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -97,9 +100,14 @@ namespace FluentIcons.WPF
                 InvalidateText();
             }
 
+            double size = FontSize;
             return new Size(
-                Math.Min(availableSize.Width, FontSize),
-                Math.Min(availableSize.Height, FontSize));
+                HorizontalAlignment == HorizontalAlignment.Stretch
+                    ? availableSize.Width.Or(size)
+                    : Math.Min(availableSize.Width, size),
+                VerticalAlignment == VerticalAlignment.Stretch
+                    ? availableSize.Height.Or(size)
+                    : Math.Min(availableSize.Height, size));
         }
 
         protected override void OnRender(DrawingContext context)
@@ -109,9 +117,19 @@ namespace FluentIcons.WPF
 
             var canvas = RenderTransform.TransformBounds(new Rect(0, 0, ActualWidth, ActualHeight));
             context.PushClip(new RectangleGeometry(canvas));
-            var origin = FlowDirection == FlowDirection.LeftToRight
-                ? new Point(canvas.Left + (canvas.Width - _formattedText.Width) / 2, canvas.Top + (canvas.Height - _formattedText.Height) / 2)
-                : new Point(canvas.Right - (canvas.Width - _formattedText.Width) / 2, canvas.Top + (canvas.Height - _formattedText.Height) / 2);
+            var origin = new Point(
+                canvas.Left + HorizontalAlignment switch
+                {
+                    HorizontalAlignment.Left => 0,
+                    HorizontalAlignment.Right => canvas.Width - _formattedText.Width,
+                    _ => (canvas.Width - _formattedText.Width) / 2,
+                },
+                canvas.Top + VerticalAlignment switch
+                {
+                    VerticalAlignment.Top => 0,
+                    VerticalAlignment.Bottom => canvas.Height - _formattedText.Height,
+                    _ => (canvas.Height - _formattedText.Height) / 2,
+                });
             context.DrawText(_formattedText, origin);
             context.Pop();
         }

@@ -19,7 +19,7 @@ namespace FluentIcons.WinUI
         public static readonly DependencyProperty UseSegoeMetricsProperty =
             DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
 #endif
-        public static readonly DependencyProperty FlowDirectionProperty = 
+        public static readonly DependencyProperty FlowDirectionProperty =
             DependencyProperty.Register(nameof(FlowDirection), typeof(FlowDirection), typeof(SymbolIconSource), new PropertyMetadata(FlowDirection.LeftToRight, OnSymbolPropertiesChanged));
 
         private string _glyph;
@@ -68,9 +68,9 @@ namespace FluentIcons.WinUI
             set { SetValue(FlowDirectionProperty, value); }
         }
 
-        private static void OnSymbolPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnSymbolPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            if (d is SymbolIconSource inst)
+            if (sender is SymbolIconSource inst)
             {
                 inst.FontFamily = inst.UseSegoeMetrics ? SymbolIcon.Seagull : SymbolIcon.System;
                 inst.Glyph = inst._glyph = inst.Symbol.ToString(inst.IsFilled, inst.FlowDirection == FlowDirection.RightToLeft);
@@ -81,17 +81,13 @@ namespace FluentIcons.WinUI
         {
             if (sender is SymbolIcon inst)
             {
-                var font = inst.UseSegoeMetrics ? SymbolIcon.Seagull : SymbolIcon.System;
-                if (inst.FontFamily != font)
-                {
-                    inst.FontFamily = font;
-                }
+                inst.FontFamily = inst.UseSegoeMetrics ? SymbolIcon.Seagull : SymbolIcon.System;
             }
         }
 
         private static void OnFontStyleChanged(DependencyObject sender, DependencyProperty dp)
         {
-            if (sender is SymbolIconSource inst && inst.FontStyle != Windows.UI.Text.FontStyle.Normal)
+            if (sender is SymbolIconSource inst)
             {
                 inst.FontStyle = Windows.UI.Text.FontStyle.Normal;
             }
@@ -99,7 +95,7 @@ namespace FluentIcons.WinUI
 
         private static void OnFontWeightChanged(DependencyObject sender, DependencyProperty dp)
         {
-            if (sender is SymbolIconSource inst && inst.FontWeight != FontWeights.Normal)
+            if (sender is SymbolIconSource inst)
             {
                 inst.FontWeight = FontWeights.Normal;
             }
@@ -107,7 +103,7 @@ namespace FluentIcons.WinUI
 
         private static void OnGlyphChanged(DependencyObject sender, DependencyProperty dp)
         {
-            if (sender is SymbolIconSource inst && inst.Glyph != inst._glyph)
+            if (sender is SymbolIconSource inst)
             {
                 inst.Glyph = inst._glyph;
             }
@@ -115,7 +111,7 @@ namespace FluentIcons.WinUI
 
         private static void OnIsTextScaleFactorEnabledChanged(DependencyObject sender, DependencyProperty dp)
         {
-            if (sender is SymbolIconSource inst && inst.IsTextScaleFactorEnabled != false)
+            if (sender is SymbolIconSource inst)
             {
                 inst.IsTextScaleFactorEnabled = false;
             }
@@ -123,7 +119,7 @@ namespace FluentIcons.WinUI
 
         private static void OnMirroredWhenRightToLeftChanged(DependencyObject sender, DependencyProperty dp)
         {
-            if (sender is SymbolIconSource inst && inst.MirroredWhenRightToLeft != false)
+            if (sender is SymbolIconSource inst)
             {
                 inst.MirroredWhenRightToLeft = false;
             }
