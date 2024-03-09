@@ -1,0 +1,10 @@
+[*]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[*.{js,ts,jsx,tsx,py,json,yaml,toml,svg}]
+indent_size = 2
+
+[*.{csproj,fsproj,vbproj}]
+indent_size = 2
