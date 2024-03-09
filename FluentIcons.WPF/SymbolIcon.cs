@@ -102,12 +102,14 @@ namespace FluentIcons.WPF
 
             double size = FontSize;
             return new Size(
-                HorizontalAlignment == HorizontalAlignment.Stretch
-                    ? availableSize.Width.Or(size)
-                    : Math.Min(availableSize.Width, size),
-                VerticalAlignment == VerticalAlignment.Stretch
-                    ? availableSize.Height.Or(size)
-                    : Math.Min(availableSize.Height, size));
+                Width.Or(
+                    HorizontalAlignment == HorizontalAlignment.Stretch
+                        ? availableSize.Width.Or(size)
+                        : Math.Min(availableSize.Width, size)),
+                Height.Or(
+                    VerticalAlignment == VerticalAlignment.Stretch
+                        ? availableSize.Height.Or(size)
+                        : Math.Min(availableSize.Height, size)));
         }
 
         protected override void OnRender(DrawingContext context)
