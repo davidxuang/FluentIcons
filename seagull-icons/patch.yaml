@@ -6,7 +6,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xE704: # InternetSharing
   0xE705: [shield_keyhole, 0] # VPN
   0xE706: [weather_sunny, 0] # Brightness
-  0xE707: [location, 0] # MapPin
+  0xE707: [location_ripple, 0] # MapPin
   0xE708: [weather_moon, 0] # QuietHours
   0xE709: [airplane, 0] # Airplane
   0xE70A: [tablet, 0] # Tablet
@@ -145,7 +145,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xE7AD: [arrow_rotate_clockwise, 0] # Rotate
   0xE7B3: [eye, 0] # RedEye
   # 0xE7B5: # SetlockScreen
-  # 0xE7B7: # MapPin2
+  0xE7B7: [location, 0] # MapPin2
   0xE7B8: [archive, 0] # Package
   0xE7BA: [warning, 0] # Warning
   0xE7BC: [reading_list, 0] # ReadingList

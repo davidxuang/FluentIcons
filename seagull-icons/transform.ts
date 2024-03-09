@@ -57,7 +57,7 @@ const data = parse(fs.readFileSync(YAML).toString()) as {
   translate: {
     [icon: string]: Translate;
   };
-  redirect: { [icon: string]: string };
+  redirect: { [icon: string]: string | { [cat: string]: string } };
   base: {
     [icon: string]: string | BaseMeta | { [badge: string]: string | BaseMeta };
   };
@@ -151,9 +151,7 @@ const resolve = (() => {
       badge_style: badge_style,
       variant: matches[3],
       style: style,
-      src_name: `ic_fluent_${
-        data.redirect[matches[1]] ?? matches[1]
-      }_${style}.svg`,
+      src_name: matches[1], // needs further resolve
       dest_name: undefined,
     };
 
@@ -168,6 +166,21 @@ const resolve = (() => {
     return meta;
   };
 })();
+
+const resolveSrc = (meta: ComposeMeta, base_meta: BaseMeta) => {
+  const redirect = data.redirect[meta.src_name];
+  if (redirect) {
+    if (typeof redirect === 'string') {
+      meta.src_name = `ic_fluent_${redirect}_${meta.style}.svg`;
+    } else {
+      meta.src_name = `ic_fluent_${
+        redirect[base_meta[0]] ?? redirect['#'] ?? meta.src_name
+      }_${meta.style}.svg`;
+    }
+  } else {
+    meta.src_name = `ic_fluent_${meta.src_name}_${meta.style}.svg`;
+  }
+};
 
 const compose = (() => {
   function getMask(badge_meta: BadgeMeta, cat: string) {
@@ -330,6 +343,7 @@ Object.entries(data.compose).forEach(([badge, badge_meta]) => {
         meta.variant,
         meta.badge_name
       );
+      resolveSrc(meta, base_meta);
       compose(meta, base_meta, badge_meta, sources, DEST_DIR);
     }
 
@@ -368,6 +382,7 @@ Object.entries(data.rtl.compose).forEach(([badge_rtl, badge_rtl_meta]) => {
       if (data.rtl.base[meta.base]?.mirror_category) {
         base_meta[0] = mirrorCategoty(base_meta[0]);
       }
+      resolveSrc(meta, base_meta);
       const badge_meta = data.rtl.base[meta.base]?.mirror_badge
         ? data.compose[badge_rtl_meta.mirror ?? badge_rtl]
         : data.compose[badge_rtl];
