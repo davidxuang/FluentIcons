@@ -23,7 +23,8 @@ A multi-framework wrapper of [fluentui-system-icons](https://github.com/microsof
 ## Usage
 
 ```xml
-<Window xmlns:ic="using:FluentIcons.Avalonia"> <!-- or FluentIcons.Avalonia.Fluent / FluentIcons.WinUI / FluentIcons.WPF -->
+<Window xmlns:ic="using:FluentIcons.Avalonia">
+<!-- or FluentIcons.Avalonia.Fluent / FluentIcons.Maui / FluentIcons.WinUI / FluentIcons.WPF -->
     <ic:SymbolIcon Symbol="ArrowLeft" IsFilled="True" />
 </Window>
 ```
@@ -41,4 +42,8 @@ This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platfo
     - *Breaking change since 1.1.225: no longer inherit value from parent element to match WinUI behaviours.*
 - **Foreground** : Brush
 
-You may also enable `UseSegoeMetrics` globally using the extension method `UseSegoeMetrics()` provided for `IHostBuilder` / `AppBuilder` (Avalonia) / `Application` (WPF).
+### MAUI
+The extension method `UseFluentIcons(bool useSegoeMetrics)` must be called on `MauiAppBuilder` to register fonts properly.
+
+### Other frameworks
+You may also enable `UseSegoeMetrics` globally using the extension method `UseSegoeMetrics()` on `IHostBuilder` / `AppBuilder` <small>Avalonia</small> / `Application` <small>WPF</small>.
