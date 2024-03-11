@@ -6,5 +6,5 @@ trim_trailing_whitespace = true
 [*.{js,ts,jsx,tsx,py,json,yaml,toml,svg}]
 indent_size = 2
 
-[*.{csproj,fsproj,vbproj}]
+[*.{xml,csproj,fsproj,vbproj,props,targets}]
 indent_size = 2

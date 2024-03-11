@@ -28,7 +28,7 @@ namespace FluentIcons.Avalonia.Fluent
             FontFamily = UseSegoeMetrics ? SymbolIcon.Seagull.FontFamily : SymbolIcon.System.FontFamily;
             FontStyle = FontStyle.Normal;
             FontWeight = FontWeight.Regular;
-            InvalidateGlyph();
+            InvalidateText();
         }
 
         public Symbol Symbol
@@ -68,7 +68,7 @@ namespace FluentIcons.Avalonia.Fluent
             || change.Property == UseSegoeMetricsProperty
             || change.Property == FontSizeProperty)
             {
-                InvalidateGlyph();
+                InvalidateText();
                 return;
             }
             else if (change.Property == FontSizeProperty || change.Property == FontIconSource.FontSizeProperty)
@@ -101,7 +101,7 @@ namespace FluentIcons.Avalonia.Fluent
         }
 
         [MemberNotNull(nameof(_glyph))]
-        private void InvalidateGlyph()
+        private void InvalidateText()
         {
             Glyph = _glyph = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft);
         }
