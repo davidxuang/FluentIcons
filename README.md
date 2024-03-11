@@ -4,21 +4,22 @@ A multi-framework wrapper of [fluentui-system-icons](https://github.com/microsof
 
 ## Packages
 
-| Package                       | Version                                                                                                                                               |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `FluentIcons.Common`          | [![FluentIcons.Common](https://badgen.net/nuget/v/FluentIcons.Common)](https://www.nuget.org/packages/FluentIcons.Common/)                            |
-| `FluentIcons.Avalonia`        | [![FluentIcons.Avalonia](https://badgen.net/nuget/v/FluentIcons.Avalonia)](https://www.nuget.org/packages/FluentIcons.Avalonia/)                      |
-| `FluentIcons.Avalonia.Fluent` | [![FluentIcons.Avalonia.Fluent](https://badgen.net/nuget/v/FluentIcons.Avalonia.Fluent)](https://www.nuget.org/packages/FluentIcons.Avalonia.Fluent/) |
-| `FluentIcons.Maui`            | [![FluentIcons.Maui](https://badgen.net/nuget/v/FluentIcons.Maui)](https://www.nuget.org/packages/FluentIcons.Maui/)                                  |
-| `FluentIcons.WinUI`           | [![FluentIcons.WinUI](https://badgen.net/nuget/v/FluentIcons.WinUI)](https://www.nuget.org/packages/FluentIcons.WinUI/)                               |
-| `FluentIcons.WPF`             | [![FluentIcons.WPF](https://badgen.net/nuget/v/FluentIcons.WPF)](https://www.nuget.org/packages/FluentIcons.WPF/)                                     |
+| Package                                                                                                                                                                                    | Platform                                                                                                                                                                                                                                                                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [![FluentIcons.Common](https://img.shields.io/nuget/v/FluentIcons.Common?label=FluentIcons.Common)](https://www.nuget.org/packages/FluentIcons.Common)                                     |                                                                                                                                                                                                                                                                                                                                                                       |
+| [![FluentIcons.Avalonia](https://img.shields.io/nuget/v/FluentIcons.Avalonia?label=FluentIcons.Avalonia)](https://www.nuget.org/packages/FluentIcons.Avalonia)                             | [<img height="16" src="https://api.nuget.org/v3-flatcontainer/avalonia/11.0.0/icon" /> Avalonia 11](https://www.nuget.org/packages/Avalonia/11.0.0)                                                                                                                                                                                                                   |
+| [![FluentIcons.Avalonia.Fluent](https://img.shields.io/nuget/v/FluentIcons.Avalonia.Fluent?label=FluentIcons.Avalonia.Fluent)](https://www.nuget.org/packages/FluentIcons.Avalonia.Fluent) | [<img height="16" src="https://api.nuget.org/v3-flatcontainer/fluentavaloniaui/2.0.0/icon" /> FluentAvalonia 2](https://www.nuget.org/packages/FluentAvaloniaUI/2.0.0) (Avalonia 11)                                                                                                                                                                                  |
+| [![FluentIcons.Maui](https://img.shields.io/nuget/v/FluentIcons.Maui?label=FluentIcons.Maui)](https://www.nuget.org/packages/FluentIcons.Maui)                                             | [<img height="16" src="https://api.nuget.org/v3-flatcontainer/microsoft.maui.sdk/8.0.3/icon" /> MAUI 8](https://www.nuget.org/packages/Microsoft.Maui.Sdk/8.0.3)                                                                                                                                                                                                      |
+| [![FluentIcons.Uwp](https://img.shields.io/nuget/v/FluentIcons.Uwp?label=FluentIcons.Uwp)](https://www.nuget.org/packages/FluentIcons.Uwp)                                                 | <img height="16" src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" /> UWP 10.0.10773 <br/> [<img height="16" src="https://github.com/davidxuang/FluentIcons/raw/master/assets/uno.svg" /> Uno.UI 5](https://www.nuget.org/packages/Uno.UI/5.0.19)                                                                                     |
+| [![FluentIcons.WinUI](https://img.shields.io/nuget/v/FluentIcons.WinUI?label=FluentIcons.WinUI)](https://www.nuget.org/packages/FluentIcons.WinUI)                                         | [<img height="16" src="https://api.nuget.org/v3-flatcontainer/microsoft.windowsappsdk/1.2.221109.1/icon" /> Windows App SDK 1.2](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.2.221109.1) <br/> [<img height="16" src="https://github.com/davidxuang/FluentIcons/raw/master/assets/uno.svg" /> Uno.WinUI 5](https://www.nuget.org/packages/Uno.UI/5.0.19) |
+| [![FluentIcons.WPF](https://img.shields.io/nuget/v/FluentIcons.WPF?label=FluentIcons.WPF)](https://www.nuget.org/packages/FluentIcons.WPF)                                                 | <img height="16" src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Microsoft_.NET_logo.svg" /> .NET Framework 4.6.2 <br/> <img height="16" src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Microsoft_.NET_logo.svg" /> .NET 6                                                                                                                         |
 
-### Legacy versions
+### Legacy
 
-| Avalonia 0.10.* [backports](https://github.com/davidxuang/FluentIcons/tree/avalonia-v0.10) |                                                                                                                                       |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `FluentIcons.Avalonia`                                                                     | [![FluentIcons.Avalonia](https://badgen.net/badge/nuget/v1.1.203)](https://www.nuget.org/packages/FluentIcons.Avalonia/1.1.203)       |
-| `FluentIcons.FluentAvalonia`                                                               | [![FluentIcons.Avalonia](https://badgen.net/badge/nuget/v1.1.203)](https://www.nuget.org/packages/FluentIcons.FluentAvalonia/1.1.203) |
+| Avalonia 10 [backports](https://github.com/davidxuang/FluentIcons/tree/avalonia-v0.10)                                                                           | Platform                                                                                                                                                                             |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [![FluentIcons.Avalonia](https://badgen.net/badge/FluentIcons.Avalonia/v1.1.203)](https://www.nuget.org/packages/FluentIcons.Avalonia/1.1.203)                   | [<img height="16" src="https://api.nuget.org/v3-flatcontainer/avalonia/0.10.0/icon" /> Avalonia 10](https://www.nuget.org/packages/Avalonia/0.10.0)                                  |
+| [![FluentIcons.FluentAvalonia](https://badgen.net/badge/FluentIcons.FluentAvalonia/v1.1.203)](https://www.nuget.org/packages/FluentIcons.FluentAvalonia/1.1.203) | [<img height="16" src="https://api.nuget.org/v3-flatcontainer/fluentavaloniaui/2.0.0/icon" /> FluentAvalonia 1](https://www.nuget.org/packages/FluentAvaloniaUI/1.0.0) (Avalonia 10) |
 
 ## Usage
 
@@ -42,8 +43,18 @@ This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platfo
     - *Breaking change since 1.1.225: no longer inherit value from parent element to match WinUI behaviours.*
 - **Foreground** : Brush
 
-### MAUI
-The extension method `UseFluentIcons(bool useSegoeMetrics)` must be called on `MauiAppBuilder` to register fonts properly.
+### Avalonia / WPF
 
-### Other frameworks
-You may also enable `UseSegoeMetrics` globally using the extension method `UseSegoeMetrics()` on `IHostBuilder` / `AppBuilder` <small>Avalonia</small> / `Application` <small>WPF</small>.
+To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this AppBuilder builder)` on Avalonia and `UseSegoeMetric(this Application app)` on WPF.
+
+### MAUI
+
+⚠️ The extension method `UseFluentIcons(this MauiAppBuilder builder, bool useSegoeMetrics)` must be called to register fonts properly. ⚠️
+
+`SymbolImageSource` is provided on MAUI.
+
+### UWP / WinUI
+
+⚠️ You must reference this package directly so that fonts can be included in the build output properly. ⚠️
+
+To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this Application app)` or `UseSegoeMetric(this IHostBuilder builder)` (WinUI-only).

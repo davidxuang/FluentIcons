@@ -11,4 +11,17 @@
     </ItemGroup>
   </Target>
 
+  <UsingTask TaskName="Microsoft.NET.Build.Tasks.GetNuGetShortFolderName" AssemblyFile="$(MicrosoftNETBuildTasksAssembly)" />
+
+  <Target Name="GetNuGetShortFolderName">
+    <!-- https://github.com/NuGet/Home/issues/10063#issuecomment-1988004292 -->
+    <GetNuGetShortFolderName TargetFrameworkMoniker="$(TargetPlatformMoniker)" TargetPlatformMoniker="$(TargetPlatformMoniker)" Condition="$(TargetFramework.StartsWith('uap'))">
+      <Output TaskParameter="NuGetShortFolderName" PropertyName="NuGetShortFolderName" />
+    </GetNuGetShortFolderName>
+
+    <GetNuGetShortFolderName TargetFrameworkMoniker="$(TargetFrameworkMoniker)" TargetPlatformMoniker="$(TargetPlatformMoniker)" Condition="!$(TargetFramework.StartsWith('uap'))">
+      <Output TaskParameter="NuGetShortFolderName" PropertyName="NuGetShortFolderName" />
+    </GetNuGetShortFolderName>
+  </Target>
+
 </Project>

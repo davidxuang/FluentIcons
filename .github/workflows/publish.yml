@@ -34,6 +34,7 @@ jobs:
           dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.Avalonia/FluentIcons.Avalonia.csproj
           dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.Avalonia.Fluent/FluentIcons.Avalonia.Fluent.csproj
           dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.Maui/FluentIcons.Maui.csproj
+          MSBuild -t:pack -p:Configuration=Release -p:PackageOutputPath=".." -p:VersionSuffix="$suffix" FluentIcons.Uwp/FluentIcons.Uwp.csproj
           dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.WinUI/FluentIcons.WinUI.csproj
           dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.WPF/FluentIcons.WPF.csproj
       - name: Publish

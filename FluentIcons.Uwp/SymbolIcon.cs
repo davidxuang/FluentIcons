@@ -1,17 +1,17 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using FluentIcons.Common.Internals;
-using Microsoft.UI.Text;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
+using Windows.UI.Text;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Symbol = FluentIcons.Common.Symbol;
 
-namespace FluentIcons.WinUI
+namespace FluentIcons.Uwp
 {
     public partial class SymbolIcon : FontIcon
     {
-        internal static readonly FontFamily System = new("ms-appx:///FluentIcons.WinUI/Assets/FluentSystemIcons.ttf#Fluent System Icons");
-        internal static readonly FontFamily Seagull = new("ms-appx:///FluentIcons.WinUI/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
+        internal static readonly FontFamily System = new("ms-appx:///FluentIcons.Uwp/Assets/FluentSystemIcons.ttf#Fluent System Icons");
+        internal static readonly FontFamily Seagull = new("ms-appx:///FluentIcons.Uwp/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
         internal static bool UseSegoeMetricsDefaultValue = false;
 
         public static readonly DependencyProperty SymbolProperty =
@@ -33,7 +33,7 @@ namespace FluentIcons.WinUI
 #if NET && !WINDOWS
             UseSegoeMetrics = UseSegoeMetricsDefaultValue;
 #endif
-            FontStyle = Windows.UI.Text.FontStyle.Normal;
+            FontStyle = FontStyle.Normal;
             FontWeight = FontWeights.Normal;
             IsTextScaleFactorEnabled = false;
             MirroredWhenRightToLeft = false;
@@ -89,7 +89,7 @@ namespace FluentIcons.WinUI
         {
             if (sender is SymbolIcon inst)
             {
-                inst.FontStyle = Windows.UI.Text.FontStyle.Normal;
+                inst.FontStyle = FontStyle.Normal;
             }
         }
 
