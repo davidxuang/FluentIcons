@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Globalization;
 using Avalonia;
-using Avalonia.Controls.Documents;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
@@ -29,7 +28,6 @@ namespace FluentIcons.Avalonia.Fluent
         public static readonly StyledProperty<double> FontSizeProperty =
             AvaloniaProperty.Register<SymbolIcon, double>(nameof(FontSize), 20d, false);
 
-        private bool _suspendCreate = true;
         private TextLayout? _textLayout;
 
         public SymbolIcon()
@@ -63,14 +61,12 @@ namespace FluentIcons.Avalonia.Fluent
 
         protected override void OnLoaded(RoutedEventArgs e)
         {
-            _suspendCreate = false;
             InvalidateText();
             base.OnLoaded(e);
         }
 
         protected override void OnUnloaded(RoutedEventArgs e)
         {
-            _suspendCreate = true;
             _textLayout?.Dispose();
             _textLayout = null;
             base.OnUnloaded(e);
@@ -83,7 +79,7 @@ namespace FluentIcons.Avalonia.Fluent
                 InvalidateMeasure();
                 InvalidateText();
             }
-            else if (change.Property == TextElement.ForegroundProperty ||
+            else if (change.Property == ForegroundProperty ||
                 change.Property == SymbolProperty ||
                 change.Property == IsFilledProperty ||
                 change.Property == UseSegoeMetricsProperty)
@@ -96,12 +92,6 @@ namespace FluentIcons.Avalonia.Fluent
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (_suspendCreate || _textLayout is null)
-            {
-                _suspendCreate = false;
-                InvalidateText();
-            }
-
             double size = FontSize;
             return new Size(
                 Width.Or(
@@ -142,7 +132,7 @@ namespace FluentIcons.Avalonia.Fluent
 
         private void InvalidateText()
         {
-            if (_suspendCreate)
+            if (!IsLoaded)
                 return;
 
             _textLayout?.Dispose();

@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Documents;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
@@ -14,7 +13,7 @@ using FluentIcons.Common.Internals;
 namespace FluentIcons.Avalonia
 {
     [TypeConverter(typeof(SymbolIconConverter))]
-    public class SymbolIcon : Control
+    public class SymbolIcon : IconElement
     {
         private static readonly Typeface _system = new("avares://FluentIcons.Avalonia/Assets#Fluent System Icons");
         private static readonly Typeface _seagull = new("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons");
@@ -26,17 +25,30 @@ namespace FluentIcons.Avalonia
             AvaloniaProperty.Register<SymbolIcon, bool>(nameof(IsFilled));
         public static readonly StyledProperty<bool> UseSegoeMetricsProperty =
             AvaloniaProperty.Register<SymbolIcon, bool>(nameof(UseSegoeMetrics));
-        public static readonly StyledProperty<double> FontSizeProperty =
+        public static new readonly StyledProperty<double> FontSizeProperty =
             AvaloniaProperty.Register<SymbolIcon, double>(nameof(FontSize), 20d, false);
-        public static readonly StyledProperty<IBrush?> ForegroundProperty =
-            TextElement.ForegroundProperty.AddOwner<SymbolIcon>();
 
-        private bool _suspendCreate = true;
-        private TextLayout? _textLayout;
+        private readonly Border _border;
+        private readonly Core _core;
 
         public SymbolIcon()
         {
             UseSegoeMetrics = UseSegoeMetricsDefaultValue;
+
+            _border = new();
+            _border.Bind(BackgroundProperty, this.GetBindingObservable(BackgroundProperty));
+            _border.Bind(BorderBrushProperty, this.GetBindingObservable(BorderBrushProperty));
+            _border.Bind(BorderThicknessProperty, this.GetBindingObservable(BorderThicknessProperty));
+            _border.Bind(CornerRadiusProperty, this.GetBindingObservable(CornerRadiusProperty));
+            _border.Bind(PaddingProperty, this.GetBindingObservable(PaddingProperty));
+            (_border as ISetLogicalParent).SetParent(this);
+            VisualChildren.Add(_border);
+            LogicalChildren.Add(_border);
+
+            _core = new();
+            (_core as ISetLogicalParent).SetParent(this);
+            VisualChildren.Add(_core);
+            LogicalChildren.Add(_core);
         }
 
         public Symbol Symbol
@@ -57,30 +69,21 @@ namespace FluentIcons.Avalonia
             set => SetValue(UseSegoeMetricsProperty, value);
         }
 
-        public double FontSize
+        public new double FontSize
         {
             get => GetValue(FontSizeProperty);
             set => SetValue(FontSizeProperty, value);
         }
 
-        public IBrush? Foreground
-        {
-            get => GetValue(ForegroundProperty);
-            set => SetValue(ForegroundProperty, value);
-        }
-
         protected override void OnLoaded(RoutedEventArgs e)
         {
-            _suspendCreate = false;
             InvalidateText();
             base.OnLoaded(e);
         }
 
         protected override void OnUnloaded(RoutedEventArgs e)
         {
-            _suspendCreate = true;
-            _textLayout?.Dispose();
-            _textLayout = null;
+            _core.Clear();
             base.OnUnloaded(e);
         }
 
@@ -91,7 +94,7 @@ namespace FluentIcons.Avalonia
                 InvalidateMeasure();
                 InvalidateText();
             }
-            else if (change.Property == TextElement.ForegroundProperty ||
+            else if (change.Property == ForegroundProperty ||
                 change.Property == SymbolProperty ||
                 change.Property == IsFilledProperty ||
                 change.Property == UseSegoeMetricsProperty)
@@ -104,58 +107,103 @@ namespace FluentIcons.Avalonia
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            double size = FontSize;
+            double fs = FontSize;
+            Size size = new Size(fs, fs).Inflate(Padding).Inflate(BorderThickness);
             return new Size(
                 Width.Or(
                     HorizontalAlignment == HorizontalAlignment.Stretch
-                        ? availableSize.Width.Or(size)
-                        : Math.Min(availableSize.Width, size)),
+                        ? availableSize.Width.Or(size.Width)
+                        : Math.Min(availableSize.Width, size.Width)),
                 Height.Or(
                     VerticalAlignment == VerticalAlignment.Stretch
-                        ? availableSize.Height.Or(size)
-                        : Math.Min(availableSize.Height, size)));
+                        ? availableSize.Height.Or(size.Height)
+                        : Math.Min(availableSize.Height, size.Height)));
         }
 
-        public override void Render(DrawingContext context)
+        protected override void ArrangeCore(Rect finalRect)
         {
-            if (_textLayout is null)
-                return;
-
-            double size = FontSize;
-            Rect bounds = Bounds;
-            using (context.PushClip(new Rect(bounds.Size)))
-            {
-                var origin = new Point(
-                    HorizontalAlignment switch
-                    {
-                        HorizontalAlignment.Left => 0,
-                        HorizontalAlignment.Right => bounds.Width - size,
-                        _ => (bounds.Width - size) / 2,
-                    },
-                    VerticalAlignment switch
-                    {
-                        VerticalAlignment.Top => 0,
-                        VerticalAlignment.Bottom => bounds.Height - size,
-                        _ => (bounds.Height - size) / 2,
-                    });
-                _textLayout.Draw(context, origin);
-            }
+            double fs = FontSize;
+            Size size = new Size(fs, fs).Inflate(Padding).Inflate(BorderThickness);
+            Rect rect = new(
+                HorizontalAlignment switch
+                {
+                    HorizontalAlignment.Center => finalRect.Center.X - fs / 2,
+                    HorizontalAlignment.Right => finalRect.Right - fs,
+                    _ => finalRect.Left
+                },
+                VerticalAlignment switch
+                {
+                    VerticalAlignment.Center => finalRect.Center.Y - fs / 2,
+                    VerticalAlignment.Bottom => finalRect.Bottom - fs,
+                    _ => finalRect.Top
+                },
+                HorizontalAlignment switch
+                {
+                    HorizontalAlignment.Stretch => finalRect.Width,
+                    _ => size.Width,
+                },
+                VerticalAlignment switch
+                {
+                    VerticalAlignment.Stretch => finalRect.Height,
+                    _ => size.Height,
+                });
+            _border.Arrange(rect);
+            _core.Arrange(rect.Deflate(BorderThickness).Deflate(Padding));
+            base.ArrangeCore(finalRect);
         }
 
         private void InvalidateText()
         {
-            if (_suspendCreate)
+            if (!IsLoaded)
                 return;
 
-            _textLayout?.Dispose();
-            _textLayout = new TextLayout(
+            _core.InvalidateText(
                 Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft),
                 UseSegoeMetrics ? _seagull : _system,
                 FontSize,
-                Foreground,
-                TextAlignment.Center);
+                Foreground);
+        }
 
-            InvalidateVisual();
+        private sealed class Core : Control
+        {
+            private double _size;
+            private TextLayout? _textLayout;
+
+            public override void Render(DrawingContext context)
+            {
+                if (_textLayout is null)
+                    return;
+
+                Rect bounds = Bounds;
+                using (context.PushClip(new Rect(bounds.Size)))
+                {
+                    var origin = new Point(
+                        (bounds.Width - _size) / 2,
+                        (bounds.Height - _size) / 2);
+                    _textLayout.Draw(context, origin);
+                }
+            }
+
+            public void InvalidateText(string text, Typeface typeface, double fontSize, IBrush? foreground)
+            {
+                _size = fontSize;
+
+                _textLayout?.Dispose();
+                _textLayout = new TextLayout(
+                    text,
+                    typeface,
+                    fontSize,
+                    foreground,
+                    TextAlignment.Center);
+
+                InvalidateVisual();
+            }
+
+            public void Clear()
+            {
+                _textLayout?.Dispose();
+                _textLayout = null;
+            }
         }
     }
 
