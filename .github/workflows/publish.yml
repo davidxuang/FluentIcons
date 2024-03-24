@@ -14,11 +14,23 @@ jobs:
     name: Publish
     runs-on: windows-latest
     steps:
+      - name: Set variables
+        id: vars
+        run: |
+          echo "dotnet_version=$(dotnet --version)" >> $env:GITHUB_OUTPUT
+          echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
+      - name: Cache
+        uses: actions/cache@v4
+        with:
+          key: ${{ steps.vars.outputs.dotnet_version }}
+          path: ${{ steps.vars.outputs.program_data }}/dotnet/workloads
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: true
-      - name: Setup .NET
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Setup .NET workloads
         run:  dotnet workload install android ios maccatalyst macos
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -30,13 +42,8 @@ jobs:
       - name: Build and pack
         run: |
           $suffix = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
-          dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.Common/FluentIcons.Common.csproj
-          dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.Avalonia/FluentIcons.Avalonia.csproj
-          dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.Avalonia.Fluent/FluentIcons.Avalonia.Fluent.csproj
-          dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.Maui/FluentIcons.Maui.csproj
-          MSBuild -t:pack -p:Configuration=Release -p:PackageOutputPath=".." -p:VersionSuffix="$suffix" FluentIcons.Uwp/FluentIcons.Uwp.csproj
-          dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.WinUI/FluentIcons.WinUI.csproj
-          dotnet pack -c Release -o . --version-suffix "$suffix" FluentIcons.WPF/FluentIcons.WPF.csproj
+          MSBuild -t:restore -v:minimal
+          MSBuild -t:pack -p:Configuration=Release -p:PackageOutputPath=".." -p:VersionSuffix="$suffix" -v:minimal
       - name: Publish
         run: |
           dotnet nuget push FluentIcons.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json

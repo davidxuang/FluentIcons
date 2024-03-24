@@ -3,7 +3,7 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
-[*.{js,ts,jsx,tsx,py,json,yaml,toml,svg}]
+[*.{js,ts,jsx,tsx,py,json,yml,yaml,toml,svg}]
 indent_size = 2
 
 [*.{xml,csproj,fsproj,vbproj,props,targets}]

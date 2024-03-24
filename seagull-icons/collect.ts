@@ -113,7 +113,7 @@ collect(SRC_DIR, '', 0, (subdir, name) => {
   }
   // size16 icons
   matches = name.match(
-    /^ic_fluent_(?=presence_|text_whole_word_)(.+)_16_(regular|filled|mono|color)\.svg$/
+    /^ic_fluent_(?=presence_|spatula_spoon_|text_whole_word_)(.+)_16_(regular|filled|mono|color)\.svg$/
   );
   if (matches) {
     return path.join(

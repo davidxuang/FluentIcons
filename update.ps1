@@ -1,5 +1,7 @@
 #!/usr/bin/pwsh
 
+using namespace System.Management.Automation
+
 [CmdletBinding()]
 param ()
 
@@ -26,7 +28,7 @@ try {
     $upstreamTag = git describe --tag --abbrev=0
     Write-Host "Upstream at $upstreamTag"
 
-    if ($localTag -eq $upstreamTag -and -not $Debug) {
+    if (([Version][SemanticVersion]::Parse($localTag)) -le ([Version][SemanticVersion]::Parse($upstreamTag)) -and -not $Debug) {
         return
     }
 
