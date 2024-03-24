@@ -14,6 +14,26 @@ jobs:
     name: Update
     runs-on: windows-latest
     steps:
+      - name: Set variables
+        id: vars
+        run: |
+          echo "dotnet_version=$(dotnet --version)" >> $env:GITHUB_OUTPUT
+          echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
+      - name: Restore cache
+        id: restore
+        uses: actions/cache/restore@v4
+        with:
+          key: ${{ steps.vars.outputs.dotnet_version }}
+          path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
+      - name: Setup .NET workloads
+        if: !steps.restore.outputs.cache-hit
+        run: dotnet workload install android ios maccatalyst macos
+      - name: Save cache
+        if: !steps.restore.outputs.cache-hit
+        uses: actions/cache/save@v4
+        with:
+          key: ${{ steps.vars.outputs.dotnet_version }}
+          path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
       - name: Checkout
         uses: actions/checkout@v4
         with:
