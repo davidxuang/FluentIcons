@@ -19,11 +19,11 @@ jobs:
         run: |
           echo "dotnet_version=$(dotnet --version)" >> $env:GITHUB_OUTPUT
           echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
-      - name: Cache
-        uses: actions/cache@v4
+      - name: Restore cache
+        uses: actions/cache/restore@v4
         with:
           key: ${{ steps.vars.outputs.dotnet_version }}
-          path: ${{ steps.vars.outputs.program_data }}/dotnet/workloads
+          path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
       - name: Checkout
         uses: actions/checkout@v4
         with:
