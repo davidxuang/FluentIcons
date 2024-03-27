@@ -26,10 +26,10 @@ jobs:
           key: ${{ steps.vars.outputs.dotnet_version }}
           path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
       - name: Setup .NET workloads
-        if: !steps.restore.outputs.cache-hit
+        if: ${{ ! steps.restore.outputs.cache-hit }}
         run: dotnet workload install android ios maccatalyst macos
       - name: Save cache
-        if: !steps.restore.outputs.cache-hit
+        if: ${{ ! steps.restore.outputs.cache-hit }}
         uses: actions/cache/save@v4
         with:
           key: ${{ steps.vars.outputs.dotnet_version }}
