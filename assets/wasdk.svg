@@ -1,0 +1,11 @@
+<svg width="20" height="20" viewBox="0 0 768 768" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <rect id="a" x="2" y="2" width="365" height="365" />
+  </defs>
+  <g fill="#2176bc" stroke-width="4">
+    <use xlink:href="#a" />
+    <use xlink:href="#a" y="403" />
+    <use xlink:href="#a" x="403" />
+    <use xlink:href="#a" x="403" y="403" />
+  </g>
+</svg>

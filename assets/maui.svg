@@ -1,0 +1,20 @@
+<svg width="20" height="20" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" stroke-linejoin="bevel">
+  <defs>
+    <rect id="a" x="2" y="2" width="12" height="12" />
+    <rect id="b" x="3" y="3" width="10" height="10" />
+  </defs>
+  <g fill="none" stroke="white" stroke-width="4">
+    <use xlink:href="#a" />
+    <use xlink:href="#a" y="16" />
+    <use xlink:href="#a" x="16" />
+    <use xlink:href="#a" x="16" y="16" />
+  </g>
+  <g fill="#a390e5" stroke="#512bd4" stroke-width="2">
+    <use xlink:href="#b" />
+    <use xlink:href="#b" y="16" />
+    <use xlink:href="#b" x="16" />
+    <use xlink:href="#b" x="16" y="16" />
+  </g>
+  <rect fill="#512bd4" stroke="#512bd4" stroke-width="2" x="9" y="9" width="14" height="14" />
+  <path stroke="#d5cdef" stroke-width="4" d="M16,10v12ZM10,16h12Z" />
+</svg>
