@@ -25,6 +25,7 @@ jobs:
         with:
           key: ${{ steps.vars.outputs.dotnet_version }}
           path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
+          lookup-only: true
       - name: Setup .NET workloads
         if: ${{ ! steps.restore.outputs.cache-hit }}
         run: dotnet workload install android ios maccatalyst macos
@@ -41,18 +42,20 @@ jobs:
           fetch-tags: true
           submodules: true
           token: ${{ secrets.TOKEN }}
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
-          run_install: |
-            - cwd: seagull-icons
-      - name: Setup Python packages
-        run: pip install fonttools PyYAML
+          cache: pnpm
+          cache-dependency-path: seagull-icons/pnpm-lock.yaml
+      - name: Install packages
+        run: |
+          pip install -r requirements.txt
+          cd seagull-icons/ && pnpm install
       - name: Update
         run: ./update.ps1
       - name: Push
