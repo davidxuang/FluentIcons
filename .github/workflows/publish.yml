@@ -41,9 +41,9 @@ jobs:
         id: tag_name
       - name: Build and pack
         run: |
-          $suffix = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
-          MSBuild -t:restore -v:minimal
-          MSBuild -t:pack -p:Configuration=Release -p:PackageOutputPath=".." -p:VersionSuffix="$suffix" -v:minimal
+          $env:VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
+          dotnet restore
+          MSBuild -t:pack -p:Configuration=Release -p:PackageOutputPath=".." -v:minimal
       - name: Publish
         run: |
           dotnet nuget push FluentIcons.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json

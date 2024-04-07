@@ -13,6 +13,10 @@
     <AndroidSdkDirectory Condition="'$(ANDROID_SDK_ROOT)' != ''">$(ANDROID_SDK_ROOT)</AndroidSdkDirectory>
   </PropertyGroup>
 
+  <PropertyGroup Condition="$(VERSION_SUFFIX) != ''">
+    <VersionSuffix>$(VERSION_SUFFIX)</VersionSuffix>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
