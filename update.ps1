@@ -28,7 +28,7 @@ try {
     $upstreamTag = git describe --tag --abbrev=0
     Write-Host "Upstream at $upstreamTag"
 
-    if (([Version][SemanticVersion]::Parse($localTag)) -le ([Version][SemanticVersion]::Parse($upstreamTag)) -and -not $Debug) {
+    if (([Version][SemanticVersion]::Parse($localTag)) -ge ([Version][SemanticVersion]::Parse($upstreamTag)) -and -not $Debug) {
         return
     }
 
