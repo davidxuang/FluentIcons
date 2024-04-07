@@ -45,18 +45,17 @@ try {
     }
 
     @'
-namespace FluentIcons.Common
+namespace FluentIcons.Common;
+
+public enum Symbol : int
 {
-    public enum Symbol : int
-    {
 '@ > $symbolCs
 
     foreach ($key in $symbolMap.Keys) {
-        "        $key = $('0x{0:X}' -f $symbolMap[$key])," >> $symbolCs
+        "    $key = $('0x{0:X}' -f $symbolMap[$key])," >> $symbolCs
     }
 
     @'
-    }
 }
 '@ >> $symbolCs
 

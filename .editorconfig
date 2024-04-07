@@ -3,6 +3,8 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
+csharp_style_namespace_declarations = file_scoped
+
 [*.{js,ts,jsx,tsx,py,json,yml,yaml,toml,svg}]
 indent_size = 2
 
