@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <Description>A shared library for FluentUI System Icons wrapper.</Description>
+    <VersionSuffix></VersionSuffix>
   </PropertyGroup>
 
   <ItemGroup>
