@@ -32,13 +32,14 @@ fs.readdirSync(argv.source, { recursive: true }).forEach((f) => {
       doc.svg.$$.map((e) => getPathData(e as Visible)).join()
     );
     const bounds = item.bounds;
-    if (
-      bounds.left < -tolerance ||
-      bounds.top < -tolerance ||
-      bounds.right > 16 + tolerance ||
-      bounds.bottom > 16 + tolerance
-    ) {
-      console.warn(`${file}: ${bounds}`);
+    const out_bound = Math.max(
+      -bounds.left,
+      -bounds.top,
+      bounds.right - 16,
+      bounds.bottom - 16
+    );
+    if (out_bound > tolerance) {
+      console.warn(`[${out_bound.toFixed(4)}] ${file}: ${bounds}`);
     }
 
     item.remove();
