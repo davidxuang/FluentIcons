@@ -16,10 +16,10 @@ A multi-framework wrapper of [fluentui-system-icons](https://github.com/microsof
 
 ### Legacy
 
-| Avalonia 10 [backports](https://github.com/davidxuang/FluentIcons/tree/avalonia-v0.10)                                                                           | Platform                                                                                                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![FluentIcons.Avalonia](https://badgen.net/badge/FluentIcons.Avalonia/v1.1.203)](https://www.nuget.org/packages/FluentIcons.Avalonia/1.1.203)                   | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia.svg) Avalonia 10](https://www.nuget.org/packages/Avalonia/0.10.0)                                  |
-| [![FluentIcons.FluentAvalonia](https://badgen.net/badge/FluentIcons.FluentAvalonia/v1.1.203)](https://www.nuget.org/packages/FluentIcons.FluentAvalonia/1.1.203) | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia-fluent.svg) FluentAvalonia 1](https://www.nuget.org/packages/FluentAvaloniaUI/1.0.0) (Avalonia 10) |
+| Ref                                                                                       | Package                      | Platform                                                                                                                                                                              |
+| ----------------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [avalonia-v0.10](https://github.com/davidxuang/FluentIcons/tree/backports/avalonia-v0.10) | `FluentIcons.Avalonia`       | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia.svg) Avalonia 0.10](https://www.nuget.org/packages/Avalonia/0.10.0)                                    |
+| [avalonia-v0.10](https://github.com/davidxuang/FluentIcons/tree/backports/avalonia-v0.10) | `FluentIcons.FluentAvalonia` | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia-fluent.svg) FluentAvalonia 1.3](https://www.nuget.org/packages/FluentAvaloniaUI/1.3.0) (Avalonia 0.10) |
 
 ## Usage
 
@@ -32,16 +32,16 @@ A multi-framework wrapper of [fluentui-system-icons](https://github.com/microsof
 
 This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platforms with `<IconSource>`, which generally provide following properties:
 
-- **Symbol** : [Symbol](./FluentIcons.Common/Symbol.cs)
-    - *Breaking change since 1.1.229: LTR/RTL specific values are removed, use `FlowDirection` instead.*
-- **IsFilled** : bool
-- **UseSegoeMetrics**: bool
-    - *New feature since 1.1.229: match the metrics of [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font). see also: [Seagull Icons](./seagull-icons/README.md)*
-- **FlowDirection** : FlowDirection
-    - *New feature since 1.1.229: switch between LTR/RTL icon variant.*
-- **FontSize** : double
-    - *Breaking change since 1.1.225: no longer inherit value from parent element to match WinUI behaviours.*
-- **Foreground** : Brush
+-   **Symbol** : [Symbol](./FluentIcons.Common/Symbol.cs)
+    -   _Breaking change since 1.1.229: LTR/RTL specific values are removed, use `FlowDirection` instead._
+-   **IsFilled** : bool
+-   **UseSegoeMetrics**: bool
+    -   _New feature since 1.1.229: match the metrics of [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font). see also: [Seagull Icons](./seagull-icons/README.md)_
+-   **FlowDirection** : FlowDirection
+    -   _New feature since 1.1.229: switch between LTR/RTL icon variant._
+-   **FontSize** : double
+    -   _Breaking change since 1.1.225: no longer inherit value from parent element to match WinUI behaviours._
+-   **Foreground** : Brush
 
 ### Avalonia / WPF
 
