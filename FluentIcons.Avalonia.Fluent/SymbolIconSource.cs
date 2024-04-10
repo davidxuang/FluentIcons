@@ -63,10 +63,11 @@ public class SymbolIconSource : FontIconSource
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
-        if (change.Property == SymbolProperty
-        || change.Property == IsFilledProperty
-        || change.Property == UseSegoeMetricsProperty
-        || change.Property == FontSizeProperty)
+        if (change.Property == SymbolProperty ||
+            change.Property == IsFilledProperty ||
+            change.Property == UseSegoeMetricsProperty ||
+            change.Property == FontSizeProperty ||
+            change.Property == FlowDirectionProperty)
         {
             InvalidateText();
             return;

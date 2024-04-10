@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using Microsoft.Maui;
@@ -73,6 +74,16 @@ public class SymbolIcon : ContentView
     {
         get => (Color)GetValue(ForegroundColorProperty);
         set => SetValue(ForegroundColorProperty, value);
+    }
+
+    protected override void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        if (propertyName == nameof(FlowDirection))
+        {
+            InvalidateText();
+        }
+
+        base.OnPropertyChanged(propertyName);
     }
 
     protected override Size ArrangeOverride(Rect bounds)

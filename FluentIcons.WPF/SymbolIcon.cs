@@ -92,6 +92,16 @@ public class SymbolIcon : FrameworkElement
         (d as SymbolIcon)?.InvalidateText();
     }
 
+    protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+    {
+        if (e.Property == FlowDirectionProperty)
+        {
+            InvalidateText();
+        }
+
+        base.OnPropertyChanged(e);
+    }
+
     protected override Size MeasureOverride(Size availableSize)
     {
         if (_suspendCreate || _formattedText is null)

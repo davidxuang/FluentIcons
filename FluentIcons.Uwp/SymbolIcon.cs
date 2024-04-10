@@ -39,6 +39,7 @@ public partial class SymbolIcon : FontIcon
         MirroredWhenRightToLeft = false;
         InvalidateText();
 
+        RegisterPropertyChangedCallback(FlowDirectionProperty, OnSymbolPropertiesChanged);
         RegisterPropertyChangedCallback(FontFamilyProperty, OnFontFamilyChanged);
         RegisterPropertyChangedCallback(FontStyleProperty, OnFontStyleChanged);
         RegisterPropertyChangedCallback(FontWeightProperty, OnFontWeightChanged);
@@ -66,6 +67,10 @@ public partial class SymbolIcon : FontIcon
     }
 
     private static void OnSymbolPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+    {
+        (sender as SymbolIcon)?.InvalidateText();
+    }
+    private static void OnSymbolPropertiesChanged(DependencyObject sender, DependencyProperty args)
     {
         (sender as SymbolIcon)?.InvalidateText();
     }

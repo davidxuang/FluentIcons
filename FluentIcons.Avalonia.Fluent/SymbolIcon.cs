@@ -82,7 +82,8 @@ public partial class SymbolIcon : FAIconElement
         else if (change.Property == ForegroundProperty ||
             change.Property == SymbolProperty ||
             change.Property == IsFilledProperty ||
-            change.Property == UseSegoeMetricsProperty)
+            change.Property == UseSegoeMetricsProperty ||
+            change.Property == FlowDirectionProperty)
         {
             InvalidateText();
         }
