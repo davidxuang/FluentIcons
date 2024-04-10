@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using FluentIcons.Common.Internals;
 using Windows.UI.Text;
 using Windows.UI.Xaml;

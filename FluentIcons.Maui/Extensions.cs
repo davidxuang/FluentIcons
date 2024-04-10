@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Hosting;
+using Microsoft.Maui.Hosting;
 
 namespace FluentIcons.Maui;
 

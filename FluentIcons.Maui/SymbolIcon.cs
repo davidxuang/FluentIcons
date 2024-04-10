@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
