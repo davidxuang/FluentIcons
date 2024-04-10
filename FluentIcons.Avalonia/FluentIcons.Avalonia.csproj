@@ -1,17 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <VersionPrefix>1.1.203</VersionPrefix>
-    <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
+    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
     <Description>FluentUI System Icons wrapper for Avalonia.</Description>
-    <Authors>davidxuang</Authors>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIcon>Icon.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>Fluent;UI;Icon;Avalonia</PackageTags>
-    <RepositoryUrl>https://github.com/davidxuang/FluentIcons</RepositoryUrl>
+    <PackageTags>$(PackageTags);Avalonia</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,23 +12,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" ExactVersion="true" />
+    <SharedAssets Include="..\seagull-icons\assets\*.ttf" />
   </ItemGroup>
+
+  <Target Name="CopySharedAssets" BeforeTargets="AddAvaloniaResources">
+    <Copy SourceFiles="@(SharedAssets)" DestinationFolder="Assets" UseHardlinksIfPossible="true" />
+  </Target>
 
   <ItemGroup>
-    <None Include="Icon.png" Pack="true" PackagePath="" />
-    <None Include="..\README.md" Pack="true" PackagePath="" />
-    <AvaloniaResource Include="Fonts\FluentSystemIcons-Resizable.ttf" />
+    <AvaloniaResource Include="Assets\FluentSystemIcons.ttf" />
+    <AvaloniaResource Include="Assets\SeagullFluentIcons.ttf" />
   </ItemGroup>
-
-  <Target Name="UseExplicitPackageVersions" BeforeTargets="GenerateNuspec">
-    <ItemGroup>
-      <_ProjectReferenceWithExactPackageVersion Include="@(ProjectReference->'%(FullPath)')" Condition="'%(ProjectReference.ExactVersion)' == 'true'" />
-      <_ProjectReferenceWithReassignedVersion Include="@(_ProjectReferencesWithVersions)" Condition="'%(Identity)' != '' And '@(_ProjectReferenceWithExactPackageVersion)' == '@(_ProjectReferencesWithVersions)'">
-        <ProjectVersion>[@(_ProjectReferencesWithVersions->'%(ProjectVersion)')]</ProjectVersion>
-      </_ProjectReferenceWithReassignedVersion>
-      <_ProjectReferencesWithVersions Remove="@(_ProjectReferenceWithReassignedVersion)" />
-      <_ProjectReferencesWithVersions Include="@(_ProjectReferenceWithReassignedVersion)" />
-    </ItemGroup>
-  </Target>
 
 </Project>

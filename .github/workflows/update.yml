@@ -14,14 +14,50 @@ jobs:
     name: Update
     runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Set variables
+        id: vars
+        run: |
+          echo "dotnet_version=$(dotnet --version)" >> $env:GITHUB_OUTPUT
+          echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
+      - name: Restore cache
+        id: restore
+        uses: actions/cache/restore@v4
         with:
-          fetch-depth: 0
+          key: ${{ steps.vars.outputs.dotnet_version }}
+          path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
+          lookup-only: true
+      - name: Setup .NET workloads
+        if: ${{ ! steps.restore.outputs.cache-hit }}
+        run: dotnet workload install android ios maccatalyst macos
+      - name: Save cache
+        if: ${{ ! steps.restore.outputs.cache-hit }}
+        uses: actions/cache/save@v4
+        with:
+          key: ${{ steps.vars.outputs.dotnet_version }}
+          path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 16
+          fetch-tags: true
           submodules: true
           token: ${{ secrets.TOKEN }}
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: pnpm
+          cache-dependency-path: seagull-icons/pnpm-lock.yaml
+      - name: Install packages
+        run: |
+          pip install -r requirements.txt
+          cd seagull-icons/ && pnpm install
       - name: Update
-        run: ./Invoke-Update.ps1
+        run: ./update.ps1
       - name: Push
         uses: ad-m/github-push-action@master
         with:
