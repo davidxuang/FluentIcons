@@ -1864,12 +1864,14 @@ compose:
       - image
       - layer_diagonal
       - mic
+      - paint_brush
       - pen
       - receipt#/receipt_sparkles
       - rectangle_landscape
       - slide_text
       - square_hint#/square_hint_sparkles
       - tab_desktop_multiple
+      - table
       - text_bullet_list_square
       - text_effects
       - video_person
@@ -1958,6 +1960,12 @@ compose:
     icons:
       - person
       - shopping_bag
+
+  tentative:
+    inherits: circle
+    badge: M4.5,0c0.0954,0 0.1901,0.003 0.2841,0.0088l-4.7753,4.7753c-0.0058,-0.094 -0.0088,-0.1887 -0.0088,-0.2841c0,-2.4853 2.0147,-4.5 4.5,-4.5zM0.984,7.3088c-0.3188,-0.3985 -0.5712,-0.8525 -0.7406,-1.3451l5.6102,-5.6101c0.0357,-0.0358 0.0649,-0.0755 0.0875,-0.1179c0.5013,0.1694 0.9631,0.4247 1.3677,0.7483zM8.7566,3.0363c-0.1694,-0.4926 -0.4218,-0.9466 -0.7407,-1.3451l-6.3247,6.3247c0.4046,0.3237 0.8664,0.579 1.3677,0.7484c0.0226,-0.0424 0.0518,-0.0821 0.0875,-0.1179zM4.2159,8.9912c0.094,0.0058 0.1887,0.0088 0.2841,0.0088c2.4853,0 4.5,-2.0147 4.5,-4.5c0,-0.0954 -0.003,-0.1901 -0.0088,-0.2841z
+    icons:
+      - person
 
   toolbox:
     inherits: case
