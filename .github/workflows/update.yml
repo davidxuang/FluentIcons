@@ -28,7 +28,7 @@ jobs:
           lookup-only: true
       - name: Setup .NET workloads
         if: ${{ ! steps.restore.outputs.cache-hit }}
-        run: dotnet workload install android ios maccatalyst macos
+        run: dotnet workload install android ios maccatalyst macos maui
       - name: Save cache
         if: ${{ ! steps.restore.outputs.cache-hit }}
         uses: actions/cache/save@v4
