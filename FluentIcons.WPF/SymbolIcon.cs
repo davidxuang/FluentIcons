@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 using System.Windows.Media;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
@@ -186,5 +187,39 @@ public class SymbolIconConverter : TypeConverter
             return new SymbolIcon { Symbol = symbol };
         }
         return base.ConvertFrom(context, culture, value);
+    }
+}
+
+[MarkupExtensionReturnType(typeof(SymbolIcon))]
+public class SymbolIconExtension : MarkupExtension
+{
+    public Symbol Symbol { get; set; } = Symbol.Home;
+    public bool IsFilled { get; set; }
+    public bool UseSegoeMetrics { get; set; } = SymbolIcon.UseSegoeMetricsDefaultValue;
+    public double FontSize { get; set; } = 20d;
+    public Brush? Foreground { get; set; }
+
+    public override object ProvideValue(IServiceProvider serviceProvider)
+    {
+        var icon = new SymbolIcon
+        {
+            Symbol = Symbol,
+            IsFilled = IsFilled,
+            UseSegoeMetrics = UseSegoeMetrics,
+            FontSize = FontSize,
+        };
+
+        var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
+        if (service?.TargetObject is FrameworkElement elem)
+        {
+            icon.FlowDirection = elem.FlowDirection;
+        }
+
+        if (Foreground is not null)
+        {
+            icon.Foreground = Foreground;
+        }
+
+        return icon;
     }
 }

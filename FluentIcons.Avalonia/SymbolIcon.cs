@@ -5,6 +5,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
 using FluentIcons.Common;
@@ -230,5 +231,38 @@ public class SymbolIconConverter : TypeConverter
             return new SymbolIcon { Symbol = symbol };
         }
         return base.ConvertFrom(context, culture, value);
+    }
+}
+
+public class SymbolIconExtension : MarkupExtension
+{
+    public Symbol Symbol { get; set; } = Symbol.Home;
+    public bool IsFilled { get; set; }
+    public bool UseSegoeMetrics { get; set; } = SymbolIcon.UseSegoeMetricsDefaultValue;
+    public double FontSize { get; set; } = 20d;
+    public Brush? Foreground { get; set; }
+
+    public override object ProvideValue(IServiceProvider serviceProvider)
+    {
+        var icon = new SymbolIcon
+        {
+            Symbol = Symbol,
+            IsFilled = IsFilled,
+            UseSegoeMetrics = UseSegoeMetrics,
+            FontSize = FontSize,
+        };
+
+        var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
+        if (service?.TargetObject is Visual elem)
+        {
+            icon.FlowDirection = elem.FlowDirection;
+        }
+
+        if (Foreground is not null)
+        {
+            icon.Foreground = Foreground;
+        }
+
+        return icon;
     }
 }

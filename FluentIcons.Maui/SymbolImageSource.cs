@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
@@ -5,6 +6,8 @@ using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Xaml;
+using Microsoft.Maui.Graphics;
 
 namespace FluentIcons.Maui;
 
@@ -75,5 +78,43 @@ public class SymbolImageSource : FontImageSource
     {
         FontFamily = UseSegoeMetrics ? "SeagullFluentIcons" : "FluentSystemIcons";
         Glyph = _glyph = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft);
+    }
+}
+
+public class SymbolImageSourceExtension : IMarkupExtension<SymbolImageSource>
+{
+    public Symbol Symbol { get; set; } = Symbol.Home;
+    public bool IsFilled { get; set; }
+    public bool UseSegoeMetrics { get; set; } = SymbolIcon.UseSegoeMetricsDefaultValue;
+    public double Size { get; set; } = 20d;
+    public Color? Color { get; set; }
+
+    public SymbolImageSource ProvideValue(IServiceProvider serviceProvider)
+    {
+        var icon = new SymbolImageSource
+        {
+            Symbol = Symbol,
+            IsFilled = IsFilled,
+            UseSegoeMetrics = UseSegoeMetrics,
+            Size = Size,
+        };
+
+        var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
+        if (service?.TargetObject is VisualElement elem)
+        {
+            icon.FlowDirection = elem.FlowDirection;
+        }
+
+        if (Color is not null)
+        {
+            icon.Color = Color;
+        }
+
+        return icon;
+    }
+
+    object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
+    {
+        return ProvideValue(serviceProvider);
     }
 }

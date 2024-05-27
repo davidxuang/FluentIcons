@@ -1,9 +1,11 @@
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Xaml;
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Graphics.Converters;
 
@@ -111,5 +113,43 @@ public class SymbolIcon : ContentView
     {
         _span.FontFamily = UseSegoeMetrics ? "SeagullFluentIcons" : "FluentSystemIcons";
         _span.Text = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft);
+    }
+}
+
+public class SymbolIconExtension : IMarkupExtension<SymbolIcon>
+{
+    public Symbol Symbol { get; set; } = Symbol.Home;
+    public bool IsFilled { get; set; }
+    public bool UseSegoeMetrics { get; set; } = SymbolIcon.UseSegoeMetricsDefaultValue;
+    public double FontSize { get; set; } = 20d;
+    public Color? ForegroundColor { get; set; }
+
+    public SymbolIcon ProvideValue(IServiceProvider serviceProvider)
+    {
+        var icon = new SymbolIcon
+        {
+            Symbol = Symbol,
+            IsFilled = IsFilled,
+            UseSegoeMetrics = UseSegoeMetrics,
+            FontSize = FontSize,
+        };
+
+        var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
+        if (service?.TargetObject is VisualElement elem)
+        {
+            icon.FlowDirection = elem.FlowDirection;
+        }
+
+        if (ForegroundColor is not null)
+        {
+            icon.ForegroundColor = ForegroundColor;
+        }
+
+        return icon;
+    }
+
+    object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
+    {
+        return ProvideValue(serviceProvider);
     }
 }

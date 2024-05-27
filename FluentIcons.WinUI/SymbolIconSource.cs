@@ -2,6 +2,8 @@ using FluentIcons.Common.Internals;
 using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Media;
 using Symbol = FluentIcons.Common.Symbol;
 
 namespace FluentIcons.WinUI;
@@ -123,5 +125,39 @@ public partial class SymbolIconSource : FontIconSource
         {
             inst.MirroredWhenRightToLeft = false;
         }
+    }
+}
+
+[MarkupExtensionReturnType(ReturnType = typeof(SymbolIconSource))]
+public class SymbolIconSourceExtension : MarkupExtension
+{
+    public Symbol Symbol { get; set; } = Symbol.Home;
+    public bool IsFilled { get; set; }
+    public bool UseSegoeMetrics { get; set; } = SymbolIcon.UseSegoeMetricsDefaultValue;
+    public double FontSize { get; set; } = 20d;
+    public Brush? Foreground { get; set; }
+
+    protected override object ProvideValue(IXamlServiceProvider serviceProvider)
+    {
+        var icon = new SymbolIconSource
+        {
+            Symbol = Symbol,
+            IsFilled = IsFilled,
+            UseSegoeMetrics = UseSegoeMetrics,
+            FontSize = FontSize,
+        };
+
+        var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
+        if (service?.TargetObject is FrameworkElement elem)
+        {
+            icon.FlowDirection = elem.FlowDirection;
+        }
+
+        if (Foreground is not null)
+        {
+            icon.Foreground = Foreground;
+        }
+
+        return icon;
     }
 }
