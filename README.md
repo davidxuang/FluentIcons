@@ -43,6 +43,14 @@ This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platfo
     -   _Breaking change since 1.1.225: no longer inherit value from parent element to match WinUI behaviours._
 -   **Foreground** : Brush
 
+```xml
+<Window xmlns:ic="using:FluentIcons.Avalonia">
+    <Expander Header="{ic:SymbolIconExtension Symbol=ArrowLeft}" />
+</Window>
+```
+
+`SymbolIconExtension` and `SymbolIconSourceExtension` have been added since 1.1.242. These extensions will auto-detect `FlowDirection` from parent control, except on (non-Uno) UWP where `IXamlServiceProvider` is not available.
+
 ### Avalonia / WPF
 
 To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this AppBuilder builder)` on Avalonia and `UseSegoeMetric(this Application app)` on WPF.
@@ -51,7 +59,7 @@ To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this AppBuilder build
 
 ⚠️ The extension method `UseFluentIcons(this MauiAppBuilder builder, bool useSegoeMetrics)` must be called to register fonts properly. ⚠️
 
-`SymbolImageSource` is provided on MAUI.
+`<SymbolImageSource>` and `SymbolImageSourceExtension` are provided on MAUI as stand-ins.
 
 ### UWP / WinUI
 
