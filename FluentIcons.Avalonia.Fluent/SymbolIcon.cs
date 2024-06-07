@@ -4,7 +4,6 @@ using System.Globalization;
 using Avalonia;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
-using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
 using FluentAvalonia.UI.Controls;
@@ -171,34 +170,5 @@ public class SymbolIconConverter : TypeConverter
             return new SymbolIcon { Symbol = symbol };
         }
         return base.ConvertFrom(context, culture, value);
-    }
-}
-
-public class SymbolIconExtension : MarkupExtension
-{
-    public Symbol? Symbol { get; set; }
-    public bool? IsFilled { get; set; }
-    public bool? UseSegoeMetrics { get; set; }
-    public double? FontSize { get; set; }
-    public Brush? Foreground { get; set; }
-
-
-    public override object ProvideValue(IServiceProvider serviceProvider)
-    {
-        var icon = new SymbolIcon();
-
-        if (Symbol.HasValue) icon.Symbol = Symbol.Value;
-        if (IsFilled.HasValue) icon.IsFilled = IsFilled.Value;
-        if (UseSegoeMetrics.HasValue) icon.UseSegoeMetrics = UseSegoeMetrics.Value;
-        if (FontSize.HasValue) icon.FontSize = FontSize.Value;
-        if (Foreground is not null) icon.Foreground = Foreground;
-
-        var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
-        if (service?.TargetObject is Visual elem)
-        {
-            icon.FlowDirection = elem.FlowDirection;
-        }
-
-        return icon;
     }
 }
