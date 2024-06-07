@@ -131,57 +131,39 @@ public partial class SymbolIconSource : FontIconSource
 [MarkupExtensionReturnType(ReturnType = typeof(SymbolIconSource))]
 public class SymbolIconSourceExtension : MarkupExtension
 {
-    public Symbol Symbol { get; set; } = Symbol.Home;
-    public bool IsFilled { get; set; }
-    public bool UseSegoeMetrics { get; set; } = SymbolIcon.UseSegoeMetricsDefaultValue;
+    public Symbol? Symbol { get; set; }
+    public bool? IsFilled { get; set; }
+    public bool? UseSegoeMetrics { get; set; }
 #if UAP10_0_17763_0
-    public FlowDirection FlowDirection { get; set; }
+    public FlowDirection? FlowDirection { get; set; }
 #endif
-    public double FontSize { get; set; } = 20d;
+    public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
 
 #if UAP10_0_17763_0
     protected override object ProvideValue()
-    {
-        var icon = new SymbolIconSource
-        {
-            Symbol = Symbol,
-            IsFilled = IsFilled,
-            UseSegoeMetrics = UseSegoeMetrics,
-            FlowDirection = FlowDirection,
-            FontSize = FontSize,
-        };
-
-        if (Foreground is not null)
-        {
-            icon.Foreground = Foreground;
-        }
-
-        return icon;
-    }
 #else
     protected override object ProvideValue(IXamlServiceProvider serviceProvider)
+#endif
     {
-        var icon = new SymbolIconSource
-        {
-            Symbol = Symbol,
-            IsFilled = IsFilled,
-            UseSegoeMetrics = UseSegoeMetrics,
-            FontSize = FontSize,
-        };
+        var icon = new SymbolIconSource();
 
+        if (Symbol.HasValue) icon.Symbol = Symbol.Value;
+        if (IsFilled.HasValue) icon.IsFilled = IsFilled.Value;
+        if (UseSegoeMetrics.HasValue) icon.UseSegoeMetrics = UseSegoeMetrics.Value;
+        if (FontSize.HasValue) icon.FontSize = FontSize.Value;
+        if (Foreground is not null) icon.Foreground = Foreground;
+
+#if UAP10_0_17763_0
+        if (FlowDirection.HasValue) icon.FlowDirection = FlowDirection.Value;
+#else
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
         if (service?.TargetObject is FrameworkElement elem)
         {
             icon.FlowDirection = elem.FlowDirection;
         }
-
-        if (Foreground is not null)
-        {
-            icon.Foreground = Foreground;
-        }
+#endif
 
         return icon;
     }
-#endif
 }

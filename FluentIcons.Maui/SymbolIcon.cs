@@ -118,31 +118,26 @@ public class SymbolIcon : ContentView
 
 public class SymbolIconExtension : IMarkupExtension<SymbolIcon>
 {
-    public Symbol Symbol { get; set; } = Symbol.Home;
-    public bool IsFilled { get; set; }
-    public bool UseSegoeMetrics { get; set; } = SymbolIcon.UseSegoeMetricsDefaultValue;
-    public double FontSize { get; set; } = 20d;
+    public Symbol? Symbol { get; set; }
+    public bool? IsFilled { get; set; }
+    public bool? UseSegoeMetrics { get; set; }
+    public double? FontSize { get; set; }
     public Color? ForegroundColor { get; set; }
 
     public SymbolIcon ProvideValue(IServiceProvider serviceProvider)
     {
-        var icon = new SymbolIcon
-        {
-            Symbol = Symbol,
-            IsFilled = IsFilled,
-            UseSegoeMetrics = UseSegoeMetrics,
-            FontSize = FontSize,
-        };
+        var icon = new SymbolIcon();
+
+        if (Symbol.HasValue) icon.Symbol = Symbol.Value;
+        if (IsFilled.HasValue) icon.IsFilled = IsFilled.Value;
+        if (UseSegoeMetrics.HasValue) icon.UseSegoeMetrics = UseSegoeMetrics.Value;
+        if (FontSize.HasValue) icon.FontSize = FontSize.Value;
+        if (ForegroundColor is not null) icon.ForegroundColor = ForegroundColor;
 
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
         if (service?.TargetObject is VisualElement elem)
         {
             icon.FlowDirection = elem.FlowDirection;
-        }
-
-        if (ForegroundColor is not null)
-        {
-            icon.ForegroundColor = ForegroundColor;
         }
 
         return icon;

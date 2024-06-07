@@ -83,31 +83,26 @@ public class SymbolImageSource : FontImageSource
 
 public class SymbolImageSourceExtension : IMarkupExtension<SymbolImageSource>
 {
-    public Symbol Symbol { get; set; } = Symbol.Home;
-    public bool IsFilled { get; set; }
-    public bool UseSegoeMetrics { get; set; } = SymbolIcon.UseSegoeMetricsDefaultValue;
-    public double Size { get; set; } = 20d;
+    public Symbol? Symbol { get; set; }
+    public bool? IsFilled { get; set; }
+    public bool? UseSegoeMetrics { get; set; }
+    public double? Size { get; set; }
     public Color? Color { get; set; }
 
     public SymbolImageSource ProvideValue(IServiceProvider serviceProvider)
     {
-        var icon = new SymbolImageSource
-        {
-            Symbol = Symbol,
-            IsFilled = IsFilled,
-            UseSegoeMetrics = UseSegoeMetrics,
-            Size = Size,
-        };
+        var icon = new SymbolImageSource();
+
+        if (Symbol.HasValue) icon.Symbol = Symbol.Value;
+        if (IsFilled.HasValue) icon.IsFilled = IsFilled.Value;
+        if (UseSegoeMetrics.HasValue) icon.UseSegoeMetrics = UseSegoeMetrics.Value;
+        if (Size.HasValue) icon.Size = Size.Value;
+        if (Color is not null) icon.Color = Color;
 
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
         if (service?.TargetObject is VisualElement elem)
         {
             icon.FlowDirection = elem.FlowDirection;
-        }
-
-        if (Color is not null)
-        {
-            icon.Color = Color;
         }
 
         return icon;
