@@ -30,6 +30,8 @@ jobs:
           submodules: true
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
+        with:
+          msbuild-architecture: x64
       - name: Setup .NET workloads
         run:  dotnet workload install android ios maccatalyst macos maui
       - name: Setup Java
