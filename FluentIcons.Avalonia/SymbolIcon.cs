@@ -17,7 +17,6 @@ public class SymbolIcon : IconElement
 {
     private static readonly Typeface _system = new("avares://FluentIcons.Avalonia/Assets#Fluent System Icons");
     private static readonly Typeface _seagull = new("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons");
-    internal static bool UseSegoeMetricsDefaultValue = false;
 
     public static readonly StyledProperty<Symbol> SymbolProperty =
         AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
@@ -33,8 +32,6 @@ public class SymbolIcon : IconElement
 
     public SymbolIcon()
     {
-        UseSegoeMetrics = UseSegoeMetricsDefaultValue;
-
         _border = new();
         _border.Bind(BackgroundProperty, this.GetBindingObservable(BackgroundProperty));
         _border.Bind(BorderBrushProperty, this.GetBindingObservable(BorderBrushProperty));

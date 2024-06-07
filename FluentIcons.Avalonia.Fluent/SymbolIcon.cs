@@ -17,7 +17,6 @@ public partial class SymbolIcon : FAIconElement
 {
     internal static readonly Typeface System = new("avares://FluentIcons.Avalonia.Fluent/Assets#Fluent System Icons");
     internal static readonly Typeface Seagull = new("avares://FluentIcons.Avalonia.Fluent/Assets#Seagull Fluent Icons");
-    internal static bool UseSegoeMetricsDefaultValue = false;
 
     public static readonly StyledProperty<Symbol> SymbolProperty =
         AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
@@ -29,11 +28,6 @@ public partial class SymbolIcon : FAIconElement
         AvaloniaProperty.Register<SymbolIcon, double>(nameof(FontSize), 20d, false);
 
     private TextLayout? _textLayout;
-
-    public SymbolIcon()
-    {
-        UseSegoeMetrics = UseSegoeMetricsDefaultValue;
-    }
 
     public Symbol Symbol
     {

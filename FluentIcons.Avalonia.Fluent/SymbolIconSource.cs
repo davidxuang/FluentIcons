@@ -13,6 +13,8 @@ namespace FluentIcons.Avalonia.Fluent;
 [TypeConverter(typeof(SymbolIconSourceConverter))]
 public class SymbolIconSource : FontIconSource
 {
+    internal static bool UseSegoeMetricsDefaultValue = false;
+
     public static readonly StyledProperty<Symbol> SymbolProperty = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
     public static readonly StyledProperty<bool> IsFilledProperty = SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();
     public static readonly StyledProperty<bool> UseSegoeMetricsProperty = SymbolIcon.UseSegoeMetricsProperty.AddOwner<SymbolIconSource>();
@@ -23,7 +25,7 @@ public class SymbolIconSource : FontIconSource
 
     public SymbolIconSource()
     {
-        UseSegoeMetrics = SymbolIcon.UseSegoeMetricsDefaultValue;
+        UseSegoeMetrics = UseSegoeMetricsDefaultValue;
         base.FontSize = FontSize;
         FontFamily = UseSegoeMetrics ? SymbolIcon.Seagull.FontFamily : SymbolIcon.System.FontFamily;
         FontStyle = FontStyle.Normal;
