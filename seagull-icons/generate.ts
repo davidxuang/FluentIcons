@@ -1,19 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as yargs from 'yargs';
-
-// Temporary patch until https://github.com/tancredi/fantasticon/pull/507 is merged and published
-(function patchFantasticon() {
-  const { readFileSync, writeFileSync } = require('fs');
-  const filePath = require.resolve(
-    'fantasticon/lib/generators/asset-types/svg'
-  );
-  const fileContent = readFileSync(filePath, 'utf-8');
-  writeFileSync(
-    filePath,
-    fileContent.replace(/String\.fromCharCode/g, 'String.fromCodePoint')
-  );
-})();
 import * as fantasticon from 'fantasticon';
 
 const argv = yargs

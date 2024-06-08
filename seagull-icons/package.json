@@ -38,6 +38,9 @@
   "pnpm": {
     "overrides": {
       "glob": "^7.0.0"
+    },
+    "patchedDependencies": {
+      "fantasticon@2.0.0": "patches/fantasticon@2.0.0.patch"
     }
   }
 }
