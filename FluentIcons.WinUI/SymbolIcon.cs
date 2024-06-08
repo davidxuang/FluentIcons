@@ -13,7 +13,9 @@ public partial class SymbolIcon : FontIcon
 {
     internal static readonly FontFamily System = new("ms-appx:///FluentIcons.WinUI/Assets/FluentSystemIcons.ttf#Fluent System Icons");
     internal static readonly FontFamily Seagull = new("ms-appx:///FluentIcons.WinUI/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
+#if !NET || WINDOWS
     internal static bool UseSegoeMetricsDefaultValue = false;
+#endif
 
     public static readonly DependencyProperty SymbolProperty =
         DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
@@ -31,9 +33,6 @@ public partial class SymbolIcon : FontIcon
 
     public SymbolIcon()
     {
-#if NET && !WINDOWS
-        UseSegoeMetrics = UseSegoeMetricsDefaultValue;
-#endif
         FontStyle = Windows.UI.Text.FontStyle.Normal;
         FontWeight = FontWeights.Normal;
         IsTextScaleFactorEnabled = false;

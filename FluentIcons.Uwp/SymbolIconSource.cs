@@ -28,9 +28,6 @@ public partial class SymbolIconSource : FontIconSource
 
     public SymbolIconSource()
     {
-#if !WINDOWS
-        UseSegoeMetrics = SymbolIcon.UseSegoeMetricsDefaultValue;
-#endif
         FontFamily = UseSegoeMetrics ? SymbolIcon.Seagull : SymbolIcon.System;
         FontStyle = FontStyle.Normal;
         FontWeight = FontWeights.Normal;

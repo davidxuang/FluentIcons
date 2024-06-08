@@ -24,8 +24,8 @@ A multi-framework wrapper of [fluentui-system-icons](https://github.com/microsof
 ## Usage
 
 ```xml
-<Window xmlns:ic="using:FluentIcons.Avalonia">
-<!-- or FluentIcons.Avalonia.Fluent / FluentIcons.Maui / FluentIcons.WinUI / FluentIcons.WPF -->
+<Window xmlns:ic="using:FluentIcons.WinUI">
+<!-- or FluentIcons.Avalonia / FluentIcons.Avalonia.Fluent / FluentIcons.Maui / FluentIcons.WPF -->
     <ic:SymbolIcon Symbol="ArrowLeft" IsFilled="True" />
 </Window>
 ```
@@ -44,7 +44,7 @@ This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platfo
 -   **Foreground** : Brush
 
 ```xml
-<Window xmlns:ic="using:FluentIcons.Avalonia">
+<Window xmlns:ic="using:FluentIcons.WinUI">
     <Expander Header="{ic:SymbolIconExtension Symbol=ArrowLeft}" />
 </Window>
 ```

@@ -18,6 +18,7 @@
     <Resource Include="..\seagull-icons\assets\SeagullFluentIcons.ttf">
       <Link>Assets/SeagullFluentIcons.ttf</Link>
     </Resource>
+    <AdditionalFiles Include="BannedSymbols.txt" />
   </ItemGroup>
 
 </Project>

@@ -10,8 +10,30 @@ using FluentIcons.Common.Internals;
 
 namespace FluentIcons.WPF;
 
+public abstract class SymbolIconBase : FrameworkElement
+{
+    public static readonly DependencyProperty UseSegoeMetricsProperty =
+        DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIconBase), new PropertyMetadata(false, OnSizePropertiesChanged));
+
+    public bool UseSegoeMetrics
+    {
+        get { return (bool)GetValue(UseSegoeMetricsProperty); }
+        set { SetValue(UseSegoeMetricsProperty, value); }
+    }
+
+    protected abstract void InvalidateText();
+    protected static void OnSizePropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is SymbolIconBase icon)
+        {
+            icon.InvalidateMeasure();
+            icon.InvalidateText();
+        }
+    }
+}
+
 [TypeConverter(typeof(SymbolIconConverter))]
-public class SymbolIcon : FrameworkElement
+public class SymbolIcon : SymbolIconBase
 {
     private static readonly Typeface _system = new(
         new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./Assets/#Fluent System Icons"),
@@ -23,14 +45,11 @@ public class SymbolIcon : FrameworkElement
         FontStyles.Normal,
         FontWeights.Normal,
         FontStretches.Normal);
-    internal static bool UseSegoeMetricsDefaultValue = false;
 
     public static readonly DependencyProperty SymbolProperty =
         DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
     public static readonly DependencyProperty IsFilledProperty =
         DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
-    public static readonly DependencyProperty UseSegoeMetricsProperty =
-        DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSizePropertiesChanged));
     public static readonly DependencyProperty FontSizeProperty =
         TextBlock.FontSizeProperty.AddOwner(
             typeof(SymbolIcon),
@@ -44,11 +63,6 @@ public class SymbolIcon : FrameworkElement
     private bool _suspendCreate = true;
     private FormattedText? _formattedText;
 
-    public SymbolIcon()
-    {
-        UseSegoeMetrics = UseSegoeMetricsDefaultValue;
-    }
-
     public Symbol Symbol
     {
         get { return (Symbol)GetValue(SymbolProperty); }
@@ -61,12 +75,6 @@ public class SymbolIcon : FrameworkElement
         set { SetValue(IsFilledProperty, value); }
     }
 
-    public bool UseSegoeMetrics
-    {
-        get { return (bool)GetValue(UseSegoeMetricsProperty); }
-        set { SetValue(UseSegoeMetricsProperty, value); }
-    }
-
     public double FontSize
     {
         get { return (double)GetValue(FontSizeProperty); }
@@ -77,15 +85,6 @@ public class SymbolIcon : FrameworkElement
     {
         get { return (Brush)GetValue(ForegroundProperty); }
         set { SetValue(ForegroundProperty, value); }
-    }
-
-    private static void OnSizePropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        if (d is SymbolIcon icon)
-        {
-            icon.InvalidateMeasure();
-            icon.InvalidateText();
-        }
     }
 
     private static void OnSymbolPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -147,7 +146,7 @@ public class SymbolIcon : FrameworkElement
         context.Pop();
     }
 
-    private void InvalidateText()
+    protected override void InvalidateText()
     {
         if (_suspendCreate)
             return;
