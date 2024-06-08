@@ -10,18 +10,18 @@ namespace FluentIcons.Uwp;
 
 public partial class SymbolIconSource : FontIconSource
 {
-    public static readonly DependencyProperty SymbolProperty =
+    public static DependencyProperty SymbolProperty { get; } =
         DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
-    public static readonly DependencyProperty IsFilledProperty =
+    public static DependencyProperty IsFilledProperty { get; } =
         DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIconSource), new PropertyMetadata(false, OnSymbolPropertiesChanged));
 #if WINDOWS
-    public static readonly DependencyProperty UseSegoeMetricsProperty =
+    public static DependencyProperty UseSegoeMetricsProperty { get; } =
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), PropertyMetadata.Create(() => SymbolIcon.UseSegoeMetricsDefaultValue, OnSymbolPropertiesChanged));
 #else
-    public static readonly DependencyProperty UseSegoeMetricsProperty =
+    public static DependencyProperty UseSegoeMetricsProperty { get; } =
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
 #endif
-    public static readonly DependencyProperty FlowDirectionProperty =
+    public static DependencyProperty FlowDirectionProperty { get; } =
         DependencyProperty.Register(nameof(FlowDirection), typeof(FlowDirection), typeof(SymbolIconSource), new PropertyMetadata(FlowDirection.LeftToRight, OnSymbolPropertiesChanged));
 
     private string _glyph;
