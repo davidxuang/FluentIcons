@@ -51,9 +51,9 @@ This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platfo
 
 `SymbolIconExtension` and `SymbolIconSourceExtension` have been added since 1.1.242. These extensions will auto-detect `FlowDirection` from parent control, except on (non-Uno) UWP where `IXamlServiceProvider` is not available.
 
-### Avalonia / WPF
+### Avalonia
 
-To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this AppBuilder builder)` on Avalonia and `UseSegoeMetric(this Application app)` on WPF.
+To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this AppBuilder builder)`. Markup extension classes are in a child namespace to stop style selectors from throwing for their naming conventions.
 
 ### MAUI
 
@@ -66,3 +66,7 @@ To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this AppBuilder build
 ⚠️ You must reference this package directly so that fonts can be included in the build output properly. ⚠️
 
 To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this Application app)` or `UseSegoeMetric(this IHostBuilder builder)` (WinUI-only).
+
+### WPF
+
+To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this Application app)`.
