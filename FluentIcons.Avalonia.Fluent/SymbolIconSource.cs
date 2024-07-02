@@ -5,6 +5,7 @@ using System.Globalization;
 using Avalonia;
 using Avalonia.Media;
 using FluentAvalonia.UI.Controls;
+using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using Symbol = FluentIcons.Common.Symbol;
 
@@ -16,10 +17,14 @@ public class SymbolIconSource : FontIconSource
     internal static bool UseSegoeMetricsDefaultValue = false;
 
     public static readonly StyledProperty<Symbol> SymbolProperty = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
-    public static readonly StyledProperty<bool> IsFilledProperty = SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>();
+    public static readonly StyledProperty<IconVariant> IconVariantProperty = SymbolIcon.IconVariantProperty.AddOwner<SymbolIconSource>();
     public static readonly StyledProperty<bool> UseSegoeMetricsProperty = SymbolIcon.UseSegoeMetricsProperty.AddOwner<SymbolIconSource>();
     public static readonly StyledProperty<FlowDirection> FlowDirectionProperty = Visual.FlowDirectionProperty.AddOwner<SymbolIconSource>();
     public static new readonly StyledProperty<double> FontSizeProperty = SymbolIcon.FontSizeProperty.AddOwner<SymbolIconSource>();
+
+    [Obsolete("Deprecated in favour of IconVariant")]
+    public static readonly DirectProperty<SymbolIconSource, bool> IsFilledProperty =
+        SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>(o => o.IsFilled, (o, v) => o.IsFilled = v);
 
     private string _glyph;
 
@@ -39,10 +44,10 @@ public class SymbolIconSource : FontIconSource
         set => SetValue(SymbolProperty, value);
     }
 
-    public bool IsFilled
+    public IconVariant IconVariant
     {
-        get => GetValue(IsFilledProperty);
-        set => SetValue(IsFilledProperty, value);
+        get => GetValue(IconVariantProperty);
+        set => SetValue(IconVariantProperty, value);
     }
 
     public bool UseSegoeMetrics
@@ -63,50 +68,70 @@ public class SymbolIconSource : FontIconSource
         set => SetValue(FontSizeProperty, value);
     }
 
+    [Obsolete("Deprecated in favour of IconVariant")]
+    public bool IsFilled
+    {
+        get => IconVariant == IconVariant.Filled;
+        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
+    }
+
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         if (change.Property == SymbolProperty ||
-            change.Property == IsFilledProperty ||
+            change.Property == IconVariantProperty ||
             change.Property == UseSegoeMetricsProperty ||
             change.Property == FontSizeProperty ||
             change.Property == FlowDirectionProperty)
         {
             InvalidateText();
-            return;
+
+            if (change.Property == IconVariantProperty)
+            {
+                switch (change.NewValue)
+                {
+#pragma warning disable CS0618
+                    case IconVariant.Regular:
+                        RaisePropertyChanged(IsFilledProperty, true, false);
+                        break;
+                    case IconVariant.Filled:
+                        RaisePropertyChanged(IsFilledProperty, false, true);
+                        break;
+#pragma warning restore CS0618
+                    default:
+                        break;
+                }
+            }
         }
         else if (change.Property == FontSizeProperty || change.Property == FontIconSource.FontSizeProperty)
         {
             base.FontSize = FontSize;
-            return;
         }
         else if (change.Property == GlyphProperty)
         {
             Glyph = _glyph;
-            return;
         }
         else if (change.Property == FontFamilyProperty)
         {
             FontFamily = UseSegoeMetrics ? SymbolIcon.Seagull.FontFamily : SymbolIcon.System.FontFamily;
-            return;
         }
         else if (change.Property == FontStyleProperty)
         {
             FontStyle = FontStyle.Normal;
-            return;
         }
         else if (change.Property == FontWeightProperty)
         {
             FontWeight = FontWeight.Regular;
-            return;
         }
-
-        base.OnPropertyChanged(change);
+        else
+        {
+            base.OnPropertyChanged(change);
+        }
     }
 
     [MemberNotNull(nameof(_glyph))]
     private void InvalidateText()
     {
-        Glyph = _glyph = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft);
+        Glyph = _glyph = Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     }
 }
 

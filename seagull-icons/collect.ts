@@ -101,9 +101,9 @@ if (fs.existsSync(CODEPOINTS)) {
   fs.rmSync(CODEPOINTS);
 }
 collect(SRC_DIR, '', 0, (subdir, name) => {
-  let matches = name.match(
-    /^ic_fluent_(.+)_20_(regular|filled|mono|color)\.svg$/
-  );
+  let matches =
+    name.match(/^ic_fluent_(.+)_20_(regular|filled)\.svg$/) ||
+    name.match(/^ic_fluent_(.+)_32_(light)\.svg$/);
   if (matches) {
     return path.join(
       SYSTEM_DIR,
@@ -113,7 +113,7 @@ collect(SRC_DIR, '', 0, (subdir, name) => {
   }
   // size16 icons
   matches = name.match(
-    /^ic_fluent_(?=presence_|spatula_spoon_|text_whole_word_)(.+)_16_(regular|filled|mono|color)\.svg$/
+    /^ic_fluent_(?=presence_|spatula_spoon_|text_whole_word_)(.+)_16_(regular|filled)\.svg$/
   );
   if (matches) {
     return path.join(
@@ -127,9 +127,9 @@ collect(SRC_DIR, '', 0, (subdir, name) => {
 merge(SYSTEM_DIR);
 merge(SEAGULL_DIR);
 
-// [regular, filled, regular RTL, filled RTL]
+// [regular, filled, light, regular RTL, filled RTL, light RTL]
 const nextCodepoint = (() => {
-  const advance = 4;
+  const advance = 6;
   let pos = 0xf0000 - advance;
   return () => {
     pos += advance;
@@ -150,7 +150,7 @@ const codepoints = Object.fromEntries(
     .readdirSync(SYSTEM_DIR)
     .filter((fname) => fname.endsWith('.svg'))
     .map((fname) =>
-      fname.replace(/ic_fluent_(.+)_(regular|filled|mono|color).svg/, '$1')
+      fname.replace(/ic_fluent_(.+)_(regular|filled|light).svg/, '$1')
     )
     .filter((name, index, array) => {
       if (name.match(/^\w+$/)) {

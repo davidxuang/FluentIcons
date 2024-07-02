@@ -99,11 +99,20 @@ function copy(src: string, dest: string) {
       const item = new paper.CompoundPath(
         doc.svg.$$.map((e) => getPathData(e as Visible)).join()
       );
-      item.translate(align);
-      fs.writeFileSync(
-        path.join(dest, f),
-        `<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">\n  <path d="${item.pathData}" fill="#212121" />\n</svg>`
-      );
+      if (doc.svg.$.height === "20") {
+        item.translate(align);
+        fs.writeFileSync(
+          path.join(dest, f),
+          `<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">\n  <path d="${item.pathData}" fill="#212121" />\n</svg>`
+        );
+      } else if (doc.svg.$.height === "32") {
+        fs.writeFileSync(
+          path.join(dest, f),
+          `<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">\n  <path d="${item.pathData}" fill="#212121" />\n</svg>`
+        );
+      } else {
+        throw item;
+      }
       item.remove();
     });
   });

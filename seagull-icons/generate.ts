@@ -23,8 +23,10 @@ const codepoints = Object.fromEntries([
       return [
         [`ic_fluent_${symbol}_regular`, codepoint],
         [`ic_fluent_${symbol}_filled`, codepoint + 1],
-        [`ic_fluent_${symbol}_rtl_regular`, codepoint + 2],
-        [`ic_fluent_${symbol}_rtl_filled`, codepoint + 3],
+        [`ic_fluent_${symbol}_light`, codepoint + 2],
+        [`ic_fluent_${symbol}_rtl_regular`, codepoint + 3],
+        [`ic_fluent_${symbol}_rtl_filled`, codepoint + 4],
+        [`ic_fluent_${symbol}_rtl_light`, codepoint + 5],
       ];
     })
     .flat(),
@@ -45,7 +47,7 @@ if (fs.existsSync(rtl_dir)) {
       path.join(rtl_dir, name),
       path.join(
         argv.source,
-        name.replace(/_(regular|filled).svg$/, '_rtl_$1.svg')
+        name.replace(/_(regular|filled|light).svg$/, '_rtl_$1.svg')
       )
     );
   });

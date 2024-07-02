@@ -1,3 +1,5 @@
+using System;
+using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
@@ -12,13 +14,12 @@ public partial class SymbolIconSource : FontIconSource
 {
     public static DependencyProperty SymbolProperty { get; } =
         DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
-    public static DependencyProperty IsFilledProperty { get; } =
-        DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIconSource), new PropertyMetadata(false, OnSymbolPropertiesChanged));
-#if WINDOWS
+    public static DependencyProperty IconVariantProperty { get; } =
+        DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), new PropertyMetadata(default(IconVariant), OnSymbolPropertiesChanged));
     public static DependencyProperty UseSegoeMetricsProperty { get; } =
+#if WINDOWS
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), PropertyMetadata.Create(() => SymbolIcon.UseSegoeMetricsDefaultValue, OnSymbolPropertiesChanged));
 #else
-    public static DependencyProperty UseSegoeMetricsProperty { get; } =
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
 #endif
     public static DependencyProperty FlowDirectionProperty { get; } =
@@ -31,7 +32,7 @@ public partial class SymbolIconSource : FontIconSource
         FontFamily = UseSegoeMetrics ? SymbolIcon.Seagull : SymbolIcon.System;
         FontStyle = FontStyle.Normal;
         FontWeight = FontWeights.Normal;
-        Glyph = _glyph = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft);
+        Glyph = _glyph = Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
         IsTextScaleFactorEnabled = false;
         MirroredWhenRightToLeft = false;
 
@@ -49,10 +50,10 @@ public partial class SymbolIconSource : FontIconSource
         set { SetValue(SymbolProperty, value); }
     }
 
-    public bool IsFilled
+    public IconVariant IconVariant
     {
-        get { return (bool)GetValue(IsFilledProperty); }
-        set { SetValue(IsFilledProperty, value); }
+        get { return (IconVariant)GetValue(IconVariantProperty); }
+        set { SetValue(IconVariantProperty, value); }
     }
 
     public bool UseSegoeMetrics
@@ -67,12 +68,19 @@ public partial class SymbolIconSource : FontIconSource
         set { SetValue(FlowDirectionProperty, value); }
     }
 
+    [Obsolete("Deprecated in favour of IconVariant")]
+    public bool IsFilled
+    {
+        get => IconVariant == IconVariant.Filled;
+        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
+    }
+
     private static void OnSymbolPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
         if (sender is SymbolIconSource inst)
         {
             inst.FontFamily = inst.UseSegoeMetrics ? SymbolIcon.Seagull : SymbolIcon.System;
-            inst.Glyph = inst._glyph = inst.Symbol.ToString(inst.IsFilled, inst.FlowDirection == FlowDirection.RightToLeft);
+            inst.Glyph = inst._glyph = inst.Symbol.ToString(inst.IconVariant, inst.FlowDirection == FlowDirection.RightToLeft);
         }
     }
 
@@ -129,7 +137,7 @@ public partial class SymbolIconSource : FontIconSource
 public class SymbolIconSourceExtension : MarkupExtension
 {
     public Symbol? Symbol { get; set; }
-    public bool? IsFilled { get; set; }
+    public IconVariant? IconVariant { get; set; }
     public bool? UseSegoeMetrics { get; set; }
 #if UAP10_0_17763_0
     public FlowDirection? FlowDirection { get; set; }
@@ -146,7 +154,7 @@ public class SymbolIconSourceExtension : MarkupExtension
         var icon = new SymbolIconSource();
 
         if (Symbol.HasValue) icon.Symbol = Symbol.Value;
-        if (IsFilled.HasValue) icon.IsFilled = IsFilled.Value;
+        if (IconVariant.HasValue) icon.IconVariant = IconVariant.Value;
         if (UseSegoeMetrics.HasValue) icon.UseSegoeMetrics = UseSegoeMetrics.Value;
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (Foreground is not null) icon.Foreground = Foreground;

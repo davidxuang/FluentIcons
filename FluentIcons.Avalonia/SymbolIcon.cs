@@ -20,12 +20,16 @@ public class SymbolIcon : IconElement
 
     public static readonly StyledProperty<Symbol> SymbolProperty =
         AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
-    public static readonly StyledProperty<bool> IsFilledProperty =
-        AvaloniaProperty.Register<SymbolIcon, bool>(nameof(IsFilled));
+    public static readonly StyledProperty<IconVariant> IconVariantProperty =
+        AvaloniaProperty.Register<SymbolIcon, IconVariant>(nameof(IconVariant));
     public static readonly StyledProperty<bool> UseSegoeMetricsProperty =
         AvaloniaProperty.Register<SymbolIcon, bool>(nameof(UseSegoeMetrics));
     public static new readonly StyledProperty<double> FontSizeProperty =
         AvaloniaProperty.Register<SymbolIcon, double>(nameof(FontSize), 20d, false);
+
+    [Obsolete("Deprecated in favour of IconVariant")]
+    public static readonly DirectProperty<SymbolIcon, bool> IsFilledProperty =
+        AvaloniaProperty.RegisterDirect<SymbolIcon, bool>(nameof(IsFilled), o => o.IsFilled, (o, v) => o.IsFilled = v);
 
     private readonly Border _border;
     private readonly Core _core;
@@ -54,10 +58,10 @@ public class SymbolIcon : IconElement
         set => SetValue(SymbolProperty, value);
     }
 
-    public bool IsFilled
+    public IconVariant IconVariant
     {
-        get => GetValue(IsFilledProperty);
-        set => SetValue(IsFilledProperty, value);
+        get => GetValue(IconVariantProperty);
+        set => SetValue(IconVariantProperty, value);
     }
 
     public bool UseSegoeMetrics
@@ -70,6 +74,13 @@ public class SymbolIcon : IconElement
     {
         get => GetValue(FontSizeProperty);
         set => SetValue(FontSizeProperty, value);
+    }
+
+    [Obsolete("Deprecated in favour of IconVariant")]
+    public bool IsFilled
+    {
+        get => IconVariant == IconVariant.Filled;
+        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
@@ -93,11 +104,28 @@ public class SymbolIcon : IconElement
         }
         else if (change.Property == ForegroundProperty ||
             change.Property == SymbolProperty ||
-            change.Property == IsFilledProperty ||
+            change.Property == IconVariantProperty ||
             change.Property == UseSegoeMetricsProperty ||
             change.Property == FlowDirectionProperty)
         {
             InvalidateText();
+
+            if (change.Property == IconVariantProperty)
+            {
+                switch (change.NewValue)
+                {
+#pragma warning disable CS0618
+                    case IconVariant.Regular:
+                        RaisePropertyChanged(IsFilledProperty, true, false);
+                        break;
+                    case IconVariant.Filled:
+                        RaisePropertyChanged(IsFilledProperty, false, true);
+                        break;
+#pragma warning restore CS0618
+                    default:
+                        break;
+                }
+            }
         }
 
         base.OnPropertyChanged(change);
@@ -156,7 +184,7 @@ public class SymbolIcon : IconElement
             return;
 
         _core.InvalidateText(
-            Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft),
+            Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft),
             UseSegoeMetrics ? _seagull : _system,
             FontSize,
             Foreground);

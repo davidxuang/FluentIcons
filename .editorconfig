@@ -5,8 +5,12 @@ trim_trailing_whitespace = true
 
 csharp_style_namespace_declarations = file_scoped
 
-[*.{js,ts,jsx,tsx,py,json,yml,yaml,toml,svg}]
+[*.{js,ts,jsx,tsx}]
 indent_size = 2
+quote_type = single
 
-[*.{xml,csproj,fsproj,vbproj,props,targets}]
+[*.{py}]
+indent_size = 4
+
+[*.{json,xml,yml,yaml,toml,svg,csproj,fsproj,vbproj,props,targets}]
 indent_size = 2

@@ -9,7 +9,7 @@ namespace FluentIcons.Avalonia.MarkupExtensions;
 public class SymbolIconExtension
 {
     public Symbol? Symbol { get; set; }
-    public bool? IsFilled { get; set; }
+    public IconVariant? IconVariant { get; set; }
     public bool? UseSegoeMetrics { get; set; }
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
@@ -19,7 +19,7 @@ public class SymbolIconExtension
         var icon = new SymbolIcon();
 
         if (Symbol.HasValue) icon.Symbol = Symbol.Value;
-        if (IsFilled.HasValue) icon.IsFilled = IsFilled.Value;
+        if (IconVariant.HasValue) icon.IconVariant = IconVariant.Value;
         if (UseSegoeMetrics.HasValue) icon.UseSegoeMetrics = UseSegoeMetrics.Value;
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (Foreground is not null) icon.Foreground = Foreground;

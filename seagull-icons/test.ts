@@ -18,7 +18,11 @@ const parser = new Parser({
 });
 
 fs.readdirSync(argv.source, { recursive: true }).forEach((f) => {
-  if (path.extname(f) !== '.svg') {
+  if (
+    typeof f !== 'string' ||
+    path.extname(f) !== '.svg' ||
+    f.endsWith('_light.svg')
+  ) {
     return;
   }
 

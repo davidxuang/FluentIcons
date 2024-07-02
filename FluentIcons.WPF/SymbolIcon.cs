@@ -48,8 +48,8 @@ public class SymbolIcon : SymbolIconBase
 
     public static readonly DependencyProperty SymbolProperty =
         DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
-    public static readonly DependencyProperty IsFilledProperty =
-        DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
+    public static readonly DependencyProperty IconVariantProperty =
+        DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), new PropertyMetadata(default(IconVariant), OnSymbolPropertiesChanged));
     public static readonly DependencyProperty FontSizeProperty =
         TextBlock.FontSizeProperty.AddOwner(
             typeof(SymbolIcon),
@@ -69,10 +69,10 @@ public class SymbolIcon : SymbolIconBase
         set { SetValue(SymbolProperty, value); }
     }
 
-    public bool IsFilled
+    public IconVariant IconVariant
     {
-        get { return (bool)GetValue(IsFilledProperty); }
-        set { SetValue(IsFilledProperty, value); }
+        get { return (IconVariant)GetValue(IconVariantProperty); }
+        set { SetValue(IconVariantProperty, value); }
     }
 
     public double FontSize
@@ -85,6 +85,13 @@ public class SymbolIcon : SymbolIconBase
     {
         get { return (Brush)GetValue(ForegroundProperty); }
         set { SetValue(ForegroundProperty, value); }
+    }
+
+    [Obsolete("Deprecated in favour of IconVariant")]
+    public bool IsFilled
+    {
+        get { return IconVariant == IconVariant.Filled; }
+        set { IconVariant = value ? IconVariant.Filled : IconVariant.Regular; }
     }
 
     private static void OnSymbolPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -152,7 +159,7 @@ public class SymbolIcon : SymbolIconBase
             return;
 
         _formattedText = new FormattedText(
-            Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft),
+            Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft),
             CultureInfo.CurrentCulture,
             FlowDirection,
             UseSegoeMetrics ? _seagull : _system,
@@ -193,7 +200,7 @@ public class SymbolIconConverter : TypeConverter
 public class SymbolIconExtension : MarkupExtension
 {
     public Symbol? Symbol { get; set; }
-    public bool? IsFilled { get; set; }
+    public IconVariant? IconVariant { get; set; }
     public bool? UseSegoeMetrics { get; set; }
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
@@ -203,7 +210,7 @@ public class SymbolIconExtension : MarkupExtension
         var icon = new SymbolIcon();
 
         if (Symbol.HasValue) icon.Symbol = Symbol.Value;
-        if (IsFilled.HasValue) icon.IsFilled = IsFilled.Value;
+        if (IconVariant.HasValue) icon.IconVariant = IconVariant.Value;
         if (UseSegoeMetrics.HasValue) icon.UseSegoeMetrics = UseSegoeMetrics.Value;
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (Foreground is not null) icon.Foreground = Foreground;

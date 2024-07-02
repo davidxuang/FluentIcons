@@ -8,8 +8,8 @@ internal static class Extensions
 {
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static string ToString(this Symbol symbol, bool isFilled, bool isRtl)
-        => char.ConvertFromUtf32((int)symbol + Convert.ToInt32(isFilled) + (Convert.ToInt32(isRtl) << 1));
+    internal static string ToString(this Symbol symbol, IconVariant iconVariant, bool isRtl)
+        => char.ConvertFromUtf32((int)symbol + (int)iconVariant + (Convert.ToInt32(isRtl) * 3));
 
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

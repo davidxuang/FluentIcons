@@ -1,5 +1,6 @@
 import sys
 import os
+import logging
 import pathlib
 import re
 import json
@@ -39,26 +40,62 @@ if __name__ == '__main__':
         if 0xf0000 not in cmap_table.cmap:
             continue
 
+        def get_symbol(c : int):
+            for symbol, s in symbols.items():
+                if s == c:
+                    return symbol
+            return c
+
         # map fallback icons
         def fallback(start : int, end : int):
-            for c in range(start, end, 4):
+            for c in range(start, end, 6):
                 regular_defined = c in cmap_table.cmap
                 filled_defined = c + 1 in cmap_table.cmap
-                rtl_regular_defined = c + 2 in cmap_table.cmap
-                rtl_filled_defined = c + 3 in cmap_table.cmap
+                light_defined = c + 2 in cmap_table.cmap
+                rtl_regular_defined = c + 3 in cmap_table.cmap
+                rtl_filled_defined = c + 4 in cmap_table.cmap
+                rtl_light_defined = c + 5 in cmap_table.cmap
 
-                if (not(regular_defined or filled_defined)):
+                if (not(regular_defined or filled_defined or light_defined)):
                     break
 
                 if (not regular_defined):
-                    cmap_table.cmap[c] = cmap_table.cmap[c + 1]
-                elif (not filled_defined):
+                    if (filled_defined):
+                        cmap_table.cmap[c] = cmap_table.cmap[c + 1]
+                    else:
+                        cmap_table.cmap[c] = cmap_table.cmap[c + 2]
+                if (not filled_defined):
                     cmap_table.cmap[c + 1] = cmap_table.cmap[c]
+                if (not light_defined):
+                    cmap_table.cmap[c + 2] = cmap_table.cmap[c]
 
                 if (not rtl_regular_defined):
-                    cmap_table.cmap[c + 2] = cmap_table.cmap[c]
+                    if rtl_filled_defined:
+                        cmap_table.cmap[c + 3] = cmap_table.cmap[c + 4]
+                    elif rtl_filled_defined:
+                        cmap_table.cmap[c + 3] = cmap_table.cmap[c + 5]
+                    else:
+                        cmap_table.cmap[c + 3] = cmap_table.cmap[c]
+                    if (rtl_filled_defined or rtl_light_defined) and regular_defined:
+                        logging.warning('Regular RTL variant for {} is unexpectedly missing'.format(get_symbol(c)))
                 if (not rtl_filled_defined):
-                    cmap_table.cmap[c + 3] = cmap_table.cmap[c + 1]
+                    if rtl_regular_defined:
+                        cmap_table.cmap[c + 4] = cmap_table.cmap[c + 3]
+                    elif rtl_filled_defined:
+                        cmap_table.cmap[c + 4] = cmap_table.cmap[c + 5]
+                    else:
+                        cmap_table.cmap[c + 4] = cmap_table.cmap[c + 1]
+                    if (rtl_regular_defined or rtl_light_defined) and filled_defined:
+                        logging.warning('Filled RTL variant for {} is unexpectedly missing'.format(get_symbol(c)))
+                if (not rtl_light_defined):
+                    if rtl_regular_defined:
+                        cmap_table.cmap[c + 5] = cmap_table.cmap[c + 3]
+                    elif rtl_filled_defined:
+                        cmap_table.cmap[c + 5] = cmap_table.cmap[c + 4]
+                    else:
+                        cmap_table.cmap[c + 5] = cmap_table.cmap[c + 2]
+                    if (rtl_regular_defined or rtl_filled_defined) and light_defined:
+                        logging.warning('Light RTL variant for {} is unexpectedly missing'.format(get_symbol(c)))
 
         # fallback(0xe000, 0xf900)
         fallback(0x0f0000, 0x0ffffd)

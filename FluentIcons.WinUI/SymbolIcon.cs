@@ -1,4 +1,6 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
+using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
@@ -19,13 +21,12 @@ public partial class SymbolIcon : FontIcon
 
     public static DependencyProperty SymbolProperty { get; } =
         DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
-    public static DependencyProperty IsFilledProperty { get; } =
-        DependencyProperty.Register(nameof(IsFilled), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
-#if !NET || WINDOWS
+    public static DependencyProperty IconVariantProperty { get; } =
+        DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), new PropertyMetadata(default(IconVariant), OnSymbolPropertiesChanged));
     public static DependencyProperty UseSegoeMetricsProperty { get; } =
+#if !NET || WINDOWS
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), PropertyMetadata.Create(() => UseSegoeMetricsDefaultValue, OnSymbolPropertiesChanged));
 #else
-    public static DependencyProperty UseSegoeMetricsProperty { get; } =
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
 #endif
 
@@ -54,16 +55,23 @@ public partial class SymbolIcon : FontIcon
         set { SetValue(SymbolProperty, value); }
     }
 
-    public bool IsFilled
+    public IconVariant IconVariant
     {
-        get { return (bool)GetValue(IsFilledProperty); }
-        set { SetValue(IsFilledProperty, value); }
+        get { return (IconVariant)GetValue(IconVariantProperty); }
+        set { SetValue(IconVariantProperty, value); }
     }
 
     public bool UseSegoeMetrics
     {
         get { return (bool)GetValue(UseSegoeMetricsProperty); }
         set { SetValue(UseSegoeMetricsProperty, value); }
+    }
+
+    [Obsolete("Deprecated in favour of IconVariant")]
+    public bool IsFilled
+    {
+        get => IconVariant == IconVariant.Filled;
+        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
     }
 
     private static void OnSymbolPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
@@ -79,7 +87,7 @@ public partial class SymbolIcon : FontIcon
     private void InvalidateText()
     {
         FontFamily = UseSegoeMetrics ? Seagull : System;
-        Glyph = _glyph = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft);
+        Glyph = _glyph = Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     }
 
     private static void OnFontFamilyChanged(DependencyObject sender, DependencyProperty dp)
@@ -135,7 +143,7 @@ public partial class SymbolIcon : FontIcon
 public class SymbolIconExtension : MarkupExtension
 {
     public Symbol? Symbol { get; set; }
-    public bool? IsFilled { get; set; }
+    public IconVariant? IconVariant { get; set; }
     public bool? UseSegoeMetrics { get; set; }
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
@@ -145,7 +153,7 @@ public class SymbolIconExtension : MarkupExtension
         var icon = new SymbolIcon();
 
         if (Symbol.HasValue) icon.Symbol = Symbol.Value;
-        if (IsFilled.HasValue) icon.IsFilled = IsFilled.Value;
+        if (IconVariant.HasValue) icon.IconVariant = IconVariant.Value;
         if (UseSegoeMetrics.HasValue) icon.UseSegoeMetrics = UseSegoeMetrics.Value;
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (Foreground is not null) icon.Foreground = Foreground;

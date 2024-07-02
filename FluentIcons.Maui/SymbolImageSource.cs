@@ -15,8 +15,8 @@ public class SymbolImageSource : FontImageSource
 {
     public static readonly BindableProperty SymbolProperty
         = BindableProperty.Create(nameof(Symbol), typeof(Symbol), typeof(SymbolImageSource), Symbol.Home, propertyChanged: OnSymbolPropertiesChanged);
-    public static readonly BindableProperty IsFilledProperty
-        = BindableProperty.Create(nameof(IsFilled), typeof(bool), typeof(SymbolImageSource), false, propertyChanged: OnSymbolPropertiesChanged);
+    public static readonly BindableProperty IconVariantProperty
+        = BindableProperty.Create(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), propertyChanged: OnSymbolPropertiesChanged);
     public static readonly BindableProperty UseSegoeMetricsProperty
         = BindableProperty.Create(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolImageSource), defaultValueCreator: _ => SymbolIcon.UseSegoeMetricsDefaultValue, propertyChanged: OnSymbolPropertiesChanged);
     public static readonly BindableProperty FlowDirectionProperty
@@ -35,10 +35,10 @@ public class SymbolImageSource : FontImageSource
         set => SetValue(SymbolProperty, value);
     }
 
-    public bool IsFilled
+    public IconVariant IconVariant
     {
-        get => (bool)GetValue(IsFilledProperty);
-        set => SetValue(IsFilledProperty, value);
+        get => (IconVariant)GetValue(IconVariantProperty);
+        set => SetValue(IconVariantProperty, value);
     }
 
     public bool UseSegoeMetrics
@@ -52,6 +52,13 @@ public class SymbolImageSource : FontImageSource
     {
         get => (FlowDirection)GetValue(FlowDirectionProperty);
         set => SetValue(FlowDirectionProperty, value);
+    }
+
+    [Obsolete("Deprecated in favour of IconVariant")]
+    public bool IsFilled
+    {
+        get => IconVariant == IconVariant.Filled;
+        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
     }
 
     protected override void OnPropertyChanged([CallerMemberName] string? propertyName = null)
@@ -77,14 +84,14 @@ public class SymbolImageSource : FontImageSource
     private void InvalidateText()
     {
         FontFamily = UseSegoeMetrics ? "SeagullFluentIcons" : "FluentSystemIcons";
-        Glyph = _glyph = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft);
+        Glyph = _glyph = Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     }
 }
 
 public class SymbolImageSourceExtension : IMarkupExtension<SymbolImageSource>
 {
     public Symbol? Symbol { get; set; }
-    public bool? IsFilled { get; set; }
+    public IconVariant? IconVariant { get; set; }
     public bool? UseSegoeMetrics { get; set; }
     public double? Size { get; set; }
     public Color? Color { get; set; }
@@ -94,7 +101,7 @@ public class SymbolImageSourceExtension : IMarkupExtension<SymbolImageSource>
         var icon = new SymbolImageSource();
 
         if (Symbol.HasValue) icon.Symbol = Symbol.Value;
-        if (IsFilled.HasValue) icon.IsFilled = IsFilled.Value;
+        if (IconVariant.HasValue) icon.IconVariant = IconVariant.Value;
         if (UseSegoeMetrics.HasValue) icon.UseSegoeMetrics = UseSegoeMetrics.Value;
         if (Size.HasValue) icon.Size = Size.Value;
         if (Color is not null) icon.Color = Color;

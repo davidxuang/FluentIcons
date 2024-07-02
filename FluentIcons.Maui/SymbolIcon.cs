@@ -17,8 +17,8 @@ public class SymbolIcon : ContentView
 
     public static readonly BindableProperty SymbolProperty
         = BindableProperty.Create(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), Symbol.Home, propertyChanged: OnSymbolPropertiesChanged);
-    public static readonly BindableProperty IsFilledProperty
-        = BindableProperty.Create(nameof(IsFilled), typeof(bool), typeof(SymbolIcon), false, propertyChanged: OnSymbolPropertiesChanged);
+    public static readonly BindableProperty IconVariantProperty
+        = BindableProperty.Create(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), propertyChanged: OnSymbolPropertiesChanged);
     public static readonly BindableProperty UseSegoeMetricsProperty
         = BindableProperty.Create(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), defaultValueCreator: _ => UseSegoeMetricsDefaultValue, propertyChanged: OnSymbolPropertiesChanged);
     public static readonly BindableProperty FontSizeProperty
@@ -52,10 +52,10 @@ public class SymbolIcon : ContentView
         set => SetValue(SymbolProperty, value);
     }
 
-    public bool IsFilled
+    public IconVariant IconVariant
     {
-        get => (bool)GetValue(IsFilledProperty);
-        set => SetValue(IsFilledProperty, value);
+        get => (IconVariant)GetValue(IconVariantProperty);
+        set => SetValue(IconVariantProperty, value);
     }
 
     public bool UseSegoeMetrics
@@ -76,6 +76,13 @@ public class SymbolIcon : ContentView
     {
         get => (Color)GetValue(ForegroundColorProperty);
         set => SetValue(ForegroundColorProperty, value);
+    }
+
+    [Obsolete("Deprecated in favour of IconVariant")]
+    public bool IsFilled
+    {
+        get => IconVariant == IconVariant.Filled;
+        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
     }
 
     protected override void OnPropertyChanged([CallerMemberName] string? propertyName = null)
@@ -112,14 +119,14 @@ public class SymbolIcon : ContentView
     private void InvalidateText()
     {
         _span.FontFamily = UseSegoeMetrics ? "SeagullFluentIcons" : "FluentSystemIcons";
-        _span.Text = Symbol.ToString(IsFilled, FlowDirection == FlowDirection.RightToLeft);
+        _span.Text = Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     }
 }
 
 public class SymbolIconExtension : IMarkupExtension<SymbolIcon>
 {
     public Symbol? Symbol { get; set; }
-    public bool? IsFilled { get; set; }
+    public IconVariant? IconVariant { get; set; }
     public bool? UseSegoeMetrics { get; set; }
     public double? FontSize { get; set; }
     public Color? ForegroundColor { get; set; }
@@ -129,7 +136,7 @@ public class SymbolIconExtension : IMarkupExtension<SymbolIcon>
         var icon = new SymbolIcon();
 
         if (Symbol.HasValue) icon.Symbol = Symbol.Value;
-        if (IsFilled.HasValue) icon.IsFilled = IsFilled.Value;
+        if (IconVariant.HasValue) icon.IconVariant = IconVariant.Value;
         if (UseSegoeMetrics.HasValue) icon.UseSegoeMetrics = UseSegoeMetrics.Value;
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (ForegroundColor is not null) icon.ForegroundColor = ForegroundColor;
