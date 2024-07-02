@@ -26,7 +26,7 @@ const DEST_OVERRIDES = argv['override-dest'];
 
 const styles = ['regular', 'filled'];
 
-paper.setup([20, 20]);
+paper.setup([32, 32]);
 const align = new paper.Point(-2, -2);
 
 const parser = new Parser({
@@ -87,27 +87,29 @@ if (fs.existsSync(DEST_DIR)) {
 
 function copy(src: string, dest: string) {
   fs.readdirSync(src).forEach((f) => {
-    if (path.extname(f) != '.svg' || fs.existsSync(path.join(dest, f))) {
+    const src_item = path.join(src, f);
+    const dest_item = path.join(dest, f);
+    if (path.extname(f) != '.svg' || fs.existsSync(dest_item)) {
       return;
     }
 
-    parser.parseString(fs.readFileSync(path.join(src, f)), (err, doc: Doc) => {
+    parser.parseString(fs.readFileSync(src_item), (err, doc: Doc) => {
       if (err) {
-        throw path.join(src, f);
+        throw src_item;
       }
 
       const item = new paper.CompoundPath(
         doc.svg.$$.map((e) => getPathData(e as Visible)).join()
       );
-      if (doc.svg.$.height === "20") {
+      if (doc.svg.$.height === '20') {
         item.translate(align);
         fs.writeFileSync(
-          path.join(dest, f),
+          dest_item,
           `<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">\n  <path d="${item.pathData}" fill="#212121" />\n</svg>`
         );
-      } else if (doc.svg.$.height === "32") {
+      } else if (doc.svg.$.height === '32') {
         fs.writeFileSync(
-          path.join(dest, f),
+          dest_item,
           `<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">\n  <path d="${item.pathData}" fill="#212121" />\n</svg>`
         );
       } else {

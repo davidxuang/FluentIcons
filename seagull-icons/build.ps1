@@ -18,6 +18,7 @@ try {
     pnpm collect
     pnpm transform
     pnpm layerize
+    pnpm mirror
     pnpm generate:system
     pnpm generate:seagull
     python "$PSScriptRoot/patch.py" "$PSScriptRoot/obj/FluentSystemIcons.ttf" "$PSScriptRoot/obj/codepoints.json"

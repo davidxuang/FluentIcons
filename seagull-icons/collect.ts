@@ -3,10 +3,37 @@ import * as path from 'path';
 import * as yargs from 'yargs';
 import { ensure } from './utils';
 
+const argv = yargs
+  .string('source')
+  .string('system')
+  .string('seagull')
+  .string('codepoints')
+  .string('mirror')
+  .strict()
+  .parseSync();
+const SRC_DIR = argv.source;
+const SYSTEM_DIR = argv.system;
+const SEAGULL_DIR = argv.seagull;
+const CODEPOINTS = argv.codepoints;
+const MIRROR = argv.mirror;
+
+const mirror_set = new Set<string>();
+
+type MetaData = {
+  name: string;
+  size: number[];
+  style: string[];
+  keyword: string;
+  description: string;
+  metaphor: string[];
+  directionType?: 'mirror' | 'unique';
+};
+
 function collect(
   src_root: string,
   dest_subdir: string,
   depth: number,
+  mirror: boolean,
   get_dest: (subdir: string, name: string) => string
 ) {
   fs.readdirSync(src_root).forEach((name) => {
@@ -17,6 +44,12 @@ function collect(
     if (src_stat.isDirectory()) {
       const src_name = path.basename(src_item);
       if (depth === 0) {
+        const meta_name = path.join(src_item, 'metadata.json');
+        if (fs.existsSync(meta_name)) {
+          mirror =
+            (JSON.parse(fs.readFileSync(meta_name).toString()) as MetaData)
+              .directionType === 'mirror';
+        }
         const words = src_name.split(' ');
         if (words.indexOf('LTR') >= 0) {
           dest_dir = path.join(dest_dir, 'LTR');
@@ -31,13 +64,11 @@ function collect(
       } else if (depth === 1 && src_name !== 'SVG') {
         dest_dir = path.join(dest_dir, src_name);
       }
-      collect(src_item, dest_dir, depth + 1, get_dest);
-      return;
+      collect(src_item, dest_dir, depth + 1, mirror, get_dest);
     } else if (name.startsWith('.') || name.startsWith('_')) {
-      return;
-    } else {
-      // apply 'fluent_' prefix
-      if (name.indexOf('_fluent_') < 0) {
+    } else if (name.endsWith('svg')) {
+      // apply 'ic_fluent_' prefix
+      if (name.startsWith('ic_') && !name.startsWith('ic_fluent_')) {
         name = name.replace('ic_', 'ic_fluent_');
       }
 
@@ -61,6 +92,10 @@ function collect(
       ) {
         return;
       }
+
+      if (mirror) {
+        mirror_set.add(path.basename(dest_file));
+      }
       fs.copyFileSync(src_item, dest_file);
     }
   });
@@ -79,18 +114,6 @@ function merge(dir: string) {
   fs.rmSync(path.join(dir, 'LTR'), { recursive: true });
 }
 
-const argv = yargs
-  .string('source')
-  .string('system')
-  .string('seagull')
-  .string('codepoints')
-  .strict()
-  .parseSync();
-const SRC_DIR = argv.source;
-const SYSTEM_DIR = argv.system;
-const SEAGULL_DIR = argv.seagull;
-const CODEPOINTS = argv.codepoints;
-
 if (fs.existsSync(SYSTEM_DIR)) {
   fs.rmSync(SYSTEM_DIR, { recursive: true });
 }
@@ -100,11 +123,14 @@ if (fs.existsSync(SEAGULL_DIR)) {
 if (fs.existsSync(CODEPOINTS)) {
   fs.rmSync(CODEPOINTS);
 }
-collect(SRC_DIR, '', 0, (subdir, name) => {
+collect(SRC_DIR, '', 0, false, (subdir, name) => {
   let matches =
     name.match(/^ic_fluent_(.+)_20_(regular|filled)\.svg$/) ||
     name.match(/^ic_fluent_(.+)_32_(light)\.svg$/);
   if (matches) {
+    // unify rotate names
+    matches[1] = matches[1].replace(/(?<!rotate)_(90|270)$/, '_rotate_$1');
+
     return path.join(
       SYSTEM_DIR,
       subdir,
@@ -163,3 +189,4 @@ const codepoints = Object.fromEntries(
     .map((name) => [name, nextCodepoint()])
 );
 fs.writeFileSync(CODEPOINTS, JSON.stringify(codepoints));
+fs.writeFileSync(MIRROR, JSON.stringify([...mirror_set]));
