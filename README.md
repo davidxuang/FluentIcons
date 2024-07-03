@@ -51,7 +51,7 @@ This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platfo
 </Window>
 ```
 
-`SymbolIconExtension` and `SymbolIconSourceExtension` have been added since 1.1.242. These extensions will auto-detect `FlowDirection` from parent control, except on (non-Uno) UWP where `IXamlServiceProvider` is not available.
+`SymbolIconExtension` and `SymbolIconSourceExtension` have been added since 1.1.242. These extensions will bind their `FlowDirection` to that of the parent control, except `SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available.
 
 ### Avalonia
 

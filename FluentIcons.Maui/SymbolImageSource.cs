@@ -107,9 +107,9 @@ public class SymbolImageSourceExtension : IMarkupExtension<SymbolImageSource>
         if (Color is not null) icon.Color = Color;
 
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
-        if (service?.TargetObject is VisualElement elem)
+        if (service?.TargetObject is VisualElement source)
         {
-            icon.FlowDirection = elem.FlowDirection;
+            icon.FlowDirection = source.FlowDirection;
         }
 
         return icon;

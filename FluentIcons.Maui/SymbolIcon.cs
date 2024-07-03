@@ -142,9 +142,9 @@ public class SymbolIconExtension : IMarkupExtension<SymbolIcon>
         if (ForegroundColor is not null) icon.ForegroundColor = ForegroundColor;
 
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
-        if (service?.TargetObject is VisualElement elem)
+        if (service?.TargetObject is VisualElement source)
         {
-            icon.FlowDirection = elem.FlowDirection;
+            icon.SetBinding(VisualElement.FlowDirectionProperty, new Binding(nameof(FlowDirection), source: source));
         }
 
         return icon;

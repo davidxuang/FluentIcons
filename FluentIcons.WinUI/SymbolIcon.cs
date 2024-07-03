@@ -5,6 +5,7 @@ using FluentIcons.Common.Internals;
 using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
 using Symbol = FluentIcons.Common.Symbol;
@@ -159,9 +160,11 @@ public class SymbolIconExtension : MarkupExtension
         if (Foreground is not null) icon.Foreground = Foreground;
 
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
-        if (service?.TargetObject is FrameworkElement elem)
+        if (service?.TargetObject is FrameworkElement source)
         {
-            icon.FlowDirection = elem.FlowDirection;
+            icon.SetBinding(
+                FrameworkElement.FlowDirectionProperty,
+                new Binding { Source = source, Path = new PropertyPath(nameof(source.FlowDirection)) });
         }
 
         return icon;

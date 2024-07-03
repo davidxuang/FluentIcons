@@ -25,9 +25,9 @@ public class SymbolIconExtension
         if (Foreground is not null) icon.Foreground = Foreground;
 
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
-        if (service?.TargetObject is Visual elem)
+        if (service?.TargetObject is Visual source)
         {
-            icon.FlowDirection = elem.FlowDirection;
+            icon.Bind(Visual.FlowDirectionProperty, source.GetBindingObservable(Visual.FlowDirectionProperty));
         }
 
         return icon;

@@ -5,6 +5,7 @@ using FluentIcons.Common.Internals;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Symbol = FluentIcons.Common.Symbol;
@@ -48,6 +49,27 @@ public partial class SymbolIcon : FontIcon
         RegisterPropertyChangedCallback(IsTextScaleFactorEnabledProperty, OnIsTextScaleFactorEnabledChanged);
         RegisterPropertyChangedCallback(MirroredWhenRightToLeftProperty, OnMirroredWhenRightToLeftChanged);
     }
+
+#if UAP10_0_17763_0
+    internal SymbolIcon(bool bindFlowDirection) : this()
+    {
+        if (!bindFlowDirection)
+            return;
+
+        static void handler(object sender, RoutedEventArgs args)
+        {
+            if (sender is SymbolIcon icon)
+            {
+                icon.Loaded -= handler;
+                icon.SetBinding(
+                    FlowDirectionProperty,
+                    new Binding { Source = icon.Parent, Path = new PropertyPath(nameof(FlowDirection)) });
+            }
+        };
+
+        Loaded += handler;
+    }
+#endif
 
     public Symbol Symbol
     {
@@ -145,9 +167,6 @@ public class SymbolIconExtension : MarkupExtension
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }
     public bool? UseSegoeMetrics { get; set; }
-#if UAP10_0_17763_0
-    public FlowDirection? FlowDirection { get; set; }
-#endif
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
 
@@ -157,7 +176,11 @@ public class SymbolIconExtension : MarkupExtension
     protected override object ProvideValue(IXamlServiceProvider serviceProvider)
 #endif
     {
-        var icon = new SymbolIcon();
+        var icon = new SymbolIcon(
+#if UAP10_0_17763_0
+            true
+#endif
+            );
 
         if (Symbol.HasValue) icon.Symbol = Symbol.Value;
         if (IconVariant.HasValue) icon.IconVariant = IconVariant.Value;
@@ -165,13 +188,13 @@ public class SymbolIconExtension : MarkupExtension
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (Foreground is not null) icon.Foreground = Foreground;
 
-#if UAP10_0_17763_0
-        if (FlowDirection.HasValue) icon.FlowDirection = FlowDirection.Value;
-#else
+#if !UAP10_0_17763_0
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
-        if (service?.TargetObject is FrameworkElement elem)
+        if (service?.TargetObject is FrameworkElement source)
         {
-            icon.FlowDirection = elem.FlowDirection;
+            icon.SetBinding(
+                FrameworkElement.FlowDirectionProperty,
+                new Binding { Source = source, Path = new PropertyPath(nameof(source.FlowDirection)) });
         }
 #endif
 

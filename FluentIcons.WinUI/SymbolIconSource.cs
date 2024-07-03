@@ -153,9 +153,13 @@ public class SymbolIconSourceExtension : MarkupExtension
         if (Foreground is not null) icon.Foreground = Foreground;
 
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
-        if (service?.TargetObject is FrameworkElement elem)
+        if (service?.TargetObject is FrameworkElement source)
         {
-            icon.FlowDirection = elem.FlowDirection;
+            icon.FlowDirection = source.FlowDirection;
+            source.RegisterPropertyChangedCallback(FrameworkElement.FlowDirectionProperty, (obj, args) =>
+            {
+                if (obj is FrameworkElement elem) icon.FlowDirection = elem.FlowDirection;
+            });
         }
 
         return icon;

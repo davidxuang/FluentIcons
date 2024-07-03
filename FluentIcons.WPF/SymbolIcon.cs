@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Media;
 using FluentIcons.Common;
@@ -225,9 +226,11 @@ public class SymbolIconExtension : MarkupExtension
         if (Foreground is not null) icon.Foreground = Foreground;
 
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
-        if (service?.TargetObject is FrameworkElement elem)
+        if (service?.TargetObject is FrameworkElement source)
         {
-            icon.FlowDirection = elem.FlowDirection;
+            icon.SetBinding(
+                FrameworkElement.FlowDirectionProperty,
+                new Binding { Source = source, Path = new PropertyPath(nameof(source.FlowDirection)) });
         }
 
         return icon;
