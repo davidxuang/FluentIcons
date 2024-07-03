@@ -2,9 +2,9 @@
 
 $PSNativeCommandUseErrorActionPreference = $true
 if ($DebugPreference -eq 'SilentlyContinue') {
-    $ErrorActionPreference = 'Stop'
-} else {
     $ErrorActionPreference = 'Break'
+} else {
+    $ErrorActionPreference = 'Stop'
 }
 
 if (Test-Path "$PSScriptRoot/obj") {

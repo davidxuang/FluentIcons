@@ -210,6 +210,9 @@ const compose = (() => {
     if (typeof m === 'string' || m[cat] === undefined) {
       const item = new paper.CompoundPath(m['#'] ?? m);
       if (window) {
+        if (cat === '#') {
+          throw [badge_meta, cat]; // missing entry in `base`
+        }
         if (cat.startsWith('1') || cat.startsWith('2')) {
           item.translate([window[0], 0]);
         }

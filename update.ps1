@@ -7,9 +7,9 @@ param ()
 
 $PSNativeCommandUseErrorActionPreference = $true
 if ($DebugPreference -eq 'SilentlyContinue') {
-    $ErrorActionPreference = 'Stop'
-} else {
     $ErrorActionPreference = 'Break'
+} else {
+    $ErrorActionPreference = 'Stop'
 }
 $Debug = $PSCmdlet.MyInvocation.BoundParameters['Debug']
 
