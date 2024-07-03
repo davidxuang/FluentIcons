@@ -136,12 +136,20 @@ public class SymbolIcon : SymbolIconBase
 
         var canvas = RenderTransform.TransformBounds(new Rect(0, 0, ActualWidth, ActualHeight));
         context.PushClip(new RectangleGeometry(canvas));
+
+        var hFlip = FlowDirection == FlowDirection.RightToLeft;
+        if (hFlip) context.PushTransform(new MatrixTransform(-1, 0, 0, 1, ActualWidth, 0));
+        var hOffset =  HorizontalAlignment switch
+        {
+            HorizontalAlignment.Left => 0,
+            HorizontalAlignment.Right => canvas.Width - _formattedText.Width,
+            _ => (canvas.Width - _formattedText.Width) / 2,
+        };
         var origin = new Point(
-            canvas.Left + HorizontalAlignment switch
+            FlowDirection switch
             {
-                HorizontalAlignment.Left => 0,
-                HorizontalAlignment.Right => canvas.Width - _formattedText.Width,
-                _ => (canvas.Width - _formattedText.Width) / 2,
+                FlowDirection.RightToLeft => canvas.Right - hOffset,
+                _ => canvas.Left + hOffset,
             },
             canvas.Top + VerticalAlignment switch
             {
@@ -150,6 +158,7 @@ public class SymbolIcon : SymbolIconBase
                 _ => (canvas.Height - _formattedText.Height) / 2,
             });
         context.DrawText(_formattedText, origin);
+        if (hFlip) context.Pop();
         context.Pop();
     }
 

@@ -137,11 +137,15 @@ public partial class SymbolIcon : FAIconElement
         Rect bounds = Bounds;
         using (context.PushClip(new Rect(bounds.Size)))
         {
+            IDisposable? disposable = null;
+            if (FlowDirection == FlowDirection.RightToLeft)
+                disposable = context.PushTransform(new Matrix(-1, 0, 0, 1, bounds.Width, 0));
             var origin = new Point(
                 HorizontalAlignment switch
                 {
-                    HorizontalAlignment.Left => 0,
-                    HorizontalAlignment.Right => bounds.Width - size,
+                    HorizontalAlignment.Left when FlowDirection != FlowDirection.RightToLeft => 0,
+                    HorizontalAlignment.Right when FlowDirection == FlowDirection.RightToLeft => 0,
+                    HorizontalAlignment.Left or HorizontalAlignment.Right => bounds.Width - size,
                     _ => (bounds.Width - size) / 2,
                 },
                 VerticalAlignment switch
@@ -151,6 +155,7 @@ public partial class SymbolIcon : FAIconElement
                     _ => (bounds.Height - size) / 2,
                 });
             _textLayout.Draw(context, origin);
+            disposable?.Dispose();
         }
     }
 
@@ -165,7 +170,8 @@ public partial class SymbolIcon : FAIconElement
             UseSegoeMetrics ? Seagull : System,
             FontSize,
             Foreground,
-            TextAlignment.Center);
+            TextAlignment.Center,
+            flowDirection: FlowDirection);
 
         InvalidateVisual();
     }

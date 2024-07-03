@@ -47,6 +47,7 @@ public class SymbolIcon : IconElement
         LogicalChildren.Add(_border);
 
         _core = new();
+        _core.Bind(FlowDirectionProperty, this.GetBindingObservable(FlowDirectionProperty));
         (_core as ISetLogicalParent).SetParent(this);
         VisualChildren.Add(_core);
         LogicalChildren.Add(_core);
@@ -146,36 +147,37 @@ public class SymbolIcon : IconElement
                     : Math.Min(availableSize.Height, size.Height)));
     }
 
-    protected override void ArrangeCore(Rect finalRect)
+    protected override Size ArrangeOverride(Size finalSize)
     {
         double fs = FontSize;
         Size size = new Size(fs, fs).Inflate(Padding).Inflate(BorderThickness);
         Rect rect = new(
             HorizontalAlignment switch
             {
-                HorizontalAlignment.Center => finalRect.Center.X - fs / 2,
-                HorizontalAlignment.Right => finalRect.Right - fs,
-                _ => finalRect.Left
+                HorizontalAlignment.Center => (finalSize.Width - fs) / 2,
+                HorizontalAlignment.Right => finalSize.Width - fs,
+                _ => 0
             },
             VerticalAlignment switch
             {
-                VerticalAlignment.Center => finalRect.Center.Y - fs / 2,
-                VerticalAlignment.Bottom => finalRect.Bottom - fs,
-                _ => finalRect.Top
+                VerticalAlignment.Center => (finalSize.Height - fs) / 2,
+                VerticalAlignment.Bottom => finalSize.Height - fs,
+                _ => 0
             },
             HorizontalAlignment switch
             {
-                HorizontalAlignment.Stretch => finalRect.Width,
+                HorizontalAlignment.Stretch => finalSize.Width,
                 _ => size.Width,
             },
             VerticalAlignment switch
             {
-                VerticalAlignment.Stretch => finalRect.Height,
+                VerticalAlignment.Stretch => finalSize.Height,
                 _ => size.Height,
             });
         _border.Arrange(rect);
         _core.Arrange(rect.Deflate(BorderThickness).Deflate(Padding));
-        base.ArrangeCore(finalRect);
+
+        return finalSize;
     }
 
     private void InvalidateText()
@@ -203,10 +205,14 @@ public class SymbolIcon : IconElement
             Rect bounds = Bounds;
             using (context.PushClip(new Rect(bounds.Size)))
             {
+                IDisposable? disposable = null;
+                if (FlowDirection == FlowDirection.RightToLeft)
+                    disposable = context.PushTransform(new Matrix(-1, 0, 0, 1, bounds.Width, 0));
                 var origin = new Point(
                     (bounds.Width - _size) / 2,
                     (bounds.Height - _size) / 2);
                 _textLayout.Draw(context, origin);
+                disposable?.Dispose();
             }
         }
 
@@ -220,7 +226,8 @@ public class SymbolIcon : IconElement
                 typeface,
                 fontSize,
                 foreground,
-                TextAlignment.Center);
+                TextAlignment.Center,
+                flowDirection: FlowDirection);
 
             InvalidateVisual();
         }
