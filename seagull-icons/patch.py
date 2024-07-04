@@ -14,6 +14,9 @@ if __name__ == '__main__':
     with open(os.path.join(os.path.dirname(__file__), 'patch.yaml')) as f:
         segoe_map = yaml.load(f, Loader=yaml.Loader)['map']
 
+    # reproducible build
+    font['head'].modified = 0
+
     # modify metrics
     u = font['head'].unitsPerEm
     font['hhea'].ascent = u
