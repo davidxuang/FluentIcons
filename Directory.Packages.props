@@ -6,6 +6,7 @@
   <ItemGroup>
     <PackageVersion Include="Avalonia" Version="11.0.0" />
     <PackageVersion Include="FluentAvaloniaUI" Version="2.0.0" />
+    <PackageVersion Include="IgnoresAccessChecksToGenerator" Version="0.7.0" />
     <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Maui.Controls" Version="8.0.3" />
     <PackageVersion Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.3" />

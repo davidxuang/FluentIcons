@@ -10,9 +10,8 @@ public static class Extensions
 #if !NET || WINDOWS
         SymbolIcon.UseSegoeMetricsDefaultValue = true;
 #else
-        var defalutValueProperty = typeof(PropertyMetadata).GetProperty(nameof(PropertyMetadata.DefaultValue));
-        defalutValueProperty!.SetValue(SymbolIcon.UseSegoeMetricsProperty.GetMetadata(typeof(SymbolIcon)), true);
-        defalutValueProperty!.SetValue(SymbolIconSource.UseSegoeMetricsProperty.GetMetadata(typeof(SymbolIconSource)), true);
+        SymbolIcon.UseSegoeMetricsProperty.GetMetadata(typeof(SymbolIcon)).DefaultValue = true;
+        SymbolIconSource.UseSegoeMetricsProperty.GetMetadata(typeof(SymbolIconSource)).DefaultValue = true;
 #endif
         return app;
     }
@@ -22,9 +21,8 @@ public static class Extensions
 #if !NET || WINDOWS
         SymbolIcon.UseSegoeMetricsDefaultValue = true;
 #else
-        var defalutValueProperty = typeof(PropertyMetadata).GetProperty(nameof(PropertyMetadata.DefaultValue));
-        defalutValueProperty!.SetValue(SymbolIcon.UseSegoeMetricsProperty.GetMetadata(typeof(SymbolIcon)), true);
-        defalutValueProperty!.SetValue(SymbolIconSource.UseSegoeMetricsProperty.GetMetadata(typeof(SymbolIconSource)), true);
+        SymbolIcon.UseSegoeMetricsProperty.GetMetadata(typeof(SymbolIcon)).DefaultValue = true;
+        SymbolIconSource.UseSegoeMetricsProperty.GetMetadata(typeof(SymbolIconSource)).DefaultValue = true;
 #endif
         return builder;
     }

@@ -28,6 +28,11 @@
 
     <Otherwise>
       <ItemGroup>
+        <InternalsAssemblyName Include="Uno.UI" />
+      </ItemGroup>
+
+      <ItemGroup>
+        <PackageReference Include="IgnoresAccessChecksToGenerator" PrivateAssets="All" />
         <PackageReference Include="Uno.UI" />
       </ItemGroup>
     </Otherwise>
