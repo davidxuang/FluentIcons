@@ -8,14 +8,14 @@ import yaml
 from fontTools import ttLib
 
 if __name__ == '__main__':
-    font = ttLib.TTFont(sys.argv[1])
+    font = ttLib.TTFont(sys.argv[1], recalcTimestamp=False)
     with open(sys.argv[2]) as f:
         symbols = json.load(f)
     with open(os.path.join(os.path.dirname(__file__), 'patch.yaml')) as f:
         segoe_map = yaml.load(f, Loader=yaml.Loader)['map']
 
     # reproducible build
-    font['head'].modified = 0
+    font['head'].modified = 2082844800
 
     # modify metrics
     u = font['head'].unitsPerEm
