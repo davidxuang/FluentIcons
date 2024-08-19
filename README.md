@@ -47,7 +47,7 @@ This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platfo
 
 ```xml
 <Window xmlns:ic="using:FluentIcons.WinUI">
-    <Expander Header="{ic:SymbolIconExtension Symbol=ArrowLeft}" />
+    <Expander Header="{ic:SymbolIcon Symbol=ArrowLeft}" />
 </Window>
 ```
 
