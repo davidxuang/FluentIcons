@@ -262,6 +262,7 @@ base:
   pause: "2"
   people:
     "#": ["2", [0, -1]]
+    link: ["2", null, [0, -2]]
     list: ["2", [0, -1], [0, -3]]
   people_community: "2"
   people_team: "2"
@@ -344,6 +345,9 @@ base:
     "#": "2"
     search: "3"
   smartwatch: "1"
+  sound_wave_circle:
+    "#": "2"
+    sparkle: "1"
   speaker:
     "#": "2"
     usb: ["2", null, [0, -2]]
@@ -958,6 +962,7 @@ compose:
       - battery
       - box
       - box_multiple
+      - building
       - calendar_empty:calendar
       - calligraphy_pen
       - clipboard
@@ -1121,7 +1126,7 @@ compose:
       - money
       - number_symbol
       - panel_left_text
-      - pen
+      - pen_alt:pen
       - people_team#/people_team_delete
       - person#/person_delete
       - phone
@@ -1445,6 +1450,8 @@ compose:
       - folder
       - highlight
       - mail
+      - mic
+      - people
       - person
       - server
       - slide
@@ -1708,7 +1715,7 @@ compose:
       - image
       - mail
       - mic
-      - pen
+      - pen_alt:pen
       - people
       - person
       - shield
@@ -1946,6 +1953,7 @@ compose:
       - rectangle_landscape
       - search
       - slide_text
+      - sound_wave_circle
       - square_hint#/square_hint_sparkles
       - tab_desktop_multiple
       - table
@@ -2023,6 +2031,7 @@ compose:
       - globe
       - mic
       - notebook
+      - pen_sync:pen
       - people
       - person
       - rectangle_landscape

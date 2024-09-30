@@ -1,12 +1,11 @@
 #!/usr/bin/pwsh
-
 using namespace System.Management.Automation
 
 [CmdletBinding()]
 param ()
 
 $PSNativeCommandUseErrorActionPreference = $true
-if ($DebugPreference -eq 'SilentlyContinue') {
+if ($PSBoundParameters.ContainsKey('Debug')) {
     $ErrorActionPreference = 'Break'
 } else {
     $ErrorActionPreference = 'Stop'

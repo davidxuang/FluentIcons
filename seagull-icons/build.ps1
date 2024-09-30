@@ -1,7 +1,10 @@
 #!/usr/bin/pwsh
 
+[CmdletBinding()]
+param ()
+
 $PSNativeCommandUseErrorActionPreference = $true
-if ($DebugPreference -eq 'SilentlyContinue') {
+if ($PSBoundParameters.ContainsKey('Debug')) {
     $ErrorActionPreference = 'Break'
 } else {
     $ErrorActionPreference = 'Stop'
