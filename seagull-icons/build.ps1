@@ -4,7 +4,7 @@
 param ()
 
 $PSNativeCommandUseErrorActionPreference = $true
-if ($PSBoundParameters.ContainsKey('Debug')) {
+if ($DebugPreference -ne 'SilentlyContinue') {
     $ErrorActionPreference = 'Break'
 } else {
     $ErrorActionPreference = 'Stop'
