@@ -50,12 +50,12 @@
     <ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
       <TfmSpecificPackageFile Include="../seagull-icons/assets/FluentSystemIcons.ttf">
         <Link>$(PackageId)/Assets/FluentSystemIcons.ttf</Link>
-        <PackagePath>contentFiles/any/$(NuGetTargetFrameworkFolderName)/%(Link)</PackagePath>
+        <PackagePath>contentFiles/any/uap/%(Link)</PackagePath>
         <BuildAction>Content</BuildAction>
       </TfmSpecificPackageFile>
       <TfmSpecificPackageFile Include="../seagull-icons/assets/SeagullFluentIcons.ttf">
         <Link>$(PackageId)/Assets/SeagullFluentIcons.ttf</Link>
-        <PackagePath>contentFiles/any/$(NuGetTargetFrameworkFolderName)/%(Link)</PackagePath>
+        <PackagePath>contentFiles/any/uap/%(Link)</PackagePath>
         <BuildAction>Content</BuildAction>
       </TfmSpecificPackageFile>
     </ItemGroup>
