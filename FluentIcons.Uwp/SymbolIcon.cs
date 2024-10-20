@@ -50,7 +50,7 @@ public partial class SymbolIcon : FontIcon
         RegisterPropertyChangedCallback(MirroredWhenRightToLeftProperty, OnMirroredWhenRightToLeftChanged);
     }
 
-#if UAP10_0_17763_0
+#if !HAS_UNO
     internal SymbolIcon(bool bindFlowDirection) : this()
     {
         if (!bindFlowDirection)
@@ -170,14 +170,14 @@ public class SymbolIconExtension : MarkupExtension
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
 
-#if UAP10_0_17763_0
+#if !HAS_UNO
     protected override object ProvideValue()
 #else
     protected override object ProvideValue(IXamlServiceProvider serviceProvider)
 #endif
     {
         var icon = new SymbolIcon(
-#if UAP10_0_17763_0
+#if !HAS_UNO
             true
 #endif
             );
@@ -188,7 +188,7 @@ public class SymbolIconExtension : MarkupExtension
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (Foreground is not null) icon.Foreground = Foreground;
 
-#if !UAP10_0_17763_0
+#if HAS_UNO
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
         if (service?.TargetObject is FrameworkElement source)
         {

@@ -1,7 +1,7 @@
 <Project Sdk="MSBuild.Sdk.Extras/3.0.44">
   <PropertyGroup>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">
-      $(TargetFrameworks);uap10.0.17763.0
+      $(TargetFrameworks);uap10.0.17763.0;net8.0-windows10.0.26100.0
     </TargetFrameworks>
     <TargetFrameworks>$(TargetFrameworks);net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
     <Description>FluentUI System Icons wrapper for UWP.</Description>
@@ -16,14 +16,21 @@
   <Choose>
     <When Condition="$(TargetFramework.StartsWith('uap'))">
       <PropertyGroup>
-        <UseUWP>true</UseUWP>
-        <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+        <TargetPlatformVersion>10.0.26100.0</TargetPlatformVersion>
         <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
       </PropertyGroup>
 
       <ItemGroup>
         <PackageReference Include="Nullable" />
       </ItemGroup>
+    </When>
+
+    <When Condition="'$(TargetFramework)' == 'net8.0-windows10.0.26100.0'">
+      <PropertyGroup>
+        <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+        <UseUwp>true</UseUwp>
+        <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+      </PropertyGroup>
     </When>
 
     <Otherwise>
@@ -46,21 +53,13 @@
     <None Include="VisualStudioToolsManifest.xml" Pack="True" PackagePath="tools" />
   </ItemGroup>
 
-  <Target Name="IncludeAssetsInNuGetPackage" Condition="'$(IncludeBuildOutput)' != 'false'" DependsOnTargets="GetNuGetShortFolderName">
-    <ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
-      <TfmSpecificPackageFile Include="../seagull-icons/assets/FluentSystemIcons.ttf">
-        <Link>$(PackageId)/Assets/FluentSystemIcons.ttf</Link>
-        <PackagePath>contentFiles/any/uap/%(Link)</PackagePath>
-        <BuildAction>Content</BuildAction>
-      </TfmSpecificPackageFile>
-      <TfmSpecificPackageFile Include="../seagull-icons/assets/SeagullFluentIcons.ttf">
-        <Link>$(PackageId)/Assets/SeagullFluentIcons.ttf</Link>
-        <PackagePath>contentFiles/any/uap/%(Link)</PackagePath>
-        <BuildAction>Content</BuildAction>
-      </TfmSpecificPackageFile>
-    </ItemGroup>
+  <ItemGroup>
+    <None Include="build\**" Pack="true" PackagePath="build;buildTransitive" />
+    <None Include="..\seagull-icons\assets\FluentSystemIcons.ttf;..\seagull-icons\assets\SeagullFluentIcons.ttf" Pack="true" PackagePath="content-manual/$(PackageId)/Assets" />
+  </ItemGroup>
 
-    <ItemGroup Condition="!$(TargetFramework.StartsWith('uap'))">
+  <Target Name="IncludeAssetsInNuGetPackage" Condition="'$(IncludeBuildOutput)' != 'false'" DependsOnTargets="GetNuGetShortFolderName">
+    <ItemGroup Condition="!$(TargetFramework.StartsWith('uap')) and '$(TargetFramework)' != 'net8.0-windows10.0.26100.0'">
       <TfmSpecificPackageFile Include="../seagull-icons/assets/FluentSystemIcons.ttf">
         <Link>Assets/FluentSystemIcons.ttf</Link>
         <PackagePath>lib/$(NuGetShortFolderName)/$(PackageId)/%(Link)</PackagePath>

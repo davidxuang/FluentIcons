@@ -1,0 +1,9 @@
+<Project>
+
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)..\..\content-manual\**\*.*">
+      <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
+  </ItemGroup>
+
+</Project>

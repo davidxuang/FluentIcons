@@ -1,0 +1,7 @@
+<Project>
+
+  <ItemGroup Condition="'$(UseUwp)' == 'true'">
+    <Content Include="$(MSBuildThisFileDirectory)..\..\content-manual\**" Visible="false" />
+  </ItemGroup>
+
+</Project>

@@ -139,13 +139,13 @@ public class SymbolIconSourceExtension : MarkupExtension
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }
     public bool? UseSegoeMetrics { get; set; }
-#if UAP10_0_17763_0
+#if !HAS_UNO
     public FlowDirection? FlowDirection { get; set; }
 #endif
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
 
-#if UAP10_0_17763_0
+#if !HAS_UNO
     protected override object ProvideValue()
 #else
     protected override object ProvideValue(IXamlServiceProvider serviceProvider)
@@ -159,7 +159,7 @@ public class SymbolIconSourceExtension : MarkupExtension
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (Foreground is not null) icon.Foreground = Foreground;
 
-#if UAP10_0_17763_0
+#if !HAS_UNO
         if (FlowDirection.HasValue) icon.FlowDirection = FlowDirection.Value;
 #else
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
