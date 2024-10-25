@@ -1,6 +1,6 @@
 <Project>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(OutputType)' == 'AppContainerExe'">
     <Content Include="$(MSBuildThisFileDirectory)..\..\content-manual\**\*.*">
       <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
