@@ -35,9 +35,9 @@ This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platfo
 -   **Symbol** : [Symbol](./FluentIcons.Common/Symbol.cs)
     -   _Breaking change since 1.1.229: LTR/RTL specific values are removed, use `FlowDirection` instead._
 -   **IconVariant** : [IconVariant](./FluentIcons.Common/IconVariant.cs)
-    -   _Breaking change since 1.1.247: **IsFilled** has been deprecated and is subject to be removed._
+    -   _Breaking change: **IsFilled** has been deprecated since 1.1.247 and removed since 1.1.262._
 -   **UseSegoeMetrics** : bool
-    -   _Match the metrics of [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font). see also: [Seagull Icons](./seagull-icons/README.md)_
+    -   _Match the metrics of [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font). See also: [Seagull Icons](./seagull-icons/README.md)_
     -   _Not applicable for icons of `Light` variant._
 -   **FlowDirection** : FlowDirection
     -   _Switch between LTR/RTL icon variant._

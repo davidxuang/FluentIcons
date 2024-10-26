@@ -54,13 +54,6 @@ public class SymbolImageSource : FontImageSource
         set => SetValue(FlowDirectionProperty, value);
     }
 
-    [Obsolete("Deprecated in favour of IconVariant")]
-    public bool IsFilled
-    {
-        get => IconVariant == IconVariant.Filled;
-        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
-    }
-
     protected override void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         switch(propertyName)

@@ -68,13 +68,6 @@ public partial class SymbolIconSource : FontIconSource
         set { SetValue(FlowDirectionProperty, value); }
     }
 
-    [Obsolete("Deprecated in favour of IconVariant")]
-    public bool IsFilled
-    {
-        get => IconVariant == IconVariant.Filled;
-        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
-    }
-
     private static void OnSymbolPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
         if (sender is SymbolIconSource inst)

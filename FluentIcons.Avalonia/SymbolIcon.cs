@@ -15,8 +15,8 @@ namespace FluentIcons.Avalonia;
 [TypeConverter(typeof(SymbolIconConverter))]
 public class SymbolIcon : IconElement
 {
-    private static readonly Typeface _system = new("avares://FluentIcons.Avalonia/Assets#Fluent System Icons");
-    private static readonly Typeface _seagull = new("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons");
+    internal static readonly Typeface System = new("avares://FluentIcons.Avalonia/Assets#Fluent System Icons");
+    internal static readonly Typeface Seagull = new("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons");
 
     public static readonly StyledProperty<Symbol> SymbolProperty =
         AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
@@ -26,10 +26,6 @@ public class SymbolIcon : IconElement
         AvaloniaProperty.Register<SymbolIcon, bool>(nameof(UseSegoeMetrics));
     public static new readonly StyledProperty<double> FontSizeProperty =
         AvaloniaProperty.Register<SymbolIcon, double>(nameof(FontSize), 20d, false);
-
-    [Obsolete("Deprecated in favour of IconVariant")]
-    public static readonly DirectProperty<SymbolIcon, bool> IsFilledProperty =
-        AvaloniaProperty.RegisterDirect<SymbolIcon, bool>(nameof(IsFilled), o => o.IsFilled, (o, v) => o.IsFilled = v);
 
     private readonly Border _border;
     private readonly Core _core;
@@ -77,13 +73,6 @@ public class SymbolIcon : IconElement
         set => SetValue(FontSizeProperty, value);
     }
 
-    [Obsolete("Deprecated in favour of IconVariant")]
-    public bool IsFilled
-    {
-        get => IconVariant == IconVariant.Filled;
-        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
-    }
-
     protected override void OnLoaded(RoutedEventArgs e)
     {
         InvalidateText();
@@ -110,23 +99,6 @@ public class SymbolIcon : IconElement
             change.Property == FlowDirectionProperty)
         {
             InvalidateText();
-
-            if (change.Property == IconVariantProperty)
-            {
-                switch (change.NewValue)
-                {
-#pragma warning disable CS0618
-                    case IconVariant.Regular:
-                        RaisePropertyChanged(IsFilledProperty, true, false);
-                        break;
-                    case IconVariant.Filled:
-                        RaisePropertyChanged(IsFilledProperty, false, true);
-                        break;
-#pragma warning restore CS0618
-                    default:
-                        break;
-                }
-            }
         }
 
         base.OnPropertyChanged(change);
@@ -187,7 +159,7 @@ public class SymbolIcon : IconElement
 
         _core.InvalidateText(
             Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft),
-            UseSegoeMetrics ? _seagull : _system,
+            UseSegoeMetrics ? Seagull : System,
             FontSize,
             Foreground);
     }

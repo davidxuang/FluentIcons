@@ -68,13 +68,6 @@ public partial class SymbolIcon : FontIcon
         set { SetValue(UseSegoeMetricsProperty, value); }
     }
 
-    [Obsolete("Deprecated in favour of IconVariant")]
-    public bool IsFilled
-    {
-        get => IconVariant == IconVariant.Filled;
-        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
-    }
-
     private static void OnSymbolPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
         (sender as SymbolIcon)?.InvalidateText();

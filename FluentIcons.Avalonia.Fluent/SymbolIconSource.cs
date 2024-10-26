@@ -16,15 +16,16 @@ public class SymbolIconSource : FontIconSource
 {
     internal static bool UseSegoeMetricsDefaultValue = false;
 
-    public static readonly StyledProperty<Symbol> SymbolProperty = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
-    public static readonly StyledProperty<IconVariant> IconVariantProperty = SymbolIcon.IconVariantProperty.AddOwner<SymbolIconSource>();
-    public static readonly StyledProperty<bool> UseSegoeMetricsProperty = SymbolIcon.UseSegoeMetricsProperty.AddOwner<SymbolIconSource>();
-    public static readonly StyledProperty<FlowDirection> FlowDirectionProperty = Visual.FlowDirectionProperty.AddOwner<SymbolIconSource>();
-    public static new readonly StyledProperty<double> FontSizeProperty = SymbolIcon.FontSizeProperty.AddOwner<SymbolIconSource>();
-
-    [Obsolete("Deprecated in favour of IconVariant")]
-    public static readonly DirectProperty<SymbolIconSource, bool> IsFilledProperty =
-        SymbolIcon.IsFilledProperty.AddOwner<SymbolIconSource>(o => o.IsFilled, (o, v) => o.IsFilled = v);
+    public static readonly StyledProperty<Symbol> SymbolProperty =
+        SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
+    public static readonly StyledProperty<IconVariant> IconVariantProperty =
+        SymbolIcon.IconVariantProperty.AddOwner<SymbolIconSource>();
+    public static readonly StyledProperty<bool> UseSegoeMetricsProperty =
+        SymbolIcon.UseSegoeMetricsProperty.AddOwner<SymbolIconSource>();
+    public static readonly StyledProperty<FlowDirection> FlowDirectionProperty =
+        Visual.FlowDirectionProperty.AddOwner<SymbolIconSource>();
+    public static new readonly StyledProperty<double> FontSizeProperty =
+        SymbolIcon.FontSizeProperty.AddOwner<SymbolIconSource>();
 
     private string _glyph;
 
@@ -84,23 +85,6 @@ public class SymbolIconSource : FontIconSource
             change.Property == FlowDirectionProperty)
         {
             InvalidateText();
-
-            if (change.Property == IconVariantProperty)
-            {
-                switch (change.NewValue)
-                {
-#pragma warning disable CS0618
-                    case IconVariant.Regular:
-                        RaisePropertyChanged(IsFilledProperty, true, false);
-                        break;
-                    case IconVariant.Filled:
-                        RaisePropertyChanged(IsFilledProperty, false, true);
-                        break;
-#pragma warning restore CS0618
-                    default:
-                        break;
-                }
-            }
         }
         else if (change.Property == FontSizeProperty || change.Property == FontIconSource.FontSizeProperty)
         {
