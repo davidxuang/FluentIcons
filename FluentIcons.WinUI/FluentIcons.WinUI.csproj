@@ -31,6 +31,10 @@
       </ItemGroup>
 
       <ItemGroup>
+        <ProjectReference Include="..\FluentIcons.Uno\FluentIcons.Uno.csproj" ExactVersion="true" />
+      </ItemGroup>
+
+      <ItemGroup>
         <PackageReference Include="IgnoresAccessChecksToGenerator" PrivateAssets="All" />
         <PackageReference Include="Uno.WinUI" />
       </ItemGroup>
@@ -52,20 +56,6 @@
         <Link>$(PackageId)/Assets/SeagullFluentIcons.ttf</Link>
         <PackagePath>contentFiles/any/$(NuGetShortFolderName)/%(Link)</PackagePath>
         <BuildAction>Content</BuildAction>
-      </TfmSpecificPackageFile>
-    </ItemGroup>
-
-    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'windows'">
-      <TfmSpecificPackageFile Include="../seagull-icons/assets/FluentSystemIcons.ttf">
-        <Link>Assets/FluentSystemIcons.ttf</Link>
-        <PackagePath>lib/$(NuGetShortFolderName)/$(PackageId)/%(Link)</PackagePath>
-      </TfmSpecificPackageFile>
-      <TfmSpecificPackageFile Include="../seagull-icons/assets/SeagullFluentIcons.ttf">
-        <Link>Assets/SeagullFluentIcons.ttf</Link>
-        <PackagePath>lib/$(NuGetShortFolderName)/$(PackageId)/%(Link)</PackagePath>
-      </TfmSpecificPackageFile>
-      <TfmSpecificPackageFile Include="FluentIcons.WinUI.uprimarker">
-        <PackagePath>lib/$(NuGetShortFolderName)/</PackagePath>
       </TfmSpecificPackageFile>
     </ItemGroup>
   </Target>

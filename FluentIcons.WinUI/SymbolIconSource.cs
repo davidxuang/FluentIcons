@@ -1,4 +1,3 @@
-using System;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using Microsoft.UI.Text;
@@ -17,7 +16,7 @@ public partial class SymbolIconSource : FontIconSource
     public static DependencyProperty IconVariantProperty { get; } =
         DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), new PropertyMetadata(default(IconVariant), OnSymbolPropertiesChanged));
     public static DependencyProperty UseSegoeMetricsProperty { get; } =
-#if WINDOWS
+#if !HAS_UNO
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), PropertyMetadata.Create(() => SymbolIcon.UseSegoeMetricsDefaultValue, OnSymbolPropertiesChanged));
 #else
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));

@@ -7,7 +7,7 @@ public static class Extensions
 {
     public static Application UseSegoeMetrics(this Application app)
     {
-#if !NET || WINDOWS
+#if !HAS_UNO
         SymbolIcon.UseSegoeMetricsDefaultValue = true;
 #else
         SymbolIcon.UseSegoeMetricsProperty.GetMetadata(typeof(SymbolIcon)).DefaultValue = true;
@@ -18,7 +18,7 @@ public static class Extensions
 
     public static IHostBuilder UseSegoeMetrics(this IHostBuilder builder)
     {
-#if !NET || WINDOWS
+#if !HAS_UNO
         SymbolIcon.UseSegoeMetricsDefaultValue = true;
 #else
         SymbolIcon.UseSegoeMetricsProperty.GetMetadata(typeof(SymbolIcon)).DefaultValue = true;

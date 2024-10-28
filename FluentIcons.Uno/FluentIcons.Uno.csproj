@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>FluentUI System Icons assets package for Uno.</Description>
+    <TargetsForTfmSpecificContentInPackage>
+      $(TargetsForTfmSpecificContentInPackage);IncludeAssetsInNuGetPackage
+    </TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" ExactVersion="true" />
+  </ItemGroup>
+
+  <Target Name="IncludeAssetsInNuGetPackage" Condition="'$(IncludeBuildOutput)' != 'false'" DependsOnTargets="GetNuGetShortFolderName">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="../seagull-icons/assets/FluentSystemIcons.ttf">
+        <Link>Assets/FluentSystemIcons.ttf</Link>
+        <PackagePath>lib/$(NuGetShortFolderName)/$(PackageId)/%(Link)</PackagePath>
+      </TfmSpecificPackageFile>
+      <TfmSpecificPackageFile Include="../seagull-icons/assets/SeagullFluentIcons.ttf">
+        <Link>Assets/SeagullFluentIcons.ttf</Link>
+        <PackagePath>lib/$(NuGetShortFolderName)/$(PackageId)/%(Link)</PackagePath>
+      </TfmSpecificPackageFile>
+      <TfmSpecificPackageFile Include="FluentIcons.Uno.uprimarker">
+        <PackagePath>lib/$(NuGetShortFolderName)/</PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
+
+</Project>

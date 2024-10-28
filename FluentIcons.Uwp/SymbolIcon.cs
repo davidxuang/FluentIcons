@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
@@ -14,9 +13,15 @@ namespace FluentIcons.Uwp;
 
 public partial class SymbolIcon : FontIcon
 {
-    internal static readonly FontFamily System = new("ms-appx:///FluentIcons.Uwp/Assets/FluentSystemIcons.ttf#Fluent System Icons");
-    internal static readonly FontFamily Seagull = new("ms-appx:///FluentIcons.Uwp/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
-#if !NET || WINDOWS
+    private const string AssetsNamespace =
+#if !HAS_UNO
+        "FluentIcons.Uwp";
+#else
+        "FluentIcons.Uno";
+#endif
+    internal static readonly FontFamily System = new($"ms-appx:///{AssetsNamespace}/Assets/FluentSystemIcons.ttf#Fluent System Icons");
+    internal static readonly FontFamily Seagull = new($"ms-appx:///{AssetsNamespace}/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
+#if !HAS_UNO
     internal static bool UseSegoeMetricsDefaultValue = false;
 #endif
 
@@ -25,7 +30,7 @@ public partial class SymbolIcon : FontIcon
     public static DependencyProperty IconVariantProperty { get; } =
         DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), new PropertyMetadata(default(IconVariant), OnSymbolPropertiesChanged));
     public static DependencyProperty UseSegoeMetricsProperty { get; } =
-#if !NET || WINDOWS
+#if !HAS_UNO
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), PropertyMetadata.Create(() => UseSegoeMetricsDefaultValue, OnSymbolPropertiesChanged));
 #else
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
@@ -50,7 +55,7 @@ public partial class SymbolIcon : FontIcon
         RegisterPropertyChangedCallback(MirroredWhenRightToLeftProperty, OnMirroredWhenRightToLeftChanged);
     }
 
-#if UAP10_0_17763_0
+#if !HAS_UNO
     internal SymbolIcon(bool bindFlowDirection) : this()
     {
         if (!bindFlowDirection)
@@ -163,14 +168,14 @@ public class SymbolIconExtension : MarkupExtension
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
 
-#if UAP10_0_17763_0
+#if !HAS_UNO
     protected override object ProvideValue()
 #else
     protected override object ProvideValue(IXamlServiceProvider serviceProvider)
 #endif
     {
         var icon = new SymbolIcon(
-#if UAP10_0_17763_0
+#if !HAS_UNO
             true
 #endif
             );
@@ -181,7 +186,7 @@ public class SymbolIconExtension : MarkupExtension
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (Foreground is not null) icon.Foreground = Foreground;
 
-#if !UAP10_0_17763_0
+#if HAS_UNO
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
         if (service?.TargetObject is FrameworkElement source)
         {

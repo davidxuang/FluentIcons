@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
@@ -14,9 +13,15 @@ namespace FluentIcons.WinUI;
 
 public partial class SymbolIcon : FontIcon
 {
-    internal static readonly FontFamily System = new("ms-appx:///FluentIcons.WinUI/Assets/FluentSystemIcons.ttf#Fluent System Icons");
-    internal static readonly FontFamily Seagull = new("ms-appx:///FluentIcons.WinUI/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
-#if !NET || WINDOWS
+    private const string AssetsNamespace =
+#if !HAS_UNO
+        "FluentIcons.WinUI";
+#else
+        "FluentIcons.Uno";
+#endif
+    internal static readonly FontFamily System = new($"ms-appx:///{AssetsNamespace}/Assets/FluentSystemIcons.ttf#Fluent System Icons");
+    internal static readonly FontFamily Seagull = new($"ms-appx:///{AssetsNamespace}/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
+#if !HAS_UNO
     internal static bool UseSegoeMetricsDefaultValue = false;
 #endif
 
@@ -25,7 +30,7 @@ public partial class SymbolIcon : FontIcon
     public static DependencyProperty IconVariantProperty { get; } =
         DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), new PropertyMetadata(default(IconVariant), OnSymbolPropertiesChanged));
     public static DependencyProperty UseSegoeMetricsProperty { get; } =
-#if !NET || WINDOWS
+#if !HAS_UNO
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), PropertyMetadata.Create(() => UseSegoeMetricsDefaultValue, OnSymbolPropertiesChanged));
 #else
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
