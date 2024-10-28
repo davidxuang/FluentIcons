@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Assets\Icon.png" Pack="true" PackagePath="" />
+    <None Include="..\Assets\Icon.png" Pack="true" PackagePath="" />
     <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 

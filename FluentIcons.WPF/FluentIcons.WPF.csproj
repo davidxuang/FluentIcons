@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net462;net6.0-windows</TargetFrameworks>
-    <Description>FluentUI System Icons wrapper for WPF.</Description>
+    <Description>FluentUI System Icons control library for WPF.</Description>
     <PackageTags>$(PackageTags);WPF</PackageTags>
     <UseWPF>true</UseWPF>
   </PropertyGroup>

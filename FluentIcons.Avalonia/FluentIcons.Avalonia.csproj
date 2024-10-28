@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
-    <Description>FluentUI System Icons wrapper for Avalonia.</Description>
+    <Description>FluentUI System Icons control library for Avalonia.</Description>
     <PackageTags>$(PackageTags);Avalonia</PackageTags>
   </PropertyGroup>
 

@@ -1,6 +1,6 @@
 # FluentIcons
 
-A multi-framework wrapper of [fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).
+A multi-framework control library of [fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).
 
 ## Packages
 
