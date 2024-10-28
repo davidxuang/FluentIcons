@@ -10,13 +10,11 @@
     <IsPackable>true</IsPackable>
     <IsPublishable>true</IsPublishable>
     <ContentTargetFolders>contentFiles</ContentTargetFolders>
-    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludeAssetsInNuGetPackage</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <Choose>
     <When Condition="$(TargetFramework.StartsWith('uap'))">
       <PropertyGroup>
-        <UseUWP>true</UseUWP>
         <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
         <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
       </PropertyGroup>
@@ -47,21 +45,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="build\**" Pack="true" PackagePath="build;buildTransitive" />
+    <None
+      Include="..\seagull-icons\assets\FluentSystemIcons.ttf;..\seagull-icons\assets\SeagullFluentIcons.ttf"
+      Pack="true"
+      PackagePath="content-transitive/$(PackageId)/Assets" />
     <None Include="VisualStudioToolsManifest.xml" Pack="True" PackagePath="tools" />
   </ItemGroup>
-
-  <Target Name="IncludeAssetsInNuGetPackage" Condition="'$(IncludeBuildOutput)' != 'false'" DependsOnTargets="GetNuGetShortFolderName">
-    <ItemGroup Condition="$(TargetFramework.StartsWith('uap'))">
-      <TfmSpecificPackageFile Include="../seagull-icons/assets/FluentSystemIcons.ttf">
-        <Link>$(PackageId)/Assets/FluentSystemIcons.ttf</Link>
-        <PackagePath>contentFiles/any/$(NuGetTargetFrameworkFolderName)/%(Link)</PackagePath>
-        <BuildAction>Content</BuildAction>
-      </TfmSpecificPackageFile>
-      <TfmSpecificPackageFile Include="../seagull-icons/assets/SeagullFluentIcons.ttf">
-        <Link>$(PackageId)/Assets/SeagullFluentIcons.ttf</Link>
-        <PackagePath>contentFiles/any/$(NuGetTargetFrameworkFolderName)/%(Link)</PackagePath>
-        <BuildAction>Content</BuildAction>
-      </TfmSpecificPackageFile>
-    </ItemGroup>
-  </Target>
 </Project>

@@ -66,8 +66,6 @@ To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this AppBuilder build
 
 ### UWP / WinUI
 
-⚠️ You must reference this package directly so that fonts can be included in the build output properly. ⚠️
-
 To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this Application app)` or `UseSegoeMetric(this IHostBuilder builder)` (WinUI-only).
 
 ### WPF

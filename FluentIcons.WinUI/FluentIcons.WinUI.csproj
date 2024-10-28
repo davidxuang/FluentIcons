@@ -10,7 +10,6 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
     <ContentTargetFolders>contentFiles</ContentTargetFolders>
-    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludeAssetsInNuGetPackage</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -45,18 +44,11 @@
     <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" ExactVersion="true" />
   </ItemGroup>
 
-  <Target Name="IncludeAssetsInNuGetPackage" Condition="'$(IncludeBuildOutput)' != 'false'" DependsOnTargets="GetNuGetShortFolderName">
-    <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
-      <TfmSpecificPackageFile Include="../seagull-icons/assets/FluentSystemIcons.ttf">
-        <Link>$(PackageId)/Assets/FluentSystemIcons.ttf</Link>
-        <PackagePath>contentFiles/any/$(NuGetShortFolderName)/%(Link)</PackagePath>
-        <BuildAction>Content</BuildAction>
-      </TfmSpecificPackageFile>
-      <TfmSpecificPackageFile Include="../seagull-icons/assets/SeagullFluentIcons.ttf">
-        <Link>$(PackageId)/Assets/SeagullFluentIcons.ttf</Link>
-        <PackagePath>contentFiles/any/$(NuGetShortFolderName)/%(Link)</PackagePath>
-        <BuildAction>Content</BuildAction>
-      </TfmSpecificPackageFile>
-    </ItemGroup>
-  </Target>
+  <ItemGroup>
+    <None Include="build\**" Pack="true" PackagePath="build;buildTransitive" />
+    <None
+      Include="..\seagull-icons\assets\FluentSystemIcons.ttf;..\seagull-icons\assets\SeagullFluentIcons.ttf"
+      Pack="true"
+      PackagePath="content-transitive/$(PackageId)/Assets" />
+  </ItemGroup>
 </Project>
