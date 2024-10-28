@@ -21,20 +21,14 @@ public partial class SymbolIcon : FontIcon
 #endif
     internal static readonly FontFamily System = new($"ms-appx:///{AssetsNamespace}/Assets/FluentSystemIcons.ttf#Fluent System Icons");
     internal static readonly FontFamily Seagull = new($"ms-appx:///{AssetsNamespace}/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
-#if !HAS_UNO
     internal static bool UseSegoeMetricsDefaultValue = false;
-#endif
 
     public static DependencyProperty SymbolProperty { get; } =
         DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
     public static DependencyProperty IconVariantProperty { get; } =
         DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), new PropertyMetadata(default(IconVariant), OnSymbolPropertiesChanged));
     public static DependencyProperty UseSegoeMetricsProperty { get; } =
-#if !HAS_UNO
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), PropertyMetadata.Create(() => UseSegoeMetricsDefaultValue, OnSymbolPropertiesChanged));
-#else
-        DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
-#endif
 
     private string _glyph;
 
