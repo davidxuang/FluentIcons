@@ -15,7 +15,7 @@ redirect:
   share_screen: rectangle_landscape
   slide: rectangle_landscape
   speaker: speaker_0
-  text_box: textbox # DEPRECATED?
+  text_box: textbox # TODO: DEPRECATED?
   vehicle_truck: vehicle_truck_profile
   wifi: wifi_1
 
@@ -1960,7 +1960,7 @@ compose:
       - camera#/camera_sparkles
       - chat
       - document_one_page
-      - document_one_page_multiple#/document_one_page_multiple # TODO: Issue?
+      - document_one_page_multiple
       - emoji
       - flash
       - form
