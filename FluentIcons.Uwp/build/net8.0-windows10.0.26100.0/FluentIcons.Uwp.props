@@ -1,7 +1,7 @@
 <Project>
 
   <ItemGroup Condition="'$(UseUwp)' == 'true' and '$(OutputType)' == 'WinExe'">
-    <Content Include="$(MSBuildThisFileDirectory)..\..\content-manual\**" Visible="false" />
+    <Content Include="$(MSBuildThisFileDirectory)..\..\content-transitive\**" Visible="false" />
   </ItemGroup>
 
 </Project>
