@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Avalonia.Fluent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Maui", "FluentIcons.Maui\FluentIcons.Maui.csproj", "{0147C878-92EA-4F88-B5EF-8B1A63C9C462}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Uno", "FluentIcons.Uno\FluentIcons.Uno.csproj", "{165238B5-7446-4D7F-8C97-705BA7305BEE}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.Uwp", "FluentIcons.Uwp\FluentIcons.Uwp.csproj", "{E1112BAC-EDEA-4303-A9C3-2CC9DA33EDED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentIcons.WinUI", "FluentIcons.WinUI\FluentIcons.WinUI.csproj", "{BCA0EB9E-A440-4294-9241-1CF2A1B3889E}"
@@ -47,6 +49,10 @@ Global
 		{0147C878-92EA-4F88-B5EF-8B1A63C9C462}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0147C878-92EA-4F88-B5EF-8B1A63C9C462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0147C878-92EA-4F88-B5EF-8B1A63C9C462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{165238B5-7446-4D7F-8C97-705BA7305BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{165238B5-7446-4D7F-8C97-705BA7305BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{165238B5-7446-4D7F-8C97-705BA7305BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{165238B5-7446-4D7F-8C97-705BA7305BEE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E1112BAC-EDEA-4303-A9C3-2CC9DA33EDED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E1112BAC-EDEA-4303-A9C3-2CC9DA33EDED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1112BAC-EDEA-4303-A9C3-2CC9DA33EDED}.Release|Any CPU.ActiveCfg = Release|Any CPU

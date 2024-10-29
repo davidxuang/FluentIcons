@@ -88,13 +88,6 @@ public class SymbolIcon : SymbolIconBase
         set { SetValue(ForegroundProperty, value); }
     }
 
-    [Obsolete("Deprecated in favour of IconVariant")]
-    public bool IsFilled
-    {
-        get { return IconVariant == IconVariant.Filled; }
-        set { IconVariant = value ? IconVariant.Filled : IconVariant.Regular; }
-    }
-
     private static void OnSymbolPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         (d as SymbolIcon)?.InvalidateText();

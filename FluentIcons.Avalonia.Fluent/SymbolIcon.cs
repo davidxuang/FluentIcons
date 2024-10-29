@@ -16,8 +16,8 @@ namespace FluentIcons.Avalonia.Fluent;
 [TypeConverter(typeof(SymbolIconConverter))]
 public partial class SymbolIcon : FAIconElement
 {
-    internal static readonly Typeface System = new("avares://FluentIcons.Avalonia.Fluent/Assets#Fluent System Icons");
-    internal static readonly Typeface Seagull = new("avares://FluentIcons.Avalonia.Fluent/Assets#Seagull Fluent Icons");
+    internal static readonly Typeface System = new("avares://FluentIcons.Avalonia/Assets#Fluent System Icons");
+    internal static readonly Typeface Seagull = new("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons");
 
     public static readonly StyledProperty<Symbol> SymbolProperty =
         AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
@@ -27,10 +27,6 @@ public partial class SymbolIcon : FAIconElement
         AvaloniaProperty.Register<SymbolIcon, bool>(nameof(UseSegoeMetrics));
     public static readonly StyledProperty<double> FontSizeProperty =
         AvaloniaProperty.Register<SymbolIcon, double>(nameof(FontSize), 20d, false);
-
-    [Obsolete("Deprecated in favour of IconVariant")]
-    public static readonly DirectProperty<SymbolIcon, bool> IsFilledProperty =
-        AvaloniaProperty.RegisterDirect<SymbolIcon, bool>(nameof(IsFilled), o => o.IsFilled, (o, v) => o.IsFilled = v);
 
     private TextLayout? _textLayout;
 
@@ -92,23 +88,6 @@ public partial class SymbolIcon : FAIconElement
             change.Property == FlowDirectionProperty)
         {
             InvalidateText();
-
-            if (change.Property == IconVariantProperty)
-            {
-                switch (change.NewValue)
-                {
-#pragma warning disable CS0618
-                    case IconVariant.Regular:
-                        RaisePropertyChanged(IsFilledProperty, true, false);
-                        break;
-                    case IconVariant.Filled:
-                        RaisePropertyChanged(IsFilledProperty, false, true);
-                        break;
-#pragma warning restore CS0618
-                    default:
-                        break;
-                }
-            }
         }
 
         base.OnPropertyChanged(change);

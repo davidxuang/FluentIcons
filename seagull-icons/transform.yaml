@@ -99,6 +99,7 @@ base:
   column_triple: "2"
   comment:
     "#": "1"
+    badge: ["1", null, [0, 1]]
     edit: ["2", [0, -1]]
   comment_multiple: ["2", [0, -1]]
   communication: ["2", [0, -1]]
@@ -149,6 +150,9 @@ base:
     "#": "3"
     edit: "2"
   document_one_page:
+    "#": "2"
+    sparkle: "1"
+  document_one_page_multiple:
     "#": "2"
     sparkle: "1"
   document_queue: "2"
@@ -873,6 +877,13 @@ compose:
     icons:
       - calendar_empty:calendar
 
+  badge:
+    window: [12, 12]
+    mask: M2,-1a3,3 0 0 0 0,6a3,3 0 0 0 0,-6
+    badge: M2,0a2,2 0 0 0 0,4a2,2 0 0 0 0,-4
+    icons:
+      - comment
+
   bag:
     window: [8, 6]
     mask: M8,2.085c0.583,0.206 1,0.762 1,1.415v4.5c0,1.657 -1.343,3 -3,3h-4c-0.521,0 -1.01,-0.133 -1.437,-0.366c-0.931,-0.509 -1.563,-1.498 -1.563,-2.634v-4.5c0,-0.653 0.417,-1.209 1,-1.415v-0.085c0,-1.657 1.343,-3 3,-3c0.351,0 0.688,0.06 0.999,0.171c0.313,-0.111 0.65,-0.171 1.001,-0.171c1.657,0 3,1.343 3,3z
@@ -971,6 +982,7 @@ compose:
       - cloud
       - comment
       - comment_multiple
+      - data_usage
       - desktop
       - document
       - document_table
@@ -993,6 +1005,7 @@ compose:
       - star
       - text_bullet_list
       - text_grammar
+      - textbox
 
   checkmark#:
     window: [9, 11]
@@ -1947,6 +1960,7 @@ compose:
       - camera#/camera_sparkles
       - chat
       - document_one_page
+      - document_one_page_multiple#/document_one_page_multiple # TODO: Issue?
       - emoji
       - flash
       - form

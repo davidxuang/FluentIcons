@@ -1,4 +1,3 @@
-using System;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using Windows.UI.Text;
@@ -17,7 +16,7 @@ public partial class SymbolIconSource : FontIconSource
     public static DependencyProperty IconVariantProperty { get; } =
         DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), new PropertyMetadata(default(IconVariant), OnSymbolPropertiesChanged));
     public static DependencyProperty UseSegoeMetricsProperty { get; } =
-#if WINDOWS
+#if !HAS_UNO
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), PropertyMetadata.Create(() => SymbolIcon.UseSegoeMetricsDefaultValue, OnSymbolPropertiesChanged));
 #else
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
@@ -66,13 +65,6 @@ public partial class SymbolIconSource : FontIconSource
     {
         get { return (FlowDirection)GetValue(FlowDirectionProperty); }
         set { SetValue(FlowDirectionProperty, value); }
-    }
-
-    [Obsolete("Deprecated in favour of IconVariant")]
-    public bool IsFilled
-    {
-        get => IconVariant == IconVariant.Filled;
-        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
     }
 
     private static void OnSymbolPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)

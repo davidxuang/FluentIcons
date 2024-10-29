@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
@@ -14,22 +13,22 @@ namespace FluentIcons.Uwp;
 
 public partial class SymbolIcon : FontIcon
 {
-    internal static readonly FontFamily System = new("ms-appx:///FluentIcons.Uwp/Assets/FluentSystemIcons.ttf#Fluent System Icons");
-    internal static readonly FontFamily Seagull = new("ms-appx:///FluentIcons.Uwp/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
-#if !NET || WINDOWS
-    internal static bool UseSegoeMetricsDefaultValue = false;
+    private const string AssetsNamespace =
+#if !HAS_UNO
+        "FluentIcons.Uwp";
+#else
+        "FluentIcons.Uno";
 #endif
+    internal static readonly FontFamily System = new($"ms-appx:///{AssetsNamespace}/Assets/FluentSystemIcons.ttf#Fluent System Icons");
+    internal static readonly FontFamily Seagull = new($"ms-appx:///{AssetsNamespace}/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
+    internal static bool UseSegoeMetricsDefaultValue = false;
 
     public static DependencyProperty SymbolProperty { get; } =
         DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
     public static DependencyProperty IconVariantProperty { get; } =
         DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), new PropertyMetadata(default(IconVariant), OnSymbolPropertiesChanged));
     public static DependencyProperty UseSegoeMetricsProperty { get; } =
-#if !NET || WINDOWS
         DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), PropertyMetadata.Create(() => UseSegoeMetricsDefaultValue, OnSymbolPropertiesChanged));
-#else
-        DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
-#endif
 
     private string _glyph;
 
@@ -87,13 +86,6 @@ public partial class SymbolIcon : FontIcon
     {
         get { return (bool)GetValue(UseSegoeMetricsProperty); }
         set { SetValue(UseSegoeMetricsProperty, value); }
-    }
-
-    [Obsolete("Deprecated in favour of IconVariant")]
-    public bool IsFilled
-    {
-        get => IconVariant == IconVariant.Filled;
-        set => IconVariant = value ? IconVariant.Filled : IconVariant.Regular;
     }
 
     private static void OnSymbolPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
