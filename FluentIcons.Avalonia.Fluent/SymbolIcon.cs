@@ -16,8 +16,8 @@ namespace FluentIcons.Avalonia.Fluent;
 [TypeConverter(typeof(SymbolIconConverter))]
 public partial class SymbolIcon : FAIconElement
 {
-    internal static readonly Typeface System = new("avares://FluentIcons.Avalonia/Assets#Fluent System Icons");
-    internal static readonly Typeface Seagull = new("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons");
+    internal static readonly Typeface System = FluentIcons.Avalonia.SymbolIcon.System;
+    internal static readonly Typeface Seagull = FluentIcons.Avalonia.SymbolIcon.Seagull;
 
     public static readonly StyledProperty<Symbol> SymbolProperty =
         AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);

@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" ExactVersion="true" />
+    <InternalsVisibleTo Include="FluentIcons.Avalonia.Fluent" />
     <SharedAssets Include="..\seagull-icons\assets\*.ttf" />
   </ItemGroup>
 
