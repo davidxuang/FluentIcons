@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace FluentIcons.WPF;
+namespace FluentIcons.Wpf;
 
 public static class Extensions
 {

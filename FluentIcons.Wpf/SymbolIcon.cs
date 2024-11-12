@@ -9,7 +9,7 @@ using System.Windows.Media;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 
-namespace FluentIcons.WPF;
+namespace FluentIcons.Wpf;
 
 public abstract class SymbolIconBase : FrameworkElement
 {
@@ -37,12 +37,12 @@ public abstract class SymbolIconBase : FrameworkElement
 public class SymbolIcon : SymbolIconBase
 {
     private static readonly Typeface _system = new(
-        new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./Assets/#Fluent System Icons"),
+        new FontFamily(new Uri("pack://application:,,,/FluentIcons.Wpf;component/"), "./Assets/#Fluent System Icons"),
         FontStyles.Normal,
         FontWeights.Normal,
         FontStretches.Normal);
     private static readonly Typeface _seagull = new(
-        new FontFamily(new Uri("pack://application:,,,/FluentIcons.WPF;component/"), "./Assets/#Seagull Fluent Icons"),
+        new FontFamily(new Uri("pack://application:,,,/FluentIcons.Wpf;component/"), "./Assets/#Seagull Fluent Icons"),
         FontStyles.Normal,
         FontWeights.Normal,
         FontStretches.Normal);
