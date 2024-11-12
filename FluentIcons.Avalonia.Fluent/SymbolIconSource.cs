@@ -86,7 +86,7 @@ public class SymbolIconSource : FontIconSource
         {
             InvalidateText();
         }
-        else if (change.Property == FontSizeProperty || change.Property == FontIconSource.FontSizeProperty)
+        else if (change.Property == FontIconSource.FontSizeProperty)
         {
             base.FontSize = FontSize;
         }
