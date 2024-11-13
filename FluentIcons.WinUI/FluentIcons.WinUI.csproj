@@ -43,6 +43,6 @@
     <None
       Include="..\seagull-icons\assets\FluentSystemIcons.ttf;..\seagull-icons\assets\SeagullFluentIcons.ttf"
       Pack="true"
-      PackagePath="content-transitive/$(PackageId)/Assets" />
+      PackagePath="contentTransitive/$(PackageId)/Assets" />
   </ItemGroup>
 </Project>

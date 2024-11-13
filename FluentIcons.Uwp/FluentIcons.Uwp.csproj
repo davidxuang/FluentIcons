@@ -52,7 +52,7 @@
     <None
       Include="..\seagull-icons\assets\FluentSystemIcons.ttf;..\seagull-icons\assets\SeagullFluentIcons.ttf"
       Pack="true"
-      PackagePath="content-transitive/$(PackageId)/Assets" />
+      PackagePath="contentTransitive/$(PackageId)/Assets" />
     <None Include="VisualStudioToolsManifest.xml" Pack="True" PackagePath="tools" />
   </ItemGroup>
 </Project>

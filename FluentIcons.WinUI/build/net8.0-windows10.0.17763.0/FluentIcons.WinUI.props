@@ -1,7 +1,7 @@
 <Project>
 
   <ItemGroup Condition="'$(UseWinUI)' == 'true' and '$(OutputType)' == 'WinExe'">
-    <Content Include="$(MSBuildThisFileDirectory)..\..\content-transitive\**" Visible="false" />
+    <Content Include="$(MSBuildThisFileDirectory)..\..\contentTransitive\**" Visible="false" />
   </ItemGroup>
 
 </Project>
