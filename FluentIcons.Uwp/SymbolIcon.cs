@@ -154,7 +154,7 @@ public partial class SymbolIcon : FontIcon
 }
 
 [MarkupExtensionReturnType(ReturnType = typeof(SymbolIcon))]
-public class SymbolIconExtension : MarkupExtension
+public partial class SymbolIconExtension : MarkupExtension
 {
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }
