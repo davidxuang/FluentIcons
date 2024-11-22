@@ -33,7 +33,9 @@ jobs:
         with:
           msbuild-architecture: x64
       - name: Setup .NET workloads
-        run:  dotnet workload install android ios maccatalyst macos maui
+        run: |
+          dotnet workload install android ios maccatalyst macos maui
+          Invoke-RestMethod 'https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.ps1' | Invoke-Expression
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
