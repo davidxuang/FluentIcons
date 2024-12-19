@@ -83,7 +83,9 @@ base:
     "#": ["2", [-.25, -1.75]]
     "": [null, [-.25, 0]]
   checkmark_circle: "2"
-  circle: "2"
+  circle:
+    "#": "2"
+    sparkle: "1"
   circle_hint: "2"
   clear_formatting: "2"
   clipboard:
@@ -1979,6 +1981,8 @@ compose:
       - calendar_empty:calendar
       - camera#/camera_sparkles
       - chat
+      - circle
+      - document
       - document_one_page
       - document_one_page_multiple
       - emoji
