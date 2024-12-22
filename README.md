@@ -29,7 +29,7 @@ A multi-framework control library of [fluentui-system-icons](https://github.com/
 ```xml
 <Window xmlns:ic="using:FluentIcons.WinUI">
 <!-- or FluentIcons.Avalonia / FluentIcons.Avalonia.Fluent / FluentIcons.Maui / FluentIcons.Wpf -->
-    <ic:SymbolIcon Symbol="ArrowLeft" IsFilled="True" />
+    <ic:SymbolIcon Symbol="ArrowLeft" IconVariant="Filled" />
 </Window>
 ```
 
