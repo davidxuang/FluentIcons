@@ -8,10 +8,10 @@ namespace FluentIcons.WinUI.Internals;
 
 public abstract partial class GenericIconSource : FontIconSource
 {
-    public static DependencyProperty IconVariantProperty
-        => DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIconSource), new(default(IconVariant), OnIconPropertiesChanged));
-    public static DependencyProperty FlowDirectionProperty
-    => DependencyProperty.Register(nameof(FlowDirection), typeof(FlowDirection), typeof(GenericIconSource), new PropertyMetadata(FlowDirection.LeftToRight, OnIconPropertiesChanged));
+    public static DependencyProperty IconVariantProperty { get; }
+        = DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIconSource), new(default(IconVariant), OnIconPropertiesChanged));
+    public static DependencyProperty FlowDirectionProperty { get; }
+        = DependencyProperty.Register(nameof(FlowDirection), typeof(FlowDirection), typeof(GenericIconSource), new(default(FlowDirection), OnIconPropertiesChanged));
 
     public GenericIconSource()
     {

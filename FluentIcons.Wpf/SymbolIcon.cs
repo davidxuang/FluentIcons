@@ -20,10 +20,10 @@ public class SymbolIcon : GenericIcon, IValue<Symbol>
         FontStretches.Normal);
 
     public static readonly DependencyProperty SymbolProperty 
-        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new PropertyMetadata(Symbol.Home, OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
     [Obsolete(Extensions.Message)]
     public static readonly DependencyProperty UseSegoeMetricsProperty 
-        = DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSizePropertiesChanged));
+        = DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new(false, OnSizePropertiesChanged));
 
     public Symbol Symbol
     {

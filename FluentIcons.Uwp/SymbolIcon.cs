@@ -14,11 +14,11 @@ public partial class SymbolIcon : GenericIcon
 {
     internal static readonly FontFamily SFontFamily = new($"ms-appx:///{AssetsNamespace}/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
 
-    public static DependencyProperty SymbolProperty
-        => DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
+    public static DependencyProperty SymbolProperty { get; }
+        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
     [Obsolete(Extensions.Message)]
-    public static DependencyProperty UseSegoeMetricsProperty
-        => DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new(false, OnIconPropertiesChanged));
+    public static DependencyProperty UseSegoeMetricsProperty { get; }
+        = DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new(false, OnIconPropertiesChanged));
 
 #if !HAS_UNO
     internal SymbolIcon(bool bindFlowDirection) : base(bindFlowDirection) {}

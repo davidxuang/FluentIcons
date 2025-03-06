@@ -2,9 +2,7 @@ using System;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using FluentIcons.WinUI.Internals;
-using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
 using Symbol = FluentIcons.Common.Symbol;
@@ -13,11 +11,11 @@ namespace FluentIcons.WinUI;
 
 public partial class SymbolIconSource : GenericIconSource
 {
-    public static DependencyProperty SymbolProperty
-        => DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new PropertyMetadata(Symbol.Home, OnIconPropertiesChanged));
+    public static DependencyProperty SymbolProperty { get; }
+        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new (Symbol.Home, OnIconPropertiesChanged));
     [Obsolete(Extensions.Message)]
-    public static DependencyProperty UseSegoeMetricsProperty
-        => DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnIconPropertiesChanged));
+    public static DependencyProperty UseSegoeMetricsProperty { get; }
+        = DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new (false, OnIconPropertiesChanged));
 
     public Symbol Symbol
     {

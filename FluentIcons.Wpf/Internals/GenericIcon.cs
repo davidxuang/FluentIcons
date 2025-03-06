@@ -12,7 +12,7 @@ namespace FluentIcons.Wpf.Internals;
 public abstract class GenericIcon : FrameworkElement
 {
     public static readonly DependencyProperty IconVariantProperty 
-        = DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), new PropertyMetadata(default(IconVariant), OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), new(default(IconVariant), OnIconPropertiesChanged));
     public static readonly DependencyProperty FontSizeProperty 
         = TextBlock.FontSizeProperty.AddOwner(
             typeof(GenericIcon),

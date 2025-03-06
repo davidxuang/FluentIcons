@@ -24,10 +24,10 @@ public partial class FluentIcon : GenericIcon
         _ => _fontfamilies[size]
     };
 
-    public static DependencyProperty IconProperty
-        => DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIcon), new(Icon.Home, OnIconPropertiesChanged));
-    public static DependencyProperty IconSizeProperty
-        => DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIcon), new(default(IconSize), OnIconPropertiesChanged));
+    public static DependencyProperty IconProperty { get; }
+        = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIcon), new(Icon.Home, OnIconPropertiesChanged));
+    public static DependencyProperty IconSizeProperty { get; }
+        = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIcon), new(default(IconSize), OnIconPropertiesChanged));
 
     public Icon Icon
     {

@@ -9,10 +9,10 @@ namespace FluentIcons.WinUI;
 
 public partial class FluentIconSource : GenericIconSource
 {
-    public static DependencyProperty IconProperty
-        => DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIconSource), new(Icon.Home, OnIconPropertiesChanged));
-    public static DependencyProperty IconSizeProperty
-        => DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIconSource), new(default(IconSize), OnIconPropertiesChanged));
+    public static DependencyProperty IconProperty { get; }
+        = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIconSource), new(Icon.Home, OnIconPropertiesChanged));
+    public static DependencyProperty IconSizeProperty { get; }
+        = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIconSource), new(default(IconSize), OnIconPropertiesChanged));
 
     public Icon Icon
     {

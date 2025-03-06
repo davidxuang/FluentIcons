@@ -16,8 +16,8 @@ public abstract partial class GenericIcon : FontIcon
         "FluentIcons.Uno";
 #endif
 
-    public static DependencyProperty IconVariantProperty
-        => DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), new PropertyMetadata(default(IconVariant), OnIconPropertiesChanged));
+    public static DependencyProperty IconVariantProperty { get; }
+        = DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), new(default(IconVariant), OnIconPropertiesChanged));
 
     public GenericIcon()
     {
