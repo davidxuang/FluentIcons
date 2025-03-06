@@ -18,16 +18,16 @@ git config --global user.name 'Dawei Huang'
 Push-Location .
 try {
     Set-Location $PSScriptRoot
-    $localTag = git describe --tags --abbrev=0
+    $localTag = Select-Xml -Path "$PSScriptRoot/Directory.Build.props" -XPath "//VersionPrefix" | Select-Object -First 1 -ExpandProperty 'Node' | Select-Object -ExpandProperty '#text'
     Write-Host "Local at $localTag"
 
     Set-Location "$PSScriptRoot/seagull-icons/upstream"
     git checkout main
     git pull --ff-only
-    $upstreamTag = git describe --tag --abbrev=0
+    $upstreamTag = Get-Content "$PSScriptRoot/seagull-icons/upstream/packages/svg-icons/package.json" | ConvertFrom-Json | Select-Object -ExpandProperty version
     Write-Host "Upstream at $upstreamTag"
 
-    if (([Version][SemanticVersion]::Parse($localTag)) -ge ([Version][SemanticVersion]::Parse($upstreamTag)) -and -not $Debug) {
+    if (([Version]::Parse($localTag)) -ge ([Version]::Parse($upstreamTag)) -and -not $Debug) {
         return
     }
 
