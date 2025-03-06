@@ -29,19 +29,16 @@ if __name__ == '__main__':
     font['OS/2'].usWinDescent = 0
 
     # modify names
-    family_name = re.sub(r'([a-z])([A-Z])', r'\1 \2', pathlib.Path(sys.argv[1]).stem)
+    family_name = re.sub(r'([a-z])([A-Z])', r'\1 \2', pathlib.Path(sys.argv[1]).stem).replace('-', ' ')
     for name_entry in font['name'].names:
         if name_entry.nameID in [1, 3, 4]:
             name_entry.string = family_name
 
     for cmap_table in font['cmap'].tables:
         # remove temporary codepoints
-        removing = [k for k in cmap_table.cmap.keys() if k > 0 and k < 0xe000]
+        removing = [k for k in cmap_table.cmap.keys() if k >= 0xe0000 and k < 0xf0000]
         for k in removing:
             del cmap_table.cmap[k]
-
-        if 0xf0000 not in cmap_table.cmap:
-            continue
 
         def get_symbol(c : int):
             for symbol, s in symbols.items():
@@ -51,61 +48,51 @@ if __name__ == '__main__':
 
         # map fallback icons
         def fallback(start : int, end : int):
-            for c in range(start, end, 6):
+            for c in range(start, end, 4):
                 regular_defined = c in cmap_table.cmap
                 filled_defined = c + 1 in cmap_table.cmap
-                light_defined = c + 2 in cmap_table.cmap
-                rtl_regular_defined = c + 3 in cmap_table.cmap
-                rtl_filled_defined = c + 4 in cmap_table.cmap
-                rtl_light_defined = c + 5 in cmap_table.cmap
+                color_defined = c + 2 in cmap_table.cmap
+                light_defined = c + 3 in cmap_table.cmap
+                rtl_regular_defined = c + 0x10000 in cmap_table.cmap
+                rtl_filled_defined = c + 0x10001 in cmap_table.cmap
+                rtl_color_defined = c + 0x10002 in cmap_table.cmap
+                rtl_light_defined = c + 0x10003 in cmap_table.cmap
 
-                if (not(regular_defined or filled_defined or light_defined)):
-                    break
+                if not (regular_defined or filled_defined or color_defined or light_defined):
+                    continue
 
-                if (not regular_defined):
+                if not regular_defined:
                     if (filled_defined):
                         cmap_table.cmap[c] = cmap_table.cmap[c + 1]
-                    else:
-                        cmap_table.cmap[c] = cmap_table.cmap[c + 2]
-                if (not filled_defined):
-                    cmap_table.cmap[c + 1] = cmap_table.cmap[c]
-                if (not light_defined):
-                    cmap_table.cmap[c + 2] = cmap_table.cmap[c]
+                if not filled_defined:
+                    if (regular_defined):
+                        cmap_table.cmap[c + 1] = cmap_table.cmap[c]
 
-                if (not rtl_regular_defined):
-                    if rtl_filled_defined:
-                        cmap_table.cmap[c + 3] = cmap_table.cmap[c + 4]
-                    elif rtl_filled_defined:
-                        cmap_table.cmap[c + 3] = cmap_table.cmap[c + 5]
-                    else:
-                        cmap_table.cmap[c + 3] = cmap_table.cmap[c]
-                    if (rtl_filled_defined or rtl_light_defined) and regular_defined:
-                        logging.warning('Regular RTL variant for {} is unexpectedly missing'.format(get_symbol(c)))
-                if (not rtl_filled_defined):
-                    if rtl_regular_defined:
-                        cmap_table.cmap[c + 4] = cmap_table.cmap[c + 3]
-                    elif rtl_filled_defined:
-                        cmap_table.cmap[c + 4] = cmap_table.cmap[c + 5]
-                    else:
-                        cmap_table.cmap[c + 4] = cmap_table.cmap[c + 1]
-                    if (rtl_regular_defined or rtl_light_defined) and filled_defined:
-                        logging.warning('Filled RTL variant for {} is unexpectedly missing'.format(get_symbol(c)))
-                if (not rtl_light_defined):
-                    if rtl_regular_defined:
-                        cmap_table.cmap[c + 5] = cmap_table.cmap[c + 3]
-                    elif rtl_filled_defined:
-                        cmap_table.cmap[c + 5] = cmap_table.cmap[c + 4]
-                    else:
-                        cmap_table.cmap[c + 5] = cmap_table.cmap[c + 2]
-                    if (rtl_regular_defined or rtl_filled_defined) and light_defined:
+                if regular_defined or filled_defined:
+                    if not rtl_regular_defined:
+                        cmap_table.cmap[c + 0x10000] = cmap_table.cmap[c]
+                        if regular_defined and (rtl_filled_defined or rtl_color_defined or rtl_light_defined):
+                            logging.warning('Regular RTL variant for {} is unexpectedly missing'.format(get_symbol(c)))
+                    if not rtl_filled_defined:
+                        cmap_table.cmap[c + 0x10001] = cmap_table.cmap[c + 1]
+                        if filled_defined and (rtl_regular_defined or rtl_color_defined or rtl_light_defined):
+                            logging.warning('Filled RTL variant for {} is unexpectedly missing'.format(get_symbol(c)))
+
+                if color_defined and not rtl_color_defined:
+                    cmap_table.cmap[c + 0x10002] = cmap_table.cmap[c + 2]
+                    if rtl_regular_defined or rtl_filled_defined or rtl_light_defined:
+                        logging.warning('Color RTL variant for {} is unexpectedly missing'.format(get_symbol(c)))
+                if light_defined and not rtl_light_defined:
+                    cmap_table.cmap[c + 0x10003] = cmap_table.cmap[c + 3]
+                    if rtl_regular_defined or rtl_filled_defined or rtl_color_defined:
                         logging.warning('Light RTL variant for {} is unexpectedly missing'.format(get_symbol(c)))
 
-        # fallback(0xe000, 0xf900)
         fallback(0x0f0000, 0x0ffffd)
-        fallback(0x100000, 0x10fffd)
 
         # Segoe Fluent Icons codepoints
-        for codepoint, target in segoe_map.items():
-            cmap_table.cmap[codepoint] = cmap_table.cmap[symbols[target[0]] + target[1]]
+        for codepoint, [symbol, offset] in segoe_map.items():
+            target = symbols[symbol] + offset
+            if target in cmap_table.cmap:
+                cmap_table.cmap[codepoint] = cmap_table.cmap[target]
 
     font.save(sys.argv[1])

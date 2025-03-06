@@ -2,2578 +2,5216 @@ namespace FluentIcons.Common;
 
 public enum Symbol : int
 {
-    AccessTime = 0xF0000,
-    Accessibility = 0xF0006,
-    AccessibilityCheckmark = 0xF000C,
-    AccessibilityError = 0xF0012,
-    AccessibilityMore = 0xF0018,
-    AccessibilityQuestionMark = 0xF001E,
-    Add = 0xF0024,
-    AddCircle = 0xF002A,
-    AddSquare = 0xF0030,
-    AddSquareMultiple = 0xF0036,
-    AddSubtractCircle = 0xF003C,
-    Airplane = 0xF0042,
-    AirplaneLanding = 0xF0048,
-    AirplaneTakeOff = 0xF004E,
-    Album = 0xF0054,
-    AlbumAdd = 0xF005A,
-    Alert = 0xF0060,
-    AlertBadge = 0xF0066,
-    AlertOff = 0xF006C,
-    AlertOn = 0xF0072,
-    AlertSnooze = 0xF0078,
-    AlertUrgent = 0xF007E,
-    AlignBottom = 0xF0084,
-    AlignCenterHorizontal = 0xF008A,
-    AlignCenterVertical = 0xF0090,
-    AlignEndHorizontal = 0xF0096,
-    AlignEndVertical = 0xF009C,
-    AlignLeft = 0xF00A2,
-    AlignRight = 0xF00A8,
-    AlignSpaceAroundHorizontal = 0xF00AE,
-    AlignSpaceAroundVertical = 0xF00B4,
-    AlignSpaceBetweenHorizontal = 0xF00BA,
-    AlignSpaceBetweenVertical = 0xF00C0,
-    AlignSpaceEvenlyHorizontal = 0xF00C6,
-    AlignSpaceEvenlyVertical = 0xF00CC,
-    AlignSpaceFitVertical = 0xF00D2,
-    AlignStartHorizontal = 0xF00D8,
-    AlignStartVertical = 0xF00DE,
-    AlignStraighten = 0xF00E4,
-    AlignStretchHorizontal = 0xF00EA,
-    AlignStretchVertical = 0xF00F0,
-    AlignTop = 0xF00F6,
-    AnimalCat = 0xF00FC,
-    AnimalDog = 0xF0102,
-    AnimalPawPrint = 0xF0108,
-    AnimalRabbit = 0xF010E,
-    AnimalRabbitOff = 0xF0114,
-    AnimalTurtle = 0xF011A,
-    AppFolder = 0xF0120,
-    AppGeneric = 0xF0126,
-    AppRecent = 0xF012C,
-    AppTitle = 0xF0132,
-    ApprovalsApp = 0xF0138,
-    Apps = 0xF013E,
-    AppsAddIn = 0xF0144,
-    AppsList = 0xF014A,
-    AppsListDetail = 0xF0150,
-    AppsSettings = 0xF0156,
-    AppsShield = 0xF015C,
-    Archive = 0xF0162,
-    ArchiveArrowBack = 0xF0168,
-    ArchiveMultiple = 0xF016E,
-    ArchiveSettings = 0xF0174,
-    ArrowAutofitContent = 0xF017A,
-    ArrowAutofitDown = 0xF0180,
-    ArrowAutofitHeight = 0xF0186,
-    ArrowAutofitHeightDotted = 0xF018C,
-    ArrowAutofitHeightIn = 0xF0192,
-    ArrowAutofitUp = 0xF0198,
-    ArrowAutofitWidth = 0xF019E,
-    ArrowAutofitWidthDotted = 0xF01A4,
-    ArrowBetweenDown = 0xF01AA,
-    ArrowBetweenUp = 0xF01B0,
-    ArrowBidirectionalLeftRight = 0xF01B6,
-    ArrowBidirectionalUpDown = 0xF01BC,
-    ArrowBounce = 0xF01C2,
-    ArrowCircleDown = 0xF01C8,
-    ArrowCircleDownDouble = 0xF01CE,
-    ArrowCircleDownRight = 0xF01D4,
-    ArrowCircleDownSplit = 0xF01DA,
-    ArrowCircleDownUp = 0xF01E0,
-    ArrowCircleLeft = 0xF01E6,
-    ArrowCircleRight = 0xF01EC,
-    ArrowCircleUp = 0xF01F2,
-    ArrowCircleUpLeft = 0xF01F8,
-    ArrowCircleUpRight = 0xF01FE,
-    ArrowClockwise = 0xF0204,
-    ArrowClockwiseDashes = 0xF020A,
-    ArrowClockwiseDashesSettings = 0xF0210,
-    ArrowCollapseAll = 0xF0216,
-    ArrowCounterclockwise = 0xF021C,
-    ArrowCounterclockwiseDashes = 0xF0222,
-    ArrowCurveDownLeft = 0xF0228,
-    ArrowCurveDownRight = 0xF022E,
-    ArrowCurveUpLeft = 0xF0234,
-    ArrowCurveUpRight = 0xF023A,
-    ArrowDown = 0xF0240,
-    ArrowDownExclamation = 0xF0246,
-    ArrowDownLeft = 0xF024C,
-    ArrowDownRight = 0xF0252,
-    ArrowDownload = 0xF0258,
-    ArrowDownloadOff = 0xF025E,
-    ArrowEject = 0xF0264,
-    ArrowEnter = 0xF026A,
-    ArrowEnterLeft = 0xF0270,
-    ArrowEnterUp = 0xF0276,
-    ArrowExit = 0xF027C,
-    ArrowExpand = 0xF0282,
-    ArrowExpandAll = 0xF0288,
-    ArrowExport = 0xF028E,
-    ArrowExportUp = 0xF0294,
-    ArrowFit = 0xF029A,
-    ArrowFitIn = 0xF02A0,
-    ArrowFlowDiagonalUpRight = 0xF02A6,
-    ArrowFlowUpRight = 0xF02AC,
-    ArrowFlowUpRightRectangleMultiple = 0xF02B2,
-    ArrowForward = 0xF02B8,
-    ArrowForwardDownLightning = 0xF02BE,
-    ArrowForwardDownPerson = 0xF02C4,
-    ArrowHookDownLeft = 0xF02CA,
-    ArrowHookDownRight = 0xF02D0,
-    ArrowHookUpLeft = 0xF02D6,
-    ArrowHookUpRight = 0xF02DC,
-    ArrowImport = 0xF02E2,
-    ArrowJoin = 0xF02E8,
-    ArrowLeft = 0xF02EE,
-    ArrowMaximize = 0xF02F4,
-    ArrowMaximizeVertical = 0xF02FA,
-    ArrowMinimize = 0xF0300,
-    ArrowMinimizeVertical = 0xF0306,
-    ArrowMove = 0xF030C,
-    ArrowMoveInward = 0xF0312,
-    ArrowNext = 0xF0318,
-    ArrowOutlineDownLeft = 0xF031E,
-    ArrowOutlineUpRight = 0xF0324,
-    ArrowParagraph = 0xF032A,
-    ArrowPrevious = 0xF0330,
-    ArrowRedo = 0xF0336,
-    ArrowRepeat1 = 0xF033C,
-    ArrowRepeatAll = 0xF0342,
-    ArrowRepeatAllOff = 0xF0348,
-    ArrowReply = 0xF034E,
-    ArrowReplyAll = 0xF0354,
-    ArrowReplyDown = 0xF035A,
-    ArrowReset = 0xF0360,
-    ArrowRight = 0xF0366,
-    ArrowRotateClockwise = 0xF036C,
-    ArrowRotateCounterclockwise = 0xF0372,
-    ArrowRouting = 0xF0378,
-    ArrowRoutingRectangleMultiple = 0xF037E,
-    ArrowShuffle = 0xF0384,
-    ArrowShuffleOff = 0xF038A,
-    ArrowSort = 0xF0390,
-    ArrowSortDown = 0xF0396,
-    ArrowSortDownLines = 0xF039C,
-    ArrowSortUp = 0xF03A2,
-    ArrowSortUpLines = 0xF03A8,
-    ArrowSplit = 0xF03AE,
-    ArrowSprint = 0xF03B4,
-    ArrowSquareDown = 0xF03BA,
-    ArrowSquareUpRight = 0xF03C0,
-    ArrowStepBack = 0xF03C6,
-    ArrowStepIn = 0xF03CC,
-    ArrowStepInDiagonalDownLeft = 0xF03D2,
-    ArrowStepInLeft = 0xF03D8,
-    ArrowStepInRight = 0xF03DE,
-    ArrowStepOut = 0xF03E4,
-    ArrowStepOver = 0xF03EA,
-    ArrowSwap = 0xF03F0,
-    ArrowSync = 0xF03F6,
-    ArrowSyncCheckmark = 0xF03FC,
-    ArrowSyncCircle = 0xF0402,
-    ArrowSyncDismiss = 0xF0408,
-    ArrowSyncOff = 0xF040E,
-    ArrowTrending = 0xF0414,
-    ArrowTrendingCheckmark = 0xF041A,
-    ArrowTrendingDown = 0xF0420,
-    ArrowTrendingLines = 0xF0426,
-    ArrowTrendingSettings = 0xF042C,
-    ArrowTrendingSparkle = 0xF0432,
-    ArrowTrendingText = 0xF0438,
-    ArrowTrendingWrench = 0xF043E,
-    ArrowTurnBidirectionalDownRight = 0xF0444,
-    ArrowTurnDownLeft = 0xF044A,
-    ArrowTurnDownRight = 0xF0450,
-    ArrowTurnDownUp = 0xF0456,
-    ArrowTurnLeftDown = 0xF045C,
-    ArrowTurnLeftRight = 0xF0462,
-    ArrowTurnLeftUp = 0xF0468,
-    ArrowTurnRight = 0xF046E,
-    ArrowTurnRightDown = 0xF0474,
-    ArrowTurnRightLeft = 0xF047A,
-    ArrowTurnRightUp = 0xF0480,
-    ArrowTurnUpDown = 0xF0486,
-    ArrowTurnUpLeft = 0xF048C,
-    ArrowUndo = 0xF0492,
-    ArrowUp = 0xF0498,
-    ArrowUpExclamation = 0xF049E,
-    ArrowUpLeft = 0xF04A4,
-    ArrowUpRight = 0xF04AA,
-    ArrowUpRightDashes = 0xF04B0,
-    ArrowUpload = 0xF04B6,
-    ArrowWrap = 0xF04BC,
-    ArrowWrapOff = 0xF04C2,
-    ArrowWrapUpToDown = 0xF04C8,
-    ArrowsBidirectional = 0xF04CE,
-    Attach = 0xF04D4,
-    AttachArrowRight = 0xF04DA,
-    AttachText = 0xF04E0,
-    AutoFit = 0xF04E6,
-    AutoFitHeight = 0xF04EC,
-    AutoFitWidth = 0xF04F2,
-    Autocorrect = 0xF04F8,
-    Autosum = 0xF04FE,
-    Backpack = 0xF0504,
-    BackpackAdd = 0xF050A,
-    Backspace = 0xF0510,
-    Badge = 0xF0516,
-    Balloon = 0xF051C,
-    BarcodeScanner = 0xF0522,
-    Battery0 = 0xF0528,
-    Battery1 = 0xF052E,
-    Battery10 = 0xF0534,
-    Battery2 = 0xF053A,
-    Battery3 = 0xF0540,
-    Battery4 = 0xF0546,
-    Battery5 = 0xF054C,
-    Battery6 = 0xF0552,
-    Battery7 = 0xF0558,
-    Battery8 = 0xF055E,
-    Battery9 = 0xF0564,
-    BatteryCharge = 0xF056A,
-    BatteryCheckmark = 0xF0570,
-    BatterySaver = 0xF0576,
-    BatteryWarning = 0xF057C,
-    Beach = 0xF0582,
-    Beaker = 0xF0588,
-    BeakerAdd = 0xF058E,
-    BeakerDismiss = 0xF0594,
-    BeakerEdit = 0xF059A,
-    BeakerOff = 0xF05A0,
-    BeakerSettings = 0xF05A6,
-    Bed = 0xF05AC,
-    Bench = 0xF05B2,
-    BezierCurveSquare = 0xF05B8,
-    BinFull = 0xF05BE,
-    BinRecycle = 0xF05C4,
-    BinRecycleFull = 0xF05CA,
-    BinderTriangle = 0xF05D0,
-    Bluetooth = 0xF05D6,
-    BluetoothConnected = 0xF05DC,
-    BluetoothDisabled = 0xF05E2,
-    BluetoothSearching = 0xF05E8,
-    Blur = 0xF05EE,
-    Board = 0xF05F4,
-    BoardGames = 0xF05FA,
-    BoardHeart = 0xF0600,
-    BoardSplit = 0xF0606,
-    Book = 0xF060C,
-    BookAdd = 0xF0612,
-    BookArrowClockwise = 0xF0618,
-    BookClock = 0xF061E,
-    BookCoins = 0xF0624,
-    BookCompass = 0xF062A,
-    BookContacts = 0xF0630,
-    BookDatabase = 0xF0636,
-    BookDefault = 0xF063C,
-    BookDismiss = 0xF0642,
-    BookExclamationMark = 0xF0648,
-    BookGlobe = 0xF064E,
-    BookInformation = 0xF0654,
-    BookLetter = 0xF065A,
-    BookNumber = 0xF0660,
-    BookOpen = 0xF0666,
-    BookOpenGlobe = 0xF066C,
-    BookOpenMicrophone = 0xF0672,
-    BookPulse = 0xF0678,
-    BookQuestionMark = 0xF067E,
-    BookSearch = 0xF0684,
-    BookStar = 0xF068A,
-    BookTemplate = 0xF0690,
-    BookTheta = 0xF0696,
-    BookToolbox = 0xF069C,
-    Bookmark = 0xF06A2,
-    BookmarkAdd = 0xF06A8,
-    BookmarkMultiple = 0xF06AE,
-    BookmarkOff = 0xF06B4,
-    BookmarkSearch = 0xF06BA,
-    BorderAll = 0xF06C0,
-    BorderBottom = 0xF06C6,
-    BorderBottomDouble = 0xF06CC,
-    BorderBottomThick = 0xF06D2,
-    BorderInside = 0xF06D8,
-    BorderLeft = 0xF06DE,
-    BorderLeftRight = 0xF06E4,
-    BorderNone = 0xF06EA,
-    BorderOutside = 0xF06F0,
-    BorderOutsideThick = 0xF06F6,
-    BorderRight = 0xF06FC,
-    BorderTop = 0xF0702,
-    BorderTopBottom = 0xF0708,
-    BorderTopBottomDouble = 0xF070E,
-    BorderTopBottomThick = 0xF0714,
-    Bot = 0xF071A,
-    BotAdd = 0xF0720,
-    BotSparkle = 0xF0726,
-    BowTie = 0xF072C,
-    BowlChopsticks = 0xF0732,
-    BowlSalad = 0xF0738,
-    Box = 0xF073E,
-    BoxArrowLeft = 0xF0744,
-    BoxArrowUp = 0xF074A,
-    BoxCheckmark = 0xF0750,
-    BoxDismiss = 0xF0756,
-    BoxEdit = 0xF075C,
-    BoxMultiple = 0xF0762,
-    BoxMultipleArrowLeft = 0xF0768,
-    BoxMultipleArrowRight = 0xF076E,
-    BoxMultipleCheckmark = 0xF0774,
-    BoxMultipleSearch = 0xF077A,
-    BoxSearch = 0xF0780,
-    BoxToolbox = 0xF0786,
-    Braces = 0xF078C,
-    BracesVariable = 0xF0792,
-    Brain = 0xF0798,
-    BrainCircuit = 0xF079E,
-    BrainSparkle = 0xF07A4,
-    Branch = 0xF07AA,
-    BranchCompare = 0xF07B0,
-    BranchFork = 0xF07B6,
-    BranchForkHint = 0xF07BC,
-    BranchForkLink = 0xF07C2,
-    BranchRequest = 0xF07C8,
-    BreakoutRoom = 0xF07CE,
-    Briefcase = 0xF07D4,
-    BriefcaseMedical = 0xF07DA,
-    BriefcaseOff = 0xF07E0,
-    BriefcaseSearch = 0xF07E6,
-    BrightnessHigh = 0xF07EC,
-    BrightnessLow = 0xF07F2,
-    BroadActivityFeed = 0xF07F8,
-    Broom = 0xF07FE,
-    BubbleMultiple = 0xF0804,
-    Bug = 0xF080A,
-    BugArrowCounterclockwise = 0xF0810,
-    BugProhibited = 0xF0816,
-    Building = 0xF081C,
-    BuildingBank = 0xF0822,
-    BuildingBankLink = 0xF0828,
-    BuildingBankToolbox = 0xF082E,
-    BuildingCheckmark = 0xF0834,
-    BuildingDesktop = 0xF083A,
-    BuildingFactory = 0xF0840,
-    BuildingGovernment = 0xF0846,
-    BuildingGovernmentSearch = 0xF084C,
-    BuildingHome = 0xF0852,
-    BuildingLighthouse = 0xF0858,
-    BuildingMosque = 0xF085E,
-    BuildingMultiple = 0xF0864,
-    BuildingPeople = 0xF086A,
-    BuildingRetail = 0xF0870,
-    BuildingRetailMoney = 0xF0876,
-    BuildingRetailMore = 0xF087C,
-    BuildingRetailShield = 0xF0882,
-    BuildingRetailToolbox = 0xF0888,
-    BuildingShop = 0xF088E,
-    BuildingSkyscraper = 0xF0894,
-    BuildingSwap = 0xF089A,
-    BuildingTownhouse = 0xF08A0,
-    Button = 0xF08A6,
-    Calculator = 0xF08AC,
-    CalculatorArrowClockwise = 0xF08B2,
-    CalculatorMultiple = 0xF08B8,
-    Calendar = 0xF08BE,
-    Calendar3Day = 0xF08C4,
-    CalendarAdd = 0xF08CA,
-    CalendarAgenda = 0xF08D0,
-    CalendarArrowCounterclockwise = 0xF08D6,
-    CalendarArrowDown = 0xF08DC,
-    CalendarArrowRepeatAll = 0xF08E2,
-    CalendarArrowRight = 0xF08E8,
-    CalendarAssistant = 0xF08EE,
-    CalendarCancel = 0xF08F4,
-    CalendarChat = 0xF08FA,
-    CalendarCheckmark = 0xF0900,
-    CalendarClock = 0xF0906,
-    CalendarDataBar = 0xF090C,
-    CalendarDate = 0xF0912,
-    CalendarDay = 0xF0918,
-    CalendarEdit = 0xF091E,
-    CalendarEmpty = 0xF0924,
-    CalendarError = 0xF092A,
-    CalendarEye = 0xF0930,
-    CalendarInfo = 0xF0936,
-    CalendarLock = 0xF093C,
-    CalendarMail = 0xF0942,
-    CalendarMention = 0xF0948,
-    CalendarMonth = 0xF094E,
-    CalendarMultiple = 0xF0954,
-    CalendarNote = 0xF095A,
-    CalendarPattern = 0xF0960,
-    CalendarPerson = 0xF0966,
-    CalendarPhone = 0xF096C,
-    CalendarPlay = 0xF0972,
-    CalendarQuestionMark = 0xF0978,
-    CalendarRecord = 0xF097E,
-    CalendarReply = 0xF0984,
-    CalendarSearch = 0xF098A,
-    CalendarSettings = 0xF0990,
-    CalendarShield = 0xF0996,
-    CalendarSparkle = 0xF099C,
-    CalendarStar = 0xF09A2,
-    CalendarSync = 0xF09A8,
-    CalendarTemplate = 0xF09AE,
-    CalendarToday = 0xF09B4,
-    CalendarTodo = 0xF09BA,
-    CalendarToolbox = 0xF09C0,
-    CalendarVideo = 0xF09C6,
-    CalendarWeekNumbers = 0xF09CC,
-    CalendarWeekStart = 0xF09D2,
-    CalendarWorkWeek = 0xF09D8,
-    Call = 0xF09DE,
-    CallAdd = 0xF09E4,
-    CallCheckmark = 0xF09EA,
-    CallConnecting = 0xF09F0,
-    CallDismiss = 0xF09F6,
-    CallEnd = 0xF09FC,
-    CallExclamation = 0xF0A02,
-    CallForward = 0xF0A08,
-    CallInbound = 0xF0A0E,
-    CallMissed = 0xF0A14,
-    CallOutbound = 0xF0A1A,
-    CallPark = 0xF0A20,
-    CallPause = 0xF0A26,
-    CallProhibited = 0xF0A2C,
-    CallTransfer = 0xF0A32,
-    CallWarning = 0xF0A38,
-    CalligraphyPen = 0xF0A3E,
-    CalligraphyPenCheckmark = 0xF0A44,
-    CalligraphyPenError = 0xF0A4A,
-    CalligraphyPenQuestionMark = 0xF0A50,
-    Camera = 0xF0A56,
-    CameraAdd = 0xF0A5C,
-    CameraArrowUp = 0xF0A62,
-    CameraDome = 0xF0A68,
-    CameraEdit = 0xF0A6E,
-    CameraOff = 0xF0A74,
-    CameraSparkles = 0xF0A7A,
-    CameraSwitch = 0xF0A80,
-    CardUi = 0xF0A86,
-    CardUiPortraitFlip = 0xF0A8C,
-    CaretDown = 0xF0A92,
-    CaretDownRight = 0xF0A98,
-    CaretLeft = 0xF0A9E,
-    CaretRight = 0xF0AA4,
-    CaretUp = 0xF0AAA,
-    Cart = 0xF0AB0,
-    Cast = 0xF0AB6,
-    CastMultiple = 0xF0ABC,
-    CatchUp = 0xF0AC2,
-    Cellular3g = 0xF0AC8,
-    Cellular4g = 0xF0ACE,
-    Cellular5g = 0xF0AD4,
-    CellularData1 = 0xF0ADA,
-    CellularData2 = 0xF0AE0,
-    CellularData3 = 0xF0AE6,
-    CellularData4 = 0xF0AEC,
-    CellularData5 = 0xF0AF2,
-    CellularOff = 0xF0AF8,
-    CellularWarning = 0xF0AFE,
-    CenterHorizontal = 0xF0B04,
-    CenterVertical = 0xF0B0A,
-    Certificate = 0xF0B10,
-    Channel = 0xF0B16,
-    ChannelAdd = 0xF0B1C,
-    ChannelAlert = 0xF0B22,
-    ChannelArrowLeft = 0xF0B28,
-    ChannelDismiss = 0xF0B2E,
-    ChannelShare = 0xF0B34,
-    ChannelSubtract = 0xF0B3A,
-    ChartMultiple = 0xF0B40,
-    ChartPerson = 0xF0B46,
-    Chat = 0xF0B4C,
-    ChatAdd = 0xF0B52,
-    ChatArrowBack = 0xF0B58,
-    ChatArrowBackDown = 0xF0B5E,
-    ChatArrowDoubleBack = 0xF0B64,
-    ChatBubblesQuestion = 0xF0B6A,
-    ChatCursor = 0xF0B70,
-    ChatDismiss = 0xF0B76,
-    ChatEmpty = 0xF0B7C,
-    ChatHelp = 0xF0B82,
-    ChatHistory = 0xF0B88,
-    ChatLock = 0xF0B8E,
-    ChatMail = 0xF0B94,
-    ChatMultiple = 0xF0B9A,
-    ChatMultipleHeart = 0xF0BA0,
-    ChatOff = 0xF0BA6,
-    ChatSettings = 0xF0BAC,
-    ChatSparkle = 0xF0BB2,
-    ChatVideo = 0xF0BB8,
-    ChatWarning = 0xF0BBE,
-    Check = 0xF0BC4,
-    Checkbox1 = 0xF0BCA,
-    Checkbox2 = 0xF0BD0,
-    CheckboxArrowRight = 0xF0BD6,
-    CheckboxChecked = 0xF0BDC,
-    CheckboxCheckedSync = 0xF0BE2,
-    CheckboxIndeterminate = 0xF0BE8,
-    CheckboxPerson = 0xF0BEE,
-    CheckboxUnchecked = 0xF0BF4,
-    CheckboxWarning = 0xF0BFA,
-    Checkmark = 0xF0C00,
-    CheckmarkCircle = 0xF0C06,
-    CheckmarkCircleSquare = 0xF0C0C,
-    CheckmarkCircleWarning = 0xF0C12,
-    CheckmarkLock = 0xF0C18,
-    CheckmarkNote = 0xF0C1E,
-    CheckmarkSquare = 0xF0C24,
-    CheckmarkStarburst = 0xF0C2A,
-    CheckmarkUnderlineCircle = 0xF0C30,
-    Chess = 0xF0C36,
-    ChevronCircleDown = 0xF0C3C,
-    ChevronCircleLeft = 0xF0C42,
-    ChevronCircleRight = 0xF0C48,
-    ChevronCircleUp = 0xF0C4E,
-    ChevronDoubleDown = 0xF0C54,
-    ChevronDoubleLeft = 0xF0C5A,
-    ChevronDoubleRight = 0xF0C60,
-    ChevronDoubleUp = 0xF0C66,
-    ChevronDown = 0xF0C6C,
-    ChevronDownUp = 0xF0C72,
-    ChevronLeft = 0xF0C78,
-    ChevronRight = 0xF0C7E,
-    ChevronUp = 0xF0C84,
-    ChevronUpDown = 0xF0C8A,
-    Circle = 0xF0C90,
-    CircleEdit = 0xF0C96,
-    CircleEraser = 0xF0C9C,
-    CircleHalfFill = 0xF0CA2,
-    CircleHighlight = 0xF0CA8,
-    CircleHint = 0xF0CAE,
-    CircleHintCursor = 0xF0CB4,
-    CircleHintDismiss = 0xF0CBA,
-    CircleHintHalfVertical = 0xF0CC0,
-    CircleImage = 0xF0CC6,
-    CircleLine = 0xF0CCC,
-    CircleMultipleConcentric = 0xF0CD2,
-    CircleMultipleHintCheckmark = 0xF0CD8,
-    CircleMultipleSubtractCheckmark = 0xF0CDE,
-    CircleOff = 0xF0CE4,
-    CircleShadow = 0xF0CEA,
-    CircleSmall = 0xF0CF0,
-    CircleSparkle = 0xF0CF6,
-    City = 0xF0CFC,
-    Class = 0xF0D02,
-    Classification = 0xF0D08,
-    ClearFormatting = 0xF0D0E,
-    Clipboard = 0xF0D14,
-    Clipboard3Day = 0xF0D1A,
-    ClipboardArrowRight = 0xF0D20,
-    ClipboardBrush = 0xF0D26,
-    ClipboardBulletList = 0xF0D2C,
-    ClipboardCheckmark = 0xF0D32,
-    ClipboardClock = 0xF0D38,
-    ClipboardCode = 0xF0D3E,
-    ClipboardDataBar = 0xF0D44,
-    ClipboardDay = 0xF0D4A,
-    ClipboardEdit = 0xF0D50,
-    ClipboardError = 0xF0D56,
-    ClipboardHeart = 0xF0D5C,
-    ClipboardImage = 0xF0D62,
-    ClipboardLetter = 0xF0D68,
-    ClipboardLink = 0xF0D6E,
-    ClipboardMathFormula = 0xF0D74,
-    ClipboardMonth = 0xF0D7A,
-    ClipboardMore = 0xF0D80,
-    ClipboardNote = 0xF0D86,
-    ClipboardNumber123 = 0xF0D8C,
-    ClipboardPaste = 0xF0D92,
-    ClipboardPulse = 0xF0D98,
-    ClipboardSearch = 0xF0D9E,
-    ClipboardSettings = 0xF0DA4,
-    ClipboardTask = 0xF0DAA,
-    ClipboardTaskAdd = 0xF0DB0,
-    ClipboardTaskList = 0xF0DB6,
-    ClipboardText = 0xF0DBC,
-    ClipboardTextEdit = 0xF0DC2,
-    Clock = 0xF0DC8,
-    ClockAlarm = 0xF0DCE,
-    ClockArrowDownload = 0xF0DD4,
-    ClockBill = 0xF0DDA,
-    ClockDismiss = 0xF0DE0,
-    ClockLock = 0xF0DE6,
-    ClockPause = 0xF0DEC,
-    ClockToolbox = 0xF0DF2,
-    ClosedCaption = 0xF0DF8,
-    ClosedCaptionOff = 0xF0DFE,
-    ClothesHanger = 0xF0E04,
-    Cloud = 0xF0E0A,
-    CloudAdd = 0xF0E10,
-    CloudArchive = 0xF0E16,
-    CloudArrowDown = 0xF0E1C,
-    CloudArrowRight = 0xF0E22,
-    CloudArrowUp = 0xF0E28,
-    CloudBeaker = 0xF0E2E,
-    CloudBidirectional = 0xF0E34,
-    CloudCheckmark = 0xF0E3A,
-    CloudCube = 0xF0E40,
-    CloudDatabase = 0xF0E46,
-    CloudDesktop = 0xF0E4C,
-    CloudDismiss = 0xF0E52,
-    CloudEdit = 0xF0E58,
-    CloudError = 0xF0E5E,
-    CloudFlow = 0xF0E64,
-    CloudLink = 0xF0E6A,
-    CloudOff = 0xF0E70,
-    CloudSwap = 0xF0E76,
-    CloudSync = 0xF0E7C,
-    CloudWords = 0xF0E82,
-    Clover = 0xF0E88,
-    Code = 0xF0E8E,
-    CodeBlock = 0xF0E94,
-    CodeCircle = 0xF0E9A,
-    CodeText = 0xF0EA0,
-    CodeTextEdit = 0xF0EA6,
-    CoinMultiple = 0xF0EAC,
-    CoinStack = 0xF0EB2,
-    Collections = 0xF0EB8,
-    CollectionsAdd = 0xF0EBE,
-    Color = 0xF0EC4,
-    ColorBackground = 0xF0ECA,
-    ColorBackgroundAccent = 0xF0ED0,
-    ColorFill = 0xF0ED6,
-    ColorFillAccent = 0xF0EDC,
-    ColorLine = 0xF0EE2,
-    ColorLineAccent = 0xF0EE8,
-    Column = 0xF0EEE,
-    ColumnArrowRight = 0xF0EF4,
-    ColumnDoubleCompare = 0xF0EFA,
-    ColumnEdit = 0xF0F00,
-    ColumnSingleCompare = 0xF0F06,
-    ColumnTriple = 0xF0F0C,
-    ColumnTripleEdit = 0xF0F12,
-    Comma = 0xF0F18,
-    Comment = 0xF0F1E,
-    CommentAdd = 0xF0F24,
-    CommentArrowLeft = 0xF0F2A,
-    CommentArrowRight = 0xF0F30,
-    CommentBadge = 0xF0F36,
-    CommentCheckmark = 0xF0F3C,
-    CommentDismiss = 0xF0F42,
-    CommentEdit = 0xF0F48,
-    CommentError = 0xF0F4E,
-    CommentLightning = 0xF0F54,
-    CommentLink = 0xF0F5A,
-    CommentMention = 0xF0F60,
-    CommentMultiple = 0xF0F66,
-    CommentMultipleCheckmark = 0xF0F6C,
-    CommentMultipleLink = 0xF0F72,
-    CommentMultipleMention = 0xF0F78,
-    CommentNote = 0xF0F7E,
-    CommentOff = 0xF0F84,
-    CommentQuote = 0xF0F8A,
-    CommentText = 0xF0F90,
-    Communication = 0xF0F96,
-    CommunicationPerson = 0xF0F9C,
-    CommunicationShield = 0xF0FA2,
-    CompassNorthwest = 0xF0FA8,
-    Compose = 0xF0FAE,
-    ConferenceRoom = 0xF0FB4,
-    Connected = 0xF0FBA,
-    Connector = 0xF0FC0,
-    ContactCard = 0xF0FC6,
-    ContactCardGroup = 0xF0FCC,
-    ContactCardLink = 0xF0FD2,
-    ContactCardRibbon = 0xF0FD8,
-    ContentSettings = 0xF0FDE,
-    ContentView = 0xF0FE4,
-    ContentViewGallery = 0xF0FEA,
-    ContentViewGalleryLightning = 0xF0FF0,
-    ContractDownLeft = 0xF0FF6,
-    ContractUpRight = 0xF0FFC,
-    ControlButton = 0xF1002,
-    ConvertRange = 0xF1008,
-    Cookies = 0xF100E,
-    Copy = 0xF1014,
-    CopyAdd = 0xF101A,
-    CopyArrowRight = 0xF1020,
-    CopySelect = 0xF1026,
-    Couch = 0xF102C,
-    CreditCardClock = 0xF1032,
-    CreditCardPerson = 0xF1038,
-    CreditCardToolbox = 0xF103E,
-    Crop = 0xF1044,
-    CropArrowRotate = 0xF104A,
-    CropInterim = 0xF1050,
-    CropInterimOff = 0xF1056,
-    Crown = 0xF105C,
-    Cube = 0xF1062,
-    CubeAdd = 0xF1068,
-    CubeArrowCurveDown = 0xF106E,
-    CubeLink = 0xF1074,
-    CubeMultiple = 0xF107A,
-    CubeQuick = 0xF1080,
-    CubeRotate = 0xF1086,
-    CubeSync = 0xF108C,
-    CubeTree = 0xF1092,
-    CurrencyDollarEuro = 0xF1098,
-    CurrencyDollarRupee = 0xF109E,
-    Cursor = 0xF10A4,
-    CursorClick = 0xF10AA,
-    CursorHover = 0xF10B0,
-    CursorHoverOff = 0xF10B6,
-    CursorProhibited = 0xF10BC,
-    Cut = 0xF10C2,
-    DarkTheme = 0xF10C8,
-    DataArea = 0xF10CE,
-    DataBarHorizontal = 0xF10D4,
-    DataBarVertical = 0xF10DA,
-    DataBarVerticalAdd = 0xF10E0,
-    DataBarVerticalArrowDown = 0xF10E6,
-    DataBarVerticalAscending = 0xF10EC,
-    DataBarVerticalStar = 0xF10F2,
-    DataFunnel = 0xF10F8,
-    DataHistogram = 0xF10FE,
-    DataLine = 0xF1104,
-    DataPie = 0xF110A,
-    DataScatter = 0xF1110,
-    DataSunburst = 0xF1116,
-    DataTreemap = 0xF111C,
-    DataTrending = 0xF1122,
-    DataUsage = 0xF1128,
-    DataUsageCheckmark = 0xF112E,
-    DataUsageEdit = 0xF1134,
-    DataUsageSettings = 0xF113A,
-    DataUsageToolbox = 0xF1140,
-    DataWaterfall = 0xF1146,
-    DataWhisker = 0xF114C,
-    Database = 0xF1152,
-    DatabaseArrowDown = 0xF1158,
-    DatabaseArrowRight = 0xF115E,
-    DatabaseArrowUp = 0xF1164,
-    DatabaseCheckmark = 0xF116A,
-    DatabaseLightning = 0xF1170,
-    DatabaseLink = 0xF1176,
-    DatabaseMultiple = 0xF117C,
-    DatabasePerson = 0xF1182,
-    DatabasePlugConnected = 0xF1188,
-    DatabaseSearch = 0xF118E,
-    DatabaseSwitch = 0xF1194,
-    DatabaseWarning = 0xF119A,
-    DatabaseWindow = 0xF11A0,
-    DecimalArrowLeft = 0xF11A6,
-    DecimalArrowRight = 0xF11AC,
-    Delete = 0xF11B2,
-    DeleteArrowBack = 0xF11B8,
-    DeleteDismiss = 0xF11BE,
-    DeleteLines = 0xF11C4,
-    DeleteOff = 0xF11CA,
-    Dentist = 0xF11D0,
-    DesignIdeas = 0xF11D6,
-    Desk = 0xF11DC,
-    Desktop = 0xF11E2,
-    DesktopArrowDown = 0xF11E8,
-    DesktopArrowRight = 0xF11EE,
-    DesktopCheckmark = 0xF11F4,
-    DesktopCursor = 0xF11FA,
-    DesktopEdit = 0xF1200,
-    DesktopFlow = 0xF1206,
-    DesktopKeyboard = 0xF120C,
-    DesktopMac = 0xF1212,
-    DesktopOff = 0xF1218,
-    DesktopPulse = 0xF121E,
-    DesktopSignal = 0xF1224,
-    DesktopSpeaker = 0xF122A,
-    DesktopSpeakerOff = 0xF1230,
-    DesktopSync = 0xF1236,
-    DesktopToolbox = 0xF123C,
-    DesktopTower = 0xF1242,
-    DeveloperBoard = 0xF1248,
-    DeveloperBoardLightning = 0xF124E,
-    DeveloperBoardLightningToolbox = 0xF1254,
-    DeveloperBoardSearch = 0xF125A,
-    DeviceEq = 0xF1260,
-    DeviceMeetingRoom = 0xF1266,
-    DeviceMeetingRoomRemote = 0xF126C,
-    Diagram = 0xF1272,
-    Dialpad = 0xF1278,
-    DialpadOff = 0xF127E,
-    DialpadQuestionMark = 0xF1284,
-    Diamond = 0xF128A,
-    Directions = 0xF1290,
-    Dishwasher = 0xF1296,
-    Dismiss = 0xF129C,
-    DismissCircle = 0xF12A2,
-    DismissSquare = 0xF12A8,
-    DismissSquareMultiple = 0xF12AE,
-    Diversity = 0xF12B4,
-    DividerShort = 0xF12BA,
-    DividerTall = 0xF12C0,
-    Dock = 0xF12C6,
-    DockRow = 0xF12CC,
-    Doctor = 0xF12D2,
-    Document = 0xF12D8,
-    Document100 = 0xF12DE,
-    DocumentAdd = 0xF12E4,
-    DocumentArrowDown = 0xF12EA,
-    DocumentArrowLeft = 0xF12F0,
-    DocumentArrowRight = 0xF12F6,
-    DocumentArrowUp = 0xF12FC,
-    DocumentBorder = 0xF1302,
-    DocumentBorderPrint = 0xF1308,
-    DocumentBriefcase = 0xF130E,
-    DocumentBulletList = 0xF1314,
-    DocumentBulletListArrowLeft = 0xF131A,
-    DocumentBulletListClock = 0xF1320,
-    DocumentBulletListCube = 0xF1326,
-    DocumentBulletListMultiple = 0xF132C,
-    DocumentBulletListOff = 0xF1332,
-    DocumentCatchUp = 0xF1338,
-    DocumentCheckmark = 0xF133E,
-    DocumentChevronDouble = 0xF1344,
-    DocumentCopy = 0xF134A,
-    DocumentCss = 0xF1350,
-    DocumentCube = 0xF1356,
-    DocumentData = 0xF135C,
-    DocumentDataLink = 0xF1362,
-    DocumentDataLock = 0xF1368,
-    DocumentDatabase = 0xF136E,
-    DocumentDismiss = 0xF1374,
-    DocumentEdit = 0xF137A,
-    DocumentEndnote = 0xF1380,
-    DocumentError = 0xF1386,
-    DocumentFit = 0xF138C,
-    DocumentFlowchart = 0xF1392,
-    DocumentFolder = 0xF1398,
-    DocumentFooter = 0xF139E,
-    DocumentFooterDismiss = 0xF13A4,
-    DocumentGlobe = 0xF13AA,
-    DocumentHeader = 0xF13B0,
-    DocumentHeaderArrowDown = 0xF13B6,
-    DocumentHeaderDismiss = 0xF13BC,
-    DocumentHeaderFooter = 0xF13C2,
-    DocumentHeart = 0xF13C8,
-    DocumentHeartPulse = 0xF13CE,
-    DocumentImage = 0xF13D4,
-    DocumentJava = 0xF13DA,
-    DocumentJavascript = 0xF13E0,
-    DocumentKey = 0xF13E6,
-    DocumentLandscape = 0xF13EC,
-    DocumentLandscapeData = 0xF13F2,
-    DocumentLandscapeSplit = 0xF13F8,
-    DocumentLandscapeSplitHint = 0xF13FE,
-    DocumentLightning = 0xF1404,
-    DocumentLink = 0xF140A,
-    DocumentLock = 0xF1410,
-    DocumentMargins = 0xF1416,
-    DocumentMention = 0xF141C,
-    DocumentMultiple = 0xF1422,
-    DocumentMultiplePercent = 0xF1428,
-    DocumentMultipleProhibited = 0xF142E,
-    DocumentMultipleSync = 0xF1434,
-    DocumentOnePage = 0xF143A,
-    DocumentOnePageAdd = 0xF1440,
-    DocumentOnePageColumns = 0xF1446,
-    DocumentOnePageLink = 0xF144C,
-    DocumentOnePageMultiple = 0xF1452,
-    DocumentOnePageMultipleSparkle = 0xF1458,
-    DocumentOnePageSparkle = 0xF145E,
-    DocumentPageBottomCenter = 0xF1464,
-    DocumentPageBottomLeft = 0xF146A,
-    DocumentPageBottomRight = 0xF1470,
-    DocumentPageBreak = 0xF1476,
-    DocumentPageNumber = 0xF147C,
-    DocumentPageTopCenter = 0xF1482,
-    DocumentPageTopLeft = 0xF1488,
-    DocumentPageTopRight = 0xF148E,
-    DocumentPdf = 0xF1494,
-    DocumentPercent = 0xF149A,
-    DocumentPerson = 0xF14A0,
-    DocumentPill = 0xF14A6,
-    DocumentPrint = 0xF14AC,
-    DocumentProhibited = 0xF14B2,
-    DocumentQuestionMark = 0xF14B8,
-    DocumentQueue = 0xF14BE,
-    DocumentQueueAdd = 0xF14C4,
-    DocumentQueueMultiple = 0xF14CA,
-    DocumentRibbon = 0xF14D0,
-    DocumentSass = 0xF14D6,
-    DocumentSave = 0xF14DC,
-    DocumentSearch = 0xF14E2,
-    DocumentSettings = 0xF14E8,
-    DocumentSignature = 0xF14EE,
-    DocumentSparkle = 0xF14F4,
-    DocumentSplitHint = 0xF14FA,
-    DocumentSplitHintOff = 0xF1500,
-    DocumentSync = 0xF1506,
-    DocumentTable = 0xF150C,
-    DocumentTableArrowRight = 0xF1512,
-    DocumentTableCheckmark = 0xF1518,
-    DocumentTableCube = 0xF151E,
-    DocumentTableSearch = 0xF1524,
-    DocumentTableTruck = 0xF152A,
-    DocumentTarget = 0xF1530,
-    DocumentText = 0xF1536,
-    DocumentTextClock = 0xF153C,
-    DocumentTextExtract = 0xF1542,
-    DocumentTextLink = 0xF1548,
-    DocumentTextToolbox = 0xF154E,
-    DocumentToolbox = 0xF1554,
-    DocumentWidth = 0xF155A,
-    DocumentYml = 0xF1560,
-    Door = 0xF1566,
-    DoorArrowLeft = 0xF156C,
-    DoorArrowRight = 0xF1572,
-    DoorTag = 0xF1578,
-    DoubleSwipeDown = 0xF157E,
-    DoubleSwipeUp = 0xF1584,
-    DoubleTapSwipeDown = 0xF158A,
-    DoubleTapSwipeUp = 0xF1590,
-    Drafts = 0xF1596,
-    Drag = 0xF159C,
-    DrawImage = 0xF15A2,
-    DrawShape = 0xF15A8,
-    DrawText = 0xF15AE,
-    Drawer = 0xF15B4,
-    DrawerAdd = 0xF15BA,
-    DrawerArrowDownload = 0xF15C0,
-    DrawerDismiss = 0xF15C6,
-    DrawerPlay = 0xF15CC,
-    DrawerSubtract = 0xF15D2,
-    DrinkBeer = 0xF15D8,
-    DrinkBottle = 0xF15DE,
-    DrinkBottleOff = 0xF15E4,
-    DrinkCoffee = 0xF15EA,
-    DrinkMargarita = 0xF15F0,
-    DrinkToGo = 0xF15F6,
-    DrinkWine = 0xF15FC,
-    DriveTrain = 0xF1602,
-    Drop = 0xF1608,
-    DualScreen = 0xF160E,
-    DualScreenAdd = 0xF1614,
-    DualScreenArrowRight = 0xF161A,
-    DualScreenArrowUp = 0xF1620,
-    DualScreenClock = 0xF1626,
-    DualScreenClosedAlert = 0xF162C,
-    DualScreenDesktop = 0xF1632,
-    DualScreenDismiss = 0xF1638,
-    DualScreenGroup = 0xF163E,
-    DualScreenHeader = 0xF1644,
-    DualScreenLock = 0xF164A,
-    DualScreenMirror = 0xF1650,
-    DualScreenPagination = 0xF1656,
-    DualScreenSettings = 0xF165C,
-    DualScreenSpan = 0xF1662,
-    DualScreenSpeaker = 0xF1668,
-    DualScreenStatusBar = 0xF166E,
-    DualScreenTablet = 0xF1674,
-    DualScreenUpdate = 0xF167A,
-    DualScreenVerticalScroll = 0xF1680,
-    DualScreenVibrate = 0xF1686,
-    Dumbbell = 0xF168C,
-    Dust = 0xF1692,
-    Earth = 0xF1698,
-    EarthLeaf = 0xF169E,
-    Edit = 0xF16A4,
-    EditArrowBack = 0xF16AA,
-    EditLineHorizontal3 = 0xF16B0,
-    EditLock = 0xF16B6,
-    EditOff = 0xF16BC,
-    EditPerson = 0xF16C2,
-    EditProhibited = 0xF16C8,
-    EditSettings = 0xF16CE,
-    Elevator = 0xF16D4,
-    Emoji = 0xF16DA,
-    EmojiAdd = 0xF16E0,
-    EmojiAngry = 0xF16E6,
-    EmojiEdit = 0xF16EC,
-    EmojiHand = 0xF16F2,
-    EmojiHint = 0xF16F8,
-    EmojiLaugh = 0xF16FE,
-    EmojiMeh = 0xF1704,
-    EmojiMeme = 0xF170A,
-    EmojiMultiple = 0xF1710,
-    EmojiSad = 0xF1716,
-    EmojiSadSlight = 0xF171C,
-    EmojiSmileSlight = 0xF1722,
-    EmojiSparkle = 0xF1728,
-    EmojiSurprise = 0xF172E,
-    Engine = 0xF1734,
-    EqualCircle = 0xF173A,
-    EqualOff = 0xF1740,
-    Eraser = 0xF1746,
-    EraserMedium = 0xF174C,
-    EraserSegment = 0xF1752,
-    EraserSmall = 0xF1758,
-    EraserTool = 0xF175E,
-    ErrorCircle = 0xF1764,
-    ErrorCircleSettings = 0xF176A,
-    ExpandUpLeft = 0xF1770,
-    ExpandUpRight = 0xF1776,
-    ExtendedDock = 0xF177C,
-    Eye = 0xF1782,
-    EyeLines = 0xF1788,
-    EyeOff = 0xF178E,
-    EyeTracking = 0xF1794,
-    EyeTrackingOff = 0xF179A,
-    Eyedropper = 0xF17A0,
-    EyedropperOff = 0xF17A6,
-    FStop = 0xF17AC,
-    FastAcceleration = 0xF17B2,
-    FastForward = 0xF17B8,
-    Fax = 0xF17BE,
-    Feed = 0xF17C4,
-    Filmstrip = 0xF17CA,
-    FilmstripImage = 0xF17D0,
-    FilmstripPlay = 0xF17D6,
-    FilmstripSplit = 0xF17DC,
-    Filter = 0xF17E2,
-    FilterAdd = 0xF17E8,
-    FilterDismiss = 0xF17EE,
-    FilterSync = 0xF17F4,
-    Fingerprint = 0xF17FA,
-    Fire = 0xF1800,
-    Fireplace = 0xF1806,
-    FixedWidth = 0xF180C,
-    Flag = 0xF1812,
-    FlagCheckered = 0xF1818,
-    FlagClock = 0xF181E,
-    FlagOff = 0xF1824,
-    FlagPride = 0xF182A,
-    FlagPrideIntersexInclusiveProgress = 0xF1830,
-    FlagPridePhiladelphia = 0xF1836,
-    FlagPrideProgress = 0xF183C,
-    Flash = 0xF1842,
-    FlashAdd = 0xF1848,
-    FlashAuto = 0xF184E,
-    FlashCheckmark = 0xF1854,
-    FlashFlow = 0xF185A,
-    FlashOff = 0xF1860,
-    FlashPlay = 0xF1866,
-    FlashSettings = 0xF186C,
-    FlashSparkle = 0xF1872,
-    Flashlight = 0xF1878,
-    FlashlightOff = 0xF187E,
-    FlipHorizontal = 0xF1884,
-    FlipVertical = 0xF188A,
-    Flow = 0xF1890,
-    Flowchart = 0xF1896,
-    FlowchartCircle = 0xF189C,
-    Fluent = 0xF18A2,
-    Fluid = 0xF18A8,
-    Folder = 0xF18AE,
-    FolderAdd = 0xF18B4,
-    FolderArrowLeft = 0xF18BA,
-    FolderArrowRight = 0xF18C0,
-    FolderArrowUp = 0xF18C6,
-    FolderBriefcase = 0xF18CC,
-    FolderDocument = 0xF18D2,
-    FolderGlobe = 0xF18D8,
-    FolderLightning = 0xF18DE,
-    FolderLink = 0xF18E4,
-    FolderList = 0xF18EA,
-    FolderMail = 0xF18F0,
-    FolderOpen = 0xF18F6,
-    FolderOpenDown = 0xF18FC,
-    FolderOpenVertical = 0xF1902,
-    FolderPeople = 0xF1908,
-    FolderPerson = 0xF190E,
-    FolderProhibited = 0xF1914,
-    FolderSearch = 0xF191A,
-    FolderSwap = 0xF1920,
-    FolderSync = 0xF1926,
-    FolderZip = 0xF192C,
-    FontDecrease = 0xF1932,
-    FontIncrease = 0xF1938,
-    FontSpaceTrackingIn = 0xF193E,
-    FontSpaceTrackingOut = 0xF1944,
-    Food = 0xF194A,
-    FoodApple = 0xF1950,
-    FoodCake = 0xF1956,
-    FoodCarrot = 0xF195C,
-    FoodChickenLeg = 0xF1962,
-    FoodEgg = 0xF1968,
-    FoodFish = 0xF196E,
-    FoodGrains = 0xF1974,
-    FoodPizza = 0xF197A,
-    FoodToast = 0xF1980,
-    Form = 0xF1986,
-    FormMultiple = 0xF198C,
-    FormNew = 0xF1992,
-    FormSparkle = 0xF1998,
-    Fps120 = 0xF199E,
-    Fps240 = 0xF19A4,
-    Fps30 = 0xF19AA,
-    Fps60 = 0xF19B0,
-    Fps960 = 0xF19B6,
-    Frame = 0xF19BC,
-    FullScreenMaximize = 0xF19C2,
-    FullScreenMinimize = 0xF19C8,
-    GameChat = 0xF19CE,
-    Games = 0xF19D4,
-    GanttChart = 0xF19DA,
-    Gas = 0xF19E0,
-    GasPump = 0xF19E6,
-    Gather = 0xF19EC,
-    Gauge = 0xF19F2,
-    GaugeAdd = 0xF19F8,
-    Gavel = 0xF19FE,
-    GavelProhibited = 0xF1A04,
-    Gesture = 0xF1A0A,
-    Gif = 0xF1A10,
-    Gift = 0xF1A16,
-    GiftCard = 0xF1A1C,
-    GiftCardAdd = 0xF1A22,
-    GiftCardArrowRight = 0xF1A28,
-    GiftCardMoney = 0xF1A2E,
-    GiftCardMultiple = 0xF1A34,
-    GiftOpen = 0xF1A3A,
-    Glance = 0xF1A40,
-    GlanceHorizontal = 0xF1A46,
-    GlanceHorizontalSparkles = 0xF1A4C,
-    Glasses = 0xF1A52,
-    GlassesOff = 0xF1A58,
-    Globe = 0xF1A5E,
-    GlobeAdd = 0xF1A64,
-    GlobeArrowForward = 0xF1A6A,
-    GlobeArrowUp = 0xF1A70,
-    GlobeClock = 0xF1A76,
-    GlobeDesktop = 0xF1A7C,
-    GlobeError = 0xF1A82,
-    GlobeLocation = 0xF1A88,
-    GlobeOff = 0xF1A8E,
-    GlobePerson = 0xF1A94,
-    GlobeProhibited = 0xF1A9A,
-    GlobeSearch = 0xF1AA0,
-    GlobeShield = 0xF1AA6,
-    GlobeStar = 0xF1AAC,
-    GlobeSurface = 0xF1AB2,
-    GlobeSync = 0xF1AB8,
-    GlobeVideo = 0xF1ABE,
-    GlobeWarning = 0xF1AC4,
-    Grid = 0xF1ACA,
-    GridDots = 0xF1AD0,
-    GridKanban = 0xF1AD6,
-    Group = 0xF1ADC,
-    GroupDismiss = 0xF1AE2,
-    GroupList = 0xF1AE8,
-    GroupReturn = 0xF1AEE,
-    Guardian = 0xF1AF4,
-    Guest = 0xF1AFA,
-    GuestAdd = 0xF1B00,
-    Guitar = 0xF1B06,
-    HandDraw = 0xF1B0C,
-    HandLeft = 0xF1B12,
-    HandLeftChat = 0xF1B18,
-    HandOpenHeart = 0xF1B1E,
-    HandPoint = 0xF1B24,
-    HandRight = 0xF1B2A,
-    HandRightOff = 0xF1B30,
-    HandWave = 0xF1B36,
-    Handshake = 0xF1B3C,
-    HapticStrong = 0xF1B42,
-    HapticWeak = 0xF1B48,
-    HardDrive = 0xF1B4E,
-    HatGraduation = 0xF1B54,
-    HatGraduationAdd = 0xF1B5A,
-    HatGraduationSparkle = 0xF1B60,
-    Hd = 0xF1B66,
-    HdOff = 0xF1B6C,
-    Hdr = 0xF1B72,
-    HdrOff = 0xF1B78,
-    Headphones = 0xF1B7E,
-    HeadphonesSoundWave = 0xF1B84,
-    Headset = 0xF1B8A,
-    HeadsetAdd = 0xF1B90,
-    HeadsetVr = 0xF1B96,
-    Heart = 0xF1B9C,
-    HeartBroken = 0xF1BA2,
-    HeartCircle = 0xF1BA8,
-    HeartCircleHint = 0xF1BAE,
-    HeartOff = 0xF1BB4,
-    HeartPulse = 0xF1BBA,
-    HeartPulseCheckmark = 0xF1BC0,
-    HeartPulseError = 0xF1BC6,
-    HeartPulseWarning = 0xF1BCC,
-    Hexagon = 0xF1BD2,
-    HexagonSparkle = 0xF1BD8,
-    HexagonThree = 0xF1BDE,
-    Highlight = 0xF1BE4,
-    HighlightAccent = 0xF1BEA,
-    HighlightLink = 0xF1BF0,
-    Highway = 0xF1BF6,
-    History = 0xF1BFC,
-    HistoryDismiss = 0xF1C02,
-    Home = 0xF1C08,
-    HomeAdd = 0xF1C0E,
-    HomeCheckmark = 0xF1C14,
-    HomeDatabase = 0xF1C1A,
-    HomeEmpty = 0xF1C20,
-    HomeGarage = 0xF1C26,
-    HomeHeart = 0xF1C2C,
-    HomeMore = 0xF1C32,
-    HomePerson = 0xF1C38,
-    HomeSplit = 0xF1C3E,
-    Hourglass = 0xF1C44,
-    HourglassHalf = 0xF1C4A,
-    HourglassOneQuarter = 0xF1C50,
-    HourglassThreeQuarter = 0xF1C56,
-    Icons = 0xF1C5C,
-    Image = 0xF1C62,
-    ImageAdd = 0xF1C68,
-    ImageAltText = 0xF1C6E,
-    ImageArrowBack = 0xF1C74,
-    ImageArrowCounterclockwise = 0xF1C7A,
-    ImageArrowForward = 0xF1C80,
-    ImageBorder = 0xF1C86,
-    ImageCircle = 0xF1C8C,
-    ImageCopy = 0xF1C92,
-    ImageEdit = 0xF1C98,
-    ImageGlobe = 0xF1C9E,
-    ImageMultiple = 0xF1CA4,
-    ImageMultipleOff = 0xF1CAA,
-    ImageOff = 0xF1CB0,
-    ImageProhibited = 0xF1CB6,
-    ImageReflection = 0xF1CBC,
-    ImageSearch = 0xF1CC2,
-    ImageShadow = 0xF1CC8,
-    ImageSparkle = 0xF1CCE,
-    ImageSplit = 0xF1CD4,
-    ImageStack = 0xF1CDA,
-    ImageTable = 0xF1CE0,
-    ImmersiveReader = 0xF1CE6,
-    Important = 0xF1CEC,
-    Incognito = 0xF1CF2,
-    Info = 0xF1CF8,
-    InfoShield = 0xF1CFE,
-    InkStroke = 0xF1D04,
-    InkStrokeArrowDown = 0xF1D0A,
-    InkStrokeArrowUpDown = 0xF1D10,
-    InkingTool = 0xF1D16,
-    InkingToolAccent = 0xF1D1C,
-    InprivateAccount = 0xF1D22,
-    Insert = 0xF1D28,
-    IosChevronRight = 0xF1D2E,
-    Iot = 0xF1D34,
-    IotAlert = 0xF1D3A,
-    Javascript = 0xF1D40,
-    Joystick = 0xF1D46,
-    Key = 0xF1D4C,
-    KeyCommand = 0xF1D52,
-    KeyMultiple = 0xF1D58,
-    KeyReset = 0xF1D5E,
-    Keyboard = 0xF1D64,
-    Keyboard123 = 0xF1D6A,
-    KeyboardDock = 0xF1D70,
-    KeyboardLayoutFloat = 0xF1D76,
-    KeyboardLayoutOneHandedLeft = 0xF1D7C,
-    KeyboardLayoutResize = 0xF1D82,
-    KeyboardLayoutSplit = 0xF1D88,
-    KeyboardShift = 0xF1D8E,
-    KeyboardShiftUppercase = 0xF1D94,
-    KeyboardTab = 0xF1D9A,
-    Laptop = 0xF1DA0,
-    LaptopBriefcase = 0xF1DA6,
-    LaptopDismiss = 0xF1DAC,
-    LaptopPerson = 0xF1DB2,
-    LaptopSettings = 0xF1DB8,
-    LaptopShield = 0xF1DBE,
-    LaserTool = 0xF1DC4,
-    Lasso = 0xF1DCA,
-    LauncherSettings = 0xF1DD0,
-    Layer = 0xF1DD6,
-    LayerDiagonal = 0xF1DDC,
-    LayerDiagonalAdd = 0xF1DE2,
-    LayerDiagonalPerson = 0xF1DE8,
-    LayerDiagonalSparkle = 0xF1DEE,
-    LayoutCellFour = 0xF1DF4,
-    LayoutCellFourFocusBottomLeft = 0xF1DFA,
-    LayoutCellFourFocusBottomRight = 0xF1E00,
-    LayoutCellFourFocusTopLeft = 0xF1E06,
-    LayoutCellFourFocusTopRight = 0xF1E0C,
-    LayoutColumnFour = 0xF1E12,
-    LayoutColumnFourFocusCenterLeft = 0xF1E18,
-    LayoutColumnFourFocusCenterRight = 0xF1E1E,
-    LayoutColumnFourFocusLeft = 0xF1E24,
-    LayoutColumnFourFocusRight = 0xF1E2A,
-    LayoutColumnOneThirdLeft = 0xF1E30,
-    LayoutColumnOneThirdRight = 0xF1E36,
-    LayoutColumnOneThirdRightHint = 0xF1E3C,
-    LayoutColumnThree = 0xF1E42,
-    LayoutColumnThreeFocusCenter = 0xF1E48,
-    LayoutColumnThreeFocusLeft = 0xF1E4E,
-    LayoutColumnThreeFocusRight = 0xF1E54,
-    LayoutColumnTwo = 0xF1E5A,
-    LayoutColumnTwoFocusLeft = 0xF1E60,
-    LayoutColumnTwoFocusRight = 0xF1E66,
-    LayoutColumnTwoSplitLeft = 0xF1E6C,
-    LayoutColumnTwoSplitLeftFocusBottomLeft = 0xF1E72,
-    LayoutColumnTwoSplitLeftFocusRight = 0xF1E78,
-    LayoutColumnTwoSplitLeftFocusTopLeft = 0xF1E7E,
-    LayoutColumnTwoSplitRight = 0xF1E84,
-    LayoutColumnTwoSplitRightFocusBottomRight = 0xF1E8A,
-    LayoutColumnTwoSplitRightFocusLeft = 0xF1E90,
-    LayoutColumnTwoSplitRightFocusTopRight = 0xF1E96,
-    LayoutRowFour = 0xF1E9C,
-    LayoutRowFourFocusBottom = 0xF1EA2,
-    LayoutRowFourFocusCenterBottom = 0xF1EA8,
-    LayoutRowFourFocusCenterTop = 0xF1EAE,
-    LayoutRowFourFocusTop = 0xF1EB4,
-    LayoutRowThree = 0xF1EBA,
-    LayoutRowThreeFocusBottom = 0xF1EC0,
-    LayoutRowThreeFocusCenter = 0xF1EC6,
-    LayoutRowThreeFocusTop = 0xF1ECC,
-    LayoutRowTwo = 0xF1ED2,
-    LayoutRowTwoFocusBottom = 0xF1ED8,
-    LayoutRowTwoFocusTop = 0xF1EDE,
-    LayoutRowTwoFocusTopSettings = 0xF1EE4,
-    LayoutRowTwoSettings = 0xF1EEA,
-    LayoutRowTwoSplitBottom = 0xF1EF0,
-    LayoutRowTwoSplitBottomFocusBottomLeft = 0xF1EF6,
-    LayoutRowTwoSplitBottomFocusBottomRight = 0xF1EFC,
-    LayoutRowTwoSplitBottomFocusTop = 0xF1F02,
-    LayoutRowTwoSplitTop = 0xF1F08,
-    LayoutRowTwoSplitTopFocusBottom = 0xF1F0E,
-    LayoutRowTwoSplitTopFocusTopLeft = 0xF1F14,
-    LayoutRowTwoSplitTopFocusTopRight = 0xF1F1A,
-    LeafOne = 0xF1F20,
-    LeafThree = 0xF1F26,
-    LeafTwo = 0xF1F2C,
-    LearningApp = 0xF1F32,
-    Library = 0xF1F38,
-    Lightbulb = 0xF1F3E,
-    LightbulbCheckmark = 0xF1F44,
-    LightbulbCircle = 0xF1F4A,
-    LightbulbFilament = 0xF1F50,
-    LightbulbPerson = 0xF1F56,
-    Likert = 0xF1F5C,
-    Line = 0xF1F62,
-    LineDashes = 0xF1F68,
-    LineFlowDiagonalUpRight = 0xF1F6E,
-    LineHorizontal1 = 0xF1F74,
-    LineHorizontal1DashDotDash = 0xF1F7A,
-    LineHorizontal1Dashes = 0xF1F80,
-    LineHorizontal1Dot = 0xF1F86,
-    LineHorizontal2DashesSolid = 0xF1F8C,
-    LineHorizontal3 = 0xF1F92,
-    LineHorizontal4 = 0xF1F98,
-    LineHorizontal4Search = 0xF1F9E,
-    LineHorizontal5 = 0xF1FA4,
-    LineHorizontal5Error = 0xF1FAA,
-    LineStyle = 0xF1FB0,
-    LineStyleSketch = 0xF1FB6,
-    LineThickness = 0xF1FBC,
-    Link = 0xF1FC2,
-    LinkAdd = 0xF1FC8,
-    LinkDismiss = 0xF1FCE,
-    LinkEdit = 0xF1FD4,
-    LinkMultiple = 0xF1FDA,
-    LinkPerson = 0xF1FE0,
-    LinkSquare = 0xF1FE6,
-    LinkToolbox = 0xF1FEC,
-    List = 0xF1FF2,
-    ListBar = 0xF1FF8,
-    ListBarTree = 0xF1FFE,
-    ListBarTreeOffset = 0xF2004,
-    Live = 0xF200A,
-    LiveOff = 0xF2010,
-    LocalLanguage = 0xF2016,
-    Location = 0xF201C,
-    LocationAdd = 0xF2022,
-    LocationAddLeft = 0xF2028,
-    LocationAddRight = 0xF202E,
-    LocationAddUp = 0xF2034,
-    LocationArrow = 0xF203A,
-    LocationArrowLeft = 0xF2040,
-    LocationArrowRight = 0xF2046,
-    LocationArrowUp = 0xF204C,
-    LocationCheckmark = 0xF2052,
-    LocationDismiss = 0xF2058,
-    LocationLive = 0xF205E,
-    LocationOff = 0xF2064,
-    LocationRipple = 0xF206A,
-    LocationTargetSquare = 0xF2070,
-    LockClosed = 0xF2076,
-    LockClosedKey = 0xF207C,
-    LockMultiple = 0xF2082,
-    LockOpen = 0xF2088,
-    LockShield = 0xF208E,
-    Lottery = 0xF2094,
-    Luggage = 0xF209A,
-    Mail = 0xF20A0,
-    MailAdd = 0xF20A6,
-    MailAlert = 0xF20AC,
-    MailAllRead = 0xF20B2,
-    MailAllUnread = 0xF20B8,
-    MailArrowClockwise = 0xF20BE,
-    MailArrowDoubleBack = 0xF20C4,
-    MailArrowDown = 0xF20CA,
-    MailArrowForward = 0xF20D0,
-    MailArrowUp = 0xF20D6,
-    MailAttach = 0xF20DC,
-    MailCheckmark = 0xF20E2,
-    MailClock = 0xF20E8,
-    MailCopy = 0xF20EE,
-    MailDismiss = 0xF20F4,
-    MailEdit = 0xF20FA,
-    MailError = 0xF2100,
-    MailInbox = 0xF2106,
-    MailInboxAdd = 0xF210C,
-    MailInboxAll = 0xF2112,
-    MailInboxArrowDown = 0xF2118,
-    MailInboxArrowRight = 0xF211E,
-    MailInboxArrowUp = 0xF2124,
-    MailInboxCheckmark = 0xF212A,
-    MailInboxDismiss = 0xF2130,
-    MailInboxPerson = 0xF2136,
-    MailLink = 0xF213C,
-    MailList = 0xF2142,
-    MailMultiple = 0xF2148,
-    MailOff = 0xF214E,
-    MailOpenPerson = 0xF2154,
-    MailPause = 0xF215A,
-    MailProhibited = 0xF2160,
-    MailRead = 0xF2166,
-    MailReadBriefcase = 0xF216C,
-    MailReadMultiple = 0xF2172,
-    MailRewind = 0xF2178,
-    MailSettings = 0xF217E,
-    MailShield = 0xF2184,
-    MailTemplate = 0xF218A,
-    MailUnread = 0xF2190,
-    MailWarning = 0xF2196,
-    Mailbox = 0xF219C,
-    Map = 0xF21A2,
-    MapDrive = 0xF21A8,
-    Markdown = 0xF21AE,
-    MatchAppLayout = 0xF21B4,
-    MathFormatLinear = 0xF21BA,
-    MathFormatProfessional = 0xF21C0,
-    MathFormula = 0xF21C6,
-    MathSymbols = 0xF21CC,
-    Maximize = 0xF21D2,
-    MeetNow = 0xF21D8,
-    Megaphone = 0xF21DE,
-    MegaphoneCircle = 0xF21E4,
-    MegaphoneLoud = 0xF21EA,
-    MegaphoneOff = 0xF21F0,
-    Mention = 0xF21F6,
-    MentionArrowDown = 0xF21FC,
-    MentionBrackets = 0xF2202,
-    Merge = 0xF2208,
-    Mic = 0xF220E,
-    MicLink = 0xF2214,
-    MicOff = 0xF221A,
-    MicProhibited = 0xF2220,
-    MicPulse = 0xF2226,
-    MicPulseOff = 0xF222C,
-    MicRecord = 0xF2232,
-    MicSettings = 0xF2238,
-    MicSparkle = 0xF223E,
-    MicSync = 0xF2244,
-    Microscope = 0xF224A,
-    Midi = 0xF2250,
-    MobileOptimized = 0xF2256,
-    Mold = 0xF225C,
-    Molecule = 0xF2262,
-    Money = 0xF2268,
-    MoneyCalculator = 0xF226E,
-    MoneyDismiss = 0xF2274,
-    MoneyHand = 0xF227A,
-    MoneyOff = 0xF2280,
-    MoneySettings = 0xF2286,
-    MoreCircle = 0xF228C,
-    MoreHorizontal = 0xF2292,
-    MoreVertical = 0xF2298,
-    MountainLocationBottom = 0xF229E,
-    MountainLocationTop = 0xF22A4,
-    MountainTrail = 0xF22AA,
-    MoviesAndTv = 0xF22B0,
-    Multiplier12x = 0xF22B6,
-    Multiplier15x = 0xF22BC,
-    Multiplier18x = 0xF22C2,
-    Multiplier1x = 0xF22C8,
-    Multiplier2x = 0xF22CE,
-    Multiplier5x = 0xF22D4,
-    Multiselect = 0xF22DA,
-    MusicNote1 = 0xF22E0,
-    MusicNote2 = 0xF22E6,
-    MusicNote2Play = 0xF22EC,
-    MusicNoteOff1 = 0xF22F2,
-    MusicNoteOff2 = 0xF22F8,
-    MyLocation = 0xF22FE,
-    Navigation = 0xF2304,
-    NavigationLocationTarget = 0xF230A,
-    NavigationPlay = 0xF2310,
-    NavigationUnread = 0xF2316,
-    NetworkCheck = 0xF231C,
-    New = 0xF2322,
-    News = 0xF2328,
-    Next = 0xF232E,
-    NextFrame = 0xF2334,
-    Note = 0xF233A,
-    NoteAdd = 0xF2340,
-    NoteEdit = 0xF2346,
-    NotePin = 0xF234C,
-    Notebook = 0xF2352,
-    NotebookAdd = 0xF2358,
-    NotebookArrowCurveDown = 0xF235E,
-    NotebookError = 0xF2364,
-    NotebookEye = 0xF236A,
-    NotebookLightning = 0xF2370,
-    NotebookQuestionMark = 0xF2376,
-    NotebookSection = 0xF237C,
-    NotebookSectionArrowRight = 0xF2382,
-    NotebookSubsection = 0xF2388,
-    NotebookSync = 0xF238E,
-    Notepad = 0xF2394,
-    NotepadEdit = 0xF239A,
-    NotepadPerson = 0xF23A0,
-    NotepadSparkle = 0xF23A6,
-    NumberCircle0 = 0xF23AC,
-    NumberCircle1 = 0xF23B2,
-    NumberCircle2 = 0xF23B8,
-    NumberCircle3 = 0xF23BE,
-    NumberCircle4 = 0xF23C4,
-    NumberCircle5 = 0xF23CA,
-    NumberCircle6 = 0xF23D0,
-    NumberCircle7 = 0xF23D6,
-    NumberCircle8 = 0xF23DC,
-    NumberCircle9 = 0xF23E2,
-    NumberRow = 0xF23E8,
-    NumberSymbol = 0xF23EE,
-    NumberSymbolDismiss = 0xF23F4,
-    NumberSymbolSquare = 0xF23FA,
-    Open = 0xF2400,
-    OpenFolder = 0xF2406,
-    OpenOff = 0xF240C,
-    Options = 0xF2412,
-    Organization = 0xF2418,
-    OrganizationHorizontal = 0xF241E,
-    Orientation = 0xF2424,
-    Oval = 0xF242A,
-    Oven = 0xF2430,
-    PaddingDown = 0xF2436,
-    PaddingLeft = 0xF243C,
-    PaddingRight = 0xF2442,
-    PaddingTop = 0xF2448,
-    PageFit = 0xF244E,
-    PaintBrush = 0xF2454,
-    PaintBrushArrowDown = 0xF245A,
-    PaintBrushArrowUp = 0xF2460,
-    PaintBrushSparkle = 0xF2466,
-    PaintBrushSubtract = 0xF246C,
-    PaintBucket = 0xF2472,
-    PaintBucketBrush = 0xF2478,
-    Pair = 0xF247E,
-    PanelBottom = 0xF2484,
-    PanelBottomContract = 0xF248A,
-    PanelBottomExpand = 0xF2490,
-    PanelLeft = 0xF2496,
-    PanelLeftAdd = 0xF249C,
-    PanelLeftContract = 0xF24A2,
-    PanelLeftDefault = 0xF24A8,
-    PanelLeftExpand = 0xF24AE,
-    PanelLeftFocusRight = 0xF24B4,
-    PanelLeftHeader = 0xF24BA,
-    PanelLeftHeaderAdd = 0xF24C0,
-    PanelLeftHeaderKey = 0xF24C6,
-    PanelLeftKey = 0xF24CC,
-    PanelLeftText = 0xF24D2,
-    PanelLeftTextAdd = 0xF24D8,
-    PanelLeftTextDismiss = 0xF24DE,
-    PanelRight = 0xF24E4,
-    PanelRightAdd = 0xF24EA,
-    PanelRightContract = 0xF24F0,
-    PanelRightCursor = 0xF24F6,
-    PanelRightExpand = 0xF24FC,
-    PanelRightGallery = 0xF2502,
-    PanelSeparateWindow = 0xF2508,
-    PanelTopContract = 0xF250E,
-    PanelTopExpand = 0xF2514,
-    PanelTopGallery = 0xF251A,
-    Password = 0xF2520,
-    Patch = 0xF2526,
-    Patient = 0xF252C,
-    Pause = 0xF2532,
-    PauseCircle = 0xF2538,
-    PauseOff = 0xF253E,
-    PauseSettings = 0xF2544,
-    Payment = 0xF254A,
-    PaymentWireless = 0xF2550,
-    Pen = 0xF2556,
-    PenDismiss = 0xF255C,
-    PenOff = 0xF2562,
-    PenProhibited = 0xF2568,
-    PenSparkle = 0xF256E,
-    PenSync = 0xF2574,
-    Pentagon = 0xF257A,
-    People = 0xF2580,
-    PeopleAdd = 0xF2586,
-    PeopleAudience = 0xF258C,
-    PeopleCall = 0xF2592,
-    PeopleChat = 0xF2598,
-    PeopleCheckmark = 0xF259E,
-    PeopleCommunity = 0xF25A4,
-    PeopleCommunityAdd = 0xF25AA,
-    PeopleEdit = 0xF25B0,
-    PeopleError = 0xF25B6,
-    PeopleEye = 0xF25BC,
-    PeopleLink = 0xF25C2,
-    PeopleList = 0xF25C8,
-    PeopleLock = 0xF25CE,
-    PeopleMoney = 0xF25D4,
-    PeopleProhibited = 0xF25DA,
-    PeopleQueue = 0xF25E0,
-    PeopleSearch = 0xF25E6,
-    PeopleSettings = 0xF25EC,
-    PeopleStar = 0xF25F2,
-    PeopleSubtract = 0xF25F8,
-    PeopleSwap = 0xF25FE,
-    PeopleSync = 0xF2604,
-    PeopleTeam = 0xF260A,
-    PeopleTeamAdd = 0xF2610,
-    PeopleTeamDelete = 0xF2616,
-    PeopleTeamToolbox = 0xF261C,
-    PeopleToolbox = 0xF2622,
-    Person = 0xF2628,
-    Person5 = 0xF262E,
-    Person6 = 0xF2634,
-    PersonAccounts = 0xF263A,
-    PersonAdd = 0xF2640,
-    PersonAlert = 0xF2646,
-    PersonAlertOff = 0xF264C,
-    PersonArrowBack = 0xF2652,
-    PersonArrowLeft = 0xF2658,
-    PersonArrowRight = 0xF265E,
-    PersonAvailable = 0xF2664,
-    PersonBoard = 0xF266A,
-    PersonBoardAdd = 0xF2670,
-    PersonCall = 0xF2676,
-    PersonChat = 0xF267C,
-    PersonCircle = 0xF2682,
-    PersonClock = 0xF2688,
-    PersonDelete = 0xF268E,
-    PersonDesktop = 0xF2694,
-    PersonEdit = 0xF269A,
-    PersonFeedback = 0xF26A0,
-    PersonHeadHint = 0xF26A6,
-    PersonHeart = 0xF26AC,
-    PersonHome = 0xF26B2,
-    PersonInfo = 0xF26B8,
-    PersonKey = 0xF26BE,
-    PersonLightbulb = 0xF26C4,
-    PersonLightning = 0xF26CA,
-    PersonLink = 0xF26D0,
-    PersonLock = 0xF26D6,
-    PersonMail = 0xF26DC,
-    PersonMoney = 0xF26E2,
-    PersonNote = 0xF26E8,
-    PersonPasskey = 0xF26EE,
-    PersonPill = 0xF26F4,
-    PersonProhibited = 0xF26FA,
-    PersonQuestionMark = 0xF2700,
-    PersonRibbon = 0xF2706,
-    PersonRunning = 0xF270C,
-    PersonSearch = 0xF2712,
-    PersonSettings = 0xF2718,
-    PersonSoundSpatial = 0xF271E,
-    PersonSquare = 0xF2724,
-    PersonSquareAdd = 0xF272A,
-    PersonSquareCheckmark = 0xF2730,
-    PersonStar = 0xF2736,
-    PersonStarburst = 0xF273C,
-    PersonSubtract = 0xF2742,
-    PersonSuport = 0xF2748,
-    PersonSupport = 0xF274E,
-    PersonSwap = 0xF2754,
-    PersonSync = 0xF275A,
-    PersonTag = 0xF2760,
-    PersonTentative = 0xF2766,
-    PersonVoice = 0xF276C,
-    PersonWalking = 0xF2772,
-    PersonWarning = 0xF2778,
-    PersonWrench = 0xF277E,
-    Phone = 0xF2784,
-    PhoneAdd = 0xF278A,
-    PhoneArrowRight = 0xF2790,
-    PhoneChat = 0xF2796,
-    PhoneCheckmark = 0xF279C,
-    PhoneDesktop = 0xF27A2,
-    PhoneDesktopAdd = 0xF27A8,
-    PhoneDismiss = 0xF27AE,
-    PhoneEdit = 0xF27B4,
-    PhoneEraser = 0xF27BA,
-    PhoneFooterArrowDown = 0xF27C0,
-    PhoneHeaderArrowUp = 0xF27C6,
-    PhoneKey = 0xF27CC,
-    PhoneLaptop = 0xF27D2,
-    PhoneLinkSetup = 0xF27D8,
-    PhoneLock = 0xF27DE,
-    PhonePageHeader = 0xF27E4,
-    PhonePagination = 0xF27EA,
-    PhoneScreenTime = 0xF27F0,
-    PhoneShake = 0xF27F6,
-    PhoneSpanIn = 0xF27FC,
-    PhoneSpanOut = 0xF2802,
-    PhoneSpeaker = 0xF2808,
-    PhoneStatusBar = 0xF280E,
-    PhoneTablet = 0xF2814,
-    PhoneUpdate = 0xF281A,
-    PhoneUpdateCheckmark = 0xF2820,
-    PhoneVerticalScroll = 0xF2826,
-    PhoneVibrate = 0xF282C,
-    PhotoFilter = 0xF2832,
-    Pi = 0xF2838,
-    PictureInPicture = 0xF283E,
-    PictureInPictureEnter = 0xF2844,
-    PictureInPictureExit = 0xF284A,
-    Pill = 0xF2850,
-    Pin = 0xF2856,
-    PinGlobe = 0xF285C,
-    PinOff = 0xF2862,
-    Pipeline = 0xF2868,
-    PipelineAdd = 0xF286E,
-    PipelineArrowCurveDown = 0xF2874,
-    PipelinePlay = 0xF287A,
-    Pivot = 0xF2880,
-    PlantCattail = 0xF2886,
-    PlantGrass = 0xF288C,
-    PlantRagweed = 0xF2892,
-    Play = 0xF2898,
-    PlayCircle = 0xF289E,
-    PlayCircleHint = 0xF28A4,
-    PlayCircleSparkle = 0xF28AA,
-    PlaySettings = 0xF28B0,
-    PlayingCards = 0xF28B6,
-    PlugConnected = 0xF28BC,
-    PlugConnectedAdd = 0xF28C2,
-    PlugConnectedCheckmark = 0xF28C8,
-    PlugConnectedSettings = 0xF28CE,
-    PlugDisconnected = 0xF28D4,
-    PointScan = 0xF28DA,
-    Poll = 0xF28E0,
-    PollHorizontal = 0xF28E6,
-    PollOff = 0xF28EC,
-    PortHdmi = 0xF28F2,
-    PortMicroUsb = 0xF28F8,
-    PortUsbA = 0xF28FE,
-    PortUsbC = 0xF2904,
-    PositionBackward = 0xF290A,
-    PositionForward = 0xF2910,
-    PositionToBack = 0xF2916,
-    PositionToFront = 0xF291C,
-    Power = 0xF2922,
-    Predictions = 0xF2928,
-    Premium = 0xF292E,
-    PremiumPerson = 0xF2934,
-    PresenceAvailable = 0xF293A,
-    PresenceAway = 0xF2940,
-    PresenceBlocked = 0xF2946,
-    PresenceBusy = 0xF294C,
-    PresenceDnd = 0xF2952,
-    PresenceOffline = 0xF2958,
-    PresenceOof = 0xF295E,
-    PresenceTentative = 0xF2964,
-    PresenceUnknown = 0xF296A,
-    Presenter = 0xF2970,
-    PresenterOff = 0xF2976,
-    PreviewLink = 0xF297C,
-    Previous = 0xF2982,
-    PreviousFrame = 0xF2988,
-    Print = 0xF298E,
-    PrintAdd = 0xF2994,
-    Production = 0xF299A,
-    ProductionCheckmark = 0xF29A0,
-    Prohibited = 0xF29A6,
-    ProhibitedMultiple = 0xF29AC,
-    ProhibitedNote = 0xF29B2,
-    ProjectionScreen = 0xF29B8,
-    ProjectionScreenDismiss = 0xF29BE,
-    ProjectionScreenText = 0xF29C4,
-    Prompt = 0xF29CA,
-    ProtocolHandler = 0xF29D0,
-    Pulse = 0xF29D6,
-    PulseSquare = 0xF29DC,
-    PuzzleCube = 0xF29E2,
-    PuzzleCubePiece = 0xF29E8,
-    PuzzlePiece = 0xF29EE,
-    PuzzlePieceShield = 0xF29F4,
-    QrCode = 0xF29FA,
-    Question = 0xF2A00,
-    QuestionCircle = 0xF2A06,
-    QuizNew = 0xF2A0C,
-    Radar = 0xF2A12,
-    RadarCheckmark = 0xF2A18,
-    RadarRectangleMultiple = 0xF2A1E,
-    RadioButton = 0xF2A24,
-    Ram = 0xF2A2A,
-    RatingMature = 0xF2A30,
-    RatioOneToOne = 0xF2A36,
-    ReOrder = 0xF2A3C,
-    ReOrderDotsHorizontal = 0xF2A42,
-    ReOrderDotsVertical = 0xF2A48,
-    ReOrderVertical = 0xF2A4E,
-    ReadAloud = 0xF2A54,
-    ReadingList = 0xF2A5A,
-    ReadingListAdd = 0xF2A60,
-    ReadingModeMobile = 0xF2A66,
-    RealEstate = 0xF2A6C,
-    Receipt = 0xF2A72,
-    ReceiptAdd = 0xF2A78,
-    ReceiptBag = 0xF2A7E,
-    ReceiptCube = 0xF2A84,
-    ReceiptMoney = 0xF2A8A,
-    ReceiptPlay = 0xF2A90,
-    ReceiptSearch = 0xF2A96,
-    ReceiptSparkles = 0xF2A9C,
-    Record = 0xF2AA2,
-    RecordStop = 0xF2AA8,
-    RectangleLandscape = 0xF2AAE,
-    RectangleLandscapeHintCopy = 0xF2AB4,
-    RectangleLandscapeSparkle = 0xF2ABA,
-    RectangleLandscapeSync = 0xF2AC0,
-    RectangleLandscapeSyncOff = 0xF2AC6,
-    RectanglePortraitLocationTarget = 0xF2ACC,
-    Recycle = 0xF2AD2,
-    RemixAdd = 0xF2AD8,
-    Remote = 0xF2ADE,
-    Rename = 0xF2AE4,
-    Reorder = 0xF2AEA,
-    Replay = 0xF2AF0,
-    Resize = 0xF2AF6,
-    ResizeImage = 0xF2AFC,
-    ResizeLarge = 0xF2B02,
-    ResizeSmall = 0xF2B08,
-    ResizeTable = 0xF2B0E,
-    ResizeVideo = 0xF2B14,
-    Reward = 0xF2B1A,
-    Rewind = 0xF2B20,
-    Rhombus = 0xF2B26,
-    Ribbon = 0xF2B2C,
-    RibbonAdd = 0xF2B32,
-    RibbonOff = 0xF2B38,
-    RibbonStar = 0xF2B3E,
-    Road = 0xF2B44,
-    RoadCone = 0xF2B4A,
-    Rocket = 0xF2B50,
-    RotateLeft = 0xF2B56,
-    RotateRight = 0xF2B5C,
-    Router = 0xF2B62,
-    RowChild = 0xF2B68,
-    RowTriple = 0xF2B6E,
-    Rss = 0xF2B74,
-    Ruler = 0xF2B7A,
-    Run = 0xF2B80,
-    Sanitize = 0xF2B86,
-    Save = 0xF2B8C,
-    SaveArrowRight = 0xF2B92,
-    SaveCopy = 0xF2B98,
-    SaveEdit = 0xF2B9E,
-    SaveImage = 0xF2BA4,
-    SaveMultiple = 0xF2BAA,
-    SaveSearch = 0xF2BB0,
-    SaveSync = 0xF2BB6,
-    Savings = 0xF2BBC,
-    ScaleFill = 0xF2BC2,
-    ScaleFit = 0xF2BC8,
-    Scales = 0xF2BCE,
-    Scan = 0xF2BD4,
-    ScanCamera = 0xF2BDA,
-    ScanDash = 0xF2BE0,
-    ScanObject = 0xF2BE6,
-    ScanPerson = 0xF2BEC,
-    ScanTable = 0xF2BF2,
-    ScanText = 0xF2BF8,
-    ScanThumbUp = 0xF2BFE,
-    ScanThumbUpOff = 0xF2C04,
-    ScanType = 0xF2C0A,
-    ScanTypeCheckmark = 0xF2C10,
-    ScanTypeOff = 0xF2C16,
-    Scratchpad = 0xF2C1C,
-    ScreenCut = 0xF2C22,
-    ScreenPerson = 0xF2C28,
-    ScreenSearch = 0xF2C2E,
-    Screenshot = 0xF2C34,
-    ScreenshotRecord = 0xF2C3A,
-    Script = 0xF2C40,
-    Search = 0xF2C46,
-    SearchInfo = 0xF2C4C,
-    SearchSettings = 0xF2C52,
-    SearchShield = 0xF2C58,
-    SearchSparkle = 0xF2C5E,
-    SearchSquare = 0xF2C64,
-    SearchVisual = 0xF2C6A,
-    Seat = 0xF2C70,
-    SeatAdd = 0xF2C76,
-    SelectAllOff = 0xF2C7C,
-    SelectAllOn = 0xF2C82,
-    SelectObject = 0xF2C88,
-    SelectObjectSkew = 0xF2C8E,
-    SelectObjectSkewDismiss = 0xF2C94,
-    SelectObjectSkewEdit = 0xF2C9A,
-    Send = 0xF2CA0,
-    SendBeaker = 0xF2CA6,
-    SendClock = 0xF2CAC,
-    SendCopy = 0xF2CB2,
-    SendPerson = 0xF2CB8,
-    SerialPort = 0xF2CBE,
-    Server = 0xF2CC4,
-    ServerLink = 0xF2CCA,
-    ServerMultiple = 0xF2CD0,
-    ServerPlay = 0xF2CD6,
-    ServiceBell = 0xF2CDC,
-    Settings = 0xF2CE2,
-    SettingsChat = 0xF2CE8,
-    SettingsCogMultiple = 0xF2CEE,
-    ShapeExclude = 0xF2CF4,
-    ShapeIntersect = 0xF2CFA,
-    ShapeOrganic = 0xF2D00,
-    ShapeSubtract = 0xF2D06,
-    ShapeUnion = 0xF2D0C,
-    Shapes = 0xF2D12,
-    Share = 0xF2D18,
-    ShareAndroid = 0xF2D1E,
-    ShareCloseTray = 0xF2D24,
-    ShareIos = 0xF2D2A,
-    ShareMultiple = 0xF2D30,
-    ShareScreenPerson = 0xF2D36,
-    ShareScreenPersonOverlay = 0xF2D3C,
-    ShareScreenPersonOverlayInside = 0xF2D42,
-    ShareScreenPersonP = 0xF2D48,
-    ShareScreenStart = 0xF2D4E,
-    ShareScreenStop = 0xF2D54,
-    Shield = 0xF2D5A,
-    ShieldAdd = 0xF2D60,
-    ShieldBadge = 0xF2D66,
-    ShieldCheckmark = 0xF2D6C,
-    ShieldDismiss = 0xF2D72,
-    ShieldDismissShield = 0xF2D78,
-    ShieldError = 0xF2D7E,
-    ShieldGlobe = 0xF2D84,
-    ShieldKeyhole = 0xF2D8A,
-    ShieldLock = 0xF2D90,
-    ShieldPerson = 0xF2D96,
-    ShieldPersonAdd = 0xF2D9C,
-    ShieldProhibited = 0xF2DA2,
-    ShieldQuestion = 0xF2DA8,
-    ShieldTask = 0xF2DAE,
-    Shifts = 0xF2DB4,
-    Shifts30Minutes = 0xF2DBA,
-    ShiftsActivity = 0xF2DC0,
-    ShiftsAdd = 0xF2DC6,
-    ShiftsAvailability = 0xF2DCC,
-    ShiftsCheckmark = 0xF2DD2,
-    ShiftsDay = 0xF2DD8,
-    ShiftsOpen = 0xF2DDE,
-    ShiftsProhibited = 0xF2DE4,
-    ShiftsQuestionMark = 0xF2DEA,
-    ShiftsTeam = 0xF2DF0,
-    ShoppingBag = 0xF2DF6,
-    ShoppingBagAdd = 0xF2DFC,
-    ShoppingBagArrowLeft = 0xF2E02,
-    ShoppingBagDismiss = 0xF2E08,
-    ShoppingBagPause = 0xF2E0E,
-    ShoppingBagPercent = 0xF2E14,
-    ShoppingBagPlay = 0xF2E1A,
-    ShoppingBagTag = 0xF2E20,
-    Shortpick = 0xF2E26,
-    Showerhead = 0xF2E2C,
-    SidebarSearch = 0xF2E32,
-    SignOut = 0xF2E38,
-    Signature = 0xF2E3E,
-    Sim = 0xF2E44,
-    SkipBack10 = 0xF2E4A,
-    SkipForward10 = 0xF2E50,
-    SkipForward30 = 0xF2E56,
-    SkipForwardTab = 0xF2E5C,
-    SlashForward = 0xF2E62,
-    Sleep = 0xF2E68,
-    SlideAdd = 0xF2E6E,
-    SlideArrowRight = 0xF2E74,
-    SlideEraser = 0xF2E7A,
-    SlideGrid = 0xF2E80,
-    SlideHide = 0xF2E86,
-    SlideLayout = 0xF2E8C,
-    SlideLink = 0xF2E92,
-    SlideMicrophone = 0xF2E98,
-    SlideMultiple = 0xF2E9E,
-    SlideMultipleArrowRight = 0xF2EA4,
-    SlideMultipleSearch = 0xF2EAA,
-    SlidePlay = 0xF2EB0,
-    SlideRecord = 0xF2EB6,
-    SlideSearch = 0xF2EBC,
-    SlideSettings = 0xF2EC2,
-    SlideSize = 0xF2EC8,
-    SlideText = 0xF2ECE,
-    SlideTextCall = 0xF2ED4,
-    SlideTextCursor = 0xF2EDA,
-    SlideTextEdit = 0xF2EE0,
-    SlideTextMultiple = 0xF2EE6,
-    SlideTextPerson = 0xF2EEC,
-    SlideTextSparkle = 0xF2EF2,
-    SlideTransition = 0xF2EF8,
-    Smartwatch = 0xF2EFE,
-    SmartwatchDot = 0xF2F04,
-    Snooze = 0xF2F0A,
-    SoundSource = 0xF2F10,
-    SoundWaveCircle = 0xF2F16,
-    SoundWaveCircleSparkle = 0xF2F1C,
-    Space3d = 0xF2F22,
-    Spacebar = 0xF2F28,
-    Sparkle = 0xF2F2E,
-    SparkleCircle = 0xF2F34,
-    SpatulaSpoon = 0xF2F3A,
-    Speaker0 = 0xF2F40,
-    Speaker1 = 0xF2F46,
-    Speaker2 = 0xF2F4C,
-    SpeakerBluetooth = 0xF2F52,
-    SpeakerBox = 0xF2F58,
-    SpeakerEdit = 0xF2F5E,
-    SpeakerMute = 0xF2F64,
-    SpeakerOff = 0xF2F6A,
-    SpeakerSettings = 0xF2F70,
-    SpeakerUsb = 0xF2F76,
-    SpinnerIos = 0xF2F7C,
-    SplitHint = 0xF2F82,
-    SplitHorizontal = 0xF2F88,
-    SplitVertical = 0xF2F8E,
-    Sport = 0xF2F94,
-    SportAmericanFootball = 0xF2F9A,
-    SportBaseball = 0xF2FA0,
-    SportBasketball = 0xF2FA6,
-    SportHockey = 0xF2FAC,
-    SportSoccer = 0xF2FB2,
-    Square = 0xF2FB8,
-    SquareAdd = 0xF2FBE,
-    SquareArrowForward = 0xF2FC4,
-    SquareDismiss = 0xF2FCA,
-    SquareDovetailJoint = 0xF2FD0,
-    SquareEraser = 0xF2FD6,
-    SquareHint = 0xF2FDC,
-    SquareHintApps = 0xF2FE2,
-    SquareHintArrowBack = 0xF2FE8,
-    SquareHintHexagon = 0xF2FEE,
-    SquareHintSparkles = 0xF2FF4,
-    SquareMultiple = 0xF2FFA,
-    SquareShadow = 0xF3000,
-    SquareTextArrowRepeatAll = 0xF3006,
-    SquaresNested = 0xF300C,
-    Stack = 0xF3012,
-    StackAdd = 0xF3018,
-    StackArrowForward = 0xF301E,
-    StackOff = 0xF3024,
-    StackStar = 0xF302A,
-    StackVertical = 0xF3030,
-    Stamp = 0xF3036,
-    Star = 0xF303C,
-    StarAdd = 0xF3042,
-    StarArrowBack = 0xF3048,
-    StarArrowRight = 0xF304E,
-    StarArrowRightEnd = 0xF3054,
-    StarArrowRightStart = 0xF305A,
-    StarCheckmark = 0xF3060,
-    StarDismiss = 0xF3066,
-    StarEdit = 0xF306C,
-    StarEmphasis = 0xF3072,
-    StarHalf = 0xF3078,
-    StarLineHorizontal3 = 0xF307E,
-    StarOff = 0xF3084,
-    StarOneQuarter = 0xF308A,
-    StarProhibited = 0xF3090,
-    StarSettings = 0xF3096,
-    StarThreeQuarter = 0xF309C,
-    Status = 0xF30A2,
-    Step = 0xF30A8,
-    Steps = 0xF30AE,
-    Stethoscope = 0xF30B4,
-    Sticker = 0xF30BA,
-    StickerAdd = 0xF30C0,
-    Stop = 0xF30C6,
-    Storage = 0xF30CC,
-    StoreMicrosoft = 0xF30D2,
-    Stream = 0xF30D8,
-    StreamInput = 0xF30DE,
-    StreamInputOutput = 0xF30E4,
-    StreamOutput = 0xF30EA,
-    StreetSign = 0xF30F0,
-    StyleGuide = 0xF30F6,
-    SubGrid = 0xF30FC,
-    Subtitles = 0xF3102,
-    Subtract = 0xF3108,
-    SubtractCircle = 0xF310E,
-    SubtractCircleArrowBack = 0xF3114,
-    SubtractCircleArrowForward = 0xF311A,
-    SubtractParentheses = 0xF3120,
-    SubtractSquare = 0xF3126,
-    SubtractSquareMultiple = 0xF312C,
-    SurfaceEarbuds = 0xF3132,
-    SurfaceHub = 0xF3138,
-    SwimmingPool = 0xF313E,
-    SwipeDown = 0xF3144,
-    SwipeRight = 0xF314A,
-    SwipeUp = 0xF3150,
-    Symbols = 0xF3156,
-    SyncOff = 0xF315C,
-    Syringe = 0xF3162,
-    System = 0xF3168,
-    Tab = 0xF316E,
-    TabAdd = 0xF3174,
-    TabArrowLeft = 0xF317A,
-    TabDesktop = 0xF3180,
-    TabDesktopArrowClockwise = 0xF3186,
-    TabDesktopArrowLeft = 0xF318C,
-    TabDesktopBottom = 0xF3192,
-    TabDesktopClock = 0xF3198,
-    TabDesktopCopy = 0xF319E,
-    TabDesktopImage = 0xF31A4,
-    TabDesktopLink = 0xF31AA,
-    TabDesktopMultiple = 0xF31B0,
-    TabDesktopMultipleAdd = 0xF31B6,
-    TabDesktopMultipleBottom = 0xF31BC,
-    TabDesktopMultipleSparkle = 0xF31C2,
-    TabDesktopNewPage = 0xF31C8,
-    TabDesktopSearch = 0xF31CE,
-    TabGroup = 0xF31D4,
-    TabInPrivate = 0xF31DA,
-    TabInprivateAccount = 0xF31E0,
-    TabProhibited = 0xF31E6,
-    TabShieldDismiss = 0xF31EC,
-    Table = 0xF31F2,
-    TableAdd = 0xF31F8,
-    TableArrowUp = 0xF31FE,
-    TableBottomRow = 0xF3204,
-    TableCalculator = 0xF320A,
-    TableCellEdit = 0xF3210,
-    TableCellsMerge = 0xF3216,
-    TableCellsSplit = 0xF321C,
-    TableChecker = 0xF3222,
-    TableColumnTopBottom = 0xF3228,
-    TableCopy = 0xF322E,
-    TableCursor = 0xF3234,
-    TableDeleteColumn = 0xF323A,
-    TableDeleteRow = 0xF3240,
-    TableDismiss = 0xF3246,
-    TableEdit = 0xF324C,
-    TableFreezeColumn = 0xF3252,
-    TableFreezeColumnAndRow = 0xF3258,
-    TableFreezeRow = 0xF325E,
-    TableImage = 0xF3264,
-    TableInsertColumn = 0xF326A,
-    TableInsertRow = 0xF3270,
-    TableLightning = 0xF3276,
-    TableLink = 0xF327C,
-    TableLock = 0xF3282,
-    TableMoveAbove = 0xF3288,
-    TableMoveBelow = 0xF328E,
-    TableMoveLeft = 0xF3294,
-    TableMoveRight = 0xF329A,
-    TableMultiple = 0xF32A0,
-    TableOffset = 0xF32A6,
-    TableOffsetAdd = 0xF32AC,
-    TableOffsetLessThanOrEqualTo = 0xF32B2,
-    TableOffsetSettings = 0xF32B8,
-    TableResizeColumn = 0xF32BE,
-    TableResizeRow = 0xF32C4,
-    TableSearch = 0xF32CA,
-    TableSettings = 0xF32D0,
-    TableSimple = 0xF32D6,
-    TableSimpleCheckmark = 0xF32DC,
-    TableSimpleExclude = 0xF32E2,
-    TableSimpleInclude = 0xF32E8,
-    TableSimpleMultiple = 0xF32EE,
-    TableSparkle = 0xF32F4,
-    TableSplit = 0xF32FA,
-    TableStackAbove = 0xF3300,
-    TableStackBelow = 0xF3306,
-    TableStackLeft = 0xF330C,
-    TableStackRight = 0xF3312,
-    TableSwitch = 0xF3318,
-    Tablet = 0xF331E,
-    TabletLaptop = 0xF3324,
-    TabletSpeaker = 0xF332A,
-    Tabs = 0xF3330,
-    Tag = 0xF3336,
-    TagCircle = 0xF333C,
-    TagDismiss = 0xF3342,
-    TagError = 0xF3348,
-    TagLock = 0xF334E,
-    TagLockAccent = 0xF3354,
-    TagMultiple = 0xF335A,
-    TagOff = 0xF3360,
-    TagQuestionMark = 0xF3366,
-    TagReset = 0xF336C,
-    TagSearch = 0xF3372,
-    TapDouble = 0xF3378,
-    TapSingle = 0xF337E,
-    Target = 0xF3384,
-    TargetAdd = 0xF338A,
-    TargetArrow = 0xF3390,
-    TargetDismiss = 0xF3396,
-    TargetEdit = 0xF339C,
-    TaskList = 0xF33A2,
-    TaskListAdd = 0xF33A8,
-    TaskListSquare = 0xF33AE,
-    TaskListSquareAdd = 0xF33B4,
-    TaskListSquareDatabase = 0xF33BA,
-    TaskListSquarePerson = 0xF33C0,
-    TaskListSquareSettings = 0xF33C6,
-    TasksApp = 0xF33CC,
-    Teaching = 0xF33D2,
-    TeardropBottomRight = 0xF33D8,
-    Teddy = 0xF33DE,
-    Temperature = 0xF33E4,
-    Tent = 0xF33EA,
-    TetrisApp = 0xF33F0,
-    Text = 0xF33F6,
-    TextAdd = 0xF33FC,
-    TextAddSpaceAfter = 0xF3402,
-    TextAddSpaceBefore = 0xF3408,
-    TextAddT = 0xF340E,
-    TextAlignCenter = 0xF3414,
-    TextAlignCenterRotate270 = 0xF341A,
-    TextAlignCenterRotate90 = 0xF3420,
-    TextAlignDistributed = 0xF3426,
-    TextAlignDistributedEvenly = 0xF342C,
-    TextAlignDistributedVertical = 0xF3432,
-    TextAlignJustify = 0xF3438,
-    TextAlignJustifyLow = 0xF343E,
-    TextAlignJustifyLowRotate270 = 0xF3444,
-    TextAlignJustifyLowRotate90 = 0xF344A,
-    TextAlignJustifyRotate270 = 0xF3450,
-    TextAlignJustifyRotate90 = 0xF3456,
-    TextAlignLeft = 0xF345C,
-    TextAlignLeftRotate270 = 0xF3462,
-    TextAlignLeftRotate90 = 0xF3468,
-    TextAlignRight = 0xF346E,
-    TextAlignRightRotate270 = 0xF3474,
-    TextAlignRightRotate90 = 0xF347A,
-    TextArrowDownRightColumn = 0xF3480,
-    TextAsterisk = 0xF3486,
-    TextBaseline = 0xF348C,
-    TextBold = 0xF3492,
-    TextBoxSettings = 0xF3498,
-    TextBulletList = 0xF349E,
-    TextBulletListAdd = 0xF34A4,
-    TextBulletListCheckmark = 0xF34AA,
-    TextBulletListDismiss = 0xF34B0,
-    TextBulletListRotate90 = 0xF34B6,
-    TextBulletListSquare = 0xF34BC,
-    TextBulletListSquareClock = 0xF34C2,
-    TextBulletListSquareEdit = 0xF34C8,
-    TextBulletListSquarePerson = 0xF34CE,
-    TextBulletListSquareSearch = 0xF34D4,
-    TextBulletListSquareSettings = 0xF34DA,
-    TextBulletListSquareShield = 0xF34E0,
-    TextBulletListSquareSparkle = 0xF34E6,
-    TextBulletListSquareToolbox = 0xF34EC,
-    TextBulletListSquareWarning = 0xF34F2,
-    TextBulletListTree = 0xF34F8,
-    TextCaseLowercase = 0xF34FE,
-    TextCaseTitle = 0xF3504,
-    TextCaseUppercase = 0xF350A,
-    TextChangeCase = 0xF3510,
-    TextClearFormatting = 0xF3516,
-    TextCollapse = 0xF351C,
-    TextColor = 0xF3522,
-    TextColorAccent = 0xF3528,
-    TextColumnOne = 0xF352E,
-    TextColumnOneNarrow = 0xF3534,
-    TextColumnOneSemiNarrow = 0xF353A,
-    TextColumnOneWide = 0xF3540,
-    TextColumnOneWideLightning = 0xF3546,
-    TextColumnThree = 0xF354C,
-    TextColumnTwo = 0xF3552,
-    TextColumnTwoLeft = 0xF3558,
-    TextColumnTwoRight = 0xF355E,
-    TextColumnWide = 0xF3564,
-    TextContinuous = 0xF356A,
-    TextDensity = 0xF3570,
-    TextDescription = 0xF3576,
-    TextDirectionHorizontal = 0xF357C,
-    TextDirectionHorizontalLeft = 0xF3582,
-    TextDirectionHorizontalRight = 0xF3588,
-    TextDirectionRotate270Right = 0xF358E,
-    TextDirectionRotate315Right = 0xF3594,
-    TextDirectionRotate45Right = 0xF359A,
-    TextDirectionRotate90 = 0xF35A0,
-    TextDirectionRotate90Left = 0xF35A6,
-    TextDirectionRotate90Right = 0xF35AC,
-    TextDirectionVertical = 0xF35B2,
-    TextEditStyle = 0xF35B8,
-    TextEffects = 0xF35BE,
-    TextEffectsSparkle = 0xF35C4,
-    TextExpand = 0xF35CA,
-    TextField = 0xF35D0,
-    TextFirstLine = 0xF35D6,
-    TextFont = 0xF35DC,
-    TextFontInfo = 0xF35E2,
-    TextFontSize = 0xF35E8,
-    TextFootnote = 0xF35EE,
-    TextGrammarArrowLeft = 0xF35F4,
-    TextGrammarArrowRight = 0xF35FA,
-    TextGrammarCheckmark = 0xF3600,
-    TextGrammarDismiss = 0xF3606,
-    TextGrammarError = 0xF360C,
-    TextGrammarLightning = 0xF3612,
-    TextGrammarSettings = 0xF3618,
-    TextGrammarWand = 0xF361E,
-    TextHanging = 0xF3624,
-    TextHeader1 = 0xF362A,
-    TextHeader1Lines = 0xF3630,
-    TextHeader1LinesCaret = 0xF3636,
-    TextHeader2 = 0xF363C,
-    TextHeader2Lines = 0xF3642,
-    TextHeader2LinesCaret = 0xF3648,
-    TextHeader3 = 0xF364E,
-    TextHeader3Lines = 0xF3654,
-    TextHeader3LinesCaret = 0xF365A,
-    TextIndentDecrease = 0xF3660,
-    TextIndentDecreaseRotate270 = 0xF3666,
-    TextIndentDecreaseRotate90 = 0xF366C,
-    TextIndentIncrease = 0xF3672,
-    TextIndentIncreaseRotate270 = 0xF3678,
-    TextIndentIncreaseRotate90 = 0xF367E,
-    TextItalic = 0xF3684,
-    TextLineSpacing = 0xF368A,
-    TextMore = 0xF3690,
-    TextNumberFormat = 0xF3696,
-    TextNumberList = 0xF369C,
-    TextNumberListRotate270 = 0xF36A2,
-    TextNumberListRotate90 = 0xF36A8,
-    TextParagraph = 0xF36AE,
-    TextParagraphDirection = 0xF36B4,
-    TextParagraphDirectionLeft = 0xF36BA,
-    TextParagraphDirectionRight = 0xF36C0,
-    TextPeriodAsterisk = 0xF36C6,
-    TextPositionBehind = 0xF36CC,
-    TextPositionFront = 0xF36D2,
-    TextPositionLine = 0xF36D8,
-    TextPositionSquare = 0xF36DE,
-    TextPositionSquareLeft = 0xF36E4,
-    TextPositionSquareRight = 0xF36EA,
-    TextPositionThrough = 0xF36F0,
-    TextPositionTight = 0xF36F6,
-    TextPositionTopBottom = 0xF36FC,
-    TextProofingTools = 0xF3702,
-    TextQuote = 0xF3708,
-    TextSortAscending = 0xF370E,
-    TextSortDescending = 0xF3714,
-    TextStrikethrough = 0xF371A,
-    TextSubscript = 0xF3720,
-    TextSuperscript = 0xF3726,
-    TextT = 0xF372C,
-    TextUnderline = 0xF3732,
-    TextUnderlineCharacterU = 0xF3738,
-    TextUnderlineDouble = 0xF373E,
-    TextWholeWord = 0xF3744,
-    TextWordCount = 0xF374A,
-    TextWrap = 0xF3750,
-    TextWrapOff = 0xF3756,
-    Textbox = 0xF375C,
-    TextboxAlignBottom = 0xF3762,
-    TextboxAlignBottomCenter = 0xF3768,
-    TextboxAlignBottomLeft = 0xF376E,
-    TextboxAlignBottomRight = 0xF3774,
-    TextboxAlignBottomRotate90 = 0xF377A,
-    TextboxAlignCenter = 0xF3780,
-    TextboxAlignMiddle = 0xF3786,
-    TextboxAlignMiddleLeft = 0xF378C,
-    TextboxAlignMiddleRight = 0xF3792,
-    TextboxAlignMiddleRotate90 = 0xF3798,
-    TextboxAlignTop = 0xF379E,
-    TextboxAlignTopCenter = 0xF37A4,
-    TextboxAlignTopLeft = 0xF37AA,
-    TextboxAlignTopRight = 0xF37B0,
-    TextboxAlignTopRotate90 = 0xF37B6,
-    TextboxCheckmark = 0xF37BC,
-    TextboxMore = 0xF37C2,
-    TextboxRotate90 = 0xF37C8,
-    TextboxSettings = 0xF37CE,
-    Thinking = 0xF37D4,
-    ThumbDislike = 0xF37DA,
-    ThumbLike = 0xF37E0,
-    ThumbLikeDislike = 0xF37E6,
-    TicketDiagonal = 0xF37EC,
-    TicketHorizontal = 0xF37F2,
-    TimeAndWeather = 0xF37F8,
-    TimePicker = 0xF37FE,
-    Timeline = 0xF3804,
-    Timer = 0xF380A,
-    Timer10 = 0xF3810,
-    Timer2 = 0xF3816,
-    Timer3 = 0xF381C,
-    TimerOff = 0xF3822,
-    ToggleLeft = 0xF3828,
-    ToggleMultiple = 0xF382E,
-    ToggleRight = 0xF3834,
-    Toolbox = 0xF383A,
-    TooltipQuote = 0xF3840,
-    TopSpeed = 0xF3846,
-    Translate = 0xF384C,
-    TranslateAuto = 0xF3852,
-    TranslateOff = 0xF3858,
-    Transmission = 0xF385E,
-    TransparencySquare = 0xF3864,
-    TrayItemAdd = 0xF386A,
-    TrayItemRemove = 0xF3870,
-    TreeDeciduous = 0xF3876,
-    TreeEvergreen = 0xF387C,
-    Triangle = 0xF3882,
-    TriangleDown = 0xF3888,
-    TriangleLeft = 0xF388E,
-    TriangleRight = 0xF3894,
-    TriangleUp = 0xF389A,
-    Trophy = 0xF38A0,
-    TrophyLock = 0xF38A6,
-    TrophyOff = 0xF38AC,
-    Tv = 0xF38B2,
-    TvArrowRight = 0xF38B8,
-    TvUsb = 0xF38BE,
-    Umbrella = 0xF38C4,
-    UninstallApp = 0xF38CA,
-    UsbPlug = 0xF38D0,
-    UsbStick = 0xF38D6,
-    Vault = 0xF38DC,
-    VehicleBicycle = 0xF38E2,
-    VehicleBus = 0xF38E8,
-    VehicleCab = 0xF38EE,
-    VehicleCableCar = 0xF38F4,
-    VehicleCar = 0xF38FA,
-    VehicleCarCollision = 0xF3900,
-    VehicleCarParking = 0xF3906,
-    VehicleCarProfile = 0xF390C,
-    VehicleCarProfileClock = 0xF3912,
-    VehicleMotorcycle = 0xF3918,
-    VehicleShip = 0xF391E,
-    VehicleSubway = 0xF3924,
-    VehicleSubwayClock = 0xF392A,
-    VehicleTractor = 0xF3930,
-    VehicleTruck = 0xF3936,
-    VehicleTruckBag = 0xF393C,
-    VehicleTruckCube = 0xF3942,
-    VehicleTruckProfile = 0xF3948,
-    Video = 0xF394E,
-    Video360 = 0xF3954,
-    Video360Off = 0xF395A,
-    VideoAdd = 0xF3960,
-    VideoBackgroundEffect = 0xF3966,
-    VideoBackgroundEffectHorizontal = 0xF396C,
-    VideoBluetooth = 0xF3972,
-    VideoChat = 0xF3978,
-    VideoClip = 0xF397E,
-    VideoClipMultiple = 0xF3984,
-    VideoClipOff = 0xF398A,
-    VideoClipOptimize = 0xF3990,
-    VideoClipWand = 0xF3996,
-    VideoOff = 0xF399C,
-    VideoPerson = 0xF39A2,
-    VideoPersonCall = 0xF39A8,
-    VideoPersonClock = 0xF39AE,
-    VideoPersonOff = 0xF39B4,
-    VideoPersonPulse = 0xF39BA,
-    VideoPersonSparkle = 0xF39C0,
-    VideoPersonSparkleOff = 0xF39C6,
-    VideoPersonStar = 0xF39CC,
-    VideoPersonStarOff = 0xF39D2,
-    VideoPlayPause = 0xF39D8,
-    VideoProhibited = 0xF39DE,
-    VideoRecording = 0xF39E4,
-    VideoSecurity = 0xF39EA,
-    VideoSwitch = 0xF39F0,
-    VideoSync = 0xF39F6,
-    VideoUsb = 0xF39FC,
-    ViewDesktop = 0xF3A02,
-    ViewDesktopMobile = 0xF3A08,
-    VirtualNetwork = 0xF3A0E,
-    VirtualNetworkToolbox = 0xF3A14,
-    Voicemail = 0xF3A1A,
-    VoicemailArrowBack = 0xF3A20,
-    VoicemailArrowForward = 0xF3A26,
-    VoicemailArrowSubtract = 0xF3A2C,
-    VoicemailShield = 0xF3A32,
-    VoicemailSubtract = 0xF3A38,
-    Vote = 0xF3A3E,
-    WalkieTalkie = 0xF3A44,
-    Wallet = 0xF3A4A,
-    WalletCreditCard = 0xF3A50,
-    Wallpaper = 0xF3A56,
-    Wand = 0xF3A5C,
-    Warning = 0xF3A62,
-    WarningLockOpen = 0xF3A68,
-    WarningShield = 0xF3A6E,
-    Washer = 0xF3A74,
-    Water = 0xF3A7A,
-    WeatherBlowingSnow = 0xF3A80,
-    WeatherCloudy = 0xF3A86,
-    WeatherDrizzle = 0xF3A8C,
-    WeatherDuststorm = 0xF3A92,
-    WeatherFog = 0xF3A98,
-    WeatherHailDay = 0xF3A9E,
-    WeatherHailNight = 0xF3AA4,
-    WeatherHaze = 0xF3AAA,
-    WeatherMoon = 0xF3AB0,
-    WeatherMoonOff = 0xF3AB6,
-    WeatherPartlyCloudyDay = 0xF3ABC,
-    WeatherPartlyCloudyNight = 0xF3AC2,
-    WeatherRain = 0xF3AC8,
-    WeatherRainShowersDay = 0xF3ACE,
-    WeatherRainShowersNight = 0xF3AD4,
-    WeatherRainSnow = 0xF3ADA,
-    WeatherSnow = 0xF3AE0,
-    WeatherSnowShowerDay = 0xF3AE6,
-    WeatherSnowShowerNight = 0xF3AEC,
-    WeatherSnowflake = 0xF3AF2,
-    WeatherSqualls = 0xF3AF8,
-    WeatherSunny = 0xF3AFE,
-    WeatherSunnyHigh = 0xF3B04,
-    WeatherSunnyLow = 0xF3B0A,
-    WeatherThunderstorm = 0xF3B10,
-    WebAsset = 0xF3B16,
-    Whiteboard = 0xF3B1C,
-    WhiteboardOff = 0xF3B22,
-    Wifi1 = 0xF3B28,
-    Wifi2 = 0xF3B2E,
-    Wifi3 = 0xF3B34,
-    Wifi4 = 0xF3B3A,
-    WifiLock = 0xF3B40,
-    WifiOff = 0xF3B46,
-    WifiSettings = 0xF3B4C,
-    WifiWarning = 0xF3B52,
-    Window = 0xF3B58,
-    WindowAd = 0xF3B5E,
-    WindowAdOff = 0xF3B64,
-    WindowAdPerson = 0xF3B6A,
-    WindowApps = 0xF3B70,
-    WindowArrowUp = 0xF3B76,
-    WindowBrush = 0xF3B7C,
-    WindowBulletList = 0xF3B82,
-    WindowBulletListAdd = 0xF3B88,
-    WindowColumnOneFourthLeft = 0xF3B8E,
-    WindowColumnOneFourthLeftFocusLeft = 0xF3B94,
-    WindowColumnOneFourthLeftFocusTop = 0xF3B9A,
-    WindowConsole = 0xF3BA0,
-    WindowDatabase = 0xF3BA6,
-    WindowDevEdit = 0xF3BAC,
-    WindowDevTools = 0xF3BB2,
-    WindowEdit = 0xF3BB8,
-    WindowFingerprint = 0xF3BBE,
-    WindowHeaderHorizontal = 0xF3BC4,
-    WindowHeaderHorizontalOff = 0xF3BCA,
-    WindowHeaderVertical = 0xF3BD0,
-    WindowInprivate = 0xF3BD6,
-    WindowInprivateAccount = 0xF3BDC,
-    WindowLocationTarget = 0xF3BE2,
-    WindowMultiple = 0xF3BE8,
-    WindowMultipleSwap = 0xF3BEE,
-    WindowNew = 0xF3BF4,
-    WindowPlay = 0xF3BFA,
-    WindowSettings = 0xF3C00,
-    WindowShield = 0xF3C06,
-    WindowText = 0xF3C0C,
-    WindowWrench = 0xF3C12,
-    Wrench = 0xF3C18,
-    WrenchScrewdriver = 0xF3C1E,
-    WrenchSettings = 0xF3C24,
-    XboxConsole = 0xF3C2A,
-    XboxController = 0xF3C30,
-    XboxControllerError = 0xF3C36,
-    Xray = 0xF3C3C,
-    ZoomFit = 0xF3C42,
-    ZoomIn = 0xF3C48,
-    ZoomOut = 0xF3C4E,
+    AccessTime
+        = 0xF0000,
+    Accessibility
+        = 0xF0004,
+    AccessibilityCheckmark
+        = 0xF0008,
+    AccessibilityError
+        = 0xF000C,
+    AccessibilityMore
+        = 0xF0010,
+    AccessibilityQuestionMark
+        = 0xF0014,
+    Add
+        = 0xF0018,
+    AddCircle
+        = 0xF001C,
+    AddSquare
+        = 0xF0020,
+    AddSquareMultiple
+        = 0xF0024,
+    AddSubtractCircle
+        = 0xF0028,
+    Agents
+        = 0xF002C,
+    Airplane
+        = 0xF0030,
+    AirplaneLanding
+        = 0xF0034,
+    AirplaneTakeOff
+        = 0xF0038,
+    Album
+        = 0xF003C,
+    AlbumAdd
+        = 0xF0040,
+    Alert
+        = 0xF0044,
+    AlertBadge
+        = 0xF0048,
+    AlertOff
+        = 0xF004C,
+    AlertOn
+        = 0xF0050,
+    AlertSnooze
+        = 0xF0054,
+    AlertUrgent
+        = 0xF0058,
+    AlignBottom
+        = 0xF005C,
+    AlignCenterHorizontal
+        = 0xF0060,
+    AlignCenterVertical
+        = 0xF0064,
+    AlignEndHorizontal
+        = 0xF0078,
+    AlignEndVertical
+        = 0xF007C,
+    AlignLeft
+        = 0xF0080,
+    AlignRight
+        = 0xF0084,
+    AlignSpaceAroundHorizontal
+        = 0xF0088,
+    AlignSpaceAroundVertical
+        = 0xF008C,
+    AlignSpaceBetweenHorizontal
+        = 0xF0090,
+    AlignSpaceBetweenVertical
+        = 0xF0094,
+    AlignSpaceEvenlyHorizontal
+        = 0xF0098,
+    AlignSpaceEvenlyVertical
+        = 0xF009C,
+    AlignSpaceFitVertical
+        = 0xF00A0,
+    AlignStartHorizontal
+        = 0xF00A4,
+    AlignStartVertical
+        = 0xF00A8,
+    AlignStraighten
+        = 0xF00AC,
+    AlignStretchHorizontal
+        = 0xF00B0,
+    AlignStretchVertical
+        = 0xF00B4,
+    AlignTop
+        = 0xF00B8,
+    AnimalCat
+        = 0xF00BC,
+    AnimalDog
+        = 0xF00C0,
+    AnimalPawPrint
+        = 0xF00C4,
+    AnimalRabbit
+        = 0xF00C8,
+    AnimalRabbitOff
+        = 0xF00CC,
+    AnimalTurtle
+        = 0xF00D0,
+    AppFolder
+        = 0xF00D4,
+    AppGeneric
+        = 0xF00D8,
+    AppRecent
+        = 0xF00DC,
+    AppTitle
+        = 0xF00E4,
+    ApprovalsApp
+        = 0xF00E8,
+    Apps
+        = 0xF00EC,
+    AppsAddIn
+        = 0xF00F0,
+    AppsList
+        = 0xF00F4,
+    AppsListDetail
+        = 0xF00F8,
+    AppsSettings
+        = 0xF00FC,
+    AppsShield
+        = 0xF0100,
+    Archive
+        = 0xF0104,
+    ArchiveArrowBack
+        = 0xF0108,
+    ArchiveMultiple
+        = 0xF010C,
+    ArchiveSettings
+        = 0xF0110,
+    ArrowAutofitContent
+        = 0xF0114,
+    ArrowAutofitDown
+        = 0xF0118,
+    ArrowAutofitHeight
+        = 0xF011C,
+    ArrowAutofitHeightDotted
+        = 0xF0120,
+    ArrowAutofitHeightIn
+        = 0xF0124,
+    ArrowAutofitUp
+        = 0xF0128,
+    ArrowAutofitWidth
+        = 0xF012C,
+    ArrowAutofitWidthDotted
+        = 0xF0130,
+    ArrowBetweenDown
+        = 0xF0134,
+    ArrowBetweenUp
+        = 0xF0138,
+    ArrowBidirectionalLeftRight
+        = 0xF013C,
+    ArrowBidirectionalUpDown
+        = 0xF0140,
+    ArrowBounce
+        = 0xF0144,
+    ArrowCircleDown
+        = 0xF0148,
+    ArrowCircleDownDouble
+        = 0xF014C,
+    ArrowCircleDownRight
+        = 0xF0150,
+    ArrowCircleDownSplit
+        = 0xF0154,
+    ArrowCircleDownUp
+        = 0xF0158,
+    ArrowCircleLeft
+        = 0xF015C,
+    ArrowCircleRight
+        = 0xF0160,
+    ArrowCircleUp
+        = 0xF0164,
+    ArrowCircleUpLeft
+        = 0xF0168,
+    ArrowCircleUpRight
+        = 0xF016C,
+    ArrowCircleUpSparkle
+        = 0xF0170,
+    ArrowClockwise
+        = 0xF0174,
+    ArrowClockwiseDashes
+        = 0xF0178,
+    ArrowClockwiseDashesSettings
+        = 0xF017C,
+    ArrowCollapseAll
+        = 0xF0180,
+    ArrowCounterclockwise
+        = 0xF0184,
+    ArrowCounterclockwiseDashes
+        = 0xF0188,
+    ArrowCounterclockwiseInfo
+        = 0xF018C,
+    ArrowCurveDownLeft
+        = 0xF0190,
+    ArrowCurveDownRight
+        = 0xF0194,
+    ArrowCurveUpLeft
+        = 0xF0198,
+    ArrowCurveUpRight
+        = 0xF019C,
+    ArrowDown
+        = 0xF01A0,
+    ArrowDownExclamation
+        = 0xF01A4,
+    ArrowDownLeft
+        = 0xF01A8,
+    ArrowDownRight
+        = 0xF01AC,
+    ArrowDownload
+        = 0xF01B0,
+    ArrowDownloadOff
+        = 0xF01B4,
+    ArrowEject
+        = 0xF01B8,
+    ArrowEnter
+        = 0xF01BC,
+    ArrowEnterLeft
+        = 0xF01C0,
+    ArrowEnterUp
+        = 0xF01C4,
+    ArrowExit
+        = 0xF01C8,
+    ArrowExpand
+        = 0xF01CC,
+    ArrowExpandAll
+        = 0xF01D0,
+    ArrowExport
+        = 0xF01D4,
+    ArrowExportUp
+        = 0xF01D8,
+    ArrowFit
+        = 0xF01DC,
+    ArrowFitIn
+        = 0xF01E0,
+    ArrowFlowDiagonalUpRight
+        = 0xF01E4,
+    ArrowFlowUpRight
+        = 0xF01E8,
+    ArrowFlowUpRightRectangleMultiple
+        = 0xF01EC,
+    ArrowForward
+        = 0xF01F0,
+    ArrowForwardDownLightning
+        = 0xF01F4,
+    ArrowForwardDownPerson
+        = 0xF01F8,
+    ArrowHookDownLeft
+        = 0xF01FC,
+    ArrowHookDownRight
+        = 0xF0200,
+    ArrowHookUpLeft
+        = 0xF0204,
+    ArrowHookUpRight
+        = 0xF0208,
+    ArrowImport
+        = 0xF020C,
+    ArrowJoin
+        = 0xF0210,
+    ArrowLeft
+        = 0xF0214,
+    ArrowMaximize
+        = 0xF0218,
+    ArrowMaximizeVertical
+        = 0xF021C,
+    ArrowMinimize
+        = 0xF0220,
+    ArrowMinimizeVertical
+        = 0xF0224,
+    ArrowMove
+        = 0xF0228,
+    ArrowMoveInward
+        = 0xF022C,
+    ArrowNext
+        = 0xF0230,
+    ArrowOutlineDownLeft
+        = 0xF0234,
+    ArrowOutlineUpRight
+        = 0xF0238,
+    ArrowParagraph
+        = 0xF023C,
+    ArrowPrevious
+        = 0xF0240,
+    ArrowRedo
+        = 0xF0244,
+    ArrowRepeat1
+        = 0xF0248,
+    ArrowRepeatAll
+        = 0xF024C,
+    ArrowRepeatAllOff
+        = 0xF0250,
+    ArrowReply
+        = 0xF0254,
+    ArrowReplyAll
+        = 0xF0258,
+    ArrowReplyDown
+        = 0xF025C,
+    ArrowReset
+        = 0xF0260,
+    ArrowRight
+        = 0xF0264,
+    ArrowRotateClockwise
+        = 0xF0268,
+    ArrowRotateCounterclockwise
+        = 0xF026C,
+    ArrowRouting
+        = 0xF0270,
+    ArrowRoutingRectangleMultiple
+        = 0xF0274,
+    ArrowShuffle
+        = 0xF0278,
+    ArrowShuffleOff
+        = 0xF027C,
+    ArrowSort
+        = 0xF0280,
+    ArrowSortDown
+        = 0xF0284,
+    ArrowSortDownLines
+        = 0xF0288,
+    ArrowSortUp
+        = 0xF028C,
+    ArrowSortUpLines
+        = 0xF0290,
+    ArrowSplit
+        = 0xF0294,
+    ArrowSprint
+        = 0xF0298,
+    ArrowSquareDown
+        = 0xF02A0,
+    ArrowSquareUpRight
+        = 0xF02A4,
+    ArrowStepBack
+        = 0xF02A8,
+    ArrowStepIn
+        = 0xF02AC,
+    ArrowStepInDiagonalDownLeft
+        = 0xF02B0,
+    ArrowStepInLeft
+        = 0xF02B4,
+    ArrowStepInRight
+        = 0xF02B8,
+    ArrowStepOut
+        = 0xF02BC,
+    ArrowStepOver
+        = 0xF02C0,
+    ArrowSwap
+        = 0xF02C4,
+    ArrowSync
+        = 0xF02C8,
+    ArrowSyncCheckmark
+        = 0xF02CC,
+    ArrowSyncCircle
+        = 0xF02D0,
+    ArrowSyncDismiss
+        = 0xF02D4,
+    ArrowSyncOff
+        = 0xF02D8,
+    ArrowTrending
+        = 0xF02DC,
+    ArrowTrendingCheckmark
+        = 0xF02E0,
+    ArrowTrendingDown
+        = 0xF02E4,
+    ArrowTrendingLines
+        = 0xF02E8,
+    ArrowTrendingSettings
+        = 0xF02EC,
+    ArrowTrendingSparkle
+        = 0xF02F0,
+    ArrowTrendingText
+        = 0xF02F4,
+    ArrowTrendingWrench
+        = 0xF02F8,
+    ArrowTurnBidirectionalDownRight
+        = 0xF02FC,
+    ArrowTurnDownLeft
+        = 0xF0300,
+    ArrowTurnDownRight
+        = 0xF0304,
+    ArrowTurnDownUp
+        = 0xF0308,
+    ArrowTurnLeftDown
+        = 0xF030C,
+    ArrowTurnLeftRight
+        = 0xF0310,
+    ArrowTurnLeftUp
+        = 0xF0314,
+    ArrowTurnRight
+        = 0xF0318,
+    ArrowTurnRightDown
+        = 0xF031C,
+    ArrowTurnRightLeft
+        = 0xF0320,
+    ArrowTurnRightUp
+        = 0xF0324,
+    ArrowTurnUpDown
+        = 0xF0328,
+    ArrowTurnUpLeft
+        = 0xF032C,
+    ArrowUndo
+        = 0xF0330,
+    ArrowUp
+        = 0xF0334,
+    ArrowUpExclamation
+        = 0xF0338,
+    ArrowUpLeft
+        = 0xF033C,
+    ArrowUpRight
+        = 0xF0340,
+    ArrowUpRightDashes
+        = 0xF0344,
+    ArrowUpload
+        = 0xF034C,
+    ArrowWrap
+        = 0xF0350,
+    ArrowWrapOff
+        = 0xF0354,
+    ArrowWrapUpToDown
+        = 0xF0358,
+    ArrowsBidirectional
+        = 0xF035C,
+    Attach
+        = 0xF0360,
+    AttachArrowRight
+        = 0xF0364,
+    AttachText
+        = 0xF0368,
+    AutoFit
+        = 0xF036C,
+    AutoFitHeight
+        = 0xF0370,
+    AutoFitWidth
+        = 0xF0374,
+    Autocorrect
+        = 0xF0378,
+    Autosum
+        = 0xF037C,
+    Backpack
+        = 0xF0380,
+    BackpackAdd
+        = 0xF0384,
+    Backspace
+        = 0xF0388,
+    Badge
+        = 0xF038C,
+    Balloon
+        = 0xF0390,
+    BarcodeScanner
+        = 0xF0394,
+    Battery0
+        = 0xF0398,
+    Battery1
+        = 0xF039C,
+    Battery10
+        = 0xF03A0,
+    Battery2
+        = 0xF03A4,
+    Battery3
+        = 0xF03A8,
+    Battery4
+        = 0xF03AC,
+    Battery5
+        = 0xF03B0,
+    Battery6
+        = 0xF03B4,
+    Battery7
+        = 0xF03B8,
+    Battery8
+        = 0xF03BC,
+    Battery9
+        = 0xF03C0,
+    BatteryCharge
+        = 0xF03C4,
+    BatteryCheckmark
+        = 0xF03C8,
+    BatterySaver
+        = 0xF03CC,
+    BatteryWarning
+        = 0xF03D0,
+    Beach
+        = 0xF03D4,
+    Beaker
+        = 0xF03D8,
+    BeakerAdd
+        = 0xF03DC,
+    BeakerDismiss
+        = 0xF03E0,
+    BeakerEdit
+        = 0xF03E4,
+    BeakerOff
+        = 0xF03EC,
+    BeakerSettings
+        = 0xF03F0,
+    Bed
+        = 0xF03F4,
+    Bench
+        = 0xF03F8,
+    BezierCurveSquare
+        = 0xF03FC,
+    BinFull
+        = 0xF0400,
+    BinRecycle
+        = 0xF0404,
+    BinRecycleFull
+        = 0xF0408,
+    BinderTriangle
+        = 0xF040C,
+    Bluetooth
+        = 0xF0410,
+    BluetoothConnected
+        = 0xF0414,
+    BluetoothDisabled
+        = 0xF0418,
+    BluetoothSearching
+        = 0xF041C,
+    Blur
+        = 0xF0420,
+    Board
+        = 0xF0424,
+    BoardGames
+        = 0xF0428,
+    BoardHeart
+        = 0xF042C,
+    BoardSplit
+        = 0xF0430,
+    Book
+        = 0xF0434,
+    BookAdd
+        = 0xF0438,
+    BookArrowClockwise
+        = 0xF043C,
+    BookClock
+        = 0xF0440,
+    BookCoins
+        = 0xF0444,
+    BookCompass
+        = 0xF0448,
+    BookContacts
+        = 0xF044C,
+    BookDatabase
+        = 0xF0450,
+    BookDefault
+        = 0xF0454,
+    BookDismiss
+        = 0xF0458,
+    BookExclamationMark
+        = 0xF045C,
+    BookGlobe
+        = 0xF0460,
+    BookInformation
+        = 0xF0464,
+    BookLetter
+        = 0xF0468,
+    BookNumber
+        = 0xF046C,
+    BookOpen
+        = 0xF0470,
+    BookOpenGlobe
+        = 0xF0474,
+    BookOpenMicrophone
+        = 0xF0478,
+    BookPulse
+        = 0xF047C,
+    BookQuestionMark
+        = 0xF0480,
+    BookSearch
+        = 0xF0484,
+    BookStar
+        = 0xF0488,
+    BookTemplate
+        = 0xF048C,
+    BookTheta
+        = 0xF0490,
+    BookToolbox
+        = 0xF0494,
+    Bookmark
+        = 0xF0498,
+    BookmarkAdd
+        = 0xF049C,
+    BookmarkMultiple
+        = 0xF04A0,
+    BookmarkOff
+        = 0xF04A4,
+    BookmarkSearch
+        = 0xF04A8,
+    BorderAll
+        = 0xF04AC,
+    BorderBottom
+        = 0xF04B0,
+    BorderBottomDouble
+        = 0xF04B4,
+    BorderBottomThick
+        = 0xF04B8,
+    BorderInside
+        = 0xF04BC,
+    BorderLeft
+        = 0xF04C0,
+    BorderLeftRight
+        = 0xF04C4,
+    BorderNone
+        = 0xF04C8,
+    BorderOutside
+        = 0xF04CC,
+    BorderOutsideThick
+        = 0xF04D0,
+    BorderRight
+        = 0xF04D4,
+    BorderTop
+        = 0xF04D8,
+    BorderTopBottom
+        = 0xF04DC,
+    BorderTopBottomDouble
+        = 0xF04E0,
+    BorderTopBottomThick
+        = 0xF04E4,
+    Bot
+        = 0xF04E8,
+    BotAdd
+        = 0xF04EC,
+    BotSparkle
+        = 0xF04F0,
+    BowTie
+        = 0xF04F4,
+    BowlChopsticks
+        = 0xF04F8,
+    BowlSalad
+        = 0xF04FC,
+    Box
+        = 0xF0500,
+    BoxArrowLeft
+        = 0xF0504,
+    BoxArrowUp
+        = 0xF0508,
+    BoxCheckmark
+        = 0xF050C,
+    BoxDismiss
+        = 0xF0510,
+    BoxEdit
+        = 0xF0514,
+    BoxMultiple
+        = 0xF0518,
+    BoxMultipleArrowLeft
+        = 0xF051C,
+    BoxMultipleArrowRight
+        = 0xF0520,
+    BoxMultipleCheckmark
+        = 0xF0524,
+    BoxMultipleSearch
+        = 0xF0528,
+    BoxSearch
+        = 0xF052C,
+    BoxToolbox
+        = 0xF0530,
+    Braces
+        = 0xF0534,
+    BracesVariable
+        = 0xF0540,
+    Brain
+        = 0xF0544,
+    BrainCircuit
+        = 0xF0548,
+    BrainSparkle
+        = 0xF054C,
+    Branch
+        = 0xF0550,
+    BranchCompare
+        = 0xF0554,
+    BranchFork
+        = 0xF0558,
+    BranchForkHint
+        = 0xF055C,
+    BranchForkLink
+        = 0xF0560,
+    BranchRequest
+        = 0xF0564,
+    BranchRequestClosed
+        = 0xF0568,
+    BranchRequestDraft
+        = 0xF056C,
+    BreakoutRoom
+        = 0xF0570,
+    Briefcase
+        = 0xF0574,
+    BriefcaseMedical
+        = 0xF0578,
+    BriefcaseOff
+        = 0xF057C,
+    BriefcaseSearch
+        = 0xF0584,
+    BrightnessHigh
+        = 0xF0588,
+    BrightnessLow
+        = 0xF058C,
+    BroadActivityFeed
+        = 0xF0590,
+    Broom
+        = 0xF0594,
+    BubbleMultiple
+        = 0xF0598,
+    Bug
+        = 0xF059C,
+    BugArrowCounterclockwise
+        = 0xF05A0,
+    BugProhibited
+        = 0xF05A4,
+    Building
+        = 0xF05A8,
+    BuildingBank
+        = 0xF05AC,
+    BuildingBankLink
+        = 0xF05B0,
+    BuildingBankToolbox
+        = 0xF05B4,
+    BuildingCheckmark
+        = 0xF05B8,
+    BuildingDesktop
+        = 0xF05C0,
+    BuildingFactory
+        = 0xF05C4,
+    BuildingGovernment
+        = 0xF05C8,
+    BuildingGovernmentSearch
+        = 0xF05CC,
+    BuildingHome
+        = 0xF05D0,
+    BuildingLighthouse
+        = 0xF05D4,
+    BuildingMosque
+        = 0xF05D8,
+    BuildingMultiple
+        = 0xF05DC,
+    BuildingPeople
+        = 0xF05E0,
+    BuildingRetail
+        = 0xF05E4,
+    BuildingRetailMoney
+        = 0xF05E8,
+    BuildingRetailMore
+        = 0xF05EC,
+    BuildingRetailShield
+        = 0xF05F0,
+    BuildingRetailToolbox
+        = 0xF05F4,
+    BuildingShop
+        = 0xF05F8,
+    BuildingSkyscraper
+        = 0xF05FC,
+    BuildingSwap
+        = 0xF0604,
+    BuildingTownhouse
+        = 0xF0608,
+    Button
+        = 0xF060C,
+    Calculator
+        = 0xF0610,
+    CalculatorArrowClockwise
+        = 0xF0614,
+    CalculatorMultiple
+        = 0xF0618,
+    Calendar
+        = 0xF061C,
+    Calendar3Day
+        = 0xF0620,
+    CalendarAdd
+        = 0xF0624,
+    CalendarAgenda
+        = 0xF0628,
+    CalendarArrowCounterclockwise
+        = 0xF062C,
+    CalendarArrowDown
+        = 0xF0630,
+    CalendarArrowRepeatAll
+        = 0xF0634,
+    CalendarArrowRight
+        = 0xF0638,
+    CalendarAssistant
+        = 0xF063C,
+    CalendarCancel
+        = 0xF0640,
+    CalendarChat
+        = 0xF0644,
+    CalendarCheckmark
+        = 0xF0648,
+    CalendarClock
+        = 0xF064C,
+    CalendarDataBar
+        = 0xF0650,
+    CalendarDate
+        = 0xF0654,
+    CalendarDay
+        = 0xF0658,
+    CalendarEdit
+        = 0xF065C,
+    CalendarEmpty
+        = 0xF0660,
+    CalendarError
+        = 0xF0664,
+    CalendarEye
+        = 0xF0668,
+    CalendarInfo
+        = 0xF066C,
+    CalendarLock
+        = 0xF0674,
+    CalendarMail
+        = 0xF0678,
+    CalendarMention
+        = 0xF067C,
+    CalendarMonth
+        = 0xF0680,
+    CalendarMultiple
+        = 0xF0684,
+    CalendarNote
+        = 0xF0688,
+    CalendarPattern
+        = 0xF068C,
+    CalendarPerson
+        = 0xF0694,
+    CalendarPhone
+        = 0xF0698,
+    CalendarPlay
+        = 0xF069C,
+    CalendarQuestionMark
+        = 0xF06A0,
+    CalendarRecord
+        = 0xF06A4,
+    CalendarReply
+        = 0xF06A8,
+    CalendarSearch
+        = 0xF06AC,
+    CalendarSettings
+        = 0xF06B0,
+    CalendarShield
+        = 0xF06B4,
+    CalendarSparkle
+        = 0xF06B8,
+    CalendarStar
+        = 0xF06BC,
+    CalendarSync
+        = 0xF06C0,
+    CalendarTemplate
+        = 0xF06C4,
+    CalendarToday
+        = 0xF06C8,
+    CalendarTodo
+        = 0xF06CC,
+    CalendarToolbox
+        = 0xF06D0,
+    CalendarVideo
+        = 0xF06D4,
+    CalendarWeekNumbers
+        = 0xF06D8,
+    CalendarWeekStart
+        = 0xF06DC,
+    CalendarWorkWeek
+        = 0xF06E0,
+    Call
+        = 0xF06E4,
+    CallAdd
+        = 0xF06E8,
+    CallCheckmark
+        = 0xF06EC,
+    CallConnecting
+        = 0xF06F0,
+    CallDismiss
+        = 0xF06F4,
+    CallEnd
+        = 0xF06F8,
+    CallExclamation
+        = 0xF06FC,
+    CallForward
+        = 0xF0700,
+    CallInbound
+        = 0xF0704,
+    CallMissed
+        = 0xF0708,
+    CallOutbound
+        = 0xF070C,
+    CallPark
+        = 0xF0710,
+    CallPause
+        = 0xF0714,
+    CallProhibited
+        = 0xF0718,
+    CallRectangleLandscape
+        = 0xF071C,
+    CallSquare
+        = 0xF0720,
+    CallTransfer
+        = 0xF0724,
+    CallWarning
+        = 0xF0728,
+    CalligraphyPen
+        = 0xF072C,
+    CalligraphyPenCheckmark
+        = 0xF0730,
+    CalligraphyPenError
+        = 0xF0734,
+    CalligraphyPenQuestionMark
+        = 0xF0738,
+    Camera
+        = 0xF073C,
+    CameraAdd
+        = 0xF0740,
+    CameraArrowUp
+        = 0xF0744,
+    CameraDome
+        = 0xF0748,
+    CameraEdit
+        = 0xF074C,
+    CameraOff
+        = 0xF0750,
+    CameraSparkles
+        = 0xF0754,
+    CameraSwitch
+        = 0xF0758,
+    CardUi
+        = 0xF075C,
+    CardUiPortraitFlip
+        = 0xF0760,
+    CaretDown
+        = 0xF0764,
+    CaretDownRight
+        = 0xF0768,
+    CaretLeft
+        = 0xF076C,
+    CaretRight
+        = 0xF0770,
+    CaretUp
+        = 0xF0774,
+    Cart
+        = 0xF0778,
+    Cast
+        = 0xF077C,
+    CastMultiple
+        = 0xF0780,
+    CatchUp
+        = 0xF0784,
+    Cellular3g
+        = 0xF078C,
+    Cellular4g
+        = 0xF0790,
+    Cellular5g
+        = 0xF0794,
+    CellularData1
+        = 0xF0798,
+    CellularData2
+        = 0xF079C,
+    CellularData3
+        = 0xF07A0,
+    CellularData4
+        = 0xF07A4,
+    CellularData5
+        = 0xF07A8,
+    CellularOff
+        = 0xF07AC,
+    CellularWarning
+        = 0xF07B0,
+    CenterHorizontal
+        = 0xF07B4,
+    CenterVertical
+        = 0xF07B8,
+    Certificate
+        = 0xF07BC,
+    Channel
+        = 0xF07C0,
+    ChannelAdd
+        = 0xF07C4,
+    ChannelAlert
+        = 0xF07C8,
+    ChannelArrowLeft
+        = 0xF07CC,
+    ChannelDismiss
+        = 0xF07D0,
+    ChannelShare
+        = 0xF07D4,
+    ChannelSubtract
+        = 0xF07D8,
+    ChartMultiple
+        = 0xF07DC,
+    ChartPerson
+        = 0xF07E0,
+    Chat
+        = 0xF07E4,
+    ChatAdd
+        = 0xF07E8,
+    ChatArrowBack
+        = 0xF07EC,
+    ChatArrowBackDown
+        = 0xF07F0,
+    ChatArrowDoubleBack
+        = 0xF07F4,
+    ChatBubblesQuestion
+        = 0xF07F8,
+    ChatCursor
+        = 0xF07FC,
+    ChatDismiss
+        = 0xF0800,
+    ChatEmpty
+        = 0xF0804,
+    ChatHelp
+        = 0xF0808,
+    ChatHistory
+        = 0xF080C,
+    ChatLock
+        = 0xF0810,
+    ChatMail
+        = 0xF0814,
+    ChatMultiple
+        = 0xF081C,
+    ChatMultipleHeart
+        = 0xF0820,
+    ChatOff
+        = 0xF0824,
+    ChatSettings
+        = 0xF0828,
+    ChatSparkle
+        = 0xF082C,
+    ChatVideo
+        = 0xF0830,
+    ChatWarning
+        = 0xF0834,
+    Check
+        = 0xF0838,
+    Checkbox1
+        = 0xF0840,
+    Checkbox2
+        = 0xF0844,
+    CheckboxArrowRight
+        = 0xF0848,
+    CheckboxChecked
+        = 0xF084C,
+    CheckboxCheckedSync
+        = 0xF0850,
+    CheckboxIndeterminate
+        = 0xF0854,
+    CheckboxPerson
+        = 0xF0858,
+    CheckboxUnchecked
+        = 0xF085C,
+    CheckboxWarning
+        = 0xF0860,
+    Checkmark
+        = 0xF0864,
+    CheckmarkCircle
+        = 0xF0868,
+    CheckmarkCircleSquare
+        = 0xF086C,
+    CheckmarkCircleWarning
+        = 0xF0870,
+    CheckmarkLock
+        = 0xF0874,
+    CheckmarkNote
+        = 0xF0878,
+    CheckmarkSquare
+        = 0xF087C,
+    CheckmarkStarburst
+        = 0xF0880,
+    CheckmarkUnderlineCircle
+        = 0xF0884,
+    Chess
+        = 0xF0888,
+    ChevronCircleDown
+        = 0xF088C,
+    ChevronCircleLeft
+        = 0xF0890,
+    ChevronCircleRight
+        = 0xF0894,
+    ChevronCircleUp
+        = 0xF0898,
+    ChevronDoubleDown
+        = 0xF089C,
+    ChevronDoubleLeft
+        = 0xF08A0,
+    ChevronDoubleRight
+        = 0xF08A4,
+    ChevronDoubleUp
+        = 0xF08A8,
+    ChevronDown
+        = 0xF08AC,
+    ChevronDownUp
+        = 0xF08B0,
+    ChevronLeft
+        = 0xF08B4,
+    ChevronRight
+        = 0xF08B8,
+    ChevronUp
+        = 0xF08BC,
+    ChevronUpDown
+        = 0xF08C0,
+    Circle
+        = 0xF08C4,
+    CircleEdit
+        = 0xF08C8,
+    CircleEraser
+        = 0xF08CC,
+    CircleHalfFill
+        = 0xF08D0,
+    CircleHighlight
+        = 0xF08D4,
+    CircleHint
+        = 0xF08D8,
+    CircleHintCursor
+        = 0xF08DC,
+    CircleHintDismiss
+        = 0xF08E0,
+    CircleHintHalfVertical
+        = 0xF08E4,
+    CircleImage
+        = 0xF08E8,
+    CircleLine
+        = 0xF08EC,
+    CircleMultipleConcentric
+        = 0xF08F0,
+    CircleMultipleHintCheckmark
+        = 0xF08F4,
+    CircleMultipleSubtractCheckmark
+        = 0xF08F8,
+    CircleOff
+        = 0xF08FC,
+    CircleShadow
+        = 0xF0900,
+    CircleSmall
+        = 0xF0904,
+    CircleSparkle
+        = 0xF0908,
+    City
+        = 0xF090C,
+    Class
+        = 0xF0910,
+    Classification
+        = 0xF0914,
+    ClearFormatting
+        = 0xF0918,
+    Clipboard
+        = 0xF091C,
+    Clipboard3Day
+        = 0xF0920,
+    ClipboardArrowRight
+        = 0xF0924,
+    ClipboardBrush
+        = 0xF0928,
+    ClipboardBulletList
+        = 0xF092C,
+    ClipboardCheckmark
+        = 0xF0930,
+    ClipboardClock
+        = 0xF0934,
+    ClipboardCode
+        = 0xF0938,
+    ClipboardDataBar
+        = 0xF093C,
+    ClipboardDay
+        = 0xF0940,
+    ClipboardEdit
+        = 0xF0944,
+    ClipboardError
+        = 0xF0948,
+    ClipboardHeart
+        = 0xF094C,
+    ClipboardImage
+        = 0xF0950,
+    ClipboardLetter
+        = 0xF0954,
+    ClipboardLink
+        = 0xF0958,
+    ClipboardMathFormula
+        = 0xF095C,
+    ClipboardMonth
+        = 0xF0960,
+    ClipboardMore
+        = 0xF0964,
+    ClipboardNote
+        = 0xF096C,
+    ClipboardNumber123
+        = 0xF0970,
+    ClipboardPaste
+        = 0xF0974,
+    ClipboardPulse
+        = 0xF0978,
+    ClipboardSearch
+        = 0xF097C,
+    ClipboardSettings
+        = 0xF0980,
+    ClipboardTask
+        = 0xF0984,
+    ClipboardTaskAdd
+        = 0xF0988,
+    ClipboardTaskList
+        = 0xF098C,
+    ClipboardText
+        = 0xF0990,
+    ClipboardTextEdit
+        = 0xF0994,
+    Clock
+        = 0xF0998,
+    ClockAlarm
+        = 0xF099C,
+    ClockArrowDownload
+        = 0xF09A0,
+    ClockBill
+        = 0xF09A4,
+    ClockDismiss
+        = 0xF09A8,
+    ClockLock
+        = 0xF09AC,
+    ClockPause
+        = 0xF09B0,
+    ClockToolbox
+        = 0xF09B4,
+    ClosedCaption
+        = 0xF09B8,
+    ClosedCaptionOff
+        = 0xF09BC,
+    ClothesHanger
+        = 0xF09C0,
+    Cloud
+        = 0xF09C4,
+    CloudAdd
+        = 0xF09C8,
+    CloudArchive
+        = 0xF09CC,
+    CloudArrowDown
+        = 0xF09D0,
+    CloudArrowRight
+        = 0xF09D4,
+    CloudArrowUp
+        = 0xF09D8,
+    CloudBeaker
+        = 0xF09DC,
+    CloudBidirectional
+        = 0xF09E0,
+    CloudCheckmark
+        = 0xF09E4,
+    CloudCube
+        = 0xF09E8,
+    CloudDatabase
+        = 0xF09EC,
+    CloudDesktop
+        = 0xF09F0,
+    CloudDismiss
+        = 0xF09F4,
+    CloudEdit
+        = 0xF09F8,
+    CloudError
+        = 0xF09FC,
+    CloudFlow
+        = 0xF0A00,
+    CloudLink
+        = 0xF0A04,
+    CloudOff
+        = 0xF0A08,
+    CloudSwap
+        = 0xF0A0C,
+    CloudSync
+        = 0xF0A10,
+    CloudWords
+        = 0xF0A14,
+    Clover
+        = 0xF0A18,
+    Code
+        = 0xF0A1C,
+    CodeBlock
+        = 0xF0A20,
+    CodeCircle
+        = 0xF0A24,
+    CodeText
+        = 0xF0A50,
+    CodeTextEdit
+        = 0xF0A54,
+    CoinMultiple
+        = 0xF0A6C,
+    CoinStack
+        = 0xF0A70,
+    Collections
+        = 0xF0A74,
+    CollectionsAdd
+        = 0xF0A78,
+    CollectionsEmpty
+        = 0xF0A7C,
+    Color
+        = 0xF0A80,
+    ColorBackground
+        = 0xF0A84,
+    ColorBackgroundAccent
+        = 0xF0A88,
+    ColorFill
+        = 0xF0A8C,
+    ColorFillAccent
+        = 0xF0A90,
+    ColorLine
+        = 0xF0A94,
+    ColorLineAccent
+        = 0xF0A98,
+    Column
+        = 0xF0A9C,
+    ColumnArrowRight
+        = 0xF0AA0,
+    ColumnDoubleCompare
+        = 0xF0AA4,
+    ColumnEdit
+        = 0xF0AA8,
+    ColumnSingleCompare
+        = 0xF0AB0,
+    ColumnTriple
+        = 0xF0AB4,
+    ColumnTripleEdit
+        = 0xF0AB8,
+    Comma
+        = 0xF0ABC,
+    Comment
+        = 0xF0AC0,
+    CommentAdd
+        = 0xF0AC4,
+    CommentArrowLeft
+        = 0xF0AC8,
+    CommentArrowRight
+        = 0xF0ACC,
+    CommentBadge
+        = 0xF0AD0,
+    CommentCheckmark
+        = 0xF0AD4,
+    CommentDismiss
+        = 0xF0AD8,
+    CommentEdit
+        = 0xF0ADC,
+    CommentError
+        = 0xF0AE0,
+    CommentLightning
+        = 0xF0AE4,
+    CommentLink
+        = 0xF0AE8,
+    CommentMention
+        = 0xF0AEC,
+    CommentMultiple
+        = 0xF0AF0,
+    CommentMultipleCheckmark
+        = 0xF0AF4,
+    CommentMultipleLink
+        = 0xF0AF8,
+    CommentMultipleMention
+        = 0xF0AFC,
+    CommentNote
+        = 0xF0B00,
+    CommentOff
+        = 0xF0B04,
+    CommentQuote
+        = 0xF0B08,
+    CommentText
+        = 0xF0B0C,
+    Communication
+        = 0xF0B10,
+    CommunicationPerson
+        = 0xF0B14,
+    CommunicationShield
+        = 0xF0B18,
+    CompassNorthwest
+        = 0xF0B1C,
+    Compose
+        = 0xF0B28,
+    ConferenceRoom
+        = 0xF0B30,
+    Connected
+        = 0xF0B34,
+    Connector
+        = 0xF0B38,
+    ContactCard
+        = 0xF0B3C,
+    ContactCardGroup
+        = 0xF0B40,
+    ContactCardLink
+        = 0xF0B44,
+    ContactCardRibbon
+        = 0xF0B48,
+    ContentSettings
+        = 0xF0B4C,
+    ContentView
+        = 0xF0B50,
+    ContentViewGallery
+        = 0xF0B54,
+    ContentViewGalleryLightning
+        = 0xF0B58,
+    ContractDownLeft
+        = 0xF0B5C,
+    ContractUpRight
+        = 0xF0B60,
+    ControlButton
+        = 0xF0B64,
+    ConvertRange
+        = 0xF0B68,
+    Cookies
+        = 0xF0B6C,
+    Copy
+        = 0xF0B70,
+    CopyAdd
+        = 0xF0B74,
+    CopyArrowRight
+        = 0xF0B78,
+    CopySelect
+        = 0xF0B7C,
+    Couch
+        = 0xF0B80,
+    CreditCardClock
+        = 0xF0B84,
+    CreditCardPerson
+        = 0xF0B88,
+    CreditCardToolbox
+        = 0xF0B8C,
+    Crop
+        = 0xF0B90,
+    CropArrowRotate
+        = 0xF0B94,
+    CropInterim
+        = 0xF0B98,
+    CropInterimOff
+        = 0xF0B9C,
+    Crown
+        = 0xF0BA4,
+    CrownSubtract
+        = 0xF0BA8,
+    Cube
+        = 0xF0BAC,
+    CubeAdd
+        = 0xF0BB0,
+    CubeArrowCurveDown
+        = 0xF0BB4,
+    CubeLink
+        = 0xF0BB8,
+    CubeMultiple
+        = 0xF0BBC,
+    CubeQuick
+        = 0xF0BC0,
+    CubeRotate
+        = 0xF0BC4,
+    CubeSync
+        = 0xF0BC8,
+    CubeTree
+        = 0xF0BCC,
+    CurrencyDollarEuro
+        = 0xF0BD0,
+    CurrencyDollarRupee
+        = 0xF0BD4,
+    Cursor
+        = 0xF0BD8,
+    CursorClick
+        = 0xF0BDC,
+    CursorHover
+        = 0xF0BE0,
+    CursorHoverOff
+        = 0xF0BE4,
+    CursorProhibited
+        = 0xF0BE8,
+    Cut
+        = 0xF0BEC,
+    DarkTheme
+        = 0xF0BF0,
+    DataArea
+        = 0xF0BF4,
+    DataBarHorizontal
+        = 0xF0BF8,
+    DataBarVertical
+        = 0xF0C00,
+    DataBarVerticalAdd
+        = 0xF0C04,
+    DataBarVerticalArrowDown
+        = 0xF0C08,
+    DataBarVerticalAscending
+        = 0xF0C0C,
+    DataBarVerticalStar
+        = 0xF0C10,
+    DataFunnel
+        = 0xF0C14,
+    DataHistogram
+        = 0xF0C18,
+    DataLine
+        = 0xF0C1C,
+    DataPie
+        = 0xF0C20,
+    DataScatter
+        = 0xF0C24,
+    DataSunburst
+        = 0xF0C28,
+    DataTreemap
+        = 0xF0C2C,
+    DataTrending
+        = 0xF0C30,
+    DataUsage
+        = 0xF0C34,
+    DataUsageCheckmark
+        = 0xF0C38,
+    DataUsageEdit
+        = 0xF0C3C,
+    DataUsageSettings
+        = 0xF0C40,
+    DataUsageSparkle
+        = 0xF0C44,
+    DataUsageToolbox
+        = 0xF0C48,
+    DataWaterfall
+        = 0xF0C4C,
+    DataWhisker
+        = 0xF0C50,
+    Database
+        = 0xF0C54,
+    DatabaseArrowDown
+        = 0xF0C58,
+    DatabaseArrowRight
+        = 0xF0C5C,
+    DatabaseArrowUp
+        = 0xF0C60,
+    DatabaseCheckmark
+        = 0xF0C64,
+    DatabaseLightning
+        = 0xF0C68,
+    DatabaseLink
+        = 0xF0C6C,
+    DatabaseMultiple
+        = 0xF0C70,
+    DatabasePerson
+        = 0xF0C74,
+    DatabasePlugConnected
+        = 0xF0C78,
+    DatabaseSearch
+        = 0xF0C7C,
+    DatabaseSwitch
+        = 0xF0C84,
+    DatabaseWarning
+        = 0xF0C88,
+    DatabaseWindow
+        = 0xF0C8C,
+    DecimalArrowLeft
+        = 0xF0C90,
+    DecimalArrowRight
+        = 0xF0C94,
+    Delete
+        = 0xF0C98,
+    DeleteArrowBack
+        = 0xF0C9C,
+    DeleteDismiss
+        = 0xF0CA0,
+    DeleteLines
+        = 0xF0CA4,
+    DeleteOff
+        = 0xF0CA8,
+    Dentist
+        = 0xF0CAC,
+    DesignIdeas
+        = 0xF0CB0,
+    Desk
+        = 0xF0CB4,
+    DeskMultiple
+        = 0xF0CB8,
+    Desktop
+        = 0xF0CBC,
+    DesktopArrowDown
+        = 0xF0CC0,
+    DesktopArrowRight
+        = 0xF0CC4,
+    DesktopCheckmark
+        = 0xF0CC8,
+    DesktopCursor
+        = 0xF0CCC,
+    DesktopEdit
+        = 0xF0CD0,
+    DesktopFlow
+        = 0xF0CD4,
+    DesktopKeyboard
+        = 0xF0CD8,
+    DesktopMac
+        = 0xF0CDC,
+    DesktopOff
+        = 0xF0CE0,
+    DesktopPulse
+        = 0xF0CE4,
+    DesktopSignal
+        = 0xF0CE8,
+    DesktopSpeaker
+        = 0xF0CEC,
+    DesktopSpeakerOff
+        = 0xF0CF0,
+    DesktopSync
+        = 0xF0CF4,
+    DesktopToolbox
+        = 0xF0CF8,
+    DesktopTower
+        = 0xF0CFC,
+    DeveloperBoard
+        = 0xF0D00,
+    DeveloperBoardLightning
+        = 0xF0D04,
+    DeveloperBoardLightningToolbox
+        = 0xF0D08,
+    DeveloperBoardSearch
+        = 0xF0D0C,
+    DeviceEq
+        = 0xF0D10,
+    DeviceMeetingRoom
+        = 0xF0D14,
+    DeviceMeetingRoomRemote
+        = 0xF0D18,
+    Diagram
+        = 0xF0D1C,
+    Dialpad
+        = 0xF0D20,
+    DialpadOff
+        = 0xF0D24,
+    DialpadQuestionMark
+        = 0xF0D28,
+    Diamond
+        = 0xF0D2C,
+    Directions
+        = 0xF0D30,
+    Dishwasher
+        = 0xF0D34,
+    Dismiss
+        = 0xF0D38,
+    DismissCircle
+        = 0xF0D3C,
+    DismissSquare
+        = 0xF0D40,
+    DismissSquareMultiple
+        = 0xF0D44,
+    Diversity
+        = 0xF0D48,
+    DividerShort
+        = 0xF0D4C,
+    DividerTall
+        = 0xF0D50,
+    Dock
+        = 0xF0D54,
+    DockRow
+        = 0xF0D58,
+    Doctor
+        = 0xF0D5C,
+    Document
+        = 0xF0D60,
+    Document100
+        = 0xF0D64,
+    DocumentAdd
+        = 0xF0D68,
+    DocumentArrowDown
+        = 0xF0D6C,
+    DocumentArrowLeft
+        = 0xF0D70,
+    DocumentArrowRight
+        = 0xF0D74,
+    DocumentArrowUp
+        = 0xF0D78,
+    DocumentBorder
+        = 0xF0D7C,
+    DocumentBorderPrint
+        = 0xF0D80,
+    DocumentBriefcase
+        = 0xF0D84,
+    DocumentBulletList
+        = 0xF0D88,
+    DocumentBulletListArrowLeft
+        = 0xF0D8C,
+    DocumentBulletListClock
+        = 0xF0D90,
+    DocumentBulletListCube
+        = 0xF0D94,
+    DocumentBulletListMultiple
+        = 0xF0D98,
+    DocumentBulletListOff
+        = 0xF0D9C,
+    DocumentCatchUp
+        = 0xF0DA0,
+    DocumentCheckmark
+        = 0xF0DA4,
+    DocumentChevronDouble
+        = 0xF0DA8,
+    DocumentCopy
+        = 0xF0DB0,
+    DocumentCss
+        = 0xF0DB8,
+    DocumentCube
+        = 0xF0DBC,
+    DocumentData
+        = 0xF0DC0,
+    DocumentDataLink
+        = 0xF0DC4,
+    DocumentDataLock
+        = 0xF0DC8,
+    DocumentDatabase
+        = 0xF0DCC,
+    DocumentDismiss
+        = 0xF0DD0,
+    DocumentEdit
+        = 0xF0DD4,
+    DocumentEndnote
+        = 0xF0DD8,
+    DocumentError
+        = 0xF0DDC,
+    DocumentFit
+        = 0xF0DE0,
+    DocumentFlowchart
+        = 0xF0DE4,
+    DocumentFolder
+        = 0xF0DE8,
+    DocumentFooter
+        = 0xF0DEC,
+    DocumentFooterDismiss
+        = 0xF0DF0,
+    DocumentGlobe
+        = 0xF0DF8,
+    DocumentHeader
+        = 0xF0DFC,
+    DocumentHeaderArrowDown
+        = 0xF0E00,
+    DocumentHeaderDismiss
+        = 0xF0E04,
+    DocumentHeaderFooter
+        = 0xF0E08,
+    DocumentHeart
+        = 0xF0E0C,
+    DocumentHeartPulse
+        = 0xF0E10,
+    DocumentImage
+        = 0xF0E14,
+    DocumentJava
+        = 0xF0E18,
+    DocumentJavascript
+        = 0xF0E1C,
+    DocumentKey
+        = 0xF0E24,
+    DocumentLandscape
+        = 0xF0E28,
+    DocumentLandscapeData
+        = 0xF0E2C,
+    DocumentLandscapeSplit
+        = 0xF0E30,
+    DocumentLandscapeSplitHint
+        = 0xF0E34,
+    DocumentLightning
+        = 0xF0E38,
+    DocumentLink
+        = 0xF0E3C,
+    DocumentLock
+        = 0xF0E40,
+    DocumentMargins
+        = 0xF0E44,
+    DocumentMention
+        = 0xF0E48,
+    DocumentMultiple
+        = 0xF0E4C,
+    DocumentMultiplePercent
+        = 0xF0E50,
+    DocumentMultipleProhibited
+        = 0xF0E54,
+    DocumentMultipleSync
+        = 0xF0E58,
+    DocumentOnePage
+        = 0xF0E60,
+    DocumentOnePageAdd
+        = 0xF0E64,
+    DocumentOnePageColumns
+        = 0xF0E6C,
+    DocumentOnePageLink
+        = 0xF0E70,
+    DocumentOnePageMultiple
+        = 0xF0E74,
+    DocumentOnePageMultipleSparkle
+        = 0xF0E78,
+    DocumentOnePageSparkle
+        = 0xF0E7C,
+    DocumentPageBottomCenter
+        = 0xF0E80,
+    DocumentPageBottomLeft
+        = 0xF0E84,
+    DocumentPageBottomRight
+        = 0xF0E88,
+    DocumentPageBreak
+        = 0xF0E8C,
+    DocumentPageNumber
+        = 0xF0E90,
+    DocumentPageTopCenter
+        = 0xF0E94,
+    DocumentPageTopLeft
+        = 0xF0E98,
+    DocumentPageTopRight
+        = 0xF0E9C,
+    DocumentPdf
+        = 0xF0EA0,
+    DocumentPercent
+        = 0xF0EA4,
+    DocumentPerson
+        = 0xF0EA8,
+    DocumentPill
+        = 0xF0EAC,
+    DocumentPrint
+        = 0xF0EB0,
+    DocumentProhibited
+        = 0xF0EB4,
+    DocumentQuestionMark
+        = 0xF0EBC,
+    DocumentQueue
+        = 0xF0EC0,
+    DocumentQueueAdd
+        = 0xF0EC4,
+    DocumentQueueMultiple
+        = 0xF0EC8,
+    DocumentRibbon
+        = 0xF0ED0,
+    DocumentSass
+        = 0xF0ED4,
+    DocumentSave
+        = 0xF0ED8,
+    DocumentSearch
+        = 0xF0EDC,
+    DocumentSettings
+        = 0xF0EE0,
+    DocumentSignature
+        = 0xF0EE4,
+    DocumentSparkle
+        = 0xF0EE8,
+    DocumentSplitHint
+        = 0xF0EEC,
+    DocumentSplitHintOff
+        = 0xF0EF0,
+    DocumentSync
+        = 0xF0EF4,
+    DocumentTable
+        = 0xF0EF8,
+    DocumentTableArrowRight
+        = 0xF0EFC,
+    DocumentTableCheckmark
+        = 0xF0F00,
+    DocumentTableCube
+        = 0xF0F04,
+    DocumentTableSearch
+        = 0xF0F08,
+    DocumentTableTruck
+        = 0xF0F0C,
+    DocumentTarget
+        = 0xF0F10,
+    DocumentText
+        = 0xF0F14,
+    DocumentTextClock
+        = 0xF0F18,
+    DocumentTextExtract
+        = 0xF0F1C,
+    DocumentTextLink
+        = 0xF0F20,
+    DocumentTextToolbox
+        = 0xF0F24,
+    DocumentToolbox
+        = 0xF0F28,
+    DocumentWidth
+        = 0xF0F34,
+    DocumentYml
+        = 0xF0F38,
+    Door
+        = 0xF0F3C,
+    DoorArrowLeft
+        = 0xF0F40,
+    DoorArrowRight
+        = 0xF0F44,
+    DoorTag
+        = 0xF0F48,
+    DoubleSwipeDown
+        = 0xF0F4C,
+    DoubleSwipeUp
+        = 0xF0F50,
+    DoubleTapSwipeDown
+        = 0xF0F54,
+    DoubleTapSwipeUp
+        = 0xF0F58,
+    Drafts
+        = 0xF0F5C,
+    Drag
+        = 0xF0F60,
+    DrawImage
+        = 0xF0F64,
+    DrawShape
+        = 0xF0F68,
+    DrawText
+        = 0xF0F6C,
+    Drawer
+        = 0xF0F70,
+    DrawerAdd
+        = 0xF0F74,
+    DrawerArrowDownload
+        = 0xF0F78,
+    DrawerDismiss
+        = 0xF0F7C,
+    DrawerPlay
+        = 0xF0F80,
+    DrawerSubtract
+        = 0xF0F84,
+    DrinkBeer
+        = 0xF0F88,
+    DrinkBottle
+        = 0xF0F8C,
+    DrinkBottleOff
+        = 0xF0F90,
+    DrinkCoffee
+        = 0xF0F94,
+    DrinkMargarita
+        = 0xF0F98,
+    DrinkToGo
+        = 0xF0F9C,
+    DrinkWine
+        = 0xF0FA0,
+    DriveTrain
+        = 0xF0FA4,
+    Drop
+        = 0xF0FA8,
+    DualScreen
+        = 0xF0FAC,
+    DualScreenAdd
+        = 0xF0FB0,
+    DualScreenArrowRight
+        = 0xF0FB4,
+    DualScreenArrowUp
+        = 0xF0FB8,
+    DualScreenClock
+        = 0xF0FBC,
+    DualScreenClosedAlert
+        = 0xF0FC0,
+    DualScreenDesktop
+        = 0xF0FC4,
+    DualScreenDismiss
+        = 0xF0FC8,
+    DualScreenGroup
+        = 0xF0FCC,
+    DualScreenHeader
+        = 0xF0FD0,
+    DualScreenLock
+        = 0xF0FD4,
+    DualScreenMirror
+        = 0xF0FD8,
+    DualScreenPagination
+        = 0xF0FDC,
+    DualScreenSettings
+        = 0xF0FE0,
+    DualScreenSpan
+        = 0xF0FE4,
+    DualScreenSpeaker
+        = 0xF0FE8,
+    DualScreenStatusBar
+        = 0xF0FEC,
+    DualScreenTablet
+        = 0xF0FF0,
+    DualScreenUpdate
+        = 0xF0FF4,
+    DualScreenVerticalScroll
+        = 0xF0FF8,
+    DualScreenVibrate
+        = 0xF0FFC,
+    Dumbbell
+        = 0xF1000,
+    Dust
+        = 0xF1004,
+    Earth
+        = 0xF1008,
+    EarthLeaf
+        = 0xF100C,
+    Edit
+        = 0xF1010,
+    EditArrowBack
+        = 0xF1014,
+    EditLineHorizontal3
+        = 0xF1018,
+    EditLock
+        = 0xF101C,
+    EditOff
+        = 0xF1020,
+    EditPerson
+        = 0xF1024,
+    EditProhibited
+        = 0xF1028,
+    EditSettings
+        = 0xF102C,
+    Elevator
+        = 0xF1030,
+    Emoji
+        = 0xF1034,
+    EmojiAdd
+        = 0xF1038,
+    EmojiAngry
+        = 0xF103C,
+    EmojiEdit
+        = 0xF1040,
+    EmojiHand
+        = 0xF1044,
+    EmojiHint
+        = 0xF1048,
+    EmojiLaugh
+        = 0xF104C,
+    EmojiMeh
+        = 0xF1050,
+    EmojiMeme
+        = 0xF1054,
+    EmojiMultiple
+        = 0xF1058,
+    EmojiSad
+        = 0xF105C,
+    EmojiSadSlight
+        = 0xF1060,
+    EmojiSmileSlight
+        = 0xF1064,
+    EmojiSparkle
+        = 0xF1068,
+    EmojiSurprise
+        = 0xF106C,
+    Engine
+        = 0xF1070,
+    EqualCircle
+        = 0xF1074,
+    EqualOff
+        = 0xF1078,
+    Eraser
+        = 0xF107C,
+    EraserMedium
+        = 0xF1080,
+    EraserSegment
+        = 0xF1084,
+    EraserSmall
+        = 0xF1088,
+    EraserTool
+        = 0xF108C,
+    ErrorCircle
+        = 0xF1090,
+    ErrorCircleSettings
+        = 0xF1094,
+    ExpandUpLeft
+        = 0xF1098,
+    ExpandUpRight
+        = 0xF109C,
+    ExtendedDock
+        = 0xF10A0,
+    Eye
+        = 0xF10A4,
+    EyeLines
+        = 0xF10A8,
+    EyeOff
+        = 0xF10AC,
+    EyeTracking
+        = 0xF10B0,
+    EyeTrackingOff
+        = 0xF10B4,
+    Eyedropper
+        = 0xF10B8,
+    EyedropperOff
+        = 0xF10BC,
+    FStop
+        = 0xF10C0,
+    FastAcceleration
+        = 0xF10C4,
+    FastForward
+        = 0xF10C8,
+    Fax
+        = 0xF10D0,
+    Feed
+        = 0xF10D4,
+    Filmstrip
+        = 0xF10D8,
+    FilmstripImage
+        = 0xF10DC,
+    FilmstripPlay
+        = 0xF10E4,
+    FilmstripSplit
+        = 0xF10E8,
+    Filter
+        = 0xF10EC,
+    FilterAdd
+        = 0xF10F0,
+    FilterDismiss
+        = 0xF10F4,
+    FilterSync
+        = 0xF10F8,
+    Fingerprint
+        = 0xF10FC,
+    Fire
+        = 0xF1100,
+    Fireplace
+        = 0xF1104,
+    FixedWidth
+        = 0xF1108,
+    Flag
+        = 0xF110C,
+    FlagCheckered
+        = 0xF1110,
+    FlagClock
+        = 0xF1114,
+    FlagOff
+        = 0xF1118,
+    FlagPride
+        = 0xF111C,
+    FlagPrideIntersexInclusiveProgress
+        = 0xF1120,
+    FlagPridePhiladelphia
+        = 0xF1124,
+    FlagPrideProgress
+        = 0xF1128,
+    Flash
+        = 0xF112C,
+    FlashAdd
+        = 0xF1130,
+    FlashAuto
+        = 0xF1134,
+    FlashCheckmark
+        = 0xF1138,
+    FlashFlow
+        = 0xF113C,
+    FlashOff
+        = 0xF1140,
+    FlashPlay
+        = 0xF1144,
+    FlashSettings
+        = 0xF1148,
+    FlashSparkle
+        = 0xF114C,
+    Flashlight
+        = 0xF1150,
+    FlashlightOff
+        = 0xF1154,
+    FlipHorizontal
+        = 0xF1158,
+    FlipVertical
+        = 0xF115C,
+    Flow
+        = 0xF1160,
+    Flowchart
+        = 0xF1164,
+    FlowchartCircle
+        = 0xF1168,
+    Fluent
+        = 0xF116C,
+    Fluid
+        = 0xF1170,
+    Folder
+        = 0xF1174,
+    FolderAdd
+        = 0xF1178,
+    FolderArrowLeft
+        = 0xF117C,
+    FolderArrowRight
+        = 0xF1180,
+    FolderArrowUp
+        = 0xF1184,
+    FolderBriefcase
+        = 0xF1188,
+    FolderDocument
+        = 0xF118C,
+    FolderGlobe
+        = 0xF1190,
+    FolderLightning
+        = 0xF1194,
+    FolderLink
+        = 0xF1198,
+    FolderList
+        = 0xF119C,
+    FolderMail
+        = 0xF11A0,
+    FolderOpen
+        = 0xF11A8,
+    FolderOpenDown
+        = 0xF11AC,
+    FolderOpenVertical
+        = 0xF11B0,
+    FolderPeople
+        = 0xF11B4,
+    FolderPerson
+        = 0xF11B8,
+    FolderProhibited
+        = 0xF11BC,
+    FolderSearch
+        = 0xF11C0,
+    FolderSwap
+        = 0xF11C4,
+    FolderSync
+        = 0xF11C8,
+    FolderZip
+        = 0xF11CC,
+    FontDecrease
+        = 0xF11D0,
+    FontIncrease
+        = 0xF11D4,
+    FontSpaceTrackingIn
+        = 0xF11D8,
+    FontSpaceTrackingOut
+        = 0xF11DC,
+    Food
+        = 0xF11E0,
+    FoodApple
+        = 0xF11E4,
+    FoodCake
+        = 0xF11E8,
+    FoodCarrot
+        = 0xF11EC,
+    FoodChickenLeg
+        = 0xF11F0,
+    FoodEgg
+        = 0xF11F4,
+    FoodFish
+        = 0xF11F8,
+    FoodGrains
+        = 0xF11FC,
+    FoodPizza
+        = 0xF1200,
+    FoodToast
+        = 0xF1204,
+    Form
+        = 0xF1208,
+    FormMultiple
+        = 0xF120C,
+    FormNew
+        = 0xF1210,
+    FormSparkle
+        = 0xF1214,
+    Fps120
+        = 0xF1218,
+    Fps240
+        = 0xF121C,
+    Fps30
+        = 0xF1220,
+    Fps60
+        = 0xF1224,
+    Fps960
+        = 0xF1228,
+    Frame
+        = 0xF122C,
+    FullScreenMaximize
+        = 0xF1230,
+    FullScreenMinimize
+        = 0xF1234,
+    GameChat
+        = 0xF1238,
+    Games
+        = 0xF123C,
+    GanttChart
+        = 0xF1240,
+    Gas
+        = 0xF1244,
+    GasPump
+        = 0xF1248,
+    Gather
+        = 0xF124C,
+    Gauge
+        = 0xF1250,
+    GaugeAdd
+        = 0xF1254,
+    Gavel
+        = 0xF1258,
+    GavelProhibited
+        = 0xF125C,
+    Gesture
+        = 0xF1260,
+    Gif
+        = 0xF1264,
+    Gift
+        = 0xF1268,
+    GiftCard
+        = 0xF126C,
+    GiftCardAdd
+        = 0xF1270,
+    GiftCardArrowRight
+        = 0xF1274,
+    GiftCardMoney
+        = 0xF1278,
+    GiftCardMultiple
+        = 0xF127C,
+    GiftOpen
+        = 0xF1280,
+    Glance
+        = 0xF1284,
+    GlanceHorizontal
+        = 0xF128C,
+    GlanceHorizontalSparkles
+        = 0xF1294,
+    Glasses
+        = 0xF1298,
+    GlassesOff
+        = 0xF129C,
+    Globe
+        = 0xF12A0,
+    GlobeAdd
+        = 0xF12A4,
+    GlobeArrowForward
+        = 0xF12A8,
+    GlobeArrowUp
+        = 0xF12AC,
+    GlobeClock
+        = 0xF12B0,
+    GlobeDesktop
+        = 0xF12B4,
+    GlobeError
+        = 0xF12B8,
+    GlobeLocation
+        = 0xF12BC,
+    GlobeOff
+        = 0xF12C0,
+    GlobePerson
+        = 0xF12C4,
+    GlobeProhibited
+        = 0xF12C8,
+    GlobeSearch
+        = 0xF12CC,
+    GlobeShield
+        = 0xF12D0,
+    GlobeStar
+        = 0xF12D4,
+    GlobeSurface
+        = 0xF12D8,
+    GlobeSync
+        = 0xF12DC,
+    GlobeVideo
+        = 0xF12E0,
+    GlobeWarning
+        = 0xF12E4,
+    Grid
+        = 0xF12E8,
+    GridDots
+        = 0xF12F0,
+    GridKanban
+        = 0xF12F4,
+    Group
+        = 0xF12F8,
+    GroupDismiss
+        = 0xF12FC,
+    GroupList
+        = 0xF1300,
+    GroupReturn
+        = 0xF1304,
+    Guardian
+        = 0xF1308,
+    Guest
+        = 0xF130C,
+    GuestAdd
+        = 0xF1310,
+    Guitar
+        = 0xF1314,
+    HandDraw
+        = 0xF1318,
+    HandLeft
+        = 0xF131C,
+    HandLeftChat
+        = 0xF1320,
+    HandMultiple
+        = 0xF1324,
+    HandOpenHeart
+        = 0xF1328,
+    HandPoint
+        = 0xF132C,
+    HandRight
+        = 0xF1330,
+    HandRightOff
+        = 0xF1334,
+    HandWave
+        = 0xF1338,
+    Handshake
+        = 0xF133C,
+    HapticStrong
+        = 0xF1340,
+    HapticWeak
+        = 0xF1344,
+    HardDrive
+        = 0xF1348,
+    HatGraduation
+        = 0xF1350,
+    HatGraduationAdd
+        = 0xF1354,
+    HatGraduationSparkle
+        = 0xF1358,
+    Hd
+        = 0xF135C,
+    HdOff
+        = 0xF1360,
+    Hdr
+        = 0xF1364,
+    HdrOff
+        = 0xF1368,
+    Headphones
+        = 0xF136C,
+    HeadphonesSoundWave
+        = 0xF1370,
+    Headset
+        = 0xF1374,
+    HeadsetAdd
+        = 0xF1378,
+    HeadsetVr
+        = 0xF137C,
+    Heart
+        = 0xF1380,
+    HeartBroken
+        = 0xF1384,
+    HeartCircle
+        = 0xF1388,
+    HeartCircleHint
+        = 0xF138C,
+    HeartOff
+        = 0xF1390,
+    HeartPulse
+        = 0xF1394,
+    HeartPulseCheckmark
+        = 0xF1398,
+    HeartPulseError
+        = 0xF139C,
+    HeartPulseWarning
+        = 0xF13A0,
+    Hexagon
+        = 0xF13A4,
+    HexagonSparkle
+        = 0xF13A8,
+    HexagonThree
+        = 0xF13AC,
+    Highlight
+        = 0xF13B0,
+    HighlightAccent
+        = 0xF13B4,
+    HighlightLink
+        = 0xF13B8,
+    Highway
+        = 0xF13BC,
+    History
+        = 0xF13C0,
+    HistoryDismiss
+        = 0xF13C4,
+    Home
+        = 0xF13C8,
+    HomeAdd
+        = 0xF13CC,
+    HomeCheckmark
+        = 0xF13D0,
+    HomeDatabase
+        = 0xF13D4,
+    HomeEmpty
+        = 0xF13D8,
+    HomeGarage
+        = 0xF13DC,
+    HomeHeart
+        = 0xF13E0,
+    HomeMore
+        = 0xF13E4,
+    HomePerson
+        = 0xF13E8,
+    HomeSplit
+        = 0xF13EC,
+    Hourglass
+        = 0xF13F0,
+    HourglassHalf
+        = 0xF13F4,
+    HourglassOneQuarter
+        = 0xF13F8,
+    HourglassThreeQuarter
+        = 0xF13FC,
+    Icons
+        = 0xF1400,
+    Image
+        = 0xF1404,
+    ImageAdd
+        = 0xF1408,
+    ImageAltText
+        = 0xF140C,
+    ImageArrowBack
+        = 0xF1410,
+    ImageArrowCounterclockwise
+        = 0xF1414,
+    ImageArrowForward
+        = 0xF1418,
+    ImageBorder
+        = 0xF141C,
+    ImageCircle
+        = 0xF1420,
+    ImageCopy
+        = 0xF1424,
+    ImageEdit
+        = 0xF1428,
+    ImageGlobe
+        = 0xF142C,
+    ImageMultiple
+        = 0xF1430,
+    ImageMultipleOff
+        = 0xF1434,
+    ImageOff
+        = 0xF1438,
+    ImageProhibited
+        = 0xF143C,
+    ImageReflection
+        = 0xF1440,
+    ImageSearch
+        = 0xF1444,
+    ImageShadow
+        = 0xF1448,
+    ImageSparkle
+        = 0xF144C,
+    ImageSplit
+        = 0xF1450,
+    ImageStack
+        = 0xF1454,
+    ImageTable
+        = 0xF1458,
+    ImmersiveReader
+        = 0xF145C,
+    Important
+        = 0xF1460,
+    Incognito
+        = 0xF1464,
+    Info
+        = 0xF1468,
+    InfoShield
+        = 0xF146C,
+    InfoSparkle
+        = 0xF1470,
+    InkStroke
+        = 0xF1474,
+    InkStrokeArrowDown
+        = 0xF1478,
+    InkStrokeArrowUpDown
+        = 0xF147C,
+    InkingTool
+        = 0xF1480,
+    InkingToolAccent
+        = 0xF1484,
+    InprivateAccount
+        = 0xF1488,
+    Insert
+        = 0xF148C,
+    IosChevronRight
+        = 0xF1494,
+    Iot
+        = 0xF1498,
+    IotAlert
+        = 0xF149C,
+    Javascript
+        = 0xF14A0,
+    Joystick
+        = 0xF14A4,
+    Key
+        = 0xF14A8,
+    KeyCommand
+        = 0xF14AC,
+    KeyMultiple
+        = 0xF14B0,
+    KeyReset
+        = 0xF14B4,
+    Keyboard
+        = 0xF14B8,
+    Keyboard123
+        = 0xF14BC,
+    KeyboardDock
+        = 0xF14C0,
+    KeyboardLayoutFloat
+        = 0xF14C4,
+    KeyboardLayoutOneHandedLeft
+        = 0xF14C8,
+    KeyboardLayoutResize
+        = 0xF14CC,
+    KeyboardLayoutSplit
+        = 0xF14D0,
+    KeyboardShift
+        = 0xF14D8,
+    KeyboardShiftUppercase
+        = 0xF14DC,
+    KeyboardTab
+        = 0xF14E0,
+    Laptop
+        = 0xF14E8,
+    LaptopBriefcase
+        = 0xF14EC,
+    LaptopDismiss
+        = 0xF14F0,
+    LaptopPerson
+        = 0xF14F8,
+    LaptopSettings
+        = 0xF14FC,
+    LaptopShield
+        = 0xF1500,
+    LaserTool
+        = 0xF1504,
+    Lasso
+        = 0xF1508,
+    LauncherSettings
+        = 0xF150C,
+    Layer
+        = 0xF1510,
+    LayerDiagonal
+        = 0xF1514,
+    LayerDiagonalAdd
+        = 0xF1518,
+    LayerDiagonalPerson
+        = 0xF151C,
+    LayerDiagonalSparkle
+        = 0xF1520,
+    LayoutCellFour
+        = 0xF1524,
+    LayoutCellFourFocusBottomLeft
+        = 0xF1528,
+    LayoutCellFourFocusBottomRight
+        = 0xF152C,
+    LayoutCellFourFocusTopLeft
+        = 0xF1530,
+    LayoutCellFourFocusTopRight
+        = 0xF1534,
+    LayoutColumnFour
+        = 0xF1538,
+    LayoutColumnFourFocusCenterLeft
+        = 0xF153C,
+    LayoutColumnFourFocusCenterRight
+        = 0xF1540,
+    LayoutColumnFourFocusLeft
+        = 0xF1544,
+    LayoutColumnFourFocusRight
+        = 0xF1548,
+    LayoutColumnOneThirdLeft
+        = 0xF154C,
+    LayoutColumnOneThirdRight
+        = 0xF1550,
+    LayoutColumnOneThirdRightHint
+        = 0xF1554,
+    LayoutColumnThree
+        = 0xF1558,
+    LayoutColumnThreeFocusCenter
+        = 0xF155C,
+    LayoutColumnThreeFocusLeft
+        = 0xF1560,
+    LayoutColumnThreeFocusRight
+        = 0xF1564,
+    LayoutColumnTwo
+        = 0xF1568,
+    LayoutColumnTwoFocusLeft
+        = 0xF156C,
+    LayoutColumnTwoFocusRight
+        = 0xF1570,
+    LayoutColumnTwoSplitLeft
+        = 0xF1574,
+    LayoutColumnTwoSplitLeftFocusBottomLeft
+        = 0xF1578,
+    LayoutColumnTwoSplitLeftFocusRight
+        = 0xF157C,
+    LayoutColumnTwoSplitLeftFocusTopLeft
+        = 0xF1580,
+    LayoutColumnTwoSplitRight
+        = 0xF1584,
+    LayoutColumnTwoSplitRightFocusBottomRight
+        = 0xF1588,
+    LayoutColumnTwoSplitRightFocusLeft
+        = 0xF158C,
+    LayoutColumnTwoSplitRightFocusTopRight
+        = 0xF1590,
+    LayoutRowFour
+        = 0xF1594,
+    LayoutRowFourFocusBottom
+        = 0xF1598,
+    LayoutRowFourFocusCenterBottom
+        = 0xF159C,
+    LayoutRowFourFocusCenterTop
+        = 0xF15A0,
+    LayoutRowFourFocusTop
+        = 0xF15A4,
+    LayoutRowThree
+        = 0xF15A8,
+    LayoutRowThreeFocusBottom
+        = 0xF15AC,
+    LayoutRowThreeFocusCenter
+        = 0xF15B0,
+    LayoutRowThreeFocusTop
+        = 0xF15B4,
+    LayoutRowTwo
+        = 0xF15B8,
+    LayoutRowTwoFocusBottom
+        = 0xF15BC,
+    LayoutRowTwoFocusTop
+        = 0xF15C0,
+    LayoutRowTwoFocusTopSettings
+        = 0xF15C4,
+    LayoutRowTwoSettings
+        = 0xF15C8,
+    LayoutRowTwoSplitBottom
+        = 0xF15CC,
+    LayoutRowTwoSplitBottomFocusBottomLeft
+        = 0xF15D0,
+    LayoutRowTwoSplitBottomFocusBottomRight
+        = 0xF15D4,
+    LayoutRowTwoSplitBottomFocusTop
+        = 0xF15D8,
+    LayoutRowTwoSplitTop
+        = 0xF15DC,
+    LayoutRowTwoSplitTopFocusBottom
+        = 0xF15E0,
+    LayoutRowTwoSplitTopFocusTopLeft
+        = 0xF15E4,
+    LayoutRowTwoSplitTopFocusTopRight
+        = 0xF15E8,
+    LeafOne
+        = 0xF15EC,
+    LeafThree
+        = 0xF15F0,
+    LeafTwo
+        = 0xF15F4,
+    LearningApp
+        = 0xF15F8,
+    Library
+        = 0xF15FC,
+    Lightbulb
+        = 0xF1600,
+    LightbulbCheckmark
+        = 0xF1604,
+    LightbulbCircle
+        = 0xF1608,
+    LightbulbFilament
+        = 0xF160C,
+    LightbulbPerson
+        = 0xF1610,
+    Likert
+        = 0xF1614,
+    Line
+        = 0xF1618,
+    LineDashes
+        = 0xF161C,
+    LineFlowDiagonalUpRight
+        = 0xF1620,
+    LineHorizontal1
+        = 0xF1624,
+    LineHorizontal1DashDotDash
+        = 0xF1628,
+    LineHorizontal1Dashes
+        = 0xF162C,
+    LineHorizontal1Dot
+        = 0xF1630,
+    LineHorizontal2DashesSolid
+        = 0xF1634,
+    LineHorizontal3
+        = 0xF1638,
+    LineHorizontal4
+        = 0xF163C,
+    LineHorizontal4Search
+        = 0xF1640,
+    LineHorizontal5
+        = 0xF1644,
+    LineHorizontal5Error
+        = 0xF1648,
+    LineStyle
+        = 0xF164C,
+    LineStyleSketch
+        = 0xF1650,
+    LineThickness
+        = 0xF1654,
+    Link
+        = 0xF1658,
+    LinkAdd
+        = 0xF165C,
+    LinkDismiss
+        = 0xF1660,
+    LinkEdit
+        = 0xF1664,
+    LinkMultiple
+        = 0xF1668,
+    LinkPerson
+        = 0xF166C,
+    LinkSquare
+        = 0xF1674,
+    LinkToolbox
+        = 0xF1678,
+    List
+        = 0xF167C,
+    ListBar
+        = 0xF1680,
+    ListBarTree
+        = 0xF1684,
+    ListBarTreeOffset
+        = 0xF1688,
+    Live
+        = 0xF168C,
+    LiveOff
+        = 0xF1690,
+    LocalLanguage
+        = 0xF1694,
+    Location
+        = 0xF1698,
+    LocationAdd
+        = 0xF169C,
+    LocationAddLeft
+        = 0xF16A0,
+    LocationAddRight
+        = 0xF16A4,
+    LocationAddUp
+        = 0xF16A8,
+    LocationArrow
+        = 0xF16AC,
+    LocationArrowLeft
+        = 0xF16B0,
+    LocationArrowRight
+        = 0xF16B4,
+    LocationArrowUp
+        = 0xF16B8,
+    LocationCheckmark
+        = 0xF16BC,
+    LocationDismiss
+        = 0xF16C0,
+    LocationLive
+        = 0xF16C4,
+    LocationOff
+        = 0xF16C8,
+    LocationRipple
+        = 0xF16CC,
+    LocationSettings
+        = 0xF16D0,
+    LocationTargetSquare
+        = 0xF16D4,
+    LockClosed
+        = 0xF16D8,
+    LockClosedKey
+        = 0xF16DC,
+    LockClosedRibbon
+        = 0xF16E0,
+    LockMultiple
+        = 0xF16E4,
+    LockOpen
+        = 0xF16E8,
+    LockShield
+        = 0xF16EC,
+    Lottery
+        = 0xF16F0,
+    Luggage
+        = 0xF16F4,
+    Mail
+        = 0xF16F8,
+    MailAdd
+        = 0xF16FC,
+    MailAlert
+        = 0xF1700,
+    MailAllRead
+        = 0xF1704,
+    MailAllUnread
+        = 0xF1708,
+    MailArrowClockwise
+        = 0xF170C,
+    MailArrowDoubleBack
+        = 0xF1710,
+    MailArrowDown
+        = 0xF1714,
+    MailArrowForward
+        = 0xF1718,
+    MailArrowUp
+        = 0xF171C,
+    MailAttach
+        = 0xF1720,
+    MailCheckmark
+        = 0xF1728,
+    MailClock
+        = 0xF172C,
+    MailCopy
+        = 0xF1730,
+    MailDataBar
+        = 0xF1734,
+    MailDismiss
+        = 0xF1738,
+    MailEdit
+        = 0xF173C,
+    MailError
+        = 0xF1740,
+    MailInbox
+        = 0xF1744,
+    MailInboxAdd
+        = 0xF1748,
+    MailInboxAll
+        = 0xF174C,
+    MailInboxArrowDown
+        = 0xF1750,
+    MailInboxArrowRight
+        = 0xF1754,
+    MailInboxArrowUp
+        = 0xF1758,
+    MailInboxCheckmark
+        = 0xF175C,
+    MailInboxDismiss
+        = 0xF1760,
+    MailInboxPerson
+        = 0xF1764,
+    MailLink
+        = 0xF1768,
+    MailList
+        = 0xF176C,
+    MailMultiple
+        = 0xF1770,
+    MailOff
+        = 0xF1774,
+    MailOpenPerson
+        = 0xF1778,
+    MailPause
+        = 0xF177C,
+    MailProhibited
+        = 0xF1780,
+    MailRead
+        = 0xF1784,
+    MailReadBriefcase
+        = 0xF1788,
+    MailReadMultiple
+        = 0xF178C,
+    MailRewind
+        = 0xF1790,
+    MailSettings
+        = 0xF1794,
+    MailShield
+        = 0xF1798,
+    MailTemplate
+        = 0xF179C,
+    MailUnread
+        = 0xF17A0,
+    MailWarning
+        = 0xF17A4,
+    Mailbox
+        = 0xF17A8,
+    Map
+        = 0xF17AC,
+    MapDrive
+        = 0xF17B0,
+    Markdown
+        = 0xF17B4,
+    MatchAppLayout
+        = 0xF17B8,
+    MathFormatLinear
+        = 0xF17BC,
+    MathFormatProfessional
+        = 0xF17C0,
+    MathFormula
+        = 0xF17C4,
+    MathSymbols
+        = 0xF17C8,
+    Maximize
+        = 0xF17CC,
+    MeetNow
+        = 0xF17D0,
+    Megaphone
+        = 0xF17D4,
+    MegaphoneCircle
+        = 0xF17D8,
+    MegaphoneLoud
+        = 0xF17DC,
+    MegaphoneOff
+        = 0xF17E0,
+    Mention
+        = 0xF17E8,
+    MentionArrowDown
+        = 0xF17EC,
+    MentionBrackets
+        = 0xF17F0,
+    Merge
+        = 0xF17F4,
+    Mic
+        = 0xF17F8,
+    MicLink
+        = 0xF17FC,
+    MicOff
+        = 0xF1800,
+    MicProhibited
+        = 0xF1804,
+    MicPulse
+        = 0xF1808,
+    MicPulseOff
+        = 0xF180C,
+    MicRecord
+        = 0xF1810,
+    MicSettings
+        = 0xF1814,
+    MicSparkle
+        = 0xF1818,
+    MicSync
+        = 0xF181C,
+    Microscope
+        = 0xF1820,
+    Midi
+        = 0xF1824,
+    MobileOptimized
+        = 0xF1828,
+    Mold
+        = 0xF182C,
+    Molecule
+        = 0xF1830,
+    Money
+        = 0xF1834,
+    MoneyCalculator
+        = 0xF1838,
+    MoneyDismiss
+        = 0xF183C,
+    MoneyHand
+        = 0xF1840,
+    MoneyOff
+        = 0xF1844,
+    MoneySettings
+        = 0xF1848,
+    MoreCircle
+        = 0xF184C,
+    MoreHorizontal
+        = 0xF1850,
+    MoreVertical
+        = 0xF1854,
+    MountainLocationBottom
+        = 0xF1858,
+    MountainLocationTop
+        = 0xF185C,
+    MountainTrail
+        = 0xF1860,
+    MoviesAndTv
+        = 0xF1864,
+    Multiplier12x
+        = 0xF1868,
+    Multiplier15x
+        = 0xF186C,
+    Multiplier18x
+        = 0xF1870,
+    Multiplier1x
+        = 0xF1874,
+    Multiplier2x
+        = 0xF1878,
+    Multiplier5x
+        = 0xF187C,
+    Multiselect
+        = 0xF1880,
+    MusicNote1
+        = 0xF1884,
+    MusicNote2
+        = 0xF1888,
+    MusicNote2Play
+        = 0xF188C,
+    MusicNoteOff1
+        = 0xF1890,
+    MusicNoteOff2
+        = 0xF1894,
+    MyLocation
+        = 0xF1898,
+    Navigation
+        = 0xF189C,
+    NavigationBriefcase
+        = 0xF18A0,
+    NavigationLocationTarget
+        = 0xF18A4,
+    NavigationPerson
+        = 0xF18A8,
+    NavigationPlay
+        = 0xF18AC,
+    NavigationUnread
+        = 0xF18B0,
+    NetworkCheck
+        = 0xF18B8,
+    New
+        = 0xF18BC,
+    News
+        = 0xF18C0,
+    Next
+        = 0xF18C4,
+    NextFrame
+        = 0xF18C8,
+    Note
+        = 0xF18CC,
+    NoteAdd
+        = 0xF18D0,
+    NoteEdit
+        = 0xF18D4,
+    NotePin
+        = 0xF18D8,
+    Notebook
+        = 0xF18DC,
+    NotebookAdd
+        = 0xF18E0,
+    NotebookArrowCurveDown
+        = 0xF18E4,
+    NotebookError
+        = 0xF18E8,
+    NotebookEye
+        = 0xF18EC,
+    NotebookLightning
+        = 0xF18F0,
+    NotebookQuestionMark
+        = 0xF18F4,
+    NotebookSection
+        = 0xF18F8,
+    NotebookSectionArrowRight
+        = 0xF18FC,
+    NotebookSubsection
+        = 0xF1900,
+    NotebookSync
+        = 0xF1904,
+    Notepad
+        = 0xF1908,
+    NotepadEdit
+        = 0xF190C,
+    NotepadPerson
+        = 0xF1910,
+    NotepadSparkle
+        = 0xF1914,
+    NumberCircle0
+        = 0xF1918,
+    NumberCircle1
+        = 0xF191C,
+    NumberCircle2
+        = 0xF1920,
+    NumberCircle3
+        = 0xF1924,
+    NumberCircle4
+        = 0xF1928,
+    NumberCircle5
+        = 0xF192C,
+    NumberCircle6
+        = 0xF1930,
+    NumberCircle7
+        = 0xF1934,
+    NumberCircle8
+        = 0xF1938,
+    NumberCircle9
+        = 0xF193C,
+    NumberRow
+        = 0xF1940,
+    NumberSymbol
+        = 0xF1944,
+    NumberSymbolDismiss
+        = 0xF1948,
+    NumberSymbolSquare
+        = 0xF194C,
+    Open
+        = 0xF1950,
+    OpenFolder
+        = 0xF1954,
+    OpenOff
+        = 0xF1958,
+    Options
+        = 0xF195C,
+    Organization
+        = 0xF1964,
+    OrganizationHorizontal
+        = 0xF1968,
+    Orientation
+        = 0xF196C,
+    Oval
+        = 0xF1970,
+    Oven
+        = 0xF1974,
+    PaddingDown
+        = 0xF1978,
+    PaddingLeft
+        = 0xF197C,
+    PaddingRight
+        = 0xF1980,
+    PaddingTop
+        = 0xF1984,
+    PageFit
+        = 0xF1988,
+    PaintBrush
+        = 0xF198C,
+    PaintBrushArrowDown
+        = 0xF1990,
+    PaintBrushArrowUp
+        = 0xF1994,
+    PaintBrushSparkle
+        = 0xF1998,
+    PaintBrushSubtract
+        = 0xF199C,
+    PaintBucket
+        = 0xF19A0,
+    PaintBucketBrush
+        = 0xF19A4,
+    Pair
+        = 0xF19A8,
+    PanelBottom
+        = 0xF19AC,
+    PanelBottomContract
+        = 0xF19B0,
+    PanelBottomExpand
+        = 0xF19B4,
+    PanelLeft
+        = 0xF19B8,
+    PanelLeftAdd
+        = 0xF19BC,
+    PanelLeftContract
+        = 0xF19C0,
+    PanelLeftDefault
+        = 0xF19C4,
+    PanelLeftExpand
+        = 0xF19C8,
+    PanelLeftFocusRight
+        = 0xF19CC,
+    PanelLeftHeader
+        = 0xF19D0,
+    PanelLeftHeaderAdd
+        = 0xF19D4,
+    PanelLeftHeaderKey
+        = 0xF19D8,
+    PanelLeftKey
+        = 0xF19DC,
+    PanelLeftText
+        = 0xF19E0,
+    PanelLeftTextAdd
+        = 0xF19E4,
+    PanelLeftTextDismiss
+        = 0xF19E8,
+    PanelRight
+        = 0xF19EC,
+    PanelRightAdd
+        = 0xF19F0,
+    PanelRightContract
+        = 0xF19F4,
+    PanelRightCursor
+        = 0xF19F8,
+    PanelRightExpand
+        = 0xF19FC,
+    PanelRightGallery
+        = 0xF1A00,
+    PanelSeparateWindow
+        = 0xF1A04,
+    PanelTopContract
+        = 0xF1A08,
+    PanelTopExpand
+        = 0xF1A0C,
+    PanelTopGallery
+        = 0xF1A10,
+    Password
+        = 0xF1A14,
+    Patch
+        = 0xF1A20,
+    Patient
+        = 0xF1A24,
+    Pause
+        = 0xF1A28,
+    PauseCircle
+        = 0xF1A2C,
+    PauseOff
+        = 0xF1A30,
+    PauseSettings
+        = 0xF1A34,
+    Payment
+        = 0xF1A3C,
+    PaymentWireless
+        = 0xF1A40,
+    Pen
+        = 0xF1A44,
+    PenDismiss
+        = 0xF1A48,
+    PenOff
+        = 0xF1A4C,
+    PenProhibited
+        = 0xF1A50,
+    PenSparkle
+        = 0xF1A54,
+    PenSync
+        = 0xF1A58,
+    Pentagon
+        = 0xF1A5C,
+    People
+        = 0xF1A60,
+    PeopleAdd
+        = 0xF1A64,
+    PeopleAudience
+        = 0xF1A68,
+    PeopleCall
+        = 0xF1A6C,
+    PeopleChat
+        = 0xF1A70,
+    PeopleCheckmark
+        = 0xF1A74,
+    PeopleCommunity
+        = 0xF1A78,
+    PeopleCommunityAdd
+        = 0xF1A7C,
+    PeopleEdit
+        = 0xF1A80,
+    PeopleError
+        = 0xF1A84,
+    PeopleEye
+        = 0xF1A88,
+    PeopleLink
+        = 0xF1A90,
+    PeopleList
+        = 0xF1A94,
+    PeopleLock
+        = 0xF1A98,
+    PeopleMoney
+        = 0xF1A9C,
+    PeopleProhibited
+        = 0xF1AA0,
+    PeopleQueue
+        = 0xF1AA4,
+    PeopleSearch
+        = 0xF1AA8,
+    PeopleSettings
+        = 0xF1AAC,
+    PeopleStar
+        = 0xF1AB0,
+    PeopleSubtract
+        = 0xF1AB4,
+    PeopleSwap
+        = 0xF1AB8,
+    PeopleSync
+        = 0xF1ABC,
+    PeopleTeam
+        = 0xF1AC0,
+    PeopleTeamAdd
+        = 0xF1AC4,
+    PeopleTeamDelete
+        = 0xF1AC8,
+    PeopleTeamToolbox
+        = 0xF1ACC,
+    PeopleToolbox
+        = 0xF1AD0,
+    Person
+        = 0xF1AD4,
+    Person5
+        = 0xF1AD8,
+    Person6
+        = 0xF1ADC,
+    PersonAccounts
+        = 0xF1AE0,
+    PersonAdd
+        = 0xF1AE4,
+    PersonAlert
+        = 0xF1AE8,
+    PersonAlertOff
+        = 0xF1AEC,
+    PersonArrowBack
+        = 0xF1AF0,
+    PersonArrowLeft
+        = 0xF1AF4,
+    PersonArrowRight
+        = 0xF1AF8,
+    PersonAvailable
+        = 0xF1AFC,
+    PersonBoard
+        = 0xF1B00,
+    PersonBoardAdd
+        = 0xF1B04,
+    PersonCall
+        = 0xF1B08,
+    PersonChat
+        = 0xF1B0C,
+    PersonCircle
+        = 0xF1B10,
+    PersonClock
+        = 0xF1B14,
+    PersonDelete
+        = 0xF1B18,
+    PersonDesktop
+        = 0xF1B1C,
+    PersonEdit
+        = 0xF1B20,
+    PersonFeedback
+        = 0xF1B24,
+    PersonHeadHint
+        = 0xF1B28,
+    PersonHeart
+        = 0xF1B2C,
+    PersonHome
+        = 0xF1B30,
+    PersonInfo
+        = 0xF1B34,
+    PersonKey
+        = 0xF1B38,
+    PersonLightbulb
+        = 0xF1B3C,
+    PersonLightning
+        = 0xF1B40,
+    PersonLink
+        = 0xF1B44,
+    PersonLock
+        = 0xF1B48,
+    PersonMail
+        = 0xF1B4C,
+    PersonMoney
+        = 0xF1B50,
+    PersonNote
+        = 0xF1B54,
+    PersonPasskey
+        = 0xF1B58,
+    PersonPill
+        = 0xF1B60,
+    PersonProhibited
+        = 0xF1B64,
+    PersonQuestionMark
+        = 0xF1B68,
+    PersonRibbon
+        = 0xF1B6C,
+    PersonRunning
+        = 0xF1B70,
+    PersonSearch
+        = 0xF1B74,
+    PersonSettings
+        = 0xF1B78,
+    PersonSoundSpatial
+        = 0xF1B7C,
+    PersonSquare
+        = 0xF1B80,
+    PersonSquareAdd
+        = 0xF1B84,
+    PersonSquareCheckmark
+        = 0xF1B88,
+    PersonStar
+        = 0xF1B90,
+    PersonStarburst
+        = 0xF1B94,
+    PersonSubtract
+        = 0xF1B98,
+    PersonSuport
+        = 0xF1B9C,
+    PersonSupport
+        = 0xF1BA0,
+    PersonSwap
+        = 0xF1BA4,
+    PersonSync
+        = 0xF1BA8,
+    PersonTag
+        = 0xF1BAC,
+    PersonTentative
+        = 0xF1BB0,
+    PersonVoice
+        = 0xF1BB4,
+    PersonWalking
+        = 0xF1BB8,
+    PersonWarning
+        = 0xF1BBC,
+    PersonWrench
+        = 0xF1BC0,
+    Phone
+        = 0xF1BC4,
+    PhoneAdd
+        = 0xF1BC8,
+    PhoneArrowRight
+        = 0xF1BCC,
+    PhoneChat
+        = 0xF1BD4,
+    PhoneCheckmark
+        = 0xF1BD8,
+    PhoneDesktop
+        = 0xF1BDC,
+    PhoneDesktopAdd
+        = 0xF1BE0,
+    PhoneDismiss
+        = 0xF1BE4,
+    PhoneEdit
+        = 0xF1BE8,
+    PhoneEraser
+        = 0xF1BEC,
+    PhoneFooterArrowDown
+        = 0xF1BF0,
+    PhoneHeaderArrowUp
+        = 0xF1BF4,
+    PhoneKey
+        = 0xF1BF8,
+    PhoneLaptop
+        = 0xF1BFC,
+    PhoneLinkSetup
+        = 0xF1C00,
+    PhoneLock
+        = 0xF1C04,
+    PhonePageHeader
+        = 0xF1C10,
+    PhonePagination
+        = 0xF1C14,
+    PhoneScreenTime
+        = 0xF1C1C,
+    PhoneShake
+        = 0xF1C20,
+    PhoneSpanIn
+        = 0xF1C24,
+    PhoneSpanOut
+        = 0xF1C28,
+    PhoneSpeaker
+        = 0xF1C2C,
+    PhoneStatusBar
+        = 0xF1C30,
+    PhoneTablet
+        = 0xF1C38,
+    PhoneUpdate
+        = 0xF1C3C,
+    PhoneUpdateCheckmark
+        = 0xF1C40,
+    PhoneVerticalScroll
+        = 0xF1C44,
+    PhoneVibrate
+        = 0xF1C48,
+    PhotoFilter
+        = 0xF1C4C,
+    Pi
+        = 0xF1C50,
+    PictureInPicture
+        = 0xF1C54,
+    PictureInPictureEnter
+        = 0xF1C58,
+    PictureInPictureExit
+        = 0xF1C5C,
+    Pill
+        = 0xF1C60,
+    Pin
+        = 0xF1C64,
+    PinGlobe
+        = 0xF1C68,
+    PinOff
+        = 0xF1C6C,
+    Pipeline
+        = 0xF1C70,
+    PipelineAdd
+        = 0xF1C74,
+    PipelineArrowCurveDown
+        = 0xF1C78,
+    PipelinePlay
+        = 0xF1C7C,
+    Pivot
+        = 0xF1C80,
+    PlantCattail
+        = 0xF1C84,
+    PlantGrass
+        = 0xF1C88,
+    PlantRagweed
+        = 0xF1C8C,
+    Play
+        = 0xF1C90,
+    PlayCircle
+        = 0xF1C94,
+    PlayCircleHint
+        = 0xF1C98,
+    PlayCircleHintHalf
+        = 0xF1C9C,
+    PlayCircleSparkle
+        = 0xF1CA0,
+    PlaySettings
+        = 0xF1CA8,
+    PlayingCards
+        = 0xF1CAC,
+    PlugConnected
+        = 0xF1CB0,
+    PlugConnectedAdd
+        = 0xF1CB4,
+    PlugConnectedCheckmark
+        = 0xF1CB8,
+    PlugConnectedSettings
+        = 0xF1CBC,
+    PlugDisconnected
+        = 0xF1CC0,
+    PointScan
+        = 0xF1CC4,
+    Poll
+        = 0xF1CC8,
+    PollHorizontal
+        = 0xF1CCC,
+    PollOff
+        = 0xF1CD0,
+    PortHdmi
+        = 0xF1CD4,
+    PortMicroUsb
+        = 0xF1CD8,
+    PortUsbA
+        = 0xF1CDC,
+    PortUsbC
+        = 0xF1CE0,
+    PositionBackward
+        = 0xF1CE4,
+    PositionForward
+        = 0xF1CE8,
+    PositionToBack
+        = 0xF1CEC,
+    PositionToFront
+        = 0xF1CF0,
+    Power
+        = 0xF1CF4,
+    Predictions
+        = 0xF1CF8,
+    Premium
+        = 0xF1CFC,
+    PremiumPerson
+        = 0xF1D00,
+    PresenceAvailable
+        = 0xF1D04,
+    PresenceAway
+        = 0xF1D08,
+    PresenceBlocked
+        = 0xF1D0C,
+    PresenceBusy
+        = 0xF1D10,
+    PresenceDnd
+        = 0xF1D14,
+    PresenceOffline
+        = 0xF1D18,
+    PresenceOof
+        = 0xF1D1C,
+    PresenceTentative
+        = 0xF1D20,
+    PresenceUnknown
+        = 0xF1D24,
+    Presenter
+        = 0xF1D28,
+    PresenterOff
+        = 0xF1D2C,
+    PreviewLink
+        = 0xF1D30,
+    Previous
+        = 0xF1D34,
+    PreviousFrame
+        = 0xF1D38,
+    Print
+        = 0xF1D3C,
+    PrintAdd
+        = 0xF1D40,
+    Production
+        = 0xF1D44,
+    ProductionCheckmark
+        = 0xF1D48,
+    Prohibited
+        = 0xF1D4C,
+    ProhibitedMultiple
+        = 0xF1D50,
+    ProhibitedNote
+        = 0xF1D54,
+    ProjectionScreen
+        = 0xF1D58,
+    ProjectionScreenDismiss
+        = 0xF1D5C,
+    ProjectionScreenText
+        = 0xF1D60,
+    Prompt
+        = 0xF1D64,
+    ProtocolHandler
+        = 0xF1D68,
+    Pulse
+        = 0xF1D6C,
+    PulseSquare
+        = 0xF1D70,
+    PuzzleCube
+        = 0xF1D74,
+    PuzzleCubePiece
+        = 0xF1D78,
+    PuzzlePiece
+        = 0xF1D7C,
+    PuzzlePieceShield
+        = 0xF1D80,
+    QrCode
+        = 0xF1D84,
+    Question
+        = 0xF1D88,
+    QuestionCircle
+        = 0xF1D8C,
+    QuizNew
+        = 0xF1D90,
+    Radar
+        = 0xF1D94,
+    RadarCheckmark
+        = 0xF1D98,
+    RadarRectangleMultiple
+        = 0xF1D9C,
+    RadioButton
+        = 0xF1DA0,
+    Ram
+        = 0xF1DA8,
+    RatingMature
+        = 0xF1DAC,
+    RatioOneToOne
+        = 0xF1DB0,
+    ReOrder
+        = 0xF1DB4,
+    ReOrderDotsHorizontal
+        = 0xF1DB8,
+    ReOrderDotsVertical
+        = 0xF1DBC,
+    ReOrderVertical
+        = 0xF1DC0,
+    ReadAloud
+        = 0xF1DC4,
+    ReadingList
+        = 0xF1DC8,
+    ReadingListAdd
+        = 0xF1DCC,
+    ReadingModeMobile
+        = 0xF1DD0,
+    RealEstate
+        = 0xF1DD4,
+    Receipt
+        = 0xF1DD8,
+    ReceiptAdd
+        = 0xF1DDC,
+    ReceiptBag
+        = 0xF1DE0,
+    ReceiptCube
+        = 0xF1DE4,
+    ReceiptMoney
+        = 0xF1DE8,
+    ReceiptPlay
+        = 0xF1DEC,
+    ReceiptSearch
+        = 0xF1DF0,
+    ReceiptSparkles
+        = 0xF1DF4,
+    Record
+        = 0xF1DF8,
+    RecordStop
+        = 0xF1DFC,
+    RectangleLandscape
+        = 0xF1E00,
+    RectangleLandscapeHintCopy
+        = 0xF1E04,
+    RectangleLandscapeSparkle
+        = 0xF1E08,
+    RectangleLandscapeSync
+        = 0xF1E0C,
+    RectangleLandscapeSyncOff
+        = 0xF1E10,
+    RectanglePortraitLocationTarget
+        = 0xF1E14,
+    Recycle
+        = 0xF1E18,
+    RemixAdd
+        = 0xF1E1C,
+    Remote
+        = 0xF1E20,
+    Rename
+        = 0xF1E24,
+    Reorder
+        = 0xF1E28,
+    Replay
+        = 0xF1E2C,
+    Resize
+        = 0xF1E30,
+    ResizeImage
+        = 0xF1E34,
+    ResizeLarge
+        = 0xF1E38,
+    ResizeSmall
+        = 0xF1E3C,
+    ResizeTable
+        = 0xF1E40,
+    ResizeVideo
+        = 0xF1E44,
+    Reward
+        = 0xF1E48,
+    Rewind
+        = 0xF1E4C,
+    Rhombus
+        = 0xF1E50,
+    Ribbon
+        = 0xF1E54,
+    RibbonAdd
+        = 0xF1E58,
+    RibbonOff
+        = 0xF1E5C,
+    RibbonStar
+        = 0xF1E60,
+    Road
+        = 0xF1E64,
+    RoadCone
+        = 0xF1E68,
+    Rocket
+        = 0xF1E6C,
+    RotateLeft
+        = 0xF1E70,
+    RotateRight
+        = 0xF1E74,
+    Router
+        = 0xF1E78,
+    RowChild
+        = 0xF1E7C,
+    RowTriple
+        = 0xF1E80,
+    Rss
+        = 0xF1E84,
+    Ruler
+        = 0xF1E88,
+    Run
+        = 0xF1E8C,
+    Sanitize
+        = 0xF1E90,
+    Save
+        = 0xF1E94,
+    SaveArrowRight
+        = 0xF1E98,
+    SaveCopy
+        = 0xF1E9C,
+    SaveEdit
+        = 0xF1EA0,
+    SaveImage
+        = 0xF1EA4,
+    SaveMultiple
+        = 0xF1EA8,
+    SaveSearch
+        = 0xF1EAC,
+    SaveSync
+        = 0xF1EB0,
+    Savings
+        = 0xF1EB4,
+    ScaleFill
+        = 0xF1EB8,
+    ScaleFit
+        = 0xF1EBC,
+    Scales
+        = 0xF1EC0,
+    Scan
+        = 0xF1EC4,
+    ScanCamera
+        = 0xF1EC8,
+    ScanDash
+        = 0xF1ECC,
+    ScanObject
+        = 0xF1ED0,
+    ScanPerson
+        = 0xF1ED4,
+    ScanTable
+        = 0xF1EDC,
+    ScanText
+        = 0xF1EE0,
+    ScanThumbUp
+        = 0xF1EE4,
+    ScanThumbUpOff
+        = 0xF1EE8,
+    ScanType
+        = 0xF1EEC,
+    ScanTypeCheckmark
+        = 0xF1EF0,
+    ScanTypeOff
+        = 0xF1EF4,
+    Scratchpad
+        = 0xF1EF8,
+    ScreenCut
+        = 0xF1EFC,
+    ScreenPerson
+        = 0xF1F00,
+    ScreenSearch
+        = 0xF1F04,
+    Screenshot
+        = 0xF1F08,
+    ScreenshotRecord
+        = 0xF1F0C,
+    Script
+        = 0xF1F10,
+    Search
+        = 0xF1F14,
+    SearchInfo
+        = 0xF1F18,
+    SearchSettings
+        = 0xF1F1C,
+    SearchShield
+        = 0xF1F20,
+    SearchSparkle
+        = 0xF1F24,
+    SearchSquare
+        = 0xF1F28,
+    SearchVisual
+        = 0xF1F2C,
+    Seat
+        = 0xF1F30,
+    SeatAdd
+        = 0xF1F34,
+    SelectAllOff
+        = 0xF1F38,
+    SelectAllOn
+        = 0xF1F3C,
+    SelectObject
+        = 0xF1F40,
+    SelectObjectSkew
+        = 0xF1F44,
+    SelectObjectSkewDismiss
+        = 0xF1F48,
+    SelectObjectSkewEdit
+        = 0xF1F4C,
+    Send
+        = 0xF1F50,
+    SendBeaker
+        = 0xF1F54,
+    SendClock
+        = 0xF1F58,
+    SendCopy
+        = 0xF1F5C,
+    SendPerson
+        = 0xF1F60,
+    SerialPort
+        = 0xF1F64,
+    Server
+        = 0xF1F68,
+    ServerLink
+        = 0xF1F6C,
+    ServerMultiple
+        = 0xF1F70,
+    ServerPlay
+        = 0xF1F74,
+    ServiceBell
+        = 0xF1F80,
+    Settings
+        = 0xF1F84,
+    SettingsChat
+        = 0xF1F88,
+    SettingsCogMultiple
+        = 0xF1F8C,
+    ShapeExclude
+        = 0xF1F90,
+    ShapeIntersect
+        = 0xF1F94,
+    ShapeOrganic
+        = 0xF1F98,
+    ShapeSubtract
+        = 0xF1F9C,
+    ShapeUnion
+        = 0xF1FA0,
+    Shapes
+        = 0xF1FA4,
+    Share
+        = 0xF1FA8,
+    ShareAndroid
+        = 0xF1FAC,
+    ShareCloseTray
+        = 0xF1FB0,
+    ShareIos
+        = 0xF1FB4,
+    ShareMultiple
+        = 0xF1FB8,
+    ShareScreenPerson
+        = 0xF1FBC,
+    ShareScreenPersonOverlay
+        = 0xF1FC0,
+    ShareScreenPersonOverlayInside
+        = 0xF1FC4,
+    ShareScreenPersonP
+        = 0xF1FC8,
+    ShareScreenStart
+        = 0xF1FCC,
+    ShareScreenStop
+        = 0xF1FD0,
+    Shield
+        = 0xF1FD4,
+    ShieldAdd
+        = 0xF1FD8,
+    ShieldArrowRight
+        = 0xF1FDC,
+    ShieldBadge
+        = 0xF1FE0,
+    ShieldCheckmark
+        = 0xF1FE4,
+    ShieldDismiss
+        = 0xF1FE8,
+    ShieldDismissShield
+        = 0xF1FEC,
+    ShieldError
+        = 0xF1FF0,
+    ShieldGlobe
+        = 0xF1FF4,
+    ShieldKeyhole
+        = 0xF1FF8,
+    ShieldLock
+        = 0xF1FFC,
+    ShieldPerson
+        = 0xF2000,
+    ShieldPersonAdd
+        = 0xF2004,
+    ShieldProhibited
+        = 0xF2008,
+    ShieldQuestion
+        = 0xF200C,
+    ShieldTask
+        = 0xF2010,
+    Shifts
+        = 0xF2014,
+    Shifts30Minutes
+        = 0xF2018,
+    ShiftsActivity
+        = 0xF201C,
+    ShiftsAdd
+        = 0xF2020,
+    ShiftsAvailability
+        = 0xF2024,
+    ShiftsCheckmark
+        = 0xF2028,
+    ShiftsDay
+        = 0xF202C,
+    ShiftsOpen
+        = 0xF2030,
+    ShiftsProhibited
+        = 0xF2034,
+    ShiftsQuestionMark
+        = 0xF2038,
+    ShiftsTeam
+        = 0xF203C,
+    ShoppingBag
+        = 0xF2040,
+    ShoppingBagAdd
+        = 0xF2044,
+    ShoppingBagArrowLeft
+        = 0xF2048,
+    ShoppingBagDismiss
+        = 0xF204C,
+    ShoppingBagPause
+        = 0xF2050,
+    ShoppingBagPercent
+        = 0xF2054,
+    ShoppingBagPlay
+        = 0xF2058,
+    ShoppingBagTag
+        = 0xF205C,
+    Shortpick
+        = 0xF2060,
+    Showerhead
+        = 0xF2064,
+    SidebarSearch
+        = 0xF2068,
+    SignOut
+        = 0xF206C,
+    Signature
+        = 0xF2070,
+    Sim
+        = 0xF2074,
+    SkipBack10
+        = 0xF2078,
+    SkipBack15
+        = 0xF207C,
+    SkipForward10
+        = 0xF2080,
+    SkipForward15
+        = 0xF2084,
+    SkipForward30
+        = 0xF2088,
+    SkipForwardTab
+        = 0xF208C,
+    SlashForward
+        = 0xF2090,
+    Sleep
+        = 0xF2094,
+    SlideAdd
+        = 0xF2098,
+    SlideArrowRight
+        = 0xF209C,
+    SlideEraser
+        = 0xF20A4,
+    SlideGrid
+        = 0xF20A8,
+    SlideHide
+        = 0xF20AC,
+    SlideLayout
+        = 0xF20B0,
+    SlideLink
+        = 0xF20B4,
+    SlideMicrophone
+        = 0xF20B8,
+    SlideMultiple
+        = 0xF20BC,
+    SlideMultipleArrowRight
+        = 0xF20C0,
+    SlideMultipleSearch
+        = 0xF20C4,
+    SlidePlay
+        = 0xF20C8,
+    SlideRecord
+        = 0xF20CC,
+    SlideSearch
+        = 0xF20D0,
+    SlideSettings
+        = 0xF20D4,
+    SlideSize
+        = 0xF20D8,
+    SlideText
+        = 0xF20DC,
+    SlideTextCall
+        = 0xF20E0,
+    SlideTextCursor
+        = 0xF20E4,
+    SlideTextEdit
+        = 0xF20E8,
+    SlideTextMultiple
+        = 0xF20EC,
+    SlideTextPerson
+        = 0xF20F0,
+    SlideTextSparkle
+        = 0xF20F4,
+    SlideTransition
+        = 0xF20F8,
+    Smartwatch
+        = 0xF20FC,
+    SmartwatchDot
+        = 0xF2100,
+    Snooze
+        = 0xF2104,
+    SoundSource
+        = 0xF2108,
+    SoundWaveCircle
+        = 0xF210C,
+    SoundWaveCircleSparkle
+        = 0xF2110,
+    Space3d
+        = 0xF2114,
+    Spacebar
+        = 0xF2118,
+    Sparkle
+        = 0xF211C,
+    SparkleCircle
+        = 0xF2120,
+    SpatulaSpoon
+        = 0xF2124,
+    Speaker0
+        = 0xF2128,
+    Speaker1
+        = 0xF212C,
+    Speaker2
+        = 0xF2130,
+    SpeakerBluetooth
+        = 0xF2134,
+    SpeakerBox
+        = 0xF2138,
+    SpeakerEdit
+        = 0xF213C,
+    SpeakerMute
+        = 0xF2140,
+    SpeakerOff
+        = 0xF2144,
+    SpeakerSettings
+        = 0xF2148,
+    SpeakerUsb
+        = 0xF214C,
+    SpinnerIos
+        = 0xF2150,
+    SplitHint
+        = 0xF2154,
+    SplitHorizontal
+        = 0xF2158,
+    SplitVertical
+        = 0xF215C,
+    Sport
+        = 0xF2160,
+    SportAmericanFootball
+        = 0xF2164,
+    SportBaseball
+        = 0xF2168,
+    SportBasketball
+        = 0xF216C,
+    SportHockey
+        = 0xF2170,
+    SportSoccer
+        = 0xF2174,
+    Square
+        = 0xF217C,
+    SquareAdd
+        = 0xF2180,
+    SquareArrowForward
+        = 0xF2184,
+    SquareDismiss
+        = 0xF2188,
+    SquareDovetailJoint
+        = 0xF218C,
+    SquareEraser
+        = 0xF2190,
+    SquareHint
+        = 0xF2194,
+    SquareHintApps
+        = 0xF2198,
+    SquareHintArrowBack
+        = 0xF219C,
+    SquareHintHexagon
+        = 0xF21A0,
+    SquareHintSparkles
+        = 0xF21A4,
+    SquareMultiple
+        = 0xF21A8,
+    SquareShadow
+        = 0xF21AC,
+    SquareTextArrowRepeatAll
+        = 0xF21B0,
+    SquaresNested
+        = 0xF21B4,
+    Stack
+        = 0xF21B8,
+    StackAdd
+        = 0xF21BC,
+    StackArrowForward
+        = 0xF21C0,
+    StackOff
+        = 0xF21C4,
+    StackStar
+        = 0xF21C8,
+    StackVertical
+        = 0xF21CC,
+    Stamp
+        = 0xF21D0,
+    Star
+        = 0xF21D4,
+    StarAdd
+        = 0xF21D8,
+    StarArrowBack
+        = 0xF21DC,
+    StarArrowRight
+        = 0xF21E0,
+    StarArrowRightEnd
+        = 0xF21E4,
+    StarArrowRightStart
+        = 0xF21E8,
+    StarCheckmark
+        = 0xF21EC,
+    StarDismiss
+        = 0xF21F0,
+    StarEdit
+        = 0xF21F4,
+    StarEmphasis
+        = 0xF21F8,
+    StarHalf
+        = 0xF21FC,
+    StarLineHorizontal3
+        = 0xF2200,
+    StarOff
+        = 0xF2204,
+    StarOneQuarter
+        = 0xF2208,
+    StarProhibited
+        = 0xF220C,
+    StarSettings
+        = 0xF2210,
+    StarThreeQuarter
+        = 0xF2214,
+    Status
+        = 0xF2218,
+    Step
+        = 0xF221C,
+    Steps
+        = 0xF2220,
+    Stethoscope
+        = 0xF2224,
+    Sticker
+        = 0xF2228,
+    StickerAdd
+        = 0xF222C,
+    Stop
+        = 0xF2230,
+    Storage
+        = 0xF2234,
+    StoreMicrosoft
+        = 0xF2238,
+    Stream
+        = 0xF223C,
+    StreamInput
+        = 0xF2240,
+    StreamInputOutput
+        = 0xF2244,
+    StreamOutput
+        = 0xF2248,
+    StreetSign
+        = 0xF224C,
+    StyleGuide
+        = 0xF2250,
+    SubGrid
+        = 0xF2254,
+    Subtitles
+        = 0xF2258,
+    Subtract
+        = 0xF225C,
+    SubtractCircle
+        = 0xF2260,
+    SubtractCircleArrowBack
+        = 0xF2264,
+    SubtractCircleArrowForward
+        = 0xF2268,
+    SubtractParentheses
+        = 0xF226C,
+    SubtractSquare
+        = 0xF2270,
+    SubtractSquareMultiple
+        = 0xF2274,
+    SurfaceEarbuds
+        = 0xF2278,
+    SurfaceHub
+        = 0xF227C,
+    SwimmingPool
+        = 0xF2280,
+    SwipeDown
+        = 0xF2284,
+    SwipeRight
+        = 0xF2288,
+    SwipeUp
+        = 0xF228C,
+    Symbols
+        = 0xF2290,
+    SyncOff
+        = 0xF2294,
+    Syringe
+        = 0xF2298,
+    System
+        = 0xF229C,
+    Tab
+        = 0xF22A0,
+    TabAdd
+        = 0xF22A4,
+    TabArrowLeft
+        = 0xF22A8,
+    TabDesktop
+        = 0xF22AC,
+    TabDesktopArrowClockwise
+        = 0xF22B0,
+    TabDesktopArrowLeft
+        = 0xF22B4,
+    TabDesktopBottom
+        = 0xF22B8,
+    TabDesktopClock
+        = 0xF22BC,
+    TabDesktopCopy
+        = 0xF22C0,
+    TabDesktopImage
+        = 0xF22C4,
+    TabDesktopLink
+        = 0xF22C8,
+    TabDesktopMultiple
+        = 0xF22CC,
+    TabDesktopMultipleAdd
+        = 0xF22D0,
+    TabDesktopMultipleBottom
+        = 0xF22D4,
+    TabDesktopMultipleSparkle
+        = 0xF22D8,
+    TabDesktopNewPage
+        = 0xF22DC,
+    TabDesktopSearch
+        = 0xF22E0,
+    TabGroup
+        = 0xF22E4,
+    TabInPrivate
+        = 0xF22E8,
+    TabInprivateAccount
+        = 0xF22EC,
+    TabProhibited
+        = 0xF22F0,
+    TabShieldDismiss
+        = 0xF22F4,
+    Table
+        = 0xF22F8,
+    TableAdd
+        = 0xF22FC,
+    TableAltText
+        = 0xF2300,
+    TableArrowUp
+        = 0xF2304,
+    TableBottomRow
+        = 0xF2308,
+    TableCalculator
+        = 0xF230C,
+    TableCellAdd
+        = 0xF2310,
+    TableCellEdit
+        = 0xF2314,
+    TableCellsMerge
+        = 0xF2318,
+    TableCellsSplit
+        = 0xF231C,
+    TableChecker
+        = 0xF2320,
+    TableColumnTopBottom
+        = 0xF2324,
+    TableCopy
+        = 0xF2328,
+    TableCursor
+        = 0xF232C,
+    TableDeleteColumn
+        = 0xF2334,
+    TableDeleteRow
+        = 0xF2338,
+    TableDismiss
+        = 0xF233C,
+    TableEdit
+        = 0xF2340,
+    TableFreezeColumn
+        = 0xF2344,
+    TableFreezeColumnAndRow
+        = 0xF2348,
+    TableFreezeRow
+        = 0xF234C,
+    TableImage
+        = 0xF2350,
+    TableInsertColumn
+        = 0xF2354,
+    TableInsertRow
+        = 0xF2358,
+    TableLightning
+        = 0xF235C,
+    TableLink
+        = 0xF2360,
+    TableLock
+        = 0xF2364,
+    TableMoveAbove
+        = 0xF2368,
+    TableMoveBelow
+        = 0xF236C,
+    TableMoveLeft
+        = 0xF2370,
+    TableMoveRight
+        = 0xF2374,
+    TableMultiple
+        = 0xF2378,
+    TableOffset
+        = 0xF237C,
+    TableOffsetAdd
+        = 0xF2380,
+    TableOffsetLessThanOrEqualTo
+        = 0xF2384,
+    TableOffsetSettings
+        = 0xF2388,
+    TableResizeColumn
+        = 0xF238C,
+    TableResizeRow
+        = 0xF2390,
+    TableSearch
+        = 0xF2394,
+    TableSettings
+        = 0xF2398,
+    TableSimple
+        = 0xF239C,
+    TableSimpleCheckmark
+        = 0xF23A0,
+    TableSimpleExclude
+        = 0xF23A4,
+    TableSimpleInclude
+        = 0xF23A8,
+    TableSimpleMultiple
+        = 0xF23AC,
+    TableSparkle
+        = 0xF23B0,
+    TableSplit
+        = 0xF23B4,
+    TableStackAbove
+        = 0xF23B8,
+    TableStackBelow
+        = 0xF23BC,
+    TableStackLeft
+        = 0xF23C0,
+    TableStackRight
+        = 0xF23C4,
+    TableSwitch
+        = 0xF23C8,
+    Tablet
+        = 0xF23CC,
+    TabletLaptop
+        = 0xF23D0,
+    TabletSpeaker
+        = 0xF23D4,
+    Tabs
+        = 0xF23D8,
+    Tag
+        = 0xF23DC,
+    TagCircle
+        = 0xF23E0,
+    TagDismiss
+        = 0xF23E4,
+    TagError
+        = 0xF23E8,
+    TagLock
+        = 0xF23EC,
+    TagLockAccent
+        = 0xF23F0,
+    TagMultiple
+        = 0xF23F4,
+    TagOff
+        = 0xF23F8,
+    TagQuestionMark
+        = 0xF23FC,
+    TagReset
+        = 0xF2400,
+    TagSearch
+        = 0xF2404,
+    TapDouble
+        = 0xF2408,
+    TapSingle
+        = 0xF240C,
+    Target
+        = 0xF2410,
+    TargetAdd
+        = 0xF2414,
+    TargetArrow
+        = 0xF2418,
+    TargetDismiss
+        = 0xF241C,
+    TargetEdit
+        = 0xF2420,
+    TaskList
+        = 0xF2424,
+    TaskListAdd
+        = 0xF2428,
+    TaskListSquare
+        = 0xF242C,
+    TaskListSquareAdd
+        = 0xF2430,
+    TaskListSquareDatabase
+        = 0xF2434,
+    TaskListSquarePerson
+        = 0xF2438,
+    TaskListSquareSettings
+        = 0xF243C,
+    TasksApp
+        = 0xF2440,
+    Teaching
+        = 0xF2444,
+    TeardropBottomRight
+        = 0xF2448,
+    Teddy
+        = 0xF244C,
+    Temperature
+        = 0xF2450,
+    TemperatureDegreeCelsius
+        = 0xF2454,
+    TemperatureDegreeFahrenheit
+        = 0xF2458,
+    Tent
+        = 0xF245C,
+    TetrisApp
+        = 0xF2460,
+    Text
+        = 0xF2464,
+    TextAdd
+        = 0xF246C,
+    TextAddSpaceAfter
+        = 0xF2470,
+    TextAddSpaceBefore
+        = 0xF2474,
+    TextAddT
+        = 0xF2478,
+    TextAlignCenter
+        = 0xF247C,
+    TextAlignCenterRotate270
+        = 0xF2480,
+    TextAlignCenterRotate90
+        = 0xF2484,
+    TextAlignDistributed
+        = 0xF2488,
+    TextAlignDistributedEvenly
+        = 0xF248C,
+    TextAlignDistributedVertical
+        = 0xF2490,
+    TextAlignJustify
+        = 0xF2494,
+    TextAlignJustifyLow
+        = 0xF2498,
+    TextAlignJustifyLowRotate270
+        = 0xF249C,
+    TextAlignJustifyLowRotate90
+        = 0xF24A0,
+    TextAlignJustifyRotate270
+        = 0xF24A4,
+    TextAlignJustifyRotate90
+        = 0xF24A8,
+    TextAlignLeft
+        = 0xF24AC,
+    TextAlignLeftRotate270
+        = 0xF24B0,
+    TextAlignLeftRotate90
+        = 0xF24B4,
+    TextAlignRight
+        = 0xF24B8,
+    TextAlignRightRotate270
+        = 0xF24BC,
+    TextAlignRightRotate90
+        = 0xF24C0,
+    TextArrowDownRightColumn
+        = 0xF24C4,
+    TextAsterisk
+        = 0xF24C8,
+    TextBaseline
+        = 0xF24CC,
+    TextBold
+        = 0xF24D0,
+    TextBoxSettings
+        = 0xF24D4,
+    TextBulletList
+        = 0xF24D8,
+    TextBulletListAdd
+        = 0xF24DC,
+    TextBulletListCheckmark
+        = 0xF24E0,
+    TextBulletListDismiss
+        = 0xF24E4,
+    TextBulletListRotate90
+        = 0xF24EC,
+    TextBulletListSquare
+        = 0xF24F0,
+    TextBulletListSquareClock
+        = 0xF24F4,
+    TextBulletListSquareEdit
+        = 0xF24F8,
+    TextBulletListSquarePerson
+        = 0xF24FC,
+    TextBulletListSquareSearch
+        = 0xF2500,
+    TextBulletListSquareSettings
+        = 0xF2504,
+    TextBulletListSquareShield
+        = 0xF2508,
+    TextBulletListSquareSparkle
+        = 0xF250C,
+    TextBulletListSquareToolbox
+        = 0xF2510,
+    TextBulletListSquareWarning
+        = 0xF2514,
+    TextBulletListTree
+        = 0xF2518,
+    TextCaseLowercase
+        = 0xF251C,
+    TextCaseTitle
+        = 0xF2520,
+    TextCaseUppercase
+        = 0xF2524,
+    TextChangeCase
+        = 0xF2528,
+    TextClearFormatting
+        = 0xF252C,
+    TextCollapse
+        = 0xF2530,
+    TextColor
+        = 0xF2534,
+    TextColorAccent
+        = 0xF2538,
+    TextColumnOne
+        = 0xF253C,
+    TextColumnOneNarrow
+        = 0xF2540,
+    TextColumnOneSemiNarrow
+        = 0xF2544,
+    TextColumnOneWide
+        = 0xF2548,
+    TextColumnOneWideLightning
+        = 0xF254C,
+    TextColumnThree
+        = 0xF2550,
+    TextColumnTwo
+        = 0xF2554,
+    TextColumnTwoLeft
+        = 0xF2558,
+    TextColumnTwoRight
+        = 0xF255C,
+    TextColumnWide
+        = 0xF2560,
+    TextContinuous
+        = 0xF2564,
+    TextDensity
+        = 0xF2568,
+    TextDescription
+        = 0xF256C,
+    TextDirectionHorizontal
+        = 0xF2570,
+    TextDirectionHorizontalLeft
+        = 0xF2574,
+    TextDirectionHorizontalRight
+        = 0xF2578,
+    TextDirectionRotate270Right
+        = 0xF257C,
+    TextDirectionRotate315Right
+        = 0xF2580,
+    TextDirectionRotate45Right
+        = 0xF2584,
+    TextDirectionRotate90
+        = 0xF2588,
+    TextDirectionRotate90Left
+        = 0xF258C,
+    TextDirectionRotate90Right
+        = 0xF2590,
+    TextDirectionVertical
+        = 0xF2594,
+    TextEditStyle
+        = 0xF2598,
+    TextEffects
+        = 0xF25A4,
+    TextEffectsSparkle
+        = 0xF25A8,
+    TextExpand
+        = 0xF25AC,
+    TextField
+        = 0xF25B0,
+    TextFirstLine
+        = 0xF25B4,
+    TextFont
+        = 0xF25B8,
+    TextFontInfo
+        = 0xF25BC,
+    TextFontSize
+        = 0xF25C0,
+    TextFootnote
+        = 0xF25C4,
+    TextGrammarArrowLeft
+        = 0xF25C8,
+    TextGrammarArrowRight
+        = 0xF25CC,
+    TextGrammarCheckmark
+        = 0xF25D0,
+    TextGrammarDismiss
+        = 0xF25D4,
+    TextGrammarError
+        = 0xF25D8,
+    TextGrammarLightning
+        = 0xF25DC,
+    TextGrammarSettings
+        = 0xF25E0,
+    TextGrammarWand
+        = 0xF25E4,
+    TextHanging
+        = 0xF25E8,
+    TextHeader1
+        = 0xF25EC,
+    TextHeader1Lines
+        = 0xF25F0,
+    TextHeader1LinesCaret
+        = 0xF25F4,
+    TextHeader2
+        = 0xF25F8,
+    TextHeader2Lines
+        = 0xF25FC,
+    TextHeader2LinesCaret
+        = 0xF2600,
+    TextHeader3
+        = 0xF2604,
+    TextHeader3Lines
+        = 0xF2608,
+    TextHeader3LinesCaret
+        = 0xF260C,
+    TextIndentDecrease
+        = 0xF2610,
+    TextIndentDecreaseRotate270
+        = 0xF2614,
+    TextIndentDecreaseRotate90
+        = 0xF2618,
+    TextIndentIncrease
+        = 0xF261C,
+    TextIndentIncreaseRotate270
+        = 0xF2620,
+    TextIndentIncreaseRotate90
+        = 0xF2624,
+    TextItalic
+        = 0xF2628,
+    TextLineSpacing
+        = 0xF262C,
+    TextListAbcLowercase
+        = 0xF2630,
+    TextListAbcUppercase
+        = 0xF2634,
+    TextListRomanNumeralLowercase
+        = 0xF2638,
+    TextListRomanNumeralUppercase
+        = 0xF263C,
+    TextMore
+        = 0xF2640,
+    TextNumberFormat
+        = 0xF2644,
+    TextNumberList
+        = 0xF2648,
+    TextNumberListRotate270
+        = 0xF264C,
+    TextNumberListRotate90
+        = 0xF2650,
+    TextParagraph
+        = 0xF2654,
+    TextParagraphDirection
+        = 0xF2658,
+    TextParagraphDirectionLeft
+        = 0xF265C,
+    TextParagraphDirectionRight
+        = 0xF2660,
+    TextPeriodAsterisk
+        = 0xF2664,
+    TextPositionBehind
+        = 0xF2668,
+    TextPositionFront
+        = 0xF266C,
+    TextPositionLine
+        = 0xF2670,
+    TextPositionSquare
+        = 0xF2674,
+    TextPositionSquareLeft
+        = 0xF2678,
+    TextPositionSquareRight
+        = 0xF267C,
+    TextPositionThrough
+        = 0xF2680,
+    TextPositionTight
+        = 0xF2684,
+    TextPositionTopBottom
+        = 0xF2688,
+    TextProofingTools
+        = 0xF268C,
+    TextQuote
+        = 0xF2690,
+    TextSortAscending
+        = 0xF2694,
+    TextSortDescending
+        = 0xF2698,
+    TextStrikethrough
+        = 0xF269C,
+    TextSubscript
+        = 0xF26A0,
+    TextSuperscript
+        = 0xF26A4,
+    TextT
+        = 0xF26A8,
+    TextUnderline
+        = 0xF26B0,
+    TextUnderlineCharacterU
+        = 0xF26B4,
+    TextUnderlineDouble
+        = 0xF26B8,
+    TextWholeWord
+        = 0xF26BC,
+    TextWordCount
+        = 0xF26C0,
+    TextWrap
+        = 0xF26C4,
+    TextWrapOff
+        = 0xF26C8,
+    Textbox
+        = 0xF26CC,
+    TextboxAlignBottom
+        = 0xF26D0,
+    TextboxAlignBottomCenter
+        = 0xF26D4,
+    TextboxAlignBottomLeft
+        = 0xF26D8,
+    TextboxAlignBottomRight
+        = 0xF26DC,
+    TextboxAlignBottomRotate90
+        = 0xF26E0,
+    TextboxAlignCenter
+        = 0xF26E4,
+    TextboxAlignMiddle
+        = 0xF26E8,
+    TextboxAlignMiddleLeft
+        = 0xF26EC,
+    TextboxAlignMiddleRight
+        = 0xF26F0,
+    TextboxAlignMiddleRotate90
+        = 0xF26F4,
+    TextboxAlignTop
+        = 0xF26F8,
+    TextboxAlignTopCenter
+        = 0xF26FC,
+    TextboxAlignTopLeft
+        = 0xF2700,
+    TextboxAlignTopRight
+        = 0xF2704,
+    TextboxAlignTopRotate90
+        = 0xF2708,
+    TextboxCheckmark
+        = 0xF270C,
+    TextboxMore
+        = 0xF2710,
+    TextboxRotate90
+        = 0xF2714,
+    TextboxSettings
+        = 0xF2718,
+    Thinking
+        = 0xF271C,
+    ThumbDislike
+        = 0xF2720,
+    ThumbLike
+        = 0xF2724,
+    ThumbLikeDislike
+        = 0xF2728,
+    TicketDiagonal
+        = 0xF272C,
+    TicketHorizontal
+        = 0xF2730,
+    TimeAndWeather
+        = 0xF2734,
+    TimePicker
+        = 0xF2738,
+    Timeline
+        = 0xF273C,
+    Timer
+        = 0xF2740,
+    Timer10
+        = 0xF2744,
+    Timer2
+        = 0xF2748,
+    Timer3
+        = 0xF274C,
+    TimerOff
+        = 0xF2750,
+    ToggleLeft
+        = 0xF2754,
+    ToggleMultiple
+        = 0xF2758,
+    ToggleRight
+        = 0xF275C,
+    Toolbox
+        = 0xF2760,
+    TooltipQuote
+        = 0xF2764,
+    TopSpeed
+        = 0xF2768,
+    Translate
+        = 0xF276C,
+    TranslateAuto
+        = 0xF2770,
+    TranslateOff
+        = 0xF2774,
+    Transmission
+        = 0xF2778,
+    TransparencySquare
+        = 0xF277C,
+    TrayItemAdd
+        = 0xF2780,
+    TrayItemRemove
+        = 0xF2784,
+    TreeDeciduous
+        = 0xF2788,
+    TreeEvergreen
+        = 0xF278C,
+    Triangle
+        = 0xF2790,
+    TriangleDown
+        = 0xF2794,
+    TriangleLeft
+        = 0xF2798,
+    TriangleRight
+        = 0xF279C,
+    TriangleUp
+        = 0xF27A0,
+    Trophy
+        = 0xF27A4,
+    TrophyLock
+        = 0xF27A8,
+    TrophyOff
+        = 0xF27AC,
+    Tv
+        = 0xF27B0,
+    TvArrowRight
+        = 0xF27B4,
+    TvUsb
+        = 0xF27B8,
+    Umbrella
+        = 0xF27BC,
+    UninstallApp
+        = 0xF27C0,
+    UsbPlug
+        = 0xF27C4,
+    UsbStick
+        = 0xF27C8,
+    Vault
+        = 0xF27CC,
+    VehicleBicycle
+        = 0xF27D0,
+    VehicleBus
+        = 0xF27D4,
+    VehicleCab
+        = 0xF27D8,
+    VehicleCableCar
+        = 0xF27DC,
+    VehicleCar
+        = 0xF27E0,
+    VehicleCarCollision
+        = 0xF27E4,
+    VehicleCarParking
+        = 0xF27E8,
+    VehicleCarProfile
+        = 0xF27EC,
+    VehicleCarProfileClock
+        = 0xF27F0,
+    VehicleMotorcycle
+        = 0xF27F4,
+    VehicleShip
+        = 0xF27F8,
+    VehicleSubway
+        = 0xF27FC,
+    VehicleSubwayClock
+        = 0xF2800,
+    VehicleTractor
+        = 0xF2804,
+    VehicleTruck
+        = 0xF2808,
+    VehicleTruckBag
+        = 0xF280C,
+    VehicleTruckCube
+        = 0xF2810,
+    VehicleTruckProfile
+        = 0xF2814,
+    Video
+        = 0xF2818,
+    Video360
+        = 0xF281C,
+    Video360Off
+        = 0xF2820,
+    VideoAdd
+        = 0xF2824,
+    VideoBackgroundEffect
+        = 0xF2828,
+    VideoBackgroundEffectHorizontal
+        = 0xF282C,
+    VideoBluetooth
+        = 0xF2830,
+    VideoChat
+        = 0xF2834,
+    VideoClip
+        = 0xF2838,
+    VideoClipMultiple
+        = 0xF283C,
+    VideoClipOff
+        = 0xF2840,
+    VideoClipOptimize
+        = 0xF2844,
+    VideoClipWand
+        = 0xF2848,
+    VideoMultiple
+        = 0xF2850,
+    VideoOff
+        = 0xF2854,
+    VideoPerson
+        = 0xF285C,
+    VideoPersonCall
+        = 0xF2860,
+    VideoPersonClock
+        = 0xF2864,
+    VideoPersonOff
+        = 0xF2868,
+    VideoPersonPulse
+        = 0xF286C,
+    VideoPersonSparkle
+        = 0xF2870,
+    VideoPersonSparkleOff
+        = 0xF2874,
+    VideoPersonStar
+        = 0xF2878,
+    VideoPersonStarOff
+        = 0xF287C,
+    VideoPlayPause
+        = 0xF2880,
+    VideoProhibited
+        = 0xF2884,
+    VideoRecording
+        = 0xF2888,
+    VideoSecurity
+        = 0xF288C,
+    VideoSettings
+        = 0xF2890,
+    VideoSwitch
+        = 0xF2894,
+    VideoSync
+        = 0xF2898,
+    VideoUsb
+        = 0xF289C,
+    ViewDesktop
+        = 0xF28A0,
+    ViewDesktopMobile
+        = 0xF28A4,
+    VirtualNetwork
+        = 0xF28A8,
+    VirtualNetworkToolbox
+        = 0xF28AC,
+    Voicemail
+        = 0xF28B0,
+    VoicemailArrowBack
+        = 0xF28B4,
+    VoicemailArrowForward
+        = 0xF28B8,
+    VoicemailArrowSubtract
+        = 0xF28BC,
+    VoicemailShield
+        = 0xF28C0,
+    VoicemailSubtract
+        = 0xF28C4,
+    Vote
+        = 0xF28C8,
+    WalkieTalkie
+        = 0xF28CC,
+    Wallet
+        = 0xF28D0,
+    WalletCreditCard
+        = 0xF28D4,
+    Wallpaper
+        = 0xF28D8,
+    Wand
+        = 0xF28DC,
+    Warning
+        = 0xF28E0,
+    WarningLockOpen
+        = 0xF28E4,
+    WarningShield
+        = 0xF28E8,
+    Washer
+        = 0xF28EC,
+    Water
+        = 0xF28F0,
+    WeatherBlowingSnow
+        = 0xF28F4,
+    WeatherCloudy
+        = 0xF28F8,
+    WeatherDrizzle
+        = 0xF28FC,
+    WeatherDuststorm
+        = 0xF2900,
+    WeatherFog
+        = 0xF2904,
+    WeatherHailDay
+        = 0xF2908,
+    WeatherHailNight
+        = 0xF290C,
+    WeatherHaze
+        = 0xF2910,
+    WeatherMoon
+        = 0xF2914,
+    WeatherMoonOff
+        = 0xF2918,
+    WeatherPartlyCloudyDay
+        = 0xF291C,
+    WeatherPartlyCloudyNight
+        = 0xF2920,
+    WeatherRain
+        = 0xF2924,
+    WeatherRainShowersDay
+        = 0xF2928,
+    WeatherRainShowersNight
+        = 0xF292C,
+    WeatherRainSnow
+        = 0xF2930,
+    WeatherSnow
+        = 0xF2934,
+    WeatherSnowShowerDay
+        = 0xF2938,
+    WeatherSnowShowerNight
+        = 0xF293C,
+    WeatherSnowflake
+        = 0xF2940,
+    WeatherSqualls
+        = 0xF2944,
+    WeatherSunny
+        = 0xF2948,
+    WeatherSunnyHigh
+        = 0xF294C,
+    WeatherSunnyLow
+        = 0xF2950,
+    WeatherThunderstorm
+        = 0xF2954,
+    WebAsset
+        = 0xF2958,
+    Whiteboard
+        = 0xF295C,
+    WhiteboardOff
+        = 0xF2960,
+    Wifi1
+        = 0xF2968,
+    Wifi2
+        = 0xF296C,
+    Wifi3
+        = 0xF2970,
+    Wifi4
+        = 0xF2974,
+    WifiLock
+        = 0xF2978,
+    WifiOff
+        = 0xF297C,
+    WifiSettings
+        = 0xF2980,
+    WifiWarning
+        = 0xF2984,
+    Window
+        = 0xF2988,
+    WindowAd
+        = 0xF298C,
+    WindowAdOff
+        = 0xF2990,
+    WindowAdPerson
+        = 0xF2994,
+    WindowApps
+        = 0xF2998,
+    WindowArrowUp
+        = 0xF299C,
+    WindowBrush
+        = 0xF29A0,
+    WindowBulletList
+        = 0xF29A4,
+    WindowBulletListAdd
+        = 0xF29A8,
+    WindowColumnOneFourthLeft
+        = 0xF29AC,
+    WindowColumnOneFourthLeftFocusLeft
+        = 0xF29B0,
+    WindowColumnOneFourthLeftFocusTop
+        = 0xF29B4,
+    WindowConsole
+        = 0xF29B8,
+    WindowDatabase
+        = 0xF29BC,
+    WindowDevEdit
+        = 0xF29C0,
+    WindowDevTools
+        = 0xF29C4,
+    WindowEdit
+        = 0xF29C8,
+    WindowFingerprint
+        = 0xF29CC,
+    WindowHeaderHorizontal
+        = 0xF29D0,
+    WindowHeaderHorizontalOff
+        = 0xF29D4,
+    WindowHeaderVertical
+        = 0xF29D8,
+    WindowInprivate
+        = 0xF29DC,
+    WindowInprivateAccount
+        = 0xF29E0,
+    WindowLocationTarget
+        = 0xF29E4,
+    WindowMultiple
+        = 0xF29E8,
+    WindowMultipleSwap
+        = 0xF29EC,
+    WindowNew
+        = 0xF29F0,
+    WindowPlay
+        = 0xF29F4,
+    WindowSettings
+        = 0xF29F8,
+    WindowShield
+        = 0xF29FC,
+    WindowText
+        = 0xF2A00,
+    WindowWrench
+        = 0xF2A04,
+    Wrench
+        = 0xF2A08,
+    WrenchScrewdriver
+        = 0xF2A0C,
+    WrenchSettings
+        = 0xF2A10,
+    XboxConsole
+        = 0xF2A14,
+    XboxController
+        = 0xF2A18,
+    XboxControllerError
+        = 0xF2A1C,
+    Xray
+        = 0xF2A20,
+    ZoomFit
+        = 0xF2A24,
+    ZoomIn
+        = 0xF2A28,
+    ZoomOut
+        = 0xF2A2C,
 }

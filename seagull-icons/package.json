@@ -3,45 +3,43 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "collect": "ts-node collect.ts --source=./upstream/assets --system=./obj/system --seagull=./obj/seagull-override --codepoints=./obj/codepoints.json --mirror=./obj/mirror.json",
-    "transform": "ts-node transform.ts --yaml=./transform.yaml --source=./obj/system --override-source ./override/component ./override/mono ./override/universal --dest=./obj/seagull --override-dest ./override/mono ./override/universal",
-    "layerize": "ts-node layerize.ts --mono=./override/mono --source=./obj/system --colr20=./obj/colr/system --colr16=./obj/colr/seagull --ttx=./obj/colr/colr.ttx",
-    "mirror": "ts-node mirror.ts --json ./obj/mirror.json --dir ./obj/system ./obj/seagull",
-    "generate:system": "ts-node generate.ts --source=./obj/system --override=./override/mono --codepoints=./obj/codepoints.json --colr=./obj/colr/system --name=FluentSystemIcons --font-height=1920 --dest=./obj",
-    "generate:seagull": "ts-node generate.ts --source=./obj/seagull --override=./obj/seagull-override --codepoints=./obj/codepoints.json --colr=./obj/colr/seagull --name=SeagullFluentIcons --font-height=2048 --dest=./obj",
-    "test": "ts-node test.ts --source=./obj/seagull"
+    "collect": "ts-node collect.ts --source=./upstream/assets --root=./obj",
+    "transform": "ts-node transform.ts --yaml=./transform.yaml --source=./obj/mono/resizable --override-source ./obj/mono/override ./override/seagull/cmpt ./override/mono/20 ./override/seagull/common --dest=./obj/composed/seagull --override-dest ./obj/mono/override ./override/mono/20 ./override/seagull/common",
+    "layerize": "ts-node layerize.ts --mirror ./obj/mirror.json",
+    "mirror": "ts-node mirror.ts --json ./obj/mirror.json",
+    "generate": "ts-node generate.ts --codepoints=./obj/icons.json --dest=./obj",
+    "test": "ts-node test.ts --source=./obj/composed/seagull"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "color-string": "^1.0.0",
-    "fantasticon": "^2.0.0",
+    "@types/cyrb53": "^1.0.0",
+    "colorjs.io": "^0.5.0",
+    "cyrb53": "^1.0.0",
+    "fantasticon": "^3.0.0",
     "paper": "^0.12.0",
     "paper-jsdom": "^0.12.0",
+    "paperjs-offset": "^1.0.0",
     "xml2js": "^0.6.0",
     "xmlbuilder": "^15.0.0",
     "yaml": "^2.0.0",
     "yargs": "^17.0.0"
   },
   "devDependencies": {
-    "@types/color-string": "^1.0.0",
     "@types/xml2js": "^0.4.0",
     "@types/yargs": "^17.0.0",
     "ts-node": "^10.0.0",
     "typescript": "^5.0.0"
   },
-  "overrides": {
-    "fantasticon": {
-      "glob": "^7.0.0"
-    }
-  },
+  "packageManager": "pnpm@10.3.0+sha512.ee592eda8815a8a293c206bb0917c4bb0ff274c50def7cbc17be05ec641fc2d1b02490ce660061356bd0d126a4d7eb2ec8830e6959fb8a447571c631d5a2442d",
   "pnpm": {
-    "overrides": {
-      "glob": "^7.0.0"
-    },
+    "onlyBuiltDependencies": [
+      "es5-ext",
+      "ttf2woff2"
+    ],
     "patchedDependencies": {
-      "fantasticon@2.0.0": "patches/fantasticon@2.0.0.patch"
+      "fantasticon@3.0.0": "patches/fantasticon@3.0.0.patch"
     }
   }
 }

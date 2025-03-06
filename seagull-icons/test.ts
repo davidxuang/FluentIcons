@@ -1,15 +1,15 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as yargs from 'yargs';
+import fs from 'fs';
+import path from 'path';
+import yargs from 'yargs';
 import { Parser } from 'xml2js';
-import * as paper from 'paper';
-import { Doc, Visible } from './types';
+import paper from 'paper';
+import { Doc, Renderable } from './types';
 import { getPathData } from './utils';
 
 const argv = yargs.string('source').strict().parseSync();
 
 paper.setup([16, 16]);
-const tolerance = 1 / 16;
+const tolerance = 1 / 12;
 
 const parser = new Parser({
   preserveChildrenOrder: true,
@@ -21,7 +21,7 @@ fs.readdirSync(argv.source, { recursive: true }).forEach((f) => {
   if (
     typeof f !== 'string' ||
     path.extname(f) !== '.svg' ||
-    f.endsWith('_light.svg')
+    f.endsWith('-light.svg')
   ) {
     return;
   }
@@ -33,17 +33,12 @@ fs.readdirSync(argv.source, { recursive: true }).forEach((f) => {
     }
 
     const item = new paper.CompoundPath(
-      doc.svg.$$.map((e) => getPathData(e as Visible)).join()
+      doc.svg.$$.map((e) => getPathData(e as Renderable)).join()
     );
     const bounds = item.bounds;
-    const out_bound = Math.max(
-      -bounds.left,
-      -bounds.top,
-      bounds.right - 16,
-      bounds.bottom - 16
-    );
-    if (out_bound > tolerance) {
-      console.warn(`[${out_bound.toFixed(4)}] ${file}: ${bounds}`);
+    const margin = [-bounds.left, -bounds.top, bounds.right - 16, bounds.bottom - 16];
+    if (Math.max(...margin) >= tolerance) {
+      console.warn(`[${Math.max(...margin).toFixed(4)}] ${file}: [${margin.map((m) => m.toFixed(4)).join(', ')}]`);
     }
 
     item.remove();

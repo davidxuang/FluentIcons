@@ -21,8 +21,7 @@
   </Target>
 
   <ItemGroup>
-    <AvaloniaResource Include="Assets\FluentSystemIcons.ttf" />
-    <AvaloniaResource Include="Assets\SeagullFluentIcons.ttf" />
+    <AvaloniaResource Include="Assets\*.ttf" />
   </ItemGroup>
 
 </Project>

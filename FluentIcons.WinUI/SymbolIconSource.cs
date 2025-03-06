@@ -1,5 +1,7 @@
+using System;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
+using FluentIcons.WinUI.Internals;
 using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -9,39 +11,13 @@ using Symbol = FluentIcons.Common.Symbol;
 
 namespace FluentIcons.WinUI;
 
-public partial class SymbolIconSource : FontIconSource
+public partial class SymbolIconSource : GenericIconSource
 {
-    public static DependencyProperty SymbolProperty { get; } =
-        DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new PropertyMetadata(Symbol.Home, OnSymbolPropertiesChanged));
-    public static DependencyProperty IconVariantProperty { get; } =
-        DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(SymbolIcon), new PropertyMetadata(default(IconVariant), OnSymbolPropertiesChanged));
-    public static DependencyProperty UseSegoeMetricsProperty { get; } =
-#if !HAS_UNO
-        DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), PropertyMetadata.Create(() => SymbolIcon.UseSegoeMetricsDefaultValue, OnSymbolPropertiesChanged));
-#else
-        DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnSymbolPropertiesChanged));
-#endif
-    public static DependencyProperty FlowDirectionProperty { get; } =
-        DependencyProperty.Register(nameof(FlowDirection), typeof(FlowDirection), typeof(SymbolIconSource), new PropertyMetadata(FlowDirection.LeftToRight, OnSymbolPropertiesChanged));
-
-    private string _glyph;
-
-    public SymbolIconSource()
-    {
-        FontFamily = UseSegoeMetrics ? SymbolIcon.Seagull : SymbolIcon.System;
-        FontStyle = Windows.UI.Text.FontStyle.Normal;
-        FontWeight = FontWeights.Normal;
-        Glyph = _glyph = Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
-        IsTextScaleFactorEnabled = false;
-        MirroredWhenRightToLeft = false;
-
-        RegisterPropertyChangedCallback(FontFamilyProperty, OnFontFamilyChanged);
-        RegisterPropertyChangedCallback(FontStyleProperty, OnFontStyleChanged);
-        RegisterPropertyChangedCallback(FontWeightProperty, OnFontWeightChanged);
-        RegisterPropertyChangedCallback(GlyphProperty, OnGlyphChanged);
-        RegisterPropertyChangedCallback(IsTextScaleFactorEnabledProperty, OnIsTextScaleFactorEnabledChanged);
-        RegisterPropertyChangedCallback(MirroredWhenRightToLeftProperty, OnMirroredWhenRightToLeftChanged);
-    }
+    public static DependencyProperty SymbolProperty
+        => DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new PropertyMetadata(Symbol.Home, OnIconPropertiesChanged));
+    [Obsolete(Extensions.Message)]
+    public static DependencyProperty UseSegoeMetricsProperty
+        => DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new PropertyMetadata(false, OnIconPropertiesChanged));
 
     public Symbol Symbol
     {
@@ -49,87 +25,23 @@ public partial class SymbolIconSource : FontIconSource
         set { SetValue(SymbolProperty, value); }
     }
 
-    public IconVariant IconVariant
-    {
-        get { return (IconVariant)GetValue(IconVariantProperty); }
-        set { SetValue(IconVariantProperty, value); }
-    }
-
+    [Obsolete(Extensions.Message)]
     public bool UseSegoeMetrics
     {
         get { return (bool)GetValue(UseSegoeMetricsProperty); }
         set { SetValue(UseSegoeMetricsProperty, value); }
     }
 
-    public FlowDirection FlowDirection
-    {
-        get { return (FlowDirection)GetValue(FlowDirectionProperty); }
-        set { SetValue(FlowDirectionProperty, value); }
-    }
-
-    private static void OnSymbolPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
-    {
-        if (sender is SymbolIconSource inst)
-        {
-            inst.FontFamily = inst.UseSegoeMetrics ? SymbolIcon.Seagull : SymbolIcon.System;
-            inst.Glyph = inst._glyph = inst.Symbol.ToString(inst.IconVariant, inst.FlowDirection == FlowDirection.RightToLeft);
-        }
-    }
-
-    private static void OnFontFamilyChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is SymbolIcon inst)
-        {
-            inst.FontFamily = inst.UseSegoeMetrics ? SymbolIcon.Seagull : SymbolIcon.System;
-        }
-    }
-
-    private static void OnFontStyleChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is SymbolIconSource inst)
-        {
-            inst.FontStyle = Windows.UI.Text.FontStyle.Normal;
-        }
-    }
-
-    private static void OnFontWeightChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is SymbolIconSource inst)
-        {
-            inst.FontWeight = FontWeights.Normal;
-        }
-    }
-
-    private static void OnGlyphChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is SymbolIconSource inst)
-        {
-            inst.Glyph = inst._glyph;
-        }
-    }
-
-    private static void OnIsTextScaleFactorEnabledChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is SymbolIconSource inst)
-        {
-            inst.IsTextScaleFactorEnabled = false;
-        }
-    }
-
-    private static void OnMirroredWhenRightToLeftChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is SymbolIconSource inst)
-        {
-            inst.MirroredWhenRightToLeft = false;
-        }
-    }
+    protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
+    protected override FontFamily IconFont => SymbolIcon.SFontFamily;
 }
 
 [MarkupExtensionReturnType(ReturnType = typeof(SymbolIconSource))]
-public class SymbolIconSourceExtension : MarkupExtension
+public partial class SymbolIconSourceExtension : MarkupExtension
 {
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }
+    [Obsolete(Extensions.Message)]
     public bool? UseSegoeMetrics { get; set; }
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
@@ -140,7 +52,6 @@ public class SymbolIconSourceExtension : MarkupExtension
 
         if (Symbol.HasValue) icon.Symbol = Symbol.Value;
         if (IconVariant.HasValue) icon.IconVariant = IconVariant.Value;
-        if (UseSegoeMetrics.HasValue) icon.UseSegoeMetrics = UseSegoeMetrics.Value;
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (Foreground is not null) icon.Foreground = Foreground;
 
@@ -148,8 +59,8 @@ public class SymbolIconSourceExtension : MarkupExtension
         if (service?.TargetObject is FrameworkElement source)
         {
             icon.FlowDirection = source.FlowDirection;
-            source.RegisterPropertyChangedCallback(FrameworkElement.FlowDirectionProperty, (obj, args) =>
-            {
+            source.RegisterPropertyChangedCallback(FrameworkElement.FlowDirectionProperty, (obj, args) 
+            => {
                 if (obj is FrameworkElement elem) icon.FlowDirection = elem.FlowDirection;
             });
         }

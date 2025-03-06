@@ -29,11 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\seagull-icons\assets\FluentSystemIcons.ttf">
-      <Link>Resources/Fonts/FluentSystemIcons.ttf</Link>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\seagull-icons\assets\SeagullFluentIcons.ttf">
-      <Link>Resources/Fonts/SeagullFluentIcons.ttf</Link>
+    <EmbeddedResource Include="..\seagull-icons\assets\*.ttf">
+      <Link>Resources/Fonts/%(FileName)%(Extension)</Link>
     </EmbeddedResource>
   </ItemGroup>
 

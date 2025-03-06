@@ -1,10 +1,10 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as yargs from 'yargs';
+import fs from 'fs';
+import path from 'path';
+import yargs from 'yargs';
 import { parse } from 'yaml';
 import { Parser } from 'xml2js';
-import * as paper from 'paper';
-import { Doc, Visible } from './types';
+import paper from 'paper';
+import { Doc, Renderable } from './types';
 import { ensure, getPathData } from './utils';
 
 const argv = yargs
@@ -99,9 +99,11 @@ function copy(src: string, dest: string) {
       }
 
       const item = new paper.CompoundPath(
-        doc.svg.$$.map((e) => getPathData(e as Visible)).join()
+        doc.svg.$$.map((e) => getPathData(e as Renderable)).join()
       );
-      if (doc.svg.$.height === '20') {
+      if (doc.svg.$.height === '16') {
+        fs.copyFileSync(src_item, dest_item);
+      } else if (doc.svg.$.height === '20') {
         item.translate(align);
         fs.writeFileSync(
           dest_item,
@@ -113,7 +115,7 @@ function copy(src: string, dest: string) {
           `<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">\n  <path d="${item.pathData}" fill="#212121" />\n</svg>`
         );
       } else {
-        throw item;
+        throw src_item;
       }
       item.remove();
     });
@@ -167,11 +169,11 @@ const resolve = (() => {
     };
 
     if (matches[4]) {
-      meta.dest_name = `ic_fluent_${matches[4]}_${style}.svg`;
+      meta.dest_name = `${matches[4]}-${style}.svg`;
     } else {
-      meta.dest_name = `ic_fluent_${[meta.base_alias, badge_name, meta.variant]
+      meta.dest_name = `${[meta.base_alias, badge_name, meta.variant]
         .filter((x) => x)
-        .join('_')}_${style}.svg`;
+        .join('_')}-${style}.svg`;
     }
 
     return meta;
@@ -182,14 +184,14 @@ const resolveSrc = (meta: ComposeMeta, base_meta: BaseMeta) => {
   const redirect = data.redirect[meta.src_name];
   if (redirect) {
     if (typeof redirect === 'string') {
-      meta.src_name = `ic_fluent_${redirect}_${meta.style}.svg`;
+      meta.src_name = `${redirect}-${meta.style}.svg`;
     } else {
-      meta.src_name = `ic_fluent_${
+      meta.src_name = `${
         redirect[base_meta[0]] ?? redirect['#'] ?? meta.src_name
-      }_${meta.style}.svg`;
+      }-${meta.style}.svg`;
     }
   } else {
-    meta.src_name = `ic_fluent_${meta.src_name}_${meta.style}.svg`;
+    meta.src_name = `${meta.src_name}-${meta.style}.svg`;
   }
 };
 
@@ -278,9 +280,11 @@ const compose = (() => {
       }
 
       let item: paper.PathItem = new paper.CompoundPath(
-        doc.svg.$$.map((elem) => getPathData(elem as Visible)).join()
+        doc.svg.$$.map((elem) => getPathData(elem as Renderable)).join()
       );
-      item.translate(align);
+      if (doc.svg.$.width !== '16') {
+        item.translate(align);
+      }
 
       if (base_meta[1]) {
         item.translate(base_meta[1]);

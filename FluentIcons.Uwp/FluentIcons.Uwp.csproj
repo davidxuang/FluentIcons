@@ -9,6 +9,7 @@
     <RootNamespace>FluentIcons.Uwp</RootNamespace>
     <IsPackable>true</IsPackable>
     <IsPublishable>true</IsPublishable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <Choose>
@@ -53,10 +54,7 @@
 
   <ItemGroup>
     <None Include="build\**" Pack="true" PackagePath="build;buildTransitive" />
-    <None
-      Include="..\seagull-icons\assets\FluentSystemIcons.ttf;..\seagull-icons\assets\SeagullFluentIcons.ttf"
-      Pack="true"
-      PackagePath="contentTransitive/$(PackageId)/Assets" />
+    <None Include="..\seagull-icons\assets\*.ttf" Pack="true" PackagePath="contentTransitive/$(PackageId)/Assets" />
     <None Include="VisualStudioToolsManifest.xml" Pack="True" PackagePath="tools" />
   </ItemGroup>
 </Project>

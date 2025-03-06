@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">
       $(TargetFrameworks);net6.0-windows10.0.17763.0;net8.0-windows10.0.17763.0
@@ -9,6 +9,7 @@
     <RootNamespace>FluentIcons.WinUI</RootNamespace>
     <EnableMsixTooling>true</EnableMsixTooling>
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,9 +41,6 @@
 
   <ItemGroup>
     <None Include="build\**" Pack="true" PackagePath="build;buildTransitive" />
-    <None
-      Include="..\seagull-icons\assets\FluentSystemIcons.ttf;..\seagull-icons\assets\SeagullFluentIcons.ttf"
-      Pack="true"
-      PackagePath="contentTransitive/$(PackageId)/Assets" />
+    <None Include="..\seagull-icons\assets\*.ttf" Pack="true" PackagePath="contentTransitive/$(PackageId)/Assets" />
   </ItemGroup>
 </Project>

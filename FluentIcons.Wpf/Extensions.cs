@@ -1,14 +1,12 @@
+using System;
 using System.Windows;
 
 namespace FluentIcons.Wpf;
 
 public static class Extensions
 {
-    public static Application UseSegoeMetrics(this Application app)
-    {
-        SymbolIconBase.UseSegoeMetricsProperty.OverrideMetadata(
-            typeof(SymbolIcon),
-            new PropertyMetadata(true, SymbolIconBase.UseSegoeMetricsProperty.DefaultMetadata.PropertyChangedCallback));
-        return app;
-    }
+    internal const string Message = "`UseSegoeMetrics` is deprecated. Migrate to `FluentIcon` for cases where `UseSegoeMetrics == false`.";
+
+    [Obsolete(Message)]
+    public static Application UseSegoeMetrics(this Application app) => app;
 }

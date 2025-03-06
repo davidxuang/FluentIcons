@@ -1,0 +1,28 @@
+diff --git a/lib/generators/asset-types/svg.js b/lib/generators/asset-types/svg.js
+index 8dcc6bce763d0ed174aa48048d591331f9d61b8c..9848176e7b9c98f14f05ca9fe4551b0bf53d54dc 100644
+--- a/lib/generators/asset-types/svg.js
++++ b/lib/generators/asset-types/svg.js
+@@ -16,7 +16,7 @@ const generator = {
+             .on('end', () => resolve(font.toString()));
+         for (const { id, absolutePath } of Object.values(assets)) {
+             const glyph = (0, fs_1.createReadStream)(absolutePath);
+-            const unicode = String.fromCharCode(codepoints[id]);
++            const unicode = String.fromCodePoint(codepoints[id]);
+             glyph.metadata = { name: id, unicode: [unicode] };
+             fontStream.write(glyph);
+         }
+diff --git a/lib/utils/assets.js b/lib/utils/assets.js
+index 9bd6a63067a0f5774f99a8b9679c22be090d98a1..82fb52f8e330ea8b70cb37aa1a58ec98861e89e9 100644
+--- a/lib/utils/assets.js
++++ b/lib/utils/assets.js
+@@ -16,8 +16,9 @@ const path_2 = require("../utils/path");
+ const fs_async_1 = require("./fs-async");
+ exports.ASSETS_EXTENSION = 'svg';
+ const loadPaths = (dir) => __awaiter(void 0, void 0, void 0, function* () {
+-    const globPath = (0, path_1.join)(dir, `**/*.${exports.ASSETS_EXTENSION}`);
++    const globPath = (0, path_1.join)(dir, `**/*.${exports.ASSETS_EXTENSION}`).replace(/\\/g,'/');
+     const files = yield (0, glob_1.glob)(globPath, {});
++    files.sort();
+     if (!files.length) {
+         throw new Error(`No SVGs found in ${dir}`);
+     }

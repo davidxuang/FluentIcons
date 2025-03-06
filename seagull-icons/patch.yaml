@@ -197,7 +197,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xE80C: [arrow_curve_down_left, 0] # RotateMapRight
   0xE80D: [arrow_curve_down_right, 0] # RotateMapLeft
   0xE80F: [home, 0] # Home
-  0xE811: [vehicle_car_profile, 2] # ParkingLocation
+  0xE811: [vehicle_car_profile, 0x10000] # ParkingLocation
   # 0xE812: # MapCompassTop
   # 0xE813: # MapCompassBottom
   0xE814: [warning, 1] # IncidentTriangle
@@ -597,9 +597,9 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEA3C: # MergeCall
   # 0xEA3D: # PrivateCall
   0xEA3F: [circle, 0] # Record2
-  # 0xEA40: [apps_list, 2] # AllAppsMirrored
-  0xEA41: [text_bullet_list_tree, 2] # BookmarksMirrored
-  0xEA42: [text_bullet_list, 2] # BulletedListMirrored
+  # 0xEA40: [apps_list, 0x10000] # AllAppsMirrored
+  0xEA41: [text_bullet_list_tree, 0x10000] # BookmarksMirrored
+  0xEA42: [text_bullet_list, 0x10000] # BulletedListMirrored
   # 0xEA43: # CallForwardInternationalMirrored
   # 0xEA44: # CallForwardRoamingMirrored
   0xEA47: [arrow_right, 0] # ChromeBackMirrored
@@ -626,8 +626,8 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEA60: # ResizeMouseSmallMirrored
   # 0xEA61: # ResizeMouseTallMirrored
   0xEA62: [arrow_right, 0] # ResizeTouchNarrowerMirrored
-  # 0xEA63: [send, 2] # SendMirrored
-  # 0xEA64: [send, 3] # SendFillMirrored
+  # 0xEA63: [send, 0x10000] # SendMirrored
+  # 0xEA64: [send, 0x10001] # SendFillMirrored
   # 0xEA65: # ShowResultsMirrored
   # 0xEA69: # Media
   # 0xEA6A: # SyncError
@@ -696,7 +696,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEB67: # NUIIris
   # 0xEB68: # NUIFace
   # 0xEB77: # GatewayRouter
-  # 0xEB7E: [edit, 2] # EditMirrored
+  # 0xEB7E: [edit, 0x10000] # EditMirrored
   # 0xEB82: # NUIFPStartSlideHand
   # 0xEB83: # NUIFPStartSlideAction
   # 0xEB84: # NUIFPContinueSlideHand
@@ -891,7 +891,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   0xED1E: [subtitles, 0] # Subtitles
   # 0xED1F: # SubtitlesAudio
   0xED25: [folder_open, 0] # OpenFolderHorizontal
-  0xED28: [calendar, 2] # CalendarMirrored
+  0xED28: [calendar, 0x10000] # CalendarMirrored
   0xED2A: [sim, 0] # MobeSIM
   # 0xED2B: # MobeSIMNoProfile
   # 0xED2C: # MobeSIMLocked
@@ -987,7 +987,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xEE79: # ActionCenterQuiet
   # 0xEE7A: # ActionCenterQuietNotification
   # 0xEE92: # TrackersMirrored
-  # 0xEE93: [calendar_clock, 2] # DateTimeMirrored
+  # 0xEE93: [calendar_clock, 0x10000] # DateTimeMirrored
   # 0xEE94: # Wheel
   # 0xEEA3: # VirtualMachineGroup
   # 0xEECA: # ButtonView2
@@ -1037,7 +1037,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xF0B2: # QuarentinedItems
   # 0xF0B3: # QuarentinedItemsMirrored
   # 0xF0B4: # Protractor
-  0xF0B5: [task_list, 2] # ChecklistMirrored
+  0xF0B5: [task_list, 0x10000] # ChecklistMirrored
   # 0xF0B6: # StatusCircle7
   # 0xF0B7: # StatusCheckmark7
   # 0xF0B8: # StatusErrorCircle7
@@ -1220,8 +1220,8 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xF540: # Safe
   # 0xF552: # LaptopSecure
   # 0xF56D: # PrintDefault
-  # 0xF56E: [document, 2] # PageMirrored
-  # 0xF56F: [document_landscape, 2] # LandscapeOrientationMirrored
+  # 0xF56E: [document, 0x10000] # PageMirrored
+  # 0xF56F: [document_landscape, 0x10000] # LandscapeOrientationMirrored
   # 0xF570: # ColorOff
   # 0xF571: # PrintAllPages
   # 0xF572: # PrintCustomRange
@@ -1242,7 +1242,7 @@ map: # modified based on https://github.com/robloo/SymbolIconManager/blob/main/S
   # 0xF581: # DuplexLandscapeTwoSidedLongEdgeMirrored
   # 0xF582: # DuplexLandscapeTwoSidedShortEdge
   # 0xF583: # DuplexLandscapeTwoSidedShortEdgeMirrored
-  0xF584: [document_one_page, 2] # DuplexPortraitOneSided
+  0xF584: [document_one_page, 0x10000] # DuplexPortraitOneSided
   # 0xF585: # DuplexPortraitOneSidedMirrored
   # 0xF586: # DuplexPortraitTwoSidedLongEdge
   # 0xF587: # DuplexPortraitTwoSidedLongEdgeMirrored

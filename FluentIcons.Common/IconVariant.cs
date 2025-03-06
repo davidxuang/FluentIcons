@@ -4,5 +4,6 @@ public enum IconVariant : byte
 {
     Regular = 0,
     Filled  = 1,
-    Light   = 2,
+    Color   = 2,
+    Light   = 3,
 }

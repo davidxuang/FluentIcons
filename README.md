@@ -29,24 +29,23 @@ A multi-framework control library of [fluentui-system-icons](https://github.com/
 ```xml
 <Window xmlns:ic="using:FluentIcons.WinUI">
 <!-- or FluentIcons.Avalonia / FluentIcons.Avalonia.Fluent / FluentIcons.Maui / FluentIcons.Wpf -->
-    <ic:SymbolIcon Symbol="ArrowLeft" IconVariant="Filled" />
+    <ic:FluentIcon Icon="ArrowLeft" IconVariant="Regular" IconSize="Size32" />
+    <ic:SymbolIcon Symbol="Calendar" IconVariant="Color" />
 </Window>
 ```
 
-This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platforms with `<IconSource>`, which generally provide following properties:
+This package features `<FluentIcon>`/`<SymbolIcon>` element, and `<FluentIconSource>`/`<SymbolIconSource>` on platforms with `<IconSource>`, which generally provide following properties:
 
--   **Symbol** : [Symbol](./FluentIcons.Common/Symbol.cs)
-    -   _Breaking change since 1.1.229: LTR/RTL specific values are removed, use `FlowDirection` instead._
+-   **Icon** *(Fluent...)* / **Symbol** *(Symbol...)* : [Icon](./FluentIcons.Common/Icon.cs) / [Symbol](./FluentIcons.Common/Symbol.cs)
 -   **IconVariant** : [IconVariant](./FluentIcons.Common/IconVariant.cs)
-    -   _Breaking change: **IsFilled** has been deprecated since 1.1.247 and removed since 1.1.262._
--   **UseSegoeMetrics** : bool
-    -   _Match the metrics of [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font). See also: [Seagull Icons](./seagull-icons/README.md)_
-    -   _Not applicable for icons of `Light` variant._
+    -   _New in version 1.1.278: `Color` variant added along with [COLRv1](https://learn.microsoft.com/en-us/typography/opentype/spec/colr#re-use-using-paintcolrglyph) migration._
+-   **IconSize** *(Fluent...)* : [IconSize](./FluentIcons.Common/IconSize.cs)
 -   **FlowDirection** : FlowDirection
     -   _Switch between LTR/RTL icon variant._
 -   **FontSize** : double
-    -   _Breaking change since 1.1.225: no longer inherit value from parent element to match WinUI behaviours._
 -   **Foreground** : Brush
+
+The *Fluent* variant provides all sizes of icons untouched compared to upstream, while the *Symbol* variant mimics the APIs and appearances of `SymbolIcon` and [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font) from WinUI, which is powered by a derived version located at [Seagull Icons](./seagull-icons/README.md). These variants were controlled by the deprecated *UseSegoeMetrics* property in distributions prior to 1.1.278.
 
 ```xml
 <Window xmlns:ic="using:FluentIcons.WinUI">
@@ -54,22 +53,13 @@ This package features `<SymbolIcon>` element, and `<SymbolIconSource>` on platfo
 </Window>
 ```
 
-`SymbolIconExtension` and `SymbolIconSourceExtension` have been added since 1.1.242. These extensions will bind their `FlowDirection` to that of the parent control, except `SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available.
+Markup extension classes have been added since 1.1.242. These extensions will bind their `FlowDirection` to that of the parent control, except `FluentIconSourceExtension`/`SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available.
 
 ### Avalonia
-
-To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this AppBuilder builder)`. Markup extension classes are in a child namespace to stop style selectors from throwing for their naming conventions.
+Markup extension classes are in a child namespace to stop style selectors from throwing for their naming conventions.
 
 ### MAUI
 
-⚠️ The extension method `UseFluentIcons(this MauiAppBuilder builder, bool useSegoeMetrics)` must be called to register fonts properly. ⚠️
+⚠️ The extension method `UseFluentIcons(this MauiAppBuilder builder)` must be called to register fonts properly. ⚠️
 
 `<SymbolImageSource>` and `SymbolImageSourceExtension` are provided on MAUI as stand-ins.
-
-### UWP / WinUI
-
-To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this Application app)` or `UseSegoeMetric(this IHostBuilder builder)` (WinUI-only).
-
-### WPF
-
-To enable `UseSegoeMetrics` globally, call `UseSegoeMetric(this Application app)`.

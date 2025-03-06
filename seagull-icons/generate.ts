@@ -1,15 +1,17 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as yargs from 'yargs';
+import fs from 'fs';
+import path from 'path';
+import yargs from 'yargs';
 import * as fantasticon from 'fantasticon';
+import { resolveName } from './utils';
 
 const argv = yargs
   .string('source')
   .string('override')
+  .array('override')
   .string('codepoints')
   .string('colr')
   .string('name')
-  .number('font-height')
+  .number('units-em')
   .string('dest')
   .strict()
   .parseSync();
@@ -21,12 +23,14 @@ const codepoints = Object.fromEntries([
   ...Object.entries(symbols)
     .map(([symbol, codepoint]): [string, number][] => {
       return [
-        [`ic_fluent_${symbol}_regular`, codepoint],
-        [`ic_fluent_${symbol}_filled`, codepoint + 1],
-        [`ic_fluent_${symbol}_light`, codepoint + 2],
-        [`ic_fluent_${symbol}_rtl_regular`, codepoint + 3],
-        [`ic_fluent_${symbol}_rtl_filled`, codepoint + 4],
-        [`ic_fluent_${symbol}_rtl_light`, codepoint + 5],
+        [`${symbol}-regular`, codepoint],
+        [`${symbol}-filled`, codepoint + 1],
+        [`${symbol}-color`, codepoint + 2],
+        [`${symbol}-light`, codepoint + 3],
+        [`${symbol}_rtl-regular`, codepoint + 0x10000],
+        [`${symbol}_rtl-filled`, codepoint + 0x10001],
+        [`${symbol}_rtl-color`, codepoint + 0x10002],
+        [`${symbol}_rtl-light`, codepoint + 0x10003],
       ];
     })
     .flat(),
@@ -34,20 +38,23 @@ const codepoints = Object.fromEntries([
   ...fs
     .readdirSync(argv.colr)
     .filter((f) => f.endsWith('.svg'))
-    .map((f, i): [string, number] => [path.parse(f).name, i + 1]),
+    .map((f, i): [string, number] => [path.parse(f).name, 0xe0000 + i]),
 ]);
 
-fs.cpSync(argv.override, argv.source, { recursive: true, force: true });
+argv.override?.forEach((override) => {
+  fs.cpSync(override, argv.source, { recursive: true, force: true });
+});
 fs.cpSync(argv.colr, argv.source, { recursive: true, force: true });
 
 const rtl_dir = path.join(argv.source, 'RTL');
 if (fs.existsSync(rtl_dir)) {
   fs.readdirSync(rtl_dir).forEach((name) => {
+    const spec = resolveName(name);
     fs.copyFileSync(
       path.join(rtl_dir, name),
       path.join(
         argv.source,
-        name.replace(/_(regular|filled|light).svg$/, '_rtl_$1.svg')
+        `${spec.name}_rtl-${spec.variant}.svg`
       )
     );
   });
@@ -63,7 +70,7 @@ async function main() {
     assetTypes: [fantasticon.ASSET_TYPES.HTML, fantasticon.ASSET_TYPES.CSS],
     formatOptions: { json: { indent: 2 } },
     codepoints: codepoints,
-    fontHeight: argv.fontHeight,
+    fontHeight: argv.unitsEm,
     normalize: true,
   });
 }

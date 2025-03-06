@@ -14,12 +14,8 @@
 
   <Target Name="IncludeAssetsInNuGetPackage" Condition="'$(IncludeBuildOutput)' != 'false'" DependsOnTargets="GetNuGetShortFolderName">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="../seagull-icons/assets/FluentSystemIcons.ttf">
-        <Link>Assets/FluentSystemIcons.ttf</Link>
-        <PackagePath>lib/$(NuGetShortFolderName)/$(PackageId)/%(Link)</PackagePath>
-      </TfmSpecificPackageFile>
-      <TfmSpecificPackageFile Include="../seagull-icons/assets/SeagullFluentIcons.ttf">
-        <Link>Assets/SeagullFluentIcons.ttf</Link>
+      <TfmSpecificPackageFile Include="../seagull-icons/assets/*.ttf">
+        <Link>Assets/%(Filename)%(Extension)</Link>
         <PackagePath>lib/$(NuGetShortFolderName)/$(PackageId)/%(Link)</PackagePath>
       </TfmSpecificPackageFile>
       <TfmSpecificPackageFile Include="FluentIcons.Uno.uprimarker">

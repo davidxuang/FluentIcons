@@ -5,17 +5,19 @@ type ElemBase = {
   };
 };
 
-type ProtoVisible = ElemBase & {
+type ProtoRenderable = ElemBase & {
   $: {
     fill?: string;
+    'fill-opacity'?: string;
     stroke?: string;
+    'stroke-opacity'?: string;
     'stroke-width'?: string;
     opacity?: string;
     transform?: string;
   };
 };
 
-type Rect = ProtoVisible & {
+export type Rect = ProtoRenderable & {
   '#name': 'rect';
   $: {
     x?: string;
@@ -27,7 +29,7 @@ type Rect = ProtoVisible & {
   };
 };
 
-type Circle = ProtoVisible & {
+export type Circle = ProtoRenderable & {
   '#name': 'circle';
   $: {
     cx?: string;
@@ -36,7 +38,7 @@ type Circle = ProtoVisible & {
   };
 };
 
-type Ellipse = ProtoVisible & {
+export type Ellipse = ProtoRenderable & {
   '#name': 'ellipse';
   $: {
     cx?: string;
@@ -46,7 +48,7 @@ type Ellipse = ProtoVisible & {
   };
 };
 
-type Line = ProtoVisible & {
+export type Line = ProtoRenderable & {
   '#name': 'line';
   $: {
     x1?: string;
@@ -56,69 +58,154 @@ type Line = ProtoVisible & {
   };
 };
 
-type Polyline = ProtoVisible & {
+export type Polyline = ProtoRenderable & {
   '#name': 'polyline';
   $: {
     points?: string;
   };
 };
 
-type Polygon = ProtoVisible & {
+export type Polygon = ProtoRenderable & {
   '#name': 'polygon';
   $: {
     points?: string;
   };
 };
 
-type Path = ProtoVisible & {
+export type Path = ProtoRenderable & {
   '#name': 'path';
   $: {
     d: string;
   };
 };
 
-type Use = ProtoVisible & {
+export type Use = ProtoRenderable & {
   '#name': 'use';
   $: {
     'xlink:href': string;
   };
 };
 
-type Group = ProtoVisible & {
+export type Group = ProtoRenderable & {
   '#name': 'g';
-  $: {};
-  $$: Visible[];
+  $: {
+    filter?: string;
+    ['clip-path']?: string;
+  };
+  $$: Renderable[];
 };
 
-type Drawable = Rect | Circle | Ellipse | Line | Polyline | Polygon | Path;
-type Visible = Drawable | Group | Use;
+export type Shape = Rect | Circle | Ellipse | Line | Polyline | Polygon | Path;
+export type Renderable = Shape | Group | Use;
+export type Elem = Def | Defs | Renderable;
 
-type Metadata = ProtoVisible & {
-  '#name': 'metadata';
-  $: {};
+export type Stop = {
+  '#name': 'stop';
+  $: {
+    offset?: string;
+    'stop-color': string;
+    'stop-opacity'?: string;
+  };
 };
 
-type LinearGradient = ElemBase & {
+export type LinearGradient = ElemBase & {
   '#name': 'linearGradient';
-  $: {};
+  $: {
+    x1?: string;
+    y1?: string;
+    x2?: string;
+    y2?: string;
+    gradientUnits?: 'userSpaceOnUse' | 'objectBoundingBox';
+    gradientTransform?: string;
+  };
+  $$: Stop[];
 };
 
-type ClipPath = ElemBase & {
+export type RadialGradient = ElemBase & {
+  '#name': 'radialGradient';
+  $: {
+    cx?: string;
+    cy?: string;
+    r?: string;
+    fx?: string;
+    fy?: string;
+    fr?: string;
+    gradientUnits?: 'userSpaceOnUse' | 'objectBoundingBox';
+    gradientTransform?: string;
+  };
+  $$: Stop[];
+};
+
+export type ClipPath = ElemBase & {
   '#name': 'clipPath';
   $: {};
-  $$?: Visible[];
+  $$?: Renderable[];
 };
 
-type Def = LinearGradient | ClipPath;
+export type FeFlood = ElemBase & {
+  '#name': 'feFlood';
+  $: {
+    'flood-color': string;
+    'flood-opacity': string;
+  };
+}
 
-type Defs = ElemBase & {
+export type FeColorMatrix = ElemBase & {
+  '#name': 'feColorMatrix';
+  $: {
+    in: string;
+    type: 'matrix' | 'saturate' | 'hueRotate' | 'luminanceToAlpha';
+    values: string;
+  };
+}
+
+export type FeOffset = ElemBase & {
+  '#name': 'feOffset';
+  $: {
+    in: string;
+    dx: string;
+    dy: string;
+  };
+}
+
+export type FeGaussianBlur = ElemBase & {
+  '#name': 'feGaussianBlur';
+  $: {
+    in: string;
+    stdDeviation: string;
+  };
+}
+
+export type FeBlend = ElemBase & {
+  '#name': 'feBlend';
+  $: {
+    // dummy
+  };
+}
+
+export type Fe = FeFlood | FeColorMatrix | FeOffset | FeGaussianBlur | FeBlend;
+
+export type Filter = ElemBase & {
+  '#name': 'filter';
+  $: {
+    x?: string;
+    y?: string;
+    width?: string;
+    height?: string;
+    filterUnits?: 'userSpaceOnUse' | 'objectBoundingBox';
+    ['color-interpolation-filters']?: 'auto' | 'sRGB' | 'linearRGB';
+  };
+  $$?: Fe[];
+}
+
+export type Def = LinearGradient | RadialGradient | ClipPath | Filter;
+
+export type Defs = ElemBase & {
   '#name': 'defs';
   $$?: Def[];
 };
 
-type Elem = Metadata | Def | Defs | Visible;
-
-type Svg = {
+export type Svg = ProtoRenderable & {
   '#name': 'svg';
   $: {
     xmlns: string;
@@ -129,26 +216,6 @@ type Svg = {
   $$?: Elem[];
 };
 
-type Doc = {
+export type Doc = {
   svg: Svg;
-};
-
-export type {
-  Doc,
-  Visible,
-  Drawable,
-  Rect,
-  Circle,
-  Ellipse,
-  Line,
-  Polyline,
-  Polygon,
-  Path,
-  Group,
-  Metadata,
-  LinearGradient,
-  Def,
-  Defs,
-  Elem,
-  Svg,
 };
