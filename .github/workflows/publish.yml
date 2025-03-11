@@ -24,23 +24,23 @@ jobs:
         with:
           key: ${{ runner.os }}-dotnet-${{ steps.vars.outputs.dotnet_version }}
           path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
-      - name: Cache NuGet packages
-        uses: actions/cache@v4
-        with:
-          key: ${{ runner.os }}-nuget-${{ hashFiles('Directory.Packages.props') }}
-          path: ~/.nuget/packages
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: true
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
-        with:
-          msbuild-architecture: x64
       - name: Setup .NET workloads
         run: |
           dotnet workload install android ios maccatalyst macos maui
           Invoke-RestMethod 'https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.ps1' | Invoke-Expression
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+        with:
+          msbuild-architecture: x64
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
+          path: ~/.nuget/packages
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
