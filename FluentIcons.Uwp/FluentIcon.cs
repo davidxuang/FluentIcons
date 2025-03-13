@@ -31,6 +31,7 @@ public partial class FluentIcon : GenericIcon
         = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIcon), new(default(IconSize), OnIconPropertiesChanged));
 
 #if !HAS_UNO
+    public FluentIcon() : base() {}
     internal FluentIcon(bool bindFlowDirection) : base(bindFlowDirection) {}
 #endif
 

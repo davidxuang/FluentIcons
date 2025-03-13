@@ -38,7 +38,7 @@ This package features `<FluentIcon>`/`<SymbolIcon>` element, and `<FluentIconSou
 
 -   **Icon** *(Fluent...)* / **Symbol** *(Symbol...)* : [Icon](./FluentIcons.Common/Icon.cs) / [Symbol](./FluentIcons.Common/Symbol.cs)
 -   **IconVariant** : [IconVariant](./FluentIcons.Common/IconVariant.cs)
-    -   _New in version 1.1.278: `Color` variant added along with [COLRv1](https://learn.microsoft.com/en-us/typography/opentype/spec/colr#re-use-using-paintcolrglyph) migration._
+    -   _New in version 1.1.278: `Color` variant added along with [COLRv1](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) migration._
 -   **IconSize** *(Fluent...)* : [IconSize](./FluentIcons.Common/IconSize.cs)
 -   **FlowDirection** : FlowDirection
     -   _Switch between LTR/RTL icon variant._

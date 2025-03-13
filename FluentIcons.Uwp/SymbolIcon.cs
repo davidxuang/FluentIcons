@@ -21,6 +21,7 @@ public partial class SymbolIcon : GenericIcon
         = DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new(false, OnIconPropertiesChanged));
 
 #if !HAS_UNO
+    public SymbolIcon() : base() {}
     internal SymbolIcon(bool bindFlowDirection) : base(bindFlowDirection) {}
 #endif
 
