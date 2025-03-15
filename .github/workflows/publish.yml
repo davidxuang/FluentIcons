@@ -19,6 +19,8 @@ jobs:
         run: |
           echo "dotnet_version=$(dotnet --version)" >> $env:GITHUB_OUTPUT
           echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
+      - uses: olegtarasov/get-tag@v2-release
+        id: tag_name
       - name: Cache .NET workloads
         uses: actions/cache/restore@v4
         with:
@@ -36,18 +38,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
-      - name: Cache NuGet packages
-        uses: actions/cache/restore@v4
-        with:
-          key: dotnet-${{ runner.os }}-${{ runner.arch }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
-          path: ~/.nuget/packages
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-      - uses: olegtarasov/get-tag@v2-release
-        id: tag_name
+      - name: Cache NuGet packages
+        uses: actions/cache/restore@v4
+        with:
+          key: dotnet-${{ runner.os }}-${{ runner.arch }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
+          path: ~/.nuget/packages
       - name: Build and pack
         run: |
           $env:VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
