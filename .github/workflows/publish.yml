@@ -14,15 +14,15 @@ jobs:
     name: Publish
     runs-on: windows-latest
     steps:
-      - name: Set variables
+      - name: Load variables
         id: vars
         run: |
           echo "dotnet_version=$(dotnet --version)" >> $env:GITHUB_OUTPUT
           echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
       - name: Cache .NET workloads
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
-          key: ${{ runner.os }}-dotnet-${{ steps.vars.outputs.dotnet_version }}
+          key: dotnet-${{ runner.os }}-${{ runner.arch }}-workloads-${{ steps.vars.outputs.dotnet_version }}
           path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
       - name: Setup .NET workloads
         run: |
@@ -37,9 +37,9 @@ jobs:
         with:
           submodules: true
       - name: Cache NuGet packages
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
+          key: dotnet-${{ runner.os }}-${{ runner.arch }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
           path: ~/.nuget/packages
       - name: Setup Java
         uses: actions/setup-java@v4

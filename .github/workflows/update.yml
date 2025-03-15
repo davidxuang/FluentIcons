@@ -2,6 +2,12 @@ on:
   schedule:
     - cron: '42 0 * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/update.yml'
+      - 'Directory.Packages.props'
 
 name: Update
 
@@ -14,11 +20,38 @@ jobs:
     name: Update
     runs-on: windows-latest
     steps:
+      - name: Load variables
+        id: vars
+        run: |
+          echo "dotnet_version=$(dotnet --version)" >> $env:GITHUB_OUTPUT
+          echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
+      - name: Cache .NET workloads
+        id: cache-dotnet-workloads
+        uses: actions/cache@v4
+        with:
+          key: dotnet-${{ runner.os }}-${{ runner.arch }}-workloads-${{ steps.vars.outputs.dotnet_version }}
+          path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
+          lookup-only: true
+      - name: Setup .NET workloads
+        if: steps.cache-dotnet-workloads.outputs.cache-hit != 'true'
+        run: |
+          dotnet workload install android ios maccatalyst macos maui
+          Invoke-RestMethod 'https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.ps1' | Invoke-Expression
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: true
           token: ${{ secrets.TOKEN }}
+      - name: Cache NuGet packages
+        id: cache-nuget
+        uses: actions/cache@v4
+        with:
+          key: dotnet-${{ runner.os }}-${{ runner.arch }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
+          path: ~/.nuget/packages
+          lookup-only: true
+      - name: Restore NuGet packages
+        if: steps.cache-nuget.outputs.cache-hit != 'true'
+        run: dotnet restore
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
