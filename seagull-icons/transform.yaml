@@ -772,6 +772,7 @@ compose:
       - data_bar_vertical
       - database
       - desktop
+      - desktop@off
       - document
       - document_header
       - mail
@@ -2002,6 +2003,8 @@ compose:
       - camera#/camera_sparkles
       - chat
       - circle
+      - clock
+      - data_usage
       - document
       - document_one_page
       - document_one_page_multiple
@@ -2012,6 +2015,7 @@ compose:
       - hat_graduation
       - hexagon
       - image
+      - info
       - layer_diagonal
       - mic
       - notepad

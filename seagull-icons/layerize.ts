@@ -2,6 +2,7 @@ import assert from 'assert';
 import fs from 'fs';
 import path from 'path';
 import cyrb53 from 'cyrb53';
+import { BiMap } from 'mnemonist';
 import yargs from 'yargs';
 import Color from 'colorjs.io';
 import { Parser } from 'xml2js';
@@ -30,7 +31,7 @@ import {
 const argv = yargs
   .string('source')
   .string('override')
-  .string('subst')
+  .string('mono')
   .string('extra')
   .string('extra-filter')
   .string('target')
@@ -59,10 +60,6 @@ type DropShadow = {
   color: Color;
   opacity: number;
 };
-
-const glyphs = new Map<string, string>(); // path_data -> layer_name
-const color_glyphs: ColorGlyph[] = [];
-const output_size = argv.size - (argv.shrink ?? 0) * 2;
 
 type SelectShape = {
   'select-shape': [[number, number], [number, number]][];
@@ -218,11 +215,43 @@ function transformGradient(
   return gradient;
 }
 
+const glyphs = new BiMap<string, string>(); // layer_name -> path_data
+const color_glyphs: ColorGlyph[] = [];
+const output_size = argv.size - (argv.shrink ?? 0) * 2;
+
+fs.readdirSync(argv.mono)
+  .filter((f) => f.endsWith('.svg'))
+  .forEach((f) => {
+    const file = path.join(argv.mono, f);
+    parser.parseString(fs.readFileSync(file), (err, doc: Doc) => {
+      if (err) {
+        throw file;
+      }
+
+      glyphs.set(
+        path.basename(f, '.svg'),
+        doc.svg.$$.filter(
+          (elem) =>
+            elem['#name'] === 'circle' ||
+            elem['#name'] === 'ellipse' ||
+            elem['#name'] === 'line' ||
+            elem['#name'] === 'path' ||
+            elem['#name'] === 'polygon' ||
+            elem['#name'] === 'polyline' ||
+            elem['#name'] === 'rect' ||
+            elem['#name'] === 'g'
+        )
+          .map((elem) => getPathData(elem))
+          .join('')
+      );
+    });
+  });
+
 [
   ...fs.readdirSync(argv.source).map((f) => {
     const spec = resolveName(f);
     const s = [`${spec.name}-filled.svg`, `${spec.name}-regular.svg`]
-      .map((x) => path.join(argv.subst, x))
+      .map((x) => path.join(argv.mono, x))
       .find((x) => fs.existsSync(x));
     if (s) {
       parser.parseString(fs.readFileSync(s), (_, doc: Doc) => {
@@ -241,7 +270,7 @@ function transformGradient(
           ).map((elem) => getPathData(elem)),
         ].join('');
         fs.writeFileSync(
-          path.join(argv.subst, f),
+          path.join(argv.mono, f),
           `<svg width="${doc.svg.$.width}" height="${
             doc.svg.$.height
           }" viewBox="${
@@ -254,7 +283,7 @@ function transformGradient(
     } else {
       console.warn(`[NOT_FOUND] ${spec.name}-{filled|regular}.svg => ${f}`);
       fs.writeFileSync(
-        path.join(argv.subst, f),
+        path.join(argv.mono, f),
         `<svg width="1" height="1" viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">\n  <path d="M${
           cyrb53(f) / Number.MAX_SAFE_INTEGER
         } 0Z" fill="#212121" />\n</svg>`
@@ -561,10 +590,10 @@ function transformGradient(
     color_glyphs.push({
       name,
       layers: layers.map((layer, l) => {
-        let g = glyphs.get(layer.path.pathData);
+        let g = glyphs.inverse.get(layer.path.pathData);
         if (g === undefined) {
           g = `_${name}_${l.toString().padStart(2, '0')}`;
-          glyphs.set(layer.path.pathData, g);
+          glyphs.set(g, layer.path.pathData);
         }
         return {
           name: g,
@@ -581,9 +610,6 @@ const mirror_set = new Set<string>(
 );
 
 const colors = new Array<string>();
-const r_glyphs = new Map<string, string>(
-  [...glyphs.entries()].map(([path_data, name]) => [name, path_data])
-);
 let g_matrix = new paper.Matrix();
 g_matrix.scale(argv['units-em'] / output_size);
 g_matrix.append(new paper.Matrix(1, 0, 0, -1, 0, output_size)); // flip y
@@ -637,13 +663,12 @@ color_glyphs.forEach((record) => {
         const rtl_lr = v0_layers.ele('LayerRecord', {
           index: v0_layers.children.length,
         });
-        const path = new paper.CompoundPath(r_glyphs.get(layer.name));
+        const path = new paper.CompoundPath(glyphs.get(layer.name));
         path.transform(new paper.Matrix(-1, 0, 0, 1, output_size, 0));
-        let glyph_name = glyphs.get(path.pathData);
+        let glyph_name = glyphs.inverse.get(path.pathData);
         if (glyph_name === undefined) {
-          glyph_name = `${layer.name}m`;
-          glyphs.set(path.pathData, glyph_name);
-          r_glyphs.set(glyph_name, path.pathData);
+          glyph_name = layer.name.replace('-', '_rtl-');
+          glyphs.set(glyph_name, path.pathData);
         }
         rtl_lr.ele('LayerGlyph', { value: glyph_name });
         const c = colors.indexOf(layer.color_solid);
@@ -837,9 +862,11 @@ if (fs.existsSync(argv.target)) {
   fs.rmSync(argv.target, { recursive: true, force: true });
 }
 ensure(argv.target);
-glyphs.forEach((name, path_data) => {
-  fs.writeFileSync(
-    path.join(argv.target, `${name}.svg`),
-    `<svg width="${output_size}" height="${output_size}" viewBox="0 0 ${output_size} ${output_size}" xmlns="http://www.w3.org/2000/svg">\n  <path d="${path_data}" fill="#212121" />\n</svg>`
-  );
-});
+[...glyphs.entries()]
+  .filter(([name, _]) => name.startsWith('_'))
+  .forEach(([name, path_data]) => {
+    fs.writeFileSync(
+      path.join(argv.target, `${name}.svg`),
+      `<svg width="${output_size}" height="${output_size}" viewBox="0 0 ${output_size} ${output_size}" xmlns="http://www.w3.org/2000/svg">\n  <path d="${path_data}" fill="#212121" />\n</svg>`
+    );
+  });

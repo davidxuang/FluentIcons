@@ -21,7 +21,7 @@ try {
     pnpm collect
 
     pnpm transform
-    pnpm layerize -- --source "./obj/color/20" --override "./obj/color/override" --subst "./obj/composed/seagull" --extra "./obj/mono/resizable" --extra-filter "./override/mono/20" --size=20 --shrink=2 --units-em=2048 --yaml "./layerize.yaml" --target "./obj/colr/seagull"
+    pnpm layerize -- --source "./obj/color/20" --override "./obj/color/override" --mono "./obj/composed/seagull" --extra "./obj/mono/resizable" --extra-filter "./override/mono/20" --size=20 --shrink=2 --units-em=2048 --yaml "./layerize.yaml" --target "./obj/colr/seagull"
     pnpm mirror -- --dir "./obj/composed/seagull"
     pnpm generate -- --source "./obj/composed/seagull" --colr "./obj/colr/seagull" --name=SeagullFluentIcons --units-em=2048
     python "./patch.py" "./obj/SeagullFluentIcons.ttf" "./obj/icons.json"
@@ -50,7 +50,7 @@ try {
         $wd = "./obj/composed/$($_.Name)"
         Copy-Item $_ $wd -Recurse
         if ($colr) {
-            pnpm layerize -- --source "./obj/color/$($_.Name)" --subst $wd --extra $wd --extra-filter "./override/mono/$($_.Name)" --size $_.Name --units-em=$upem --target "./obj/colr/$($_.Name)"
+            pnpm layerize -- --source "./obj/color/$($_.Name)" --mono $wd --extra $wd --extra-filter "./override/mono/$($_.Name)" --size $_.Name --units-em=$upem --target "./obj/colr/$($_.Name)"
             pnpm mirror -- --dir $wd
             pnpm generate -- --source $wd --override "./override/mono/$($_.Name)" --colr "./obj/colr/$($_.Name)" --name="FluentSystemIcons-Size$($_.Name)" --units-em=$upem
         } else {
