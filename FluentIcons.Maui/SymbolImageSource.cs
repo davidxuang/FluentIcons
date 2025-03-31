@@ -34,6 +34,7 @@ public partial class SymbolImageSource : GenericImageSource
     protected override string IconFont => "SeagullFluentIcons";
 }
 
+[AcceptEmptyServiceProvider]
 public class SymbolImageSourceExtension : IMarkupExtension<SymbolImageSource>
 {
     public Symbol? Symbol { get; set; }
