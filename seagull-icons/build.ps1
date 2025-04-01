@@ -21,9 +21,9 @@ try {
     pnpm collect
 
     pnpm transform
-    pnpm layerize -- --source "./obj/color/20" --override "./obj/color/override" --mono "./obj/composed/seagull" --extra "./obj/mono/resizable" --extra-filter "./override/mono/20" --size=20 --shrink=2 --units-em=2048 --yaml "./layerize.yaml" --target "./obj/colr/seagull"
-    pnpm mirror -- --dir "./obj/composed/seagull"
-    pnpm generate -- --source "./obj/composed/seagull" --colr "./obj/colr/seagull" --name=SeagullFluentIcons --units-em=2048
+    pnpm run layerize --source "./obj/color/20" --override "./obj/color/override" --mono "./obj/composed/seagull" --extra "./obj/mono/resizable" --extra-filter "./override/mono/20" --size=20 --shrink=2 --units-em=2048 --yaml "./layerize.yaml" --target "./obj/colr/seagull"
+    pnpm run mirror --dir "./obj/composed/seagull"
+    pnpm run generate --source "./obj/composed/seagull" --colr "./obj/colr/seagull" --name=SeagullFluentIcons --units-em=2048
     python "./patch.py" "./obj/SeagullFluentIcons.ttf" "./obj/icons.json"
     ttx -m "./obj/SeagullFluentIcons.ttf" -o "./obj/SeagullFluentIcons.ttf" --no-recalc-timestamp "./obj/colr/seagull/colr.ttx"
     Copy-Item "./obj/SeagullFluentIcons.ttf" "./assets" -Force
@@ -50,13 +50,13 @@ try {
         $wd = "./obj/composed/$($_.Name)"
         Copy-Item $_ $wd -Recurse
         if ($colr) {
-            pnpm layerize -- --source "./obj/color/$($_.Name)" --mono $wd --extra $wd --extra-filter "./override/mono/$($_.Name)" --size $_.Name --units-em=$upem --target "./obj/colr/$($_.Name)"
-            pnpm mirror -- --dir $wd
-            pnpm generate -- --source $wd --override "./override/mono/$($_.Name)" --colr "./obj/colr/$($_.Name)" --name="FluentSystemIcons-Size$($_.Name)" --units-em=$upem
+            pnpm run layerize --source "./obj/color/$($_.Name)" --mono $wd --extra $wd --extra-filter "./override/mono/$($_.Name)" --size $_.Name --units-em=$upem --target "./obj/colr/$($_.Name)"
+            pnpm run mirror --dir $wd
+            pnpm run generate --source $wd --override "./override/mono/$($_.Name)" --colr "./obj/colr/$($_.Name)" --name="FluentSystemIcons-Size$($_.Name)" --units-em=$upem
         } else {
             New-Item -ItemType Directory -Path "./obj/colr/$($_.Name)" -ErrorAction SilentlyContinue | Out-Null
-            pnpm mirror -- --dir $wd
-            pnpm generate -- --source $wd --colr "./obj/colr/$($_.Name)" --name="FluentSystemIcons-Size$($_.Name)" --units-em=$upem
+            pnpm run mirror --dir $wd
+            pnpm run generate --source $wd --colr "./obj/colr/$($_.Name)" --name="FluentSystemIcons-Size$($_.Name)" --units-em=$upem
         }
         python "./patch.py" "./obj/FluentSystemIcons-Size$($_.Name).ttf" "./obj/icons.json"
         if ($colr) {
