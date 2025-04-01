@@ -14,8 +14,8 @@ namespace FluentIcons.Uwp;
 
 public partial class FluentIcon : GenericIcon
 {
-    private static readonly Dictionary<IconSize, FontFamily> _fontfamilies = Enum.GetValues(typeof(IconSize))
-        .Cast<IconSize>()
+    private static readonly Dictionary<IconSize, FontFamily> _fontfamilies = IconSizeValues.Enumerable
+        .Where(size => (byte)size > 0)
         .ToDictionary(k => k, k => new FontFamily($"ms-appx:///{AssetsNamespace}/Assets/FluentSystemIcons-{k}.ttf#Fluent System Icons {k}"));
 
     internal static FontFamily GetFontFamily(IconSize size, IconVariant variant) => size switch

@@ -14,7 +14,7 @@ public static class Extensions
         var assembly = typeof(SymbolIcon).Assembly;
         return builder.ConfigureFonts(fonts =>
         {
-            foreach (var size in Enum.GetValues(typeof(IconSize)).Cast<IconSize>())
+            foreach (var size in IconSizeValues.Enumerable.Where(size => (byte)size > 0))
             {
                 fonts.AddEmbeddedResourceFont(assembly, $"FluentSystemIcons-{size}.ttf", $"FluentSystemIcons{size}");
             }

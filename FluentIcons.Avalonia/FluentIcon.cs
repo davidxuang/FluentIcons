@@ -13,10 +13,9 @@ namespace FluentIcons.Avalonia;
 [TypeConverter(typeof(GenericIconConverter<Icon, FluentIcon>))]
 public class FluentIcon : GenericIcon, IValue<Icon>
 {
-    private static readonly Dictionary<IconSize, Typeface> _typefaces
-        = Enum.GetValues(typeof(IconSize))
-            .Cast<IconSize>()
-            .ToDictionary(k => k, k => new Typeface($"avares://FluentIcons.Avalonia/Assets#Fluent System Icons {k}"));
+    private static readonly Dictionary<IconSize, Typeface> _typefaces = IconSizeValues.Enumerable
+        .Where(size => (byte)size > 0)
+        .ToDictionary(k => k, k => new Typeface($"avares://FluentIcons.Avalonia/Assets#Fluent System Icons {k}"));
 
     internal static Typeface GetTypeface(IconSize size, IconVariant variant) => size switch
     {

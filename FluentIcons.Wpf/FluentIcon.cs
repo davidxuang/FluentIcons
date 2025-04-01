@@ -16,13 +16,13 @@ namespace FluentIcons.Wpf;
 
 public class FluentIcon : GenericIcon, IValue<Icon>
 {
-    private static readonly Dictionary<IconSize, Typeface> _typefaces = Enum.GetValues(typeof(IconSize))
-        .Cast<IconSize>()
+    private static readonly Dictionary<IconSize, Typeface> _typefaces = IconSizeValues.Enumerable
+        .Where(size => (byte)size > 0)
         .ToDictionary(k => k, k => new Typeface(
-        new FontFamily(new Uri("pack://application:,,,/FluentIcons.Wpf;component/"), $"./Assets/#Fluent System Icons {k}"),
-        FontStyles.Normal,
-        FontWeights.Normal,
-        FontStretches.Normal));
+            new FontFamily(new Uri("pack://application:,,,/FluentIcons.Wpf;component/"), $"./Assets/#Fluent System Icons {k}"),
+            FontStyles.Normal,
+            FontWeights.Normal,
+            FontStretches.Normal));
 
     public static readonly DependencyProperty IconProperty 
         = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIcon), new(Icon.Home, OnIconPropertiesChanged));
