@@ -1,7 +1,10 @@
 #!/usr/bin/pwsh
 
 [CmdletBinding()]
-param ()
+param (
+    [Switch]
+    $Seagull
+)
 
 $PSNativeCommandUseErrorActionPreference = $true
 if ($DebugPreference -ne 'SilentlyContinue') {
@@ -27,6 +30,8 @@ try {
     python "./patch.py" "./obj/SeagullFluentIcons.ttf" "./obj/icons.json"
     ttx -m "./obj/SeagullFluentIcons.ttf" -o "./obj/SeagullFluentIcons.ttf" --no-recalc-timestamp "./obj/colr/seagull/colr.ttx"
     Copy-Item "./obj/SeagullFluentIcons.ttf" "./assets" -Force
+
+    if ($Seagull) { return }
 
     function Get-FontHeight($size) {
         switch ($size) {

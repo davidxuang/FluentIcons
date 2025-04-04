@@ -100,6 +100,7 @@ base:
   cloud:
     "#": ["2", [0, -2]]
     link: ["2", null, [0, -1]]
+  code_block: "2"
   code_text: ["2", [0, -1]]
   collections: "2"
   column: "2"
@@ -189,6 +190,7 @@ base:
   flag: "2"
   flash: "2"
   flashlight: "#"
+  flow: ["2", [0, -1]]
   folder: "2"
   form:
     "#": "2"
@@ -370,6 +372,8 @@ base:
   sound_wave_circle:
     "#": "2"
     sparkle: "1"
+  sparkle:
+    info: "3"
   speaker:
     "#": "2"
     usb: ["2", null, [0, -2]]
@@ -396,6 +400,7 @@ base:
   tablet: "1"
   table_cell: ["2", [-1, -2]]
   table_cell_add: "2"
+  table_column_top_bottom: "2"
   table_offset: ["2", [-1, -1]]
   tag:
     "#": "2"
@@ -1012,6 +1017,7 @@ compose:
       - cloud
       - comment
       - comment_multiple
+      - cube
       - data_usage
       - database
       - desktop
@@ -1033,10 +1039,12 @@ compose:
       - scan_type
       - shield
       - shifts
+      - shopping_bag
       - star
       - text_bullet_list
       - text_grammar
       - textbox
+      - vehicle_truck
 
   checkmark#:
     window: [9, 11]
@@ -1224,6 +1232,7 @@ compose:
       - clipboard
       - clipboard_text
       - cloud
+      - code_block
       - code_text
       - column
       - column_triple
@@ -1248,6 +1257,7 @@ compose:
       - star
       - table
       - table_cell
+      - table_column_top_bottom
       - target
       - text_bullet_list_square
       - window
@@ -1330,6 +1340,14 @@ compose:
     icons:
       - window
 
+  fish_hook:
+    mask:
+      1: M10.5,-1h6.5v7c0,2.2091 -1.7908,4 -4,4c-2.2092,0 -4,-1.7909 -4,-4l0.0003,-1.4015c-0.8967,-0.5188 -1.5003,-1.4881 -1.5003,-2.5985c0,-1.6569 1.3431,-3 3,-3z
+    badge:
+      1: M10.5,1c-0.5523,0 -1,0.4477 -1,1c0,0.5523 0.4477,1 1,1c0.5523,0 1,-0.4477 1,-1c0,-0.5523 -0.4477,-1 -1,-1zM12.5,2c0,0.9319 -0.6374,1.715 -1.5,1.937v2.063c0,1.1046 0.8954,2 2,2c1.1046,0 2,-0.8954 2,-2h-1.5c-0.2022,0 -0.3845,-0.1218 -0.4619,-0.3087c-0.0774,-0.1868 -0.0347,-0.4018 0.1083,-0.5448l2,-2c0.143,-0.143 0.3581,-0.1858 0.5449,-0.1084c0.1869,0.0774 0.3087,0.2597 0.3087,0.4619v2.5c0,1.6569 -1.3431,3 -3,3c-1.6569,0 -3,-1.3432 -3,-3v-2.063c-0.8626,-0.222 -1.5,-1.0051 -1.5,-1.937c0,-1.1046 0.8954,-2 2,-2c1.1046,0 2,0.8954 2,2z
+    icons:
+      - mail
+
   flow#flash:
     mask:
       2: M8.8295,6.0005c1.0555,0.0211 1.9865,0.704 2.3215,1.7089l0.4302,1.2907c0.1004,0.0001 0.1825,0.0002 0.1822,0.0005c0.5493,-0.6142 1.3478,-1.0006 2.2366,-1.0006c1.6569,0 3,1.3431 3,3c0,0.5569 -0.1521,1.0784 -0.4164,1.5255c-0.2841,0.4803 -0.6984,0.8744 -1.1941,1.1339c-0.4155,0.2172 -0.8882,0.3406 -1.3895,0.3406c-1.3064,0 -2.4178,-0.835 -2.8295,-2.0005c-0.9216,-0.0184 -1.7481,-0.5415 -2.1661,-1.3427c-0.0539,-0.1033 -0.1011,-0.2114 -0.1407,-0.3234l-0.0147,-0.0429l-0.4302,-1.2906c-0.1004,-0.0001 -0.1825,-0.0002 -0.1823,-0.0005c-0.5492,0.6142 -1.3477,1.0006 -2.2365,1.0006c-1.6569,0 -3,-1.3431 -3,-3c0,-1.6569 1.3431,-3 3,-3c1.3064,0 2.4178,0.835 2.8295,2.0005z
@@ -1410,6 +1428,7 @@ compose:
       - arrow_counterclockwise
       - calendar_empty:calendar
       - person
+      - sparkle
       # - text_font
 
   inprivate_account#regular:
@@ -2010,6 +2029,7 @@ compose:
       - document_one_page_multiple
       - emoji
       - flash
+      - flow
       - form
       - glance_horizontal#/glance_horizontal_sparkles
       - hat_graduation
