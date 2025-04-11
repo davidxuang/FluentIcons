@@ -47,9 +47,12 @@ public abstract partial class GenericIcon : FontIcon
             if (sender is GenericIcon icon)
             {
                 icon.Loaded -= handler;
-                icon.SetBinding(
-                    FlowDirectionProperty,
-                    new Binding { Source = icon.Parent, Path = new PropertyPath(nameof(FlowDirection)) });
+                if (icon.Parent is FrameworkElement parent)
+                {
+                    icon.SetBinding(
+                        FlowDirectionProperty,
+                        new Binding { Source = parent, Path = new PropertyPath(nameof(FlowDirection)) });
+                }
             }
         };
 
