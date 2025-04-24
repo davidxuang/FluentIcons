@@ -1,7 +1,9 @@
 <Project>
 
   <ItemGroup Condition="'$(UseUwp)' == 'true' and '$(OutputType)' == 'WinExe'">
-    <Content Include="$(MSBuildThisFileDirectory)..\..\contentTransitive\**" Visible="false" />
+    <Content Include="$(MSBuildThisFileDirectory)..\..\contentTransitive\**" Visible="false">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
