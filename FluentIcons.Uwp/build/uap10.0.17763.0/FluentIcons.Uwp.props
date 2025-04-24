@@ -3,6 +3,7 @@
   <ItemGroup Condition="'$(OutputType)' == 'AppContainerExe'">
     <Content Include="$(MSBuildThisFileDirectory)..\..\contentTransitive\**\*.*">
       <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

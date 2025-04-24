@@ -2,8 +2,8 @@
 
   <ItemGroup Condition="'$(UseWinUI)' == 'true' and '$(OutputType)' == 'WinExe'">
     <Content Include="$(MSBuildThisFileDirectory)..\..\contentTransitive\**" Visible="false">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</Content>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
