@@ -62,7 +62,7 @@ type DropShadow = {
 };
 
 type SelectShape = {
-  'select-shape': [[number, number], [number, number]][];
+  'select-shape': [[number, number], [number, number]];
 };
 type SelectGradient = {
   'select-gradient': string[];

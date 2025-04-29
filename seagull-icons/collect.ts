@@ -164,7 +164,7 @@ collect(argv.source, '', 0, false, (subdir, name) => {
 
   // overriding size16 icons
   if (
-    spec.name.match(/^(?:presence_|spatula_spoon$|text_whole_word$)/) &&
+    spec.name.match(/^(?:planet$|presence_|spatula_spoon$|text_whole_word$)/) &&
     spec.size === 16
   ) {
     dest_files.push(

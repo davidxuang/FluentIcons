@@ -365,6 +365,9 @@ base:
   slide_text:
     "#": "2"
     sparkle: "1"
+  slide_text_title:
+    "#": "2"
+    sparkle: "1"
   slide_multiple:
     "#": "2"
     search: "3"
@@ -400,7 +403,12 @@ base:
   tablet: "1"
   table_cell: ["2", [-1, -2]]
   table_cell_add: "2"
-  table_column_top_bottom: "2"
+  table_cell_center:
+    "#": "2"
+    search: "3"
+  table_column_top_bottom:
+    "#": "2"
+    search: "3"
   table_offset: ["2", [-1, -1]]
   tag:
     "#": "2"
@@ -641,6 +649,7 @@ compose:
       - shifts
       - shopping_bag
       - slide
+      - slide_text_title
       - square
       - stack
       - star
@@ -650,6 +659,7 @@ compose:
       - table
       - table_cell_add#/table_cell_add
       - table_offset
+      - tag
       - target
       - task_list
       - task_list_square
@@ -897,6 +907,9 @@ compose:
     icons:
       - calendar_empty:calendar
       - square_text
+      - table
+      - table_cell_center
+      - table_column_top_bottom
 
   assistant:
     inherits: circle
@@ -952,6 +965,7 @@ compose:
       - laptop
       - mail_read
       - navigation
+      - person
       - person#/person_accounts
 
   "briefcase#filled":
@@ -1040,6 +1054,7 @@ compose:
       - shield
       - shifts
       - shopping_bag
+      - slide_text_title
       - star
       - text_bullet_list
       - text_grammar
@@ -1253,10 +1268,12 @@ compose:
       - save
       - select_object_skew
       - slide_text
+      - slide_text_title
       - speaker_2:speaker
       - star
       - table
       - table_cell
+      - table_cell_center
       - table_column_top_bottom
       - target
       - text_bullet_list_square
@@ -1320,6 +1337,7 @@ compose:
       - mail
       - notebook
       - people
+      - person
       - tag
       - text_grammar
       - xbox_controller
@@ -1533,6 +1551,8 @@ compose:
       - slide
       - tab_desktop
       - table
+      - table_cell_center
+      - table_column_top_bottom
 
   list:
     mask:
@@ -1684,6 +1704,12 @@ compose:
       - shifts#/shifts_team
 
   percent:
+    inherits: circle
+    badge: M9,4.5c0,2.4853 -2.0147,4.5 -4.5,4.5c-2.4853,0 -4.5,-2.0147 -4.5,-4.5c0,-2.4853 2.0147,-4.5 4.5,-4.5c2.4853,0 4.5,2.0147 4.5,4.5zM1.5,3c0,0.5523 0.4477,1 1,1c0.5523,0 1,-0.4477 1,-1c0,-0.5523 -0.4477,-1 -1,-1c-0.5523,0 -1,0.4477 -1,1zM6.8481,2.1467c-0.1953,-0.1953 -0.5119,-0.1953 -0.7071,0l-3.9961,3.996c-0.1953,0.1953 -0.1953,0.5119 0,0.7072c0.1952,0.1952 0.5118,0.1952 0.7071,0l3.9961,-3.9961c0.1952,-0.1953 0.1952,-0.5119 0,-0.7071zM6.5,5c-0.5523,0 -1,0.4477 -1,1c0,0.5523 0.4477,1 1,1c0.5523,0 1,-0.4477 1,-1c0,-0.5523 -0.4477,-1 -1,-1z
+    icons:
+      - tag
+
+  percent#:
     window: [7, 7]
     mask:
       1: M9,-1h8v8c0,1.6569 -1.3431,3 -3,3c-1.617,0 -2.9352,-1.2792 -2.9977,-2.881l-1.4418,1.4418c-0.5857,0.5856 -1.5354,0.5855 -2.1211,-0.0001c-0.5858,-0.5858 -0.5858,-1.5355 -0.0001,-2.1214l1.4417,-1.4416c-1.6017,-0.0625 -2.881,-1.3807 -2.881,-2.9977c0,-1.6569 1.3431,-3 3,-3z
@@ -1917,6 +1943,8 @@ compose:
       - slide_multiple
       - slide_text:slide
       - table
+      - table_cell_center
+      - table_column_top_bottom
       - tag
       - text_bullet_list_square
 
