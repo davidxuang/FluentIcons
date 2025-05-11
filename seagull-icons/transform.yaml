@@ -35,6 +35,7 @@ base:
   arrow_turn_up_down: [null, [-.5, 0]]
   attach: "2"
   backpack: ["2", [-1, 0]]
+  barcode_scanner: "2"
   battery: "3"
   beaker: ["2", [-1, 0]]
   bluetooth_searching: [null, [-1, 0]]
@@ -350,6 +351,7 @@ base:
   server: "2"
   settings: "2"
   settings_empty: null
+  share: ["2", [-1, 0]]
   share_screen: "2"
   shield: "2"
   shield_badge: "2"
@@ -416,7 +418,9 @@ base:
   target: "2"
   tasks_app: ["2"]
   task_list: ["2", [0, -1]]
-  task_list_square: "2"
+  task_list_square:
+    "#": "2"
+    sparkle: "1"
   text_a12: "2"
   text_a15: "2"
   text_box: "2"
@@ -586,6 +590,7 @@ compose:
     icons:
       - album
       - backpack
+      - barcode_scanner
       - beaker
       - book
       - bookmark
@@ -1172,6 +1177,7 @@ compose:
     inherits: circle
     badge: M9,4.5c0,2.4853 -2.0147,4.5 -4.5,4.5c-2.4853,0 -4.5,-2.0147 -4.5,-4.5c0,-2.4853 2.0147,-4.5 4.5,-4.5c2.4853,0 4.5,2.0147 4.5,4.5zM5.2071,4.5l1.1465,-1.1464c0.1952,-0.1953 0.1952,-0.5119 0,-0.7072c-0.1953,-0.1952 -0.5119,-0.1952 -0.7072,0l-1.1464,1.1465l-1.1464,-1.1465c-0.1953,-0.1952 -0.5119,-0.1952 -0.7072,0c-0.1952,0.1953 -0.1952,0.5119 0,0.7072l1.1465,1.1464l-1.1465,1.1464c-0.1952,0.1953 -0.1952,0.5119 0,0.7072c0.1953,0.1952 0.5119,0.1952 0.7072,0l1.1464,-1.1465l1.1464,1.1465c0.1953,0.1952 0.5119,0.1952 0.7072,0c0.1952,-0.1953 0.1952,-0.5119 0,-0.7072z
     icons:
+      - barcode_scanner
       - beaker
       - book
       - box
@@ -1252,6 +1258,7 @@ compose:
       - column
       - column_triple
       - comment
+      - data_bar_vertical
       - data_usage
       - desktop
       - document
@@ -1745,6 +1752,7 @@ compose:
       - mail_open
       - navigation
       - notepad
+      - notepad@off
       - premium
       - screen
       - send
@@ -2078,6 +2086,7 @@ compose:
       - square_hint#/square_hint_sparkles
       - tab_desktop_multiple
       - table
+      - task_list_square
       - text_bullet_list_square
       - text_effects
       - video_person
@@ -2312,6 +2321,7 @@ compose:
       - next_frame
       - previous_frame
       - puzzle_cube_piece
+      - share
       - store_microsoft
       - table_switch
       - text_wrap@off
