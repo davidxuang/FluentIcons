@@ -8,12 +8,9 @@ internal static class Extensions
 {
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static string ToString(this Icon icon, IconVariant iconVariant, bool isRtl)
-        => char.ConvertFromUtf32((int)icon + (int)iconVariant + (Convert.ToInt32(isRtl) * 0x10000));
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static string ToString(this Symbol symbol, IconVariant iconVariant, bool isRtl)
-        => char.ConvertFromUtf32((int)symbol + (int)iconVariant + (Convert.ToInt32(isRtl) * 0x10000));
+    internal static string ToString<T>(this T value, IconVariant iconVariant, bool isRtl)
+        where T : struct, Enum
+        => char.ConvertFromUtf32(0xf0000 + 4 * Convert.ToInt32(value) + (int)iconVariant + (Convert.ToInt32(isRtl) * 0x10000));
 
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

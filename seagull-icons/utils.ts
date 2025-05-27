@@ -1,7 +1,6 @@
 import fs from 'fs';
 import paper from 'paper';
-import { Rectangle } from 'paper';
-import { Renderable } from './types';
+import { Renderable } from './types.js';
 
 export function resolveName(name: string, upstream = false) {
   if (upstream) {
@@ -33,7 +32,7 @@ export function getPath(elem: Renderable): paper.Path | paper.CompoundPath {
     case 'rect':
       return elem.$['rx'] || elem.$['ry']
         ? new paper.Path.Rectangle(
-            new Rectangle(
+            new paper.Rectangle(
               [Number(elem.$['x'] ?? '0'), Number(elem.$['y'] ?? '0')],
               [Number(elem.$['width'] ?? '0'), Number(elem.$['height'] ?? '0')]
             ),
@@ -55,7 +54,7 @@ export function getPath(elem: Renderable): paper.Path | paper.CompoundPath {
       const rx = parseFloat(elem.$['rx'] ?? '0');
       const ry = parseFloat(elem.$['ry'] ?? '0');
       return new paper.Path.Ellipse(
-        new Rectangle(
+        new paper.Rectangle(
           [Number(elem.$['cx'] ?? '0') - rx, Number(elem.$['cy'] ?? '0') - ry],
           [2 * rx, 2 * ry]
         )

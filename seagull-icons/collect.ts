@@ -1,13 +1,14 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import * as yargs from 'yargs';
-import { ensure, resolveName } from './utils';
+import fs from 'fs';
+import path from 'path';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+import { ensure, resolveName } from './utils.js';
 
-const argv = yargs
+const argv = yargs()
   .string('source')
   .string('root')
   .strict()
-  .parseSync();
+  .parseSync(hideBin(process.argv));
 const MONO_DIR = path.join(argv.root, 'mono');
 const COLOR_DIR = path.join(argv.root, 'color');
 const ICONS = path.join(argv.root, 'icons.json');

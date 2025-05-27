@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "CommonJS",
+    "target": "ES2020",
+    "module": "Node16",
+    "moduleResolution": "node16",
     "esModuleInterop": true,
     "outDir": "out",
     "sourceMap": true

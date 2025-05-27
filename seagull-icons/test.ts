@@ -1,12 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import { Parser } from 'xml2js';
 import paper from 'paper';
-import { Doc, Renderable } from './types';
-import { getPathData } from './utils';
+import { Doc, Renderable } from './types.js';
+import { getPathData } from './utils.js';
 
-const argv = yargs.string('source').strict().parseSync();
+const argv = yargs().string('source').strict().parseSync(hideBin(process.argv));
 
 paper.setup([16, 16]);
 const tolerance = 1 / 12;

@@ -4,6 +4,7 @@ import path from 'path';
 import cyrb53 from 'cyrb53';
 import { BiMap } from 'mnemonist';
 import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import Color from 'colorjs.io';
 import { Parser } from 'xml2js';
 import * as xmlbuilder from 'xmlbuilder';
@@ -15,9 +16,9 @@ import {
   getPath,
   getPathData,
   resolveName,
-} from './utils';
+} from './utils.js';
 import { PaperOffset } from 'paperjs-offset';
-import { parse } from 'yaml';
+import { parse } from '@std/toml';
 import './ext';
 import {
   Doc,
@@ -26,9 +27,9 @@ import {
   Path,
   RadialGradient,
   Renderable,
-} from './types';
+} from './types.js';
 
-const argv = yargs
+const argv = yargs()
   .string('source')
   .string('override')
   .string('mono')
@@ -38,10 +39,10 @@ const argv = yargs
   .number('size')
   .number('shrink')
   .number('units-em') // units per em
-  .string('yaml')
+  .string('config')
   .string('mirror')
   .strict()
-  .parseSync();
+  .parseSync(hideBin(process.argv));
 
 paper.setup([64, 64]);
 
@@ -86,8 +87,8 @@ type Meta = {
 };
 
 const meta =
-  argv.yaml !== undefined
-    ? (parse(fs.readFileSync(argv.yaml).toString()) as Meta)
+  argv.config !== undefined
+    ? (parse(fs.readFileSync(argv.config).toString()) as Meta)
     : undefined;
 
 // integral on $1/2 * (1 - erf(x / sqrt(2)))$

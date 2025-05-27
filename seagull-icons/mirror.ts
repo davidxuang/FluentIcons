@@ -1,17 +1,18 @@
 import fs from 'fs';
 import path, { resolve } from 'path';
 import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import { Parser } from 'xml2js';
 import paper from 'paper';
-import { Doc, Renderable } from './types';
-import { ensure, getPathData, resolveName } from './utils';
+import { Doc, Renderable } from './types.js';
+import { ensure, getPathData, resolveName } from './utils.js';
 
-const argv = yargs
-  .string('json')
+const argv = yargs()
+  .string('config')
   .string('dir')
   .array('dir')
   .strict()
-  .parseSync();
+  .parseSync(hideBin(process.argv));
 
 paper.setup([32, 32]);
 
@@ -22,7 +23,7 @@ const parser = new Parser({
 });
 
 const mirror_set = new Set<string>(
-  JSON.parse(fs.readFileSync(argv.json).toString())
+  JSON.parse(fs.readFileSync(argv.config).toString())
 );
 
 argv.dir.forEach((d) => {

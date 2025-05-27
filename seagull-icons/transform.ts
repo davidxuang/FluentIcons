@@ -1,14 +1,15 @@
 import fs from 'fs';
 import path from 'path';
 import yargs from 'yargs';
-import { parse } from 'yaml';
+import { hideBin } from 'yargs/helpers';
+import { parse } from '@std/toml';
 import { Parser } from 'xml2js';
 import paper from 'paper';
-import { Doc, Renderable } from './types';
-import { ensure, getPathData } from './utils';
+import { Doc, Renderable } from './types.js';
+import { ensure, getPathData } from './utils.js';
 
-const argv = yargs
-  .string('yaml')
+const argv = yargs()
+  .string('config')
   .string('source')
   .string('override-source')
   .array('override-source')
@@ -16,9 +17,9 @@ const argv = yargs
   .string('override-dest')
   .array('override-dest')
   .strict()
-  .parseSync();
+  .parseSync(hideBin(process.argv));
 
-const YAML = argv.yaml;
+const CONFIG = argv.config;
 const SRC_DIR = argv.source;
 const SRC_OVERRIDES = argv['override-source'];
 const DEST_DIR = argv.dest;
@@ -38,7 +39,7 @@ const parser = new Parser({
 type Translate = [number, number];
 type BaseMeta = [
   string, // cat
-  [number, number], // translate
+  [number, number] | 0, // translate
   [number, number] // badge_translate
 ];
 type BadgeAbstract = {
@@ -53,7 +54,7 @@ type BadgeMeta = BadgeAbstract & {
 };
 
 // read configurations
-const data = parse(fs.readFileSync(YAML).toString()) as {
+const data = parse(fs.readFileSync(CONFIG).toString()) as {
   translate: {
     [icon: string]: Translate;
   };

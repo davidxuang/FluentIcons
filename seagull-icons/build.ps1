@@ -24,7 +24,7 @@ try {
     pnpm collect
 
     pnpm transform
-    pnpm run layerize --source "./obj/color/20" --override "./obj/color/override" --mono "./obj/composed/seagull" --extra "./obj/mono/resizable" --extra-filter "./override/mono/20" --size=20 --shrink=2 --units-em=2048 --yaml "./layerize.yaml" --target "./obj/colr/seagull"
+    pnpm run layerize --source "./obj/color/20" --override "./obj/color/override" --mono "./obj/composed/seagull" --extra "./obj/mono/resizable" --extra-filter "./override/mono/20" --size=20 --shrink=2 --units-em=2048 --config "./layerize.toml" --target "./obj/colr/seagull"
     pnpm run mirror --dir "./obj/composed/seagull"
     pnpm run generate --source "./obj/composed/seagull" --colr "./obj/colr/seagull" --name=SeagullFluentIcons --units-em=2048
     python "./patch.py" "./obj/SeagullFluentIcons.ttf" "./obj/icons.json"

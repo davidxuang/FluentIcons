@@ -43,7 +43,7 @@ namespace {ns}
     }}
 }}";
 
-                spc.AddSource($"{name}.g.cs", SourceText.From(code, Encoding.UTF8));
+                spc.AddSource($"{name}Values.g.cs", SourceText.From(code, Encoding.UTF8));
             }
         });
     }

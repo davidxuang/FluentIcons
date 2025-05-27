@@ -7,7 +7,8 @@ param ()
 $PSNativeCommandUseErrorActionPreference = $true
 if ($DebugPreference -ne 'SilentlyContinue') {
     $ErrorActionPreference = 'Break'
-} else {
+}
+else {
     $ErrorActionPreference = 'Stop'
 }
 $Debug = $PSCmdlet.MyInvocation.BoundParameters['Debug']
@@ -35,40 +36,35 @@ try {
     & "$PSScriptRoot/seagull-icons/build.ps1"
 
     # update enums
-    function ConvertTo-Enum {
-        param (
-            [string]$Json,
-            [string]$Cs,
-            [string]$Enum
-        )
-
-        $map = [System.Collections.Generic.Dictionary[string, int]]::new()
-        (Get-Content $json | ConvertFrom-Json).PSObject.Properties | ForEach-Object {
-            $map.Add(($_.Name -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }),
-                [int]$_.Value)
-        }
-
-        @"
-namespace FluentIcons.Common;
-
-public enum $Enum : int
-{
-"@ > $Cs
-
-        foreach ($key in $map.Keys) {
-            @"
-    $key
-        = $('0x{0:X}' -f $map[$key]),
-"@ >> $Cs
-        }
-
-        @"
-}
-"@ >> $Cs
+    $resizable = @{}
+    (Get-Content "$PSScriptRoot/seagull-icons/obj/icons-resizable.json" | ConvertFrom-Json).PSObject.Properties | ForEach-Object {
+        $resizable[$_.Name -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }] = [int]$_.Value
+    }
+    
+    $map = [System.Collections.Generic.Dictionary[string, int]]::new()
+    (Get-Content "$PSScriptRoot/seagull-icons/obj/icons.json" | ConvertFrom-Json).PSObject.Properties | ForEach-Object {
+        $map.Add(($_.Name -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }),
+            [int]$_.Value)
     }
 
-    ConvertTo-Enum -Json "$PSScriptRoot/seagull-icons/obj/icons.json" -Cs "$PSScriptRoot/FluentIcons.Common/Icon.cs" -Enum "Icon"
-    ConvertTo-Enum -Json "$PSScriptRoot/seagull-icons/obj/icons-resizable.json" -Cs "$PSScriptRoot/FluentIcons.Common/Symbol.cs" -Enum "Symbol"
+    $cs = "$PSScriptRoot/FluentIcons.Common/Icon.cs"
+    @"
+using FluentIcons.Common.Internals;
+
+namespace FluentIcons.Common;
+
+public enum Icon : int
+{
+"@ > $cs
+
+    foreach ($key in $map.Keys) {
+        if (-not $resizable.ContainsKey($key)) {
+            "    [Unresizable]" >> $Cs
+        }
+        "    $key," >> $cs
+    }
+
+    "}" >> $cs
 
     # patch project version
     (Get-Content "$PSScriptRoot/Directory.Build.props") -replace '<VersionPrefix>(.*)<\/VersionPrefix>', "<VersionPrefix>$($upstreamTag)</VersionPrefix>" | Out-File "$PSScriptRoot/Directory.Build.props"
@@ -79,6 +75,7 @@ public enum $Enum : int
         git commit -m "Upstream version v$upstreamTag"
         git tag "$upstreamTag-ci"
     }
-} finally {
+}
+finally {
     Pop-Location
 }

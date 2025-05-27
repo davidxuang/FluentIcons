@@ -1,19 +1,21 @@
 {
   "name": "seagull-icons",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "collect": "ts-node collect.ts --source=./upstream/assets --root=./obj",
-    "transform": "ts-node transform.ts --yaml=./transform.yaml --source=./obj/mono/resizable --override-source ./obj/mono/override ./override/seagull/cmpt ./override/mono/20 ./override/seagull/common --dest=./obj/composed/seagull --override-dest ./obj/mono/override ./override/mono/20 ./override/seagull/common",
-    "layerize": "ts-node layerize.ts --mirror ./obj/mirror.json",
-    "mirror": "ts-node mirror.ts --json ./obj/mirror.json",
-    "generate": "ts-node generate.ts --codepoints=./obj/icons.json --dest=./obj",
-    "test": "ts-node test.ts --source=./obj/composed/seagull"
+    "collect": "tsx collect.ts --source=./upstream/assets --root=./obj",
+    "transform": "tsx transform.ts --config=./transform.toml --source=./obj/mono/resizable --override-source ./obj/mono/override ./override/seagull/cmpt ./override/mono/20 ./override/seagull/common --dest=./obj/composed/seagull --override-dest ./obj/mono/override ./override/mono/20 ./override/seagull/common",
+    "layerize": "tsx layerize.ts --mirror=./obj/mirror.json",
+    "mirror": "tsx mirror.ts --config=./obj/mirror.json",
+    "generate": "tsx generate.ts --codepoints=./obj/icons.json --dest=./obj",
+    "test": "tsx test.ts --source=./obj/composed/seagull"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@std/toml": "npm:@jsr/std__toml@^1.0.7",
     "@types/cyrb53": "^1.0.0",
     "colorjs.io": "^0.5.0",
     "cyrb53": "^1.0.0",
@@ -24,13 +26,12 @@
     "paperjs-offset": "^1.0.0",
     "xml2js": "^0.6.0",
     "xmlbuilder": "^15.0.0",
-    "yaml": "^2.0.0",
     "yargs": "^17.0.0"
   },
   "devDependencies": {
     "@types/xml2js": "^0.4.0",
     "@types/yargs": "^17.0.0",
-    "ts-node": "^10.0.0",
+    "tsx": "^4.0.0",
     "typescript": "^5.0.0"
   },
   "packageManager": "pnpm@10.6.5",

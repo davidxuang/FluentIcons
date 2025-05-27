@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import * as fantasticon from 'fantasticon';
-import { resolveName } from './utils';
+import { resolveName } from './utils.js';
 
-const argv = yargs
+const argv = yargs()
   .string('source')
   .string('override')
   .array('override')
@@ -14,7 +15,7 @@ const argv = yargs
   .number('units-em')
   .string('dest')
   .strict()
-  .parseSync();
+  .parseSync(hideBin(process.argv));
 
 const symbols: { [symbol: string]: number } = JSON.parse(
   fs.readFileSync(argv.codepoints).toString()
