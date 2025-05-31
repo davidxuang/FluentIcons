@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <VersionPrefix>1.1.301</VersionPrefix>
+    <VersionPrefix>1.1.302</VersionPrefix>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <Authors>davidxuang</Authors>
