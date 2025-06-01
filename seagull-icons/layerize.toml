@@ -6,6 +6,7 @@ select-gradient = [
   "#171155",
   "#1B44B1",
   "#2052CB",
+  "#2063C3",
   "#30116E",
   "#4A43CB",
   "#4E44DB",
@@ -24,6 +25,7 @@ select-gradient = [
   "#171155",
   "#1B44B1",
   "#2052CB",
+  "#2063C3",
   "#30116E",
   "#4A43CB",
   "#4E44DB",
@@ -42,6 +44,7 @@ select-gradient = [
   "#171155",
   "#1B44B1",
   "#2052CB",
+  "#2063C3",
   "#30116E",
   "#4A43CB",
   "#4E44DB",
@@ -210,6 +213,13 @@ shield_checkmark = "badge_2"
   [[icons.beach]]
   select-shape = [[0, 0], [20, 20]]
   translate = [0, -0.1509]
+
+  [[icons.book_open_lightbulb]]
+  select-path = "M16.5 3C17.3284 3 18 3.67157 18 4.5V15H15V17H12C11.1822 17 10.4561 16.6071 10 16V4.5C10 4 11 3 12 3H16.5Z"
+  subst = "M12 17C11.1822 17 10.4561 16.6073 10 16.0002V4.5C10 4 11 3 12 3H16.5C17.3284 3 18 3.67157 18 4.5V15.5C18 16.3284 17.3284 17 16.5 17H12Z"
+
+  [[icons.book_open_lightbulb]]
+  use-group = "badge_2"
 
   [[icons.bot_sparkle]]
   use-group = "badge_2"
