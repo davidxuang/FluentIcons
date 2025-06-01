@@ -69,7 +69,7 @@ type SelectGradient = {
   'select-gradient': string[];
   'gradient-type'?: 'shadow';
 };
-type SelectPathData = { 'select-path': string[] };
+type SelectPathData = { 'select-path': string | string[] };
 
 type Transform = {
   scale?: number | [number, number];
@@ -405,6 +405,9 @@ fs.readdirSync(argv.mono)
 
     mutations?.forEach((mut: Mutation) => {
       if ('select-path' in mut) {
+        if (typeof mut['select-path'] === 'string') {
+          mut['select-path'] = [mut['select-path']];
+        }
         const T = layers
           .filter((layer) => mut['select-path'].includes(layer.xml.$['d']))
           .map((layer) => (layer.path = new paper.CompoundPath(mut.subst)));
