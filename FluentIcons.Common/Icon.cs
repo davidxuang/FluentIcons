@@ -1793,6 +1793,7 @@ public enum Icon : int
     PeopleEye,
     [Unresizable]
     PeopleHome,
+    PeopleInterwoven,
     PeopleLink,
     PeopleList,
     PeopleLock,
