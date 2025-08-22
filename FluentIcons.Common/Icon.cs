@@ -427,6 +427,7 @@ public enum Icon : int
     CalendarCancel,
     CalendarChat,
     CalendarCheckmark,
+    CalendarCheckmarkCenter,
     CalendarCheckmarkSparkle,
     CalendarClock,
     CalendarDataBar,
@@ -571,6 +572,7 @@ public enum Icon : int
     CheckboxWarning,
     Checkmark,
     CheckmarkCircle,
+    CheckmarkCircleHint,
     CheckmarkCircleSquare,
     CheckmarkCircleWarning,
     CheckmarkLock,
@@ -763,6 +765,7 @@ public enum Icon : int
     CommunicationPerson,
     CommunicationShield,
     CompassNorthwest,
+    CompassTrueNorth,
     [Unresizable]
     Component2DoubleTapSwipeDown,
     [Unresizable]
@@ -937,6 +940,8 @@ public enum Icon : int
     DocumentCatchUp,
     DocumentCheckmark,
     DocumentChevronDouble,
+    [Unresizable]
+    DocumentCode,
     [Unresizable]
     DocumentContract,
     DocumentCopy,
@@ -1468,6 +1473,7 @@ public enum Icon : int
     LayoutColumnTwoSplitRightFocusBottomRight,
     LayoutColumnTwoSplitRightFocusLeft,
     LayoutColumnTwoSplitRightFocusTopRight,
+    LayoutDynamic,
     LayoutRowFour,
     LayoutRowFourFocusBottom,
     LayoutRowFourFocusCenterBottom,
@@ -1758,6 +1764,8 @@ public enum Icon : int
     PanelRightAdd,
     PanelRightContract,
     PanelRightCursor,
+    [Unresizable]
+    PanelRightDefault,
     PanelRightExpand,
     PanelRightGallery,
     PanelSeparateWindow,
@@ -1841,6 +1849,7 @@ public enum Icon : int
     PersonEdit,
     PersonError,
     PersonFeedback,
+    PersonGuest,
     PersonHeadHint,
     PersonHeart,
     PersonHome,
@@ -2046,6 +2055,7 @@ public enum Icon : int
     RemixAdd,
     Remote,
     Rename,
+    RenameA,
     Reorder,
     Replay,
     Resize,
@@ -2814,6 +2824,7 @@ public enum Icon : int
     WeatherSunnyLow,
     WeatherThunderstorm,
     WebAsset,
+    WheelchairAccess,
     Whiteboard,
     WhiteboardOff,
     [Unresizable]
