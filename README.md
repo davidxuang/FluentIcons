@@ -36,16 +36,16 @@ A multi-framework control library of [fluentui-system-icons](https://github.com/
 
 This package features `<FluentIcon>`/`<SymbolIcon>` element, and `<FluentIconSource>`/`<SymbolIconSource>` on platforms with `<IconSource>`, which generally provide following properties:
 
--   **Icon** *(Fluent...)* / **Symbol** *(Symbol...)* : [Icon](./FluentIcons.Common/Icon.cs) / [Symbol](./FluentIcons.Common/Symbol.cs)
+-   **Icon** _(Fluent...)_ / **Symbol** _(Symbol...)_ : [Icon](./FluentIcons.Common/Icon.cs) / [Symbol](./FluentIcons.Common/Symbol.cs)
 -   **IconVariant** : [IconVariant](./FluentIcons.Common/IconVariant.cs)
     -   _New in version 1.1.278: `Color` variant added along with [COLRv1](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) migration._
--   **IconSize** *(Fluent...)* : [IconSize](./FluentIcons.Common/IconSize.cs)
+-   **IconSize** _(Fluent...)_ : [IconSize](./FluentIcons.Common/IconSize.cs)
 -   **FlowDirection** : FlowDirection
     -   _Switch between LTR/RTL icon variant._
 -   **FontSize** : double
 -   **Foreground** : Brush
 
-The *Fluent* variant provides all sizes of icons untouched compared to upstream, while the *Symbol* variant mimics the APIs and appearances of `SymbolIcon` and [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font) from WinUI, which is powered by a derived version located at [Seagull Icons](./seagull-icons/README.md). These variants were controlled by the deprecated `UseSegoeMetrics` property in distributions prior to 1.1.278.
+The _Fluent_ variant provides all sizes of icons untouched compared to upstream, while the _Symbol_ variant mimics the APIs and appearances of `SymbolIcon` and [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font) from WinUI, which is powered by a derived version from the child project [Seagull Icons](./seagull-icons/README.md). These variants were controlled by the deprecated `UseSegoeMetrics` property in distributions prior to 1.1.278.
 
 ```xml
 <Window xmlns:ic="using:FluentIcons.WinUI">
@@ -56,6 +56,7 @@ The *Fluent* variant provides all sizes of icons untouched compared to upstream,
 Markup extension classes have been added since 1.1.242. These extensions will bind their `FlowDirection` to that of the parent control, except `FluentIconSourceExtension`/`SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available.
 
 ### Avalonia
+
 Markup extension classes are in a child namespace to stop style selectors from throwing for their naming conventions.
 
 ### MAUI
@@ -63,3 +64,7 @@ Markup extension classes are in a child namespace to stop style selectors from t
 ⚠️ The extension method `UseFluentIcons(this MauiAppBuilder builder)` must be called to register fonts properly. ⚠️
 
 `<SymbolImageSource>` and `SymbolImageSourceExtension` are provided on MAUI as stand-ins.
+
+### WPF
+
+Color icons are known to be broken on WPF, because of the lack of [COLR](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) rendering support.
