@@ -172,7 +172,7 @@
 
                 <Grid
                     HorizontalAlignment="Center" ColumnDefinitions="Auto,12,Auto"
-                    RowDefinitions="Auto,16,Auto,8,Auto,8,Auto,8,Auto,8,Auto,8,Auto,8,Auto,8,Auto">
+                    RowDefinitions="Auto,8,Auto,8,Auto,8,Auto,8,Auto,8,Auto,8,Auto,8,Auto,8,Auto">
                     <Grid.Styles>
                         <Style Selector="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Right" />
