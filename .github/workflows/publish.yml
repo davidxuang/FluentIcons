@@ -58,6 +58,7 @@ jobs:
         run: |
           dotnet nuget push FluentIcons.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
       - name: Deploy to GitHub Pages
+        if: ${{ !contains(steps.tag_name.outputs.tag, '-') }}
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
