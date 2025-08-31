@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="Directory.Packages.props" />
+    <File Path="NuGet.Config" />
+  </Folder>
+  <Project Path="FluentIcons.Avalonia.Fluent/FluentIcons.Avalonia.Fluent.csproj" />
+  <Project Path="FluentIcons.Avalonia/FluentIcons.Avalonia.csproj" />
+  <Project Path="FluentIcons.Common.SourceGeneration/FluentIcons.Common.SourceGeneration.csproj" />
+  <Project Path="FluentIcons.Common/FluentIcons.Common.csproj" />
+  <Project Path="FluentIcons.Gallery/FluentIcons.Gallery.csproj" />
+  <Project Path="FluentIcons.Maui/FluentIcons.Maui.csproj" />
+  <Project Path="FluentIcons.Uno/FluentIcons.Uno.csproj" />
+  <Project Path="FluentIcons.Uwp/FluentIcons.Uwp.csproj" />
+  <Project Path="FluentIcons.WinUI/FluentIcons.WinUI.csproj" />
+  <Project Path="FluentIcons.Wpf/FluentIcons.Wpf.csproj" />
+</Solution>

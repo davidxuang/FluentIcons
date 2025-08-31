@@ -1,0 +1,357 @@
+<UserControl
+    x:Class="FluentIcons.Gallery.Views.MainView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:FluentIcons.Gallery.Views"
+    xmlns:c="clr-namespace:FluentIcons.Gallery.Controls"
+    xmlns:ic="clr-namespace:FluentIcons.Avalonia.Fluent;assembly=FluentIcons.Avalonia.Fluent"
+    xmlns:icx="clr-namespace:FluentIcons.Avalonia.Fluent.MarkupExtensions;assembly=FluentIcons.Avalonia.Fluent"
+    xmlns:m="clr-namespace:FluentIcons.Gallery.Models"
+    xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
+    xmlns:vm="clr-namespace:FluentIcons.Gallery.ViewModels" d:DesignHeight="480"
+    d:DesignWidth="800" x:DataType="vm:MainViewModel" mc:Ignorable="d">
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ControlTheme
+                x:Key="CompactTabStripItemTheme"
+                BasedOn="{StaticResource AlternateTabStripItemTheme}"
+                TargetType="TabStripItem">
+                <Setter Property="MinWidth" Value="0" />
+            </ControlTheme>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Name="RootGrid" RowDefinitions="Auto,*">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" MinWidth="360" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition
+                Width="*" MinWidth="278" MaxWidth="360" />
+        </Grid.ColumnDefinitions>
+
+        <Border Background="{DynamicResource SolidBackgroundFillColorSecondary}">
+            <Grid Margin="8" ColumnDefinitions="Auto,8,*,8,Auto">
+                <TabStrip SelectionChanged="UsesSymbol_SelectionChanged" Theme="{DynamicResource AlternateTabStripTheme}">
+                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="FluentIcon">
+                        <ic:FluentIcon Icon="TextFontSize" />
+                    </TabStripItem>
+                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="SymbolIcon">
+                        <ic:SymbolIcon Symbol="TextFontSize" />
+                    </TabStripItem>
+                </TabStrip>
+                <AutoCompleteBox
+                    Grid.Column="2"
+                    Text="{CompiledBinding SearchText,
+                                           Mode=TwoWay}"
+                    Watermark="Search…" />
+                <TabStrip
+                    Grid.Column="4" SelectionChanged="IconVariant_SelectionChanged"
+                    Theme="{DynamicResource AlternateTabStripTheme}">
+                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="Regular">
+                        <c:FlexibleIcon
+                            Icon="PaintBrush" Symbol="PaintBrush"
+                            UsesSymbol="{CompiledBinding UsesSymbol}" />
+                    </TabStripItem>
+                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="Filled">
+                        <c:FlexibleIcon
+                            Icon="PaintBrush" IconVariant="Filled" Symbol="PaintBrush"
+                            UsesSymbol="{CompiledBinding UsesSymbol}" />
+                    </TabStripItem>
+                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="Color">
+                        <c:FlexibleIcon
+                            Icon="PaintBrush" IconVariant="Color" Symbol="PaintBrush"
+                            UsesSymbol="{CompiledBinding UsesSymbol}" />
+                    </TabStripItem>
+                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="Light">
+                        <c:FlexibleIcon
+                            Icon="PaintBrush" IconVariant="Light" Symbol="PaintBrush"
+                            UsesSymbol="{CompiledBinding UsesSymbol}" />
+                    </TabStripItem>
+                </TabStrip>
+            </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="1">
+            <ItemsRepeater ItemsSource="{CompiledBinding FilteredIcons}">
+                <ItemsRepeater.Layout>
+                    <UniformGridLayout MinItemHeight="36" MinItemWidth="36" />
+                </ItemsRepeater.Layout>
+                <ItemsRepeater.ItemTemplate>
+                    <DataTemplate DataType="m:IconInfo">
+                        <ToggleButton
+                            Padding="8"
+                            Command="{CompiledBinding ((vm:MainViewModel)DataContext).SelectIconCommand,
+                                                      RelativeSource={RelativeSource FindAncestor,
+                                                                                     AncestorType=local:MainView}}"
+                            CommandParameter="{CompiledBinding}"
+                            Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                            IsChecked="{CompiledBinding IsSelected}"
+                            Theme="{DynamicResource TransparentToggleButton}"
+                            ToolTip.Tip="{CompiledBinding Name}">
+                            <c:FlexibleIcon
+                                Icon="{CompiledBinding Value}"
+                                IconVariant="{CompiledBinding ((vm:MainViewModel)DataContext).IconVariant,
+                                                              RelativeSource={RelativeSource FindAncestor,
+                                                                                             AncestorType=local:MainView}}"
+                                Symbol="{CompiledBinding SymbolValue}"
+                                UsesSymbol="{CompiledBinding ((vm:MainViewModel)DataContext).UsesSymbol,
+                                                             RelativeSource={RelativeSource FindAncestor,
+                                                                                            AncestorType=local:MainView}}" />
+                        </ToggleButton>
+                    </DataTemplate>
+                </ItemsRepeater.ItemTemplate>
+            </ItemsRepeater>
+        </ScrollViewer>
+
+        <GridSplitter
+            Grid.RowSpan="2" Grid.Column="1" ResizeDirection="Columns" />
+
+        <ScrollViewer
+            Grid.RowSpan="2" Grid.Column="2" Padding="8">
+            <StackPanel
+                VerticalAlignment="Center" x:DataType="m:IconInfo"
+                DataContext="{CompiledBinding Selected}"
+                Spacing="16">
+                <SelectableTextBlock
+                    HorizontalAlignment="Center" FontSize="20"
+                    Text="{CompiledBinding Name}" />
+
+                <Border
+                    HorizontalAlignment="Center"
+                    Background="{DynamicResource SolidBackgroundFillColorTertiary}"
+                    CornerRadius="8">
+                    <c:FlexibleIcon
+                        FontSize="128"
+                        Icon="{CompiledBinding Value}"
+                        IconVariant="{CompiledBinding ((vm:MainViewModel)DataContext).IconVariant,
+                                                      RelativeSource={RelativeSource FindAncestor,
+                                                                                     AncestorType=local:MainView}}"
+                        Symbol="{CompiledBinding SymbolValue}"
+                        UsesSymbol="{CompiledBinding ((vm:MainViewModel)DataContext).UsesSymbol,
+                                                     RelativeSource={RelativeSource FindAncestor,
+                                                                                    AncestorType=local:MainView}}" />
+                </Border>
+
+                <StackPanel
+                    Grid.Column="2" HorizontalAlignment="Center" Orientation="Horizontal"
+                    Spacing="8">
+                    <c:FlexibleIcon
+                        Icon="{CompiledBinding Value}"
+                        Symbol="{CompiledBinding SymbolValue}"
+                        UsesSymbol="{CompiledBinding ((vm:MainViewModel)DataContext).UsesSymbol,
+                                                     RelativeSource={RelativeSource FindAncestor,
+                                                                                    AncestorType=local:MainView}}" />
+                    <c:FlexibleIcon
+                        Icon="{CompiledBinding Value}"
+                        IconVariant="Filled"
+                        Symbol="{CompiledBinding SymbolValue}"
+                        UsesSymbol="{CompiledBinding ((vm:MainViewModel)DataContext).UsesSymbol,
+                                                     RelativeSource={RelativeSource FindAncestor,
+                                                                                    AncestorType=local:MainView}}" />
+                    <c:FlexibleIcon
+                        Icon="{CompiledBinding Value}"
+                        IconVariant="Color"
+                        Symbol="{CompiledBinding SymbolValue}"
+                        UsesSymbol="{CompiledBinding ((vm:MainViewModel)DataContext).UsesSymbol,
+                                                     RelativeSource={RelativeSource FindAncestor,
+                                                                                    AncestorType=local:MainView}}" />
+                    <c:FlexibleIcon
+                        Icon="{CompiledBinding Value}"
+                        IconVariant="Light"
+                        Symbol="{CompiledBinding SymbolValue}"
+                        UsesSymbol="{CompiledBinding ((vm:MainViewModel)DataContext).UsesSymbol,
+                                                     RelativeSource={RelativeSource FindAncestor,
+                                                                                    AncestorType=local:MainView}}" />
+                </StackPanel>
+
+                <Grid
+                    HorizontalAlignment="Center" ColumnDefinitions="Auto,12,Auto"
+                    RowDefinitions="Auto,16,Auto,8,Auto,8,Auto,8,Auto,8,Auto,8,Auto,8,Auto,8,Auto">
+                    <Grid.Styles>
+                        <Style Selector="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                            <Setter Property="VerticalAlignment" Value="Bottom" />
+                            <Setter Property="FontFamily" Value="NonMono" />
+                            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondary}" />
+                        </Style>
+                    </Grid.Styles>
+
+                    <TextBlock FontSize="10">10</TextBlock>
+                    <StackPanel
+                        Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                        <ic:FluentIcon
+                            FontSize="10"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size10" />
+                        <ic:FluentIcon
+                            FontSize="10"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size10" IconVariant="Filled" />
+                        <ic:FluentIcon
+                            FontSize="10"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size10" IconVariant="Color" />
+                        <ic:FluentIcon
+                            FontSize="10"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size10" IconVariant="Light" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="2" FontSize="12">12</TextBlock>
+                    <StackPanel
+                        Grid.Row="2" Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                        <ic:FluentIcon
+                            FontSize="12"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size12" />
+                        <ic:FluentIcon
+                            FontSize="12"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size12" IconVariant="Filled" />
+                        <ic:FluentIcon
+                            FontSize="12"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size12" IconVariant="Color" />
+                        <ic:FluentIcon
+                            FontSize="12"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size12" IconVariant="Light" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="4" FontSize="16">16</TextBlock>
+                    <StackPanel
+                        Grid.Row="4" Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                        <ic:FluentIcon
+                            FontSize="16"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size16" />
+                        <ic:FluentIcon
+                            FontSize="16"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size16" IconVariant="Filled" />
+                        <ic:FluentIcon
+                            FontSize="16"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size16" IconVariant="Color" />
+                        <ic:FluentIcon
+                            FontSize="16"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size16" IconVariant="Light" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="6" FontSize="16">20</TextBlock>
+                    <StackPanel
+                        Grid.Row="6" Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                        <ic:FluentIcon
+                            FontSize="20"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size20" />
+                        <ic:FluentIcon
+                            FontSize="20"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size20" IconVariant="Filled" />
+                        <ic:FluentIcon
+                            FontSize="20"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size20" IconVariant="Color" />
+                        <ic:FluentIcon
+                            FontSize="20"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size20" IconVariant="Light" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="8" FontSize="16">24</TextBlock>
+                    <StackPanel
+                        Grid.Row="8" Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                        <ic:FluentIcon
+                            FontSize="24"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size24" />
+                        <ic:FluentIcon
+                            FontSize="24"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size24" IconVariant="Filled" />
+                        <ic:FluentIcon
+                            FontSize="24"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size24" IconVariant="Color" />
+                        <ic:FluentIcon
+                            FontSize="24"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size24" IconVariant="Light" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="10" FontSize="16">28</TextBlock>
+                    <StackPanel
+                        Grid.Row="10" Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                        <ic:FluentIcon
+                            FontSize="28"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size28" />
+                        <ic:FluentIcon
+                            FontSize="28"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size28" IconVariant="Filled" />
+                        <ic:FluentIcon
+                            FontSize="28"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size28" IconVariant="Color" />
+                        <ic:FluentIcon
+                            FontSize="28"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size28" IconVariant="Light" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="12" FontSize="16">32</TextBlock>
+                    <StackPanel
+                        Grid.Row="12" Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                        <ic:FluentIcon
+                            FontSize="32"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size32" />
+                        <ic:FluentIcon
+                            FontSize="32"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size32" IconVariant="Filled" />
+                        <ic:FluentIcon
+                            FontSize="32"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size32" IconVariant="Color" />
+                        <ic:FluentIcon
+                            FontSize="32"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size32" IconVariant="Light" />
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="14" FontSize="16">48</TextBlock>
+                    <StackPanel
+                        Grid.Row="14" Grid.Column="2" Orientation="Horizontal" Spacing="8">
+                        <ic:FluentIcon
+                            FontSize="48"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size48" />
+                        <ic:FluentIcon
+                            FontSize="48"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size48" IconVariant="Filled" />
+                        <ic:FluentIcon
+                            FontSize="48"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size48" IconVariant="Color" />
+                        <ic:FluentIcon
+                            FontSize="48"
+                            Icon="{CompiledBinding Value}"
+                            IconSize="Size48" IconVariant="Light" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net8.0-android;net8.0-ios;net8.0-browser</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <IsPackable>false</IsPackable>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <AvaloniaVersion>11.3.4</AvaloniaVersion>
+    <AvaloniaSingleProject>true</AvaloniaSingleProject>
+    <ApplicationTitle>Fluent Icons Gallery</ApplicationTitle>
+    <ApplicationId>dev.davidxuang.fluent-icons.gallery</ApplicationId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'browser'">
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+    <LaunchSettingsFile>Properties\launchSettings.browser.json</LaunchSettingsFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SharedAssets Include="..\Assets\Icon.png" />
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Controls.ItemsRepeater" Version="11.1.*" />
+    <PackageReference Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''" />
+    <PackageReference Include="Avalonia.Android" Version="$(AvaloniaVersion)" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'" />
+    <PackageReference Include="Avalonia.Browser" Version="$(AvaloniaVersion)" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'browser'" />
+    <PackageReference Include="Avalonia.iOS" Version="$(AvaloniaVersion)" Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)">
+      <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+      <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.*" />
+    <PackageReference Include="FluentAvaloniaUI" Version="2.4.*" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'browser'">
+    <PackageReference Include="SkiaSharp" Version="3.119.*" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="3.119.*" />
+    <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="3.119.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluentIcons.Avalonia.Fluent\FluentIcons.Avalonia.Fluent.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Only useful in VS, but https://www.vsixcookbook.com/tips/projects.html -->
+    <ProjectCapability Include="DiagnoseCapabilities" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\FlexibleIcon.axaml.cs">
+      <DependentUpon>FlexibleIcon.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

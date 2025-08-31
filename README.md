@@ -65,6 +65,6 @@ Markup extension classes are in a child namespace to stop style selectors from t
 
 `<SymbolImageSource>` and `SymbolImageSourceExtension` are provided on MAUI as stand-ins.
 
-### WPF
+## Known issues
 
-Color icons are known to be broken on WPF, because of the lack of [COLR](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) rendering support.
+Color icons are broken on several platforms on WPF, because of the lack of [COLR](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) rendering support. It is also not working in environments like macOS and WebAssembly when rendering with SkiaSharp 2, possibly affecting Avalonia and Uno.

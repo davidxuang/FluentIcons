@@ -14,9 +14,10 @@ jobs:
     name: Publish
     runs-on: windows-latest
     steps:
-      - name: Load variables
+      - name: Setup environments
         id: vars
         run: |
+          git config --global core.autocrlf false
           echo "dotnet_version=$(dotnet --version)" >> $env:GITHUB_OUTPUT
           echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
       - uses: olegtarasov/get-tag@v2-release
@@ -28,7 +29,7 @@ jobs:
           path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
       - name: Setup .NET workloads
         run: |
-          dotnet workload install android ios maccatalyst macos maui
+          dotnet workload install android ios maccatalyst macos maui wasm-tools-net8
           Invoke-RestMethod 'https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.ps1' | Invoke-Expression
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
@@ -52,6 +53,13 @@ jobs:
         run: |
           $env:VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
           MSBuild -restore -t:pack -p:Configuration=Release -p:PackageOutputPath=".." -v:minimal
-      - name: Publish
+          dotnet publish ./FluentIcons.Gallery/FluentIcons.Gallery.csproj -f net8.0-browser
+      - name: Publish to NuGet
         run: |
           dotnet nuget push FluentIcons.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./FluentIcons.Gallery/bin/Release/net8.0-browser/browser-wasm/AppBundle
+          publish_branch: gh-pages
