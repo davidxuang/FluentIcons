@@ -20,9 +20,11 @@ jobs:
     name: Update
     runs-on: windows-latest
     steps:
-      - name: Load variables
+      - name: Setup environments
         id: vars
         run: |
+          git config --global core.symlinks true
+          git config --global core.autocrlf false
           echo "dotnet_version=$(dotnet --version)" >> $env:GITHUB_OUTPUT
           echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
       - name: Checkout

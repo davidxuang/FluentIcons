@@ -67,6 +67,8 @@ public partial class MainView : UserControl
         if (DataContext is MainViewModel vm && sender is TabStrip tabs)
         {
             vm.UsesSymbol = tabs.SelectedIndex != 0;
+            vm.RefreshIcons();
+            if (vm.UsesSymbol && !vm.Selected.HasSymbol) vm.Selected = MainViewModel.SourceIcons.FirstOrDefault(x => x.HasSymbol)!;
         }
     }
 

@@ -1,6 +1,4 @@
-﻿using Avalonia.Controls;
-using Avalonia.Input.Platform;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using FluentIcons.Gallery.Helpers;
 using FluentIcons.Gallery.Models;
 
@@ -8,14 +6,15 @@ namespace FluentIcons.Gallery.ViewModels;
 
 public sealed partial class MainViewModel : ViewModelBase
 {
-    public static IReadOnlyList<IconInfo> Icons { get; } = Enum.GetValues<Icon>()
+    public static IReadOnlyList<IconInfo> SourceIcons { get; } = Enum.GetValues<Icon>()
         .Select(icon => new IconInfo { Name = icon.ToString(), Value = icon })
         .ToImmutableArray();
 
     [ObservableProperty]
-    public partial string SearchText { get; set; } = string.Empty;
+    public partial IReadOnlyList<IconInfo> Icons { get; set; } = SourceIcons;
+
     [ObservableProperty]
-    public partial IReadOnlyList<IconInfo> FilteredIcons { get; set; } = Icons;
+    public partial string SearchText { get; set; } = string.Empty;
     
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Xaml), nameof(XamlExtension), nameof(CSharp), nameof(CSharpMarkup))]
@@ -26,7 +25,7 @@ public sealed partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Xaml), nameof(XamlExtension), nameof(CSharp), nameof(CSharpMarkup))]
-    public partial IconInfo Selected { get; set; } = Icons[0].Let(x => x.IsSelected = true);
+    public partial IconInfo Selected { get; set; } = SourceIcons[0].Let(x => x.IsSelected = true);
 
     private string Prefix => UsesSymbol ? "Symbol" : "Fluent";
     private string Property => UsesSymbol ? "Symbol" : "Icon";
@@ -62,18 +61,22 @@ public sealed partial class MainViewModel : ViewModelBase
 
     public string Version => typeof(Icon).Assembly.GetName().Version?.ToString(3) ?? "–";
 
-    async partial void OnSearchTextChanged(string value)
+    public void RefreshIcons()
     {
-        await Task.Yield();
-        if (string.IsNullOrEmpty(value))
+        if (string.IsNullOrEmpty(SearchText))
         {
-            FilteredIcons = Icons;
+            Icons = UsesSymbol ? SourceIcons.Where(x => x.HasSymbol).ToImmutableArray() : SourceIcons;
         }
         else
         {
-            FilteredIcons = Icons
-                .Where(x => x.Name.Contains(value, StringComparison.OrdinalIgnoreCase))
+            Icons = SourceIcons
+                .Where(x => (!UsesSymbol || x.HasSymbol) && x.Name.Contains(SearchText, StringComparison.OrdinalIgnoreCase))
                 .ToImmutableArray();
         }
+    }
+    async partial void OnSearchTextChanged(string value)
+    {
+        await Task.Yield();
+        RefreshIcons();
     }
 }

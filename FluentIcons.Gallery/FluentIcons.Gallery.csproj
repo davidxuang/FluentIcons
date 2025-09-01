@@ -40,7 +40,7 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.*" />
     <PackageReference Include="FluentAvaloniaUI" Version="2.4.*" />
-    <PackageReference Include="Fonts.Avalonia.JetBrainsMono" Version="0.14.0" />
+    <PackageReference Include="Fonts.Avalonia.JetBrainsMono" Version="0.14.*" />
   </ItemGroup>
 
   <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'browser'">

@@ -89,7 +89,7 @@
         <ScrollViewer
             x:Name="Primary"
             Grid.Row="1" Grid.RowSpan="3">
-            <ItemsRepeater ItemsSource="{CompiledBinding FilteredIcons}">
+            <ItemsRepeater ItemsSource="{CompiledBinding Icons}">
                 <ItemsRepeater.Layout>
                     <UniformGridLayout MinItemHeight="36" MinItemWidth="36" />
                 </ItemsRepeater.Layout>

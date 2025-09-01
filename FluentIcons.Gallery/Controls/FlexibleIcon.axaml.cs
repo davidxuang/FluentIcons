@@ -13,9 +13,9 @@ public partial class FlexibleIcon : UserControl
     public static readonly StyledProperty<bool> UsesSymbolProperty =
         AvaloniaProperty.Register<FlexibleIcon, bool>(nameof(UsesSymbol), false);
     public static readonly StyledProperty<Icon> IconProperty =
-        AvaloniaProperty.Register<FlexibleIcon, Icon>(nameof(Icon), Icon.Home);
+        AvaloniaProperty.Register<FlexibleIcon, Icon>(nameof(Icon), (Icon)int.MaxValue);
     public static readonly StyledProperty<Symbol> SymbolProperty =
-        AvaloniaProperty.Register<FlexibleIcon, Symbol>(nameof(Symbol), Symbol.Home);
+        AvaloniaProperty.Register<FlexibleIcon, Symbol>(nameof(Symbol), (Symbol)int.MaxValue);
     public static readonly StyledProperty<IconVariant> IconVariantProperty =
         AvaloniaProperty.Register<FlexibleIcon, IconVariant>(nameof(IconVariant), IconVariant.Regular);
     public static new readonly StyledProperty<double> FontSizeProperty =

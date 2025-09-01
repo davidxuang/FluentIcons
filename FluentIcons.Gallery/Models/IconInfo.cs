@@ -9,6 +9,7 @@ public sealed partial class IconInfo : ObservableObject, IComparable<IconInfo>
     public partial bool IsSelected { get; set; }
 
     public Symbol SymbolValue => (Symbol)(int)Value;
+    public bool HasSymbol => Enum.IsDefined(SymbolValue);
 
     public int CompareTo(IconInfo? other) => Value.CompareTo(other?.Value ?? (Icon)int.MaxValue);
 }
