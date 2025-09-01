@@ -1,15 +1,16 @@
 using Avalonia;
 using Avalonia.Browser;
 using FluentIcons.Gallery;
+using Fonts.Avalonia.JetBrainsMono;
 using System.Runtime.Versioning;
-using System.Threading.Tasks;
 
-[assembly:SupportedOSPlatform("browser")]
+[assembly: SupportedOSPlatform("browser")]
 
 internal sealed partial class Program
 {
     private static Task Main(string[] args) => BuildAvaloniaApp()
         .WithInterFont()
+        .WithJetBrainsMonoFont()
         .StartBrowserAppAsync("out");
 
     public static AppBuilder BuildAvaloniaApp()

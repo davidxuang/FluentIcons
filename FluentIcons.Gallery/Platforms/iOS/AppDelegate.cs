@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.iOS;
+using Fonts.Avalonia.JetBrainsMono;
 using Foundation;
 using UIKit;
 
@@ -14,7 +15,8 @@ public partial class AppDelegate : AvaloniaAppDelegate<App>
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
     {
         return base.CustomizeAppBuilder(builder)
-            .WithInterFont();
+            .WithInterFont()
+            .WithJetBrainsMonoFont();
     }
 
     // This is the main entry point of the application.

@@ -5,6 +5,79 @@
     xmlns:sty="using:FluentAvalonia.Styling"
     RequestedThemeVariant="Default">
 
+    <Application.Resources>
+        <x:Double x:Key="CaptionTextBlockLineHeight">16</x:Double>
+        <x:Double x:Key="BodyTextBlockLineHeight">20</x:Double>
+        <x:Double x:Key="SubtitleTextBlockLineHeight">26</x:Double>
+        <x:Double x:Key="TitleTextBlockLineHeight">36</x:Double>
+        <x:Double x:Key="TitleLargeTextBlockLineHeight">52</x:Double>
+        <x:Double x:Key="DisplayTextBlockLineHeight">92</x:Double>
+
+        <ControlTheme
+            x:Key="FluentBaseTextBlockStyle"
+            BasedOn="{StaticResource BaseTextBlockStyle}"
+            TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="{StaticResource BodyTextBlockLineHeight}" />
+            <Setter Property="ClipToBounds" Value="False" />
+        </ControlTheme>
+
+        <ControlTheme
+            x:Key="FluentCaptionTextBlockStyle"
+            BasedOn="{StaticResource CaptionTextBlockStyle}"
+            TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="{StaticResource CaptionTextBlockLineHeight}" />
+            <Setter Property="ClipToBounds" Value="False" />
+        </ControlTheme>
+
+        <ControlTheme
+            x:Key="FluentBodyTextBlockStyle"
+            BasedOn="{StaticResource BodyTextBlockStyle}"
+            TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="{StaticResource BodyTextBlockLineHeight}" />
+            <Setter Property="ClipToBounds" Value="False" />
+        </ControlTheme>
+
+        <ControlTheme
+            x:Key="FluentBodyStrongTextBlockStyle"
+            BasedOn="{StaticResource BodyStrongTextBlockStyle}"
+            TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="{StaticResource BodyTextBlockLineHeight}" />
+            <Setter Property="ClipToBounds" Value="False" />
+        </ControlTheme>
+
+        <ControlTheme
+            x:Key="FluentSubtitleTextBlockStyle"
+            BasedOn="{StaticResource SubtitleTextBlockStyle}"
+            TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="{StaticResource SubtitleTextBlockLineHeight}" />
+            <Setter Property="ClipToBounds" Value="False" />
+        </ControlTheme>
+
+        <ControlTheme
+            x:Key="FluentTitleTextBlockStyle"
+            BasedOn="{StaticResource TitleTextBlockStyle}"
+            TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="{StaticResource TitleTextBlockLineHeight}" />
+            <Setter Property="ClipToBounds" Value="False" />
+        </ControlTheme>
+
+        <ControlTheme
+            x:Key="FluentTitleLargeTextBlockStyle"
+            BasedOn="{StaticResource TitleLargeTextBlockStyle}"
+            TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="{StaticResource TitleLargeTextBlockLineHeight}" />
+            <Setter Property="ClipToBounds" Value="False" />
+        </ControlTheme>
+
+        <ControlTheme
+            x:Key="FluentDisplayTextBlockStyle"
+            BasedOn="{StaticResource DisplayTextBlockStyle}"
+            TargetType="TextBlock">
+            <Setter Property="LineHeight" Value="{StaticResource DisplayTextBlockLineHeight}" />
+            <Setter Property="ClipToBounds" Value="False" />
+        </ControlTheme>
+    </Application.Resources>
+
     <Application.Styles>
         <sty:FluentAvaloniaTheme />
     </Application.Styles>

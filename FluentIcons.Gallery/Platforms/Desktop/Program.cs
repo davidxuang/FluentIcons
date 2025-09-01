@@ -1,7 +1,7 @@
-using System;
 using Avalonia;
+using Fonts.Avalonia.JetBrainsMono;
 
-namespace FluentIcons.Gallery;
+namespace FluentIcons.Gallery.Platforms.Desktop;
 
 internal static class Program
 {
@@ -14,5 +14,6 @@ internal static class Program
         => AppBuilder.Configure<App>()
             .UsePlatformDetect()
             .WithInterFont()
+            .WithJetBrainsMonoFont()
             .LogToTrace();
 }

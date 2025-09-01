@@ -6,11 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:views="clr-namespace:FluentIcons.Gallery.Views"
     xmlns:vm="using:FluentIcons.Gallery.ViewModels"
-    Title="Fluent Icons Gallery"
-    MinWidth="640"
-    MinHeight="480"
-    d:DesignHeight="480"
-    d:DesignWidth="800"
+    Title="Fluent Icons Gallery" d:DesignHeight="480" d:DesignWidth="800"
+    MinWidth="480" MinHeight="480"
     Icon="/Assets/Icon.png"
     mc:Ignorable="d">
     <views:MainView />

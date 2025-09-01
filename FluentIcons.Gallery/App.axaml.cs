@@ -1,7 +1,10 @@
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
+using Avalonia.Input.Platform;
 using Avalonia.Markup.Xaml;
+using Avalonia.VisualTree;
 using FluentIcons.Gallery.ViewModels;
 using FluentIcons.Gallery.Views;
 
@@ -47,6 +50,28 @@ public partial class App : Application
         foreach (var plugin in dataValidationPluginsToRemove)
         {
             BindingPlugins.DataValidators.Remove(plugin);
+        }
+    }
+
+    public static IClipboard? Clipboard
+    {
+        get
+        {
+            if (Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime { MainWindow: { } window })
+            {
+                return window.Clipboard;
+
+            }
+            else if (Current?.ApplicationLifetime is ISingleViewApplicationLifetime { MainView: { } view })
+            {
+                var visualRoot = view.GetVisualRoot();
+                if (visualRoot is TopLevel topLevel)
+                {
+                    return topLevel.Clipboard;
+                }
+            }
+
+            return null;
         }
     }
 }

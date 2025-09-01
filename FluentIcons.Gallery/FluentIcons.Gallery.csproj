@@ -40,6 +40,7 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.*" />
     <PackageReference Include="FluentAvaloniaUI" Version="2.4.*" />
+    <PackageReference Include="Fonts.Avalonia.JetBrainsMono" Version="0.14.0" />
   </ItemGroup>
 
   <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'browser'">
@@ -57,9 +58,4 @@
     <ProjectCapability Include="DiagnoseCapabilities" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Controls\FlexibleIcon.axaml.cs">
-      <DependentUpon>FlexibleIcon.axaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
 </Project>
