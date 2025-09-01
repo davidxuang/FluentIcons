@@ -23,7 +23,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <SharedAssets Include="..\Assets\Icon.png" />
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 

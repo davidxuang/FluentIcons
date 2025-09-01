@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <SharedAssets Include="..\seagull-icons\assets\*.ttf" />
     <AvaloniaResource Include="Assets\*.ttf" />
   </ItemGroup>
 
