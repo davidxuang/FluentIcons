@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "FluentIcons.Gallery.dll",
   "resources": {
-    "hash": "sha256-/NHi+wPSrdt7v6buqUPbCPmR4Uba86K8YLpk29uiZCg=",
+    "hash": "sha256-aB/nbfHnv7rvT9k/7KP2l8TBhe7aseH01mhpGmPhYOo=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-HuQ4sE6bLn7HPtSL/a+LVUs9ido8IzxpUR3IQxlLQ70="
     },
@@ -36,10 +36,10 @@
       "Avalonia.Vulkan.wasm": "sha256-PoePPER9jvDyFKIs8z2BxQG1RuaG8ES15Pe8EzZjXHA=",
       "CommunityToolkit.Mvvm.wasm": "sha256-AZdnf2L5AWK7DGwQbgZjJoDZndQaRxxkvgIsxM+5YnE=",
       "FluentAvalonia.wasm": "sha256-4PVv71JDDUmO0dTxJeB4SSxZlGA/6D9w4I5YA4nNZoc=",
-      "FluentIcons.Avalonia.wasm": "sha256-O7aYXdzDdkV31b7MogSAf8X6onY+6dKRa4UbC9QEFpE=",
-      "FluentIcons.Avalonia.Fluent.wasm": "sha256-lwYQgnwSzSaKICQ0mLaAa4clznx54V3qU9fQaKIOgQQ=",
-      "FluentIcons.Common.wasm": "sha256-wdzsKBvUMfqfjHBnOaaVGKpVegQAkSCVDYoLig8bMBY=",
-      "FluentIcons.Gallery.wasm": "sha256-EMYObOweJ+3uuxxqW9dN7DO6bDFVpvzcQDrg17OeaG8=",
+      "FluentIcons.Avalonia.wasm": "sha256-h4VW7Rv11fwNXu4bYqBFaySCE3/Qg3TG3Z8jAPHfrjo=",
+      "FluentIcons.Avalonia.Fluent.wasm": "sha256-HGe6U+Op8ojDETC0+rENqeJb/zRXik+d+EYmvE54THU=",
+      "FluentIcons.Common.wasm": "sha256-NUJyyI+VCc/k3ptGRU2tHWqZsRTFob2tPfprrZINKRs=",
+      "FluentIcons.Gallery.wasm": "sha256-azn0yMS6VBl9Vbr6DKNEbxCYdvhk0s1zSoHOBCKpI7o=",
       "Fonts.Avalonia.JetBrainsMono.wasm": "sha256-AmCmkoXLyJgNYiUWG6xFTkcJdJivYE+wxKY0LtjpO1w=",
       "HarfBuzzSharp.wasm": "sha256-MOrIuW+mUQqzjiylIyRdNalnNTmGhiMiwsXHjdTMpbM=",
       "MicroCom.Runtime.wasm": "sha256-luK3+DgxuOrCwY6By8YW8TK3gvMOtxwn8zPK3YBufH4=",
