@@ -161,6 +161,8 @@ collect(argv.source, '', 0, false, (subdir, name) => {
         `${spec.name}-${spec.variant}.svg`
       )
     );
+  } else if (spec.size === 20 && spec.variant === 'color') {
+    resizable_names.add(spec.name);
   }
 
   // overriding size16 icons
