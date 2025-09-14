@@ -12,9 +12,6 @@ public class SymbolIcon : Internals.GenericIcon, IValue<Symbol>
 {
     public static readonly StyledProperty<Symbol> SymbolProperty 
         = AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
-    [Obsolete(Extensions.Message)]
-    public static readonly StyledProperty<bool> UseSegoeMetricsProperty 
-        = AvaloniaProperty.Register<SymbolIcon, bool>(nameof(UseSegoeMetrics));
 
     public Symbol Symbol
     {
@@ -26,14 +23,6 @@ public class SymbolIcon : Internals.GenericIcon, IValue<Symbol>
     {
         get => GetValue(SymbolProperty);
         set => SetValue(SymbolProperty, value);
-    }
-
-
-    [Obsolete(Extensions.Message)]
-    public bool UseSegoeMetrics
-    {
-        get => GetValue(UseSegoeMetricsProperty);
-        set => SetValue(UseSegoeMetricsProperty, value);
     }
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);

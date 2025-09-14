@@ -13,9 +13,6 @@ public class SymbolImage : GenericImage, IValue<Symbol>
 {
     public static readonly StyledProperty<Symbol> SymbolProperty
         = SymbolIcon.SymbolProperty.AddOwner<SymbolImage>();
-    [Obsolete(Extensions.Message)]
-    public static readonly StyledProperty<bool> UseSegoeMetricsProperty
-        = SymbolIcon.UseSegoeMetricsProperty.AddOwner<SymbolImage>();
 
     public Symbol Symbol
     {
@@ -27,13 +24,6 @@ public class SymbolImage : GenericImage, IValue<Symbol>
     {
         get => GetValue(SymbolProperty);
         set => SetValue(SymbolProperty, value);
-    }
-
-    [Obsolete(Extensions.Message)]
-    public bool UseSegoeMetrics
-    {
-        get => GetValue(UseSegoeMetricsProperty);
-        set => SetValue(UseSegoeMetricsProperty, value);
     }
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);

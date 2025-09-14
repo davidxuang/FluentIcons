@@ -13,21 +13,11 @@ public partial class SymbolIconSource : GenericIconSource
 {
     public static DependencyProperty SymbolProperty { get; } 
         = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new(Symbol.Home, OnIconPropertiesChanged));
-    [Obsolete(Extensions.Message)]
-    public static DependencyProperty UseSegoeMetricsProperty { get; } 
-        = DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new(false, OnIconPropertiesChanged));
 
     public Symbol Symbol
     {
         get { return (Symbol)GetValue(SymbolProperty); }
         set { SetValue(SymbolProperty, value); }
-    }
-
-    [Obsolete(Extensions.Message)]
-    public bool UseSegoeMetrics
-    {
-        get { return (bool)GetValue(UseSegoeMetricsProperty); }
-        set { SetValue(UseSegoeMetricsProperty, value); }
     }
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
@@ -39,8 +29,6 @@ public partial class SymbolIconSourceExtension : MarkupExtension
 {
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }
-    [Obsolete(Extensions.Message)]
-    public bool? UseSegoeMetrics { get; set; }
 #if !HAS_UNO
     public FlowDirection? FlowDirection { get; set; }
 #endif

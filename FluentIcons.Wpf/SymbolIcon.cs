@@ -21,9 +21,6 @@ public class SymbolIcon : GenericIcon, IValue<Symbol>
 
     public static readonly DependencyProperty SymbolProperty 
         = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
-    [Obsolete(Extensions.Message)]
-    public static readonly DependencyProperty UseSegoeMetricsProperty 
-        = DependencyProperty.Register(nameof(UseSegoeMetrics), typeof(bool), typeof(SymbolIcon), new(false, OnSizePropertiesChanged));
 
     public Symbol Symbol
     {
@@ -37,13 +34,6 @@ public class SymbolIcon : GenericIcon, IValue<Symbol>
         set { SetValue(SymbolProperty, value); }
     }
 
-    [Obsolete(Extensions.Message)]
-    public bool UseSegoeMetrics
-    {
-        get { return (bool)GetValue(UseSegoeMetricsProperty); }
-        set { SetValue(UseSegoeMetricsProperty, value); }
-    }
-
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override Typeface IconFont => _typeface;
 }
@@ -53,8 +43,6 @@ public class SymbolIconExtension : MarkupExtension
 {
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }
-    [Obsolete(Extensions.Message)]
-    public bool? UseSegoeMetrics { get; set; }
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
 

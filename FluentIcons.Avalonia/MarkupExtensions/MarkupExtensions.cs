@@ -38,8 +38,6 @@ public sealed class SymbolIconExtension
 {
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }
-    [Obsolete(Extensions.Message)]
-    public bool? UseSegoeMetrics { get; set; }
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
 
@@ -94,8 +92,6 @@ public sealed class SymbolImageExtension
 {
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }
-    [Obsolete(Extensions.Message)]
-    public bool? UseSegoeMetrics { get; set; }
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
 
