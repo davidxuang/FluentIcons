@@ -8,7 +8,7 @@ using FluentIcons.Common.Internals;
 
 namespace FluentIcons.Avalonia;
 
-[TypeConverter(typeof(GenericIconConverter<Symbol, SymbolIcon>))]
+[TypeConverter(typeof(GenericImageConverter<Symbol, SymbolImage>))]
 public class SymbolImage : GenericImage, IValue<Symbol>
 {
     public static readonly StyledProperty<Symbol> SymbolProperty
