@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Avalonia;
@@ -24,6 +23,8 @@ public class FluentIcon : GenericIcon, IValue<Icon>
         _ => _typefaces[size]
     };
 
+    public static TypeConverter Converter { get; } = new GenericIconConverter<Icon, FluentIcon>();
+
     public static readonly StyledProperty<Icon> IconProperty
         = AvaloniaProperty.Register<FluentIcon, Icon>(nameof(Icon), Icon.Home);
     public static readonly StyledProperty<IconSize> IconSizeProperty
@@ -47,6 +48,9 @@ public class FluentIcon : GenericIcon, IValue<Icon>
         set => SetValue(IconSizeProperty, value);
     }
 
+    protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
+    protected override Typeface IconFont => GetTypeface(IconSize, IconVariant);
+
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         if (change.Property == FontSizeProperty)
@@ -65,7 +69,4 @@ public class FluentIcon : GenericIcon, IValue<Icon>
 
         base.OnPropertyChanged(change);
     }
-
-    protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
-    protected override Typeface IconFont => GetTypeface(IconSize, IconVariant);
 }

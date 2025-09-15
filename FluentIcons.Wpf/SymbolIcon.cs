@@ -19,7 +19,9 @@ public class SymbolIcon : GenericIcon, IValue<Symbol>
         FontWeights.Normal,
         FontStretches.Normal);
 
-    public static readonly DependencyProperty SymbolProperty 
+    public static TypeConverter Converter { get; } = new GenericIconConverter<Symbol, SymbolIcon>();
+
+    public static readonly DependencyProperty SymbolProperty
         = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
 
     public Symbol Symbol

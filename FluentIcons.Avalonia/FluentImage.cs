@@ -10,6 +10,8 @@ namespace FluentIcons.Avalonia;
 [TypeConverter(typeof(GenericImageConverter<Icon, FluentImage>))]
 public class FluentImage : GenericImage, IValue<Icon>
 {
+    public static TypeConverter Converter { get; } = new GenericImageConverter<Icon, FluentImage>();
+
     public static readonly StyledProperty<Icon> IconProperty
         = FluentIcon.IconProperty.AddOwner<FluentImage>();
     public static readonly StyledProperty<IconSize> IconSizeProperty

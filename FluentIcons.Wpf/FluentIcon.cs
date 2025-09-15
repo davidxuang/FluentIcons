@@ -24,6 +24,8 @@ public class FluentIcon : GenericIcon, IValue<Icon>
             FontWeights.Normal,
             FontStretches.Normal));
 
+    public static TypeConverter Converter { get; } = new GenericIconConverter<Icon, FluentIcon>();
+
     public static readonly DependencyProperty IconProperty 
         = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIcon), new(Icon.Home, OnIconPropertiesChanged));
     public static readonly DependencyProperty IconSizeProperty 

@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel;
 using Avalonia;
 using Avalonia.Media;
@@ -11,6 +10,8 @@ namespace FluentIcons.Avalonia;
 [TypeConverter(typeof(GenericImageConverter<Symbol, SymbolImage>))]
 public class SymbolImage : GenericImage, IValue<Symbol>
 {
+    public static TypeConverter Converter { get; } = new GenericImageConverter<Symbol, SymbolImage>();
+
     public static readonly StyledProperty<Symbol> SymbolProperty
         = SymbolIcon.SymbolProperty.AddOwner<SymbolImage>();
 

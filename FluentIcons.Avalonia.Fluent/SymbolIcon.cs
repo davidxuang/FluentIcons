@@ -1,16 +1,18 @@
-using System;
 using System.ComponentModel;
 using Avalonia;
 using Avalonia.Media;
+using FluentIcons.Avalonia.Fluent.Internals;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 
 namespace FluentIcons.Avalonia.Fluent;
 
-[TypeConverter(typeof(Internals.GenericIconConverter<Symbol, SymbolIcon>))]
-public class SymbolIcon : Internals.GenericIcon, IValue<Symbol>
+[TypeConverter(typeof(GenericIconConverter<Symbol, SymbolIcon>))]
+public class SymbolIcon : GenericIcon, IValue<Symbol>
 {
-    public static readonly StyledProperty<Symbol> SymbolProperty 
+    public static TypeConverter Converter { get; } = new GenericIconConverter<Symbol, SymbolIcon>();
+
+    public static readonly StyledProperty<Symbol> SymbolProperty
         = AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
 
     public Symbol Symbol

@@ -1,14 +1,17 @@
 ﻿using System.ComponentModel;
 using Avalonia;
 using Avalonia.Media;
+using FluentIcons.Avalonia.Fluent.Internals;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 
 namespace FluentIcons.Avalonia.Fluent;
 
-[TypeConverter(typeof(Internals.GenericIconSourceConverter<Icon, FluentIconSource>))]
-public class FluentIconSource : Internals.GenericIconSource, IValue<Icon>
+[TypeConverter(typeof(GenericIconSourceConverter<Icon, FluentIconSource>))]
+public class FluentIconSource : GenericIconSource, IValue<Icon>
 {
+    public static TypeConverter Converter { get; } = new GenericIconSourceConverter<Icon, FluentIconSource>();
+
     public static readonly StyledProperty<Icon> IconProperty
         = FluentIcon.IconProperty.AddOwner<FluentIconSource>();
     public static readonly StyledProperty<IconSize> IconSizeProperty
