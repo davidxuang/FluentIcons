@@ -25,7 +25,7 @@ jobs:
         run: |
           git config --global core.symlinks true
           git config --global core.autocrlf false
-          echo "dotnet_version=$(dotnet --version)" >> $env:GITHUB_OUTPUT
+          echo "dotnet_workload_version=$(dotnet workload --version)" >> $env:GITHUB_OUTPUT
           echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
       - name: Checkout
         uses: actions/checkout@v4
@@ -43,7 +43,7 @@ jobs:
         id: cache-dotnet-workloads
         uses: actions/cache@v4
         with:
-          key: dotnet-${{ runner.os }}-${{ runner.arch }}-workloads-${{ steps.vars.outputs.dotnet_version }}
+          key: dotnet-${{ runner.os }}-${{ runner.arch }}-workloads-${{ steps.vars.outputs.dotnet_workload_version }}
           path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
           lookup-only: ${{ steps.cache-nuget.outputs.cache-hit == 'true' }}
       - name: Setup .NET workloads

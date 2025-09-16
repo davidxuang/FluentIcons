@@ -19,14 +19,14 @@ jobs:
         run: |
           git config --global core.symlinks true
           git config --global core.autocrlf false
-          echo "dotnet_version=$(dotnet --version)" >> $env:GITHUB_OUTPUT
+          echo "dotnet_workload_version=$(dotnet workload --version)" >> $env:GITHUB_OUTPUT
           echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
       - uses: olegtarasov/get-tag@v2-release
         id: tag_name
       - name: Cache .NET workloads
         uses: actions/cache/restore@v4
         with:
-          key: dotnet-${{ runner.os }}-${{ runner.arch }}-workloads-${{ steps.vars.outputs.dotnet_version }}
+          key: dotnet-${{ runner.os }}-${{ runner.arch }}-workloads-${{ steps.vars.outputs.dotnet_workload_version }}
           path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
       - name: Setup .NET workloads
         run: |
