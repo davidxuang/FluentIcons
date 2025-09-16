@@ -59,6 +59,7 @@ jobs:
           dotnet nuget push FluentIcons.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
       - name: Trigger deployment
         if: ${{ !contains(steps.tag_name.outputs.tag, '-') }}
+        shell: bash
         run: |
           curl -X POST https://api.github.com/repos/${{ github.repository }}/dispatches \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
