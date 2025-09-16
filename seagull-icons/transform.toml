@@ -157,6 +157,7 @@ ink_stroke = "2"
 keyboard = "2"
 laptop = { "#" = "2", dismiss = "4" }
 layer_diagonal = { "#" = "2", sparkle = "1" }
+layout_column_two = "2"
 layout_row_two = "2"
 layout_row_two_focus_top = "2"
 lightbulb = ["1", [-1, 0]]
@@ -1046,6 +1047,7 @@ icons = [
   "document_signature#/document_signature",
   "emoji",
   "image",
+  "layout_column_two",
   "link",
   "mail",
   "note_alt:note",
