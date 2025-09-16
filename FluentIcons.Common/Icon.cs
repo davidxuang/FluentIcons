@@ -179,7 +179,6 @@ public enum Icon : int
     ArrowSortUpLines,
     ArrowSplit,
     ArrowSprint,
-    [Unresizable]
     ArrowSquare,
     ArrowSquareDown,
     ArrowSquareUpRight,
@@ -407,7 +406,6 @@ public enum Icon : int
     BuildingRetailToolbox,
     BuildingShop,
     BuildingSkyscraper,
-    [Unresizable]
     BuildingStore,
     BuildingSwap,
     BuildingTownhouse,
@@ -447,7 +445,6 @@ public enum Icon : int
     CalendarMultiple,
     CalendarNote,
     CalendarPattern,
-    [Unresizable]
     CalendarPeople,
     CalendarPerson,
     CalendarPhone,
@@ -547,7 +544,6 @@ public enum Icon : int
     ChatHistory,
     ChatLock,
     ChatMail,
-    [Unresizable]
     ChatMore,
     ChatMultiple,
     ChatMultipleCheckmark,
@@ -559,7 +555,6 @@ public enum Icon : int
     ChatVideo,
     ChatWarning,
     Check,
-    [Unresizable]
     Checkbox,
     Checkbox1,
     Checkbox2,
@@ -777,6 +772,7 @@ public enum Icon : int
     Connected,
     Connector,
     ContactCard,
+    ContactCardGeneric,
     ContactCardGroup,
     ContactCardLink,
     ContactCardRibbon,
@@ -1445,6 +1441,8 @@ public enum Icon : int
     LayerDiagonalAdd,
     LayerDiagonalPerson,
     LayerDiagonalSparkle,
+    LayoutAddAbove,
+    LayoutAddBelow,
     LayoutCellFour,
     LayoutCellFourFocusBottomLeft,
     LayoutCellFourFocusBottomRight,
@@ -1463,6 +1461,7 @@ public enum Icon : int
     LayoutColumnThreeFocusLeft,
     LayoutColumnThreeFocusRight,
     LayoutColumnTwo,
+    LayoutColumnTwoEdit,
     LayoutColumnTwoFocusLeft,
     LayoutColumnTwoFocusRight,
     LayoutColumnTwoSplitLeft,
@@ -1724,7 +1723,6 @@ public enum Icon : int
     OpenFolder,
     OpenOff,
     Options,
-    [Unresizable]
     Org,
     Organization,
     OrganizationHorizontal,
@@ -1782,7 +1780,6 @@ public enum Icon : int
     PauseCircle,
     PauseOff,
     PauseSettings,
-    [Unresizable]
     Paw,
     Payment,
     PaymentWireless,
@@ -1805,7 +1802,6 @@ public enum Icon : int
     PeopleEdit,
     PeopleError,
     PeopleEye,
-    [Unresizable]
     PeopleHome,
     PeopleInterwoven,
     PeopleLink,
@@ -2220,7 +2216,6 @@ public enum Icon : int
     Sleep,
     SlideAdd,
     SlideArrowRight,
-    [Unresizable]
     SlideContent,
     SlideEraser,
     SlideGrid,
@@ -2280,6 +2275,8 @@ public enum Icon : int
     SportAmericanFootball,
     SportBaseball,
     SportBasketball,
+    SportCricketBall,
+    SportCricketBat,
     SportHockey,
     SportSoccer,
     [Unresizable]
@@ -2831,7 +2828,6 @@ public enum Icon : int
     WheelchairAccess,
     Whiteboard,
     WhiteboardOff,
-    [Unresizable]
     Wifi,
     Wifi1,
     Wifi2,
