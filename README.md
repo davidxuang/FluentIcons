@@ -67,4 +67,4 @@ Markup extension classes are in a child namespace to stop style selectors from t
 
 ## Known issues
 
-Color icons are broken on several platforms on WPF, because of the lack of [COLR](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) rendering support. It is also not working in environments like macOS and WebAssembly when rendering with SkiaSharp 2, possibly affecting Avalonia and Uno.
+Color icons are broken on WPF, because of the lack of [COLR](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) rendering support. It is also not working in environments like macOS and WebAssembly when rendering with SkiaSharp 2, possibly affecting Avalonia and Uno.
