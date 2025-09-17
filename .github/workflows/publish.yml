@@ -60,8 +60,8 @@ jobs:
       - name: Trigger deployment
         if: ${{ !contains(steps.tag_name.outputs.tag, '-') }}
         shell: bash
-        run: |
-          curl -X POST https://api.github.com/repos/${{ github.repository }}/dispatches \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -H "Accept: application/vnd.github.v3+json" \
+        run: >
+          curl -X POST https://api.github.com/repos/${{ github.repository }}/dispatches
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}"
+          -H "Accept: application/vnd.github.v3+json"
           -d '{"event_type": "deploy"}'
