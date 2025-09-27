@@ -11,7 +11,7 @@
     xmlns:m="clr-namespace:FluentIcons.Gallery.Models"
     xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
     xmlns:vm="clr-namespace:FluentIcons.Gallery.ViewModels"
-    x:DataType="vm:MainViewModel" d:DesignHeight="480" d:DesignWidth="800"
+    x:DataType="vm:MainViewModel" d:DesignHeight="800" d:DesignWidth="800"
     SizeChanged="OnSizeChanged"
     mc:Ignorable="d">
     <Design.DataContext>
@@ -129,7 +129,7 @@
             x:Name="Info"
             Grid.Row="1" Grid.RowSpan="3" Grid.Column="2">
 
-            <Grid RowDefinitions="Auto,12,*" Margin="16">
+            <Grid RowDefinitions="*,12,Auto" Margin="16">
 
                 <Grid.Resources>
                     <ControlTheme
@@ -323,7 +323,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <Grid ColumnDefinitions="7*,12,8*">
+                    <Grid RowDefinitions="Auto,16,Auto" ColumnDefinitions="7*,12,8*">
                         <StackPanel Spacing="2">
                             <TextBlock Text="Size 20" Theme="{DynamicResource PropertyTextBlockStyle}" />
                             <StackPanel Orientation="Horizontal" Spacing="4">
@@ -367,10 +367,8 @@
                                     IconSize="Size24" IconVariant="Light" />
                             </StackPanel>
                         </StackPanel>
-                    </Grid>
 
-                    <Grid ColumnDefinitions="7*,12,8*">
-                        <StackPanel Spacing="2">
+                        <StackPanel Grid.Row="2" Spacing="2">
                             <TextBlock Text="Size 28" Theme="{DynamicResource PropertyTextBlockStyle}" />
                             <StackPanel Orientation="Horizontal" Spacing="4">
                                 <ic:FluentIcon
@@ -392,7 +390,9 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="2" Spacing="2">
+                        <StackPanel
+                            Grid.Row="2" Grid.Column="2"
+                            Spacing="2">
                             <TextBlock Text="Size 32" Theme="{DynamicResource PropertyTextBlockStyle}" />
                             <StackPanel Orientation="Horizontal" Spacing="4">
                                 <ic:FluentIcon
@@ -439,10 +439,25 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
-                    <TextBlock Text="Library version" Theme="{DynamicResource PropertyTextBlockStyle}" />
-                    <SelectableTextBlock Text="{CompiledBinding Version}" />
-                </StackPanel>
+                <Grid Grid.Row="2" ColumnDefinitions="*,16,*">
+                    <StackPanel>
+                        <TextBlock Text="GitHub repository" Theme="{DynamicResource PropertyTextBlockStyle}" />
+                        <HyperlinkButton
+                            Padding="0"
+                            NavigateUri="https://github.com/davidxuang/FluentIcons"
+                            Theme="{DynamicResource TransparentButton}">
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <TextBlock FontFamily="fonts:JetBrainsMono#JetBrains Mono" Text="FluentIcons" />
+                                <ic:SymbolIcon FontSize="16" Symbol="Open" />
+                            </StackPanel>
+                        </HyperlinkButton>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Library version" Theme="{DynamicResource PropertyTextBlockStyle}" />
+                        <SelectableTextBlock Text="{CompiledBinding Version}" />
+                    </StackPanel>
+                </Grid>
 
             </Grid>
         </ScrollViewer>
