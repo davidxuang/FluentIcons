@@ -1,4 +1,5 @@
 on:
+  workflow_dispatch:
   push:
     tags:
       - '*'
@@ -42,6 +43,7 @@ jobs:
           submodules: true
       - name: Setup Java
         uses: actions/setup-java@v4
+        if: ${{ github.event_name != 'workflow_dispatch'}}
         with:
           distribution: 'temurin'
           java-version: '17'
@@ -50,18 +52,21 @@ jobs:
         with:
           key: dotnet-${{ runner.os }}-${{ runner.arch }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
           path: ~/.nuget/packages
-      - name: Build and pack
+      - name: Build NuGet packages
+        if: ${{ github.event_name != 'workflow_dispatch' }}
         run: |
           $env:VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
           MSBuild -restore -t:pack -p:Configuration=Release -p:PackageOutputPath=".." -v:minimal
-      - name: Publish to NuGet
-        run: |
           dotnet nuget push FluentIcons.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-      - name: Trigger deployment
+      - name: Build GitHub Pages
+        if: ${{ github.event_name == 'workflow_dispatch' || !contains(steps.tag_name.outputs.tag, '-') }}
+        run: |
+          $env:VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
+          dotnet publish ./FluentIcons.Gallery/FluentIcons.Gallery.csproj -f net8.0-browser
+      - name: Deploy to GitHub Pages
         if: ${{ !contains(steps.tag_name.outputs.tag, '-') }}
-        shell: bash
-        run: >
-          curl -X POST https://api.github.com/repos/${{ github.repository }}/dispatches
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}"
-          -H "Accept: application/vnd.github.v3+json"
-          -d '{"event_type": "deploy"}'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./FluentIcons.Gallery/bin/Release/net8.0-browser/browser-wasm/AppBundle
+          publish_branch: gh-pages
