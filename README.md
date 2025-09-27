@@ -1,6 +1,6 @@
 # FluentIcons
 
-A multi-framework control library of [fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).
+A multi-framework control library of [fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons). Browse the icons in [the online gallery](https://davidxuang.github.io/FluentIcons/).
 
 ## Packages
 
@@ -61,7 +61,7 @@ Markup extension classes are in a child namespace to stop style selectors from t
 
 ### MAUI
 
-⚠️ The extension method `UseFluentIcons(this MauiAppBuilder builder)` must be called to register fonts properly. ⚠️
+⚠️ The extension method `UseFluentIcons(this MauiAppBuilder builder)` must be called to register fonts properly.
 
 `<SymbolImageSource>` and `SymbolImageSourceExtension` are provided on MAUI as stand-ins.
 
