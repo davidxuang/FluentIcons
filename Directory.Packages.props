@@ -9,7 +9,6 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
     <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Maui.Controls" Version="8.0.3" />
-    <PackageVersion Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.3" />
     <PackageVersion Include="Microsoft.WindowsAppSDK" Version="1.2.221109.1" />
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
     <PackageVersion Include="Microsoft.Windows.SDK.CPP" Version="10.0.26100.2161" />
