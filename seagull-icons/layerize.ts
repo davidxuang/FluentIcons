@@ -140,9 +140,7 @@ function getShadow(elems: Renderable[], shadow: DropShadow) {
         path_data = circles
           .map((circle) => {
             const r = circle.r + offset;
-            return r > 0
-              ? new paper.Path.Circle([circle.cx, circle.cy], r).pathData
-              : '';
+            return r > 0 ? new paper.Path.Circle([circle.cx, circle.cy], r).pathData : '';
           })
           .join('');
       }
@@ -183,10 +181,7 @@ function getDef(s: string) {
   return matches ? matches[1] : undefined;
 }
 
-function selectGradient(
-  gradient: LinearGradient | RadialGradient,
-  transform: Transform
-) {
+function selectGradient(gradient: LinearGradient | RadialGradient, transform: Transform) {
   if (!('select-gradient' in transform)) return false;
 
   const c = gradient.$$.some((stop) =>
@@ -200,10 +195,7 @@ function selectGradient(
   }
 }
 
-function transformGradient(
-  gradient: LinearGradient | RadialGradient,
-  transform: Transform
-) {
+function transformGradient(gradient: LinearGradient | RadialGradient, transform: Transform) {
   if ('scale' in transform) {
     gradient.$.gradientTransform = `translate(${transform.translate}) scale(${
       transform.scale
@@ -272,9 +264,7 @@ fs.readdirSync(argv.mono)
         ].join('');
         fs.writeFileSync(
           path.join(argv.mono, f),
-          `<svg width="${doc.svg.$.width}" height="${
-            doc.svg.$.height
-          }" viewBox="${
+          `<svg width="${doc.svg.$.width}" height="${doc.svg.$.height}" viewBox="${
             doc.svg.$.viewBox
           }" xmlns="http://www.w3.org/2000/svg">\n  <path d="${path_data}M${
             cyrb53(f) / Number.MAX_SAFE_INTEGER
@@ -332,14 +322,11 @@ fs.readdirSync(argv.mono)
     doc.svg.$$.filter((elem) => elem['#name'] === 'defs')
       .flatMap((defs) => defs.$$)
       .forEach((def) => {
-        if (
-          def['#name'] === 'linearGradient' ||
-          def['#name'] === 'radialGradient'
-        ) {
+        if (def['#name'] === 'linearGradient' || def['#name'] === 'radialGradient') {
           if (may_shrink) {
-            def.$.gradientTransform = `translate(-${argv.shrink},-${
-              argv.shrink
-            }) ${def.$.gradientTransform ?? ''}`;
+            def.$.gradientTransform = `translate(-${argv.shrink},-${argv.shrink}) ${
+              def.$.gradientTransform ?? ''
+            }`;
           }
 
           gradients.set(def.$.id, def);
@@ -383,10 +370,7 @@ fs.readdirSync(argv.mono)
           if (elem.$.filter) {
             const shadow = shadows.get(getDef(elem.$.filter));
             assert(elem.$.opacity === undefined || elem.$.opacity === '1');
-            assert(
-              elem.$['fill-opacity'] === undefined ||
-                elem.$['fill-opacity'] === '1'
-            );
+            assert(elem.$['fill-opacity'] === undefined || elem.$['fill-opacity'] === '1');
             return [...getShadow(elem.$$, shadow), ...elem.$$];
           } else {
             return elem.$$;
@@ -411,7 +395,7 @@ fs.readdirSync(argv.mono)
         const T = layers
           .filter((layer) => mut['select-path'].includes(layer.xml.$['d']))
           .map((layer) => (layer.path = new paper.CompoundPath(mut.subst)));
-        assert(T.length > 0);
+        assert(T.length > 0, `Cannot find path to substitute in ${file}`);
       } else {
         const matrix = new paper.Matrix();
         matrix.translate(mut.translate);
@@ -433,7 +417,7 @@ fs.readdirSync(argv.mono)
               layer.path.transform(matrix);
               gids.add(getDef(layer.xml.$.fill));
             });
-          assert(T.length > 0);
+          assert(T.length > 0, `Cannot find shape to transform in ${file}`);
         }
 
         {
@@ -448,7 +432,10 @@ fs.readdirSync(argv.mono)
             .distinct()
             .map((gradient) => transformGradient(gradient, mut));
           if ('select-gradient' in mut) {
-            assert(T.length > 0 || mut['gradient-type'] === 'shadow');
+            assert(
+              T.length > 0 || mut['gradient-type'] === 'shadow',
+              `Cannot find gradient to transform in ${file}`
+            );
           }
         }
       }
@@ -459,11 +446,10 @@ fs.readdirSync(argv.mono)
       let fill: string;
       const fill_attr = props.fill ?? doc.svg.$.fill ?? 'black';
       const stroke_attr = props.stroke ?? doc.svg.$.stroke ?? 'none';
-      let opacity_attr =
-        Number(props.opacity ?? '1') * Number(doc.svg.$.opacity ?? '1');
+      let opacity_attr = Number(props.opacity ?? '1') * Number(doc.svg.$.opacity ?? '1');
       if (fill_attr !== 'none') {
         opacity_attr *= Number(props['fill-opacity'] ?? '1');
-        assert(stroke_attr === 'none');
+        assert(stroke_attr === 'none', `Unexpected stroke attribute in ${file}`);
         let gid = getDef(fill_attr);
         if (gid) {
           let gd = gradients.get(gid);
@@ -489,7 +475,7 @@ fs.readdirSync(argv.mono)
         }
       } else {
         opacity_attr *= Number(props['stroke-opacity'] ?? '1');
-        assert(stroke_attr !== 'none');
+        assert(stroke_attr !== 'none', `Unexpected stroke attribute in ${file}`);
         const color = new Color(stroke_attr);
         color.alpha *= opacity_attr;
         fill = color
@@ -499,9 +485,7 @@ fs.readdirSync(argv.mono)
             collapse: false,
           })
           .padEnd(9, 'f');
-        const width = Number(
-          props['stroke-width'] ?? doc.svg.$['stroke-width'] ?? '1'
-        );
+        const width = Number(props['stroke-width'] ?? doc.svg.$['stroke-width'] ?? '1');
         layer.path = PaperOffset.offsetStroke(layer.path, width / 2);
       }
 
@@ -515,8 +499,7 @@ fs.readdirSync(argv.mono)
         layer.path.children.slice(1).forEach((child) => {
           const next = child as paper.Path;
           if (
-            (next.intersect(first, { insert: false }) as paper.CompoundPath)
-              .area > 0 &&
+            (next.intersect(first, { insert: false }) as paper.CompoundPath).area > 0 &&
             first.clockwise == next.clockwise
           ) {
             next.reverse();
@@ -529,9 +512,10 @@ fs.readdirSync(argv.mono)
         fill_solid = fill;
       } else {
         const gradient = JSON.parse(fill) as LinearGradient | RadialGradient;
-        let opacity = gradient.$$.map((stop) =>
-          Number(stop.$?.['stop-opacity'] ?? '1')
-        ).reduce((min, o) => Math.min(min, o), 1);
+        let opacity = gradient.$$.map((stop) => Number(stop.$?.['stop-opacity'] ?? '1')).reduce(
+          (min, o) => Math.min(min, o),
+          1
+        );
         let color: Color;
 
         const stops = gradient.$$.map((stop) => ({
@@ -541,7 +525,7 @@ fs.readdirSync(argv.mono)
 
         // lerp at offset 0.5
         stops.sort((a, b) => a.offset - b.offset);
-        assert(stops.length > 0);
+        assert(stops.length > 0, `Gradient without stops in ${file}`);
         if (stops.length == 1 || stops.at(0).offset >= 0.5) {
           color = stops.at(0).color.to('sRGB');
         } else if (stops.at(-1).offset <= 0.5) {
@@ -584,9 +568,7 @@ fs.readdirSync(argv.mono)
         if (fill.startsWith('#') && !fill.endsWith('ff')) {
           break;
         }
-        layers[i].path = layers[i].path.unite(
-          layers[i + 1].path
-        ) as paper.CompoundPath;
+        layers[i].path = layers[i].path.unite(layers[i + 1].path) as paper.CompoundPath;
         layers.splice(i + 1, 1);
       }
     }
@@ -609,9 +591,7 @@ fs.readdirSync(argv.mono)
   });
 });
 
-const mirror_set = new Set<string>(
-  JSON.parse(fs.readFileSync(argv.mirror).toString())
-);
+const mirror_set = new Set<string>(JSON.parse(fs.readFileSync(argv.mirror).toString()));
 
 const colors = new Array<string>();
 let g_matrix = new paper.Matrix();
@@ -631,9 +611,7 @@ const v1_glyphs = COLR.ele('BaseGlyphList');
 const v1_layers = COLR.ele('LayerList');
 color_glyphs.forEach((record) => {
   const spec = resolveName(record.name);
-  const rtl_name = mirror_set.has(spec.name)
-    ? `${spec.name}_rtl-${spec.variant}`
-    : undefined;
+  const rtl_name = mirror_set.has(spec.name) ? `${spec.name}_rtl-${spec.variant}` : undefined;
 
   // v0
   {
@@ -676,7 +654,7 @@ color_glyphs.forEach((record) => {
         }
         rtl_lr.ele('LayerGlyph', { value: glyph_name });
         const c = colors.indexOf(layer.color_solid);
-        assert(c !== -1);
+        assert(c !== -1, `Color not found for ${record.name}`);
         rtl_lr.ele('PaletteIndex', { value: c });
       });
     }
@@ -707,35 +685,27 @@ color_glyphs.forEach((record) => {
         });
         solid.ele('Alpha', { value: 1 });
       } else {
-        const gradient = JSON.parse(layer.color) as
-          | LinearGradient
-          | RadialGradient;
+        const gradient = JSON.parse(layer.color) as LinearGradient | RadialGradient;
         const matrix = new paper.Matrix();
         if (gradient.$.gradientTransform) {
           gradient.$.gradientTransform
             .trim()
             .split(/(?<=\))\s+/)
             .forEach((t) => {
-              let matches = t.match(
-                /(\w+)\(([\w\-.]+)\s*?[\s,]\s*([\w\-.]+)\)/
-              );
               let sub: paper.Matrix;
-              if (matches) {
-                const nums = matches.slice(2).map(Number);
-                if (matches[1] === 'translate') {
-                  sub = new paper.Matrix().translate(nums[0], nums[1]);
-                } else if (matches[1] === 'scale') {
-                  sub = new paper.Matrix().scale(nums[0], nums[1], [0, 0]);
-                }
-              } else {
-                matches = t.match(/(\w+)\(([\w\-.]+)\)/);
-                if (matches?.[1] === 'rotate') {
-                  sub = new paper.Matrix().rotate(Number(matches[2]), [0, 0]);
-                } else if (matches?.[1] === 'scale') {
-                  sub = new paper.Matrix().scale(Number(matches[2]), [0, 0]);
-                }
+              const matches = t.match(/([a-zA-Z]+)\(((?:[\w\-.]+[\s,]+)*[\w\-.]+)\)/);
+              const nums = matches?.[2]?.split(/[\s,]+/)?.map(Number);
+              assert(matches && nums, `Cannot parse transform ${t} in ${layer.name}`);
+              if (matches[1] === 'matrix' && nums.length === 6) {
+                sub = new paper.Matrix(nums);
+              } else if (matches[1] === 'translate' && (nums.length == 1 || nums.length == 2)) {
+                sub = new paper.Matrix().translate(nums[0], nums[1] ?? 0);
+              } else if (matches[1] === 'scale' && (nums.length == 1 || nums.length == 2)) {
+                sub = new paper.Matrix().scale(nums[0], nums[1] ?? nums[0]);
+              } else if (matches[1] === 'rotate' && (nums.length == 1 || nums.length == 3)) {
+                sub = new paper.Matrix().rotate(nums[0], [nums[1] ?? 0, nums[2] ?? 0]);
               }
-              assert(sub);
+              assert(sub, `Cannot parse transform ${t} in ${layer.name}`);
               matrix.append(sub);
             });
         }
@@ -756,16 +726,15 @@ color_glyphs.forEach((record) => {
         let cl: xmlbuilder.XMLElement;
         if (gradient['#name'] === 'linearGradient') {
           assert(
-            gradient.$.x1 && gradient.$.y1 && gradient.$.x2 && gradient.$.y2
+            gradient.$.x1 && gradient.$.y1 && gradient.$.x2 && gradient.$.y2,
+            `Invalid position for linear gradient in ${layer.name}`
           );
-          const p1 = new paper.Point(
-            Number(gradient.$.x1),
-            Number(gradient.$.y1)
-          ).transform(pre);
-          const p2 = new paper.Point(
-            Number(gradient.$.x2),
-            Number(gradient.$.y2)
-          ).transform(pre);
+          const p1 = new paper.Point(Number(gradient.$.x1), Number(gradient.$.y1)).transform(
+            pre
+          );
+          const p2 = new paper.Point(Number(gradient.$.x2), Number(gradient.$.y2)).transform(
+            pre
+          );
           const gr = gr_parent.ele('Paint', { Format: 4 }); // PaintLinearGradient
           cl = gr.ele('ColorLine');
           gr.ele('x0', { value: Math.round(p1.x).toString() });
@@ -775,11 +744,13 @@ color_glyphs.forEach((record) => {
           gr.ele('x2', { value: Math.round(p1.x + (p2.y - p1.y)).toString() });
           gr.ele('y2', { value: Math.round(p1.y - (p2.x - p1.x)).toString() });
         } else {
-          assert(gradient.$.cx && gradient.$.cy && gradient.$.r);
-          const cp = new paper.Point(
-            Number(gradient.$.cx),
-            Number(gradient.$.cy)
-          ).transform(pre);
+          assert(
+            gradient.$.cx && gradient.$.cy && gradient.$.r,
+            `Invalid position for radial gradient in ${layer.name}`
+          );
+          const cp = new paper.Point(Number(gradient.$.cx), Number(gradient.$.cy)).transform(
+            pre
+          );
           const fp = new paper.Point(
             Number(gradient.$.fx ?? gradient.$.cx),
             Number(gradient.$.fy ?? gradient.$.cy)
