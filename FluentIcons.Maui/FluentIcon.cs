@@ -39,7 +39,6 @@ public partial class FluentIcon : GenericIcon
     protected override string IconFont => GetFontFamily(IconSize, IconVariant);
 }
 
-[AcceptEmptyServiceProvider]
 public class FluentIconExtension : IMarkupExtension<FluentIcon>
 {
     public Icon? Icon { get; set; }

@@ -31,7 +31,6 @@ public partial class FluentImageSource : GenericImageSource
     protected override string IconFont => FluentIcon.GetFontFamily(IconSize, IconVariant);
 }
 
-[AcceptEmptyServiceProvider]
 public class FluentImageSourceExtension : IMarkupExtension<FluentImageSource>
 {
     public Icon? Icon { get; set; }
