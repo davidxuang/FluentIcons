@@ -36,35 +36,7 @@ try {
     & "$PSScriptRoot/seagull-icons/build.ps1"
 
     # update enums
-    $resizable = @{}
-    (Get-Content "$PSScriptRoot/seagull-icons/obj/icons-resizable.json" | ConvertFrom-Json).PSObject.Properties | ForEach-Object {
-        $resizable[$_.Name -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }] = [int]$_.Value
-    }
-    
-    $map = [System.Collections.Generic.Dictionary[string, int]]::new()
-    (Get-Content "$PSScriptRoot/seagull-icons/obj/icons.json" | ConvertFrom-Json).PSObject.Properties | ForEach-Object {
-        $map.Add(($_.Name -replace '(?:^|_)([0-9a-z])', { $_.Groups[1].Value.ToUpperInvariant() }),
-            [int]$_.Value)
-    }
-
-    $cs = "$PSScriptRoot/FluentIcons.Common/Icon.cs"
-    @"
-using FluentIcons.Common.Internals;
-
-namespace FluentIcons.Common;
-
-public enum Icon : int
-{
-"@ > $cs
-
-    foreach ($key in $map.Keys) {
-        if (-not $resizable.ContainsKey($key)) {
-            "    [Unresizable]" >> $Cs
-        }
-        "    $key," >> $cs
-    }
-
-    "}" >> $cs
+    Move-Item -Force "$PSScriptRoot/seagull-icons/obj/Icon.cs" "$PSScriptRoot/FluentIcons.Common/Icon.cs"
 
     # patch project version
     (Get-Content "$PSScriptRoot/Directory.Build.props") -replace '<VersionPrefix>(.*)<\/VersionPrefix>', "<VersionPrefix>$($upstreamTag)</VersionPrefix>" | Out-File "$PSScriptRoot/Directory.Build.props"

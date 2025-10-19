@@ -2,27 +2,55 @@ import fs from 'fs';
 import paper from 'paper';
 import { Renderable } from './types.js';
 
-export function resolveName(name: string, upstream = false) {
-  if (upstream) {
-    const matches = name.match(
-      /^ic_fluent_(.+)_(\d+)_(regular|filled|color|light)(\.svg)?$/
-    );
-    return matches === null
-      ? null
-      : {
-          name: matches[1],
-          size: parseInt(matches[2]),
-          variant: matches[3],
-        };
-  } else {
-    const matches = name.match(/^(.+)-(regular|filled|color|light)(\.svg)?$/);
-    return matches === null
-      ? null
-      : {
-          name: matches[1],
-          variant: matches[2],
-        };
+const _resolve_warns = new Set<string>();
+export function resolveAsset(dname: string, fname: string) {
+  let direction = null;
+  let m = dname.match(/ Temp (RTL|LTR)$/);
+  if (m) {
+    direction = m[1];
+    dname = dname.replace(/ Temp (RTL|LTR)$/, '');
   }
+  m = dname.match(/ (RTL|LTR)\b/);
+  if (m) {
+    direction = m[1];
+    dname = dname.replace(/ (RTL|LTR)\b/, '');
+  }
+  const snake = dname.replace(/_*\s+_*/g, '_').toLowerCase();
+  const name = dname
+    .replace(/(?<!Rotate) (45|90|135|225|270|315)\b/, ' Rotate $1') // unify rotate names
+    .replace(/javascript/i, 'JavaScript')
+    .replace(/\b[a-z]/g, (m) => m.toUpperCase()) // `iOS` -> `IOS`
+    .replace(/(?<=[A-Z])[A-Z]+\b/g, (m) => m.toLowerCase()); // `IOS` -> `Ios`
+
+  const matches = fname.match(/^ic_fluent_(.+)_(\d+)_(regular|filled|color|light)(\.svg)?$/);
+  if (matches) {
+    if (matches[1] !== snake) {
+      const warning = `[WARN] ${matches[1]}${direction ? `@${direction}` : ''} => ${snake}`;
+      if (!_resolve_warns.has(warning)) {
+        console.warn(warning);
+        _resolve_warns.add(warning);
+      }
+    }
+    return {
+      name_glyph: name.replace(/_*\s+_*/g, '_').toLowerCase(),
+      name_enum: name.replace(/\s/g, ''), // name for C# enum
+      direction: direction,
+      size: parseInt(matches[2]),
+      variant: matches[3],
+    };
+  } else {
+    return null;
+  }
+}
+
+export function resolveName(fname: string) {
+  const matches = fname.match(/^(.+)-(regular|filled|color|light)(\.svg)?$/);
+  return matches === null
+    ? null
+    : {
+        name: matches[1],
+        variant: matches[2],
+      };
 }
 
 export function getPath(elem: Renderable): paper.Path | paper.CompoundPath {
@@ -36,10 +64,7 @@ export function getPath(elem: Renderable): paper.Path | paper.CompoundPath {
               [Number(elem.$['x'] ?? '0'), Number(elem.$['y'] ?? '0')],
               [Number(elem.$['width'] ?? '0'), Number(elem.$['height'] ?? '0')]
             ),
-            [
-              Number(elem.$['rx'] ?? elem.$['ry']),
-              Number(elem.$['ry'] ?? elem.$['rx']),
-            ]
+            [Number(elem.$['rx'] ?? elem.$['ry']), Number(elem.$['ry'] ?? elem.$['rx'])]
           )
         : new paper.Path.Rectangle(
             [Number(elem.$['x'] ?? '0'), Number(elem.$['y'] ?? '0')],
@@ -73,8 +98,7 @@ export function getPath(elem: Renderable): paper.Path | paper.CompoundPath {
   }
 }
 
-const rexPoly =
-  /(-?[\d]+(?:\.\d+)?|-?\.\d+),? *(-?[\d]+(?:\.\d+)?|-?\.\d+),? */g;
+const rexPoly = /(-?[\d]+(?:\.\d+)?|-?\.\d+),? *(-?[\d]+(?:\.\d+)?|-?\.\d+),? */g;
 
 export function getPathData(elem: Renderable): string {
   switch (elem['#name']) {
@@ -94,9 +118,9 @@ export function getPathData(elem: Renderable): string {
         matches.push([match[1], match[2]]);
       }
       if (elem['#name'] == 'polygon') {
-        return `M${matches.map((coor) => `${coor[0]},${coor[1]}`).join('L')}L${
-          matches[0][0]
-        },${matches[0][1]}Z`;
+        return `M${matches.map((coor) => `${coor[0]},${coor[1]}`).join('L')}L${matches[0][0]},${
+          matches[0][1]
+        }Z`;
       } else {
         return `M${matches.map((coor) => `${coor[0]},${coor[1]}`).join('L')}Z`;
       }
@@ -210,10 +234,7 @@ export function divideTransform(
   const first = new paper.Matrix();
   first.translate(d.translation);
   first.rotate(d.rotation, [0, 0]);
-  first.scale(
-    scaling * Math.sign(d.scaling.x),
-    scaling * Math.sign(d.scaling.y)
-  );
+  first.scale(scaling * Math.sign(d.scaling.x), scaling * Math.sign(d.scaling.y));
   first.skew(d.skewing.x, d.skewing.y);
 
   const second = new paper.Matrix(matrix);

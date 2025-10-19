@@ -2,22 +2,20 @@ import fs from 'fs';
 import path from 'path';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { ensure, resolveName } from './utils.js';
+import { ensure, resolveAsset } from './utils.js';
 
-const argv = yargs()
-  .string('source')
-  .string('root')
-  .strict()
-  .parseSync(hideBin(process.argv));
+const argv = yargs().string('source').string('root').strict().parseSync(hideBin(process.argv));
 const MONO_DIR = path.join(argv.root, 'mono');
 const COLOR_DIR = path.join(argv.root, 'color');
-const ICONS = path.join(argv.root, 'icons.json');
-const ICONS_RESIZABLE = path.join(argv.root, 'icons-resizable.json');
-const MIRROR = path.join(argv.root, 'mirror.json');
+const CSV = path.join(argv.root, '../collect.csv');
+const ICONS_JSON = path.join(argv.root, 'icons.json');
+const MIRROR_JSON = path.join(argv.root, 'mirror.json');
+const ICON_CS = path.join(argv.root, 'Icon.cs');
 
 const names = new Set<string>();
 const resizable_names = new Set<string>();
-const mirror_names = new Set<string>();
+const glyph_names = new Map<string, string>();
+const mirror_glyphs = new Set<string>();
 
 type MetaData = {
   name: string;
@@ -31,10 +29,11 @@ type MetaData = {
 
 function collect(
   src_root: string,
+  src_set: string,
   dest_subdir: string,
   depth: number,
   mirror: boolean,
-  get_dest: (subdir: string, name: string) => [string, string[]]
+  get_dest: (name: string, subdir: string, fname: string) => [string, string[]]
 ) {
   fs.readdirSync(src_root).forEach((fname) => {
     const src_item = path.join(src_root, fname);
@@ -42,29 +41,24 @@ function collect(
     let subdir = dest_subdir;
 
     if (src_stat.isDirectory()) {
-      const src_name = path.basename(src_item);
+      const dname = path.basename(src_item);
       if (depth == 0) {
+        src_set = dname;
         const meta_name = path.join(src_item, 'metadata.json');
         if (fs.existsSync(meta_name)) {
           mirror =
-            (JSON.parse(fs.readFileSync(meta_name).toString()) as MetaData)
-              .directionType === 'mirror';
-        }
-        const words = src_name.split(' ');
-        if (words.indexOf('LTR') >= 0) {
-          subdir = path.join(subdir, 'LTR');
-        } else if (words.indexOf('RTL') >= 0) {
-          subdir = path.join(subdir, 'RTL');
+            (JSON.parse(fs.readFileSync(meta_name).toString()) as MetaData).directionType ===
+            'mirror';
         }
       } else if (
-        src_name.match(/^[a-z]{2}(-[A-Za-z][a-z]{3})?(-[A-Za-z]{2})?$/) ||
-        src_name === 'PDF'
+        dname.match(/^[a-z]{2}(-[A-Za-z][a-z]{3})?(-[A-Za-z]{2})?$/) ||
+        dname === 'PDF'
       ) {
         return; // skip language-specific
-      } else if (depth === 1 && src_name !== 'SVG') {
-        subdir = path.join(subdir, src_name);
+      } else if (depth === 1 && dname !== 'SVG') {
+        subdir = path.join(subdir, dname);
       }
-      collect(src_item, subdir, depth + 1, mirror, get_dest);
+      collect(src_item, src_set, subdir, depth + 1, mirror, get_dest);
     } else if (fname.startsWith('.') || fname.startsWith('_')) {
       return;
     } else if (fname.endsWith('.svg')) {
@@ -80,20 +74,16 @@ function collect(
         fname = fname.replace('_rtl_', '_');
       }
 
-      const [name, dest_files] = get_dest(subdir, fname);
+      const [name, dest_files] = get_dest(src_set, subdir, fname);
       for (const dest_file of dest_files) {
         ensure(path.dirname(dest_file));
         // prefer Bidi icons in explicit "LTR"/"RTL" subfolders
-        if (
-          fs.existsSync(dest_file) &&
-          src_item.match(/\s(?:LTR|RTL)|(?:LTR|RTL)\s/)
-        ) {
+        if (fs.existsSync(dest_file) && src_item.match(/\s(?:LTR|RTL)|(?:LTR|RTL)\s/)) {
           continue;
         }
 
-        names.add(name);
         if (mirror) {
-          mirror_names.add(name);
+          mirror_glyphs.add(name);
         }
         fs.copyFileSync(src_item, dest_file);
       }
@@ -129,21 +119,22 @@ if (fs.existsSync(COLOR_DIR)) {
   fs.rmSync(COLOR_DIR, { recursive: true });
 }
 
-collect(argv.source, '', 0, false, (subdir, name) => {
-  const spec = resolveName(name, true);
+collect(argv.source, null, '', 0, false, (src_set, subdir, name) => {
+  const spec = resolveAsset(src_set, name);
   if (spec === null) {
     return [null, []];
+  } else if (spec.direction) {
+    subdir = path.join(spec.direction, subdir);
   }
-
-  // unify rotate names
-  spec.name = spec.name.replace(/(?<!rotate)_(90|270)$/, '_rotate_$1');
+  names.add(spec.name_enum);
+  glyph_names.set(spec.name_enum, spec.name_glyph);
 
   const dest_files = [
     path.join(
       spec.variant === 'color' ? COLOR_DIR : MONO_DIR,
       spec.size.toString(),
       subdir,
-      `${spec.name}-${spec.variant}.svg`
+      `${spec.name_glyph}-${spec.variant}.svg`
     ),
   ];
 
@@ -152,22 +143,17 @@ collect(argv.source, '', 0, false, (subdir, name) => {
     (spec.size === 20 && ['regular', 'filled'].includes(spec.variant)) ||
     (spec.size === 32 && spec.variant == 'light')
   ) {
-    resizable_names.add(spec.name);
+    resizable_names.add(spec.name_enum);
     dest_files.push(
-      path.join(
-        MONO_DIR,
-        'resizable',
-        subdir,
-        `${spec.name}-${spec.variant}.svg`
-      )
+      path.join(MONO_DIR, 'resizable', subdir, `${spec.name_glyph}-${spec.variant}.svg`)
     );
   } else if (spec.size === 20 && spec.variant === 'color') {
-    resizable_names.add(spec.name);
+    resizable_names.add(spec.name_enum);
   }
 
   // overriding size16 icons
   if (
-    spec.name.match(/^(?:planet$|presence_|spatula_spoon$|text_whole_word$)/) &&
+    spec.name_glyph.match(/^(?:planet$|presence_|spatula_spoon$|text_whole_word$)/) &&
     spec.size === 16
   ) {
     dest_files.push(
@@ -175,12 +161,12 @@ collect(argv.source, '', 0, false, (subdir, name) => {
         spec.variant === 'color' ? COLOR_DIR : MONO_DIR,
         'override',
         subdir,
-        `${spec.name}-${spec.variant}.svg`
+        `${spec.name_glyph}-${spec.variant}.svg`
       )
     );
   }
 
-  return [spec.name, dest_files];
+  return [spec.name_glyph, dest_files];
 });
 
 fs.readdirSync(MONO_DIR).forEach((size) => {
@@ -208,13 +194,40 @@ const nextCodepoint = (() => {
   };
 })();
 
-const icons = Object.fromEntries(
-  [...names].sort().map((name) => [name, nextCodepoint()])
-);
-const icons_resizable = Object.fromEntries(
-  [...resizable_names].sort().map((name) => [name, icons[name]])
-);
+const enum_list = fs
+  .readFileSync(CSV, 'utf-8')
+  .split(/\r?\n/)
+  .filter((l) => l.length > 0);
 
-fs.writeFileSync(ICONS, JSON.stringify(icons));
-fs.writeFileSync(ICONS_RESIZABLE, JSON.stringify(icons_resizable));
-fs.writeFileSync(MIRROR, JSON.stringify([...mirror_names].sort()));
+[...names].sort().forEach((e) => {
+  if (!enum_list.includes(e)) {
+    enum_list.push(e);
+    console.log(`[NEW] ${e}`);
+  }
+});
+
+const icons = Object.fromEntries(enum_list.map((e) => [glyph_names.get(e), nextCodepoint()]));
+let icon_cs_lines = [
+  `using FluentIcons.Common.Internals;
+
+namespace FluentIcons.Common;
+
+public enum Icon : int
+{`,
+];
+enum_list.forEach((e, i) => {
+  if (glyph_names.has(e)) {
+    if (!resizable_names.has(e)) {
+      icon_cs_lines.push(`    [Unresizable]`);
+    }
+    icon_cs_lines.push(`    ${e} = ${i},`);
+  } else {
+    console.warn(`[NOT_FOUND] ${e}`);
+  }
+});
+icon_cs_lines.push(`}`);
+
+fs.writeFileSync(CSV, enum_list.join('\n'));
+fs.writeFileSync(ICONS_JSON, JSON.stringify(icons));
+fs.writeFileSync(MIRROR_JSON, JSON.stringify([...mirror_glyphs].sort()));
+fs.writeFileSync(ICON_CS, icon_cs_lines.join('\n'));
