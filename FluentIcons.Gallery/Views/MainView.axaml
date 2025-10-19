@@ -44,22 +44,36 @@
         </Grid.ColumnDefinitions>
 
         <Border Grid.ColumnSpan="3" Background="{DynamicResource SolidBackgroundFillColorSecondary}">
-            <Grid ColumnDefinitions="Auto,8,*,8,Auto" Margin="8">
+            <Grid ColumnDefinitions="Auto,8,*,8,Auto,8,Auto" Margin="8">
                 <TabStrip SelectionChanged="UsesSymbol_SelectionChanged" Theme="{DynamicResource AlternateTabStripTheme}">
                     <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="FluentIcon">
-                        <ic:FluentIcon Icon="TextFontSize" />
+                        <ic:FluentIcon FlowDirection="{CompiledBinding FlowDirection}" Icon="TextFontSize" />
                     </TabStripItem>
                     <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="SymbolIcon">
-                        <ic:SymbolIcon Symbol="TextFontSize" />
+                        <ic:SymbolIcon FlowDirection="{CompiledBinding FlowDirection}" Symbol="TextFontSize" />
                     </TabStripItem>
                 </TabStrip>
                 <AutoCompleteBox
                     Grid.Column="2"
-                    Text="{CompiledBinding SearchText,
-                                           Mode=TwoWay}"
+                    Text="{CompiledBinding SearchText, Mode=TwoWay}"
                     Watermark="Search…" />
                 <TabStrip
                     Grid.Column="4"
+                    SelectionChanged="FlowDirection_SelectionChanged"
+                    Theme="{DynamicResource AlternateTabStripTheme}">
+                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="LTR">
+                        <c:FlexibleIcon
+                            FlowDirection="LeftToRight" Icon="TextDirectionHorizontal"
+                            Symbol="TextDirectionHorizontalRight" UsesSymbol="{CompiledBinding UsesSymbol}" />
+                    </TabStripItem>
+                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="RTL">
+                        <c:FlexibleIcon
+                            FlowDirection="RightToLeft" Icon="TextDirectionHorizontal"
+                            Symbol="TextDirectionHorizontalLeft" UsesSymbol="{CompiledBinding UsesSymbol}" />
+                    </TabStripItem>
+                </TabStrip>
+                <TabStrip
+                    Grid.Column="6"
                     SelectionChanged="IconVariant_SelectionChanged"
                     Theme="{DynamicResource AlternateTabStripTheme}">
                     <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="Regular">
@@ -106,6 +120,9 @@
                             Theme="{DynamicResource TransparentToggleButton}"
                             ToolTip.Tip="{CompiledBinding Name}">
                             <c:FlexibleIcon
+                                FlowDirection="{CompiledBinding ((vm:MainViewModel)DataContext).FlowDirection,
+                                                             RelativeSource={RelativeSource FindAncestor,
+                                                                                            AncestorType=local:MainView}}"
                                 Icon="{CompiledBinding Value}"
                                 IconVariant="{CompiledBinding ((vm:MainViewModel)DataContext).IconVariant,
                                                               RelativeSource={RelativeSource FindAncestor,
@@ -154,6 +171,7 @@
                     Background="{DynamicResource SolidBackgroundFillColorTertiary}"
                     CornerRadius="6">
                     <c:FlexibleIcon
+                        FlowDirection="{CompiledBinding FlowDirection}"
                         FontSize="96"
                         Icon="{CompiledBinding Selected.Value}"
                         IconVariant="{CompiledBinding IconVariant}"
@@ -174,20 +192,24 @@
                             Grid.Column="2"
                             Orientation="Horizontal" Spacing="4">
                             <c:FlexibleIcon
+                                FlowDirection="{CompiledBinding FlowDirection}"
                                 Icon="{CompiledBinding Selected.Value}"
                                 Symbol="{CompiledBinding Selected.SymbolValue}"
                                 UsesSymbol="{CompiledBinding UsesSymbol}" />
                             <c:FlexibleIcon
+                                FlowDirection="{CompiledBinding FlowDirection}"
                                 Icon="{CompiledBinding Selected.Value}"
                                 IconVariant="Filled"
                                 Symbol="{CompiledBinding Selected.SymbolValue}"
                                 UsesSymbol="{CompiledBinding UsesSymbol}" />
                             <c:FlexibleIcon
+                                FlowDirection="{CompiledBinding FlowDirection}"
                                 Icon="{CompiledBinding Selected.Value}"
                                 IconVariant="Color"
                                 Symbol="{CompiledBinding Selected.SymbolValue}"
                                 UsesSymbol="{CompiledBinding UsesSymbol}" />
                             <c:FlexibleIcon
+                                FlowDirection="{CompiledBinding FlowDirection}"
                                 Icon="{CompiledBinding Selected.Value}"
                                 IconVariant="Light"
                                 Symbol="{CompiledBinding Selected.SymbolValue}"
@@ -260,14 +282,17 @@
                             <TextBlock Text="Size 10" Theme="{DynamicResource PropertyTextBlockStyle}" />
                             <StackPanel Orientation="Horizontal" Spacing="4">
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="10"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size10" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="10"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size10" IconVariant="Filled" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="10"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size10" IconVariant="Color" />
@@ -282,18 +307,22 @@
                             <TextBlock Text="Size 12" Theme="{DynamicResource PropertyTextBlockStyle}" />
                             <StackPanel Orientation="Horizontal" Spacing="4">
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="12"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size12" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="12"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size12" IconVariant="Filled" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="12"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size12" IconVariant="Color" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="12"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size12" IconVariant="Light" />
@@ -304,18 +333,22 @@
                             <TextBlock Text="Size 16" Theme="{DynamicResource PropertyTextBlockStyle}" />
                             <StackPanel Orientation="Horizontal" Spacing="4">
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="16"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size16" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="16"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size16" IconVariant="Filled" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="16"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size16" IconVariant="Color" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="16"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size16" IconVariant="Light" />
@@ -328,18 +361,22 @@
                             <TextBlock Text="Size 20" Theme="{DynamicResource PropertyTextBlockStyle}" />
                             <StackPanel Orientation="Horizontal" Spacing="4">
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="20"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size20" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="20"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size20" IconVariant="Filled" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="20"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size20" IconVariant="Color" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="20"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size20" IconVariant="Light" />
@@ -350,18 +387,22 @@
                             <TextBlock Text="Size 24" Theme="{DynamicResource PropertyTextBlockStyle}" />
                             <StackPanel Orientation="Horizontal" Spacing="4">
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="24"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size24" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="24"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size24" IconVariant="Filled" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="24"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size24" IconVariant="Color" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="24"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size24" IconVariant="Light" />
@@ -372,18 +413,22 @@
                             <TextBlock Text="Size 28" Theme="{DynamicResource PropertyTextBlockStyle}" />
                             <StackPanel Orientation="Horizontal" Spacing="4">
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="28"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size28" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="28"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size28" IconVariant="Filled" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="28"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size28" IconVariant="Color" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="28"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size28" IconVariant="Light" />
@@ -396,18 +441,22 @@
                             <TextBlock Text="Size 32" Theme="{DynamicResource PropertyTextBlockStyle}" />
                             <StackPanel Orientation="Horizontal" Spacing="4">
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="32"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size32" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="32"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size32" IconVariant="Filled" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="32"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size32" IconVariant="Color" />
                                 <ic:FluentIcon
+                                    FlowDirection="{CompiledBinding FlowDirection}"
                                     FontSize="32"
                                     Icon="{CompiledBinding Selected.Value}"
                                     IconSize="Size32" IconVariant="Light" />
@@ -419,18 +468,22 @@
                         <TextBlock Text="Size 48" Theme="{DynamicResource PropertyTextBlockStyle}" />
                         <StackPanel Orientation="Horizontal" Spacing="4">
                             <ic:FluentIcon
+                                FlowDirection="{CompiledBinding FlowDirection}"
                                 FontSize="48"
                                 Icon="{CompiledBinding Selected.Value}"
                                 IconSize="Size48" />
                             <ic:FluentIcon
+                                FlowDirection="{CompiledBinding FlowDirection}"
                                 FontSize="48"
                                 Icon="{CompiledBinding Selected.Value}"
                                 IconSize="Size48" IconVariant="Filled" />
                             <ic:FluentIcon
+                                FlowDirection="{CompiledBinding FlowDirection}"
                                 FontSize="48"
                                 Icon="{CompiledBinding Selected.Value}"
                                 IconSize="Size48" IconVariant="Color" />
                             <ic:FluentIcon
+                                FlowDirection="{CompiledBinding FlowDirection}"
                                 FontSize="48"
                                 Icon="{CompiledBinding Selected.Value}"
                                 IconSize="Size48" IconVariant="Light" />

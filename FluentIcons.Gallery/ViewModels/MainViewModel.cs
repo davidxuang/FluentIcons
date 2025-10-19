@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using Avalonia.Media;
+using CommunityToolkit.Mvvm.Input;
 using FluentIcons.Gallery.Helpers;
 using FluentIcons.Gallery.Models;
 
@@ -15,10 +16,12 @@ public sealed partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     public partial string SearchText { get; set; } = string.Empty;
-    
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Xaml), nameof(XamlExtension), nameof(CSharp), nameof(CSharpMarkup))]
     public partial bool UsesSymbol { get; set; } = false;
+    [ObservableProperty]
+    public partial FlowDirection FlowDirection { get; set; } = FlowDirection.LeftToRight;
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Xaml), nameof(XamlExtension), nameof(CSharp), nameof(CSharpMarkup))]
     public partial IconVariant IconVariant { get; set; } = IconVariant.Regular;

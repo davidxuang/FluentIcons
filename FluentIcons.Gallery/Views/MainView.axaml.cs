@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Media;
 using FluentIcons.Gallery.ViewModels;
 
 namespace FluentIcons.Gallery.Views;
@@ -69,6 +70,14 @@ public partial class MainView : UserControl
             vm.UsesSymbol = tabs.SelectedIndex != 0;
             vm.RefreshIcons();
             if (vm.UsesSymbol && !vm.Selected.HasSymbol) vm.Selected = MainViewModel.SourceIcons.FirstOrDefault(x => x.HasSymbol)!;
+        }
+    }
+
+    private void FlowDirection_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (DataContext is MainViewModel vm && sender is TabStrip tabs)
+        {
+            vm.FlowDirection = (FlowDirection)tabs.SelectedIndex;
         }
     }
 
