@@ -13,8 +13,6 @@ else {
 }
 $Debug = $PSCmdlet.MyInvocation.BoundParameters['Debug']
 
-git config --global user.email 'davidxuang@live.com'
-git config --global user.name 'Dawei Huang'
 
 Push-Location .
 try {
@@ -41,7 +39,7 @@ try {
     # patch project version
     (Get-Content "$PSScriptRoot/Directory.Build.props") -replace '<VersionPrefix>(.*)<\/VersionPrefix>', "<VersionPrefix>$($upstreamTag)</VersionPrefix>" | Out-File "$PSScriptRoot/Directory.Build.props"
 
-    # Commit
+    # commit
     git add -A
     if (-not $Debug) {
         git commit -m "Upstream version v$upstreamTag"

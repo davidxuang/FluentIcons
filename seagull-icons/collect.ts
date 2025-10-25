@@ -218,7 +218,7 @@ public enum Icon : int
 enum_list.forEach((e, i) => {
   if (glyph_names.has(e)) {
     if (!resizable_names.has(e)) {
-      icon_cs_lines.push(`    [Unresizable]`);
+      icon_cs_lines.push(`    [NonResizable]`);
     }
     icon_cs_lines.push(`    ${e} = ${i},`);
   } else {
