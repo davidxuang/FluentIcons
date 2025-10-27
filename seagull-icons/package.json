@@ -38,6 +38,7 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "es5-ext",
+      "esbuild",
       "ttf2woff2"
     ],
     "patchedDependencies": {
