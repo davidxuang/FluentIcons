@@ -36,13 +36,13 @@ try {
     Move-Item -Force "$PSScriptRoot/seagull-icons/obj/Icon.cs" "$PSScriptRoot/FluentIcons.Common/Icon.cs"
 
     # commit
-    git add -A
     if (-not $Debug) {
-        git commit -m "Upstream version v$upstream"
-
         # patch project version
         $tag = "$($local.Major).$($local.Minor).$($upstream.Build)"
         (Get-Content "$PSScriptRoot/Directory.Build.props") -replace '<VersionPrefix>(.*)<\/VersionPrefix>', "<VersionPrefix>$tag</VersionPrefix>" | Out-File "$PSScriptRoot/Directory.Build.props"
+
+        git add -A
+        git commit -m "Upstream version v$upstream"
         git tag "$tag-ci"
     }
 } finally {
