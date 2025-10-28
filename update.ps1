@@ -16,8 +16,8 @@ $Debug = $PSCmdlet.MyInvocation.BoundParameters['Debug']
 Push-Location .
 try {
     Set-Location $PSScriptRoot
-    [version] $ours = Select-Xml -Path "$PSScriptRoot/Directory.Build.props" -XPath "//VersionPrefix" | Select-Object -First 1 -ExpandProperty 'Node' | Select-Object -ExpandProperty '#text'
-    Write-Host "Local at $ours"
+    [version] $local = Select-Xml -Path "$PSScriptRoot/Directory.Build.props" -XPath "//VersionPrefix" | Select-Object -First 1 -ExpandProperty 'Node' | Select-Object -ExpandProperty '#text'
+    Write-Host "Local at $local"
 
     Set-Location "$PSScriptRoot/seagull-icons/upstream"
     git checkout main
@@ -25,7 +25,7 @@ try {
     [version] $upstream = Get-Content "$PSScriptRoot/seagull-icons/upstream/packages/svg-icons/package.json" | ConvertFrom-Json | Select-Object -ExpandProperty version
     Write-Host "Upstream at $upstream"
 
-    if (($ours.Build -ge $upstream.Build) -and -not $Debug) {
+    if (($local.Build -ge $upstream.Build) -and -not $Debug) {
         return
     }
 
@@ -41,7 +41,7 @@ try {
         git commit -m "Upstream version v$upstream"
 
         # patch project version
-        $tag = "$($ours.Major).$($ours.Minor).$($upstream.Build)"
+        $tag = "$($local.Major).$($local.Minor).$($upstream.Build)"
         (Get-Content "$PSScriptRoot/Directory.Build.props") -replace '<VersionPrefix>(.*)<\/VersionPrefix>', "<VersionPrefix>$tag</VersionPrefix>" | Out-File "$PSScriptRoot/Directory.Build.props"
         git tag "$tag-ci"
     }

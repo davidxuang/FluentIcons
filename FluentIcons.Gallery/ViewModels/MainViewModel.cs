@@ -9,6 +9,7 @@ public sealed partial class MainViewModel : ViewModelBase
 {
     public static IReadOnlyList<IconInfo> SourceIcons { get; } = Enum.GetValues<Icon>()
         .Select(icon => new IconInfo { Name = icon.ToString(), Value = icon })
+        .OrderBy(x => x.Name)
         .ToImmutableArray();
 
     [ObservableProperty]
