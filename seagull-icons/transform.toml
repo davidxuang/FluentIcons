@@ -97,7 +97,7 @@ crown = "2"
 cube = { "#" = "2", arrow_curve_down = "4" }
 cursor = ["1", [-1, 0]]
 data_bar_vertical = "2"
-data_pie_alt = "2"
+data_pie = "2"
 data_usage = { "#" = "2", sparkle = "1" }
 database = { "#" = "2", database = ["3", [2, 0]] }
 decimal = "2"
@@ -505,6 +505,7 @@ icons = [
   "slide",
   "slide_text_title",
   "slide_topic",
+  "sound_wave_circle",
   "square",
   "stack",
   "star",
@@ -1847,7 +1848,17 @@ icons = ["calendar_empty:calendar", "data_bar_vertical", "globe", "people", "per
 [compose.subtract]
 inherits = "circle"
 badge = "M4.5,9c2.4853,0 4.5,-2.0147 4.5,-4.5c0,-2.4853 -2.0147,-4.5 -4.5,-4.5c-2.4853,0 -4.5,2.0147 -4.5,4.5c0,2.4853 2.0147,4.5 4.5,4.5zM6.5,5h-4c-0.2761,0 -0.5,-0.2239 -0.5,-0.5c0,-0.2761 0.2239,-0.5 0.5,-0.5h4c0.2761,0 0.5,0.2239 0.5,0.5c0,0.2761 -0.2239,0.5 -0.5,0.5z"
-icons = ["channel", "crown", "drawer", "paint_brush", "people", "person", "voicemail", "voicemail:voicemail_arrow"]
+icons = [
+  "channel",
+  "crown",
+  "drawer",
+  "paint_brush",
+  "people",
+  "person",
+  "sound_wave_circle",
+  "voicemail",
+  "voicemail:voicemail_arrow",
+]
 
 [compose.swap]
 window = [7, 11]
