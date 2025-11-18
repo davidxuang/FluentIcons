@@ -2206,7 +2206,6 @@ public enum Icon : int
     DocumentTs = 2155,
     [NonResizable]
     DocumentVb = 2156,
-    [NonResizable]
     FolderMultiple = 2157,
     [NonResizable]
     KeyboardMouse = 2158,
@@ -2896,4 +2895,8 @@ public enum Icon : int
     Counter = 2800,
     DeviceMeetingRoomBar = 2801,
     ItemCompare = 2802,
+    ChatHintHalf = 2803,
+    DiamondLink = 2804,
+    SoundWaveCircleAdd = 2805,
+    SoundWaveCircleSubtract = 2806,
 }
