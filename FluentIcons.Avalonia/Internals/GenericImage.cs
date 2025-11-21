@@ -12,15 +12,6 @@ namespace FluentIcons.Avalonia.Internals;
 
 public abstract class GenericImage : AvaloniaObject, IDisposable, IImage
 {
-    public static readonly StyledProperty<IBrush?> ForegroundProperty
-        = TextElement.ForegroundProperty.AddOwner<GenericImage>();
-    public static readonly StyledProperty<IconVariant> IconVariantProperty
-        = GenericIcon.IconVariantProperty.AddOwner<GenericImage>();
-    public static readonly StyledProperty<FlowDirection> FlowDirectionProperty
-        = Visual.FlowDirectionProperty.AddOwner<GenericImage>();
-    public static readonly StyledProperty<double> FontSizeProperty
-        = GenericIcon.FontSizeProperty.AddOwner<GenericImage>();
-
     private TextLayout? _textLayout;
 
     public IBrush? Foreground
@@ -28,24 +19,32 @@ public abstract class GenericImage : AvaloniaObject, IDisposable, IImage
         get => GetValue(ForegroundProperty);
         set => SetValue(ForegroundProperty, value);
     }
+    public static readonly StyledProperty<IBrush?> ForegroundProperty
+        = TextElement.ForegroundProperty.AddOwner<GenericImage>();
 
     public IconVariant IconVariant
     {
         get => GetValue(IconVariantProperty);
         set => SetValue(IconVariantProperty, value);
     }
+    public static readonly StyledProperty<IconVariant> IconVariantProperty
+        = GenericIcon.IconVariantProperty.AddOwner<GenericImage>();
 
     public FlowDirection FlowDirection
     {
         get => GetValue(FlowDirectionProperty);
         set => SetValue(FlowDirectionProperty, value);
     }
+    public static readonly StyledProperty<FlowDirection> FlowDirectionProperty
+        = Visual.FlowDirectionProperty.AddOwner<GenericImage>();
 
     public double FontSize
     {
         get => GetValue(FontSizeProperty);
         set => SetValue(FontSizeProperty, value);
     }
+    public static readonly StyledProperty<double> FontSizeProperty
+        = GenericIcon.FontSizeProperty.AddOwner<GenericImage>();
 
     protected abstract string IconText { get; }
     protected abstract Typeface IconFont { get; }

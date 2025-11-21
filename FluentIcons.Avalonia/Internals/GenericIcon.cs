@@ -14,11 +14,6 @@ namespace FluentIcons.Avalonia.Internals;
 
 public abstract class GenericIcon : IconElement
 {
-    public static readonly StyledProperty<IconVariant> IconVariantProperty
-        = AvaloniaProperty.Register<GenericIcon, IconVariant>(nameof(IconVariant));
-    public static new readonly StyledProperty<double> FontSizeProperty
-        = AvaloniaProperty.Register<GenericIcon, double>(nameof(FontSize), 20d, false);
-
     private readonly Border _border;
     private readonly Core _core;
 
@@ -46,12 +41,16 @@ public abstract class GenericIcon : IconElement
         get => GetValue(IconVariantProperty);
         set => SetValue(IconVariantProperty, value);
     }
+    public static readonly StyledProperty<IconVariant> IconVariantProperty
+        = AvaloniaProperty.Register<GenericIcon, IconVariant>(nameof(IconVariant));
 
     public new double FontSize
     {
         get => GetValue(FontSizeProperty);
         set => SetValue(FontSizeProperty, value);
     }
+    public static new readonly StyledProperty<double> FontSizeProperty
+        = AvaloniaProperty.Register<GenericIcon, double>(nameof(FontSize), 20d, false);
 
     protected abstract string IconText { get; }
     protected abstract Typeface IconFont { get; }

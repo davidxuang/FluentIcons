@@ -12,16 +12,13 @@ public class FluentImage : GenericImage, IValue<Icon>
 {
     public static TypeConverter Converter { get; } = new GenericImageConverter<Icon, FluentImage>();
 
-    public static readonly StyledProperty<Icon> IconProperty
-        = FluentIcon.IconProperty.AddOwner<FluentImage>();
-    public static readonly StyledProperty<IconSize> IconSizeProperty
-        = FluentIcon.IconSizeProperty.AddOwner<FluentImage>();
-
     public Icon Icon
     {
         get => GetValue(IconProperty);
         set => SetValue(IconProperty, value);
     }
+    public static readonly StyledProperty<Icon> IconProperty
+        = FluentIcon.IconProperty.AddOwner<FluentImage>();
 
     Icon IValue<Icon>.Value
     {
@@ -34,6 +31,8 @@ public class FluentImage : GenericImage, IValue<Icon>
         get => GetValue(IconSizeProperty);
         set => SetValue(IconSizeProperty, value);
     }
+    public static readonly StyledProperty<IconSize> IconSizeProperty
+        = FluentIcon.IconSizeProperty.AddOwner<FluentImage>();
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {

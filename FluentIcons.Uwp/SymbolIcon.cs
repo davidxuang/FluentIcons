@@ -1,4 +1,3 @@
-using System;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using FluentIcons.Uwp.Internals;
@@ -14,12 +13,16 @@ public partial class SymbolIcon : GenericIcon
 {
     internal static readonly FontFamily SFontFamily = new($"ms-appx:///{AssetsNamespace}/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
 
-    public static DependencyProperty SymbolProperty { get; }
-        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
+    public SymbolIcon()
+    {
+        InvalidateText();
+    }
 
 #if !HAS_UNO
-    public SymbolIcon() : base() {}
-    internal SymbolIcon(bool bindFlowDirection) : base(bindFlowDirection) {}
+    internal SymbolIcon(bool bindFlowDirection) : base(bindFlowDirection)
+    {
+        InvalidateText();
+    }
 #endif
 
     public Symbol Symbol
@@ -27,6 +30,8 @@ public partial class SymbolIcon : GenericIcon
         get { return (Symbol)GetValue(SymbolProperty); }
         set { SetValue(SymbolProperty, value); }
     }
+    public static DependencyProperty SymbolProperty { get; }
+        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override FontFamily IconFont => SFontFamily;

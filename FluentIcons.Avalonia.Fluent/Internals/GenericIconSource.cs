@@ -11,13 +11,6 @@ namespace FluentIcons.Avalonia.Fluent.Internals;
 
 public abstract class GenericIconSource : FontIconSource
 {
-    public static readonly StyledProperty<IconVariant> IconVariantProperty
-        = GenericIcon.IconVariantProperty.AddOwner<GenericIconSource>();
-    public static readonly StyledProperty<FlowDirection> FlowDirectionProperty
-        = Visual.FlowDirectionProperty.AddOwner<GenericIconSource>();
-    public static new readonly StyledProperty<double> FontSizeProperty
-        = GenericIcon.FontSizeProperty.AddOwner<GenericIconSource>();
-
     public GenericIconSource()
     {
         base.FontSize = FontSize;
@@ -32,18 +25,24 @@ public abstract class GenericIconSource : FontIconSource
         get => GetValue(IconVariantProperty);
         set => SetValue(IconVariantProperty, value);
     }
+    public static readonly StyledProperty<IconVariant> IconVariantProperty
+        = GenericIcon.IconVariantProperty.AddOwner<GenericIconSource>();
 
     public FlowDirection FlowDirection
     {
         get => GetValue(FlowDirectionProperty);
         set => SetValue(FlowDirectionProperty, value);
     }
+    public static readonly StyledProperty<FlowDirection> FlowDirectionProperty
+        = Visual.FlowDirectionProperty.AddOwner<GenericIconSource>();
 
     public new double FontSize
     {
         get => GetValue(FontSizeProperty);
         set => SetValue(FontSizeProperty, value);
     }
+    public static new readonly StyledProperty<double> FontSizeProperty
+        = GenericIcon.FontSizeProperty.AddOwner<GenericIconSource>();
 
     protected abstract string IconText { get; }
     protected abstract Typeface IconFont { get; }

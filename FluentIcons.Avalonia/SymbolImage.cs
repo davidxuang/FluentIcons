@@ -12,14 +12,13 @@ public class SymbolImage : GenericImage, IValue<Symbol>
 {
     public static TypeConverter Converter { get; } = new GenericImageConverter<Symbol, SymbolImage>();
 
-    public static readonly StyledProperty<Symbol> SymbolProperty
-        = SymbolIcon.SymbolProperty.AddOwner<SymbolImage>();
-
     public Symbol Symbol
     {
         get => GetValue(SymbolProperty);
         set => SetValue(SymbolProperty, value);
     }
+    public static readonly StyledProperty<Symbol> SymbolProperty
+        = SymbolIcon.SymbolProperty.AddOwner<SymbolImage>();
 
     Symbol IValue<Symbol>.Value
     {

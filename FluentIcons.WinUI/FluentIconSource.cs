@@ -9,22 +9,26 @@ namespace FluentIcons.WinUI;
 
 public partial class FluentIconSource : GenericIconSource
 {
-    public static DependencyProperty IconProperty { get; }
-        = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIconSource), new(Icon.Home, OnIconPropertiesChanged));
-    public static DependencyProperty IconSizeProperty { get; }
-        = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIconSource), new(default(IconSize), OnIconPropertiesChanged));
+    public FluentIconSource()
+    {
+        InvalidateText();
+    }
 
     public Icon Icon
     {
         get { return (Icon)GetValue(IconProperty); }
         set { SetValue(IconProperty, value); }
     }
+    public static DependencyProperty IconProperty { get; }
+        = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIconSource), new(Icon.Home, OnIconPropertiesChanged));
 
     public IconSize IconSize
     {
         get { return (IconSize)GetValue(IconSizeProperty); }
         set { SetValue(IconSizeProperty, value); }
     }
+    public static DependencyProperty IconSizeProperty { get; }
+        = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIconSource), new(default(IconSize), OnIconPropertiesChanged));
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override FontFamily IconFont => FluentIcon.GetFontFamily(IconSize, IconVariant);
@@ -53,7 +57,7 @@ public partial class FluentIconSourceExtension : MarkupExtension
         if (service?.TargetObject is FrameworkElement source)
         {
             icon.FlowDirection = source.FlowDirection;
-            source.RegisterPropertyChangedCallback(FrameworkElement.FlowDirectionProperty, (obj, args) 
+            source.RegisterPropertyChangedCallback(FrameworkElement.FlowDirectionProperty, (obj, args)
             => {
                 if (obj is FrameworkElement f) icon.FlowDirection = f.FlowDirection;
             });
