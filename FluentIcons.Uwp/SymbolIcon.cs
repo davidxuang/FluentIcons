@@ -20,6 +20,11 @@ public partial class SymbolIcon : GenericIcon
 #if !HAS_UNO
     public SymbolIcon() : base() {}
     internal SymbolIcon(bool bindFlowDirection) : base(bindFlowDirection) {}
+#else
+    public SymbolIcon() : base()
+    {
+        RegisterPropertyChangedCallback(SymbolProperty, OnIconPropertiesChanged);
+    }
 #endif
 
     public Symbol Symbol

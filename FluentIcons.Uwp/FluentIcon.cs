@@ -33,6 +33,12 @@ public partial class FluentIcon : GenericIcon
 #if !HAS_UNO
     public FluentIcon() : base() {}
     internal FluentIcon(bool bindFlowDirection) : base(bindFlowDirection) {}
+#else
+    public FluentIcon() : base()
+    {
+        RegisterPropertyChangedCallback(IconProperty, OnIconPropertiesChanged);
+        RegisterPropertyChangedCallback(IconSizeProperty, OnIconPropertiesChanged);
+    }
 #endif
 
     public Icon Icon
