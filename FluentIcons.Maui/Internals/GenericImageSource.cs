@@ -8,21 +8,13 @@ namespace FluentIcons.Maui.Internals;
 
 public abstract partial class GenericImageSource : FontImageSource
 {
-    public static readonly BindableProperty IconVariantProperty
-        = BindableProperty.Create(nameof(IconVariant), typeof(IconVariant), typeof(GenericImageSource), propertyChanged: OnIconPropertiesChanged);
-    public static readonly BindableProperty FlowDirectionProperty
-        = BindableProperty.Create(nameof(FlowDirection), typeof(FlowDirection), typeof(GenericImageSource), default(FlowDirection), propertyChanged: OnIconPropertiesChanged);
-
-    public GenericImageSource()
-    {
-        InvalidateText();
-    }
-
     public IconVariant IconVariant
     {
         get => (IconVariant)GetValue(IconVariantProperty);
         set => SetValue(IconVariantProperty, value);
     }
+    public static readonly BindableProperty IconVariantProperty
+        = BindableProperty.Create(nameof(IconVariant), typeof(IconVariant), typeof(GenericImageSource), propertyChanged: OnIconPropertiesChanged);
 
     [TypeConverter(typeof(FlowDirectionConverter))]
     public FlowDirection FlowDirection
@@ -30,6 +22,8 @@ public abstract partial class GenericImageSource : FontImageSource
         get => (FlowDirection)GetValue(FlowDirectionProperty);
         set => SetValue(FlowDirectionProperty, value);
     }
+    public static readonly BindableProperty FlowDirectionProperty
+        = BindableProperty.Create(nameof(FlowDirection), typeof(FlowDirection), typeof(GenericImageSource), default(FlowDirection), propertyChanged: OnIconPropertiesChanged);
 
     protected abstract string IconText { get; }
     protected abstract string IconFont { get; }
@@ -50,12 +44,12 @@ public abstract partial class GenericImageSource : FontImageSource
         }
     }
 
-    public static void OnIconPropertiesChanged(BindableObject bindable, object oldValue, object newValue)
-        => (bindable as GenericImageSource)?.InvalidateText();
-
-    private void InvalidateText()
+    protected void InvalidateText()
     {
         FontFamily = IconFont;
         Glyph = IconText;
     }
+
+    public static void OnIconPropertiesChanged(BindableObject bindable, object oldValue, object newValue)
+        => (bindable as GenericImageSource)?.InvalidateText();
 }

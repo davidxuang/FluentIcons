@@ -12,14 +12,13 @@ public class SymbolIconSource : GenericIconSource, IValue<Symbol>
 {
     public static TypeConverter Converter { get; } = new GenericIconSourceConverter<Symbol, SymbolIconSource>();
 
-    public static readonly StyledProperty<Symbol> SymbolProperty
-        = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
-
     public Symbol Symbol
     {
         get => GetValue(SymbolProperty);
         set => SetValue(SymbolProperty, value);
     }
+    public static readonly StyledProperty<Symbol> SymbolProperty
+        = SymbolIcon.SymbolProperty.AddOwner<SymbolIconSource>();
 
     Symbol IValue<Symbol>.Value
     {

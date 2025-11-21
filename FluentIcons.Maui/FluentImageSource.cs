@@ -10,22 +10,26 @@ namespace FluentIcons.Maui;
 
 public partial class FluentImageSource : GenericImageSource
 {
-    public static readonly BindableProperty IconProperty
-        = BindableProperty.Create(nameof(Icon), typeof(Icon), typeof(FluentImageSource), Icon.AccessTime, propertyChanged: OnIconPropertiesChanged);
-    public static readonly BindableProperty IconSizeProperty
-        = BindableProperty.Create(nameof(IconSize), typeof(IconSize), typeof(FluentImageSource), default(IconSize));
+    public FluentImageSource()
+    {
+        InvalidateText();
+    }
 
     public Icon Icon
     {
         get => (Icon)GetValue(IconProperty);
         set => SetValue(IconProperty, value);
     }
+    public static readonly BindableProperty IconProperty
+        = BindableProperty.Create(nameof(Icon), typeof(Icon), typeof(FluentImageSource), Icon.AccessTime, propertyChanged: OnIconPropertiesChanged);
 
     public IconSize IconSize
     {
         get => (IconSize)GetValue(IconSizeProperty);
         set => SetValue(IconSizeProperty, value);
     }
+    public static readonly BindableProperty IconSizeProperty
+        = BindableProperty.Create(nameof(IconSize), typeof(IconSize), typeof(FluentImageSource), default(IconSize));
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == Microsoft.Maui.FlowDirection.RightToLeft);
     protected override string IconFont => FluentIcon.GetFontFamily(IconSize, IconVariant);

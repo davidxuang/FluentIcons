@@ -11,14 +11,18 @@ namespace FluentIcons.Maui;
 
 public partial class SymbolIcon : GenericIcon
 {
-    public static readonly BindableProperty SymbolProperty
-        = BindableProperty.Create(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), Symbol.Home, propertyChanged: OnIconPropertiesChanged);
+    public SymbolIcon()
+    {
+        InvalidateText();
+    }
 
     public Symbol Symbol
     {
         get => (Symbol)GetValue(SymbolProperty);
         set => SetValue(SymbolProperty, value);
     }
+    public static readonly BindableProperty SymbolProperty
+        = BindableProperty.Create(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), Symbol.Home, propertyChanged: OnIconPropertiesChanged);
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override string IconFont => "SeagullFluentIcons";

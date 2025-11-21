@@ -18,22 +18,26 @@ public partial class FluentIcon : GenericIcon
         _ => $"FluentSystemIcons{size}",
     };
 
-    public static readonly BindableProperty IconProperty
-        = BindableProperty.Create(nameof(Icon), typeof(Icon), typeof(FluentIcon), propertyChanged: OnIconPropertiesChanged);
-    public static readonly BindableProperty IconSizeProperty
-        = BindableProperty.Create(nameof(IconSize), typeof(IconSize), typeof(FluentIcon), default(IconSize));
+    public FluentIcon()
+    {
+        InvalidateText();
+    }
 
     public Icon Icon
     {
         get => (Icon)GetValue(IconProperty);
         set => SetValue(IconProperty, value);
     }
+    public static readonly BindableProperty IconProperty
+        = BindableProperty.Create(nameof(Icon), typeof(Icon), typeof(FluentIcon), propertyChanged: OnIconPropertiesChanged);
 
     public IconSize IconSize
     {
         get => (IconSize)GetValue(IconSizeProperty);
         set => SetValue(IconSizeProperty, value);
     }
+    public static readonly BindableProperty IconSizeProperty
+        = BindableProperty.Create(nameof(IconSize), typeof(IconSize), typeof(FluentIcon), default(IconSize));
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == Microsoft.Maui.FlowDirection.RightToLeft);
     protected override string IconFont => GetFontFamily(IconSize, IconVariant);

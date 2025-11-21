@@ -1,4 +1,4 @@
-using System;
+
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using FluentIcons.WinUI.Internals;
@@ -11,14 +11,18 @@ namespace FluentIcons.WinUI;
 
 public partial class SymbolIconSource : GenericIconSource
 {
-    public static DependencyProperty SymbolProperty { get; }
-        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new (Symbol.Home, OnIconPropertiesChanged));
+    public SymbolIconSource()
+    {
+        InvalidateText();
+    }
 
     public Symbol Symbol
     {
         get { return (Symbol)GetValue(SymbolProperty); }
         set { SetValue(SymbolProperty, value); }
     }
+    public static DependencyProperty SymbolProperty { get; }
+        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new (Symbol.Home, OnIconPropertiesChanged));
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override FontFamily IconFont => SymbolIcon.SFontFamily;
@@ -45,7 +49,7 @@ public partial class SymbolIconSourceExtension : MarkupExtension
         if (service?.TargetObject is FrameworkElement source)
         {
             icon.FlowDirection = source.FlowDirection;
-            source.RegisterPropertyChangedCallback(FrameworkElement.FlowDirectionProperty, (obj, args) 
+            source.RegisterPropertyChangedCallback(FrameworkElement.FlowDirectionProperty, (obj, args)
             => {
                 if (obj is FrameworkElement elem) icon.FlowDirection = elem.FlowDirection;
             });

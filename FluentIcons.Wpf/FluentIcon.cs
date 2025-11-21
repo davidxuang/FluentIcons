@@ -26,22 +26,21 @@ public class FluentIcon : GenericIcon, IValue<Icon>
 
     public static TypeConverter Converter { get; } = new GenericIconConverter<Icon, FluentIcon>();
 
-    public static readonly DependencyProperty IconProperty 
-        = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIcon), new(Icon.Home, OnIconPropertiesChanged));
-    public static readonly DependencyProperty IconSizeProperty 
-        = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIcon), new(default(IconSize), OnIconPropertiesChanged));
-
     public Icon Icon
     {
         get { return (Icon)GetValue(IconProperty); }
         set { SetValue(IconProperty, value); }
     }
+    public static readonly DependencyProperty IconProperty
+        = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIcon), new(Icon.Home, OnIconPropertiesChanged));
 
     Icon IValue<Icon>.Value
     {
         get { return (Icon)GetValue(IconProperty); }
         set { SetValue(IconProperty, value); }
     }
+    public static readonly DependencyProperty IconSizeProperty
+        = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIcon), new(default(IconSize), OnIconPropertiesChanged));
 
     public IconSize IconSize
     {

@@ -12,14 +12,13 @@ public class SymbolIcon : GenericIcon, IValue<Symbol>
 {
     public static TypeConverter Converter { get; } = new GenericIconConverter<Symbol, SymbolIcon>();
 
-    public static readonly StyledProperty<Symbol> SymbolProperty
-        = AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
-
     public Symbol Symbol
     {
         get => GetValue(SymbolProperty);
         set => SetValue(SymbolProperty, value);
     }
+    public static readonly StyledProperty<Symbol> SymbolProperty
+        = AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
 
     Symbol IValue<Symbol>.Value
     {

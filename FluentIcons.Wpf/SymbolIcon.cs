@@ -21,14 +21,13 @@ public class SymbolIcon : GenericIcon, IValue<Symbol>
 
     public static TypeConverter Converter { get; } = new GenericIconConverter<Symbol, SymbolIcon>();
 
-    public static readonly DependencyProperty SymbolProperty
-        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
-
     public Symbol Symbol
     {
         get { return (Symbol)GetValue(SymbolProperty); }
         set { SetValue(SymbolProperty, value); }
     }
+    public static readonly DependencyProperty SymbolProperty
+        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
 
     Symbol IValue<Symbol>.Value
     {

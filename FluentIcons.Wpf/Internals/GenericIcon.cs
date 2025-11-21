@@ -11,18 +11,6 @@ namespace FluentIcons.Wpf.Internals;
 
 public abstract class GenericIcon : FrameworkElement
 {
-    public static readonly DependencyProperty IconVariantProperty 
-        = DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), new(default(IconVariant), OnIconPropertiesChanged));
-    public static readonly DependencyProperty FontSizeProperty 
-        = TextBlock.FontSizeProperty.AddOwner(
-            typeof(GenericIcon),
-            new FrameworkPropertyMetadata(
-                20d,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                OnSizePropertiesChanged));
-    public static readonly DependencyProperty ForegroundProperty 
-        = TextBlock.ForegroundProperty.AddOwner(typeof(GenericIcon), new FrameworkPropertyMetadata(OnIconPropertiesChanged));
-
     private bool _suspendCreate = true;
     private FormattedText? _formattedText;
 
@@ -31,18 +19,29 @@ public abstract class GenericIcon : FrameworkElement
         get { return (IconVariant)GetValue(IconVariantProperty); }
         set { SetValue(IconVariantProperty, value); }
     }
+    public static readonly DependencyProperty IconVariantProperty
+        = DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), new(default(IconVariant), OnIconPropertiesChanged));
 
     public double FontSize
     {
         get { return (double)GetValue(FontSizeProperty); }
         set { SetValue(FontSizeProperty, value); }
     }
+    public static readonly DependencyProperty FontSizeProperty
+        = TextBlock.FontSizeProperty.AddOwner(
+            typeof(GenericIcon),
+            new FrameworkPropertyMetadata(
+                20d,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                OnSizePropertiesChanged));
 
     public Brush Foreground
     {
         get { return (Brush)GetValue(ForegroundProperty); }
         set { SetValue(ForegroundProperty, value); }
     }
+    public static readonly DependencyProperty ForegroundProperty
+        = TextBlock.ForegroundProperty.AddOwner(typeof(GenericIcon), new FrameworkPropertyMetadata(OnIconPropertiesChanged));
 
     protected abstract string IconText { get; }
     protected abstract Typeface IconFont { get; }

@@ -10,20 +10,12 @@ namespace FluentIcons.Maui.Internals;
 
 public abstract partial class GenericIcon : ContentView
 {
-    public static readonly BindableProperty IconVariantProperty
-        = BindableProperty.Create(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), propertyChanged: OnIconPropertiesChanged);
-    public static readonly BindableProperty FontSizeProperty
-        = BindableProperty.Create(nameof(FontSize), typeof(double), typeof(GenericIcon), 20d);
-    public static readonly BindableProperty ForegroundColorProperty
-        = BindableProperty.Create(nameof(ForegroundColor), typeof(Color), typeof(GenericIcon), null);
-
     private readonly Label _label;
     private readonly Span _span;
 
     public GenericIcon()
     {
         _span = new();
-        InvalidateText();
         _span.SetBinding(Span.FontSizeProperty, new Binding(nameof(FontSize), source: this));
         _span.SetBinding(Span.TextColorProperty, new Binding(nameof(ForegroundColor), source: this));
 
@@ -42,6 +34,8 @@ public abstract partial class GenericIcon : ContentView
         get => (IconVariant)GetValue(IconVariantProperty);
         set => SetValue(IconVariantProperty, value);
     }
+    public static readonly BindableProperty IconVariantProperty
+        = BindableProperty.Create(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), propertyChanged: OnIconPropertiesChanged);
 
     [TypeConverter(typeof(FontSizeConverter))]
     public double FontSize
@@ -49,6 +43,8 @@ public abstract partial class GenericIcon : ContentView
         get => (double)GetValue(FontSizeProperty);
         set => SetValue(FontSizeProperty, value);
     }
+    public static readonly BindableProperty FontSizeProperty
+        = BindableProperty.Create(nameof(FontSize), typeof(double), typeof(GenericIcon), 20d);
 
     [TypeConverter(typeof(ColorTypeConverter))]
     public Color ForegroundColor
@@ -56,6 +52,8 @@ public abstract partial class GenericIcon : ContentView
         get => (Color)GetValue(ForegroundColorProperty);
         set => SetValue(ForegroundColorProperty, value);
     }
+    public static readonly BindableProperty ForegroundColorProperty
+        = BindableProperty.Create(nameof(ForegroundColor), typeof(Color), typeof(GenericIcon), null);
 
     protected abstract string IconText { get; }
     protected abstract string IconFont { get; }
@@ -88,12 +86,12 @@ public abstract partial class GenericIcon : ContentView
         return base.ArrangeOverride(bounds);
     }
 
-    protected static void OnIconPropertiesChanged(BindableObject bindable, object oldValue, object newValue)
-        => (bindable as GenericIcon)?.InvalidateText();
-
-    private void InvalidateText()
+    protected void InvalidateText()
     {
         _span.FontFamily = IconFont;
         _span.Text = IconText;
     }
+
+    protected static void OnIconPropertiesChanged(BindableObject bindable, object oldValue, object newValue)
+        => (bindable as GenericIcon)?.InvalidateText();
 }

@@ -25,16 +25,13 @@ public class FluentIcon : GenericIcon, IValue<Icon>
 
     public static TypeConverter Converter { get; } = new GenericIconConverter<Icon, FluentIcon>();
 
-    public static readonly StyledProperty<Icon> IconProperty
-        = AvaloniaProperty.Register<FluentIcon, Icon>(nameof(Icon), Icon.Home);
-    public static readonly StyledProperty<IconSize> IconSizeProperty
-        = AvaloniaProperty.Register<FluentIcon, IconSize>(nameof(IconSize), default);
-
     public Icon Icon
     {
         get => GetValue(IconProperty);
         set => SetValue(IconProperty, value);
     }
+    public static readonly StyledProperty<Icon> IconProperty
+        = AvaloniaProperty.Register<FluentIcon, Icon>(nameof(Icon), Icon.Home);
 
     Icon IValue<Icon>.Value
     {
@@ -47,6 +44,8 @@ public class FluentIcon : GenericIcon, IValue<Icon>
         get => GetValue(IconSizeProperty);
         set => SetValue(IconSizeProperty, value);
     }
+    public static readonly StyledProperty<IconSize> IconSizeProperty
+        = AvaloniaProperty.Register<FluentIcon, IconSize>(nameof(IconSize), default);
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override Typeface IconFont => GetTypeface(IconSize, IconVariant);

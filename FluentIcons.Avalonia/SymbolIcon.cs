@@ -11,17 +11,16 @@ namespace FluentIcons.Avalonia;
 public class SymbolIcon : GenericIcon, IValue<Symbol>
 {
     internal static readonly Typeface STypeface = new("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons");
-    
-    public static TypeConverter Converter { get; } = new GenericIconConverter<Symbol, SymbolIcon>();
 
-    public static readonly StyledProperty<Symbol> SymbolProperty
-        = AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
+    public static TypeConverter Converter { get; } = new GenericIconConverter<Symbol, SymbolIcon>();
 
     public Symbol Symbol
     {
         get => GetValue(SymbolProperty);
         set => SetValue(SymbolProperty, value);
     }
+    public static readonly StyledProperty<Symbol> SymbolProperty
+        = AvaloniaProperty.Register<SymbolIcon, Symbol>(nameof(Symbol), Symbol.Home);
 
     Symbol IValue<Symbol>.Value
     {
