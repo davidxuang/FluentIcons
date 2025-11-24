@@ -13,7 +13,6 @@ screen = "rectangle_landscape"
 share_screen = "rectangle_landscape"
 slide = "rectangle_landscape"
 speaker = "speaker_0"
-text_box = "textbox"                              # patch deprecated name
 vehicle_truck = "vehicle_truck_profile"
 wifi = "wifi_1"
 
@@ -284,7 +283,6 @@ task_list = ["2", [0, -1]]
 task_list_square = { "#" = "2", sparkle = "1" }
 text_a12 = "2"
 text_a15 = "2"
-text_box = "2"
 text_bullet_list = "2"
 text_bullet_list_square = { "#" = "2", search = "3", sparkle = "1" }
 text_clear_formatting = "2"
@@ -1727,7 +1725,6 @@ icons = [
   "table",
   "table_offset",
   "task_list_square",
-  "text_box",
   "text_bullet_list_square",
   "text_grammar",
   "textbox",

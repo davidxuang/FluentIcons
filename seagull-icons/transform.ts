@@ -10,20 +10,20 @@ import { ensure, getPathData } from './utils.js';
 
 const argv = yargs()
   .string('config')
-  .string('source')
-  .string('override-source')
-  .array('override-source')
-  .string('dest')
-  .string('override-dest')
-  .array('override-dest')
+  .string('in')
+  .string('in-override')
+  .array('in-override')
+  .string('out')
+  .string('out-override')
+  .array('out-override')
   .strict()
   .parseSync(hideBin(process.argv));
 
 const CONFIG = argv.config;
-const SRC_DIR = argv.source;
-const SRC_OVERRIDES = argv['override-source'];
-const DEST_DIR = argv.dest;
-const DEST_OVERRIDES = argv['override-dest'];
+const SRC_DIR = argv.in;
+const SRC_OVERRIDES = argv['in-override'];
+const DEST_DIR = argv.out;
+const DEST_OVERRIDES = argv['out-override'];
 
 const styles = ['regular', 'filled'];
 

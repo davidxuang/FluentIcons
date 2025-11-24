@@ -30,15 +30,15 @@ import {
 } from './types.js';
 
 const argv = yargs()
-  .string('source')
+  .string('in')
   .string('override')
   .string('mono')
   .string('extra')
   .string('extra-filter')
-  .string('target')
+  .string('out')
   .number('size')
   .number('shrink')
-  .number('units-em') // units per em
+  .number('upm') // units per em
   .string('config')
   .string('mirror')
   .strict()
@@ -241,7 +241,7 @@ fs.readdirSync(argv.mono)
   });
 
 [
-  ...fs.readdirSync(argv.source).map((f) => {
+  ...fs.readdirSync(argv.in).map((f) => {
     const spec = resolveName(f);
     const s = [`${spec.name}-filled.svg`, `${spec.name}-regular.svg`]
       .map((x) => path.join(argv.mono, x))
@@ -284,7 +284,7 @@ fs.readdirSync(argv.mono)
     if (argv.override && fs.existsSync(path.join(argv.override, f))) {
       return path.join(argv.override, f);
     }
-    return path.join(argv.source, f);
+    return path.join(argv.in, f);
   }),
   ...fs.readdirSync(argv.extraFilter).map((f) => path.join(argv.extra, f)),
 ].forEach((file) => {
@@ -595,7 +595,7 @@ const mirror_set = new Set<string>(JSON.parse(fs.readFileSync(argv.mirror).toStr
 
 const colors = new Array<string>();
 let g_matrix = new paper.Matrix();
-g_matrix.scale(argv['units-em'] / output_size);
+g_matrix.scale(argv['upm'] / output_size);
 g_matrix.append(new paper.Matrix(1, 0, 0, -1, 0, output_size)); // flip y
 
 const ttFont = xmlbuilder.create('ttFont', { encoding: 'UTF-8' });
@@ -811,7 +811,7 @@ color_glyphs.forEach((record) => {
       transform.ele('xy', { value: 0 });
       transform.ele('yx', { value: 0 });
       transform.ele('yy', { value: 1 });
-      transform.ele('dx', { value: argv['units-em'] });
+      transform.ele('dx', { value: argv['upm'] });
       transform.ele('dy', { value: 0 });
 
       const rtl_cg = rtl_tf.ele('Paint', { Format: 11 }); // PaintColrGlyph
@@ -829,19 +829,19 @@ colors.forEach((color, c) => {
   palette.ele('color', { index: c, value: color });
 });
 
-const ttx = fs.createWriteStream(path.join(argv.target, 'colr.ttx'));
+const ttx = fs.createWriteStream(path.join(argv.out, 'colr.ttx'));
 ttx.write(ttFont.end({ pretty: true }));
 ttx.end();
 
-if (fs.existsSync(argv.target)) {
-  fs.rmSync(argv.target, { recursive: true, force: true });
+if (fs.existsSync(argv.out)) {
+  fs.rmSync(argv.out, { recursive: true, force: true });
 }
-ensure(argv.target);
+ensure(argv.out);
 [...glyphs.entries()]
   .filter(([name, _]) => name.startsWith('_'))
   .forEach(([name, path_data]) => {
     fs.writeFileSync(
-      path.join(argv.target, `${name}.svg`),
+      path.join(argv.out, `${name}.svg`),
       `<svg width="${output_size}" height="${output_size}" viewBox="0 0 ${output_size} ${output_size}" xmlns="http://www.w3.org/2000/svg">\n  <path d="${path_data}" fill="#212121" />\n</svg>`
     );
   });

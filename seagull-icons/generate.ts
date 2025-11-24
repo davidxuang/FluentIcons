@@ -6,19 +6,19 @@ import * as fantasticon from 'fantasticon';
 import { resolveName } from './utils.js';
 
 const argv = yargs()
-  .string('source')
+  .string('in')
   .string('override')
   .array('override')
-  .string('codepoints')
+  .string('icons')
   .string('colr')
   .string('name')
-  .number('units-em')
-  .string('dest')
+  .number('upm')
+  .string('out')
   .strict()
   .parseSync(hideBin(process.argv));
 
 const symbols: { [symbol: string]: number } = JSON.parse(
-  fs.readFileSync(argv.codepoints).toString()
+  fs.readFileSync(argv.icons).toString()
 );
 const codepoints = Object.fromEntries([
   ...Object.entries(symbols)
@@ -43,18 +43,18 @@ const codepoints = Object.fromEntries([
 ]);
 
 argv.override?.forEach((override) => {
-  fs.cpSync(override, argv.source, { recursive: true, force: true });
+  fs.cpSync(override, argv.in, { recursive: true, force: true });
 });
-fs.cpSync(argv.colr, argv.source, { recursive: true, force: true });
+fs.cpSync(argv.colr, argv.in, { recursive: true, force: true });
 
-const rtl_dir = path.join(argv.source, 'RTL');
+const rtl_dir = path.join(argv.in, 'RTL');
 if (fs.existsSync(rtl_dir)) {
   fs.readdirSync(rtl_dir).forEach((name) => {
     const spec = resolveName(name);
     fs.copyFileSync(
       path.join(rtl_dir, name),
       path.join(
-        argv.source,
+        argv.in,
         `${spec.name}_rtl-${spec.variant}.svg`
       )
     );
@@ -64,14 +64,14 @@ if (fs.existsSync(rtl_dir)) {
 
 async function main() {
   await fantasticon.generateFonts({
-    inputDir: path.resolve(argv.source),
-    outputDir: path.resolve(argv.dest),
+    inputDir: path.resolve(argv.in),
+    outputDir: path.resolve(argv.out),
     name: argv.name,
     fontTypes: [fantasticon.ASSET_TYPES.TTF],
     assetTypes: [fantasticon.ASSET_TYPES.HTML, fantasticon.ASSET_TYPES.CSS],
     formatOptions: { json: { indent: 2 } },
     codepoints: codepoints,
-    fontHeight: argv.unitsEm,
+    fontHeight: argv.upm,
     normalize: true,
   });
 }

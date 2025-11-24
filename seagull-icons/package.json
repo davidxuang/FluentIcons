@@ -4,12 +4,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "collect": "tsx collect.ts --source=./upstream/assets --root=./obj",
-    "transform": "tsx transform.ts --config=./transform.toml --source=./obj/mono/resizable --override-source ./obj/mono/override ./override/seagull/cmpt ./override/mono/20 ./override/seagull/common --dest=./obj/composed/seagull --override-dest ./obj/mono/override ./override/mono/20 ./override/seagull/common",
-    "layerize": "tsx layerize.ts --mirror=./obj/mirror.json",
-    "mirror": "tsx mirror.ts --config=./obj/mirror.json",
-    "generate": "tsx generate.ts --codepoints=./obj/icons.json --dest=./obj",
-    "test": "tsx test.ts --source=./obj/composed/seagull"
+    "collect": "tsx collect.ts --in=./upstream/assets --root=./obj",
+    "transform": "tsx transform.ts --config=./transform.toml --in=./obj/mono/resizable --in-override ./obj/mono/override ./override/seagull/cmpt ./override/mono/20 ./override/seagull/common --out=./obj/composed/seagull --out-override ./obj/mono/override ./override/mono/20 ./override/seagull/common",
+    "layerize": "tsx layerize.ts",
+    "mirror": "tsx mirror.ts",
+    "generate": "tsx generate.ts --icons=./obj/icons.json --out=./obj",
+    "test": "tsx test.ts --in=./obj/composed/seagull"
   },
   "keywords": [],
   "author": "",

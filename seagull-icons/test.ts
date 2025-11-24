@@ -7,7 +7,7 @@ import paper from 'paper';
 import { Doc, Renderable } from './types.js';
 import { getPathData } from './utils.js';
 
-const argv = yargs().string('source').strict().parseSync(hideBin(process.argv));
+const argv = yargs().string('in').strict().parseSync(hideBin(process.argv));
 
 paper.setup([16, 16]);
 const tolerance = 1 / 12;
@@ -18,7 +18,7 @@ const parser = new Parser({
   explicitArray: true,
 });
 
-fs.readdirSync(argv.source, { recursive: true }).forEach((f) => {
+fs.readdirSync(argv.in, { recursive: true }).forEach((f) => {
   if (
     typeof f !== 'string' ||
     path.extname(f) !== '.svg' ||
@@ -27,7 +27,7 @@ fs.readdirSync(argv.source, { recursive: true }).forEach((f) => {
     return;
   }
 
-  const file = path.join(argv.source, f);
+  const file = path.join(argv.in, f);
   parser.parseString(fs.readFileSync(file), (err, doc: Doc) => {
     if (err) {
       throw file;

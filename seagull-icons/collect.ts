@@ -4,7 +4,7 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { ensure, resolveAsset } from './utils.js';
 
-const argv = yargs().string('source').string('root').strict().parseSync(hideBin(process.argv));
+const argv = yargs().string('in').string('root').strict().parseSync(hideBin(process.argv));
 const MONO_DIR = path.join(argv.root, 'mono');
 const COLOR_DIR = path.join(argv.root, 'color');
 const CSV = path.join(argv.root, '../collect.csv');
@@ -92,15 +92,6 @@ function collect(
 }
 
 function merge(dir: string) {
-  if (fs.existsSync(path.join(dir, 'override'))) {
-    fs.readdirSync(path.join(dir, 'override')).forEach((f) => {
-      fs.cpSync(path.join(dir, 'override', f), path.join(dir, f), {
-        force: true,
-      });
-    });
-    fs.rmSync(path.join(dir, 'override'), { recursive: true });
-  }
-
   if (fs.existsSync(path.join(dir, 'LTR'))) {
     fs.readdirSync(path.join(dir, 'LTR')).forEach((f) => {
       const dest = path.join(dir, f);
@@ -119,7 +110,7 @@ if (fs.existsSync(COLOR_DIR)) {
   fs.rmSync(COLOR_DIR, { recursive: true });
 }
 
-collect(argv.source, null, '', 0, false, (src_set, subdir, name) => {
+collect(argv.in, null, '', 0, false, (src_set, subdir, name) => {
   const spec = resolveAsset(src_set, name);
   if (spec === null) {
     return [null, []];
