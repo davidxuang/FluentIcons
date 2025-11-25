@@ -20,16 +20,12 @@ public abstract partial class GenericIcon : FontIcon
     {
         FontStyle = FontStyle.Normal;
         FontWeight = FontWeights.Normal;
-        IsTextScaleFactorEnabled = false;
-        MirroredWhenRightToLeft = false;
 
         RegisterPropertyChangedCallback(FlowDirectionProperty, OnIconPropertiesChanged);
         RegisterPropertyChangedCallback(FontFamilyProperty, OnIconPropertiesChanged);
         RegisterPropertyChangedCallback(FontStyleProperty, OnFontStyleChanged);
         RegisterPropertyChangedCallback(FontWeightProperty, OnFontWeightChanged);
         RegisterPropertyChangedCallback(GlyphProperty, OnIconPropertiesChanged);
-        RegisterPropertyChangedCallback(IsTextScaleFactorEnabledProperty, OnIsTextScaleFactorEnabledChanged);
-        RegisterPropertyChangedCallback(MirroredWhenRightToLeftProperty, OnMirroredWhenRightToLeftChanged);
     }
 
 #if !HAS_UNO
@@ -95,22 +91,6 @@ public abstract partial class GenericIcon : FontIcon
         if (sender is GenericIcon inst)
         {
             inst.FontWeight = FontWeights.Normal;
-        }
-    }
-
-    private static void OnIsTextScaleFactorEnabledChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is GenericIcon inst)
-        {
-            inst.IsTextScaleFactorEnabled = false;
-        }
-    }
-
-    private static void OnMirroredWhenRightToLeftChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is GenericIcon inst)
-        {
-            inst.MirroredWhenRightToLeft = false;
         }
     }
 }
