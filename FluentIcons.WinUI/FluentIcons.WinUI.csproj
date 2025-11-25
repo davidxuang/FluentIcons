@@ -26,7 +26,7 @@
 
     <Otherwise>
       <ItemGroup>
-        <ProjectReference Include="..\FluentIcons.Uno\FluentIcons.Uno.csproj" ExactVersion="true" />
+        <ProjectReference Include="..\FluentIcons.Resources\FluentIcons.Resources.Uno.csproj" ExactVersion="true" />
       </ItemGroup>
 
       <ItemGroup>

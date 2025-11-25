@@ -11,7 +11,7 @@ namespace FluentIcons.Uwp;
 
 public partial class SymbolIcon : GenericIcon
 {
-    internal static readonly FontFamily SFontFamily = new($"ms-appx:///{AssetsNamespace}/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
+    internal static readonly FontFamily SFontFamily = new($"ms-appx:///{AssetsAssembly}/Assets/SeagullFluentIcons.ttf#Seagull Fluent Icons");
 
     public SymbolIcon()
     {

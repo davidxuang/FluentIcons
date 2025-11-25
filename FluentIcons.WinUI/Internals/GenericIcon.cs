@@ -8,11 +8,11 @@ namespace FluentIcons.WinUI.Internals;
 
 public abstract partial class GenericIcon : FontIcon
 {
-    protected const string AssetsNamespace =
+    protected const string AssetsAssembly =
 #if !HAS_UNO
         "FluentIcons.WinUI";
 #else
-        "FluentIcons.Uno";
+        "FluentIcons.Resources.Uno";
 #endif
 
     public GenericIcon()

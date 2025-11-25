@@ -12,7 +12,8 @@
   <Project Path="FluentIcons.Common/FluentIcons.Common.csproj" />
   <Project Path="FluentIcons.Gallery/FluentIcons.Gallery.csproj" />
   <Project Path="FluentIcons.Maui/FluentIcons.Maui.csproj" />
-  <Project Path="FluentIcons.Uno/FluentIcons.Uno.csproj" />
+  <Project Path="FluentIcons.Resources/FluentIcons.Resources.Avalonia.csproj" />
+  <Project Path="FluentIcons.Resources/FluentIcons.Resources.Uno.csproj" />
   <Project Path="FluentIcons.Uwp/FluentIcons.Uwp.csproj" />
   <Project Path="FluentIcons.WinUI/FluentIcons.WinUI.csproj" />
   <Project Path="FluentIcons.Wpf/FluentIcons.Wpf.csproj" />

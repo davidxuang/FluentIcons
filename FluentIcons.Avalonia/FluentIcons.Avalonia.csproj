@@ -12,12 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" ExactVersion="true" />
+    <ProjectReference Include="..\FluentIcons.Resources\FluentIcons.Resources.Avalonia.csproj" ExactVersion="true" />
     <InternalsVisibleTo Include="FluentIcons.Avalonia.Fluent" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Assets\**" />
-    <AvaloniaResource Include="Assets\*.ttf" />
   </ItemGroup>
 
 </Project>

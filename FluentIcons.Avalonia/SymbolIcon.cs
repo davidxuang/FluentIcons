@@ -10,7 +10,7 @@ namespace FluentIcons.Avalonia;
 [TypeConverter(typeof(GenericIconConverter<Symbol, SymbolIcon>))]
 public class SymbolIcon : GenericIcon, IValue<Symbol>
 {
-    internal static readonly Typeface STypeface = new("avares://FluentIcons.Avalonia/Assets#Seagull Fluent Icons");
+    internal static readonly Typeface STypeface = new("avares://FluentIcons.Resources.Avalonia/Assets#Seagull Fluent Icons");
 
     public static TypeConverter Converter { get; } = new GenericIconConverter<Symbol, SymbolIcon>();
 
