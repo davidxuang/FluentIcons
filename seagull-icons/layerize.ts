@@ -1,7 +1,6 @@
 import assert from 'assert';
 import fs from 'fs';
 import path from 'path';
-import cyrb53 from 'cyrb53';
 import { BiMap } from 'mnemonist';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -247,37 +246,12 @@ fs.readdirSync(argv.mono)
       .map((x) => path.join(argv.mono, x))
       .find((x) => fs.existsSync(x));
     if (s) {
-      parser.parseString(fs.readFileSync(s), (_, doc: Doc) => {
-        const path_data = [
-          'M0,0Z', // bypass de-duplication of fantasticon
-          ...doc.svg.$$.filter(
-            (elem) =>
-              elem['#name'] === 'circle' ||
-              elem['#name'] === 'ellipse' ||
-              elem['#name'] === 'line' ||
-              elem['#name'] === 'path' ||
-              elem['#name'] === 'polygon' ||
-              elem['#name'] === 'polyline' ||
-              elem['#name'] === 'rect' ||
-              elem['#name'] === 'g'
-          ).map((elem) => getPathData(elem)),
-        ].join('');
-        fs.writeFileSync(
-          path.join(argv.mono, f),
-          `<svg width="${doc.svg.$.width}" height="${doc.svg.$.height}" viewBox="${
-            doc.svg.$.viewBox
-          }" xmlns="http://www.w3.org/2000/svg">\n  <path d="${path_data}M${
-            cyrb53(f) / Number.MAX_SAFE_INTEGER
-          } 0Z" fill="#212121" />\n</svg>`
-        );
-      });
+      fs.cpSync(s, path.join(argv.mono, f), { force: true });
     } else {
       console.warn(`[NOT_FOUND] ${spec.name}-{filled|regular}.svg => ${f}`);
       fs.writeFileSync(
         path.join(argv.mono, f),
-        `<svg width="1" height="1" viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">\n  <path d="M${
-          cyrb53(f) / Number.MAX_SAFE_INTEGER
-        } 0Z" fill="#212121" />\n</svg>`
+        `<svg width="1" height="1" viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">\n  <path d="M0 0Z" fill="#212121" />\n</svg>`
       );
     }
 

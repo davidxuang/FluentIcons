@@ -2,8 +2,11 @@
 
 [CmdletBinding()]
 param (
-    [Switch]
-    $Seagull
+    [switch]
+    $Seagull,
+    [string]
+    [ValidateSet('ttf', 'otf', 'ttf;otf')]
+    $FontFormat = 'otf'
 )
 
 $PSNativeCommandUseErrorActionPreference = $true
@@ -17,6 +20,7 @@ Push-Location .
 Set-Location $PSScriptRoot
 
 Remove-Item "./obj" -Force -Recurse -ErrorAction SilentlyContinue
+$FontFormat = $FontFormat.Split(';')
 
 try {
     $env:NODE_OPTIONS = '--no-deprecation'
@@ -26,10 +30,10 @@ try {
     pnpm transform
     pnpm run layerize --in=./obj/color/20 --override=./obj/color/override --mono=./obj/composed/seagull --extra=./obj/mono/resizable --extra-filter=./override/mono/20 --size=20 --shrink=2 --upm=2048 --config=./layerize.toml --mirror=./obj/mirror.json --out=./obj/colr/seagull
     pnpm run mirror --dir=./obj/composed/seagull --config=./obj/mirror.json
-    pnpm run generate --in=./obj/composed/seagull --colr=./obj/colr/seagull --name=SeagullFluentIcons --upm=2048 --icons=./obj/icons.json --out=./obj
-    python ./patch.py ./obj/SeagullFluentIcons.ttf ./obj/icons.json
-    ttx -m ./obj/SeagullFluentIcons.ttf -o ./obj/SeagullFluentIcons.ttf --no-recalc-timestamp ./obj/colr/seagull/colr.ttx
-    Copy-Item ./obj/SeagullFluentIcons.ttf ./assets -Force
+    foreach ($f in $FontFormat) {
+        python ./generate.py --in="./obj/composed/seagull" --colr="./obj/colr/seagull" --icons=./obj/icons.json --out=./obj --name=SeagullFluentIcons --upm=2048 --format=$f
+        Copy-Item "./obj/SeagullFluentIcons.$f" ./assets -Force
+    }
 
     if ($Seagull) { return }
 
@@ -50,24 +54,21 @@ try {
     Get-ChildItem -Path "./obj/mono" -Directory | Where-Object {
         [int]::TryParse($_.Name, [ref]$null)
     } | ForEach-Object {
-        $colr = Test-Path "./override/mono/$($_.Name)"
+        $colr = Test-Path "./obj/color/$($_.Name)"
         $upem = Get-FontHeight ([int]$_.Name)
         $wd = "./obj/composed/$($_.Name)"
         Copy-Item $_ $wd -Recurse
         if ($colr) {
             pnpm run layerize --in="./obj/color/$($_.Name)" --mono=$wd --extra=$wd --extra-filter="./override/mono/$($_.Name)" --size=$($_.Name) --upm=$upem  --mirror=./obj/mirror.json --out="./obj/colr/$($_.Name)"
-            pnpm run mirror --dir=$wd --config=./obj/mirror.json
-            pnpm run generate --in=$wd --override="./override/mono/$($_.Name)" --colr="./obj/colr/$($_.Name)" --name="FluentSystemIcons-Size$($_.Name)" --upm=$upem --icons=./obj/icons.json --out=./obj
         } else {
             New-Item -ItemType Directory -Path "./obj/colr/$($_.Name)" -ErrorAction SilentlyContinue | Out-Null
-            pnpm run mirror --dir=$wd --config=./obj/mirror.json
-            pnpm run generate --in=$wd --colr="./obj/colr/$($_.Name)" --name="FluentSystemIcons-Size$($_.Name)" --upm=$upem --icons=./obj/icons.json --out=./obj
+            New-Item -ItemType Directory -Path "./override/mono/$($_.Name)" -ErrorAction SilentlyContinue | Out-Null
         }
-        python ./patch.py "./obj/FluentSystemIcons-Size$($_.Name).ttf" ./obj/icons.json
-        if ($colr) {
-            ttx -m "./obj/FluentSystemIcons-Size$($_.Name).ttf" -o "./obj/FluentSystemIcons-Size$($_.Name).ttf" --no-recalc-timestamp "./obj/colr/$($_.Name)/colr.ttx"
+        pnpm run mirror --dir $wd --config=./obj/mirror.json
+        foreach ($f in $FontFormat) {
+            python ./generate.py --in="./obj/composed/$($_.Name)" --override="./override/mono/$($_.Name)" --colr="./obj/colr/$($_.Name)" --icons=./obj/icons.json --out=./obj --name="FluentSystemIcons-Size$($_.Name)" --upm=$upem --format=$f
+            Copy-Item "./obj/FluentSystemIcons-Size$($_.Name).$f" ./assets -Force
         }
-        Copy-Item "./obj/FluentSystemIcons-Size$($_.Name).ttf" ./assets -Force
     }
 } finally {
     Pop-Location

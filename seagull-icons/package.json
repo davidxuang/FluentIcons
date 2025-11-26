@@ -8,7 +8,6 @@
     "transform": "tsx transform.ts --config=./transform.toml --in=./obj/mono/resizable --in-override ./obj/mono/override ./override/seagull/cmpt ./override/mono/20 ./override/seagull/common --out=./obj/composed/seagull --out-override ./obj/mono/override ./override/mono/20 ./override/seagull/common",
     "layerize": "tsx layerize.ts",
     "mirror": "tsx mirror.ts",
-    "generate": "tsx generate.ts --icons=./obj/icons.json --out=./obj",
     "test": "tsx test.ts --in=./obj/composed/seagull"
   },
   "keywords": [],
@@ -19,7 +18,6 @@
     "@types/cyrb53": "^1.0.0",
     "colorjs.io": "^0.5.0",
     "cyrb53": "^1.0.0",
-    "fantasticon": "^3.0.0",
     "mnemonist": "^0.40.0",
     "paper": "^0.12.0",
     "paper-jsdom": "^0.12.0",
@@ -38,11 +36,7 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "es5-ext",
-      "esbuild",
-      "ttf2woff2"
-    ],
-    "patchedDependencies": {
-      "fantasticon@3.0.0": "patches/fantasticon@3.0.0.patch"
-    }
+      "esbuild"
+    ]
   }
 }

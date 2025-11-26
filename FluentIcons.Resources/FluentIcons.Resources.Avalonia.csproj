@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <None Include="Assets\**" />
-    <AvaloniaResource Include="Assets\*.ttf" />
+    <AvaloniaResource Include="Assets\*.otf" />
   </ItemGroup>
 
 </Project>
