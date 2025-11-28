@@ -17,4 +17,5 @@
   <Project Path="FluentIcons.Uwp/FluentIcons.Uwp.csproj" />
   <Project Path="FluentIcons.WinUI/FluentIcons.WinUI.csproj" />
   <Project Path="FluentIcons.Wpf/FluentIcons.Wpf.csproj" />
+  <Project Path="UnoApp1/UnoApp1.csproj" />
 </Solution>

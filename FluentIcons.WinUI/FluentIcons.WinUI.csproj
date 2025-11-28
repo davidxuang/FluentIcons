@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Uno.Sdk/6.4.31">
   <PropertyGroup>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">
-      $(TargetFrameworks);net6.0-windows10.0.17763.0;net8.0-windows10.0.17763.0
+      $(TargetFrameworks);net10.0-windows10.0.19041.0
     </TargetFrameworks>
-    <TargetFrameworks>$(TargetFrameworks);net8.0;net8.0-android;net9.0-ios;net9.0-maccatalyst;net9.0-macos</TargetFrameworks>
+    <TargetFrameworks>$(TargetFrameworks);net10.0;net10.0-android;net10.0-ios;net10.0-maccatalyst;net10.0-macos</TargetFrameworks>
     <Description>FluentUI System Icons control library for WinUI.</Description>
     <PackageTags>$(PackageTags);WinUI</PackageTags>
     <RootNamespace>FluentIcons.WinUI</RootNamespace>
@@ -16,12 +16,12 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
   </ItemGroup>
 
-  <Choose>
+   <Choose>
     <When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
-      <ItemGroup>
+      <!--<ItemGroup>
         <PackageReference Include="Microsoft.WindowsAppSDK" />
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
-      </ItemGroup>
+      </ItemGroup>-->
     </When>
 
     <Otherwise>
@@ -29,9 +29,9 @@
         <ProjectReference Include="..\FluentIcons.Resources\FluentIcons.Resources.Uno.csproj" ExactVersion="true" />
       </ItemGroup>
 
-      <ItemGroup>
+      <!--<ItemGroup>
         <PackageReference Include="Uno.WinUI" />
-      </ItemGroup>
+      </ItemGroup>-->
     </Otherwise>
   </Choose>
 
@@ -43,4 +43,5 @@
     <None Include="build\**" Pack="true" PackagePath="build;buildTransitive" />
     <None Include="..\seagull-icons\assets\*.otf" Pack="true" PackagePath="contentTransitive/$(PackageId)/Assets" />
   </ItemGroup>
+
 </Project>

@@ -1,0 +1,65 @@
+<Project Sdk="Uno.Sdk/6.4.31">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0-desktop;net10.0-windows10.0.26100</TargetFrameworks>
+
+    <OutputType>Exe</OutputType>
+    <UnoSingleProject>true</UnoSingleProject>
+
+    <!-- Display name -->
+    <ApplicationTitle>UnoApp1</ApplicationTitle>
+    <!-- App Identifier -->
+    <ApplicationId>com.companyname.UnoApp1</ApplicationId>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <!-- Package Publisher -->
+    <ApplicationPublisher>david</ApplicationPublisher>
+    <!-- Package Description -->
+    <Description>UnoApp1 powered by Uno Platform.</Description>
+    <!--
+      If you encounter this error message:
+
+        error NETSDK1148: A referenced assembly was compiled using a newer version of Microsoft.Windows.SDK.NET.dll.
+        Please update to a newer .NET SDK in order to reference this assembly.
+
+      This means that the two packages below must be aligned with the "build" version number of
+      the "Microsoft.Windows.SDK.BuildTools" package above, and the "revision" version number
+      must be the highest found in https://www.nuget.org/packages/Microsoft.Windows.SDK.NET.Ref.
+    -->
+    <!-- <WindowsSdkPackageVersion>10.0.22621.28</WindowsSdkPackageVersion> -->
+
+    <!--
+      UnoFeatures are used to quickly add and manage features enabled for your app.
+      https://aka.platform.uno/singleproject-features
+    -->
+    <UnoFeatures>
+      Mvvm;
+      ThemeService;
+      SkiaRenderer;
+    </UnoFeatures>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FluentIcons.WinUI\FluentIcons.WinUI.csproj" />
+  </ItemGroup>
+
+  <!-- Import assets manmually -->
+  <Choose>
+    <When Condition="$(TargetFramework.StartsWith('net10.0-windows'))">
+      <ItemGroup>
+        <Content Include="..\seagull-icons\assets\**">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Link>FluentIcons.WinUI\Assets\%(Filename)%(Extension)</Link>
+        </Content>
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Content Include="..\seagull-icons\assets\**">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Link>FluentIcons.Resources.Uno\Assets\%(Filename)%(Extension)</Link>
+        </Content>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+
+</Project>
