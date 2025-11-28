@@ -15,7 +15,10 @@ export function resolveAsset(dname: string, fname: string) {
     direction = m[1];
     dname = dname.replace(/ (RTL|LTR)\b/, '');
   }
-  dname = dname.replace('Text Box', 'TextBox'); // patch deprecated name
+  // name unification
+  dname = dname
+    .replace('Text Box', 'TextBox')
+    .replace('Reorder', 'Re Order');
   const snake = dname.replace(/_*\s+_*/g, '_').toLowerCase();
   const name = dname
     .replace(/(?<!Rotate) (45|90|135|225|270|315)\b/, ' Rotate $1') // unify rotate names
