@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:FluentIcons.Gallery.Views"
     xmlns:c="clr-namespace:FluentIcons.Gallery.Controls"
     xmlns:ic="clr-namespace:FluentIcons.Avalonia.Fluent;assembly=FluentIcons.Avalonia.Fluent"
-    xmlns:icx="clr-namespace:FluentIcons.Avalonia.Fluent.MarkupExtensions;assembly=FluentIcons.Avalonia.Fluent"
+    xmlns:icx="clr-namespace:FluentIcons.Avalonia.Fluent.Markup;assembly=FluentIcons.Avalonia.Fluent"
     xmlns:m="clr-namespace:FluentIcons.Gallery.Models"
     xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
     xmlns:vm="clr-namespace:FluentIcons.Gallery.ViewModels"

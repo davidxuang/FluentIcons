@@ -48,16 +48,12 @@ This package features `<FluentIcon>`/`<SymbolIcon>` element, and `<FluentIconSou
 The _Fluent_ variant provides all sizes of icons untouched compared to upstream, while the _Symbol_ variant mimics the APIs and appearances of `SymbolIcon` and [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font) from WinUI, which is powered by a derived version from the child project [Seagull Icons](./seagull-icons/README.md). These variants were controlled by the deprecated `UseSegoeMetrics` property in distributions prior to 1.1.278.
 
 ```xml
-<Window xmlns:ic="using:FluentIcons.WinUI">
-    <Expander Header="{ic:SymbolIcon Symbol=ArrowLeft}" />
+<Window xmlns:icx="using:FluentIcons.WinUI.Markup">
+    <Expander Header="{icx:SymbolIcon Symbol=ArrowLeft}" />
 </Window>
 ```
 
-Markup extension classes have been added since 1.1.242. These extensions will bind their `FlowDirection` to that of the parent control, except `FluentIconSourceExtension`/`SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available.
-
-### Avalonia
-
-Markup extension classes are in a child namespace to stop style selectors from throwing for their naming conventions.
+Markup extension classes have been added since version 1.1.242. These extensions will bind their `FlowDirection` to that of the parent control, except `FluentIconSourceExtension`/`SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available. They are moved to a child namespace since version.
 
 ### MAUI
 

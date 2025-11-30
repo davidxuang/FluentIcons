@@ -37,8 +37,8 @@ public sealed partial class MainViewModel : ViewModelBase
         ? $"<ic:{Prefix}Icon {Property}=\"{Selected?.Name}\" />"
         : $"<ic:{Prefix}Icon {Property}=\"{Selected?.Name}\" IconVariant=\"{IconVariant}\" />";
     public string XamlExtension => IconVariant == IconVariant.Regular
-        ? $"{{ic:{Prefix}Icon {Property}={Selected?.Name}}}"
-        : $"{{ic:{Prefix}Icon {Property}={Selected?.Name}, IconVariant={IconVariant}}}";
+        ? $"{{icx:{Prefix}Icon {Property}={Selected?.Name}}}"
+        : $"{{icx:{Prefix}Icon {Property}={Selected?.Name}, IconVariant={IconVariant}}}";
     public string CSharp => IconVariant == IconVariant.Regular
         ? $"new {Prefix}Icon {{ {Property} = {Property}.{Selected?.Name} }};"
         : $"new {Prefix}Icon {{ {Property} = {Property}.{Selected?.Name}, IconVariant = IconVariant.{IconVariant} }};";
