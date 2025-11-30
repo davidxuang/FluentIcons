@@ -1,14 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using FluentIcons.Common;
-using FluentIcons.Common.Internals;
-using FluentIcons.WinUI.Internals;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Markup;
-using Microsoft.UI.Xaml.Media;
-
+﻿#if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
 namespace FluentIcons.WinUI;
+#else
+namespace FluentIcons.Uwp;
+#endif
 
 public partial class FluentIcon : GenericIcon
 {
@@ -27,6 +21,13 @@ public partial class FluentIcon : GenericIcon
     {
         InvalidateText();
     }
+
+#if WINDOWS_UWP
+    internal FluentIcon(bool bindFlowDirection) : base(bindFlowDirection)
+    {
+        InvalidateText();
+    }
+#endif
 
     public Icon Icon
     {
@@ -57,9 +58,15 @@ public partial class FluentIconExtension : MarkupExtension
     public double? FontSize { get; set; }
     public Brush? Foreground { get; set; }
 
+#if WINDOWS_UWP
+    protected override object ProvideValue()
+    {
+        var icon = new FluentIcon(true);
+#else
     protected override object ProvideValue(IXamlServiceProvider serviceProvider)
     {
         var icon = new FluentIcon();
+#endif
 
         if (Icon.HasValue) icon.Icon = Icon.Value;
         if (IconVariant.HasValue) icon.IconVariant = IconVariant.Value;
@@ -67,6 +74,7 @@ public partial class FluentIconExtension : MarkupExtension
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (Foreground is not null) icon.Foreground = Foreground;
 
+#if !WINDOWS_UWP
         var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
         if (service?.TargetObject is FrameworkElement source)
         {
@@ -74,6 +82,7 @@ public partial class FluentIconExtension : MarkupExtension
                 FrameworkElement.FlowDirectionProperty,
                 new Binding { Source = source, Path = new PropertyPath(nameof(source.FlowDirection)) });
         }
+#endif
 
         return icon;
     }

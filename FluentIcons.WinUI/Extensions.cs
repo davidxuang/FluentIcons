@@ -1,8 +1,8 @@
-using System;
-using Microsoft.Extensions.Hosting;
-using Microsoft.UI.Xaml;
-
+#if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
 namespace FluentIcons.WinUI;
+#else
+namespace FluentIcons.Uwp;
+#endif
 
 public static class Extensions
 {
@@ -10,6 +10,8 @@ public static class Extensions
 
     [Obsolete(Message)]
     public static Application UseSegoeMetrics(this Application app) => app;
+#if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
     [Obsolete(Message)]
     public static IHostBuilder UseSegoeMetrics(this IHostBuilder builder) => builder;
+#endif
 }

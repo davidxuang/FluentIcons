@@ -1,16 +1,16 @@
-﻿using FluentIcons.Common;
-using Microsoft.UI.Text;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-
+﻿#if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
 namespace FluentIcons.WinUI.Internals;
+#else
+namespace FluentIcons.Uwp.Internals;
+#endif
 
 public abstract partial class GenericIcon : FontIcon
 {
     protected const string AssetsAssembly =
-#if !HAS_UNO
+#if WINDOWS_WINAPPSDK
         "FluentIcons.WinUI";
+#elif WINDOWS_UWP
+        "FluentIcons.Uwp";
 #else
         "FluentIcons.Resources.Uno";
 #endif
@@ -26,6 +26,30 @@ public abstract partial class GenericIcon : FontIcon
         RegisterPropertyChangedCallback(FontWeightProperty, OnFontWeightChanged);
         RegisterPropertyChangedCallback(GlyphProperty, OnIconPropertiesChanged);
     }
+
+#if WINDOWS_UWP
+    internal GenericIcon(bool bindFlowDirection) : this()
+    {
+        if (!bindFlowDirection)
+            return;
+
+        static void handler(object sender, RoutedEventArgs args)
+        {
+            if (sender is GenericIcon icon)
+            {
+                icon.Loaded -= handler;
+                if (icon.Parent is FrameworkElement parent)
+                {
+                    icon.SetBinding(
+                        FlowDirectionProperty,
+                        new Binding { Source = parent, Path = new PropertyPath(nameof(FlowDirection)) });
+                }
+            }
+        };
+
+        Loaded += handler;
+    }
+#endif
 
     public IconVariant IconVariant
     {

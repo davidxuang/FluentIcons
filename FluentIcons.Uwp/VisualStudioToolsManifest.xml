@@ -1,6 +1,8 @@
 <FileList>
   <File Reference="FluentIcons.Uwp.dll">
     <ToolboxItems UIFramework="UAP" VSCategory="Fluent Icons"  BlendCategory="Fluent Icons">
+      <Item Type="FluentIcons.Uwp.FluentIcon" />
+      <Item Type="FluentIcons.Uwp.FluentIconSource" />
       <Item Type="FluentIcons.Uwp.SymbolIcon" />
       <Item Type="FluentIcons.Uwp.SymbolIconSource" />
     </ToolboxItems>

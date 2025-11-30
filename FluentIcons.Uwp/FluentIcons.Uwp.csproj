@@ -17,6 +17,7 @@
       <PropertyGroup>
         <TargetPlatformVersion>10.0.26100.0</TargetPlatformVersion>
         <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+        <DefineConstants>$(DefineConstants);WINDOWS_UWP</DefineConstants>
       </PropertyGroup>
 
       <ItemGroup>
@@ -30,6 +31,7 @@
         <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
         <UseUwp>true</UseUwp>
         <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+        <DefineConstants>$(DefineConstants);WINDOWS_UWP</DefineConstants>
       </PropertyGroup>
 
       <ItemGroup>
@@ -53,6 +55,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="..\FluentIcons.WinUI\*.cs" />
+    <Compile Include="..\FluentIcons.WinUI\Internals\*.cs" LinkBase="Internals" />
     <None Include="build\**" Pack="true" PackagePath="build;buildTransitive" />
     <None Include="..\seagull-icons\assets\*.otf" Pack="true" PackagePath="contentTransitive/$(PackageId)/Assets" />
     <None Include="VisualStudioToolsManifest.xml" Pack="True" PackagePath="tools" />

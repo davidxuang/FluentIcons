@@ -1,10 +1,8 @@
-﻿using FluentIcons.Common;
-using Microsoft.UI.Text;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-
+﻿#if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
 namespace FluentIcons.WinUI.Internals;
+#else
+namespace FluentIcons.Uwp.Internals;
+#endif
 
 public abstract partial class GenericIconSource : FontIconSource
 {
