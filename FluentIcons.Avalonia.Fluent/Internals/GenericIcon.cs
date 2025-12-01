@@ -12,6 +12,7 @@ using FluentIcons.Common.Internals;
 
 namespace FluentIcons.Avalonia.Fluent.Internals;
 
+[EditorBrowsable(EditorBrowsableState.Never)]
 public abstract class GenericIcon : FAIconElement
 {
     private TextLayout? _textLayout;

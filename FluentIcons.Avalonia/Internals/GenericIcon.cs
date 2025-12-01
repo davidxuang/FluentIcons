@@ -12,6 +12,7 @@ using FluentIcons.Common.Internals;
 
 namespace FluentIcons.Avalonia.Internals;
 
+[EditorBrowsable(EditorBrowsableState.Never)]
 public abstract class GenericIcon : IconElement
 {
     private readonly Border _border;

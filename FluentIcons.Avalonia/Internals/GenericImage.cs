@@ -10,6 +10,7 @@ using FluentIcons.Common.Internals;
 
 namespace FluentIcons.Avalonia.Internals;
 
+[EditorBrowsable(EditorBrowsableState.Never)]
 public abstract class GenericImage : AvaloniaObject, IDisposable, IImage
 {
     private TextLayout? _textLayout;

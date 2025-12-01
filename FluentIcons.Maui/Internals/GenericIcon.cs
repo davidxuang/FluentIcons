@@ -8,6 +8,7 @@ using Microsoft.Maui.Graphics.Converters;
 
 namespace FluentIcons.Maui.Internals;
 
+[EditorBrowsable(EditorBrowsableState.Never)]
 public abstract partial class GenericIcon : ContentView
 {
     private readonly Label _label;

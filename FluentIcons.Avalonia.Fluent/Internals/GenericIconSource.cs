@@ -9,6 +9,7 @@ using FluentIcons.Common.Internals;
 
 namespace FluentIcons.Avalonia.Fluent.Internals;
 
+[EditorBrowsable(EditorBrowsableState.Never)]
 public abstract class GenericIconSource : FontIconSource
 {
     public GenericIconSource()

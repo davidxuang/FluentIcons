@@ -4,6 +4,7 @@ namespace FluentIcons.WinUI.Internals;
 namespace FluentIcons.Uwp.Internals;
 #endif
 
+[EditorBrowsable(EditorBrowsableState.Never)]
 public abstract partial class GenericIconSource : FontIconSource
 {
     public GenericIconSource()

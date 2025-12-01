@@ -9,6 +9,7 @@ using FluentIcons.Common.Internals;
 
 namespace FluentIcons.Wpf.Internals;
 
+[EditorBrowsable(EditorBrowsableState.Never)]
 public abstract class GenericIcon : FrameworkElement
 {
     private bool _suspendCreate = true;

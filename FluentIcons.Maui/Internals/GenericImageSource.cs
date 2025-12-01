@@ -6,6 +6,7 @@ using Microsoft.Maui.Controls;
 
 namespace FluentIcons.Maui.Internals;
 
+[EditorBrowsable(EditorBrowsableState.Never)]
 public abstract partial class GenericImageSource : FontImageSource
 {
     public IconVariant IconVariant
