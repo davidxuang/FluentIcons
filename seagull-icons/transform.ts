@@ -37,20 +37,22 @@ const parser = new Parser({
 });
 
 type Translate = [number, number];
-type BaseMeta = [
-  string, // cat
-  [number, number] | 0, // translate
-  [number, number] // badge_translate
-];
-type BadgeAbstract = {
+type BaseMeta = {
+  '0': string; // category
+  u?: Translate; // base translate for 16px
+  v?: Translate; // badge translate for 16px
+};
+type BadgeTemplate = {
   window?: Translate;
   mask: string | { [cat: string]: string };
   badge: string | { [cat: string]: string };
 };
-type BadgeMeta = BadgeAbstract & {
+type BadgeMeta = BadgeTemplate & {
   inherits?: string;
+  mirrors?: string;
   // icon:root@variant#/override
   icons: string[];
+  icons_rtl?: string[];
 };
 
 // read configurations
@@ -60,23 +62,15 @@ const data = parse(fs.readFileSync(CONFIG).toString()) as {
   };
   redirect: { [icon: string]: string | { [cat: string]: string } };
   base: {
-    [icon: string]: string | BaseMeta | { [badge: string]: string | BaseMeta };
+    [icon: string]: string | { [badge: string]: string | BaseMeta };
   };
-  abstract: { [badge: string]: BadgeAbstract };
+  template: { [badge: string]: BadgeTemplate };
   // name#variant
   compose: { [badge: string]: BadgeMeta };
   rtl: {
-    base: {
-      [icon: string]: {
-        mirror_badge?: boolean;
-        mirror_category?: boolean;
-      };
-    };
-    compose: {
-      [badge: string]: {
-        mirror?: string;
-        icons: string[];
-      };
+    [icon: string]: {
+      mirror_badge?: boolean;
+      mirror_category?: boolean;
     };
   };
 };
@@ -187,9 +181,9 @@ const resolveSrc = (meta: ComposeMeta, base_meta: BaseMeta) => {
     if (typeof redirect === 'string') {
       meta.src_name = `${redirect}-${meta.style}.svg`;
     } else {
-      meta.src_name = `${
-        redirect[base_meta[0]] ?? redirect['#'] ?? meta.src_name
-      }-${meta.style}.svg`;
+      meta.src_name = `${redirect[base_meta['0']] ?? redirect['_'] ?? meta.src_name}-${
+        meta.style
+      }.svg`;
     }
   } else {
     meta.src_name = `${meta.src_name}-${meta.style}.svg`;
@@ -202,18 +196,17 @@ const compose = (() => {
       return new paper.Path();
     }
 
-    const m = badge_meta.mask ?? data.abstract[badge_meta.inherits].mask;
-    const window =
-      badge_meta.window ?? data.abstract[badge_meta.inherits]?.window;
+    const m = badge_meta.mask ?? data.template[badge_meta.inherits].mask;
+    const window = badge_meta.window ?? data.template[badge_meta.inherits]?.window;
 
     if (m === undefined) {
       throw [badge_meta, cat];
     }
 
     if (typeof m === 'string' || m[cat] === undefined) {
-      const item = new paper.CompoundPath(m['#'] ?? m);
+      const item = new paper.CompoundPath(m['_'] ?? m);
       if (window) {
-        if (cat === '#') {
+        if (cat === '_') {
           throw [badge_meta, cat]; // missing entry in `base`
         }
         if (cat.startsWith('1') || cat.startsWith('2')) {
@@ -234,12 +227,11 @@ const compose = (() => {
       return new paper.Path();
     }
 
-    const b = badge_meta.badge ?? data.abstract[badge_meta.inherits].badge;
-    const window =
-      badge_meta.window ?? data.abstract[badge_meta.inherits]?.window;
+    const b = badge_meta.badge ?? data.template[badge_meta.inherits].badge;
+    const window = badge_meta.window ?? data.template[badge_meta.inherits]?.window;
 
     if (typeof b === 'string' || b[cat] === undefined) {
-      const item = new paper.CompoundPath(b['#'] ?? b);
+      const item = new paper.CompoundPath(b['_'] ?? b);
       if (window) {
         if (cat.startsWith('1') || cat.startsWith('2')) {
           item.translate([window[0], 0]);
@@ -287,16 +279,16 @@ const compose = (() => {
         item.translate(align);
       }
 
-      if (base_meta[1]) {
-        item.translate(base_meta[1]);
+      if (base_meta.u) {
+        item.translate(base_meta.u);
       }
 
-      const mask = getMask(badge_meta, base_meta[0]);
-      const badge = getBadge(badge_meta, base_meta[0]);
+      const mask = getMask(badge_meta, base_meta['0']);
+      const badge = getBadge(badge_meta, base_meta['0']);
 
-      if (base_meta[2]) {
-        mask.translate(base_meta[2]);
-        badge.translate(base_meta[2]);
+      if (base_meta.v) {
+        mask.translate(base_meta.v);
+        badge.translate(base_meta.v);
       }
 
       let path_data: string = undefined;
@@ -306,11 +298,7 @@ const compose = (() => {
       }
 
       if (meta.variant === 'off') {
-        item = item
-          .subtract(mask)
-          .exclude(badge)
-          .subtract(off_subtract)
-          .unite(off_unite);
+        item = item.subtract(mask).exclude(badge).subtract(off_subtract).unite(off_unite);
         path_data = item.pathData;
       } else if (mask.pathData) {
         item = item.subtract(mask);
@@ -336,17 +324,18 @@ const compose = (() => {
 function getBaseMeta(base: string[], variant: string, badge: string): BaseMeta {
   let entry = base.map((b) => data.base[b]).find((e) => e);
   if (entry === undefined) {
-    return ['#', undefined, undefined];
-  }
-
-  if (typeof entry === 'object' && !(entry instanceof Array)) {
-    entry = entry[`@${variant}`] ?? entry[badge] ?? entry['#'];
+    return { '0': '_' };
   }
 
   if (typeof entry === 'string') {
-    return [entry, undefined, undefined];
+    return { '0': entry };
   } else {
-    return entry as BaseMeta;
+    let meta = entry[`@${variant}`] ?? entry[badge] ?? entry['_'];
+    if (typeof meta === 'string') {
+      return { '0': meta };
+    } else {
+      return meta;
+    }
   }
 }
 
@@ -387,10 +376,10 @@ function mirrorCategoty(cat: string) {
   return `${5 - c}${cat.slice(1)}`;
 }
 
-Object.entries(data.rtl.compose).forEach(([badge_rtl, badge_rtl_meta]) => {
-  const [badge_name, badge_style] = badge_rtl.split('#');
+Object.entries(data.compose).forEach(([badge, badge_meta]) => {
+  const [badge_name, badge_style] = badge.split('#');
 
-  badge_rtl_meta.icons?.forEach((descriptor) => {
+  badge_meta.icons_rtl?.forEach((descriptor) => {
     function f(style: string) {
       const meta = resolve(descriptor, style, badge_name, badge_style);
       const base_meta = getBaseMeta(
@@ -398,20 +387,14 @@ Object.entries(data.rtl.compose).forEach(([badge_rtl, badge_rtl_meta]) => {
         meta.variant,
         meta.badge_name
       );
-      if (data.rtl.base[meta.base]?.mirror_category) {
-        base_meta[0] = mirrorCategoty(base_meta[0]);
+      if (data.rtl[meta.base]?.mirror_category) {
+        base_meta['0'] = mirrorCategoty(base_meta['0']);
       }
       resolveSrc(meta, base_meta);
-      const badge_meta = data.rtl.base[meta.base]?.mirror_badge
-        ? data.compose[badge_rtl_meta.mirror ?? badge_rtl]
-        : data.compose[badge_rtl];
-      compose(
-        meta,
-        base_meta,
-        badge_meta,
-        rtl_sources,
-        path.join(DEST_DIR, 'RTL')
-      );
+      const badge_rtl_meta = data.rtl[meta.base]?.mirror_badge
+        ? data.compose[badge_meta.mirrors ?? badge]
+        : data.compose[badge];
+      compose(meta, base_meta, badge_rtl_meta, rtl_sources, path.join(DEST_DIR, 'RTL'));
     }
 
     if (styles.includes(badge_style)) {

@@ -208,11 +208,11 @@ shield_checkmark = "badge_2"
 
   [[icons.beach]]
   select-shape = [[0, 11], [20, 20]]
-  translate = [0.50161, 0]
+  translate = [0.5, 0]
 
   [[icons.beach]]
   select-shape = [[0, 0], [20, 20]]
-  translate = [0, -0.1509]
+  translate = [0, -0.1759]
 
   [[icons.book_open_lightbulb]]
   select-path = "M16.5 3C17.3284 3 18 3.67157 18 4.5V15H15V17H12C11.1822 17 10.4561 16.6071 10 16V4.5C10 4 11 3 12 3H16.5Z"

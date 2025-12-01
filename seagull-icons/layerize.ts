@@ -468,7 +468,7 @@ fs.readdirSync(argv.mono)
       }
 
       // try to fix compound path
-      if (layer.path.children?.length > 1) {
+      if (layer.path.fillRule === 'evenodd' && layer.path.children?.length > 1) {
         const first = layer.path.children[0] as paper.Path;
         layer.path.children.slice(1).forEach((child) => {
           const next = child as paper.Path;

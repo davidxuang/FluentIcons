@@ -9,6 +9,7 @@ type ProtoRenderable = ElemBase & {
   $: {
     fill?: string;
     'fill-opacity'?: string;
+    'fill-rule'?: 'nonzero' | 'evenodd';
     stroke?: string;
     'stroke-opacity'?: string;
     'stroke-width'?: string;

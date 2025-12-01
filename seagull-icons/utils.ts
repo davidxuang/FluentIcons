@@ -16,9 +16,7 @@ export function resolveAsset(dname: string, fname: string) {
     dname = dname.replace(/ (RTL|LTR)\b/, '');
   }
   // name unification
-  dname = dname
-    .replace('Text Box', 'TextBox')
-    .replace('Reorder', 'Re Order');
+  dname = dname.replace('Text Box', 'TextBox').replace('Reorder', 'Re Order');
   const snake = dname.replace(/_*\s+_*/g, '_').toLowerCase();
   const name = dname
     .replace(/(?<!Rotate) (45|90|135|225|270|315)\b/, ' Rotate $1') // unify rotate names
@@ -58,48 +56,54 @@ export function resolveName(fname: string) {
 }
 
 export function getPath(elem: Renderable): paper.Path | paper.CompoundPath {
-  switch (elem['#name']) {
-    case 'path':
-      return new paper.CompoundPath(elem.$.d);
-    case 'rect':
-      return elem.$['rx'] || elem.$['ry']
-        ? new paper.Path.Rectangle(
-            new paper.Rectangle(
+  const path = (() => {
+    switch (elem['#name']) {
+      case 'path':
+        return new paper.CompoundPath(elem.$.d);
+      case 'rect':
+        return elem.$['rx'] || elem.$['ry']
+          ? new paper.Path.Rectangle(
+              new paper.Rectangle(
+                [Number(elem.$['x'] ?? '0'), Number(elem.$['y'] ?? '0')],
+                [Number(elem.$['width'] ?? '0'), Number(elem.$['height'] ?? '0')]
+              ),
+              [Number(elem.$['rx'] ?? elem.$['ry']), Number(elem.$['ry'] ?? elem.$['rx'])]
+            )
+          : new paper.Path.Rectangle(
               [Number(elem.$['x'] ?? '0'), Number(elem.$['y'] ?? '0')],
               [Number(elem.$['width'] ?? '0'), Number(elem.$['height'] ?? '0')]
-            ),
-            [Number(elem.$['rx'] ?? elem.$['ry']), Number(elem.$['ry'] ?? elem.$['rx'])]
+            );
+      case 'circle':
+        return new paper.Path.Circle(
+          [Number(elem.$['cx'] ?? '0'), Number(elem.$['cy'] ?? '0')],
+          Number(elem.$['r'] ?? '0')
+        );
+      case 'ellipse':
+        const rx = parseFloat(elem.$['rx'] ?? '0');
+        const ry = parseFloat(elem.$['ry'] ?? '0');
+        return new paper.Path.Ellipse(
+          new paper.Rectangle(
+            [Number(elem.$['cx'] ?? '0') - rx, Number(elem.$['cy'] ?? '0') - ry],
+            [2 * rx, 2 * ry]
           )
-        : new paper.Path.Rectangle(
-            [Number(elem.$['x'] ?? '0'), Number(elem.$['y'] ?? '0')],
-            [Number(elem.$['width'] ?? '0'), Number(elem.$['height'] ?? '0')]
-          );
-    case 'circle':
-      return new paper.Path.Circle(
-        [Number(elem.$['cx'] ?? '0'), Number(elem.$['cy'] ?? '0')],
-        Number(elem.$['r'] ?? '0')
-      );
-    case 'ellipse':
-      const rx = parseFloat(elem.$['rx'] ?? '0');
-      const ry = parseFloat(elem.$['ry'] ?? '0');
-      return new paper.Path.Ellipse(
-        new paper.Rectangle(
-          [Number(elem.$['cx'] ?? '0') - rx, Number(elem.$['cy'] ?? '0') - ry],
-          [2 * rx, 2 * ry]
-        )
-      );
-    case 'line':
-      return new paper.Path.Line(
-        [Number(elem.$['x1'] ?? '0'), Number(elem.$['y1'] ?? '0')],
-        [Number(elem.$['x2'] ?? '0'), Number(elem.$['y2'] ?? '0')]
-      );
-    case 'polygon':
-    case 'polyline':
-    case 'g':
-      return new paper.CompoundPath(getPathData(elem));
-    default:
-      throw elem['#name'];
+        );
+      case 'line':
+        return new paper.Path.Line(
+          [Number(elem.$['x1'] ?? '0'), Number(elem.$['y1'] ?? '0')],
+          [Number(elem.$['x2'] ?? '0'), Number(elem.$['y2'] ?? '0')]
+        );
+      case 'polygon':
+      case 'polyline':
+      case 'g':
+        return new paper.CompoundPath(getPathData(elem));
+      default:
+        throw elem['#name'];
+    }
+  })();
+  if (elem.$['fill-rule'] === 'evenodd') {
+    path.fillRule = 'evenodd';
   }
+  return path;
 }
 
 const rexPoly = /(-?[\d]+(?:\.\d+)?|-?\.\d+),? *(-?[\d]+(?:\.\d+)?|-?\.\d+),? */g;
