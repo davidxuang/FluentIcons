@@ -25,6 +25,7 @@
                 BasedOn="{StaticResource AlternateTabStripItemTheme}"
                 TargetType="TabStripItem">
                 <Setter Property="MinWidth" Value="0" />
+                <Setter Property="Height" Value="33" />
             </ControlTheme>
         </ResourceDictionary>
     </UserControl.Resources>
