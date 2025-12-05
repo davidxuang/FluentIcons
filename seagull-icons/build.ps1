@@ -28,10 +28,10 @@ try {
     pnpm collect
 
     pnpm transform
-    pnpm run layerize --in=./obj/color/20 --override=./obj/color/override --mono=./obj/composed/seagull --extra=./obj/mono/resizable --extra-filter=./override/mono/20 --size=20 --shrink=2 --upm=2048 --config=./layerize.toml --mirror=./obj/mirror.json --out=./obj/colr/seagull
+    pnpm run layerize --in=./obj/color/20 --override=./obj/color/override --mono=./obj/composed/seagull --extra=./obj/mono/resizable --extra-filter=./override/mono/20 --size=20 --shrink=2 --upm=1792 --config=./layerize.toml --mirror=./obj/mirror.json --out=./obj/colr/seagull
     pnpm run mirror --dir=./obj/composed/seagull --config=./obj/mirror.json
     foreach ($f in $FontFormat) {
-        python ./generate.py --in="./obj/composed/seagull" --colr="./obj/colr/seagull" --icons=./obj/icons.json --out=./obj --name=SeagullFluentIcons --upm=2048 --format=$f
+        python ./generate.py --in="./obj/composed/seagull" --colr="./obj/colr/seagull" --icons=./obj/icons.json --out=./obj --name=SeagullFluentIcons --upm=1792 --format=$f
         Copy-Item "./obj/SeagullFluentIcons.$f" ./assets -Force
     }
 

@@ -25,8 +25,6 @@ const SRC_OVERRIDES = argv['in-override'];
 const DEST_DIR = argv.out;
 const DEST_OVERRIDES = argv['out-override'];
 
-const styles = ['regular', 'filled'];
-
 paper.setup([32, 32]);
 const align = new paper.Point(-2, -2);
 
@@ -37,22 +35,32 @@ const parser = new Parser({
 });
 
 type Translate = [number, number];
+type Style = 'regular' | 'filled' | 'light';
 type BaseMeta = {
   '0': string; // category
   u?: Translate; // base translate for 16px
   v?: Translate; // badge translate for 16px
+  ul?: Translate; // base translate for 28px
+  vl?: Translate; // badge translate for 28px
 };
-type BadgeTemplate = {
+type BadgeMeta = {
   window?: Translate;
   mask: string | { [cat: string]: string };
   badge: string | { [cat: string]: string };
 };
-type BadgeMeta = BadgeTemplate & {
-  inherits?: string;
-  mirrors?: string;
-  // icon:root@variant#/override
+type BadgeTemplate = BadgeMeta & {
+  [style in Style]?: BadgeMeta;
+};
+type BadgeComposeV = BadgeMeta & {
+  // icon:root@modifier#/override
   icons: string[];
   icons_rtl?: string[];
+};
+type BadgeCompose = BadgeComposeV & {
+  inherits?: string;
+  mirrors?: string;
+} & {
+  [style in Style]?: BadgeComposeV;
 };
 
 // read configurations
@@ -66,7 +74,7 @@ const data = parse(fs.readFileSync(CONFIG).toString()) as {
   };
   template: { [badge: string]: BadgeTemplate };
   // name#variant
-  compose: { [badge: string]: BadgeMeta };
+  compose: { [badge: string]: BadgeCompose };
   rtl: {
     [icon: string]: {
       mirror_badge?: boolean;
@@ -105,9 +113,10 @@ function copy(src: string, dest: string) {
           `<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">\n  <path d="${item.pathData}" fill="#212121" />\n</svg>`
         );
       } else if (doc.svg.$.height === '32') {
+        item.translate(align);
         fs.writeFileSync(
           dest_item,
-          `<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">\n  <path d="${item.pathData}" fill="#212121" />\n</svg>`
+          `<svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">\n  <path d="${item.pathData}" fill="#212121" />\n</svg>`
         );
       } else {
         throw src_item;
@@ -133,7 +142,7 @@ type ComposeMeta = {
   base_alias: string;
   badge_name: string;
   badge_style: string;
-  variant?: string;
+  modifier?: string;
   style: string;
   src_name: string;
   dest_name: string;
@@ -157,7 +166,7 @@ const resolve = (() => {
       base_alias: matches[2] ?? matches[1] ?? matches[4],
       badge_name: badge_name,
       badge_style: badge_style,
-      variant: matches[3],
+      modifier: matches[3],
       style: style,
       src_name: matches[1], // needs further resolve
       dest_name: undefined,
@@ -166,7 +175,7 @@ const resolve = (() => {
     if (matches[4]) {
       meta.dest_name = `${matches[4]}-${style}.svg`;
     } else {
-      meta.dest_name = `${[meta.base_alias, badge_name, meta.variant]
+      meta.dest_name = `${[meta.base_alias, badge_name, meta.modifier]
         .filter((x) => x)
         .join('_')}-${style}.svg`;
     }
@@ -196,8 +205,8 @@ const compose = (() => {
       return new paper.Path();
     }
 
-    const m = badge_meta.mask ?? data.template[badge_meta.inherits].mask;
-    const window = badge_meta.window ?? data.template[badge_meta.inherits]?.window;
+    const m = badge_meta.mask;
+    const window = badge_meta.window;
 
     if (m === undefined) {
       throw [badge_meta, cat];
@@ -227,8 +236,8 @@ const compose = (() => {
       return new paper.Path();
     }
 
-    const b = badge_meta.badge ?? data.template[badge_meta.inherits].badge;
-    const window = badge_meta.window ?? data.template[badge_meta.inherits]?.window;
+    const b = badge_meta.badge;
+    const window = badge_meta.window;
 
     if (typeof b === 'string' || b[cat] === undefined) {
       const item = new paper.CompoundPath(b['_'] ?? b);
@@ -275,8 +284,14 @@ const compose = (() => {
       let item: paper.PathItem = new paper.CompoundPath(
         doc.svg.$$.map((elem) => getPathData(elem as Renderable)).join()
       );
-      if (doc.svg.$.width !== '16') {
-        item.translate(align);
+      if (meta.style !== 'light') {
+        if (doc.svg.$.width !== '16') {
+          item.translate(align);
+        }
+      } else {
+        if (doc.svg.$.width !== '28') {
+          item.translate(align);
+        }
       }
 
       if (base_meta.u) {
@@ -297,7 +312,7 @@ const compose = (() => {
         console.warn(`[NOP] ${meta.src_name} ==> ${meta.dest_name}`);
       }
 
-      if (meta.variant === 'off') {
+      if (meta.modifier === 'off') {
         item = item.subtract(mask).exclude(badge).subtract(off_subtract).unite(off_unite);
         path_data = item.pathData;
       } else if (mask.pathData) {
@@ -309,9 +324,10 @@ const compose = (() => {
         path_data = item.pathData;
       }
 
+      let size = meta.style !== 'light' ? 16 : 28;
       fs.writeFileSync(
         path.join(dest_dir, meta.dest_name),
-        `<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">\n  <path d="${path_data}" fill="#212121" />\n</svg>`
+        `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">\n  <path d="${path_data}" fill="#212121" />\n</svg>`
       );
 
       item.remove();
@@ -340,27 +356,39 @@ function getBaseMeta(base: string[], variant: string, badge: string): BaseMeta {
 }
 
 const sources = [...SRC_OVERRIDES, SRC_DIR];
-Object.entries(data.compose).forEach(([badge, badge_meta]) => {
+Object.entries(data.compose).forEach(([badge, badge_comp]) => {
   const [badge_name, badge_style] = badge.split('#');
-
-  badge_meta.icons?.forEach((descriptor) => {
-    function f(style: string) {
-      const meta = resolve(descriptor, style, badge_name, badge_style);
-      const base_meta = getBaseMeta(
-        [meta.base, meta.base_alias],
-        meta.variant,
-        meta.badge_name
-      );
-      resolveSrc(meta, base_meta);
-      compose(meta, base_meta, badge_meta, sources, DEST_DIR);
+  function f(descriptor: string, style: string, badge_meta: BadgeMeta) {
+    const meta = resolve(descriptor, style, badge_name, badge_style);
+    let base_meta = getBaseMeta([meta.base, meta.base_alias], meta.modifier, meta.badge_name);
+    if (style === 'light') {
+      base_meta = { '0': base_meta['0'], u: base_meta.ul, v: base_meta.vl };
     }
+    resolveSrc(meta, base_meta);
+    compose(meta, base_meta, badge_meta, sources, DEST_DIR);
+  }
 
-    if (styles.includes(badge_style)) {
-      f(badge_style);
-    } else {
-      styles.forEach(f);
-    }
+  badge_comp.icons?.forEach((d) => {
+    ['regular', 'filled'].forEach((s: Style) =>
+      f(d, s, { ...data.template[badge_comp.inherits], ...badge_comp })
+    );
   });
+  ['regular', 'filled'].forEach((s: Style) => {
+    badge_comp[s]?.icons?.forEach((d) =>
+      f(d, s, {
+        ...data.template[badge_comp.inherits],
+        ...data.template[badge_comp.inherits]?.[s],
+        ...badge_comp,
+        ...badge_comp[s],
+      })
+    );
+  });
+  badge_comp.light?.icons?.forEach((d) =>
+    f(d, 'light', {
+      ...data.template[badge_comp.inherits]?.light,
+      ...badge_comp.light,
+    })
+  );
 });
 
 const rtl_sources = [...sources.map((d) => path.join(d, 'RTL')), ...sources];
@@ -376,33 +404,46 @@ function mirrorCategoty(cat: string) {
   return `${5 - c}${cat.slice(1)}`;
 }
 
-Object.entries(data.compose).forEach(([badge, badge_meta]) => {
+Object.entries(data.compose).forEach(([badge, badge_comp]) => {
   const [badge_name, badge_style] = badge.split('#');
-
-  badge_meta.icons_rtl?.forEach((descriptor) => {
-    function f(style: string) {
-      const meta = resolve(descriptor, style, badge_name, badge_style);
-      const base_meta = getBaseMeta(
-        [meta.base, meta.base_alias],
-        meta.variant,
-        meta.badge_name
-      );
-      if (data.rtl[meta.base]?.mirror_category) {
-        base_meta['0'] = mirrorCategoty(base_meta['0']);
-      }
-      resolveSrc(meta, base_meta);
-      const badge_rtl_meta = data.rtl[meta.base]?.mirror_badge
-        ? data.compose[badge_meta.mirrors ?? badge]
-        : data.compose[badge];
-      compose(meta, base_meta, badge_rtl_meta, rtl_sources, path.join(DEST_DIR, 'RTL'));
+  function f(descriptor: string, style: string, badge_meta: BadgeMeta) {
+    const meta = resolve(descriptor, style, badge_name, badge_style);
+    let base_meta = getBaseMeta([meta.base, meta.base_alias], meta.modifier, meta.badge_name);
+    if (style === 'light') {
+      base_meta = { '0': base_meta['0'], u: base_meta.ul, v: base_meta.vl };
     }
-
-    if (styles.includes(badge_style)) {
-      f(badge_style);
-    } else {
-      styles.forEach(f);
+    if (data.rtl[meta.base]?.mirror_category) {
+      base_meta['0'] = mirrorCategoty(base_meta['0']);
     }
+    resolveSrc(meta, base_meta);
+    compose(meta, base_meta, badge_meta, rtl_sources, path.join(DEST_DIR, 'RTL'));
+  }
+
+  const b = data.rtl[badge]?.mirror_badge ? badge_comp.mirrors : badge;
+  badge_comp.icons_rtl?.forEach((d) => {
+    ['regular', 'filled'].forEach((s: Style) =>
+      f(d, s, {
+        ...data.template[data.compose[b].inherits],
+        ...data.compose[b],
+      })
+    );
   });
+  ['regular', 'filled'].forEach((s: Style) => {
+    badge_comp[s]?.icons_rtl?.forEach((d) =>
+      f(d, s, {
+        ...data.template[data.compose[b].inherits],
+        ...data.template[data.compose[b].inherits]?.[s],
+        ...data.compose[b],
+        ...data.compose[b][s],
+      })
+    );
+  });
+  badge_comp.light?.icons_rtl?.forEach((d) =>
+    f(d, 'light', {
+      ...data.template[data.compose[b].inherits]?.light,
+      ...data.compose[b].light,
+    })
+  );
 });
 
 // copy not modified

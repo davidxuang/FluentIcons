@@ -19,11 +19,7 @@ const parser = new Parser({
 });
 
 fs.readdirSync(argv.in, { recursive: true }).forEach((f) => {
-  if (
-    typeof f !== 'string' ||
-    path.extname(f) !== '.svg' ||
-    f.endsWith('-light.svg')
-  ) {
+  if (typeof f !== 'string' || path.extname(f) !== '.svg') {
     return;
   }
 
@@ -37,9 +33,15 @@ fs.readdirSync(argv.in, { recursive: true }).forEach((f) => {
       doc.svg.$$.map((e) => getPathData(e as Renderable)).join()
     );
     const bounds = item.bounds;
-    const margin = [-bounds.left, -bounds.top, bounds.right - 16, bounds.bottom - 16];
+    const margin = f.endsWith('-light.svg')
+      ? [-bounds.left, -bounds.top, bounds.right - 28, bounds.bottom - 28]
+      : [-bounds.left, -bounds.top, bounds.right - 16, bounds.bottom - 16];
     if (Math.max(...margin) >= tolerance) {
-      console.warn(`[${Math.max(...margin).toFixed(4)}] ${file}: [${margin.map((m) => m.toFixed(4)).join(', ')}]`);
+      console.warn(
+        `[${Math.max(...margin).toFixed(4)}] ${file}: [${margin
+          .map((m) => m.toFixed(4))
+          .join(', ')}]`
+      );
     }
 
     item.remove();
