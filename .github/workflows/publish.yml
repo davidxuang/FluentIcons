@@ -24,11 +24,14 @@ jobs:
           echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
       - uses: olegtarasov/get-tag@v2-release
         id: tag_name
-      - name: Cache .NET workloads
-        uses: actions/cache/restore@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          key: dotnet-${{ runner.os }}-${{ runner.arch }}-workloads-${{ steps.vars.outputs.dotnet_workload_version }}
-          path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
+          submodules: true
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '9.0.305'
       - name: Setup .NET workloads
         run: |
           dotnet workload install android ios maccatalyst macos maui wasm-tools-net8
@@ -37,36 +40,15 @@ jobs:
         uses: microsoft/setup-msbuild@v2
         with:
           msbuild-architecture: x64
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: true
       - name: Setup Java
         uses: actions/setup-java@v4
         if: ${{ github.event_name != 'workflow_dispatch'}}
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Cache NuGet packages
-        uses: actions/cache/restore@v4
-        with:
-          key: dotnet-${{ runner.os }}-${{ runner.arch }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
-          path: ~/.nuget/packages
       - name: Build NuGet packages
         if: ${{ github.event_name != 'workflow_dispatch' }}
         run: |
           $env:VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
           MSBuild -restore -t:pack -p:Configuration=Release -p:PackageOutputPath=".." -v:minimal
-          dotnet nuget push FluentIcons.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-      - name: Build GitHub Pages
-        if: ${{ github.event_name == 'workflow_dispatch' || !contains(steps.tag_name.outputs.tag, '-') }}
-        run: |
-          $env:VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
-          dotnet publish ./FluentIcons.Gallery/FluentIcons.Gallery.csproj -f net8.0-browser
-      - name: Deploy to GitHub Pages
-        if: ${{ !contains(steps.tag_name.outputs.tag, '-') }}
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./FluentIcons.Gallery/bin/Release/net8.0-browser/browser-wasm/AppBundle
-          publish_branch: gh-pages
+          dotnet nuget push FluentIcons.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate

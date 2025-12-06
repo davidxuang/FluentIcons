@@ -10,7 +10,6 @@
   <Project Path="FluentIcons.Avalonia/FluentIcons.Avalonia.csproj" />
   <Project Path="FluentIcons.Common.SourceGeneration/FluentIcons.Common.SourceGeneration.csproj" />
   <Project Path="FluentIcons.Common/FluentIcons.Common.csproj" />
-  <Project Path="FluentIcons.Gallery/FluentIcons.Gallery.csproj" />
   <Project Path="FluentIcons.Maui/FluentIcons.Maui.csproj" />
   <Project Path="FluentIcons.Resources/FluentIcons.Resources.Avalonia.csproj" />
   <Project Path="FluentIcons.Resources/FluentIcons.Resources.Uno.csproj" />
