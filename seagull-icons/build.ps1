@@ -6,7 +6,7 @@ param (
     $Seagull,
     [string]
     [ValidateSet('ttf', 'otf', 'ttf;otf')]
-    $FontFormat = 'otf'
+    $FontFormat = 'ttf'
 )
 
 $PSNativeCommandUseErrorActionPreference = $true

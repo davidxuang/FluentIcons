@@ -10,7 +10,7 @@
 
   <Target Name="IncludeAssetsInNuGetPackage" Condition="'$(IncludeBuildOutput)' != 'false'" DependsOnTargets="GetNuGetShortFolderName">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="Assets\*.otf">
+      <TfmSpecificPackageFile Include="Assets\*.ttf">
         <Link>Assets/%(Filename)%(Extension)</Link>
         <PackagePath>lib/$(NuGetShortFolderName)/$(PackageId)/%(Link)</PackagePath>
       </TfmSpecificPackageFile>

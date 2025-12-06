@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="..\seagull-icons\assets\*.otf">
+    <Resource Include="..\seagull-icons\assets\*.ttf">
       <Link>Assets/%(FileName)%(Extension)</Link>
     </Resource>
   </ItemGroup>

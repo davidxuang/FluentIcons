@@ -16,9 +16,9 @@ public static class Extensions
         {
             foreach (var size in IconSizeValues.Enumerable.Where(size => (byte)size > 0))
             {
-                fonts.AddEmbeddedResourceFont(assembly, $"FluentSystemIcons-{size}.otf", $"FluentSystemIcons{size}");
+                fonts.AddEmbeddedResourceFont(assembly, $"FluentSystemIcons-{size}.ttf", $"FluentSystemIcons{size}");
             }
-            fonts.AddEmbeddedResourceFont(assembly, "SeagullFluentIcons.otf", "SeagullFluentIcons");
+            fonts.AddEmbeddedResourceFont(assembly, "SeagullFluentIcons.ttf", "SeagullFluentIcons");
         });
     }
 

@@ -59,7 +59,7 @@
     <Compile Include="..\FluentIcons.WinUI\Internals\*.cs" LinkBase="Internals" />
     <Compile Include="..\FluentIcons.WinUI\Markup\*.cs" LinkBase="Markup" />
     <None Include="build\**" Pack="true" PackagePath="build;buildTransitive" />
-    <None Include="..\seagull-icons\assets\*.otf" Pack="true" PackagePath="contentTransitive/$(PackageId)/Assets" />
+    <None Include="..\seagull-icons\assets\*.ttf" Pack="true" PackagePath="contentTransitive/$(PackageId)/Assets" />
     <None Include="VisualStudioToolsManifest.xml" Pack="True" PackagePath="tools" />
   </ItemGroup>
 </Project>
