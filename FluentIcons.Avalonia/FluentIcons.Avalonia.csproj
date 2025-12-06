@@ -16,4 +16,10 @@
     <InternalsVisibleTo Include="FluentIcons.Avalonia.Fluent" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="ILLink.Descriptors.xml">
+      <LogicalName>ILLink.Descriptors.xml</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

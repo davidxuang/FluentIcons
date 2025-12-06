@@ -18,14 +18,14 @@ A multi-framework control library of [fluentui-system-icons](https://github.com/
 
 [Version 1.3](https://github.com/davidxuang/FluentIcons/tree/v1.3) is a backports release for legacy platforms which are no longer supported by version 2.0. Starting in version 2.0, the underlying fonts have also been migrated from TTF to CFF.
 
-| Ref                                                         | Package                       | Platform                                                                                                                                                                              |
-| ----------------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [v1.3](https://github.com/davidxuang/FluentIcons/tree/v1.3) | `FluentIcons.Avalonia`        | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia.svg) Avalonia 0.10](https://www.nuget.org/packages/Avalonia/0.10.0)                                    |
-| [v1.3](https://github.com/davidxuang/FluentIcons/tree/v1.3) | `FluentIcons.Avalonia.Fluent` | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia-fluent.svg) FluentAvalonia 1.3](https://www.nuget.org/packages/FluentAvaloniaUI/1.3.0) (Avalonia 0.10) |
-| [v1.3](https://github.com/davidxuang/FluentIcons/tree/v1.3) | `FluentIcons.Maui`            | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/maui.svg) MAUI 8](https://www.nuget.org/packages/Microsoft.Maui.Sdk/8.0.3)                                      |
-| [v1.3](https://github.com/davidxuang/FluentIcons/tree/v1.3) | `FluentIcons.Uwp`             | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/uno.svg) Uno.UI 5.0](https://www.nuget.org/packages/Uno.UI/5.0.19)                                              |
-| [v1.3](https://github.com/davidxuang/FluentIcons/tree/v1.3) | `FluentIcons.WinUI`           | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/uno.svg) Uno.WinUI 5.0](https://www.nuget.org/packages/Uno.WinUI/5.0.19)                                        |
-| [v1.3](https://github.com/davidxuang/FluentIcons/tree/v1.3) | `FluentIcons.WinUI`           | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/wasdk.svg) Windows App SDK 1.2](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.2.221109.1)            |
+| Package                       | Platform                                                                                                                                                                              |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `FluentIcons.Avalonia`        | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia.svg) Avalonia 0.10](https://www.nuget.org/packages/Avalonia/0.10.0)                                    |
+| `FluentIcons.Avalonia.Fluent` | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia-fluent.svg) FluentAvalonia 1.3](https://www.nuget.org/packages/FluentAvaloniaUI/1.3.0) (Avalonia 0.10) |
+| `FluentIcons.Maui`            | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/maui.svg) MAUI 8](https://www.nuget.org/packages/Microsoft.Maui.Sdk/8.0.3)                                      |
+| `FluentIcons.Uwp`             | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/uno.svg) Uno.UI 5.0](https://www.nuget.org/packages/Uno.UI/5.0.19)                                              |
+| `FluentIcons.WinUI`           | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/uno.svg) Uno.WinUI 5.0](https://www.nuget.org/packages/Uno.WinUI/5.0.19)                                        |
+| `FluentIcons.WinUI`           | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/wasdk.svg) Windows App SDK 1.2](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.2.221109.1)            |
 
 ## Usage
 
@@ -56,7 +56,7 @@ The _Fluent_ variant provides all sizes of icons untouched compared to upstream,
 </Window>
 ```
 
-Markup extension classes have been added since version 1.1.242. These extensions will bind their `FlowDirection` to that of the parent control, except `FluentIconSourceExtension`/`SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available. They are moved to a child namespace since version.
+Markup extension classes have been added since version 1.1.242. These extensions will bind their `FlowDirection` to that of the parent control, except `FluentIconSourceExtension`/`SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available. They are moved to a child namespace since version 1.3.
 
 ### MAUI
 
