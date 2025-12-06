@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "FluentIcons.Gallery.dll",
   "resources": {
-    "hash": "sha256-XcyBYmqv1cm5/PqCfUc3Kihsxs6HuCOdW5aGgTQ0yY8=",
+    "hash": "sha256-gOZ7dpe8ecvUf3+GYp1jKXtFr6zhzIKzDkH89fBoTcw=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-LCEqy22MxPqu1IBm71oMN8ymyOOFLUgZnJurPa5OhRI="
     },
@@ -9,7 +9,7 @@
       "dotnet.runtime.js": "sha256-6bV/iAemowb59rmItegP8VsxwWpWUNyMb0Q76Fvvsjo="
     },
     "wasmNative": {
-      "dotnet.native.wasm": "sha256-Uc4rPxjEt7/f8sj6TCS7jpeQkPNiu6ldW6yZBwpFWRk="
+      "dotnet.native.wasm": "sha256-sB0RdIoxBZ/LGQzPWfz5pdts0Jnug59L5O3DDdCues4="
     },
     "wasmSymbols": {
       "dotnet.native.js.symbols": "sha256-abIPwFqGRgtKjGTF8iw5eertByhdXJlrzMDUUX6SaGo="
@@ -36,10 +36,11 @@
       "Avalonia.Vulkan.wasm": "sha256-Zm5VDOPeEg8vfn6ZqxvsdrfbSOXvwfcu+6PQ1bfqs7Y=",
       "CommunityToolkit.Mvvm.wasm": "sha256-AZdnf2L5AWK7DGwQbgZjJoDZndQaRxxkvgIsxM+5YnE=",
       "FluentAvalonia.wasm": "sha256-mxBv87m9qC7TnXrcxISy02v1jsIJCTgOWtsEgORco98=",
-      "FluentIcons.Avalonia.wasm": "sha256-igOs9ky4yyXExAYyGClVVjv/Q4jwM6+tb5LRq70PsR4=",
-      "FluentIcons.Avalonia.Fluent.wasm": "sha256-sWwQnJbVtQFGXr7YJrN0JVblpN08MNz4iY5sVD+j10s=",
-      "FluentIcons.Common.wasm": "sha256-AaThRoxqAdLtIiwMphXuKdvLDN161gdnynF+XhvlrYE=",
-      "FluentIcons.Gallery.wasm": "sha256-+5LlgmSfl5Z7YH5pgo1udJ4yN2sxH8QQ1vuxaPl8L3A=",
+      "FluentIcons.Avalonia.wasm": "sha256-Msxs1QrS6b+SMthu+/FGzqpZWzFoGpI6cSTdIJzunlk=",
+      "FluentIcons.Avalonia.Fluent.wasm": "sha256-D6wA3b5rZpaD19vnrjJeyu0xcmt3c56QjJg4WRUBvos=",
+      "FluentIcons.Common.wasm": "sha256-d+ouz2jaJ+B5TwC2s4EuLUE0JnkzBN1tHY4h/eDFHX0=",
+      "FluentIcons.Gallery.wasm": "sha256-wtPnvWgPJg6Li4Bg3GndcvGDvKUU/AFP6+iKtVkW59U=",
+      "FluentIcons.Resources.Avalonia.wasm": "sha256-vE7cOu5Ja7nh0qm9yvECVUyxTMuHFD1D87kMcy+vzpo=",
       "Fonts.Avalonia.JetBrainsMono.wasm": "sha256-Y/lbLvZdatz2+mVQBejbDOGsLjbngdGiySN31DOclRk=",
       "HarfBuzzSharp.wasm": "sha256-MOrIuW+mUQqzjiylIyRdNalnNTmGhiMiwsXHjdTMpbM=",
       "MicroCom.Runtime.wasm": "sha256-luK3+DgxuOrCwY6By8YW8TK3gvMOtxwn8zPK3YBufH4=",
