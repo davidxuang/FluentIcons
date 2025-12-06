@@ -1,12 +1,12 @@
 using System;
 using FluentIcons.Common;
-using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
 using Microsoft.Maui.Graphics;
 
 namespace FluentIcons.Maui.Markup;
 
+[RequireService([typeof(IProvideValueTarget)])]
 public class FluentImageSourceExtension : IMarkupExtension<FluentImageSource>
 {
     public Icon? Icon { get; set; }
