@@ -29,7 +29,7 @@ public class SymbolImage : GenericImage, IValue<Symbol>
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override Typeface IconFont => SymbolIcon.STypeface;
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
     {
         if (change.Property == FontSizeProperty ||
             change.Property == ForegroundProperty ||

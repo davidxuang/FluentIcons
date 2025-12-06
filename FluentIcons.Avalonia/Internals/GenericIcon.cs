@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
@@ -24,14 +23,12 @@ public abstract class GenericIcon : IconElement
         _border.Bind(BackgroundProperty, this.GetBindingObservable(BackgroundProperty));
         _border.Bind(BorderBrushProperty, this.GetBindingObservable(BorderBrushProperty));
         _border.Bind(BorderThicknessProperty, this.GetBindingObservable(BorderThicknessProperty));
-        _border.Bind(CornerRadiusProperty, this.GetBindingObservable(CornerRadiusProperty));
         _border.Bind(PaddingProperty, this.GetBindingObservable(PaddingProperty));
         (_border as ISetLogicalParent).SetParent(this);
         VisualChildren.Add(_border);
         LogicalChildren.Add(_border);
 
         _core = new();
-        _core.Bind(FlowDirectionProperty, this.GetBindingObservable(FlowDirectionProperty));
         (_core as ISetLogicalParent).SetParent(this);
         VisualChildren.Add(_core);
         LogicalChildren.Add(_core);
@@ -53,19 +50,21 @@ public abstract class GenericIcon : IconElement
     public static new readonly StyledProperty<double> FontSizeProperty
         = AvaloniaProperty.Register<GenericIcon, double>(nameof(FontSize), 20d, false);
 
+    public FlowDirection FlowDirection
+    {
+        get => GetValue(FlowDirectionProperty);
+        set => SetValue(FlowDirectionProperty, value);
+    }
+    public static readonly StyledProperty<FlowDirection> FlowDirectionProperty =
+        AvaloniaProperty.Register<SymbolIcon, FlowDirection>(nameof(FlowDirection), FlowDirection.LeftToRight);
+
     protected abstract string IconText { get; }
     protected abstract Typeface IconFont { get; }
 
-    protected override void OnLoaded(RoutedEventArgs e)
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         InvalidateText();
-        base.OnLoaded(e);
-    }
-
-    protected override void OnUnloaded(RoutedEventArgs e)
-    {
-        _core.Clear();
-        base.OnUnloaded(e);
+        base.OnAttachedToVisualTree(e);
     }
 
     protected override Size MeasureOverride(Size availableSize)
@@ -118,8 +117,6 @@ public abstract class GenericIcon : IconElement
 
     protected void InvalidateText()
     {
-        if (!IsLoaded) return;
-
         _core.InvalidateText(IconText, IconFont, FontSize, Foreground);
     }
 
@@ -135,15 +132,11 @@ public abstract class GenericIcon : IconElement
 
             Rect bounds = Bounds;
             using (context.PushClip(new Rect(bounds.Size)))
+            using (context.PushPreTransform(Matrix.CreateTranslation(
+                (bounds.Width - _size) / 2,
+                (bounds.Height - _size) / 2)))
             {
-                IDisposable? disposable = null;
-                if (FlowDirection == FlowDirection.RightToLeft)
-                    disposable = context.PushTransform(new Matrix(-1, 0, 0, 1, bounds.Width, 0));
-                var origin = new Point(
-                    (bounds.Width - _size) / 2,
-                    (bounds.Height - _size) / 2);
-                _textLayout.Draw(context, origin);
-                disposable?.Dispose();
+                _textLayout.Draw(context);
             }
         }
 
@@ -151,22 +144,14 @@ public abstract class GenericIcon : IconElement
         {
             _size = fontSize;
 
-            _textLayout?.Dispose();
             _textLayout = new TextLayout(
                 text,
                 typeface,
                 fontSize,
                 foreground,
-                TextAlignment.Center,
-                flowDirection: FlowDirection);
+                TextAlignment.Center);
 
             InvalidateVisual();
-        }
-
-        public void Clear()
-        {
-            _textLayout?.Dispose();
-            _textLayout = null;
         }
     }
 }
@@ -196,4 +181,10 @@ public class GenericIconConverter<V, T> : TypeConverter
         }
         return base.ConvertFrom(context, culture, value);
     }
+}
+
+public enum FlowDirection
+{
+    LeftToRight,
+    RightToLeft,
 }

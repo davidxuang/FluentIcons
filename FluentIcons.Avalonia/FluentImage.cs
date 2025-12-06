@@ -34,7 +34,7 @@ public class FluentImage : GenericImage, IValue<Icon>
     public static readonly StyledProperty<IconSize> IconSizeProperty
         = FluentIcon.IconSizeProperty.AddOwner<FluentImage>();
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
     {
         if (change.Property == FontSizeProperty ||
             change.Property == ForegroundProperty ||

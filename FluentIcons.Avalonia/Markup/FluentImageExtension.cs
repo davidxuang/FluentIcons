@@ -1,6 +1,4 @@
 using System;
-using Avalonia;
-using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using FluentIcons.Common;
 
@@ -23,12 +21,6 @@ public sealed class FluentImageExtension
         if (IconSize.HasValue) image.IconSize = IconSize.Value;
         if (FontSize.HasValue) image.FontSize = FontSize.Value;
         if (Foreground is not null) image.Foreground = Foreground;
-
-        var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
-        if (service?.TargetObject is Visual source)
-        {
-            image.Bind(Visual.FlowDirectionProperty, source.GetBindingObservable(Visual.FlowDirectionProperty));
-        }
 
         return image;
     }

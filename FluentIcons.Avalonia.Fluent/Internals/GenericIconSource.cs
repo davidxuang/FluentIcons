@@ -35,7 +35,7 @@ public abstract class GenericIconSource : FontIconSource
         set => SetValue(FlowDirectionProperty, value);
     }
     public static readonly StyledProperty<FlowDirection> FlowDirectionProperty
-        = Visual.FlowDirectionProperty.AddOwner<GenericIconSource>();
+        = GenericIcon.FlowDirectionProperty.AddOwner<GenericIconSource>();
 
     public new double FontSize
     {
@@ -48,7 +48,7 @@ public abstract class GenericIconSource : FontIconSource
     protected abstract string IconText { get; }
     protected abstract Typeface IconFont { get; }
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
     {
         if (change.Property == FontIconSource.FontSizeProperty)
         {

@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Globalization;
 using Avalonia;
-using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
@@ -13,7 +12,7 @@ using FluentIcons.Common.Internals;
 namespace FluentIcons.Avalonia.Fluent.Internals;
 
 [EditorBrowsable(EditorBrowsableState.Never)]
-public abstract class GenericIcon : FAIconElement
+public abstract class GenericIcon : IconElement
 {
     private TextLayout? _textLayout;
 
@@ -33,20 +32,21 @@ public abstract class GenericIcon : FAIconElement
     public static readonly StyledProperty<double> FontSizeProperty
         = AvaloniaProperty.Register<GenericIcon, double>(nameof(FontSize), 20d, false);
 
+    public FlowDirection FlowDirection
+    {
+        get => GetValue(FlowDirectionProperty);
+        set => SetValue(FlowDirectionProperty, value);
+    }
+    public static readonly StyledProperty<FlowDirection> FlowDirectionProperty =
+        AvaloniaProperty.Register<SymbolIcon, FlowDirection>(nameof(FlowDirection), FlowDirection.LeftToRight);
+
     protected abstract string IconText { get; }
     protected abstract Typeface IconFont { get; }
 
-    protected override void OnLoaded(RoutedEventArgs e)
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         InvalidateText();
-        base.OnLoaded(e);
-    }
-
-    protected override void OnUnloaded(RoutedEventArgs e)
-    {
-        _textLayout?.Dispose();
-        _textLayout = null;
-        base.OnUnloaded(e);
+        base.OnAttachedToVisualTree(e);
     }
 
     protected override Size MeasureOverride(Size availableSize)
@@ -71,42 +71,32 @@ public abstract class GenericIcon : FAIconElement
         double size = FontSize;
         Rect bounds = Bounds;
         using (context.PushClip(new Rect(bounds.Size)))
+        using (context.PushPreTransform(Matrix.CreateTranslation(
+            HorizontalAlignment switch
+            {
+                HorizontalAlignment.Left => 0,
+                HorizontalAlignment.Right => bounds.Width - size,
+                _ => (bounds.Width - size) / 2,
+            },
+            VerticalAlignment switch
+            {
+                VerticalAlignment.Top => 0,
+                VerticalAlignment.Bottom => bounds.Height - size,
+                _ => (bounds.Height - size) / 2,
+            })))
         {
-            IDisposable? disposable = null;
-            if (FlowDirection == FlowDirection.RightToLeft)
-                disposable = context.PushTransform(new Matrix(-1, 0, 0, 1, bounds.Width, 0));
-            var origin = new Point(
-                HorizontalAlignment switch
-                {
-                    HorizontalAlignment.Left when FlowDirection != FlowDirection.RightToLeft => 0,
-                    HorizontalAlignment.Right when FlowDirection == FlowDirection.RightToLeft => 0,
-                    HorizontalAlignment.Left or HorizontalAlignment.Right => bounds.Width - size,
-                    _ => (bounds.Width - size) / 2,
-                },
-                VerticalAlignment switch
-                {
-                    VerticalAlignment.Top => 0,
-                    VerticalAlignment.Bottom => bounds.Height - size,
-                    _ => (bounds.Height - size) / 2,
-                });
-            _textLayout.Draw(context, origin);
-            disposable?.Dispose();
+            _textLayout.Draw(context);
         }
     }
 
     protected void InvalidateText()
     {
-        if (!IsLoaded)
-            return;
-
-        _textLayout?.Dispose();
         _textLayout = new TextLayout(
             IconText,
             IconFont,
             FontSize,
             Foreground,
-            TextAlignment.Center,
-            flowDirection: FlowDirection);
+            TextAlignment.Center);
 
         InvalidateVisual();
     }
@@ -137,4 +127,10 @@ public class GenericIconConverter<V, T> : TypeConverter
         }
         return base.ConvertFrom(context, culture, value);
     }
+}
+
+public enum FlowDirection
+{
+    LeftToRight,
+    RightToLeft,
 }

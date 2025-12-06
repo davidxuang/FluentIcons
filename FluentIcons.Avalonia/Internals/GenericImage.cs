@@ -2,9 +2,10 @@
 using System.ComponentModel;
 using System.Globalization;
 using Avalonia;
-using Avalonia.Controls.Documents;
+using Avalonia.Controls.Primitives;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
+using Avalonia.Visuals.Media.Imaging;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 
@@ -21,7 +22,7 @@ public abstract class GenericImage : AvaloniaObject, IDisposable, IImage
         set => SetValue(ForegroundProperty, value);
     }
     public static readonly StyledProperty<IBrush?> ForegroundProperty
-        = TextElement.ForegroundProperty.AddOwner<GenericImage>();
+        = TemplatedControl.ForegroundProperty.AddOwner<GenericImage>();
 
     public IconVariant IconVariant
     {
@@ -37,7 +38,7 @@ public abstract class GenericImage : AvaloniaObject, IDisposable, IImage
         set => SetValue(FlowDirectionProperty, value);
     }
     public static readonly StyledProperty<FlowDirection> FlowDirectionProperty
-        = Visual.FlowDirectionProperty.AddOwner<GenericImage>();
+        = GenericIcon.FlowDirectionProperty.AddOwner<GenericImage>();
 
     public double FontSize
     {
@@ -56,35 +57,23 @@ public abstract class GenericImage : AvaloniaObject, IDisposable, IImage
 
     public void Dispose()
     {
-        Dispose(true);
         GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            _textLayout?.Dispose();
-            _textLayout = null;
-        }
     }
 
     protected void InvalidateText()
     {
-        _textLayout?.Dispose();
         _textLayout = new TextLayout(
             IconText,
             IconFont,
             FontSize,
             Foreground,
-            TextAlignment.Center,
-            flowDirection: FlowDirection
+            TextAlignment.Center
         );
 
         VisualChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void Draw(DrawingContext context, Rect sourceRect, Rect destRect)
+    public void Draw(DrawingContext context, Rect sourceRect, Rect destRect, BitmapInterpolationMode bitmapInterpolationMode)
     {
         if (_textLayout is null)
             return;
@@ -96,13 +85,11 @@ public abstract class GenericImage : AvaloniaObject, IDisposable, IImage
             -sourceRect.X + destRect.X,
             -sourceRect.Y + destRect.Y);
         var transform = translate * scale;
-        if (FlowDirection == FlowDirection.RightToLeft)
-            transform *= new Matrix(-1, 0, 0, 1, FontSize, 0);
 
         using (context.PushClip(destRect))
-        using (context.PushTransform(transform))
+        using (context.PushPreTransform(transform))
         {
-            _textLayout.Draw(context, new Point(0, 0));
+            _textLayout.Draw(context);
         }
     }
 }

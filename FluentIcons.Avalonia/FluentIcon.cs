@@ -50,7 +50,7 @@ public class FluentIcon : GenericIcon, IValue<Icon>
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override Typeface IconFont => GetTypeface(IconSize, IconVariant);
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
     {
         if (change.Property == FontSizeProperty)
         {
