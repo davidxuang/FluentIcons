@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0;<!--net8.0-android;net8.0-ios;-->net8.0-browser</TargetFrameworks>
+    <TargetFrameworks>net10.0;<!--net10.0-android;net10.0-ios;-->net10.0-browser</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
@@ -11,7 +11,7 @@
 
   <PropertyGroup>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
-    <AvaloniaVersion>11.3.7</AvaloniaVersion>
+    <AvaloniaVersion>11.3.9</AvaloniaVersion>
     <AvaloniaSingleProject>true</AvaloniaSingleProject>
     <ApplicationTitle>Fluent Icons Gallery</ApplicationTitle>
     <ApplicationId>dev.davidxuang.fluent-icons.gallery</ApplicationId>
