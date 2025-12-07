@@ -31,7 +31,7 @@ jobs:
           path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
       - name: Setup .NET workloads
         run: |
-          dotnet workload install android ios maccatalyst macos maui wasm-tools-net8
+          dotnet workload install android ios maccatalyst macos maui wasm-tools
           Invoke-RestMethod 'https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.ps1' | Invoke-Expression
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
@@ -62,11 +62,11 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' || !contains(steps.tag_name.outputs.tag, '-') }}
         run: |
           $env:VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
-          dotnet publish ./FluentIcons.Gallery/FluentIcons.Gallery.csproj -f net8.0-browser
+          dotnet publish ./FluentIcons.Gallery/FluentIcons.Gallery.csproj -f net10.0-browser
       - name: Deploy to GitHub Pages
         if: ${{ !contains(steps.tag_name.outputs.tag, '-') }}
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./FluentIcons.Gallery/bin/Release/net8.0-browser/browser-wasm/AppBundle
+          publish_dir: ./FluentIcons.Gallery/bin/Release/net10.0-browser/browser-wasm/AppBundle
           publish_branch: gh-pages
