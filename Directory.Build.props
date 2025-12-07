@@ -14,7 +14,7 @@
     <CheckEolWorkloads>false</CheckEolWorkloads> <!-- for MAUI -->
   </PropertyGroup>
 
-  <PropertyGroup Condition="$(VERSION_SUFFIX) != ''">
+  <PropertyGroup Condition="'$(VERSION_SUFFIX)' != ''">
     <VersionSuffix>$(VERSION_SUFFIX)</VersionSuffix>
   </PropertyGroup>
 
