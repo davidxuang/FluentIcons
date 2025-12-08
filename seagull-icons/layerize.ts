@@ -385,6 +385,10 @@ fs.readdirSync(argv.mono)
             new paper.Point(mut['select-shape'][0]),
             new paper.Point(mut['select-shape'][1])
           );
+          if (file.indexOf('calendar_edit') !== -1) {
+            console.log(`[DEBUG] Applying select-shape ${bound.toString()} to ${file}`);
+            layers.forEach((layer) => { console.log(layer.path.bounds.toString()); });
+          }
           const T = layers
             .filter((layer) => bound.contains(layer.path.bounds))
             .map((layer) => {
