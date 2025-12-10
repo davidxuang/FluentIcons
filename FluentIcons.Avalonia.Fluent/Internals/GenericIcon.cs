@@ -113,7 +113,7 @@ public abstract class GenericIcon : FAIconElement
 }
 
 public class GenericIconConverter<V, T> : TypeConverter
-    where V : Enum
+    where V : struct, Enum
     where T : GenericIcon, IValue<V>, new()
 {
     public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
@@ -129,7 +129,14 @@ public class GenericIconConverter<V, T> : TypeConverter
     {
         if (value is string name)
         {
-            return new T { Value = (V)Enum.Parse(typeof(V), name) };
+            return new T
+            {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_0_OR_GREATER || NET5_0_OR_GREATER
+                Value = Enum.Parse<V>(name)
+#else
+                Value = (V)Enum.Parse(typeof(V), name)
+#endif
+            };
         }
         else if (value is V val)
         {

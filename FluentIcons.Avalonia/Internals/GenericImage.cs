@@ -108,7 +108,7 @@ public abstract class GenericImage : AvaloniaObject, IDisposable, IImage
 }
 
 public class GenericImageConverter<V, T> : TypeConverter
-    where V : Enum
+    where V : struct, Enum
     where T : GenericImage, IValue<V>, new()
 {
     public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
@@ -124,7 +124,14 @@ public class GenericImageConverter<V, T> : TypeConverter
     {
         if (value is string name)
         {
-            return new T { Value = (V)Enum.Parse(typeof(V), name) };
+            return new T
+            {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_0_OR_GREATER || NET5_0_OR_GREATER
+                Value = Enum.Parse<V>(name)
+#else
+                Value = (V)Enum.Parse(typeof(V), name)
+#endif
+            };
         }
         else if (value is V val)
         {
