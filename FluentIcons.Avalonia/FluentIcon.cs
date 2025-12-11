@@ -1,28 +1,16 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using Avalonia;
 using Avalonia.Media;
 using FluentIcons.Avalonia.Internals;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
+using FluentIcons.Resources.Avalonia;
 
 namespace FluentIcons.Avalonia;
 
 [TypeConverter(typeof(GenericIconConverter<Icon, FluentIcon>))]
 public class FluentIcon : GenericIcon, IValue<Icon>
 {
-    private static readonly Dictionary<IconSize, Typeface> _typefaces = IconSizeValues.Enumerable
-        .Where(size => (byte)size > 0)
-        .ToDictionary(k => k, k => new Typeface($"avares://FluentIcons.Resources.Avalonia/Assets#Fluent System Icons {k}"));
-
-    internal static Typeface GetTypeface(IconSize size, IconVariant variant) => size switch
-    {
-        IconSize.Resizable when variant != IconVariant.Light => _typefaces[IconSize.Size20],
-        IconSize.Resizable => _typefaces[IconSize.Size32],
-        _ => _typefaces[size]
-    };
-
     public static TypeConverter Converter { get; } = new GenericIconConverter<Icon, FluentIcon>();
 
     public Icon Icon
@@ -48,7 +36,7 @@ public class FluentIcon : GenericIcon, IValue<Icon>
         = AvaloniaProperty.Register<FluentIcon, IconSize>(nameof(IconSize), default);
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
-    protected override Typeface IconFont => GetTypeface(IconSize, IconVariant);
+    protected override Typeface IconFont => TypefaceManager.GetFluent(IconSize, IconVariant);
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {

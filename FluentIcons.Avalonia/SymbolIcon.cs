@@ -4,14 +4,13 @@ using Avalonia.Media;
 using FluentIcons.Avalonia.Internals;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
+using FluentIcons.Resources.Avalonia;
 
 namespace FluentIcons.Avalonia;
 
 [TypeConverter(typeof(GenericIconConverter<Symbol, SymbolIcon>))]
 public class SymbolIcon : GenericIcon, IValue<Symbol>
 {
-    internal static readonly Typeface STypeface = new("avares://FluentIcons.Resources.Avalonia/Assets#Seagull Fluent Icons");
-
     public static TypeConverter Converter { get; } = new GenericIconConverter<Symbol, SymbolIcon>();
 
     public Symbol Symbol
@@ -29,7 +28,7 @@ public class SymbolIcon : GenericIcon, IValue<Symbol>
     }
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
-    protected override Typeface IconFont => STypeface;
+    protected override Typeface IconFont => TypefaceManager.GetSeagull();
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {

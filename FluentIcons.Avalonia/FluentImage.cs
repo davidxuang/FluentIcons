@@ -4,6 +4,7 @@ using Avalonia.Media;
 using FluentIcons.Avalonia.Internals;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
+using FluentIcons.Resources.Avalonia;
 
 namespace FluentIcons.Avalonia;
 
@@ -50,5 +51,5 @@ public class FluentImage : GenericImage, IValue<Icon>
     }
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
-    protected override Typeface IconFont => FluentIcon.GetTypeface(IconSize, IconVariant);
+    protected override Typeface IconFont => TypefaceManager.GetFluent(IconSize, IconVariant);
 }

@@ -13,13 +13,6 @@
   <ItemGroup>
     <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" ExactVersion="true" />
     <ProjectReference Include="..\FluentIcons.Resources\FluentIcons.Resources.Avalonia.csproj" ExactVersion="true" />
-    <InternalsVisibleTo Include="FluentIcons.Avalonia.Fluent" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="ILLink.Descriptors.xml">
-      <LogicalName>ILLink.Descriptors.xml</LogicalName>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,0 @@
-<linker>
-  <assembly fullname="FluentIcons.Resources.Avalonia">
-    <type fullname="*" />
-  </assembly>
-</linker>
