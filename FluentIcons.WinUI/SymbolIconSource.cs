@@ -17,8 +17,40 @@ public partial class SymbolIconSource : GenericIconSource
         set { SetValue(SymbolProperty, value); }
     }
     public static DependencyProperty SymbolProperty { get; }
-        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new (Symbol.Home, OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new(Symbol.Home, OnIconPropertiesChanged));
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override FontFamily IconFont => SymbolIcon.SFontFamily;
+
+#if WINDOWS_WINAPPSDK || HAS_UNO
+#if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
+    protected override IconElement CreateIconElementCore()
+#elif HAS_UNO
+    public override IconElement CreateIconElement()
+#endif
+    {
+        var icon = new SymbolIcon
+        {
+            Symbol = Symbol,
+            IconVariant = IconVariant,
+            FlowDirection = FlowDirection,
+            FontSize = FontSize,
+            IsTextScaleFactorEnabled = IsTextScaleFactorEnabled,
+            MirroredWhenRightToLeft = MirroredWhenRightToLeft
+        };
+        if (Foreground != null) icon.Foreground = Foreground;
+        return icon;
+    }
+#endif
+
+#if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
+    protected override DependencyProperty GetIconElementPropertyCore(DependencyProperty iconSourceProperty)
+    {
+        return iconSourceProperty switch
+        {
+            var dp when dp == SymbolProperty => SymbolIcon.SymbolProperty,
+            _ => base.GetIconElementPropertyCore(iconSourceProperty),
+        };
+    }
+#endif
 }

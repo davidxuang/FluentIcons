@@ -69,4 +69,16 @@ public abstract partial class GenericIconSource : FontIconSource
             inst.FontWeight = FontWeights.Normal;
         }
     }
+
+#if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
+    protected override DependencyProperty GetIconElementPropertyCore(DependencyProperty iconSourceProperty)
+    {
+        return iconSourceProperty switch
+        {
+            var dp when dp == IconVariantProperty => GenericIcon.IconVariantProperty,
+            var dp when dp == FlowDirectionProperty => GenericIcon.FlowDirectionProperty,
+            _ => base.GetIconElementPropertyCore(iconSourceProperty)
+        };
+    }
+#endif
 }
