@@ -29,4 +29,38 @@ public partial class FluentIconSource : GenericIconSource
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override FontFamily IconFont => FluentIcon.GetFontFamily(IconSize, IconVariant);
+
+#if WINDOWS_WINAPPSDK || HAS_UNO
+#if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
+    protected override IconElement CreateIconElementCore()
+#elif HAS_UNO
+    public override IconElement CreateIconElement()
+#endif
+    {
+        var icon = new FluentIcon
+        {
+            Icon = Icon,
+            IconSize = IconSize,
+            IconVariant = IconVariant,
+            FlowDirection = FlowDirection,
+            FontSize = FontSize,
+            IsTextScaleFactorEnabled = IsTextScaleFactorEnabled,
+            MirroredWhenRightToLeft = MirroredWhenRightToLeft
+        };
+        if (Foreground != null) icon.Foreground = Foreground;
+        return icon;
+    }
+#endif
+
+#if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
+    protected override DependencyProperty GetIconElementPropertyCore(DependencyProperty iconSourceProperty)
+    {
+        return iconSourceProperty switch
+        {
+            var dp when dp == IconProperty => FluentIcon.IconProperty,
+            var dp when dp == IconSizeProperty => FluentIcon.IconSizeProperty,
+            _ => base.GetIconElementPropertyCore(iconSourceProperty)
+        };
+    }
+#endif
 }
