@@ -10,8 +10,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="FluentIcons.Avalonia" />
+    <InternalsVisibleTo Include="FluentIcons.Avalonia.Fluent" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Assets\**" />
     <AvaloniaResource Include="Assets\*.otf" />
+    <Compile Remove="**\*.cs" />
+    <Compile Include="**\*.Avalonia.cs" />
   </ItemGroup>
 
 </Project>

@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" ExactVersion="true" />
-    <ProjectReference Include="..\FluentIcons.Avalonia\FluentIcons.Avalonia.csproj" ExactVersion="true" />
+    <ProjectReference Include="..\FluentIcons.Resources\FluentIcons.Resources.Avalonia.csproj" ExactVersion="true" />
   </ItemGroup>
 
 </Project>

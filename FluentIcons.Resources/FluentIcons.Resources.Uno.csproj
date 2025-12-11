@@ -20,4 +20,9 @@
     </ItemGroup>
   </Target>
 
+  <ItemGroup>
+    <Compile Remove="**\*.cs" />
+    <Compile Include="**\*.Uno.cs" />
+  </ItemGroup>
+
 </Project>

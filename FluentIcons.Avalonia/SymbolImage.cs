@@ -4,6 +4,7 @@ using Avalonia.Media;
 using FluentIcons.Avalonia.Internals;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
+using FluentIcons.Resources.Avalonia;
 
 namespace FluentIcons.Avalonia;
 
@@ -27,7 +28,7 @@ public class SymbolImage : GenericImage, IValue<Symbol>
     }
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
-    protected override Typeface IconFont => SymbolIcon.STypeface;
+    protected override Typeface IconFont => TypefaceManager.GetSeagull();
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {

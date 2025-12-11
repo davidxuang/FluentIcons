@@ -10,8 +10,11 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>Fluent;UI;Icon</PackageTags>
     <RepositoryUrl>https://github.com/davidxuang/FluentIcons</RepositoryUrl>
-    <AndroidSdkDirectory Condition="'$(ANDROID_SDK_ROOT)' != ''">$(ANDROID_SDK_ROOT)</AndroidSdkDirectory>
     <CheckEolWorkloads>false</CheckEolWorkloads> <!-- for MAUI -->
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ANDROID_SDK_ROOT)' != ''">
+    <AndroidSdkDirectory>$(ANDROID_SDK_ROOT)</AndroidSdkDirectory>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(VERSION_SUFFIX)' != ''">
