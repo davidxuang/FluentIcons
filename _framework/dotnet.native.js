@@ -30,11 +30,11 @@ Module['ready'] = new Promise((resolve, reject) => {
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// include: C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Runtime.Mono.browser-wasm\10.0.0\runtimes\browser-wasm\native\src\es6\dotnet.es6.pre.js
+// include: C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Runtime.Mono.browser-wasm\10.0.1\runtimes\browser-wasm\native\src\es6\dotnet.es6.pre.js
 if (_nativeModuleLoaded) throw new Error("Native module already loaded");
 _nativeModuleLoaded = true;
 createDotnetRuntime = Module = moduleArg(Module);
-// end include: C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Runtime.Mono.browser-wasm\10.0.0\runtimes\browser-wasm\native\src\es6\dotnet.es6.pre.js
+// end include: C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Runtime.Mono.browser-wasm\10.0.1\runtimes\browser-wasm\native\src\es6\dotnet.es6.pre.js
 
 
 // Sometimes an existing Module object exists with properties
@@ -8533,7 +8533,7 @@ var miniTempWebGLIntBuffersStorage = new Int32Array(288);
   for (/**@suppress{duplicate}*/var i = 0; i < 288; ++i) {
     miniTempWebGLIntBuffers[i] = miniTempWebGLIntBuffersStorage.subarray(0, i+1);
   };
-DOTNET.setup({ wasmEnableSIMD: true,wasmEnableEH: true,enableAotProfiler: false, enableDevToolsProfiler: false, enableLogProfiler: false, enableEventPipe: false, runAOTCompilation: false, wasmEnableThreads: false, gitHash: "b0f34d51fccc69fd334253924abd8d6853fad7aa", });;
+DOTNET.setup({ wasmEnableSIMD: true,wasmEnableEH: true,enableAotProfiler: false, enableDevToolsProfiler: false, enableLogProfiler: false, enableEventPipe: false, runAOTCompilation: false, wasmEnableThreads: false, gitHash: "fad253f51b461736dfd3cd9c15977bb7493becef", });;
 var wasmImports = {
   /** @export */
   __assert_fail: ___assert_fail,
