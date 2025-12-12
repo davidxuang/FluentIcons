@@ -10,7 +10,11 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>Fluent;UI;Icon</PackageTags>
     <RepositoryUrl>https://github.com/davidxuang/FluentIcons</RepositoryUrl>
-    <CheckEolWorkloads>false</CheckEolWorkloads> <!-- for MAUI -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <!-- for MAUI -->
+    <CheckEolWorkloads>false</CheckEolWorkloads>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(ANDROID_SDK_ROOT)' != ''">
@@ -24,6 +28,10 @@
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
+
+  <ItemGroup Condition="'$(OutputType)' != 'Exe' and '$(OutputType)' != 'WinExe'">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\Assets\Icon.png" Pack="true" PackagePath="" />
