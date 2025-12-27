@@ -7,15 +7,6 @@ namespace FluentIcons.Uwp.Internals;
 [EditorBrowsable(EditorBrowsableState.Never)]
 public abstract partial class GenericIcon : FontIcon
 {
-    protected const string AssetsAssembly =
-#if WINDOWS_WINAPPSDK
-        "FluentIcons.WinUI";
-#elif WINDOWS_UWP
-        "FluentIcons.Uwp";
-#else
-        "FluentIcons.Resources.Uno";
-#endif
-
     public GenericIcon()
     {
         FontStyle = Windows.UI.Text.FontStyle.Normal;

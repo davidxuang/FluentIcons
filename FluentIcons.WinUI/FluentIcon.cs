@@ -6,17 +6,6 @@ namespace FluentIcons.Uwp;
 
 public partial class FluentIcon : GenericIcon
 {
-    private static readonly Dictionary<IconSize, FontFamily> _fontfamilies = IconSizeValues.Enumerable
-        .Where(size => (byte)size > 0)
-        .ToDictionary(k => k, k => new FontFamily($"ms-appx:///{AssetsAssembly}/Assets/FluentSystemIcons-{k}.otf#Fluent System Icons {k}"));
-
-    internal static FontFamily GetFontFamily(IconSize size, IconVariant variant) => size switch
-    {
-        IconSize.Resizable when variant != IconVariant.Light => _fontfamilies[IconSize.Size20],
-        IconSize.Resizable => _fontfamilies[IconSize.Size32],
-        _ => _fontfamilies[size]
-    };
-
     public FluentIcon()
     {
         InvalidateText();
@@ -46,5 +35,5 @@ public partial class FluentIcon : GenericIcon
         = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIcon), new(default(IconSize), OnIconPropertiesChanged));
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
-    protected override FontFamily IconFont => GetFontFamily(IconSize, IconVariant);
+    protected override FontFamily IconFont => FontManager.GetFluent(IconSize, IconVariant);
 }

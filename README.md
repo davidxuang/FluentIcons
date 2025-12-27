@@ -39,14 +39,14 @@ A multi-framework control library of [fluentui-system-icons](https://github.com/
 
 This package features `<FluentIcon>`/`<SymbolIcon>` element, and `<FluentIconSource>`/`<SymbolIconSource>` on platforms with `<IconSource>`, which generally provide following properties:
 
--   **Icon** _(Fluent...)_ / **Symbol** _(Symbol...)_ : [Icon](./FluentIcons.Common/Icon.cs) / [Symbol](./FluentIcons.Common/Symbol.cs)
--   **IconVariant** : [IconVariant](./FluentIcons.Common/IconVariant.cs)
+-   **Icon** _(Fluent...)_ / **Symbol** _(Symbol...)_ : [`Icon`](./FluentIcons.Common/Icon.cs) / `Symbol`
+-   **IconVariant** : [`IconVariant`](./FluentIcons.Common/IconVariant.cs)
     -   _New in version 1.1.278: `Color` variant added along with [COLRv1](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) migration._
--   **IconSize** _(Fluent...)_ : [IconSize](./FluentIcons.Common/IconSize.cs)
--   **FlowDirection** : FlowDirection
+-   **IconSize** _(Fluent...)_ : [`IconSize`](./FluentIcons.Common/IconSize.cs)
+-   **FlowDirection** : `FlowDirection`
     -   _Switch between LTR/RTL icon variant._
--   **FontSize** : double
--   **Foreground** : Brush
+-   **FontSize** : `double`
+-   **Foreground** : `Brush`
 
 The _Fluent_ variant provides all sizes of icons untouched compared to upstream, while the _Symbol_ variant mimics the APIs and appearances of `SymbolIcon` and [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font) from WinUI, which is powered by a derived version from the child project [Seagull Icons](./seagull-icons/README.md). These variants were controlled by the deprecated `UseSegoeMetrics` property in distributions prior to 1.1.278.
 

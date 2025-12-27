@@ -6,8 +6,6 @@ namespace FluentIcons.Uwp;
 
 public partial class SymbolIcon : GenericIcon
 {
-    internal static readonly FontFamily SFontFamily = new($"ms-appx:///{AssetsAssembly}/Assets/SeagullFluentIcons.otf#Seagull Fluent Icons");
-
     public SymbolIcon()
     {
         InvalidateText();
@@ -29,5 +27,5 @@ public partial class SymbolIcon : GenericIcon
         = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
-    protected override FontFamily IconFont => SFontFamily;
+    protected override FontFamily IconFont => FontManager.GetSeagull();
 }

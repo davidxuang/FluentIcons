@@ -28,12 +28,12 @@ public partial class FluentIconSource : GenericIconSource
         = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIconSource), new(default(IconSize), OnIconPropertiesChanged));
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
-    protected override FontFamily IconFont => FluentIcon.GetFontFamily(IconSize, IconVariant);
+    protected override FontFamily IconFont => FontManager.GetFluent(IconSize, IconVariant);
 
 #if WINDOWS_WINAPPSDK || HAS_UNO
 #if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
     protected override IconElement CreateIconElementCore()
-#elif HAS_UNO
+#else
     public override IconElement CreateIconElement()
 #endif
     {

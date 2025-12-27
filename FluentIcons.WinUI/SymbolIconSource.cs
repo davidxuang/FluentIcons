@@ -20,12 +20,12 @@ public partial class SymbolIconSource : GenericIconSource
         = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new(Symbol.Home, OnIconPropertiesChanged));
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
-    protected override FontFamily IconFont => SymbolIcon.SFontFamily;
+    protected override FontFamily IconFont => FontManager.GetSeagull();
 
 #if WINDOWS_WINAPPSDK || HAS_UNO
 #if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
     protected override IconElement CreateIconElementCore()
-#elif HAS_UNO
+#else
     public override IconElement CreateIconElement()
 #endif
     {

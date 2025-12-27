@@ -31,6 +31,9 @@
     <Otherwise>
       <ItemGroup>
         <ProjectReference Include="..\FluentIcons.Resources\FluentIcons.Resources.Uno.csproj" ExactVersion="true" />
+        <EmbeddedResource Include="ILLink.Descriptors.xml">
+          <LogicalName>ILLink.Descriptors.xml</LogicalName>
+        </EmbeddedResource>
       </ItemGroup>
 
       <ItemGroup>

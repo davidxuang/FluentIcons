@@ -1,0 +1,5 @@
+<linker>
+  <assembly fullname="FluentIcons.Resources.Uno">
+    <type fullname="*" />
+  </assembly>
+</linker>
