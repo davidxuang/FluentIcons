@@ -29,6 +29,10 @@
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <NoWarn>$(NoWarn);Uno0001</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(OutputType)' != 'Exe' and '$(OutputType)' != 'WinExe'">
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
   </ItemGroup>
