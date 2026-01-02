@@ -24,14 +24,17 @@ public class SymbolIcon : GenericIcon, IValue<Symbol>
         get { return (Symbol)GetValue(SymbolProperty); }
         set { SetValue(SymbolProperty, value); }
     }
-    public static readonly DependencyProperty SymbolProperty
-        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
-
     Symbol IValue<Symbol>.Value
     {
         get { return (Symbol)GetValue(SymbolProperty); }
         set { SetValue(SymbolProperty, value); }
     }
+    public static readonly DependencyProperty SymbolProperty
+        = DependencyProperty.Register(
+            nameof(Symbol),
+            typeof(Symbol),
+            typeof(SymbolIcon),
+            new(Symbol.Home, OnCorePropertyChanged));
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override Typeface IconFont => _typeface;

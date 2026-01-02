@@ -12,13 +12,29 @@ namespace FluentIcons.Avalonia.Fluent.Internals;
 [EditorBrowsable(EditorBrowsableState.Never)]
 public abstract class GenericIconSource : FontIconSource
 {
+    static GenericIconSource()
+    {
+        IconVariantProperty.Changed.AddClassHandler<GenericIconSource>(OnCorePropertyChanged);
+        FontSizeProperty.Changed.AddClassHandler<GenericIconSource>(OnCorePropertyChanged);
+        FlowDirectionProperty.Changed.AddClassHandler<GenericIconSource>(OnCorePropertyChanged);
+
+        GlyphProperty.OverrideMetadata<GenericIconSource>(
+            new(coerce: static (o, v) => (o as GenericIconSource)?.IconText ?? v));
+        FontIconSource.FontSizeProperty.OverrideMetadata<GenericIconSource>(
+            new(coerce: static (o, v) => (o as GenericIconSource)?.FontSize ?? v));
+        FontFamilyProperty.OverrideMetadata<GenericIconSource>(
+            new(coerce: static (o, v) => (o as GenericIconSource)?.IconFont.FontFamily ?? v));
+        FontStyleProperty.OverrideMetadata<GenericIconSource>(
+            new(coerce: static (o, v) => FontStyle.Normal));
+        FontWeightProperty.OverrideMetadata<GenericIconSource>(
+            new(coerce: static (o, v) => FontWeight.Regular));
+    }
+
     public GenericIconSource()
     {
         base.FontSize = FontSize;
-        FontFamily = IconFont.FontFamily;
         FontStyle = FontStyle.Normal;
         FontWeight = FontWeight.Regular;
-        InvalidateText();
     }
 
     public IconVariant IconVariant
@@ -48,37 +64,15 @@ public abstract class GenericIconSource : FontIconSource
     protected abstract string IconText { get; }
     protected abstract Typeface IconFont { get; }
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    protected static void OnCorePropertyChanged(GenericIconSource element, AvaloniaPropertyChangedEventArgs? _)
     {
-        if (change.Property == FontIconSource.FontSizeProperty)
-        {
-            base.FontSize = FontSize;
-        }
-        else if (change.Property == GlyphProperty)
-        {
-            Glyph = IconText;
-        }
-        else if (change.Property == FontFamilyProperty)
-        {
-            FontFamily = IconFont.FontFamily;
-        }
-        else if (change.Property == FontStyleProperty)
-        {
-            FontStyle = FontStyle.Normal;
-        }
-        else if (change.Property == FontWeightProperty)
-        {
-            FontWeight = FontWeight.Regular;
-        }
-        else
-        {
-            base.OnPropertyChanged(change);
-        }
+        element.InvalidateText();
     }
 
     protected void InvalidateText()
     {
         Glyph = IconText;
+        FontFamily = IconFont.FontFamily;
     }
 }
 
@@ -104,7 +98,7 @@ public class GenericIconSourceConverter<V, T> : TypeConverter
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_0_OR_GREATER || NET5_0_OR_GREATER
                 Value = Enum.Parse<V>(name)
 #else
-                Value =  (V)Enum.Parse(typeof(V), name)
+                Value = (V)Enum.Parse(typeof(V), name)
 #endif
             };
         }

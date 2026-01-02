@@ -15,7 +15,7 @@ public abstract partial class GenericImageSource : FontImageSource
         set => SetValue(IconVariantProperty, value);
     }
     public static readonly BindableProperty IconVariantProperty
-        = BindableProperty.Create(nameof(IconVariant), typeof(IconVariant), typeof(GenericImageSource), propertyChanged: OnIconPropertiesChanged);
+        = BindableProperty.Create(nameof(IconVariant), typeof(IconVariant), typeof(GenericImageSource), propertyChanged: OnCorePropertyChanged);
 
     [TypeConverter(typeof(FlowDirectionConverter))]
     public FlowDirection FlowDirection
@@ -24,7 +24,7 @@ public abstract partial class GenericImageSource : FontImageSource
         set => SetValue(FlowDirectionProperty, value);
     }
     public static readonly BindableProperty FlowDirectionProperty
-        = BindableProperty.Create(nameof(FlowDirection), typeof(FlowDirection), typeof(GenericImageSource), default(FlowDirection), propertyChanged: OnIconPropertiesChanged);
+        = BindableProperty.Create(nameof(FlowDirection), typeof(FlowDirection), typeof(GenericImageSource), default(FlowDirection), propertyChanged: OnCorePropertyChanged);
 
     protected abstract string IconText { get; }
     protected abstract string IconFont { get; }
@@ -51,6 +51,6 @@ public abstract partial class GenericImageSource : FontImageSource
         Glyph = IconText;
     }
 
-    public static void OnIconPropertiesChanged(BindableObject bindable, object oldValue, object newValue)
+    public static void OnCorePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         => (bindable as GenericImageSource)?.InvalidateText();
 }

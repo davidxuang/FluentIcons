@@ -1,17 +1,30 @@
 using System.ComponentModel;
 using Avalonia;
 using Avalonia.Media;
+#if FLUENT_AVALONIA
+using FluentIcons.Avalonia.Fluent.Internals;
+#else
 using FluentIcons.Avalonia.Internals;
+#endif
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using FluentIcons.Resources.Avalonia;
 
+#if FLUENT_AVALONIA
+namespace FluentIcons.Avalonia.Fluent;
+#else
 namespace FluentIcons.Avalonia;
+#endif
 
 [TypeConverter(typeof(GenericIconConverter<Symbol, SymbolIcon>))]
 public class SymbolIcon : GenericIcon, IValue<Symbol>
 {
     public static TypeConverter Converter { get; } = new GenericIconConverter<Symbol, SymbolIcon>();
+
+    static SymbolIcon()
+    {
+        SymbolProperty.Changed.AddClassHandler<SymbolIcon>(OnCorePropertyChanged);
+    }
 
     public Symbol Symbol
     {
@@ -29,22 +42,4 @@ public class SymbolIcon : GenericIcon, IValue<Symbol>
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override Typeface IconFont => TypefaceManager.GetSeagull();
-
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-    {
-        if (change.Property == FontSizeProperty)
-        {
-            InvalidateMeasure();
-            InvalidateText();
-        }
-        else if (change.Property == ForegroundProperty ||
-            change.Property == SymbolProperty ||
-            change.Property == IconVariantProperty ||
-            change.Property == FlowDirectionProperty)
-        {
-            InvalidateText();
-        }
-
-        base.OnPropertyChanged(change);
-    }
 }

@@ -4,37 +4,60 @@ using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.TextFormatting;
+#if FLUENT_AVALONIA
+using FluentAvalonia.UI.Controls;
+#endif
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 
+#if FLUENT_AVALONIA
+namespace FluentIcons.Avalonia.Fluent.Internals;
+#else
 namespace FluentIcons.Avalonia.Internals;
+#endif
 
 [EditorBrowsable(EditorBrowsableState.Never)]
-public abstract class GenericIcon : IconElement
+public abstract class GenericIcon
+#if FLUENT_AVALONIA
+    : FAIconElement
+#else
+    : IconElement
+#endif
 {
-    private readonly Border _border;
+    static GenericIcon()
+    {
+        IconVariantProperty.Changed.AddClassHandler<GenericIcon>(OnCorePropertyChanged);
+        FontSizeProperty.Changed.AddClassHandler<GenericIcon>(OnCorePropertyChanged);
+        ForegroundProperty.Changed.AddClassHandler<GenericIcon>(OnCorePropertyChanged);
+        FlowDirectionProperty.Changed.AddClassHandler<GenericIcon>(OnCorePropertyChanged);
+    }
+
+    private readonly Panel _panel;
     private readonly Core _core;
 
     internal GenericIcon()
     {
-        _border = new();
-        _border.Bind(BackgroundProperty, this.GetBindingObservable(BackgroundProperty));
-        _border.Bind(BorderBrushProperty, this.GetBindingObservable(BorderBrushProperty));
-        _border.Bind(BorderThicknessProperty, this.GetBindingObservable(BorderThicknessProperty));
-        _border.Bind(CornerRadiusProperty, this.GetBindingObservable(CornerRadiusProperty));
-        _border.Bind(PaddingProperty, this.GetBindingObservable(PaddingProperty));
-        (_border as ISetLogicalParent).SetParent(this);
-        VisualChildren.Add(_border);
-        LogicalChildren.Add(_border);
+        _panel = new();
+        _panel.Bind(WidthProperty, this.GetBindingObservable(WidthProperty));
+        _panel.Bind(HeightProperty, this.GetBindingObservable(HeightProperty));
+        _panel.Bind(HorizontalAlignmentProperty, this.GetBindingObservable(HorizontalAlignmentProperty));
+        _panel.Bind(VerticalAlignmentProperty, this.GetBindingObservable(VerticalAlignmentProperty));
+#if !FLUENT_AVALONIA
+        _panel.Bind(BackgroundProperty, this.GetBindingObservable(BackgroundProperty));
+        _panel.Bind(BorderBrushProperty, this.GetBindingObservable(BorderBrushProperty));
+        _panel.Bind(BorderThicknessProperty, this.GetBindingObservable(BorderThicknessProperty));
+        _panel.Bind(CornerRadiusProperty, this.GetBindingObservable(CornerRadiusProperty));
+        _panel.Bind(PaddingProperty, this.GetBindingObservable(PaddingProperty));
+#endif
+        (_panel as ISetLogicalParent).SetParent(this);
+        VisualChildren.Add(_panel);
+        LogicalChildren.Add(_panel);
 
-        _core = new();
+        _core = new(FontSize);
         _core.Bind(FlowDirectionProperty, this.GetBindingObservable(FlowDirectionProperty));
-        (_core as ISetLogicalParent).SetParent(this);
-        VisualChildren.Add(_core);
-        LogicalChildren.Add(_core);
+        _panel.Children.Add(_core);
     }
 
     public IconVariant IconVariant
@@ -45,12 +68,20 @@ public abstract class GenericIcon : IconElement
     public static readonly StyledProperty<IconVariant> IconVariantProperty
         = AvaloniaProperty.Register<GenericIcon, IconVariant>(nameof(IconVariant));
 
+#if FLUENT_AVALONIA
+    public double FontSize
+#else
     public new double FontSize
+#endif
     {
         get => GetValue(FontSizeProperty);
         set => SetValue(FontSizeProperty, value);
     }
+#if FLUENT_AVALONIA
+    public static readonly StyledProperty<double> FontSizeProperty
+#else
     public static new readonly StyledProperty<double> FontSizeProperty
+#endif
         = AvaloniaProperty.Register<GenericIcon, double>(nameof(FontSize), 20d, false);
 
     protected abstract string IconText { get; }
@@ -68,99 +99,68 @@ public abstract class GenericIcon : IconElement
         base.OnUnloaded(e);
     }
 
-    protected override Size MeasureOverride(Size availableSize)
+    protected static void OnCorePropertyChanged(GenericIcon element, AvaloniaPropertyChangedEventArgs? _)
     {
-        double fs = FontSize;
-        Size size = new Size(fs, fs).Inflate(Padding).Inflate(BorderThickness);
-        return new Size(
-            Width.Or(
-                HorizontalAlignment == HorizontalAlignment.Stretch
-                    ? availableSize.Width.Or(size.Width)
-                    : Math.Min(availableSize.Width, size.Width)),
-            Height.Or(
-                VerticalAlignment == VerticalAlignment.Stretch
-                    ? availableSize.Height.Or(size.Height)
-                    : Math.Min(availableSize.Height, size.Height)));
-    }
-
-    protected override Size ArrangeOverride(Size finalSize)
-    {
-        double fs = FontSize;
-        Size size = new Size(fs, fs).Inflate(Padding).Inflate(BorderThickness);
-        Rect rect = new(
-            HorizontalAlignment switch
-            {
-                HorizontalAlignment.Center => (finalSize.Width - fs) / 2,
-                HorizontalAlignment.Right => finalSize.Width - fs,
-                _ => 0
-            },
-            VerticalAlignment switch
-            {
-                VerticalAlignment.Center => (finalSize.Height - fs) / 2,
-                VerticalAlignment.Bottom => finalSize.Height - fs,
-                _ => 0
-            },
-            HorizontalAlignment switch
-            {
-                HorizontalAlignment.Stretch => finalSize.Width,
-                _ => size.Width,
-            },
-            VerticalAlignment switch
-            {
-                VerticalAlignment.Stretch => finalSize.Height,
-                _ => size.Height,
-            });
-        _border.Arrange(rect);
-        _core.Arrange(rect.Deflate(BorderThickness).Deflate(Padding));
-
-        return finalSize;
+        element.InvalidateText();
     }
 
     protected void InvalidateText()
-    {
-        if (!IsLoaded) return;
+        => _core.Update(IconText, IconFont, FontSize, Foreground);
 
-        _core.InvalidateText(IconText, IconFont, FontSize, Foreground);
-    }
-
-    private sealed class Core : Control
+    internal sealed class Core(double size) : Control
     {
-        private double _size;
+        private bool _updating = false;
+
+        private string? _text;
+        private Typeface _typeface;
+        private double _size = size;
+        private IBrush? _foreground;
+
         private TextLayout? _textLayout;
+
+        protected override Size MeasureOverride(Size availableSize)
+            => new(Math.Min(_size, availableSize.Width),
+                   Math.Min(_size, availableSize.Height));
+
+        public void Update(string text, Typeface typeface, double fontSize, IBrush? foreground)
+        {
+            if (_size != fontSize) InvalidateMeasure();
+            _text = text;
+            _typeface = typeface;
+            _size = fontSize;
+            _foreground = foreground;
+
+            _updating = true;
+            InvalidateVisual();
+        }
 
         public override void Render(DrawingContext context)
         {
-            if (_textLayout is null)
-                return;
+            if (_updating || _textLayout is null)
+            {
+                _updating = false;
+                _textLayout?.Dispose();
+                _textLayout = new TextLayout(
+                    _text,
+                    _typeface,
+                    _size,
+                    _foreground,
+                    TextAlignment.Center,
+                    flowDirection: FlowDirection);
+            }
 
             Rect bounds = Bounds;
             using (context.PushClip(new Rect(bounds.Size)))
             {
-                IDisposable? disposable = null;
+                IDisposable? flip = null;
                 if (FlowDirection == FlowDirection.RightToLeft)
-                    disposable = context.PushTransform(new Matrix(-1, 0, 0, 1, bounds.Width, 0));
+                    flip = context.PushTransform(new Matrix(-1, 0, 0, 1, bounds.Width, 0));
                 var origin = new Point(
                     (bounds.Width - _size) / 2,
                     (bounds.Height - _size) / 2);
                 _textLayout.Draw(context, origin);
-                disposable?.Dispose();
+                flip?.Dispose();
             }
-        }
-
-        public void InvalidateText(string text, Typeface typeface, double fontSize, IBrush? foreground)
-        {
-            _size = fontSize;
-
-            _textLayout?.Dispose();
-            _textLayout = new TextLayout(
-                text,
-                typeface,
-                fontSize,
-                foreground,
-                TextAlignment.Center,
-                flowDirection: FlowDirection);
-
-            InvalidateVisual();
         }
 
         public void Clear()

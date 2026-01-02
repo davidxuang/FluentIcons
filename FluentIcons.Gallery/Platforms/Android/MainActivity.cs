@@ -10,9 +10,7 @@ namespace FluentIcons.Gallery;
 public class MainActivity : AvaloniaMainActivity
 {
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
-    {
-        return base.CustomizeAppBuilder(builder)
+        => base.CustomizeAppBuilder(builder)
             .WithInterFont()
             .WithJetBrainsMonoFont();
-    }
 }

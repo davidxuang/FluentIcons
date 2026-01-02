@@ -13,6 +13,16 @@ public class SymbolIconSource : GenericIconSource, IValue<Symbol>
 {
     public static TypeConverter Converter { get; } = new GenericIconSourceConverter<Symbol, SymbolIconSource>();
 
+    static SymbolIconSource()
+    {
+        SymbolProperty.Changed.AddClassHandler<SymbolIconSource>(OnCorePropertyChanged);
+    }
+
+    public SymbolIconSource()
+    {
+        InvalidateText();
+    }
+
     public Symbol Symbol
     {
         get => GetValue(SymbolProperty);
@@ -29,19 +39,4 @@ public class SymbolIconSource : GenericIconSource, IValue<Symbol>
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override Typeface IconFont => TypefaceManager.GetSeagull();
-
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-    {
-        if (change.Property == SymbolProperty ||
-            change.Property == IconVariantProperty ||
-            change.Property == FontSizeProperty ||
-            change.Property == FlowDirectionProperty)
-        {
-            InvalidateText();
-        }
-        else
-        {
-            base.OnPropertyChanged(change);
-        }
-    }
 }

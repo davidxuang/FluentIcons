@@ -1,17 +1,31 @@
 ﻿using System.ComponentModel;
 using Avalonia;
 using Avalonia.Media;
+#if FLUENT_AVALONIA
+using FluentIcons.Avalonia.Fluent.Internals;
+#else
 using FluentIcons.Avalonia.Internals;
+#endif
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
 using FluentIcons.Resources.Avalonia;
 
+#if FLUENT_AVALONIA
+namespace FluentIcons.Avalonia.Fluent;
+#else
 namespace FluentIcons.Avalonia;
+#endif
 
 [TypeConverter(typeof(GenericIconConverter<Icon, FluentIcon>))]
 public class FluentIcon : GenericIcon, IValue<Icon>
 {
     public static TypeConverter Converter { get; } = new GenericIconConverter<Icon, FluentIcon>();
+
+    static FluentIcon()
+    {
+        IconProperty.Changed.AddClassHandler<FluentIcon>(OnCorePropertyChanged);
+        IconSizeProperty.Changed.AddClassHandler<FluentIcon>(OnCorePropertyChanged);
+    }
 
     public Icon Icon
     {
@@ -37,23 +51,4 @@ public class FluentIcon : GenericIcon, IValue<Icon>
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override Typeface IconFont => TypefaceManager.GetFluent(IconSize, IconVariant);
-
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-    {
-        if (change.Property == FontSizeProperty)
-        {
-            InvalidateMeasure();
-            InvalidateText();
-        }
-        else if (change.Property == ForegroundProperty ||
-            change.Property == IconProperty ||
-            change.Property == IconVariantProperty ||
-            change.Property == IconSizeProperty ||
-            change.Property == FlowDirectionProperty)
-        {
-            InvalidateText();
-        }
-
-        base.OnPropertyChanged(change);
-    }
 }

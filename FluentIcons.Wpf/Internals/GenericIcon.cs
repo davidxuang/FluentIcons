@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
@@ -12,8 +13,34 @@ namespace FluentIcons.Wpf.Internals;
 [EditorBrowsable(EditorBrowsableState.Never)]
 public abstract class GenericIcon : FrameworkElement
 {
-    private bool _suspendCreate = true;
-    private FormattedText? _formattedText;
+    private readonly Grid _grid;
+    private readonly Core _core;
+
+    internal GenericIcon()
+    {
+        _grid = new();
+        _grid.SetBinding(WidthProperty, new Binding(nameof(Width)) { Source = this });
+        _grid.SetBinding(HeightProperty, new Binding(nameof(Height)) { Source = this });
+        _grid.SetBinding(HorizontalAlignmentProperty, new Binding(nameof(HorizontalAlignment)) { Source = this });
+        _grid.SetBinding(VerticalAlignmentProperty, new Binding(nameof(VerticalAlignment)) { Source = this });
+        AddLogicalChild(_grid);
+        AddVisualChild(_grid);
+
+        _core = new(FontSize);
+        _core.SetBinding(FlowDirectionProperty, new Binding(nameof(FlowDirection)) { Source = this });
+        _grid.Children.Add(_core);
+
+        Loaded += static (s, e) => (s as GenericIcon)?.InvalidateText();
+    }
+
+    protected override int VisualChildrenCount => 1;
+
+    protected override Visual GetVisualChild(int index)
+        => index switch
+        {
+            0 => _grid,
+            _ => throw new ArgumentOutOfRangeException(nameof(index)),
+        };
 
     public IconVariant IconVariant
     {
@@ -21,7 +48,11 @@ public abstract class GenericIcon : FrameworkElement
         set { SetValue(IconVariantProperty, value); }
     }
     public static readonly DependencyProperty IconVariantProperty
-        = DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), new(default(IconVariant), OnIconPropertiesChanged));
+        = DependencyProperty.Register(
+            nameof(IconVariant),
+            typeof(IconVariant),
+            typeof(GenericIcon),
+            new(default(IconVariant), OnCorePropertyChanged));
 
     public double FontSize
     {
@@ -29,12 +60,7 @@ public abstract class GenericIcon : FrameworkElement
         set { SetValue(FontSizeProperty, value); }
     }
     public static readonly DependencyProperty FontSizeProperty
-        = TextBlock.FontSizeProperty.AddOwner(
-            typeof(GenericIcon),
-            new FrameworkPropertyMetadata(
-                20d,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                OnSizePropertiesChanged));
+        = TextBlock.FontSizeProperty.AddOwner(typeof(GenericIcon), new FrameworkPropertyMetadata(20d, OnCorePropertyChanged));
 
     public Brush Foreground
     {
@@ -42,62 +68,22 @@ public abstract class GenericIcon : FrameworkElement
         set { SetValue(ForegroundProperty, value); }
     }
     public static readonly DependencyProperty ForegroundProperty
-        = TextBlock.ForegroundProperty.AddOwner(typeof(GenericIcon), new FrameworkPropertyMetadata(OnIconPropertiesChanged));
+        = TextBlock.ForegroundProperty.AddOwner(typeof(GenericIcon), new FrameworkPropertyMetadata(OnCorePropertyChanged));
 
     protected abstract string IconText { get; }
+
     protected abstract Typeface IconFont { get; }
 
     protected override Size MeasureOverride(Size availableSize)
     {
-        if (_suspendCreate || _formattedText is null)
-        {
-            _suspendCreate = false;
-            InvalidateText();
-        }
-
-        double size = FontSize;
-        return new Size(
-            Width.Or(
-                HorizontalAlignment == HorizontalAlignment.Stretch
-                    ? availableSize.Width.Or(size)
-                    : Math.Min(availableSize.Width, size)),
-            Height.Or(
-                VerticalAlignment == VerticalAlignment.Stretch
-                    ? availableSize.Height.Or(size)
-                    : Math.Min(availableSize.Height, size)));
+        _grid.Measure(availableSize);
+        return _grid.DesiredSize;
     }
 
-    protected override void OnRender(DrawingContext context)
+    protected override Size ArrangeOverride(Size finalSize)
     {
-        if (_formattedText is null)
-            return;
-
-        var canvas = RenderTransform.TransformBounds(new Rect(0, 0, ActualWidth, ActualHeight));
-        context.PushClip(new RectangleGeometry(canvas));
-
-        var hFlip = FlowDirection == FlowDirection.RightToLeft;
-        if (hFlip) context.PushTransform(new MatrixTransform(-1, 0, 0, 1, ActualWidth, 0));
-        var hOffset =  HorizontalAlignment switch
-        {
-            HorizontalAlignment.Left => 0,
-            HorizontalAlignment.Right => canvas.Width - _formattedText.Width,
-            _ => (canvas.Width - _formattedText.Width) / 2,
-        };
-        var origin = new Point(
-            FlowDirection switch
-            {
-                FlowDirection.RightToLeft => canvas.Right - hOffset,
-                _ => canvas.Left + hOffset,
-            },
-            canvas.Top + VerticalAlignment switch
-            {
-                VerticalAlignment.Top => 0,
-                VerticalAlignment.Bottom => canvas.Height - _formattedText.Height,
-                _ => (canvas.Height - _formattedText.Height) / 2,
-            });
-        context.DrawText(_formattedText, origin);
-        if (hFlip) context.Pop();
-        context.Pop();
+        _grid.Arrange(new Rect(new Point(0, 0), finalSize));
+        return base.ArrangeOverride(finalSize);
     }
 
     protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
@@ -110,35 +96,73 @@ public abstract class GenericIcon : FrameworkElement
         base.OnPropertyChanged(e);
     }
 
-    protected static void OnSizePropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    protected static void OnCorePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is GenericIcon icon)
-        {
-            icon.InvalidateMeasure();
-            icon.InvalidateText();
-        }
-    }
-
-    protected static void OnIconPropertiesChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        (d as GenericIcon)?.InvalidateText();
+        if (d is GenericIcon element) element.InvalidateText();
     }
 
     protected void InvalidateText()
+        => _core.Update(IconText, IconFont, FontSize, Foreground);
+
+    internal sealed class Core(double size) : FrameworkElement
     {
-        if (_suspendCreate)
-            return;
+        private bool _updating = false;
 
-        _formattedText = new FormattedText(
-            IconText,
-            CultureInfo.CurrentCulture,
-            FlowDirection,
-            IconFont,
-            FontSize,
-            Foreground,
-            VisualTreeHelper.GetDpi(this).PixelsPerDip);
+        private string? _text;
+        private Typeface? _typeface;
+        private double _size = size;
+        private Brush? _foreground;
 
-        InvalidateVisual();
+        private FormattedText? _formattedText;
+
+        protected override Size MeasureOverride(Size availableSize)
+            => new(Math.Min(_size, availableSize.Width),
+                   Math.Min(_size, availableSize.Height));
+
+        public void Update(string text, Typeface typeface, double fontSize, Brush? foreground)
+        {
+            if (_size != fontSize) InvalidateMeasure();
+            _text = text;
+            _typeface = typeface;
+            _size = fontSize;
+            _foreground = foreground;
+
+            _updating = true;
+            InvalidateVisual();
+        }
+
+        protected override void OnRender(DrawingContext context)
+        {
+            if (_updating)
+            {
+                _updating = false;
+                _formattedText = new FormattedText(
+                    _text!,
+                    CultureInfo.CurrentCulture,
+                    FlowDirection,
+                    _typeface!,
+                    _size,
+                    _foreground,
+                    VisualTreeHelper.GetDpi(this).PixelsPerDip);
+            }
+            else if (_formattedText is null)
+            {
+                return;
+            }
+
+            var canvas = new Rect(0, 0, ActualWidth, ActualHeight);
+            context.PushClip(new RectangleGeometry(canvas));
+
+            var flip = FlowDirection == FlowDirection.RightToLeft;
+            if (flip) context.PushTransform(new MatrixTransform(-1, 0, 0, 1, canvas.Width, 0));
+            var origin = new Point(
+                (flip ? canvas.Width + _formattedText.Width : canvas.Width - _formattedText.Width) / 2,
+                (canvas.Height - _formattedText.Height) / 2);
+            context.DrawText(_formattedText, origin);
+            if (flip) context.Pop();
+
+            context.Pop();
+        }
     }
 }
 

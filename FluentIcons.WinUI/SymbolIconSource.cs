@@ -17,7 +17,7 @@ public partial class SymbolIconSource : GenericIconSource
         set { SetValue(SymbolProperty, value); }
     }
     public static DependencyProperty SymbolProperty { get; }
-        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new(Symbol.Home, OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIconSource), new(Symbol.Home, OnCorePropertyChanged));
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override FontFamily IconFont => FontManager.GetSeagull();
@@ -44,13 +44,14 @@ public partial class SymbolIconSource : GenericIconSource
 #endif
 
 #if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
-    protected override DependencyProperty GetIconElementPropertyCore(DependencyProperty iconSourceProperty)
+    protected override DependencyProperty GetIconElementPropertyCore(DependencyProperty dp)
     {
-        return iconSourceProperty switch
+        if (dp == SymbolProperty)
         {
-            var dp when dp == SymbolProperty => SymbolIcon.SymbolProperty,
-            _ => base.GetIconElementPropertyCore(iconSourceProperty),
-        };
+            return SymbolIcon.SymbolProperty;
+        }
+
+        return base.GetIconElementPropertyCore(dp);
     }
 #endif
 }

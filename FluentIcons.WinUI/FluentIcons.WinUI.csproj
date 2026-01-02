@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">
-      $(TargetFrameworks);net6.0-windows10.0.17763.0;net8.0-windows10.0.17763.0
+      $(TargetFrameworks);net6.0-windows10.0.19041.0;net8.0-windows10.0.19041.0
     </TargetFrameworks>
     <TargetFrameworks>$(TargetFrameworks);net8.0;net8.0-android;net9.0-ios;net9.0-maccatalyst;net9.0-macos</TargetFrameworks>
     <Description>FluentUI System Icons control library for WinUI.</Description>
@@ -23,8 +23,11 @@
       </PropertyGroup>
 
       <ItemGroup>
+        <PackageReference Include="Microsoft.Graphics.Win2D" />
         <PackageReference Include="Microsoft.WindowsAppSDK" />
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
+        <!-- Avoid native asset conflicts for local projects -->
+        <PackageReference Include="Microsoft.Web.WebView2" ExcludeAssets="buildTransitive" PrivateAssets="all" />
       </ItemGroup>
     </When>
 

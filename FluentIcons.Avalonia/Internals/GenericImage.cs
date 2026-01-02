@@ -13,6 +13,15 @@ namespace FluentIcons.Avalonia.Internals;
 [EditorBrowsable(EditorBrowsableState.Never)]
 public abstract class GenericImage : AvaloniaObject, IDisposable, IImage
 {
+    static GenericImage()
+    {
+        IconVariantProperty.Changed.AddClassHandler<GenericImage>(OnCorePropertyChanged);
+        FontSizeProperty.Changed.AddClassHandler<GenericImage>(OnCorePropertyChanged);
+        ForegroundProperty.Changed.AddClassHandler<GenericImage>(OnCorePropertyChanged);
+        FlowDirectionProperty.Changed.AddClassHandler<GenericImage>(OnCorePropertyChanged);
+    }
+
+    private bool _updating = false;
     private TextLayout? _textLayout;
 
     public IBrush? Foreground
@@ -69,25 +78,31 @@ public abstract class GenericImage : AvaloniaObject, IDisposable, IImage
         }
     }
 
+    protected static void OnCorePropertyChanged(GenericImage element, AvaloniaPropertyChangedEventArgs? _)
+    {
+        element.InvalidateText();
+    }
+
     protected void InvalidateText()
     {
-        _textLayout?.Dispose();
-        _textLayout = new TextLayout(
-            IconText,
-            IconFont,
-            FontSize,
-            Foreground,
-            TextAlignment.Center,
-            flowDirection: FlowDirection
-        );
-
+        _updating = true;
         VisualChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Draw(DrawingContext context, Rect sourceRect, Rect destRect)
     {
-        if (_textLayout is null)
-            return;
+        if (_updating || _textLayout is null)
+        {
+            _updating = false;
+            _textLayout?.Dispose();
+            _textLayout = new TextLayout(
+                IconText,
+                IconFont,
+                FontSize,
+                Foreground,
+                TextAlignment.Center,
+                flowDirection: FlowDirection);
+        }
 
         var scale = Matrix.CreateScale(
             destRect.Width / sourceRect.Width,

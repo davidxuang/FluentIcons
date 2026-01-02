@@ -19,12 +19,13 @@ internal static class FontManager
         .Where(size => (byte)size > 0)
         .ToDictionary(k => k, k => new FontFamily($"ms-appx:///{AssetsAssembly}/Assets/FluentSystemIcons-{k}.otf#Fluent System Icons {k}"));
 
-    internal static FontFamily GetFluent(IconSize size, IconVariant variant) => size switch
-    {
-        IconSize.Resizable when variant != IconVariant.Light => _fluent[IconSize.Size20],
-        IconSize.Resizable => _fluent[IconSize.Size32],
-        _ => _fluent[size]
-    };
+    internal static FontFamily GetFluent(IconSize size, IconVariant variant)
+        => size switch
+        {
+            IconSize.Resizable when variant != IconVariant.Light => _fluent[IconSize.Size20],
+            IconSize.Resizable => _fluent[IconSize.Size32],
+            _ => _fluent[size]
+        };
 
     private static readonly FontFamily _seagull = new($"ms-appx:///{AssetsAssembly}/Assets/SeagullFluentIcons.otf#Seagull Fluent Icons");
     internal static FontFamily GetSeagull() => _seagull;

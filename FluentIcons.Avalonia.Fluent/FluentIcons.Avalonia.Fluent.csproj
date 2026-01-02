@@ -6,6 +6,10 @@
     <PackageTags>$(PackageTags);Avalonia</PackageTags>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);FLUENT_AVALONIA</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="FluentAvaloniaUI" />
     <PackageReference Condition="$(TargetFramework) == 'netstandard2.0'" Include="Nullable" />
@@ -14,6 +18,13 @@
   <ItemGroup>
     <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" ExactVersion="true" />
     <ProjectReference Include="..\FluentIcons.Resources\FluentIcons.Resources.Avalonia.csproj" ExactVersion="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\FluentIcons.Avalonia\*Icon.cs" />
+    <Compile Include="..\FluentIcons.Avalonia\Outline.cs" />
+    <Compile Include="..\FluentIcons.Avalonia\Internals\GenericIcon.cs" LinkBase="Internals" />
+    <Compile Include="..\FluentIcons.Avalonia\Markup\*IconExtension.cs" LinkBase="Markup" />
   </ItemGroup>
 
 </Project>

@@ -29,28 +29,36 @@ public class FluentIcon : GenericIcon, IValue<Icon>
         get { return (Icon)GetValue(IconProperty); }
         set { SetValue(IconProperty, value); }
     }
-    public static readonly DependencyProperty IconProperty
-        = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIcon), new(Icon.Home, OnIconPropertiesChanged));
-
     Icon IValue<Icon>.Value
     {
         get { return (Icon)GetValue(IconProperty); }
         set { SetValue(IconProperty, value); }
     }
-    public static readonly DependencyProperty IconSizeProperty
-        = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIcon), new(default(IconSize), OnIconPropertiesChanged));
+    public static readonly DependencyProperty IconProperty
+        = DependencyProperty.Register(
+            nameof(Icon),
+            typeof(Icon),
+            typeof(FluentIcon),
+            new(Icon.Home, OnCorePropertyChanged));
 
     public IconSize IconSize
     {
         get { return (IconSize)GetValue(IconSizeProperty); }
         set { SetValue(IconSizeProperty, value); }
     }
+    public static readonly DependencyProperty IconSizeProperty
+        = DependencyProperty.Register(
+            nameof(IconSize),
+            typeof(IconSize),
+            typeof(FluentIcon),
+            new(default(IconSize), OnCorePropertyChanged));
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
-    protected override Typeface IconFont => IconSize switch
-    {
-        IconSize.Resizable when IconVariant != IconVariant.Light => _typefaces[IconSize.Size20],
-        IconSize.Resizable => _typefaces[IconSize.Size32],
-        _ => _typefaces[IconSize]
-    };
+    protected override Typeface IconFont
+        => IconSize switch
+        {
+            IconSize.Resizable when IconVariant != IconVariant.Light => _typefaces[IconSize.Size20],
+            IconSize.Resizable => _typefaces[IconSize.Size32],
+            _ => _typefaces[IconSize]
+        };
 }

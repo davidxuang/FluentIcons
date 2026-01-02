@@ -33,7 +33,5 @@ public class SymbolImageSourceExtension : IMarkupExtension<SymbolImageSource>
     }
 
     object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
-    {
-        return ProvideValue(serviceProvider);
-    }
+        => ProvideValue(serviceProvider);
 }

@@ -24,7 +24,7 @@ public partial class SymbolIcon : GenericIcon
         set { SetValue(SymbolProperty, value); }
     }
     public static DependencyProperty SymbolProperty { get; }
-        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(Symbol), typeof(Symbol), typeof(SymbolIcon), new(Symbol.Home, OnCorePropertyChanged));
 
     protected override string IconText => Symbol.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override FontFamily IconFont => FontManager.GetSeagull();

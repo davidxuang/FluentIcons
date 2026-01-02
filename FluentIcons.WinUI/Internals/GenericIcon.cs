@@ -12,11 +12,14 @@ public abstract partial class GenericIcon : FontIcon
         FontStyle = Windows.UI.Text.FontStyle.Normal;
         FontWeight = FontWeights.Normal;
 
-        RegisterPropertyChangedCallback(FlowDirectionProperty, OnIconPropertiesChanged);
-        RegisterPropertyChangedCallback(FontFamilyProperty, OnIconPropertiesChanged);
-        RegisterPropertyChangedCallback(FontStyleProperty, OnFontStyleChanged);
-        RegisterPropertyChangedCallback(FontWeightProperty, OnFontWeightChanged);
-        RegisterPropertyChangedCallback(GlyphProperty, OnIconPropertiesChanged);
+        RegisterPropertyChangedCallback(FlowDirectionProperty, OnCorePropertyChanged);
+        RegisterPropertyChangedCallback(FontFamilyProperty, OnCorePropertyChanged);
+        RegisterPropertyChangedCallback(GlyphProperty, OnCorePropertyChanged);
+
+        RegisterPropertyChangedCallback(FontStyleProperty,
+            static (o, _) => (o as GenericIcon)?.FontStyle = Windows.UI.Text.FontStyle.Normal);
+        RegisterPropertyChangedCallback(FontWeightProperty,
+            static (o, _) => (o as GenericIcon)?.FontWeight = FontWeights.Normal);
     }
 
 #if WINDOWS_UWP
@@ -49,39 +52,23 @@ public abstract partial class GenericIcon : FontIcon
         set { SetValue(IconVariantProperty, value); }
     }
     public static DependencyProperty IconVariantProperty { get; }
-        = DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), new(default(IconVariant), OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), new(default(IconVariant), OnCorePropertyChanged));
 
     protected abstract string IconText { get; }
     protected abstract FontFamily IconFont { get; }
+
+    protected static void OnCorePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        (d as GenericIcon)?.InvalidateText();
+    }
+    protected static void OnCorePropertyChanged(DependencyObject d, DependencyProperty? dp)
+    {
+        (d as GenericIcon)?.InvalidateText();
+    }
 
     protected void InvalidateText()
     {
         FontFamily = IconFont;
         Glyph = IconText;
-    }
-
-    protected static void OnIconPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
-    {
-        (sender as GenericIcon)?.InvalidateText();
-    }
-    protected static void OnIconPropertiesChanged(DependencyObject sender, DependencyProperty args)
-    {
-        (sender as GenericIcon)?.InvalidateText();
-    }
-
-    private static void OnFontStyleChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is GenericIcon inst)
-        {
-            inst.FontStyle = Windows.UI.Text.FontStyle.Normal;
-        }
-    }
-
-    private static void OnFontWeightChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is GenericIcon inst)
-        {
-            inst.FontWeight = FontWeights.Normal;
-        }
     }
 }

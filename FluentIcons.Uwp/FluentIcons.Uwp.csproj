@@ -21,6 +21,7 @@
       </PropertyGroup>
 
       <ItemGroup>
+        <PackageReference Include="Win2D.uwp" />
         <PackageReference Include="Nullable" />
       </ItemGroup>
     </When>
@@ -35,6 +36,7 @@
       </PropertyGroup>
 
       <ItemGroup>
+        <PackageReference Include="Win2D.uwp" />
         <PackageReference Include="Microsoft.Windows.SDK.CPP" PrivateAssets="all" />
       </ItemGroup>
     </When>

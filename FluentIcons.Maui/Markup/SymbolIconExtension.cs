@@ -34,7 +34,5 @@ public class SymbolIconExtension : IMarkupExtension<SymbolIcon>
     }
 
     object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
-    {
-        return ProvideValue(serviceProvider);
-    }
+        => ProvideValue(serviceProvider);
 }

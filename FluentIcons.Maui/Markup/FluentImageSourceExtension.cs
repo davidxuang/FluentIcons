@@ -35,7 +35,5 @@ public class FluentImageSourceExtension : IMarkupExtension<FluentImageSource>
     }
 
     object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
-    {
-        return ProvideValue(serviceProvider);
-    }
+        => ProvideValue(serviceProvider);
 }

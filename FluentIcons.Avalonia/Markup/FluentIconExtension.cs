@@ -4,7 +4,11 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using FluentIcons.Common;
 
+#if FLUENT_AVALONIA
+namespace FluentIcons.Avalonia.Fluent.Markup;
+#else
 namespace FluentIcons.Avalonia.Markup;
+#endif
 
 public sealed class FluentIconExtension
 {

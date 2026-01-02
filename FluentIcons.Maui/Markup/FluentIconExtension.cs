@@ -36,7 +36,5 @@ public class FluentIconExtension : IMarkupExtension<FluentIcon>
     }
 
     object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
-    {
-        return ProvideValue(serviceProvider);
-    }
+        => ProvideValue(serviceProvider);
 }

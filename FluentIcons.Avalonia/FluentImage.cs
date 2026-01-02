@@ -13,6 +13,12 @@ public class FluentImage : GenericImage, IValue<Icon>
 {
     public static TypeConverter Converter { get; } = new GenericImageConverter<Icon, FluentImage>();
 
+    static FluentImage()
+    {
+        IconProperty.Changed.AddClassHandler<FluentImage>(OnCorePropertyChanged);
+        IconSizeProperty.Changed.AddClassHandler<FluentImage>(OnCorePropertyChanged);
+    }
+
     public Icon Icon
     {
         get => GetValue(IconProperty);
@@ -34,21 +40,6 @@ public class FluentImage : GenericImage, IValue<Icon>
     }
     public static readonly StyledProperty<IconSize> IconSizeProperty
         = FluentIcon.IconSizeProperty.AddOwner<FluentImage>();
-
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-    {
-        if (change.Property == FontSizeProperty ||
-            change.Property == ForegroundProperty ||
-            change.Property == IconProperty ||
-            change.Property == IconVariantProperty ||
-            change.Property == IconSizeProperty ||
-            change.Property == FlowDirectionProperty)
-        {
-            InvalidateText();
-        }
-
-        base.OnPropertyChanged(change);
-    }
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override Typeface IconFont => TypefaceManager.GetFluent(IconSize, IconVariant);

@@ -18,7 +18,12 @@ public partial class FluentImageSource : GenericImageSource
         set => SetValue(IconProperty, value);
     }
     public static readonly BindableProperty IconProperty
-        = BindableProperty.Create(nameof(Icon), typeof(Icon), typeof(FluentImageSource), Icon.AccessTime, propertyChanged: OnIconPropertiesChanged);
+        = BindableProperty.Create(
+            nameof(Icon),
+            typeof(Icon),
+            typeof(FluentImageSource),
+            Icon.Home,
+            propertyChanged: OnCorePropertyChanged);
 
     public IconSize IconSize
     {
@@ -26,8 +31,13 @@ public partial class FluentImageSource : GenericImageSource
         set => SetValue(IconSizeProperty, value);
     }
     public static readonly BindableProperty IconSizeProperty
-        = BindableProperty.Create(nameof(IconSize), typeof(IconSize), typeof(FluentImageSource), default(IconSize));
+        = BindableProperty.Create(
+            nameof(IconSize),
+            typeof(IconSize),
+            typeof(FluentImageSource),
+            default(IconSize),
+            propertyChanged: OnCorePropertyChanged);
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == Microsoft.Maui.FlowDirection.RightToLeft);
-    protected override string IconFont => FluentIcon.GetFontFamily(IconSize, IconVariant);
+    protected override string IconFont => FontManager.GetFluent(IconSize, IconVariant);
 }

@@ -24,7 +24,7 @@ public partial class FluentIcon : GenericIcon
         set { SetValue(IconProperty, value); }
     }
     public static DependencyProperty IconProperty { get; }
-        = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIcon), new(Icon.Home, OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIcon), new(Icon.Home, OnCorePropertyChanged));
 
     public IconSize IconSize
     {
@@ -32,7 +32,7 @@ public partial class FluentIcon : GenericIcon
         set { SetValue(IconSizeProperty, value); }
     }
     public static DependencyProperty IconSizeProperty { get; }
-        = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIcon), new(default(IconSize), OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIcon), new(default(IconSize), OnCorePropertyChanged));
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override FontFamily IconFont => FontManager.GetFluent(IconSize, IconVariant);

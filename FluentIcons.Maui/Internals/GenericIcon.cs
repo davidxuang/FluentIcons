@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using FluentIcons.Common;
 using Microsoft.Maui;
@@ -11,23 +12,18 @@ namespace FluentIcons.Maui.Internals;
 [EditorBrowsable(EditorBrowsableState.Never)]
 public abstract partial class GenericIcon : ContentView
 {
-    private readonly Label _label;
-    private readonly Span _span;
+    private readonly Grid _grid;
+    private readonly Core _core;
 
     public GenericIcon()
     {
-        _span = new();
-        _span.SetBinding(Span.FontSizeProperty, new Binding(nameof(FontSize), source: this));
-        _span.SetBinding(Span.TextColorProperty, new Binding(nameof(ForegroundColor), source: this));
+        Content = _grid = new();
 
-        _label = new Label()
-        {
-            FormattedText = new(),
-            HorizontalTextAlignment = TextAlignment.Center,
-            VerticalTextAlignment = TextAlignment.Center,
-        };
-        _label.FormattedText.Spans.Add(_span);
-        Content = _label;
+        _core = new(FontSize);
+        _core.SetBinding(FlowDirectionProperty, new Binding(nameof(FlowDirection), source: this));
+        _grid.Children.Add(_core);
+
+        Loaded += static (s, e) => (s as GenericIcon)?.InvalidateText();
     }
 
     public IconVariant IconVariant
@@ -36,7 +32,11 @@ public abstract partial class GenericIcon : ContentView
         set => SetValue(IconVariantProperty, value);
     }
     public static readonly BindableProperty IconVariantProperty
-        = BindableProperty.Create(nameof(IconVariant), typeof(IconVariant), typeof(GenericIcon), propertyChanged: OnIconPropertiesChanged);
+        = BindableProperty.Create(
+            nameof(IconVariant),
+            typeof(IconVariant),
+            typeof(GenericIcon),
+            propertyChanged: OnCorePropertiesChanged);
 
     [TypeConverter(typeof(FontSizeConverter))]
     public double FontSize
@@ -45,16 +45,25 @@ public abstract partial class GenericIcon : ContentView
         set => SetValue(FontSizeProperty, value);
     }
     public static readonly BindableProperty FontSizeProperty
-        = BindableProperty.Create(nameof(FontSize), typeof(double), typeof(GenericIcon), 20d);
+        = BindableProperty.Create(
+            nameof(FontSize),
+            typeof(double),
+            typeof(GenericIcon),
+            20d,
+            propertyChanged: OnCorePropertiesChanged);
 
     [TypeConverter(typeof(ColorTypeConverter))]
-    public Color ForegroundColor
+    public Color? ForegroundColor
     {
-        get => (Color)GetValue(ForegroundColorProperty);
+        get => (Color?)GetValue(ForegroundColorProperty);
         set => SetValue(ForegroundColorProperty, value);
     }
     public static readonly BindableProperty ForegroundColorProperty
-        = BindableProperty.Create(nameof(ForegroundColor), typeof(Color), typeof(GenericIcon), null);
+        = BindableProperty.Create(
+            nameof(ForegroundColor),
+            typeof(Color),
+            typeof(GenericIcon),
+            propertyChanged: OnCorePropertiesChanged);
 
     protected abstract string IconText { get; }
     protected abstract string IconFont { get; }
@@ -65,34 +74,55 @@ public abstract partial class GenericIcon : ContentView
         {
             InvalidateText();
         }
+        else if (propertyName == nameof(Content))
+        {
+            Content = _grid;
+        }
 
         base.OnPropertyChanged(propertyName);
     }
 
-    protected override Size ArrangeOverride(Rect bounds)
-    {
-        var left = HorizontalOptions.Alignment switch
-        {
-            LayoutAlignment.Start => bounds.Left + Padding.Left,
-            LayoutAlignment.End => bounds.Right - FontSize - Padding.Right,
-            _ => bounds.Center.X - (FontSize + Padding.Right - Padding.Left) / 2
-        };
-        var top = VerticalOptions.Alignment switch
-        {
-            LayoutAlignment.Start => bounds.Top + Padding.Top,
-            LayoutAlignment.End => bounds.Bottom - FontSize - Padding.Right,
-            _ => bounds.Center.Y - (FontSize + Padding.Bottom - Padding.Top) / 2
-        };
-        _label.Arrange(new(new(left, top), new(FontSize, FontSize)));
-        return base.ArrangeOverride(bounds);
-    }
+    protected static void OnCorePropertiesChanged(BindableObject bindable, object oldValue, object newValue)
+        => (bindable as GenericIcon)?.InvalidateText();
 
     protected void InvalidateText()
-    {
-        _span.FontFamily = IconFont;
-        _span.Text = IconText;
-    }
+        => _core.Update(IconText, IconFont, FontSize, ForegroundColor);
 
-    protected static void OnIconPropertiesChanged(BindableObject bindable, object oldValue, object newValue)
-        => (bindable as GenericIcon)?.InvalidateText();
+    internal sealed partial class Core : Label
+    {
+        private readonly Span _span;
+
+        public Core(double size)
+        {
+            _span = new()
+            {
+                FontSize = size,
+            };
+
+            FormattedText = new();
+            HorizontalTextAlignment = TextAlignment.Center;
+            VerticalTextAlignment = TextAlignment.Center;
+            FormattedText.Spans.Add(_span);
+        }
+
+        protected override Size MeasureOverride(double widthConstraint, double heightConstraint)
+        {
+            var size = _span.FontSize;
+            return new Size(Math.Min(size, widthConstraint),
+                            Math.Min(size, heightConstraint));
+        }
+
+        public void Update(string text, string fontFamily, double fontSize, Color? foreground)
+        {
+            if (_span.FontSize != fontSize)
+            {
+                _span.FontSize = fontSize;
+                InvalidateMeasure();
+            }
+
+            _span.FontFamily = fontFamily;
+            _span.Text = text;
+            _span.TextColor = foreground;
+        }
+    }
 }

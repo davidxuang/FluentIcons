@@ -9,15 +9,18 @@ public abstract partial class GenericIconSource : FontIconSource
 {
     public GenericIconSource()
     {
+        Glyph = IconText;
         FontFamily = IconFont;
         FontStyle = Windows.UI.Text.FontStyle.Normal;
         FontWeight = FontWeights.Normal;
-        Glyph = IconText;
 
-        RegisterPropertyChangedCallback(FontFamilyProperty, OnIconPropertiesChanged);
-        RegisterPropertyChangedCallback(FontStyleProperty, OnFontStyleChanged);
-        RegisterPropertyChangedCallback(FontWeightProperty, OnFontWeightChanged);
-        RegisterPropertyChangedCallback(GlyphProperty, OnIconPropertiesChanged);
+        RegisterPropertyChangedCallback(FontFamilyProperty, OnCorePropertyChanged);
+        RegisterPropertyChangedCallback(GlyphProperty, OnCorePropertyChanged);
+
+        RegisterPropertyChangedCallback(FontStyleProperty,
+            static (o, _) => (o as GenericIconSource)?.FontStyle = Windows.UI.Text.FontStyle.Normal);
+        RegisterPropertyChangedCallback(FontWeightProperty,
+            static (o, _) => (o as GenericIconSource)?.FontWeight = FontWeights.Normal);
     }
 
     public IconVariant IconVariant
@@ -26,7 +29,7 @@ public abstract partial class GenericIconSource : FontIconSource
         set { SetValue(IconVariantProperty, value); }
     }
     public static DependencyProperty IconVariantProperty { get; }
-        = DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIconSource), new(default(IconVariant), OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(IconVariant), typeof(IconVariant), typeof(GenericIconSource), new(default(IconVariant), OnCorePropertyChanged));
 
     public FlowDirection FlowDirection
     {
@@ -34,10 +37,19 @@ public abstract partial class GenericIconSource : FontIconSource
         set { SetValue(FlowDirectionProperty, value); }
     }
     public static DependencyProperty FlowDirectionProperty { get; }
-        = DependencyProperty.Register(nameof(FlowDirection), typeof(FlowDirection), typeof(GenericIconSource), new(default(FlowDirection), OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(FlowDirection), typeof(FlowDirection), typeof(GenericIconSource), new(default(FlowDirection), OnCorePropertyChanged));
 
     protected abstract string IconText { get; }
     protected abstract FontFamily IconFont { get; }
+
+    protected static void OnCorePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        (d as GenericIconSource)?.InvalidateText();
+    }
+    protected static void OnCorePropertyChanged(DependencyObject d, DependencyProperty? dp)
+    {
+        (d as GenericIconSource)?.InvalidateText();
+    }
 
     protected void InvalidateText()
     {
@@ -45,40 +57,19 @@ public abstract partial class GenericIconSource : FontIconSource
         Glyph = IconText;
     }
 
-    protected static void OnIconPropertiesChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
-    {
-        (sender as GenericIconSource)?.InvalidateText();
-    }
-    protected static void OnIconPropertiesChanged(DependencyObject sender, DependencyProperty args)
-    {
-        (sender as GenericIconSource)?.InvalidateText();
-    }
-
-    private static void OnFontStyleChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is GenericIconSource inst)
-        {
-            inst.FontStyle = Windows.UI.Text.FontStyle.Normal;
-        }
-    }
-
-    private static void OnFontWeightChanged(DependencyObject sender, DependencyProperty dp)
-    {
-        if (sender is GenericIconSource inst)
-        {
-            inst.FontWeight = FontWeights.Normal;
-        }
-    }
-
 #if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
-    protected override DependencyProperty GetIconElementPropertyCore(DependencyProperty iconSourceProperty)
+    protected override DependencyProperty GetIconElementPropertyCore(DependencyProperty dp)
     {
-        return iconSourceProperty switch
+        if (dp == IconVariantProperty)
         {
-            var dp when dp == IconVariantProperty => GenericIcon.IconVariantProperty,
-            var dp when dp == FlowDirectionProperty => GenericIcon.FlowDirectionProperty,
-            _ => base.GetIconElementPropertyCore(iconSourceProperty)
-        };
+            return GenericIcon.IconVariantProperty;
+        }
+        else if (dp == FlowDirectionProperty)
+        {
+            return GenericIcon.FlowDirectionProperty;
+        }
+
+        return base.GetIconElementPropertyCore(dp);
     }
 #endif
 }

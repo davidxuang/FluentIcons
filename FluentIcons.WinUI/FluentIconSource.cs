@@ -17,7 +17,7 @@ public partial class FluentIconSource : GenericIconSource
         set { SetValue(IconProperty, value); }
     }
     public static DependencyProperty IconProperty { get; }
-        = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIconSource), new(Icon.Home, OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(Icon), typeof(Icon), typeof(FluentIconSource), new(Icon.Home, OnCorePropertyChanged));
 
     public IconSize IconSize
     {
@@ -25,7 +25,7 @@ public partial class FluentIconSource : GenericIconSource
         set { SetValue(IconSizeProperty, value); }
     }
     public static DependencyProperty IconSizeProperty { get; }
-        = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIconSource), new(default(IconSize), OnIconPropertiesChanged));
+        = DependencyProperty.Register(nameof(IconSize), typeof(IconSize), typeof(FluentIconSource), new(default(IconSize), OnCorePropertyChanged));
 
     protected override string IconText => Icon.ToString(IconVariant, FlowDirection == FlowDirection.RightToLeft);
     protected override FontFamily IconFont => FontManager.GetFluent(IconSize, IconVariant);
@@ -53,14 +53,18 @@ public partial class FluentIconSource : GenericIconSource
 #endif
 
 #if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
-    protected override DependencyProperty GetIconElementPropertyCore(DependencyProperty iconSourceProperty)
+    protected override DependencyProperty GetIconElementPropertyCore(DependencyProperty dp)
     {
-        return iconSourceProperty switch
+        if (dp == IconProperty)
         {
-            var dp when dp == IconProperty => FluentIcon.IconProperty,
-            var dp when dp == IconSizeProperty => FluentIcon.IconSizeProperty,
-            _ => base.GetIconElementPropertyCore(iconSourceProperty)
-        };
+            return FluentIcon.IconProperty;
+        }
+        else if (dp == IconSizeProperty)
+        {
+            return FluentIcon.IconSizeProperty;
+        }
+
+        return base.GetIconElementPropertyCore(dp);
     }
 #endif
 }
