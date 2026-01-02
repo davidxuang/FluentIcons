@@ -21,7 +21,4 @@ public static class Extensions
             fonts.AddEmbeddedResourceFont(assembly, "SeagullFluentIcons.otf", "SeagullFluentIcons");
         });
     }
-
-    [Obsolete(Message)]
-    public static MauiAppBuilder UseFluentIcons(this MauiAppBuilder builder, bool useSegoeMetrics) => builder.UseFluentIcons();
 }
