@@ -22,7 +22,7 @@
 
       <ItemGroup>
         <PackageReference Include="Win2D.uwp" />
-        <PackageReference Include="Nullable" />
+        <PackageReference Include="PolySharp" PrivateAssets="all" />
       </ItemGroup>
     </When>
 

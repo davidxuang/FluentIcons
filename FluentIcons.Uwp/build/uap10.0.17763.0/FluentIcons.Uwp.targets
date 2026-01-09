@@ -1,2 +1,14 @@
 <Project>
+
+  <Target Name="CheckWin2DPackageVersion" AfterTargets="ResolvePackageAssets">
+    <ItemGroup>
+      <_Win2DItems Include="@(RuntimeCopyLocalItems)"
+                   Condition="'%(RuntimeCopyLocalItems.NuGetPackageId)' == 'Win2D.uwp'" />
+    </ItemGroup>
+
+    <Warning Condition="'@(_Win2DItems)' != '' and
+                        $([System.Version]::Parse('%(_Win2DItems.NuGetPackageVersion)').CompareTo($([System.Version]::Parse('1.28.0')))) &lt;= 0"
+             Text="You are using an outdated version of 'Win2D.uwp'. Please override with a newer version if possible." />
+  </Target>
+
 </Project>

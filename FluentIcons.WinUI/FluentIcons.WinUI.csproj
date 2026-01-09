@@ -28,6 +28,8 @@
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
         <!-- Avoid native asset conflicts for local projects -->
         <PackageReference Include="Microsoft.Web.WebView2" ExcludeAssets="buildTransitive" PrivateAssets="all" />
+        <!-- net6.0 -->
+        <PackageReference Include="PolySharp" PrivateAssets="all" />
       </ItemGroup>
     </When>
 

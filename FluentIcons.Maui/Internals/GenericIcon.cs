@@ -88,6 +88,12 @@ public abstract partial class GenericIcon : ContentView
     protected void InvalidateText()
         => _core.Update(IconText, IconFont, FontSize, ForegroundColor);
 
+    internal void AddHandIn(VisualElement element)
+        => _grid.Children.Add(element);
+
+    internal bool RemoveHandIn(VisualElement element)
+        => _grid.Children.Remove(element);
+
     internal sealed partial class Core : Label
     {
         private readonly Span _span;

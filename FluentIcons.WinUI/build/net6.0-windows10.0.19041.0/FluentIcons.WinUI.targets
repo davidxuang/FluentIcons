@@ -1,0 +1,14 @@
+<Project>
+
+  <Target Name="CheckWin2DPackageVersion" AfterTargets="ResolvePackageAssets">
+    <ItemGroup>
+      <_Win2DItems Include="@(RuntimeCopyLocalItems)"
+                   Condition="'%(RuntimeCopyLocalItems.NuGetPackageId)' == 'Microsoft.Graphics.Win2D'" />
+    </ItemGroup>
+
+    <Warning Condition="'@(_Win2DItems)' != '' and
+                        $([System.Version]::Parse('%(_Win2DItems.NuGetPackageVersion)').CompareTo($([System.Version]::Parse('1.3.0')))) &lt;= 0"
+             Text="You are using an outdated version of 'Microsoft.Graphics.Win2D'. Please override with a newer version if possible." />
+  </Target>
+
+</Project>

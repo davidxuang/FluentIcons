@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAvaloniaUI" />
-    <PackageReference Condition="$(TargetFramework) == 'netstandard2.0'" Include="Nullable" />
+    <PackageReference Include="PolySharp" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

@@ -107,6 +107,12 @@ public abstract class GenericIcon
     protected void InvalidateText()
         => _core.Update(IconText, IconFont, FontSize, Foreground);
 
+    internal void AddHandIn(Control control)
+        => _panel.Children.Add(control);
+
+    internal bool RemoveHandIn(Control control)
+        => _panel.Children.Remove(control);
+
     internal sealed class Core(double size) : Control
     {
         private bool _updating = false;

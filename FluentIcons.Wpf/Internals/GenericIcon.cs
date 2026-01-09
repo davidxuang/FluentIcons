@@ -104,6 +104,12 @@ public abstract class GenericIcon : FrameworkElement
     protected void InvalidateText()
         => _core.Update(IconText, IconFont, FontSize, Foreground);
 
+    internal void AddHandIn(FrameworkElement element)
+        => _grid.Children.Add(element);
+
+    internal void RemoveHandIn(FrameworkElement element)
+        => _grid.Children.Remove(element);
+
     internal sealed class Core(double size) : FrameworkElement
     {
         private bool _updating = false;

@@ -71,4 +71,24 @@ public abstract partial class GenericIcon : FontIcon
         FontFamily = IconFont;
         Glyph = IconText;
     }
+
+#if HAS_UNO
+    private static Action<IconElement, UIElement>? GetAddIconChild()
+    {
+        var type = typeof(IconElement);
+        System.Diagnostics.Debug.Assert(typeof(GenericIcon).IsAssignableTo(type));
+        var methodInfo = type.GetMethod("AddIconChild", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        return methodInfo is not null
+            ? (Action<IconElement, UIElement>)Delegate.CreateDelegate(
+                typeof(Action<IconElement, UIElement>),
+                null,
+                methodInfo)
+            : null;
+    }
+    private static readonly Action<IconElement, UIElement>? _addIconChild = GetAddIconChild();
+
+    internal static bool CanAddHandIn => _addIconChild is not null;
+    internal void AddHandIn(UIElement element)
+        => _addIconChild?.Invoke(this, element);
+#endif
 }
