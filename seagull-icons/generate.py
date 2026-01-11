@@ -57,7 +57,7 @@ def fallback(cmap: dict[int, str], start: int, end: int):
             if rtl_regular_defined or rtl_filled_defined or rtl_color_defined:
                 logging.warning('Light RTL variant for %s is unexpectedly missing', hex(c))
 
-def build_font(input: str, output: str, ps_name: str, icons: dict[str, int], segoe: dict[int, tuple[str, int]], upm: int, is_ttf: bool) -> dict[str, str]:
+def build_font(input: str, output: str, ps_name: str, icons: dict[str, int], remap: dict[int, int], unify: dict[str, list[str]], upm: int, is_ttf: bool) -> dict[str, str]:
     fb = FontBuilder(unitsPerEm=upm, isTTF=is_ttf)
 
     family_name = re.sub(r'([a-z])([A-Z])', r'\1 \2', ps_name).replace('-', ' ')
@@ -127,10 +127,26 @@ def build_font(input: str, output: str, ps_name: str, icons: dict[str, int], seg
     fallback(cmap, 0x0f0000, 0x0ffffd)
 
     # Segoe Fluent Icons mapping
-    for codepoint, [symbol, offset] in segoe.items():
-        target = icons[f'{symbol}-regular'] + offset
+    for codepoint, target in remap.items():
         if target in cmap:
             cmap[codepoint] = cmap[target]
+
+    for name, aliases in unify.items():
+        codepoints = [icons[f'{name}-regular']] + [icons[f'{alias}-regular'] for alias in aliases]
+        targets = {}
+        can_unify = True
+        for offset in [0, 1, 2, 3, 0x10000, 0x10001, 0x10002, 0x10003]:
+            values = {cmap[cp + offset] for cp in codepoints if (cp + offset) in cmap}
+            if len(values) == 1:
+                targets[offset] = values.pop()
+            elif len(values) > 1:
+                logging.warning(f'Cannot unify {name} with {", ".join(aliases)}')
+                can_unify = False
+                break
+        if can_unify:
+            for offset, target in targets.items():
+                for cp in codepoints:
+                    cmap[cp + offset] = target
 
     fb.setupGlyphOrder(glyph_order)
     fb.setupCharacterMap(cmap)
@@ -242,15 +258,24 @@ if __name__ == '__main__':
                 f'{icon}_rtl-light': codepoint + 0x10003,
             })
 
-    segoe = {}
+    remap : dict[int, int] = {}
+    unify : dict[str, list[str]]
     with open(os.path.join(os.path.dirname(__file__), 'generate.toml'), 'rb') as f:
-        for k, v in tomllib.load(f)['segoe'].items():
-            segoe[int(k, 0)] = v
+        meta = tomllib.load(f)
+        unify = meta.get('unification', {})
+        for k, [g, h] in meta['segoe'].items():
+            remap[int(k, 0)] = icons[f'{g}-regular'] + h
 
     for override in args.override or []:
         shutil.copytree(override, getattr(args, 'in'), dirs_exist_ok=True)
     if args.colr:
         shutil.copytree(args.colr, getattr(args, 'in'), dirs_exist_ok=True)
+        if os.path.exists(os.path.join(getattr(args, 'colr'), 'redirects.json')):
+            with open(os.path.join(getattr(args, 'colr'), 'redirects.json'), 'r', encoding='utf-8') as f:
+                redirects = json.load(f)
+                for k, v in redirects.items():
+                    remap[icons[k]] = icons[v]
+                    remap[icons[k] + 0x10000] = icons[v] + 0x10000
 
     rtl_dir = os.path.join(getattr(args, 'in'), 'RTL')
     if os.path.exists(rtl_dir):
@@ -258,7 +283,7 @@ if __name__ == '__main__':
             shutil.copy(os.path.join(rtl_dir, fname), os.path.join(getattr(args, 'in'), fname.replace('-', '_rtl-')))
         shutil.rmtree(rtl_dir)
 
-    subst = build_font(getattr(args, 'in'), args.out, args.name, icons, segoe, args.upm, args.format == 'ttf')
+    subst = build_font(getattr(args, 'in'), args.out, args.name, icons, remap, unify, args.upm, args.format == 'ttf')
     colr = os.path.join(args.colr, 'colr.ttx')
     if os.path.exists(colr):
         patch_ttx(colr, subst)

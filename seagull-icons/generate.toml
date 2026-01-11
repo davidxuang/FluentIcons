@@ -1,3 +1,17 @@
+[unification]
+animal_paw_print = ["paw"]
+arrow_square_down = ["arrow_square"]
+auto_fit_height = ["auto_fit"]
+building_shop = ["building_store"]
+chat = ["chat_more"]
+checkbox_checked = ["checkbox"]
+classification = ["stamp"]
+organization = ["org"]
+panel_left = ["panel_left_default"]
+star_arrow_right_end = ["star_arrow_right"]
+text_t = ["text"]
+wifi_1 = ["wifi"]
+
 [segoe] # modified based on https://github.com/robloo/SymbolIconManager/blob/main/Source/Data/Mappings/SegoeFluent.json
 0xE700 = ["navigation", 0]   # GlobalNavButton
 0xE701 = ["wifi_1", 0]       # Wifi

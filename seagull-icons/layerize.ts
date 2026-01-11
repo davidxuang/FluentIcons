@@ -209,6 +209,8 @@ function transformGradient(gradient: LinearGradient | RadialGradient, transform:
 
 const glyphs = new BiMap<string, string>(); // layer_name -> path_data
 const color_glyphs: ColorGlyph[] = [];
+const layers_map = new Map<string, string>(); // layers -> glyph_name
+const redirects = new Map<string, string>();
 const output_size = argv.size - (argv.shrink ?? 0) * 2;
 
 fs.readdirSync(argv.mono)
@@ -547,9 +549,7 @@ fs.readdirSync(argv.mono)
       }
     }
 
-    color_glyphs.push({
-      name,
-      layers: layers.map((layer, l) => {
+    const layer_entries = layers.map((layer, l) => {
         let g = glyphs.inverse.get(layer.path.pathData);
         if (g === undefined) {
           g = `_${name}_${l.toString().padStart(2, '0')}`;
@@ -560,8 +560,16 @@ fs.readdirSync(argv.mono)
           color: layer.fill,
           color_solid: layer.fill_solid,
         };
-      }),
-    });
+      });
+    const l = JSON.stringify(layer_entries);
+    if (layers_map.has(l)) {
+      redirects.set(name, layers_map.get(l));
+      console.log(`[REDIRECT] ${name} => ${layers_map.get(l)}`);
+    } else {
+      layers_map.set(l, name);
+    }
+
+    color_glyphs.push({ name, layers: layer_entries });
   });
 });
 
@@ -819,3 +827,8 @@ ensure(argv.out);
       `<svg width="${output_size}" height="${output_size}" viewBox="0 0 ${output_size} ${output_size}" xmlns="http://www.w3.org/2000/svg">\n  <path d="${path_data}" fill="#212121" />\n</svg>`
     );
   });
+
+fs.writeFileSync(
+  path.join(argv.out, `redirects.json`),
+  JSON.stringify(Object.fromEntries(redirects.entries()))
+);
