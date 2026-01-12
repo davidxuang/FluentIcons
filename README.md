@@ -30,39 +30,71 @@ A multi-framework control library of [fluentui-system-icons](https://github.com/
 ## Usage
 
 ```xml
-<Window xmlns:ic="using:FluentIcons.WinUI">
+<Page xmlns:ic="using:FluentIcons.WinUI">
 <!-- or FluentIcons.Avalonia / FluentIcons.Avalonia.Fluent / FluentIcons.Maui / FluentIcons.Wpf -->
     <ic:FluentIcon Icon="ArrowLeft" IconVariant="Regular" IconSize="Size32" />
     <ic:SymbolIcon Symbol="Calendar" IconVariant="Color" />
-</Window>
+</Page>
 ```
 
 This package features `<FluentIcon>`/`<SymbolIcon>` element, and `<FluentIconSource>`/`<SymbolIconSource>` on platforms with `<IconSource>`, which generally provide following properties:
 
--   **Icon** _(Fluent...)_ / **Symbol** _(Symbol...)_ : [`Icon`](./FluentIcons.Common/Icon.cs) / `Symbol`
+-   **Icon** _(for `Fluent...`)_ / **Symbol** _(for `Symbol...`)_ : [`Icon`](./FluentIcons.Common/Icon.cs) / `Symbol`
 -   **IconVariant** : [`IconVariant`](./FluentIcons.Common/IconVariant.cs)
     -   _New in version 1.1.278: `Color` variant added along with [COLRv1](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) migration._
--   **IconSize** _(Fluent...)_ : [`IconSize`](./FluentIcons.Common/IconSize.cs)
+-   **IconSize** _(for `Fluent...`)_ : [`IconSize`](./FluentIcons.Common/IconSize.cs)
 -   **FlowDirection** : `FlowDirection`
     -   _Switch between LTR/RTL icon variant._
 -   **FontSize** : `double`
 -   **Foreground** : `Brush`
 
-The _Fluent_ variant provides all sizes of icons untouched compared to upstream, while the _Symbol_ variant mimics the APIs and appearances of `SymbolIcon` and [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font) from WinUI, which is powered by a derived version from the child project [Seagull Icons](./seagull-icons/README.md). These variants were controlled by the deprecated `UseSegoeMetrics` property in distributions prior to 1.1.278.
+The _Fluent_ variant provides all sizes of icons untouched compared to upstream, while the _Symbol_ variant mimics the APIs and appearances of `SymbolIcon` and [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font) from WinUI, which is powered by a derived version from the child project [Seagull Icons](./seagull-icons/README.md).
 
 ```xml
-<Window xmlns:icx="using:FluentIcons.WinUI.Markup">
+<Page xmlns:icx="using:FluentIcons.WinUI.Markup">
     <Expander Header="{icx:SymbolIcon Symbol=ArrowLeft}" />
-</Window>
+</Page>
 ```
 
 Markup extension classes have been added since version 1.1.242. These extensions will bind their `FlowDirection` to that of the parent control, except `FluentIconSourceExtension`/`SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available. They are moved to a child namespace since version 1.3.
+
+```xml
+<Page xmlns:ic="using:FluentIcons.WinUI">
+    <ic:FluentIcon Icon="Trophy"
+                   IconVariant="Filled"
+                   Foreground="Gold"
+                   ic:Outline.Foreground="Goldenrod" />
+    <ic:SymbolIcon Symbol="InkingToolAccent"
+                   IconVariant="Filled"
+                   Foreground="Gold"
+                   ic:Outline.Symbol="InkingTool"
+                   ic:Outline.Foreground="Goldenrod" />
+</Page>
+```
+
+![Sample image](./Assets/Outline.png)
+
+The new feature `Outline` is implemented for experiment. The static class include following attached properties which could be applied to `FluentIcon` or `SymbolIcon` elements:
+
+-   **Icon** _(for `FluentIcon`)_ / **Symbol** _(for `SymbolIcon`)_ : `Icon?` / `Symbol?`
+    -   Default to `null`, where the value will be inherited from the host control.
+-   **IconVariant** : `IconVariant`
+    -   Default to `Regular`.
+-   **Foreground** : `Brush`
+
+Please note that due to limitations in rendering precision, unexpected color leakage may occur at the edges of the icons. To achieve a good display effect, you may need to avoid using combinations of fill and stroke colors with large hue differences.
 
 ### MAUI
 
 ⚠️ The extension method `UseFluentIcons(this MauiAppBuilder builder)` must be called to register fonts properly.
 
 `<SymbolImageSource>` and `SymbolImageSourceExtension` are provided on MAUI as stand-ins.
+
+All properties of type `Brush` are defined as `Color` instead, with the `Color` suffix added to the name.
+
+### UWP / WinUI
+
+The Win2D package is referenced by this library for the “Outline” feature, but with a relatively old version. It is suggested to override with the latest version of the package.
 
 ## Known issues
 
