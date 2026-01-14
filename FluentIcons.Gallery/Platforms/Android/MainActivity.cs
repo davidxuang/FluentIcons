@@ -4,7 +4,7 @@ using Avalonia;
 using Avalonia.Android;
 using Fonts.Avalonia.JetBrainsMono;
 
-namespace FluentIcons.Gallery;
+namespace FluentIcons.Gallery.Platforms.Android;
 
 [Activity(Label = "FluentIcons.Gallery", Theme = "@style/Theme.AppCompat.NoActionBar", MainLauncher = true, ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
 public class MainActivity : AvaloniaMainActivity

@@ -1,10 +1,11 @@
 using Avalonia;
 using Avalonia.Browser;
-using FluentIcons.Gallery;
 using Fonts.Avalonia.JetBrainsMono;
 using System.Runtime.Versioning;
 
 [assembly: SupportedOSPlatform("browser")]
+
+namespace FluentIcons.Gallery.Platforms.Browser;
 
 internal sealed partial class Program
 {
