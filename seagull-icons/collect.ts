@@ -167,6 +167,16 @@ fs.readdirSync(COLOR_DIR).forEach((size) => {
   merge(path.join(COLOR_DIR, size));
 });
 
+// patch for `text_align_right`
+if (
+  [...fs.readdirSync(MONO_DIR), ...fs.readdirSync(COLOR_DIR)].every((size) => {
+    const d = path.join(MONO_DIR, size, 'RTL');
+    return !fs.existsSync(path.join(d, 'text_align_right.svg'));
+  })
+) {
+  mirror_glyphs.add('text_align_right');
+}
+
 // [regular, filled, light, color], RTL in PUA-B
 const nextCodepoint = (() => {
   const advance = 4;
