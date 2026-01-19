@@ -21,7 +21,8 @@ public abstract class GenericIconSource : FontIconSource
         GlyphProperty.OverrideMetadata<GenericIconSource>(
             new(coerce: static (o, v) => (o as GenericIconSource)?.IconText ?? v));
         FontIconSource.FontSizeProperty.OverrideMetadata<GenericIconSource>(
-            new(coerce: static (o, v) => (o as GenericIconSource)?.FontSize ?? v));
+            new(defaultValue: FontSizeProperty.GetDefaultValue(typeof(GenericIconSource)),
+                coerce: static (o, v) => (o as GenericIconSource)?.FontSize ?? v));
         FontFamilyProperty.OverrideMetadata<GenericIconSource>(
             new(coerce: static (o, v) => (o as GenericIconSource)?.IconFont.FontFamily ?? v));
         FontStyleProperty.OverrideMetadata<GenericIconSource>(
