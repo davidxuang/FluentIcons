@@ -2918,4 +2918,8 @@ public enum Icon : int
     VehicleTrailerArrowDown = 2823,
     VideoShort = 2824,
     VideoShortMultiple = 2825,
+    AlbumSubtract = 2826,
+    ChatMultiplePerson = 2827,
+    PersonCircleOff = 2828,
+    SparkleOff = 2829,
 }
