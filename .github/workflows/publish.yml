@@ -49,6 +49,7 @@ jobs:
           java-version: '17'
       - name: Cache NuGet packages
         uses: actions/cache/restore@v4
+        if: ${{ github.event_name != 'workflow_dispatch' }}
         with:
           key: dotnet-${{ runner.os }}-${{ runner.arch }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
           path: ~/.nuget/packages
@@ -62,7 +63,7 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' || !contains(steps.tag_name.outputs.tag, '-') }}
         run: |
           $env:VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
-          dotnet publish ./FluentIcons.Gallery/FluentIcons.Gallery.csproj -f net10.0-browser
+          dotnet publish ./FluentIcons.Gallery/FluentIcons.Gallery.csproj -f net10.0-browser /m:1
       - name: Deploy to GitHub Pages
         if: ${{ !contains(steps.tag_name.outputs.tag, '-') }}
         uses: peaceiris/actions-gh-pages@v4

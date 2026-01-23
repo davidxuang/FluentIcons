@@ -11,7 +11,7 @@
 
   <PropertyGroup>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
-    <AvaloniaVersion>11.3.9</AvaloniaVersion>
+    <AvaloniaVersion>11.3.*</AvaloniaVersion>
     <AvaloniaSingleProject>true</AvaloniaSingleProject>
     <ApplicationTitle>Fluent Icons Gallery</ApplicationTitle>
     <ApplicationId>dev.davidxuang.fluent-icons.gallery</ApplicationId>
