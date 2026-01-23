@@ -29,8 +29,9 @@ try {
         return
     }
 
-    Set-Location $PSScriptRoot
-    & "$PSScriptRoot/seagull-icons/build.ps1"
+    Set-Location "$PSScriptRoot/seagull-icons"
+    pnpm start
+    Set-Location "$PSScriptRoot"
 
     # update enums
     Move-Item -Force "$PSScriptRoot/seagull-icons/obj/Icon.cs" "$PSScriptRoot/FluentIcons.Common/Icon.cs"

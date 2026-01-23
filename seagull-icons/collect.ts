@@ -1,16 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
+import { Argv } from 'yargs';
 import { ensure, resolveAsset } from './utils.js';
-
-const argv = yargs().string('in').string('root').strict().parseSync(hideBin(process.argv));
-const MONO_DIR = path.join(argv.root, 'mono');
-const COLOR_DIR = path.join(argv.root, 'color');
-const CSV = path.join(argv.root, '../collect.csv');
-const ICONS_JSON = path.join(argv.root, 'icons.json');
-const MIRROR_JSON = path.join(argv.root, 'mirror.json');
-const ICON_CS = path.join(argv.root, 'Icon.cs');
 
 const names = new Set<string>();
 const resizable_names = new Set<string>();
@@ -33,7 +24,7 @@ function collect(
   dest_subdir: string,
   depth: number,
   mirror: boolean,
-  get_dest: (name: string, subdir: string, fname: string) => [string, string[]]
+  get_dest: (name: string, subdir: string, fname: string) => [string, string[]],
 ) {
   fs.readdirSync(src_root).forEach((fname) => {
     const src_item = path.join(src_root, fname);
@@ -103,132 +94,154 @@ function merge(dir: string) {
   }
 }
 
-if (fs.existsSync(MONO_DIR)) {
-  fs.rmSync(MONO_DIR, { recursive: true });
-}
-if (fs.existsSync(COLOR_DIR)) {
-  fs.rmSync(COLOR_DIR, { recursive: true });
+export function parseCollect(yargs: Argv) {
+  return yargs.string('in').string('root');
 }
 
-collect(argv.in, null, '', 0, false, (src_set, subdir, name) => {
-  const spec = resolveAsset(src_set, name);
-  if (spec === null) {
-    return [null, []];
-  } else if (spec.direction) {
-    subdir = path.join(spec.direction, subdir);
+export default function fun(
+  argv: Partial<ReturnType<typeof parseCollect> extends Argv<infer P> ? P : never> = {},
+) {
+  argv.in ??= './upstream/assets';
+  argv.root ??= './obj';
+  names.clear();
+  glyph_names.clear();
+  resizable_names.clear();
+  mirror_glyphs.clear();
+
+  const MONO_DIR = path.join(argv.root, 'mono');
+  const COLOR_DIR = path.join(argv.root, 'color');
+  const CSV = path.join(argv.root, '../collect.csv');
+  const ICONS_JSON = path.join(argv.root, 'icons.json');
+  const MIRROR_JSON = path.join(argv.root, 'mirror.json');
+  const ICON_CS = path.join(argv.root, 'Icon.cs');
+
+  if (fs.existsSync(MONO_DIR)) {
+    fs.rmSync(MONO_DIR, { recursive: true });
   }
-  names.add(spec.name_enum);
-  glyph_names.set(spec.name_enum, spec.name_glyph);
-
-  const dest_files = [
-    path.join(
-      spec.variant === 'color' ? COLOR_DIR : MONO_DIR,
-      spec.size.toString(),
-      subdir,
-      `${spec.name_glyph}-${spec.variant}.svg`
-    ),
-  ];
-
-  // resizable for Seagull
-  if (
-    (spec.size === 20 && ['regular', 'filled'].includes(spec.variant)) ||
-    (spec.size === 32 && spec.variant == 'light')
-  ) {
-    resizable_names.add(spec.name_enum);
-    dest_files.push(
-      path.join(MONO_DIR, 'resizable', subdir, `${spec.name_glyph}-${spec.variant}.svg`)
-    );
-  } else if (spec.size === 20 && spec.variant === 'color') {
-    resizable_names.add(spec.name_enum);
+  if (fs.existsSync(COLOR_DIR)) {
+    fs.rmSync(COLOR_DIR, { recursive: true });
   }
 
-  // overriding size16 icons
-  if (
-    spec.name_glyph.match(/^(?:planet$|presence_|spatula_spoon$|text_whole_word$)/) &&
-    spec.size === 16
-  ) {
-    dest_files.push(
+  collect(argv.in, null, '', 0, false, (src_set, subdir, name) => {
+    const spec = resolveAsset(src_set, name);
+    if (spec === null) {
+      return [null, []];
+    } else if (spec.direction) {
+      subdir = path.join(spec.direction, subdir);
+    }
+    names.add(spec.name_enum);
+    glyph_names.set(spec.name_enum, spec.name_glyph);
+
+    const dest_files = [
       path.join(
         spec.variant === 'color' ? COLOR_DIR : MONO_DIR,
-        'override',
+        spec.size.toString(),
         subdir,
-        `${spec.name_glyph}-${spec.variant}.svg`
-      )
-    );
+        `${spec.name_glyph}-${spec.variant}.svg`,
+      ),
+    ];
+
+    // resizable for Seagull
+    if (
+      (spec.size === 20 && ['regular', 'filled'].includes(spec.variant)) ||
+      (spec.size === 32 && spec.variant == 'light')
+    ) {
+      resizable_names.add(spec.name_enum);
+      dest_files.push(
+        path.join(MONO_DIR, 'resizable', subdir, `${spec.name_glyph}-${spec.variant}.svg`),
+      );
+    } else if (spec.size === 20 && spec.variant === 'color') {
+      resizable_names.add(spec.name_enum);
+    }
+
+    // overriding size16 icons
+    if (
+      spec.name_glyph.match(/^(?:planet$|presence_|spatula_spoon$|text_whole_word$)/) &&
+      spec.size === 16
+    ) {
+      dest_files.push(
+        path.join(
+          spec.variant === 'color' ? COLOR_DIR : MONO_DIR,
+          'override',
+          subdir,
+          `${spec.name_glyph}-${spec.variant}.svg`,
+        ),
+      );
+    }
+
+    return [spec.name_glyph, dest_files];
+  });
+
+  fs.readdirSync(MONO_DIR).forEach((size) => {
+    merge(path.join(MONO_DIR, size));
+  });
+  fs.readdirSync(COLOR_DIR).forEach((size) => {
+    merge(path.join(COLOR_DIR, size));
+  });
+
+  // patch for `text_align_right`
+  if (
+    [...fs.readdirSync(MONO_DIR), ...fs.readdirSync(COLOR_DIR)].every((size) => {
+      const d = path.join(MONO_DIR, size, 'RTL');
+      return !fs.existsSync(path.join(d, 'text_align_right.svg'));
+    })
+  ) {
+    mirror_glyphs.add('text_align_right');
   }
 
-  return [spec.name_glyph, dest_files];
-});
-
-fs.readdirSync(MONO_DIR).forEach((size) => {
-  merge(path.join(MONO_DIR, size));
-});
-fs.readdirSync(COLOR_DIR).forEach((size) => {
-  merge(path.join(COLOR_DIR, size));
-});
-
-// patch for `text_align_right`
-if (
-  [...fs.readdirSync(MONO_DIR), ...fs.readdirSync(COLOR_DIR)].every((size) => {
-    const d = path.join(MONO_DIR, size, 'RTL');
-    return !fs.existsSync(path.join(d, 'text_align_right.svg'));
-  })
-) {
-  mirror_glyphs.add('text_align_right');
-}
-
-// [regular, filled, light, color], RTL in PUA-B
-const nextCodepoint = (() => {
-  const advance = 4;
-  let pos = 0xf0000 - advance;
-  return () => {
-    pos += advance;
-    // reserve BMP PUA for Segoe compatibility
-    if (pos < 0x100000) {
-      if (pos + advance - 1 > 0xffffd) {
+  // [regular, filled, light, color], RTL in PUA-B
+  const nextCodepoint = (() => {
+    const advance = 4;
+    let pos = 0xf0000 - advance;
+    return () => {
+      pos += advance;
+      // reserve BMP PUA for Segoe compatibility
+      if (pos < 0x100000) {
+        if (pos + advance - 1 > 0xffffd) {
+          throw pos;
+        }
+      } else if (pos + advance - 1 > 0x10fffd) {
         throw pos;
       }
-    } else if (pos + advance - 1 > 0x10fffd) {
-      throw pos;
+      return pos;
+    };
+  })();
+
+  const enum_list = fs
+    .readFileSync(CSV, 'utf-8')
+    .split(/\r?\n/)
+    .filter((l) => l.length > 0);
+
+  [...names].sort().forEach((e) => {
+    if (!enum_list.includes(e)) {
+      enum_list.push(e);
+      console.log(`[NEW] ${e}`);
     }
-    return pos;
-  };
-})();
+  });
 
-const enum_list = fs
-  .readFileSync(CSV, 'utf-8')
-  .split(/\r?\n/)
-  .filter((l) => l.length > 0);
-
-[...names].sort().forEach((e) => {
-  if (!enum_list.includes(e)) {
-    enum_list.push(e);
-    console.log(`[NEW] ${e}`);
-  }
-});
-
-const icons = Object.fromEntries(enum_list.map((e) => [glyph_names.get(e), nextCodepoint()]));
-let icon_cs_lines = [
-  `using FluentIcons.Common.Internals;
+  const icons = Object.fromEntries(enum_list.map((e) => [glyph_names.get(e), nextCodepoint()]));
+  let icon_cs_lines = [
+    `using FluentIcons.Common.Internals;
 
 namespace FluentIcons.Common;
 
 public enum Icon : int
 {`,
-];
-enum_list.forEach((e, i) => {
-  if (glyph_names.has(e)) {
-    if (!resizable_names.has(e)) {
-      icon_cs_lines.push(`    [NonResizable]`);
+  ];
+  enum_list.forEach((e, i) => {
+    if (glyph_names.has(e)) {
+      if (!resizable_names.has(e)) {
+        icon_cs_lines.push(`    [NonResizable]`);
+      }
+      icon_cs_lines.push(`    ${e} = ${i},`);
+    } else {
+      console.warn(`[NOT_FOUND] ${e}`);
     }
-    icon_cs_lines.push(`    ${e} = ${i},`);
-  } else {
-    console.warn(`[NOT_FOUND] ${e}`);
-  }
-});
-icon_cs_lines.push(`}`);
+  });
+  icon_cs_lines.push(`}`);
 
-fs.writeFileSync(CSV, enum_list.join('\n'));
-fs.writeFileSync(ICONS_JSON, JSON.stringify(icons));
-fs.writeFileSync(MIRROR_JSON, JSON.stringify([...mirror_glyphs].sort()));
-fs.writeFileSync(ICON_CS, icon_cs_lines.join('\n'));
+  fs.writeFileSync(CSV, enum_list.join('\n'));
+  fs.writeFileSync(ICONS_JSON, JSON.stringify(icons));
+  fs.writeFileSync(MIRROR_JSON, JSON.stringify([...mirror_glyphs].sort()));
+  fs.writeFileSync(ICON_CS, icon_cs_lines.join('\n'));
+}
