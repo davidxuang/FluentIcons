@@ -12,6 +12,7 @@
     <RepositoryUrl>https://github.com/davidxuang/FluentIcons</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <!-- for MAUI -->
     <CheckEolWorkloads>false</CheckEolWorkloads>
