@@ -1,6 +1,7 @@
 # FluentIcons
 
-A multi-framework control library of [fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons). Browse the icons in [the online gallery](https://davidxuang.github.io/FluentIcons/).
+A multi-framework control library of [fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons).
+Browse the icons in [the online gallery](https://davidxuang.github.io/FluentIcons/).
 
 ## Packages
 
@@ -16,7 +17,8 @@ A multi-framework control library of [fluentui-system-icons](https://github.com/
 
 ### Version 1.3
 
-[Version 1.3](https://github.com/davidxuang/FluentIcons/tree/v1.3) is a backports release for legacy platforms which are no longer supported by version 2.0. Starting in version 2.0, the underlying fonts have also been migrated from TTF to CFF.
+[Version 1.3](https://github.com/davidxuang/FluentIcons/tree/v1.3) is a backports release for legacy platforms which are no longer supported by version 2.0.
+Starting in version 2.0, the underlying fonts have also been migrated from TTF to CFF.
 
 | Package                       | Platform                                                                                                                                                                              |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -39,14 +41,14 @@ A multi-framework control library of [fluentui-system-icons](https://github.com/
 
 This package features `<FluentIcon>`/`<SymbolIcon>` element, and `<FluentIconSource>`/`<SymbolIconSource>` on platforms with `<IconSource>`, which generally provide following properties:
 
--   **Icon** _(for `Fluent...`)_ / **Symbol** _(for `Symbol...`)_ : [`Icon`](./FluentIcons.Common/Icon.cs) / `Symbol`
--   **IconVariant** : [`IconVariant`](./FluentIcons.Common/IconVariant.cs)
-    -   _New in version 1.1.278: `Color` variant added along with [COLRv1](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) migration._
--   **IconSize** _(for `Fluent...`)_ : [`IconSize`](./FluentIcons.Common/IconSize.cs)
--   **FlowDirection** : `FlowDirection`
-    -   _Switch between LTR/RTL icon variant._
--   **FontSize** : `double`
--   **Foreground** : `Brush`
+- **Icon** _(for `Fluent...`)_ / **Symbol** _(for `Symbol...`)_ : [`Icon`](./FluentIcons.Common/Icon.cs) / `Symbol`
+- **IconVariant** : [`IconVariant`](./FluentIcons.Common/IconVariant.cs)
+    - _New in version 1.1.278: `Color` variant added along with [COLRv1](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) migration._
+- **IconSize** _(for `Fluent...`)_ : [`IconSize`](./FluentIcons.Common/IconSize.cs)
+- **FlowDirection** : `FlowDirection`
+    - _Switch between LTR/RTL icon variant._
+- **FontSize** : `double`
+- **Foreground** : `Brush`
 
 The _Fluent_ variant provides all sizes of icons untouched compared to upstream, while the _Symbol_ variant mimics the APIs and appearances of `SymbolIcon` and [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font) from WinUI, which is powered by a derived version from the child project [Seagull Icons](./seagull-icons/README.md).
 
@@ -56,7 +58,9 @@ The _Fluent_ variant provides all sizes of icons untouched compared to upstream,
 </Page>
 ```
 
-Markup extension classes have been added since version 1.1.242. These extensions will bind their `FlowDirection` to that of the parent control, except `FluentIconSourceExtension`/`SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available. They are moved to a child namespace since version 1.3.
+Markup extension classes have been added since version 1.1.242.
+These extensions will bind their `FlowDirection` to that of the parent control, except `FluentIconSourceExtension`/`SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available.
+They are moved to a child namespace since version 1.3.
 
 ```xml
 <Page xmlns:ic="using:FluentIcons.WinUI">
@@ -74,15 +78,17 @@ Markup extension classes have been added since version 1.1.242. These extensions
 
 ![Sample image](./Assets/Outline.png)
 
-The new feature `Outline` is implemented for experiment. The static class include following attached properties which could be applied to `FluentIcon` or `SymbolIcon` elements:
+The new feature `Outline` is implemented for experiment since version 2.0.317.
+The static class include following attached properties which could be applied to `FluentIcon` or `SymbolIcon` elements:
 
--   **Icon** _(for `FluentIcon`)_ / **Symbol** _(for `SymbolIcon`)_ : `Icon?` / `Symbol?`
-    -   Default to `null`, where the value will be inherited from the host control.
--   **IconVariant** : `IconVariant`
-    -   Default to `Regular`.
--   **Foreground** : `Brush`
+- **Icon** _(for `FluentIcon`)_ / **Symbol** _(for `SymbolIcon`)_ : `Icon?` / `Symbol?`
+    - Default to `null`, where the value will be inherited from the host control.
+- **IconVariant** : `IconVariant`
+    - Default to `Regular`.
+- **Foreground** : `Brush`
 
-Please note that due to limitations in rendering precision, unexpected color leakage may occur at the edges of the icons. To achieve a good display effect, you may need to avoid using combinations of fill and stroke colors with large hue differences.
+Please note that due to limitations in rendering precision, unexpected color leakage may occur at the edges of the icons.
+To achieve a good display effect, you may need to avoid using combinations of fill and stroke colors with large hue differences.
 
 ### MAUI
 
@@ -94,8 +100,9 @@ All properties of type `Brush` are defined as `Color` instead, with the `Color` 
 
 ### UWP / WinUI
 
-The Win2D package is referenced by this library for the “Outline” feature, but with a relatively old version. It is suggested to override with the latest version of the package.
+The Win2D package is referenced by this library for the “Outline” feature, but with a relatively old version.
+While this brings you more flexibility, it is still recommended to override with the latest version of the package.
 
 ## Known issues
 
-Color icons are broken on WPF, because of the lack of [COLR](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) rendering support. It is also not working in environments like macOS and WebAssembly when rendering with SkiaSharp 2, possibly affecting Avalonia and Uno.
+Color icons are broken on _WPF_, because of the lack of [COLR](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) rendering support. It also stops working in environments like macOS and WebAssembly when rendering with SkiaSharp 2, possibly affecting _Avalonia_ and _Uno_.
