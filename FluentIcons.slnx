@@ -1,4 +1,16 @@
 <Solution>
+  <Folder Name="/Resources/">
+    <Project Path="FluentIcons.Resources/FluentIcons.Resources.Avalonia.csproj" />
+    <Project Path="FluentIcons.Resources/FluentIcons.Resources.Uno.csproj" />
+  </Folder>
+  <!-- <Folder Name="/Samples/">
+    <File Path="samples/Directory.Build.props" />
+    <Project Path="samples/Maui/FluentIcons.Samples.Maui.csproj" Id="634125c9-e102-4890-93a8-99fb1918feb3" />
+    <Project Path="samples/WinUI/FluentIcons.Samples.WinUI.csproj">
+      <Platform Project="x64" />
+    </Project>
+    <Project Path="samples/Wpf/FluentIcons.Samples.Wpf.csproj" Id="16bdcaac-3dc9-4e4a-bda1-64bb80c0beeb" />
+  </Folder> -->
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path="Directory.Build.props" />
@@ -12,8 +24,6 @@
   <Project Path="FluentIcons.Common/FluentIcons.Common.csproj" />
   <Project Path="FluentIcons.Gallery/FluentIcons.Gallery.csproj" />
   <Project Path="FluentIcons.Maui/FluentIcons.Maui.csproj" />
-  <Project Path="FluentIcons.Resources/FluentIcons.Resources.Avalonia.csproj" />
-  <Project Path="FluentIcons.Resources/FluentIcons.Resources.Uno.csproj" />
   <Project Path="FluentIcons.Uwp/FluentIcons.Uwp.csproj" />
   <Project Path="FluentIcons.WinUI/FluentIcons.WinUI.csproj" />
   <Project Path="FluentIcons.Wpf/FluentIcons.Wpf.csproj" />

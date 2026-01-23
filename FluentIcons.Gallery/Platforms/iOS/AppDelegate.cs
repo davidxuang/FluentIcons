@@ -4,7 +4,7 @@ using Fonts.Avalonia.JetBrainsMono;
 using Foundation;
 using UIKit;
 
-namespace FluentIcons.Gallery.Platforms.iOS;
+namespace FluentIcons.Gallery;
 
 // The UIApplicationDelegate for the application. This class is responsible for launching the
 // User Interface of the application, as well as listening (and optionally responding) to

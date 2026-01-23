@@ -1,7 +1,7 @@
 using Avalonia;
 using Fonts.Avalonia.JetBrainsMono;
 
-namespace FluentIcons.Gallery.Platforms.Desktop;
+namespace FluentIcons.Gallery;
 
 internal static class Program
 {

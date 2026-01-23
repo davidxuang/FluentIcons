@@ -1,0 +1,167 @@
+﻿<Window
+    x:Class="FluentIcons.Samples.Wpf.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ic="clr-namespace:FluentIcons.Wpf;assembly=FluentIcons.Wpf"
+    xmlns:icc="clr-namespace:FluentIcons.Common;assembly=FluentIcons.Common"
+    xmlns:icx="clr-namespace:FluentIcons.Wpf.Markup;assembly=FluentIcons.Wpf"
+    xmlns:local="clr-namespace:FluentIcons.Samples.Wpf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Style x:Key="SubtitleStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="LineHeight" Value="28" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <LinearGradientBrush x:Key="SampleGradientBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="Goldenrod" />
+            <GradientStop Offset="1.0" Color="Gold" />
+        </LinearGradientBrush>
+    </Window.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="16">
+            <StackPanel.Resources>
+                <Style x:Key="SectionStackStyle" TargetType="StackPanel">
+                    <Setter Property="Margin" Value="0,0,0,8" />
+                </Style>
+            </StackPanel.Resources>
+
+            <StackPanel Style="{StaticResource SectionStackStyle}">
+                <TextBlock Style="{StaticResource SubtitleStyle}" Text="Elements" />
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <ic:FluentIcon Icon="Alert" IconVariant="Regular" />
+                    <ic:FluentIcon Icon="Alert" IconVariant="Filled" />
+                    <ic:FluentIcon Icon="Alert" IconVariant="Color" />
+                    <ic:FluentIcon Icon="Alert" IconVariant="Light" />
+                </StackPanel>
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <ic:SymbolIcon IconVariant="Regular" Symbol="Chat" />
+                    <ic:SymbolIcon IconVariant="Filled" Symbol="Chat" />
+                    <ic:SymbolIcon IconVariant="Color" Symbol="Chat" />
+                    <ic:SymbolIcon IconVariant="Light" Symbol="Chat" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource SectionStackStyle}">
+                <TextBlock Style="{StaticResource SubtitleStyle}" Text="Markup extensions" />
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <ContentControl Content="{icx:FluentIcon Icon=ClockAlarm, IconVariant=Regular}" />
+                    <ContentControl Content="{icx:FluentIcon Icon=ClockAlarm, IconVariant=Filled}" />
+                    <ContentControl Content="{icx:FluentIcon Icon=ClockAlarm, IconVariant=Color}" />
+                    <ContentControl Content="{icx:FluentIcon Icon=ClockAlarm, IconVariant=Light}" />
+                </StackPanel>
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <Button Content="{icx:SymbolIcon Symbol=Add}" />
+                    <Button Content="{icx:SymbolIcon Symbol=Edit}" />
+                    <Button Content="{icx:SymbolIcon Symbol=Share}" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource SectionStackStyle}">
+                <TextBlock Style="{StaticResource SubtitleStyle}" Text="Outline overlay" />
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{DynamicResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="ArrowCircleDown"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{DynamicResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="Battery0"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{DynamicResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="ClosedCaption"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{DynamicResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="DeveloperBoard"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{DynamicResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="HomeCheckmark"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{DynamicResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="ToggleLeft"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{DynamicResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="XboxConsole"
+                        IconVariant="Filled" />
+                </StackPanel>
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="ColorBackground"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="ColorBackgroundAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="ColorFill"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="ColorFillAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="ColorLine"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="ColorLineAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="Highlight"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="HighlightAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="InkingTool"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="InkingToolAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="TagLock"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="TagLockAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="TextColor"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="TextColorAccent" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource SectionStackStyle}">
+                <TextBlock Style="{StaticResource SubtitleStyle}" Text="Icon catalog" />
+                <ItemsControl Margin="-1,3,-1,-1" ItemsSource="{Binding Symbols, RelativeSource={RelativeSource AncestorType=Window}}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ic:SymbolIcon Margin="1" Symbol="{Binding}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

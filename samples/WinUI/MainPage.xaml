@@ -1,0 +1,149 @@
+﻿<Page
+    x:Class="FluentIcons.Samples.WinUI.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ic="using:FluentIcons.WinUI"
+    xmlns:icc="using:FluentIcons.Common"
+    xmlns:icx="using:FluentIcons.WinUI.Markup"
+    xmlns:local="using:FluentIcons.Samples.WinUI"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <LinearGradientBrush x:Key="SampleGradientBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="Goldenrod" />
+            <GradientStop Offset="1.0" Color="Gold" />
+        </LinearGradientBrush>
+    </Page.Resources>
+    <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollMode="Auto">
+        <StackPanel Padding="16" Spacing="8">
+            <StackPanel Spacing="4">
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Elements" />
+                <StackPanel Orientation="Horizontal">
+                    <ic:FluentIcon Icon="Alert" IconVariant="Regular" />
+                    <ic:FluentIcon Icon="Alert" IconVariant="Filled" />
+                    <ic:FluentIcon Icon="Alert" IconVariant="Color" />
+                    <ic:FluentIcon Icon="Alert" IconVariant="Light" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ic:SymbolIcon IconVariant="Regular" Symbol="Chat" />
+                    <ic:SymbolIcon IconVariant="Filled" Symbol="Chat" />
+                    <ic:SymbolIcon IconVariant="Color" Symbol="Chat" />
+                    <ic:SymbolIcon IconVariant="Light" Symbol="Chat" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Spacing="4">
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Markup extensions" />
+                <StackPanel Orientation="Horizontal">
+                    <IconSourceElement IconSource="{icx:SymbolIconSource Symbol=ClockAlarm, IconVariant=Regular}" />
+                    <IconSourceElement IconSource="{icx:SymbolIconSource Symbol=ClockAlarm, IconVariant=Filled}" />
+                    <IconSourceElement IconSource="{icx:SymbolIconSource Symbol=ClockAlarm, IconVariant=Color}" />
+                    <IconSourceElement IconSource="{icx:SymbolIconSource Symbol=ClockAlarm, IconVariant=Light}" />
+                </StackPanel>
+                <CommandBar>
+                    <AppBarButton Icon="{icx:SymbolIcon Symbol=Add}" Label="Add" />
+                    <AppBarButton Icon="{icx:SymbolIcon Symbol=Edit}" Label="Edit" />
+                    <AppBarButton Icon="{icx:SymbolIcon Symbol=Share}" Label="Share" />
+                    <CommandBar.SecondaryCommands>
+                        <AppBarButton Icon="{icx:SymbolIcon Symbol=Settings}" Label="Settings" />
+                    </CommandBar.SecondaryCommands>
+                </CommandBar>
+            </StackPanel>
+            <StackPanel Spacing="4">
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Outline overlay" />
+                <StackPanel Orientation="Horizontal">
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{ThemeResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="ArrowCircleDown"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{ThemeResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="Battery0"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{ThemeResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="ClosedCaption"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{ThemeResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="DeveloperBoard"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{ThemeResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="HomeCheckmark"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{ThemeResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="ToggleLeft"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.Foreground="{ThemeResource SampleGradientBrush}"
+                        Foreground="Beige"
+                        Icon="XboxConsole"
+                        IconVariant="Filled" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="ColorBackground"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="ColorBackgroundAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="ColorFill"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="ColorFillAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="ColorLine"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="ColorLineAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="Highlight"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="HighlightAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="InkingTool"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="InkingToolAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="TagLock"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="TagLockAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.Foreground="#0088CC"
+                        ic:Outline.Symbol="TextColor"
+                        Foreground="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="TextColorAccent" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Spacing="4">
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Icon catalog" />
+                <ItemsRepeater ItemsSource="{x:Bind Symbols}">
+                    <ItemsRepeater.Layout>
+                        <UniformGridLayout MinColumnSpacing="2" MinRowSpacing="2" />
+                    </ItemsRepeater.Layout>
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate x:DataType="icc:Symbol">
+                            <ic:SymbolIcon Symbol="{x:Bind}" />
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

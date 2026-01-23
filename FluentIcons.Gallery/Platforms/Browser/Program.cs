@@ -5,7 +5,7 @@ using System.Runtime.Versioning;
 
 [assembly: SupportedOSPlatform("browser")]
 
-namespace FluentIcons.Gallery.Platforms.Browser;
+namespace FluentIcons.Gallery;
 
 internal sealed partial class Program
 {

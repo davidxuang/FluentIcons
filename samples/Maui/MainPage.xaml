@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FluentIcons.Samples.Maui.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ic="clr-namespace:FluentIcons.Maui;assembly=FluentIcons.Maui"
+    xmlns:icc="clr-namespace:FluentIcons.Common;assembly=FluentIcons.Common"
+    xmlns:icx="clr-namespace:FluentIcons.Maui.Markup;assembly=FluentIcons.Maui"
+    x:Name="MainPageSelf">
+
+    <ScrollView Orientation="Vertical">
+        <VerticalStackLayout Padding="16" Spacing="8">
+
+            <VerticalStackLayout Spacing="4">
+                <Label FontSize="Subtitle" Text="Elements" />
+
+                <HorizontalStackLayout Spacing="4">
+                    <ic:FluentIcon Icon="Alert" IconVariant="Regular" />
+                    <ic:FluentIcon Icon="Alert" IconVariant="Filled" />
+                    <ic:FluentIcon Icon="Alert" IconVariant="Color" />
+                    <ic:FluentIcon Icon="Alert" IconVariant="Light" />
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Spacing="4">
+                    <ic:SymbolIcon IconVariant="Regular" Symbol="Chat" />
+                    <ic:SymbolIcon IconVariant="Filled" Symbol="Chat" />
+                    <ic:SymbolIcon IconVariant="Color" Symbol="Chat" />
+                    <ic:SymbolIcon IconVariant="Light" Symbol="Chat" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="4">
+                <Label FontSize="Subtitle" Text="Markup extensions" />
+
+                <HorizontalStackLayout Spacing="4">
+                    <Image Source="{ic:SymbolImageSource Symbol=ClockAlarm, IconVariant=Regular}" />
+                    <Image Source="{ic:SymbolImageSource Symbol=ClockAlarm, IconVariant=Filled}" />
+                    <Image Source="{ic:SymbolImageSource Symbol=ClockAlarm, IconVariant=Color}" />
+                    <Image Source="{ic:SymbolImageSource Symbol=ClockAlarm, IconVariant=Light}" />
+                </HorizontalStackLayout>
+
+                <FlexLayout
+                    Direction="Row"
+                    JustifyContent="Start"
+                    Wrap="Wrap">
+                    <Button
+                        BackgroundColor="Transparent"
+                        ContentLayout="Top, 0"
+                        ImageSource="{ic:SymbolImageSource Symbol=Add}"
+                        Text="Add" />
+                    <Button
+                        BackgroundColor="Transparent"
+                        ContentLayout="Top, 0"
+                        ImageSource="{ic:SymbolImageSource Symbol=Edit}"
+                        Text="Edit" />
+                    <Button
+                        BackgroundColor="Transparent"
+                        ContentLayout="Top, 0"
+                        ImageSource="{ic:SymbolImageSource Symbol=Share}"
+                        Text="Share" />
+                </FlexLayout>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="4">
+                <Label FontSize="Subtitle" Text="Outline overlay" />
+
+                <FlexLayout
+                    Direction="Row"
+                    JustifyContent="Start"
+                    Wrap="Wrap">
+                    <ic:FluentIcon
+                        ic:Outline.ForegroundColor="Goldenrod"
+                        ForegroundColor="Gold"
+                        Icon="ArrowCircleDown"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.ForegroundColor="Goldenrod"
+                        ForegroundColor="Gold"
+                        Icon="Battery0"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.ForegroundColor="Goldenrod"
+                        ForegroundColor="Gold"
+                        Icon="ClosedCaption"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.ForegroundColor="Goldenrod"
+                        ForegroundColor="Gold"
+                        Icon="DeveloperBoard"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.ForegroundColor="Goldenrod"
+                        ForegroundColor="Gold"
+                        Icon="HomeCheckmark"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.ForegroundColor="Goldenrod"
+                        ForegroundColor="Gold"
+                        Icon="ToggleLeft"
+                        IconVariant="Filled" />
+                    <ic:FluentIcon
+                        ic:Outline.ForegroundColor="Goldenrod"
+                        ForegroundColor="Gold"
+                        Icon="XboxConsole"
+                        IconVariant="Filled" />
+                </FlexLayout>
+
+                <FlexLayout
+                    Direction="Row"
+                    JustifyContent="Start"
+                    Wrap="Wrap">
+                    <ic:SymbolIcon
+                        ic:Outline.ForegroundColor="#0088CC"
+                        ic:Outline.Symbol="ColorBackground"
+                        ForegroundColor="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="ColorBackgroundAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.ForegroundColor="#0088CC"
+                        ic:Outline.Symbol="ColorFill"
+                        ForegroundColor="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="ColorFillAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.ForegroundColor="#0088CC"
+                        ic:Outline.Symbol="ColorLine"
+                        ForegroundColor="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="ColorLineAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.ForegroundColor="#0088CC"
+                        ic:Outline.Symbol="Highlight"
+                        ForegroundColor="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="HighlightAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.ForegroundColor="#0088CC"
+                        ic:Outline.Symbol="InkingTool"
+                        ForegroundColor="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="InkingToolAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.ForegroundColor="#0088CC"
+                        ic:Outline.Symbol="TagLock"
+                        ForegroundColor="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="TagLockAccent" />
+                    <ic:SymbolIcon
+                        ic:Outline.ForegroundColor="#0088CC"
+                        ic:Outline.Symbol="TextColor"
+                        ForegroundColor="#800088CC"
+                        IconVariant="Filled"
+                        Symbol="TextColorAccent" />
+                </FlexLayout>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="4">
+                <Label FontSize="Subtitle" Text="Icon catalog" />
+
+                <FlexLayout
+                    Margin="-1"
+                    AlignContent="Start"
+                    AlignItems="Start"
+                    BindableLayout.ItemsSource="{x:Binding Symbols,
+                                                           Source={x:Reference MainPageSelf}}"
+                    Direction="Row"
+                    JustifyContent="Start"
+                    Wrap="Wrap">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="icc:Symbol">
+                            <ic:SymbolIcon Padding="1" Symbol="{Binding}" />
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
