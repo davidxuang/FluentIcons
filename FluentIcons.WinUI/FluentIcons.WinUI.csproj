@@ -20,6 +20,8 @@
     <When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
       <PropertyGroup>
         <DefineConstants>$(DefineConstants);WINDOWS_WINAPPSDK</DefineConstants>
+        <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+        <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
       </PropertyGroup>
 
       <ItemGroup>
