@@ -17,4 +17,8 @@
   <Project Path="FluentIcons.Uwp/FluentIcons.Uwp.csproj" />
   <Project Path="FluentIcons.WinUI/FluentIcons.WinUI.csproj" />
   <Project Path="FluentIcons.Wpf/FluentIcons.Wpf.csproj" />
+  <Project Path="seagull-icons/seagull-icons.esproj">
+    <!-- <Build /> -->
+    <!-- <Deploy /> -->
+  </Project>
 </Solution>

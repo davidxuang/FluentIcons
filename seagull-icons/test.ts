@@ -4,8 +4,8 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { Parser } from 'xml2js';
 import paper from 'paper';
-import { Doc, Renderable } from './types.js';
-import { getPathData } from './utils.js';
+import { Doc, Renderable } from './lib/types.js';
+import { getPathData } from './lib/utils.js';
 
 const argv = yargs().string('in').strict().parseSync(hideBin(process.argv));
 

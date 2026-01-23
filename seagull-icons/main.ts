@@ -3,10 +3,10 @@ import fs from 'fs';
 import { styleText } from 'util';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import collect, { parseCollect } from './collect.js';
-import transform, { parseTransform } from './transform.js';
-import layerize, { parseLayerize } from './layerize.js';
-import mirror, { parseMirror } from './mirror.js';
+import collect, { parseCollect } from './lib/collect.js';
+import transform, { parseTransform } from './lib/transform.js';
+import layerize, { parseLayerize } from './lib/layerize.js';
+import mirror, { parseMirror } from './lib/mirror.js';
 
 process.chdir(import.meta.dirname);
 

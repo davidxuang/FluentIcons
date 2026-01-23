@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.3864779">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <StartupCommand>pnpm start</StartupCommand>
+  </PropertyGroup>
+</Project>
