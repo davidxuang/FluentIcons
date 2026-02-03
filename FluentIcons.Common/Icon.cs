@@ -2922,4 +2922,7 @@ public enum Icon : int
     ChatMultiplePerson = 2827,
     PersonCircleOff = 2828,
     SparkleOff = 2829,
+    CertificateOff = 2830,
+    Medal = 2831,
+    WindowNewRotate180 = 2832,
 }
