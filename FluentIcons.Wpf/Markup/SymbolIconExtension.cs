@@ -8,7 +8,7 @@ using FluentIcons.Common;
 namespace FluentIcons.Wpf.Markup;
 
 [MarkupExtensionReturnType(typeof(SymbolIcon))]
-public class SymbolIconExtension : MarkupExtension
+public sealed class SymbolIconExtension : MarkupExtension
 {
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }

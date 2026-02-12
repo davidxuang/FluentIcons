@@ -6,7 +6,7 @@ using FluentIcons.Common;
 
 namespace FluentIcons.Avalonia.Fluent.Markup;
 
-public class SymbolIconSourceExtension
+public sealed class SymbolIconSourceExtension
 {
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }

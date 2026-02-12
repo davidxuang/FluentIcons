@@ -5,7 +5,7 @@ namespace FluentIcons.Uwp.Markup;
 #endif
 
 [MarkupExtensionReturnType(ReturnType = typeof(SymbolIcon))]
-public partial class SymbolIconExtension : MarkupExtension
+public sealed partial class SymbolIconExtension : MarkupExtension
 {
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }

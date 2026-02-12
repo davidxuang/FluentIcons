@@ -8,7 +8,7 @@ using Microsoft.Maui.Graphics;
 namespace FluentIcons.Maui.Markup;
 
 [RequireService([typeof(IProvideValueTarget)])]
-public class FluentIconExtension : IMarkupExtension<FluentIcon>
+public sealed class FluentIconExtension : IMarkupExtension<FluentIcon>
 {
     public Icon? Icon { get; set; }
     public IconVariant? IconVariant { get; set; }
