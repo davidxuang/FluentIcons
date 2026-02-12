@@ -8,6 +8,13 @@ namespace FluentIcons.Avalonia.Fluent.Markup;
 
 public sealed class SymbolIconSourceExtension
 {
+    public SymbolIconSourceExtension() { }
+    public SymbolIconSourceExtension(Symbol symbol)
+    {
+        Symbol = symbol;
+    }
+
+    [ConstructorArgument("symbol")]
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }
     public double? FontSize { get; set; }

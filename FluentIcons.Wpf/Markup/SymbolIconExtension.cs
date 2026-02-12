@@ -10,6 +10,13 @@ namespace FluentIcons.Wpf.Markup;
 [MarkupExtensionReturnType(typeof(SymbolIcon))]
 public sealed class SymbolIconExtension : MarkupExtension
 {
+    public SymbolIconExtension() { }
+    public SymbolIconExtension(Symbol symbol)
+    {
+        Symbol = symbol;
+    }
+
+    [ConstructorArgument("symbol")]
     public Symbol? Symbol { get; set; }
     public IconVariant? IconVariant { get; set; }
     public double? FontSize { get; set; }

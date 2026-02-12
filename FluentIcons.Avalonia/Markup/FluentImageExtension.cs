@@ -8,6 +8,13 @@ namespace FluentIcons.Avalonia.Markup;
 
 public sealed class FluentImageExtension
 {
+    public FluentImageExtension() { }
+    public FluentImageExtension(Icon icon)
+    {
+        Icon = icon;
+    }
+
+    [ConstructorArgument("icon")]
     public Icon? Icon { get; set; }
     public IconVariant? IconVariant { get; set; }
     public IconSize? IconSize { get; set; }
