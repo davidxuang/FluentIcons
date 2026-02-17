@@ -65,11 +65,11 @@ certificate = "3"
 channel = "2"
 chart = "2"
 chat = { _ = "2", sparkle = "1" }
-chat_multiple = '_'
+chat_multiple = "_"
 checkbox = { _ = { 0 = "2", u = [-1, -1] } }
 checkbox_checked = { _ = { 0 = "2", u = [-1, -1] } }
 checkmark = { _ = { 0 = "2", u = [-0.25, -1.75] }, "" = { 0 = "", u = [-0.25, 0] } }
-checkmark_circle = "2"
+checkmark_circle = { _ = "2", sparkle = "1" }
 circle = { _ = "2", sparkle = "1" }
 circle_hint = "2"
 clear_formatting = "2"
@@ -91,7 +91,7 @@ content = "2"
 content_view_gallery = "2"
 copy = { _ = { 0 = "2", u = [-1, 0] } }
 credit_card = "2"
-crop_interim = '_'
+crop_interim = "_"
 crown = "2"
 cube = { _ = "2", arrow_curve_down = "4" }
 cursor = { _ = { 0 = "1", u = [-1, 0] } }
@@ -130,7 +130,7 @@ error_circle = "2"
 filter = { _ = { 0 = "1", u = [0, 2] } }
 flag = "2"
 flash = "2"
-flashlight = '_'
+flashlight = "_"
 flow = { _ = { 0 = "2", u = [0, -1] } }
 folder = "2"
 form = { _ = "2", sparkle = "1" }
@@ -145,6 +145,7 @@ hand_left = "2"
 hand_open = "1"
 hat_graduation = "1"
 headset = { _ = { 0 = "1", u = [-1, 0] } }
+headset_vr = "_"
 heart_pulse = { _ = { 0 = "2", u = [0, -1] } }
 hexagon = "1"
 highlight = "2"
@@ -304,6 +305,7 @@ textbox = "2"
 timer = "2"
 trophy = "2"
 tv = { _ = "2", arrow_right = "1" }
+usb = "_"
 vehicle_car = { _ = { 0 = "2", u = [0, -1] } }
 vehicle_car_profile = { _ = { 0 = "4", u = [0, 2] } }
 vehicle_subway = { _ = { 0 = "4", u = [0, -1] } }
@@ -606,6 +608,7 @@ icons = [
   "desktop",
   "desktop@off",
   "document",
+  "document@off",
   "document_header",
   "mail",
   "mail_inbox",
@@ -1750,6 +1753,7 @@ icons = [
   "calendar_checkmark",
   "camera#/camera_sparkles",
   "chat",
+  "checkmark_circle",
   "circle",
   "clock",
   "data_usage",
@@ -2000,6 +2004,7 @@ icons = [
   "checkmark",
   "crop_interim@off",
   "drink_coffee",
+  "headset_vr@off",
   "math_formula",
   "math_symbols",
   "next_frame",
@@ -2012,6 +2017,7 @@ icons = [
   "text_wrap@off",
   "translate@off",
   "triangle_up#/triangle",
+  "usb@off",
   "vehicle_subway",
   "wallet_credit_card",
 ]
