@@ -2939,4 +2939,6 @@ public enum Icon : int
     Usb = 2844,
     UsbOff = 2845,
     WindowMultipleOff = 2846,
+    ArrowFlowSquareMultiple = 2847,
+    MidiOff = 2848,
 }
