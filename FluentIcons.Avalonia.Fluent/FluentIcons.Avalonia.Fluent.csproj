@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+    <VersionSuffix>$(PREVIEW_VERSION_SUFFIX)</VersionSuffix>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <Description>FluentUI System Icons control library for FluentAvalonia.</Description>
     <PackageTags>$(PackageTags);Avalonia</PackageTags>
   </PropertyGroup>

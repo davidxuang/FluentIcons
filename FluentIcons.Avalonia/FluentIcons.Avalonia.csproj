@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+    <VersionSuffix>$(PREVIEW_VERSION_SUFFIX)</VersionSuffix>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <Description>FluentUI System Icons control library for Avalonia.</Description>
     <PackageTags>$(PackageTags);Avalonia</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia" VersionOverride="12.0.0-preview1" />
     <PackageReference Include="PolySharp" PrivateAssets="all" />
   </ItemGroup>
 

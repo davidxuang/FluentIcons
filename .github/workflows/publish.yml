@@ -56,8 +56,8 @@ jobs:
       - name: Build NuGet packages
         if: ${{ github.event_name != 'workflow_dispatch' }}
         run: |
-          $env:VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
-          MSBuild -restore -t:pack -p:Configuration=Release -p:PackageOutputPath=".." -v:minimal
+          $env:PREVIEW_VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
+          MSBuild ./FluentIcons.Avalonia/FluentIcons.Avalonia.csproj -restore -t:pack -p:Configuration=Release -p:PackageOutputPath=".." -v:minimal
           dotnet nuget push FluentIcons.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
       - name: Build GitHub Pages
         if: ${{ github.event_name == 'workflow_dispatch' || !contains(steps.tag_name.outputs.tag, '-') }}

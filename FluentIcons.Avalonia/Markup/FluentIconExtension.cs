@@ -2,6 +2,7 @@ using System;
 using Avalonia;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Metadata;
 using FluentIcons.Common;
 
 #if FLUENT_AVALONIA
