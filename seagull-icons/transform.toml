@@ -164,6 +164,7 @@ lightbulb = { _ = { 0 = "1", u = [-1, 0] } }
 line_horizontal_4 = "1"
 line_horizontal_5 = "2"
 link = { _ = { 0 = "2", u = [0, -2] } }
+live = "_"
 location = "2"
 lock = "2"
 lock_closed = "2"
@@ -2005,6 +2006,7 @@ icons = [
   "crop_interim@off",
   "drink_coffee",
   "headset_vr@off",
+  "live@off",
   "math_formula",
   "math_symbols",
   "next_frame",
