@@ -1,7 +1,7 @@
 export const config = /*json-start*/{
   "mainAssemblyName": "FluentIcons.Gallery.dll",
   "resources": {
-    "hash": "sha256-nhMv92EXYUVq6kKeNAE68jP+HujIUwMKvLHzIKTmi3E=",
+    "hash": "sha256-9GzA9nTW4WqHUtojAoc/ikmYe2tR92vkvMuQhQ6yYZs=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.js"
@@ -136,22 +136,22 @@ export const config = /*json-start*/{
       {
         "virtualPath": "FluentIcons.Avalonia.Fluent.wasm",
         "name": "FluentIcons.Avalonia.Fluent.wasm",
-        "integrity": "sha256-9njFe/NO7Bsk9eqfXT4c+hy3Hf430S1sflVGafG1ySA="
+        "integrity": "sha256-ddjs4LeP3Ktzzyu9slbBTSwD+E+mhpqOMRnwAngxndU="
       },
       {
         "virtualPath": "FluentIcons.Common.wasm",
         "name": "FluentIcons.Common.wasm",
-        "integrity": "sha256-wJgpPV0Qs8z3HO+u9JduWnhuGrLGEa9LtXxcgivQM4M="
+        "integrity": "sha256-BH8MtpnugHUQ1hhFcZ1VaT8gBeW//96NY/HiRMZXups="
       },
       {
         "virtualPath": "FluentIcons.Gallery.wasm",
         "name": "FluentIcons.Gallery.wasm",
-        "integrity": "sha256-KPMWvh2ECCXKcE5qAuDPrTSLtbOKgJhTtcOLu/QnOBs="
+        "integrity": "sha256-Uvc1f9jmudjDo1QarBirCaJUGfq758BdKHm2C/jaXd0="
       },
       {
         "virtualPath": "FluentIcons.Resources.Avalonia.wasm",
         "name": "FluentIcons.Resources.Avalonia.wasm",
-        "integrity": "sha256-hc9NesuuDHv3TX4jTc+LOvQvmGs7KiuMgB/o/e/f2eA="
+        "integrity": "sha256-bwtAqLJt/Jf6t8S8pvFeCnCGGxiKbRUVXW+mLfUuOeo="
       },
       {
         "virtualPath": "Fonts.Avalonia.JetBrainsMono.wasm",
