@@ -2941,4 +2941,8 @@ public enum Icon : int
     WindowMultipleOff = 2846,
     ArrowFlowSquareMultiple = 2847,
     MidiOff = 2848,
+    DeviceMeetingRoomMicrophoneAbove = 2849,
+    DeviceMeetingRoomMicrophoneBelow = 2850,
+    HeadphonesConvertible = 2851,
+    HeadphonesMonoaural = 2852,
 }
