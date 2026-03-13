@@ -2847,3 +2847,7 @@ UsbOff
 WindowMultipleOff
 ArrowFlowSquareMultiple
 MidiOff
+DeviceMeetingRoomMicrophoneAbove
+DeviceMeetingRoomMicrophoneBelow
+HeadphonesConvertible
+HeadphonesMonoaural
