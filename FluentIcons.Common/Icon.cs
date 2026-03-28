@@ -2945,4 +2945,6 @@ public enum Icon : int
     DeviceMeetingRoomMicrophoneBelow = 2850,
     HeadphonesConvertible = 2851,
     HeadphonesMonoaural = 2852,
+    CallChevronDown = 2853,
+    LightbulbPulse = 2854,
 }
