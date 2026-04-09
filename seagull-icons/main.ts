@@ -74,7 +74,7 @@ const _ = yargs()
         config: './obj/mirror.json',
       });
       log('[Seagull] Generating...');
-      argv.format.forEach((format) => {
+      argv.format?.forEach((format) => {
         execSync(
           `python ./generate.py --in=./obj/composed/seagull --colr=./obj/colr/seagull --icons=./obj/icons.json --out=./obj --name=SeagullFluentIcons --upm=1792 --format=${format}`,
           { stdio: 'inherit' },
@@ -138,7 +138,7 @@ const _ = yargs()
             config: './obj/mirror.json',
           });
           log(`[Size${dir.name}] Generating...`);
-          argv.format.forEach((format) => {
+          argv.format?.forEach((format) => {
             execSync(
               `python ./generate.py --in=./obj/composed/${dir.name} --override=./override/mono/${dir.name} --colr=./obj/colr/${dir.name} --icons=./obj/icons.json --out=./obj --name=FluentSystemIcons-Size${dir.name} --upm=${upm} --format=${format}`,
               { stdio: 'inherit' },

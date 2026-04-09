@@ -24,6 +24,7 @@ type BaseMeta = {
   v?: Translate; // badge translate for 16px
   ul?: Translate; // base translate for 28px
   vl?: Translate; // badge translate for 28px
+  vflip?: boolean; // (RTL) flip the side of badge
 };
 type BadgeMeta = {
   window?: Translate;
@@ -34,13 +35,12 @@ type BadgeTemplate = BadgeMeta & {
   [style in Style]?: BadgeMeta;
 };
 type BadgeComposeV = BadgeMeta & {
-  // icon:root@modifier#/override
   icons: string[];
   icons_rtl?: string[];
 };
 type BadgeCompose = BadgeComposeV & {
   inherits?: string;
-  mirrors?: string;
+  subst_rtl?: string;
 } & {
   [style in Style]?: BadgeComposeV;
 };
@@ -86,12 +86,6 @@ export default function fun(
     template: { [badge: string]: BadgeTemplate };
     // name#variant
     compose: { [badge: string]: BadgeCompose };
-    rtl: {
-      [icon: string]: {
-        mirror_badge?: boolean;
-        mirror_category?: boolean;
-      };
-    };
   };
 
   // reset artifacts
@@ -113,7 +107,7 @@ export default function fun(
         }
 
         const item = new paper.CompoundPath(
-          doc.svg.$$.map((e) => getPathData(e as Renderable)).join(),
+          doc.svg.$$!.map((e) => getPathData(e as Renderable)).join(),
         );
         if (doc.svg.$.height === '16') {
           fs.copyFileSync(src_item, dest_item);
@@ -154,13 +148,17 @@ export default function fun(
     badge_name: string;
     badge_style: string;
     modifier?: string;
+    src_lang?: string;
+    dest_lang?: string;
     style: string;
     src_name: string;
+    src_name_lang?: string;
     dest_name: string;
   };
 
   const resolve = (() => {
-    const re = /^(\w+)(?:\:(\w+))?(?:@(\w+))?(?:#\/(\w+))?$/;
+    // icon:root[modifier]#/override@lang:lang
+    const re = /^(\w+)(?:\:(\w+))?(?:\[(\w+)\])?(?:#\/(\w+))?(?:@(?:([\w\-]*)\:)?([\w\-]+))?$/;
     return (
       descriptor: string,
       style: string,
@@ -172,24 +170,22 @@ export default function fun(
         throw descriptor;
       }
 
-      const meta: ComposeMeta = {
+      const meta = {
         base: matches[1] ?? matches[4],
         base_alias: matches[2] ?? matches[1] ?? matches[4],
         badge_name: badge_name,
         badge_style: badge_style,
         modifier: matches[3],
+        src_lang: matches[5] !== undefined ? matches[5] : matches[6],
+        dest_lang: matches[6],
         style: style,
         src_name: matches[1], // needs further resolve
-        dest_name: undefined,
+        dest_name: '',
       };
 
-      if (matches[4]) {
-        meta.dest_name = `${matches[4]}-${style}.svg`;
-      } else {
-        meta.dest_name = `${[meta.base_alias, badge_name, meta.modifier]
-          .filter((x) => x)
-          .join('_')}-${style}.svg`;
-      }
+      let icon_name =
+        matches[4] ?? [meta.base_alias, badge_name, meta.modifier].filter((x) => x).join('_');
+      meta.dest_name = [icon_name, style, meta.dest_lang, 'svg'].filter((x) => x).join('.');
 
       return meta;
     };
@@ -199,14 +195,15 @@ export default function fun(
     const redirect = data.redirect[meta.src_name];
     if (redirect) {
       if (typeof redirect === 'string') {
-        meta.src_name = `${redirect}-${meta.style}.svg`;
+        meta.src_name = `${redirect}.${meta.style}.svg`;
       } else {
-        meta.src_name = `${redirect[base_meta['0']] ?? redirect['_'] ?? meta.src_name}-${
-          meta.style
-        }.svg`;
+        meta.src_name = `${redirect[base_meta['0']] ?? redirect['_'] ?? meta.src_name}.${meta.style}.svg`;
       }
     } else {
-      meta.src_name = `${meta.src_name}-${meta.style}.svg`;
+      meta.src_name = `${meta.src_name}.${meta.style}.svg`;
+    }
+    if ((meta.src_lang?.length ?? 0) > 0) {
+      meta.src_name_lang = `${meta.src_name.split('.svg')[0]}.${meta.src_lang}.svg`;
     }
   };
 
@@ -224,7 +221,7 @@ export default function fun(
       }
 
       if (typeof m === 'string' || m[cat] === undefined) {
-        const item = new paper.CompoundPath(m['_'] ?? m);
+        const item = new paper.CompoundPath(typeof m === 'string' ? m : m['_']);
         if (window) {
           if (cat === '_') {
             throw [badge_meta, cat]; // missing entry in `base`
@@ -251,7 +248,7 @@ export default function fun(
       const window = badge_meta.window;
 
       if (typeof b === 'string' || b[cat] === undefined) {
-        const item = new paper.CompoundPath(b['_'] ?? b);
+        const item = new paper.CompoundPath(typeof b === 'string' ? b : b['_']);
         if (window) {
           if (cat.startsWith('1') || cat.startsWith('2')) {
             item.translate([window[0], 0]);
@@ -278,13 +275,23 @@ export default function fun(
         'M0.8536,0.1465c-0.1953,-0.1953 -0.5119,-0.1953 -0.7072,0c-0.1952,0.1952 -0.1952,0.5118 0,0.707l15,15.0001c0.1953,0.1952 0.5119,0.1952 0.7072,0c0.1952,-0.1953 0.1952,-0.5119 0,-0.7072l-15,-15z',
       );
 
-      const src_file = src_dir
-        .map((d) => path.join(d, meta.src_name))
+      const src_file = [meta.src_name_lang, meta.src_name]
+        .filter((n) => n !== undefined)
+        .flatMap((n) => src_dir.map((d) => path.join(d, n)))
         .find((f) => fs.existsSync(f));
 
       if (src_file === undefined) {
-        console.warn(`[NOT_FOUND] ${meta.src_name} ==> ${meta.dest_name}`);
+        console.warn(`[NOT_FOUND] ${meta.src_name} => ${meta.dest_name}`);
         return;
+      } else if (meta.src_name_lang && src_file.includes(meta.src_name_lang)) {
+        const orig_dir = src_dir.filter((d) => fs.existsSync(path.join(d, meta.src_name)))[0];
+        const orig_prior = src_dir.indexOf(orig_dir);
+        const lang_prior = src_dir.indexOf(path.dirname(src_file));
+        if (lang_prior > orig_prior) {
+          console.warn(
+            `[SPURIOUS_OVERRIDE] ${path.join(orig_dir, meta.src_name)} => ${src_file}`,
+          );
+        }
       }
 
       parser.parseString(fs.readFileSync(src_file), (err, doc: Doc) => {
@@ -293,7 +300,7 @@ export default function fun(
         }
 
         let item: paper.PathItem = new paper.CompoundPath(
-          doc.svg.$$.map((elem) => getPathData(elem as Renderable)).join(),
+          doc.svg.$$!.map((elem) => getPathData(elem as Renderable)).join(),
         );
         if (meta.style !== 'light') {
           if (doc.svg.$.width !== '16') {
@@ -317,28 +324,28 @@ export default function fun(
           badge.translate(base_meta.v);
         }
 
-        let path_data: string = undefined;
-
         if (!mask.pathData && !badge.pathData && meta.badge_name) {
-          console.warn(`[NOP] ${meta.src_name} ==> ${meta.dest_name}`);
+          console.warn(`[NOP] ${meta.src_name} => ${meta.dest_name}`);
         }
 
-        if (meta.modifier === 'off') {
-          item = item.subtract(mask).exclude(badge).subtract(off_subtract).unite(off_unite);
-          path_data = item.pathData;
-        } else if (mask.pathData) {
-          item = item.subtract(mask);
-          path_data = item.pathData + badge.pathData;
-        } else {
+        if (mask.pathData) {
+          item = item.subtract(mask).unite(badge);
+        } else if (badge.pathData) {
           // use XOR if mask is empty
           item = item.exclude(badge);
-          path_data = item.pathData;
+        }
+        if (meta.modifier === 'off') {
+          item = item.subtract(off_subtract).unite(off_unite);
+        }
+
+        if (!fs.existsSync(path.join(SRC_DIR, meta.dest_name))) {
+          console.warn(`[NOT_FOUND_UPSTREAM] ${meta.dest_name}`);
         }
 
         let size = meta.style !== 'light' ? 16 : 28;
         fs.writeFileSync(
           path.join(dest_dir, meta.dest_name),
-          `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">\n  <path d="${path_data}" fill="#212121" />\n</svg>`,
+          `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">\n  <path d="${item.pathData}" fill="#212121" />\n</svg>`,
         );
 
         item.remove();
@@ -348,7 +355,7 @@ export default function fun(
     };
   })();
 
-  function getBaseMeta(base: string[], variant: string, badge: string): BaseMeta {
+  function getBaseMeta(base: string[], modifier: string | undefined, badge: string): BaseMeta {
     let entry = base.map((b) => data.base[b]).find((e) => e);
     if (entry === undefined) {
       return { '0': '_' };
@@ -357,7 +364,7 @@ export default function fun(
     if (typeof entry === 'string') {
       return { '0': entry };
     } else {
-      let meta = entry[`@${variant}`] ?? entry[badge] ?? entry['_'];
+      let meta = entry[`[${modifier}]`] ?? entry[badge] ?? entry['_'];
       if (typeof meta === 'string') {
         return { '0': meta };
       } else {
@@ -366,7 +373,9 @@ export default function fun(
     }
   }
 
-  const sources = [...SRC_OVERRIDES, SRC_DIR];
+  const styles16: Style[] = ['regular', 'filled'];
+  const styles: Style[] = [...styles16, 'light'];
+  const sources = [...SRC_OVERRIDES, SRC_DIR].map(path.normalize);
   Object.entries(data.compose).forEach(([badge, badge_comp]) => {
     const [badge_name, badge_style] = badge.split('#');
     function f(descriptor: string, style: string, badge_meta: BadgeMeta) {
@@ -380,15 +389,15 @@ export default function fun(
     }
 
     badge_comp.icons?.forEach((d) => {
-      ['regular', 'filled'].forEach((s: Style) =>
-        f(d, s, { ...data.template[badge_comp.inherits], ...badge_comp }),
+      styles16.forEach((s) =>
+        f(d, s, { ...data.template[badge_comp.inherits!], ...badge_comp }),
       );
     });
-    ['regular', 'filled'].forEach((s: Style) => {
+    styles16.forEach((s) => {
       badge_comp[s]?.icons?.forEach((d) =>
         f(d, s, {
-          ...data.template[badge_comp.inherits],
-          ...data.template[badge_comp.inherits]?.[s],
+          ...data.template[badge_comp.inherits!],
+          ...data.template[badge_comp.inherits!]?.[s],
           ...badge_comp,
           ...badge_comp[s],
         }),
@@ -396,7 +405,9 @@ export default function fun(
     });
     badge_comp.light?.icons?.forEach((d) =>
       f(d, 'light', {
-        ...data.template[badge_comp.inherits]?.light,
+        badge: '',
+        mask: '',
+        ...data.template[badge_comp.inherits!]?.light,
         ...badge_comp.light,
       }),
     );
@@ -416,34 +427,47 @@ export default function fun(
   }
 
   Object.entries(data.compose).forEach(([badge, badge_comp]) => {
+    if (!badge_comp.icons_rtl && !styles.some((s) => badge_comp[s]?.icons_rtl)) {
+      return; // fast skip
+    }
     const [badge_name, badge_style] = badge.split('#');
     function f(descriptor: string, style: string, badge_meta: BadgeMeta) {
       const meta = resolve(descriptor, style, badge_name, badge_style);
       let base_meta = getBaseMeta([meta.base, meta.base_alias], meta.modifier, meta.badge_name);
       if (style === 'light') {
-        base_meta = { '0': base_meta['0'], u: base_meta.ul, v: base_meta.vl };
+        base_meta = {
+          '0': base_meta['0'],
+          u: base_meta.ul,
+          v: base_meta.vl,
+          vflip: base_meta.vflip,
+        };
       }
-      if (data.rtl[meta.base]?.mirror_category) {
-        base_meta['0'] = mirrorCategoty(base_meta['0']);
+      if (base_meta.vflip) {
+        base_meta = {
+          ...base_meta,
+          ['0']: mirrorCategoty(base_meta['0']),
+          vflip: false,
+        };
       }
       resolveSrc(meta, base_meta);
+      meta.dest_name = meta.dest_name;
       compose(meta, base_meta, badge_meta, rtl_sources, path.join(DEST_DIR, 'RTL'));
     }
 
-    const b = data.rtl[badge]?.mirror_badge ? badge_comp.mirrors : badge;
+    const b = badge_comp.subst_rtl ?? badge;
     badge_comp.icons_rtl?.forEach((d) => {
-      ['regular', 'filled'].forEach((s: Style) =>
+      styles16.forEach((s) =>
         f(d, s, {
-          ...data.template[data.compose[b].inherits],
+          ...data.template[data.compose[b].inherits!],
           ...data.compose[b],
         }),
       );
     });
-    ['regular', 'filled'].forEach((s: Style) => {
+    styles16.forEach((s) => {
       badge_comp[s]?.icons_rtl?.forEach((d) =>
         f(d, s, {
-          ...data.template[data.compose[b].inherits],
-          ...data.template[data.compose[b].inherits]?.[s],
+          ...data.template[data.compose[b].inherits!],
+          ...data.template[data.compose[b].inherits!]?.[s],
           ...data.compose[b],
           ...data.compose[b][s],
         }),
@@ -451,7 +475,9 @@ export default function fun(
     });
     badge_comp.light?.icons_rtl?.forEach((d) =>
       f(d, 'light', {
-        ...data.template[data.compose[b].inherits]?.light,
+        badge: '',
+        mask: '',
+        ...data.template[data.compose[b].inherits!]?.light,
         ...data.compose[b].light,
       }),
     );

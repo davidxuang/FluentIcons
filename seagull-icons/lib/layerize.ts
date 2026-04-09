@@ -9,11 +9,13 @@ import * as xmlbuilder from 'xmlbuilder';
 import paper from 'paper';
 import { PaperOffset } from 'paperjs-offset';
 import { parse } from '@std/toml';
-import './ext';
+import './ext.js';
 import {
+  AllKeyof,
   Doc,
   FeColorMatrix,
   LinearGradient,
+  PartialUndefined,
   Path,
   RadialGradient,
   Renderable,
@@ -62,7 +64,7 @@ type Transform = {
 type Substitution = { subst: string } & SelectPathData;
 
 type Mutation = Transform | Substitution;
-type MutationGroup = { 'use-group': string; [override: string]: any };
+type MutationGroup = { 'use-group': string } & Partial<Mutation>;
 
 type Meta = {
   groups: { [group: string]: Mutation };
@@ -85,7 +87,7 @@ function getShadow(elems: Renderable[], shadow: DropShadow) {
   assert(!elems.some((e) => e.$.opacity ?? '1' !== '1'));
   assert(!elems.some((e) => e.$['fill-opacity'] ?? '1' !== '1'));
   let paths = elems.map((e) => getPathData(e));
-  let outline = new paper.CompoundPath(paths.at(0));
+  let outline = new paper.CompoundPath(paths[0]);
   paths.slice(1).forEach((path) => {
     outline = outline.unite(new paper.CompoundPath(path)) as paper.CompoundPath;
   });
@@ -154,8 +156,8 @@ function getShadow(elems: Renderable[], shadow: DropShadow) {
     .filter((layer) => layer.$.d !== '');
 }
 
-function getDef(s: string) {
-  const matches = s.match(/url\(#(.+)\)/);
+function getDef(s?: string) {
+  const matches = s?.match(/url\(#(.+)\)/);
   return matches ? matches[1] : undefined;
 }
 
@@ -189,20 +191,26 @@ function transformGradient(gradient: LinearGradient | RadialGradient, transform:
 export function parseLayerize(yargs: Argv) {
   return yargs
     .string('in')
+    .demandOption('in')
     .string('override')
     .string('mono')
+    .demandOption('mono')
     .string('extra')
     .string('extra-filter')
     .string('out')
+    .demandOption('out')
     .number('size')
+    .demandOption('size')
     .number('shrink')
     .number('upm') // units per em
+    .demandOption('upm')
     .string('config')
-    .string('mirror');
+    .string('mirror')
+    .demandOption('mirror');
 }
 
 export default function fun(
-  argv: Partial<ReturnType<typeof parseLayerize> extends Argv<infer P> ? P : never> = {},
+  argv: PartialUndefined<ReturnType<typeof parseLayerize> extends Argv<infer P> ? P : never>,
 ) {
   const meta =
     argv.config !== undefined
@@ -215,70 +223,49 @@ export default function fun(
   const redirects = new Map<string, string>();
   const output_size = argv.size - (argv.shrink ?? 0) * 2;
 
-  fs.readdirSync(argv.mono)
-    .filter((f) => f.endsWith('.svg'))
-    .forEach((f) => {
-      const file = path.join(argv.mono, f);
-      parser.parseString(fs.readFileSync(file), (err, doc: Doc) => {
-        if (err) {
-          throw file;
-        }
-
-        glyphs.set(
-          path.basename(f, '.svg'),
-          doc.svg.$$.filter(
-            (elem) =>
-              elem['#name'] === 'circle' ||
-              elem['#name'] === 'ellipse' ||
-              elem['#name'] === 'line' ||
-              elem['#name'] === 'path' ||
-              elem['#name'] === 'polygon' ||
-              elem['#name'] === 'polyline' ||
-              elem['#name'] === 'rect' ||
-              elem['#name'] === 'g',
-          )
-            .map((elem) => getPathData(elem))
-            .join(''),
-        );
-      });
-    });
-
-  [
-    ...fs.readdirSync(argv.in).map((f) => {
-      const spec = resolveName(f);
-      const s = [`${spec.name}-filled.svg`, `${spec.name}-regular.svg`]
-        .map((x) => path.join(argv.mono, x))
-        .find((x) => fs.existsSync(x));
-      if (s) {
-        fs.cpSync(s, path.join(argv.mono, f), { force: true });
-      } else {
-        console.warn(`[NOT_FOUND] ${spec.name}-{filled|regular}.svg => ${f}`);
-        fs.writeFileSync(
-          path.join(argv.mono, f),
-          `<svg width="1" height="1" viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">\n  <path d="M0 0Z" fill="#212121" />\n</svg>`,
-        );
-      }
-
-      if (argv.override && fs.existsSync(path.join(argv.override, f))) {
-        return path.join(argv.override, f);
-      }
-      return path.join(argv.in, f);
-    }),
-    ...fs.readdirSync(argv['extra-filter']).map((f) => path.join(argv.extra, f)),
-  ].forEach((file) => {
-    const icon_name = resolveName(path.basename(file)).name;
-    let mutations = meta?.icons?.[icon_name];
-    if (typeof mutations === 'string') {
-      mutations = [meta.groups[mutations]];
+  const files = fs.readdirSync(argv.in).map((f) => {
+    const spec = resolveName(f);
+    assert(spec, `Unrecognized file name: ${f}`);
+    const s = [`${spec.name}.filled.svg`, `${spec.name}.regular.svg`]
+      .map((x) => path.join(argv.mono, x))
+      .find((x) => fs.existsSync(x));
+    if (s) {
+      fs.cpSync(s, path.join(argv.mono, f), { force: true });
     } else {
-      mutations = mutations?.map((tf) => {
+      console.warn(`[NOT_FOUND] ${spec.name}.{filled|regular}.svg => ${f}`);
+      fs.writeFileSync(
+        path.join(argv.mono, f),
+        `<svg width="1" height="1" viewBox="0 0 1 1" xmlns="http://www.w3.org/2000/svg">\n  <path d="M0 0Z" fill="#212121" />\n</svg>`,
+      );
+    }
+
+    if (argv.override && fs.existsSync(path.join(argv.override, f))) {
+      return path.join(argv.override, f);
+    }
+    return path.join(argv.in, f);
+  });
+  if (argv.extra) {
+    fs.readdirSync(argv['extra-filter']!)
+      .map((f) => path.join(argv.extra!, f))
+      .forEach((f) => files.push(f));
+  }
+
+  files.forEach((file) => {
+    const icon_name = resolveName(path.basename(file))?.name;
+    assert(icon_name, `Unrecognized file name: ${file}`);
+    let mutations: Mutation[] = [];
+    const mg = meta?.icons?.[icon_name];
+    if (typeof mg === 'string') {
+      mutations = [meta?.groups?.[mg]!];
+    } else if (mg) {
+      mutations = mg.map((tf) => {
         if ('use-group' in tf) {
-          const props = Object.entries(tf);
-          tf = structuredClone(meta.groups[tf['use-group']]);
+          const props = Object.entries(tf) as [AllKeyof<Mutation>, any][];
+          tf = structuredClone(meta?.groups?.[tf['use-group']]!);
           // override
           props.forEach(([k, v]) => {
             if (k in tf) {
-              tf[k] = v;
+              (tf as any)[k] = v;
             }
           });
         }
@@ -297,8 +284,9 @@ export default function fun(
       const may_shrink = argv.shrink && Number(doc.svg.$.width) !== output_size;
 
       // scan for gradient colors, assuming they are all direct children of defs
-      doc.svg.$$.filter((elem) => elem['#name'] === 'defs')
-        .flatMap((defs) => defs.$$)
+      doc.svg
+        .$$!.filter((elem) => elem['#name'] === 'defs')
+        .flatMap((defs) => defs.$$ ?? [])
         .forEach((def) => {
           if (def['#name'] === 'linearGradient' || def['#name'] === 'radialGradient') {
             if (may_shrink) {
@@ -307,19 +295,20 @@ export default function fun(
               }`;
             }
 
-            gradients.set(def.$.id, def);
+            gradients.set(def.$.id ?? '', def);
             delete def.$.id; // remove id to help de-duplication in the next step
           } else if (def['#name'] === 'filter') {
-            const offset = def.$$.single((fe) => fe['#name'] === 'feOffset');
-            const blur = def.$$.single((fe) => fe['#name'] === 'feGaussianBlur');
-            const matix = def.$$.single(
+            const offset = def.$$!.single((fe) => fe['#name'] === 'feOffset');
+            const blur = def.$$!.single((fe) => fe['#name'] === 'feGaussianBlur');
+            const matix = def.$$!.single(
               (fe): fe is FeColorMatrix =>
                 fe['#name'] === 'feColorMatrix' && fe.$.in === undefined,
             );
             const matches = matix.$.values.match(
               /^0 0 0 0 ([\d.]+) 0 0 0 0 ([\d.]+) 0 0 0 0 ([\d.]+) 0 0 0 ([\d.]+) 0$/,
             );
-            shadows.set(def.$.id, {
+            assert(matches, `Unsupported feColorMatrix in ${file}`);
+            shadows.set(def.$.id ?? '', {
               dx: Number(offset.$.dx ?? '0'),
               dy: Number(offset.$.dy ?? '0'),
               blur: Number(blur.$.stdDeviation),
@@ -334,36 +323,39 @@ export default function fun(
         });
 
       // scan for shapes, assuming they are all direct children of svg
-      const layers = doc.svg.$$.flatMap((elem) => {
-        switch (elem['#name']) {
-          case 'circle':
-          case 'ellipse':
-          case 'line':
-          case 'path':
-          case 'polygon':
-          case 'polyline':
-          case 'rect':
-            return [elem];
-          case 'g':
-            if (elem.$.filter) {
-              const shadow = shadows.get(getDef(elem.$.filter));
-              assert(elem.$.opacity === undefined || elem.$.opacity === '1');
-              assert(elem.$['fill-opacity'] === undefined || elem.$['fill-opacity'] === '1');
-              return [...getShadow(elem.$$, shadow), ...elem.$$];
-            } else {
-              return elem.$$;
-            }
-          case 'defs':
-            return [];
-          default:
-            throw elem['#name'];
-        }
-      }).map((elem) => ({
-        path: getPath(elem),
-        xml: elem,
-        fill: undefined,
-        fill_solid: undefined,
-      }));
+      const layers = doc.svg
+        .$$!.flatMap((elem) => {
+          switch (elem['#name']) {
+            case 'circle':
+            case 'ellipse':
+            case 'line':
+            case 'path':
+            case 'polygon':
+            case 'polyline':
+            case 'rect':
+              return [elem];
+            case 'g':
+              if (elem.$.filter) {
+                const shadow = shadows.get(getDef(elem.$.filter) ?? '');
+                assert(shadow, `Undefined filter ${elem.$.filter} in ${file}`);
+                assert(elem.$.opacity === undefined || elem.$.opacity === '1');
+                assert(elem.$['fill-opacity'] === undefined || elem.$['fill-opacity'] === '1');
+                return [...getShadow(elem.$$, shadow), ...elem.$$];
+              } else {
+                return elem.$$;
+              }
+            case 'defs':
+              return [];
+            default:
+              throw elem['#name'];
+          }
+        })
+        .map((elem) => ({
+          path: getPath(elem),
+          xml: elem,
+          fill: '',
+          fill_solid: '',
+        }));
 
       mutations?.forEach((mut: Mutation) => {
         if ('select-path' in mut) {
@@ -371,7 +363,9 @@ export default function fun(
             mut['select-path'] = [mut['select-path']];
           }
           const T = layers
-            .filter((layer) => mut['select-path'].includes(layer.xml.$['d']))
+            .filter(
+              (layer) => 'd' in layer.xml.$ && mut['select-path'].includes(layer.xml.$['d']),
+            )
             .map((layer) => (layer.path = new paper.CompoundPath(mut.subst)));
           assert(T.length > 0, `Cannot find path to substitute in ${file}`);
         } else {
@@ -383,7 +377,7 @@ export default function fun(
             matrix.scale(mut.scale[0], mut.scale[1]);
           }
 
-          const gids = new Set<string>();
+          const gids = new Set<string | undefined>();
           if ('select-shape' in mut) {
             const bound = new paper.Rectangle(
               new paper.Point(mut['select-shape'][0]),
@@ -403,7 +397,7 @@ export default function fun(
               .filter(
                 ([id, gradient]) =>
                   gids.has(id) ||
-                  mut['select-gradient']?.includes(id) ||
+                  ('select-gradient' in mut && mut['select-gradient']?.includes(id)) ||
                   selectGradient(gradient, mut),
               )
               .map(([_, gradient]) => gradient)
@@ -431,6 +425,7 @@ export default function fun(
           let gid = getDef(fill_attr);
           if (gid) {
             let gd = gradients.get(gid);
+            assert(gd, `Undefined gradient ${fill_attr} in ${file}`);
             if (opacity_attr !== 1) {
               gd = structuredClone(gd);
               gd.$$.forEach((stop) => {
@@ -467,7 +462,7 @@ export default function fun(
           layer.path = PaperOffset.offsetStroke(layer.path, width / 2);
         }
 
-        if (may_shrink) {
+        if (may_shrink && argv.shrink) {
           layer.path.translate([-argv.shrink, -argv.shrink]);
         }
 
@@ -497,26 +492,22 @@ export default function fun(
 
           const stops = gradient.$$.map((stop) => ({
             offset: Number(stop.$?.['offset'] ?? '0'),
-            color: new Color(stop.$?.['stop-color'] ?? 'black').to('oklab'),
+            color: new Color(stop.$?.['stop-color'] ?? 'black'),
           }));
 
           // lerp at offset 0.5
           stops.sort((a, b) => a.offset - b.offset);
           assert(stops.length > 0, `Gradient without stops in ${file}`);
-          if (stops.length == 1 || stops.at(0).offset >= 0.5) {
-            color = stops.at(0).color.to('sRGB');
-          } else if (stops.at(-1).offset <= 0.5) {
-            color = stops.at(-1).color.to('sRGB');
+          if (stops.length == 1 || stops.at(0)!.offset >= 0.5) {
+            color = stops.at(0)!.color.to('sRGB');
+          } else if (stops.at(-1)!.offset <= 0.5) {
+            color = stops.at(-1)!.color.to('sRGB');
           } else {
             const s = stops.findIndex((stop) => stop.offset >= 0.5);
             const l = stops[s - 1];
             const r = stops[s];
             const p = (0.5 - l.offset) / (r.offset - l.offset);
-            color = new Color('oklab', [
-              l.color.l + p * (r.color.l - l.color.l),
-              l.color.a + p * (r.color.a - l.color.a),
-              l.color.b + p * (r.color.b - l.color.b),
-            ]).to('sRGB');
+            color = Color.mix(l.color, r.color, p, { space: 'oklab' }).to('sRGB');
           }
 
           color.alpha *= opacity;
@@ -553,7 +544,7 @@ export default function fun(
       const layer_entries = layers.map((layer, l) => {
         let g = glyphs.inverse.get(layer.path.pathData);
         if (g === undefined) {
-          g = `_${name}_${l.toString().padStart(2, '0')}`;
+          g = `_${name}.${l.toString().padStart(2, '0')}`;
           glyphs.set(g, layer.path.pathData);
         }
         return {
@@ -563,14 +554,15 @@ export default function fun(
         };
       });
       const l = JSON.stringify(layer_entries);
-      if (layers_map.has(l)) {
-        redirects.set(name, layers_map.get(l));
-        console.log(`[REDIRECT] ${name} => ${layers_map.get(l)}`);
+      const existing = layers_map.get(l);
+      if (existing) {
+        console.log(`[REDIRECT] ${name} => ${existing}`);
+        redirects.set(name, existing);
+        fs.rmSync(path.join(path.join(argv.mono, `${name}.svg`)));
       } else {
         layers_map.set(l, name);
+        color_glyphs.push({ name, layers: layer_entries });
       }
-
-      color_glyphs.push({ name, layers: layer_entries });
     });
   });
 
@@ -578,7 +570,7 @@ export default function fun(
 
   const colors = new Array<string>();
   let g_matrix = new paper.Matrix();
-  g_matrix.scale(argv['upm'] / output_size);
+  g_matrix.scale(argv.upm / output_size);
   g_matrix.append(new paper.Matrix(1, 0, 0, -1, 0, output_size)); // flip y
 
   const ttFont = xmlbuilder.create('ttFont', { encoding: 'UTF-8' });
@@ -594,7 +586,14 @@ export default function fun(
   const v1_layers = COLR.ele('LayerList');
   color_glyphs.forEach((record) => {
     const spec = resolveName(record.name);
-    const rtl_name = mirror_set.has(spec.name) ? `${spec.name}_rtl-${spec.variant}` : undefined;
+    assert(spec, `Unrecognized icon name: ${record.name}`);
+    const rtl_name = mirror_set.has(spec.name)
+      ? `${spec.name}.${spec.variant}.rtl${spec.locale ? spec.locale : ''}`
+      : undefined;
+    assert(
+      !(rtl_name && spec.locale?.startsWith('.rtl')),
+      `Double RTL locale in ${record.name}`,
+    );
 
     // v0
     {
@@ -621,18 +620,19 @@ export default function fun(
         const rtl_gr = v0_glyphs.ele('BaseGlyphRecord', {
           index: v0_glyphs.children.length,
         });
-        rtl_gr.ele('BaseGlyph', { value: `${spec.name}_rtl-${spec.variant}` });
+        rtl_gr.ele('BaseGlyph', { value: rtl_name });
         rtl_gr.ele('FirstLayerIndex', { value: v0_layers.children.length });
         rtl_gr.ele('NumLayers', { value: record.layers.length });
         record.layers.forEach((layer) => {
           const rtl_lr = v0_layers.ele('LayerRecord', {
             index: v0_layers.children.length,
           });
-          const path = new paper.CompoundPath(glyphs.get(layer.name));
+          const path = new paper.CompoundPath(glyphs.get(layer.name)!);
           path.transform(new paper.Matrix(-1, 0, 0, 1, output_size, 0));
           let glyph_name = glyphs.inverse.get(path.pathData);
           if (glyph_name === undefined) {
-            glyph_name = layer.name.replace('-', '_rtl-');
+            const i = layer.name.indexOf('.');
+            glyph_name = `${layer.name.slice(0, i)}.rtl.${layer.name.slice(i + 1)}`;
             glyphs.set(glyph_name, path.pathData);
           }
           rtl_lr.ele('LayerGlyph', { value: glyph_name });
@@ -690,8 +690,9 @@ export default function fun(
                   sub = new paper.Matrix().scale(nums[0], nums[1] ?? nums[0]);
                 } else if (matches[1] === 'rotate' && (nums.length == 1 || nums.length == 3)) {
                   sub = new paper.Matrix().rotate(nums[0], [nums[1] ?? 0, nums[2] ?? 0]);
+                } else {
+                  assert(false, `Unsupported transform ${t} in ${layer.name}`);
                 }
-                assert(sub, `Cannot parse transform ${t} in ${layer.name}`);
                 matrix.append(sub);
               });
           }

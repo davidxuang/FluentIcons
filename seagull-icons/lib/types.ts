@@ -149,7 +149,7 @@ export type FeFlood = ElemBase & {
     'flood-color': string;
     'flood-opacity': string;
   };
-}
+};
 
 export type FeColorMatrix = ElemBase & {
   '#name': 'feColorMatrix';
@@ -158,7 +158,7 @@ export type FeColorMatrix = ElemBase & {
     type: 'matrix' | 'saturate' | 'hueRotate' | 'luminanceToAlpha';
     values: string;
   };
-}
+};
 
 export type FeOffset = ElemBase & {
   '#name': 'feOffset';
@@ -167,7 +167,7 @@ export type FeOffset = ElemBase & {
     dx: string;
     dy: string;
   };
-}
+};
 
 export type FeGaussianBlur = ElemBase & {
   '#name': 'feGaussianBlur';
@@ -175,14 +175,14 @@ export type FeGaussianBlur = ElemBase & {
     in: string;
     stdDeviation: string;
   };
-}
+};
 
 export type FeBlend = ElemBase & {
   '#name': 'feBlend';
   $: {
     // dummy
   };
-}
+};
 
 export type Fe = FeFlood | FeColorMatrix | FeOffset | FeGaussianBlur | FeBlend;
 
@@ -197,7 +197,7 @@ export type Filter = ElemBase & {
     ['color-interpolation-filters']?: 'auto' | 'sRGB' | 'linearRGB';
   };
   $$?: Fe[];
-}
+};
 
 export type Def = LinearGradient | RadialGradient | ClipPath | Filter;
 
@@ -220,3 +220,16 @@ export type Svg = ProtoRenderable & {
 export type Doc = {
   svg: Svg;
 };
+
+type Prettify<T> = {
+  [K in keyof T]: T[K];
+} & {};
+export type PartialUndefined<T> = Prettify<
+  {
+    [K in keyof T as undefined extends T[K] ? never : K]: T[K];
+  } & {
+    [K in keyof T as undefined extends T[K] ? K : never]?: T[K];
+  }
+>;
+
+export type AllKeyof<T> = T extends any ? keyof T : never;

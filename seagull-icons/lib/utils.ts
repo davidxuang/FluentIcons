@@ -1,3 +1,4 @@
+import assert from 'assert';
 import fs from 'fs';
 import paper from 'paper';
 import { Renderable } from './types.js';
@@ -24,7 +25,19 @@ export function resolveAsset(dname: string, fname: string) {
     .replace(/\b[a-z]/g, (m) => m.toUpperCase()) // `iOS` -> `IOS`
     .replace(/(?<=[A-Z])[A-Z]+\b/g, (m) => m.toLowerCase()); // `IOS` -> `Ios`
 
-  const matches = fname.match(/^ic_fluent_(.+)_(\d+)_(regular|filled|color|light)(\.svg)?$/);
+  // remove 'ic_fluent_' prefix
+  fname = fname.replace(/^ic_(?:fluent_)?/, '');
+  // identify Bidi suffixes
+  fname = fname.replace(/_(?:ltr|rtl)_/, '_');
+  if (fname.indexOf('_rtl.') >= 0) {
+    fname = fname.replace('_rtl.', '.');
+    assert(direction !== 'LTR', `Conflict direction in ${name}`);
+    direction = 'RTL';
+  } else {
+    fname = fname.replace('_ltr.', '.');
+  }
+
+  const matches = fname.match(/^(.+)_(\d+)_(regular|filled|color|light)(\.svg)?$/);
   if (matches) {
     if (matches[1] !== snake) {
       const warning = `[WARN] ${matches[1]}${direction ? `@${direction}` : ''} => ${snake}`;
@@ -46,12 +59,13 @@ export function resolveAsset(dname: string, fname: string) {
 }
 
 export function resolveName(fname: string) {
-  const matches = fname.match(/^(.+)-(regular|filled|color|light)(\.svg)?$/);
+  const matches = fname.match(/^(.+?)\.(regular|filled|color|light)(\..+)?(?:\.svg)?$/);
   return matches === null
     ? null
     : {
         name: matches[1],
         variant: matches[2],
+        locale: matches[3],
       };
 }
 
@@ -65,18 +79,18 @@ export function getPath(elem: Renderable): paper.Path | paper.CompoundPath {
           ? new paper.Path.Rectangle(
               new paper.Rectangle(
                 [Number(elem.$['x'] ?? '0'), Number(elem.$['y'] ?? '0')],
-                [Number(elem.$['width'] ?? '0'), Number(elem.$['height'] ?? '0')]
+                [Number(elem.$['width'] ?? '0'), Number(elem.$['height'] ?? '0')],
               ),
-              [Number(elem.$['rx'] ?? elem.$['ry']), Number(elem.$['ry'] ?? elem.$['rx'])]
+              [Number(elem.$['rx'] ?? elem.$['ry']), Number(elem.$['ry'] ?? elem.$['rx'])],
             )
           : new paper.Path.Rectangle(
               [Number(elem.$['x'] ?? '0'), Number(elem.$['y'] ?? '0')],
-              [Number(elem.$['width'] ?? '0'), Number(elem.$['height'] ?? '0')]
+              [Number(elem.$['width'] ?? '0'), Number(elem.$['height'] ?? '0')],
             );
       case 'circle':
         return new paper.Path.Circle(
           [Number(elem.$['cx'] ?? '0'), Number(elem.$['cy'] ?? '0')],
-          Number(elem.$['r'] ?? '0')
+          Number(elem.$['r'] ?? '0'),
         );
       case 'ellipse':
         const rx = parseFloat(elem.$['rx'] ?? '0');
@@ -84,13 +98,13 @@ export function getPath(elem: Renderable): paper.Path | paper.CompoundPath {
         return new paper.Path.Ellipse(
           new paper.Rectangle(
             [Number(elem.$['cx'] ?? '0') - rx, Number(elem.$['cy'] ?? '0') - ry],
-            [2 * rx, 2 * ry]
-          )
+            [2 * rx, 2 * ry],
+          ),
         );
       case 'line':
         return new paper.Path.Line(
           [Number(elem.$['x1'] ?? '0'), Number(elem.$['y1'] ?? '0')],
-          [Number(elem.$['x2'] ?? '0'), Number(elem.$['y2'] ?? '0')]
+          [Number(elem.$['x2'] ?? '0'), Number(elem.$['y2'] ?? '0')],
         );
       case 'polygon':
       case 'polyline':
@@ -119,10 +133,10 @@ export function getPathData(elem: Renderable): string {
       return getPath(elem).pathData;
     case 'polygon':
     case 'polyline':
-      var matches: [string, string][] = [];
-      var match: RegExpExecArray;
+      let matches: [string, string][] = [];
+      let match: RegExpExecArray | null;
       rexPoly.lastIndex = 0;
-      while ((match = rexPoly.exec(elem.$.points))) {
+      while ((match = rexPoly.exec(elem.$.points!))) {
         matches.push([match[1], match[2]]);
       }
       if (elem['#name'] == 'polygon') {
@@ -222,7 +236,7 @@ export function approximateShape(path: paper.Path, tolerance: number = 1e-3) {
 }
 
 export function divideTransform(
-  matrix: paper.Matrix
+  matrix: paper.Matrix,
 ): [paper.Matrix, paper.Matrix | undefined] {
   const d = matrix.decompose() as {
     translation: paper.Point;
@@ -250,3 +264,40 @@ export function divideTransform(
 
   return [first, second];
 }
+
+const langauges = {
+  ar: { arab: ['dflt', 'ARA '] },
+  bg: { cyrl: 'BGR ' },
+  ca: { latn: 'CAT ' },
+  da: { latn: 'DAN ' },
+  de: { latn: 'DEU ' },
+  el: { grek: ['dflt', 'ELL ', 'PGR '] }, // `gr`
+  en: { latn: 'ENG ' },
+  es: { latn: 'ESP ' },
+  et: { latn: 'ETI ' },
+  eu: { latn: 'EUQ ' },
+  fi: { latn: 'FIN ' },
+  fr: { latn: 'FRA ' },
+  gl: { latn: 'GAL ' },
+  he: { hebr: ['dflt', 'IWR '] },
+  hu: { latn: 'HUN ' },
+  it: { latn: 'ITA ' },
+  ja: { hani: 'JAN ', kana: ['dflt', 'JAN '] },
+  kk: { cyrl: 'KAZ ' },
+  ko: { hang: ['dflt', 'KOR '] },
+  lt: { latn: 'LTH ' },
+  lv: { latn: 'LVI ' },
+  ms: { latn: 'MLY ' },
+  no: { latn: ['NOR ', 'NYN '] },
+  pt: { latn: 'PTG ' },
+  ru: { cyrl: 'RUS ' },
+  se: { latn: 'NSM ' },
+  sl: { latn: 'SLV ' },
+  sr: { cyrl: ['SRB ', 'BOS '], latn: ['SRB ', 'BOS ', 'HRV '] },
+  'sr-cyrl': { cyrl: ['SRB ', 'BOS '] },
+  'sr-latn': { latn: ['SRB ', 'BOS ', 'HRV '] },
+  sv: { latn: 'SVE ' },
+  tr: { latn: 'TRK ' },
+  uk: { cyrl: 'UKR ' },
+  zh: { hani: ['dflt', 'ZHH ', 'ZHS ', 'ZHT ', 'ZHTM'], bopo: ['dflt', 'ZHP '] },
+};

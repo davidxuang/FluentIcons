@@ -9,10 +9,12 @@ declare global {
 }
 
 if (!Array.prototype.single) {
-  Array.prototype.single = function (predicate) {
+  Array.prototype.single = function <T>(
+    predicate?: (value: T, index: number, array: T[]) => boolean,
+  ) {
     const a = predicate ? this.filter(predicate) : this;
     if (a.length !== 1) {
-      throw new Error("Expected single element");
+      throw new Error('Expected single element');
     }
     return a[0];
   };

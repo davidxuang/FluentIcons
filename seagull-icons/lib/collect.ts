@@ -1,3 +1,4 @@
+import assert from 'assert';
 import fs from 'fs';
 import path from 'path';
 import { Argv } from 'yargs';
@@ -22,14 +23,16 @@ function collect(
   src_root: string,
   src_set: string,
   dest_subdir: string,
+  locale: string,
   depth: number,
   mirror: boolean,
-  get_dest: (name: string, subdir: string, fname: string) => [string, string[]],
+  get_dest: (name: string, subdir: string, fname: string, locale: string) => [string, string[]],
 ) {
   fs.readdirSync(src_root).forEach((fname) => {
     const src_item = path.join(src_root, fname);
     const src_stat = fs.statSync(src_item);
     let subdir = dest_subdir;
+    let locl = locale;
 
     if (src_stat.isDirectory()) {
       const dname = path.basename(src_item);
@@ -41,35 +44,34 @@ function collect(
             (JSON.parse(fs.readFileSync(meta_name).toString()) as MetaData).directionType ===
             'mirror';
         }
-      } else if (
-        dname.match(/^[a-z]{2}(-[A-Za-z][a-z]{3})?(-[A-Za-z]{2})?$/) ||
-        dname === 'PDF'
-      ) {
-        return; // skip language-specific
-      } else if (depth === 1 && dname !== 'SVG') {
+      } else if (dname === 'PDF') {
+        return;
+      } else if (dname.match(/^[a-z]{2}(-[A-Za-z][a-z]{3})?(-[A-Za-z]{2})?$/)) {
+        // language tags
+        let tag = dname
+          .replace(/^gr\b/, 'el') // incorrect tag
+          .replace(/^kk$/, 'kk-cyrl'); // explicitly tag as Cyrillic to avoid over-used with Latin script
+        if (src_set.includes('Text Sort') && tag === 'sr') tag = 'sr-cyrl';
+        assert(locale === '', `Multiple locale in path: ${src_item}`);
+        locl = `.${tag}`;
+      } else if (dname === 'LTR') {
         subdir = path.join(subdir, dname);
+      } else if (dname === 'RTL') {
+        subdir = path.join(subdir, dname);
+      } else if (depth === 1 && dname !== 'SVG') {
+        console.warn(`[WARN] Unrecognized subfolder: ${subdir}`);
+        // subdir = path.join(subdir, dname);
+        return;
       }
-      collect(src_item, src_set, subdir, depth + 1, mirror, get_dest);
+      collect(src_item, src_set, subdir, locl, depth + 1, mirror, get_dest);
     } else if (fname.startsWith('.') || fname.startsWith('_')) {
       return;
     } else if (fname.endsWith('.svg')) {
-      // unify 'ic_fluent_' prefix
-      if (fname.startsWith('ic_') && !fname.startsWith('ic_fluent_')) {
-        fname = fname.replace('ic_', 'ic_fluent_');
-      }
-
-      // remove Bidi suffixes
-      if (fname.indexOf('_ltr_') >= 0) {
-        fname = fname.replace('_ltr_', '_');
-      } else if (fname.indexOf('_rtl_') >= 0) {
-        fname = fname.replace('_rtl_', '_');
-      }
-
-      const [name, dest_files] = get_dest(src_set, subdir, fname);
+      const [name, dest_files] = get_dest(src_set, subdir, fname, locl);
       for (const dest_file of dest_files) {
         ensure(path.dirname(dest_file));
         // prefer Bidi icons in explicit "LTR"/"RTL" subfolders
-        if (fs.existsSync(dest_file) && src_item.match(/\s(?:LTR|RTL)|(?:LTR|RTL)\s/)) {
+        if (fs.existsSync(dest_file) && !src_item.match(/[\/\\](?:LTR|RTL)[\/\\]/)) {
           continue;
         }
 
@@ -122,11 +124,12 @@ export default function fun(
     fs.rmSync(COLOR_DIR, { recursive: true });
   }
 
-  collect(argv.in, null, '', 0, false, (src_set, subdir, name) => {
+  collect(argv.in, null!, '', '', 0, false, (src_set, subdir, name, locale) => {
     const spec = resolveAsset(src_set, name);
     if (spec === null) {
-      return [null, []];
+      return ['', []];
     } else if (spec.direction) {
+      assert(subdir === '' || subdir === spec.direction, `Conflict subdir in ${name}`);
       subdir = path.join(spec.direction, subdir);
     }
     names.add(spec.name_enum);
@@ -137,7 +140,7 @@ export default function fun(
         spec.variant === 'color' ? COLOR_DIR : MONO_DIR,
         spec.size.toString(),
         subdir,
-        `${spec.name_glyph}-${spec.variant}.svg`,
+        `${spec.name_glyph}.${spec.variant}${locale}.svg`,
       ),
     ];
 
@@ -148,7 +151,12 @@ export default function fun(
     ) {
       resizable_names.add(spec.name_enum);
       dest_files.push(
-        path.join(MONO_DIR, 'resizable', subdir, `${spec.name_glyph}-${spec.variant}.svg`),
+        path.join(
+          MONO_DIR,
+          'resizable',
+          subdir,
+          `${spec.name_glyph}.${spec.variant}${locale}.svg`,
+        ),
       );
     } else if (spec.size === 20 && spec.variant === 'color') {
       resizable_names.add(spec.name_enum);
@@ -164,7 +172,7 @@ export default function fun(
           spec.variant === 'color' ? COLOR_DIR : MONO_DIR,
           'override',
           subdir,
-          `${spec.name_glyph}-${spec.variant}.svg`,
+          `${spec.name_glyph}.${spec.variant}${locale}.svg`,
         ),
       );
     }
@@ -181,13 +189,26 @@ export default function fun(
 
   // patch for `text_align_right`
   if (
-    [...fs.readdirSync(MONO_DIR), ...fs.readdirSync(COLOR_DIR)].every((size) => {
+    [...fs.readdirSync(MONO_DIR)].every((size) => {
       const d = path.join(MONO_DIR, size, 'RTL');
-      return !fs.existsSync(path.join(d, 'text_align_right.svg'));
-    })
+      return !fs.existsSync(path.join(d, 'text_align_right.regular.svg'));
+    }) // guard
   ) {
     mirror_glyphs.add('text_align_right');
   }
+
+  // patch for `text_edit_style`
+  [...fs.readdirSync(MONO_DIR)].forEach((size) => {
+    const d = path.join(MONO_DIR, size);
+    if (
+      fs.existsSync(path.join(d, 'text_edit_style.regular.en.svg')) &&
+      !fs.existsSync(path.join(d, 'text_edit_style.regular.svg'))
+    )
+      fs.cpSync(
+        path.join(d, 'text_edit_style.regular.en.svg'),
+        path.join(d, 'text_edit_style.regular.svg'),
+      );
+  });
 
   // [regular, filled, light, color], RTL in PUA-B
   const nextCodepoint = (() => {
