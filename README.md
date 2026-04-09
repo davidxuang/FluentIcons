@@ -17,6 +17,8 @@ Browse the icons in [the online gallery](https://davidxuang.github.io/FluentIcon
 
 ### Version 2.0
 
+Starting with version 2.0, the underlying fonts have been migrated from TTF to CFF.
+
 | Package                | Platform                                                                                                                                                                    |
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `FluentIcons.Avalonia` | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia.svg) Avalonia 11](https://www.nuget.org/packages/Avalonia/11.0.0)                            |
@@ -25,7 +27,6 @@ Browse the icons in [the online gallery](https://davidxuang.github.io/FluentIcon
 ### Version 1.3
 
 [Version 1.3](https://github.com/davidxuang/FluentIcons/tree/v1.3) is a backports release for legacy platforms which are no longer supported by version 2.0.
-Starting in version 2.0, the underlying fonts have also been migrated from TTF to CFF.
 
 | Package                       | Platform                                                                                                                                                                              |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
