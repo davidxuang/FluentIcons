@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <VersionPrefix>2.0.$([System.Version]::Parse($(VersionPrefix)).Build)</VersionPrefix>
     <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
     <Description>FluentUI System Icons control library for FluentAvalonia.</Description>
     <PackageTags>$(PackageTags);Avalonia</PackageTags>

@@ -1,12 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <VersionPrefix>2.0.$([System.Version]::Parse($(VersionPrefix)).Build)</VersionPrefix>
+    <!-- <TargetFramework>net8.0</TargetFramework> -->
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>FluentUI System Icons resources package for Avalonia.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia" VersionOverride="11.0.0" />
   </ItemGroup>
 
   <ItemGroup>
