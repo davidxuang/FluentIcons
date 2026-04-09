@@ -1,7 +1,7 @@
 export const config = /*json-start*/{
   "mainAssemblyName": "FluentIcons.Gallery.dll",
   "resources": {
-    "hash": "sha256-R9hUYzLmcOwI7eSdc47vgh11i7nZXhLdpDt993+MKZw=",
+    "hash": "sha256-rpO9WDCeNH/dt1BTAjb3LJyY1nzzf864m2fO/OLrUW8=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.js"
@@ -56,107 +56,107 @@ export const config = /*json-start*/{
       {
         "virtualPath": "Avalonia.Base.wasm",
         "name": "Avalonia.Base.wasm",
-        "integrity": "sha256-3jrqMBd2fvl7TqYOLCngSjvngT1mVhK4emNEr1PUnjQ="
+        "integrity": "sha256-g0Vik39pfKniUwcH0uYqabck3wAckzAFQPyW1PDVIYg="
       },
       {
         "virtualPath": "Avalonia.Browser.wasm",
         "name": "Avalonia.Browser.wasm",
-        "integrity": "sha256-VaPQWyh0G8q73V7GLeovljo/QB1JgAgjTYkaPTsv73w="
+        "integrity": "sha256-Gnn4rXuafgkK6io5Sfu8JsVUk1Cb7Akn5jN0B5gNiE8="
       },
       {
         "virtualPath": "Avalonia.Controls.ColorPicker.wasm",
         "name": "Avalonia.Controls.ColorPicker.wasm",
-        "integrity": "sha256-YJdzRvooy18NrftoqiqJg7QGdLhsd50FAVMD30kFGqY="
+        "integrity": "sha256-ACPTxQ6SeISdQgV8CsLjUJASeYl+2Pn4Cqqkl9C+hUU="
       },
       {
         "virtualPath": "Avalonia.Controls.DataGrid.wasm",
         "name": "Avalonia.Controls.DataGrid.wasm",
-        "integrity": "sha256-vpuKwl7U1vqkCaitvEAMVvby+U9NxV5pVHe9S/pqv9o="
+        "integrity": "sha256-lYu9CL1Kq1v+W7trhzjgG/1TEpSnC/KkyzV1Z1OOBXE="
       },
       {
         "virtualPath": "Avalonia.Controls.wasm",
         "name": "Avalonia.Controls.wasm",
-        "integrity": "sha256-1aezFIG2JJxiaMkZERj2IViCNE1UIAy7tGzMt1511w0="
+        "integrity": "sha256-M17cwnMP4cDew1rHdXuF+OvG1Z1f5qZ0LwJ6CHvKc+I="
       },
       {
         "virtualPath": "Avalonia.Controls.ItemsRepeater.wasm",
         "name": "Avalonia.Controls.ItemsRepeater.wasm",
-        "integrity": "sha256-iecNJIZr+4/fJ/mL6iQID63fiNVMLJwe+PT7rweGbTs="
+        "integrity": "sha256-/N+7sKjV3QrFb2ninvodqnCT0cc5dn3Omur9G0XuqKk="
       },
       {
         "virtualPath": "Avalonia.Dialogs.wasm",
         "name": "Avalonia.Dialogs.wasm",
-        "integrity": "sha256-QEUmYCFkh23hIS8wFjDkNvSWd2rLpo7rCRAqWUDU8ow="
+        "integrity": "sha256-dFi2LCmto32bwBWoOTSwxU3nWv52LzSIbP3nDN237uM="
       },
       {
         "virtualPath": "Avalonia.Fonts.Inter.wasm",
         "name": "Avalonia.Fonts.Inter.wasm",
-        "integrity": "sha256-86sMOH7mMSxYJVPdTuIPbeX2bLRMOl/GyRGj8pkFQwE="
+        "integrity": "sha256-KR9x2/k/9SGVuzvob/AMwKXrmFqQ/uIOSNBIlV0fRZA="
       },
       {
         "virtualPath": "Avalonia.Markup.wasm",
         "name": "Avalonia.Markup.wasm",
-        "integrity": "sha256-AwqV5qs9SB0k/ld94TGoe/nNv/o3qyM6tZhVb82cJ5o="
+        "integrity": "sha256-cE0PguIiUYKSNFjtlqDp48eY+Raq72ouf7OadQki0Oo="
       },
       {
         "virtualPath": "Avalonia.Markup.Xaml.wasm",
         "name": "Avalonia.Markup.Xaml.wasm",
-        "integrity": "sha256-x9aFi1jS9oo2JJm0BsgJlGy7E5Zatp4RYYrVoV1MhgE="
+        "integrity": "sha256-sU8/p5MdEed+aa+jRfO9BTgwSpTsyuQX41+dfgTNqmQ="
       },
       {
         "virtualPath": "Avalonia.Metal.wasm",
         "name": "Avalonia.Metal.wasm",
-        "integrity": "sha256-jKDu/O1HGruOKupF8+LINURmO1JF6sv9qEB48ResVjg="
+        "integrity": "sha256-sGrK6tQCIGD9lkv9CdStinwaSEFo1L51/HYla2dGBq0="
       },
       {
         "virtualPath": "Avalonia.OpenGL.wasm",
         "name": "Avalonia.OpenGL.wasm",
-        "integrity": "sha256-K6+mtz1yLZ8birzlyeLXlz8Xxt6rgjYDSctoj2Dm0tY="
+        "integrity": "sha256-5V4vbFZzsen0THxbmvuW3RyRbbzbkyB4abzeQGwv3xM="
       },
       {
         "virtualPath": "Avalonia.Skia.wasm",
         "name": "Avalonia.Skia.wasm",
-        "integrity": "sha256-gJ92uy50jqauX0sQOVAqIbR0UjY1IVeM+7NZi+tb494="
+        "integrity": "sha256-IqsvE7Drp6LA0KrZ2R/QHCE6i/UkNsNwzAZHy/5B1Mk="
       },
       {
         "virtualPath": "Avalonia.Vulkan.wasm",
         "name": "Avalonia.Vulkan.wasm",
-        "integrity": "sha256-V4r+yBRjbSJbhw0hfeJjMHJ0/WpnetdkXhgrPMhevSI="
+        "integrity": "sha256-YVIWUcKYM8q4Jkn9/P3vdj1svs62fzd+N5WLSkbIKrE="
       },
       {
         "virtualPath": "CommunityToolkit.Mvvm.wasm",
         "name": "CommunityToolkit.Mvvm.wasm",
-        "integrity": "sha256-uXVHeYiP4EQfdtxtUgWy39GGejGwzGlNcZCMvuEX7nI="
+        "integrity": "sha256-o5Is2bWZmCsNqz4BQHH7dQ09v4ixb5p0xpFPCqvnMHQ="
       },
       {
         "virtualPath": "FluentAvalonia.wasm",
         "name": "FluentAvalonia.wasm",
-        "integrity": "sha256-uF5boYip8wLbz0lAkUbe57iXSDy5LxXjZnpkvKyhrL4="
+        "integrity": "sha256-1W33AD0EycGHleT6brQH261uzUBEuWFqSa79adHRjxg="
       },
       {
         "virtualPath": "FluentIcons.Avalonia.Fluent.wasm",
         "name": "FluentIcons.Avalonia.Fluent.wasm",
-        "integrity": "sha256-YKnK1QRmv9VH6dkMNId43r1y6PSw9L47BchmgDdHsK8="
+        "integrity": "sha256-9rzk5ozjkPTWwJyhVyhzpfMdExzJkoOMGvvpfg2fcBA="
       },
       {
         "virtualPath": "FluentIcons.Common.wasm",
         "name": "FluentIcons.Common.wasm",
-        "integrity": "sha256-jI3CssD/Jo5A4SReXD08G4ytAEoJ2sMFeUt3JlOvAik="
+        "integrity": "sha256-8BuytfhkdxCMxoVRcQYcnzKMv6ZozkvhAiPUJKW+Z+o="
       },
       {
         "virtualPath": "FluentIcons.Gallery.wasm",
         "name": "FluentIcons.Gallery.wasm",
-        "integrity": "sha256-EglLv4oQf5J2QW6sJms4wv1+A6fQYxkJnArHYYy181k="
+        "integrity": "sha256-wWk0IhlLVc+iGI7aXateChe/IZJIOv7027+3e0JE5MU="
       },
       {
         "virtualPath": "FluentIcons.Resources.Avalonia.wasm",
         "name": "FluentIcons.Resources.Avalonia.wasm",
-        "integrity": "sha256-/TuXdWQLmnim9kSXCywRYICaLMg/DXba6pgP59SfJV4="
+        "integrity": "sha256-to7q6KxH5IuSGLI20jWhAaezOs9FH75/DTYh5jJfjvE="
       },
       {
         "virtualPath": "Fonts.Avalonia.JetBrainsMono.wasm",
         "name": "Fonts.Avalonia.JetBrainsMono.wasm",
-        "integrity": "sha256-aoYsjQye3sZmu01Ec88R7KomWOdO/wXwH8IAQNX4OBA="
+        "integrity": "sha256-k0fnjw/58T8LJj5Gzgijr7zEo1NVJZTnALg+AmZ34MY="
       },
       {
         "virtualPath": "HarfBuzzSharp.wasm",
