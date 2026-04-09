@@ -4,7 +4,7 @@
     <TargetFrameworks>net10.0-android;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
     <!-- You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-    <TargetFrameworks Condition="'$(EnableTizenTargeting)' == 'true' or '$(ContinuousIntegrationBuild)' == 'true'">$(TargetFrameworks);net10.0-tizen</TargetFrameworks>
+    <TargetFrameworks Condition="'$(EnableTizenTargeting)' == 'true'">$(TargetFrameworks);net10.0-tizen</TargetFrameworks>
     <Description>FluentUI System Icons control library for MAUI.</Description>
     <PackageTags>$(PackageTags);MAUI</PackageTags>
     <UseMaui>true</UseMaui>

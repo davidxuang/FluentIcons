@@ -36,6 +36,10 @@
     <NoWarn>$(NoWarn);Uno0001</NoWarn>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(EnableTizenTargeting)' != ''">
+    <EnableTizenTargeting Condition="'$(ContinuousIntegrationBuild)' == 'true'">true</EnableTizenTargeting>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(OutputType)' != 'Exe' and '$(OutputType)' != 'WinExe'">
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
   </ItemGroup>
