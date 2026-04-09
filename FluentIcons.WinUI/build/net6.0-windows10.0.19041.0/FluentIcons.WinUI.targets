@@ -4,11 +4,14 @@
     <ItemGroup>
       <_Win2DItems Include="@(RuntimeCopyLocalItems)"
                    Condition="'%(RuntimeCopyLocalItems.NuGetPackageId)' == 'Microsoft.Graphics.Win2D'" />
+      <_WinUIItems Include="@(RuntimeCopyLocalItems)"
+                   Condition="'%(RuntimeCopyLocalItems.NuGetPackageId)' == 'Microsoft.WindowsAppSDK'" />
     </ItemGroup>
 
-    <Warning Condition="'@(_Win2DItems)' != '' and
-                        $([System.Version]::Parse('%(_Win2DItems.NuGetPackageVersion)').CompareTo($([System.Version]::Parse('1.3.0')))) &lt;= 0"
-             Text="You are using an outdated version of 'Microsoft.Graphics.Win2D'. Please override with a newer version if possible." />
+    <Warning Condition="'@(_Win2DItems)' != '' and '@(_WinUIItems)' != '' and
+                        $([System.Version]::Parse('%(_Win2DItems.NuGetPackageVersion)').CompareTo($([System.Version]::Parse('1.3.2')))) &lt;= 0 and
+                        $([System.Version]::Parse('%(_WinUIItems.NuGetPackageVersion)').CompareTo($([System.Version]::Parse('1.8.260317003')))) &gt;= 0"
+             Text="You are using WinUI with an outdated version of 'Microsoft.Graphics.Win2D'. Please override with a newer version of Win2D if possible." />
   </Target>
 
 </Project>
