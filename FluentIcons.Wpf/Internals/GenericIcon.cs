@@ -27,7 +27,6 @@ public abstract class GenericIcon : FrameworkElement
         AddVisualChild(_grid);
 
         _core = new(FontSize);
-        _core.SetBinding(FlowDirectionProperty, new Binding(nameof(FlowDirection)) { Source = this });
         _grid.Children.Add(_core);
 
         Loaded += static (s, e) => (s as GenericIcon)?.InvalidateText();

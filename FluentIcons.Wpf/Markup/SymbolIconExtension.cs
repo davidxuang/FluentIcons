@@ -1,6 +1,4 @@
 using System;
-using System.Windows;
-using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Media;
 using FluentIcons.Common;
@@ -30,14 +28,6 @@ public sealed class SymbolIconExtension : MarkupExtension
         if (IconVariant.HasValue) icon.IconVariant = IconVariant.Value;
         if (FontSize.HasValue) icon.FontSize = FontSize.Value;
         if (Foreground is not null) icon.Foreground = Foreground;
-
-        var service = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
-        if (service?.TargetObject is FrameworkElement source)
-        {
-            icon.SetBinding(
-                FrameworkElement.FlowDirectionProperty,
-                new Binding { Source = source, Path = new PropertyPath(nameof(source.FlowDirection)) });
-        }
 
         return icon;
     }

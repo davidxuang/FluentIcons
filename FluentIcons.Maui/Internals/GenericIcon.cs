@@ -20,7 +20,6 @@ public abstract partial class GenericIcon : ContentView
         Content = _grid = new();
 
         _core = new(FontSize);
-        _core.SetBinding(FlowDirectionProperty, new Binding(nameof(FlowDirection), source: this));
         _grid.Children.Add(_core);
 
         Loaded += static (s, e) => (s as GenericIcon)?.InvalidateText();

@@ -56,7 +56,6 @@ public abstract class GenericIcon
         LogicalChildren.Add(_panel);
 
         _core = new(FontSize);
-        _core.Bind(FlowDirectionProperty, this.GetBindingObservable(FlowDirectionProperty));
         _panel.Children.Add(_core);
     }
 
