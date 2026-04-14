@@ -2947,4 +2947,7 @@ public enum Icon : int
     HeadphonesMonoaural = 2852,
     CallChevronDown = 2853,
     LightbulbPulse = 2854,
+    ErrorCircleHint = 2855,
+    MicrophoneChat = 2856,
+    Vip = 2857,
 }
