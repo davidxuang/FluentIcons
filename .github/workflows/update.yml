@@ -31,20 +31,20 @@ jobs:
           echo "program_data=$env:ProgramData" >> $env:GITHUB_OUTPUT
           New-Item "$env:ProgramData\dotnet\workloads\.gitkeep" -Force | Out-Null
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
           token: ${{ secrets.TOKEN }}
       - name: Cache NuGet packages
         id: cache-nuget
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           key: dotnet-${{ runner.os }}-${{ runner.arch }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
           path: ~/.nuget/packages
           lookup-only: true
       - name: Cache .NET workloads
         id: cache-dotnet-workloads
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           key: dotnet-${{ runner.os }}-${{ runner.arch }}-workloads-${{ steps.vars.outputs.dotnet_workload_version }}
           path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
@@ -58,11 +58,11 @@ jobs:
         if: steps.cache-nuget.outputs.cache-hit != 'true'
         run: dotnet restore
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           package_json_file: seagull-icons/package.json
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: lts/*
           cache: pnpm
@@ -78,6 +78,6 @@ jobs:
       - name: Update
         run: ./update.ps1
       - name: Push
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v1
         with:
           tags: true
