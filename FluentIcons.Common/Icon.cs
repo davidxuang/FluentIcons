@@ -2950,4 +2950,8 @@ public enum Icon : int
     ErrorCircleHint = 2855,
     MicrophoneChat = 2856,
     Vip = 2857,
+    CardUiInfo = 2858,
+    LayoutInfographic = 2859,
+    TableCellCross = 2860,
+    TableCellCrossBrush = 2861,
 }
