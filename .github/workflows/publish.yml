@@ -13,7 +13,7 @@ concurrency:
 jobs:
   publish:
     name: Publish
-    runs-on: windows-latest
+    runs-on: windows-2025-vs2026 # windows-latest
     steps:
       - name: Setup environments
         id: vars
