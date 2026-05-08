@@ -2954,4 +2954,12 @@ public enum Icon : int
     LayoutInfographic = 2859,
     TableCellCross = 2860,
     TableCellCrossBrush = 2861,
+    AgentsSync = 2862,
+    ChatCheckmark = 2863,
+    DeskCheckmark = 2864,
+    DeskMultipleCheckmark = 2865,
+    DocumentMarkdown = 2866,
+    DocumentWord = 2867,
+    SoundWaveCircleSparkleOff = 2868,
+    WorkIq = 2869,
 }
