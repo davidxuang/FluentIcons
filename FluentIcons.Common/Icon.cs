@@ -2962,4 +2962,7 @@ public enum Icon : int
     DocumentWord = 2867,
     SoundWaveCircleSparkleOff = 2868,
     WorkIq = 2869,
+    OrganizationAdd = 2870,
+    SparkleCircleOff = 2871,
+    WeatherHumidity = 2872,
 }
