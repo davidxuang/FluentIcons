@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <VersionPrefix>2.2.$([System.Version]::Parse($(VersionPrefix)).Build)</VersionPrefix>
+    <VersionSuffix>$(PREVIEW_VERSION_SUFFIX)</VersionSuffix>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">
       $(TargetFrameworks);net6.0-windows10.0.19041.0;net8.0-windows10.0.19041.0
     </TargetFrameworks>
