@@ -26,7 +26,7 @@
 
       <ItemGroup>
         <PackageReference Include="Microsoft.Graphics.Win2D" />
-        <PackageReference Include="Microsoft.WindowsAppSDK" />
+        <PackageReference Include="Microsoft.WindowsAppSDK.WinUI" />
         <PackageReference Include="Microsoft.Windows.SDK.BuildTools" />
         <!-- Avoid native asset conflicts for local projects -->
         <PackageReference Include="Microsoft.Web.WebView2" ExcludeAssets="buildTransitive" PrivateAssets="all" />
