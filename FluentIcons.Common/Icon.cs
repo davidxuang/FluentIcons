@@ -2965,4 +2965,5 @@ public enum Icon : int
     OrganizationAdd = 2870,
     SparkleCircleOff = 2871,
     WeatherHumidity = 2872,
+    GaugeRotate315 = 2873,
 }
