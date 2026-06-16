@@ -2407,7 +2407,6 @@ public enum Icon : int
     [NonResizable]
     LaptopMultiple = 2334,
     LinkAdd = 2335,
-    [NonResizable]
     LinkSettings = 2336,
     PenSparkle = 2337,
     [NonResizable]
@@ -2966,4 +2965,8 @@ public enum Icon : int
     SparkleCircleOff = 2871,
     WeatherHumidity = 2872,
     GaugeRotate315 = 2873,
+    FolderHint = 2874,
+    ImageStyleGuide = 2875,
+    [NonResizable]
+    TaskListRectangle = 2876,
 }
