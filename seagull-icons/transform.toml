@@ -154,6 +154,7 @@ highlight = "2"
 history = "2"
 home = "2"
 image = { _ = "4", edit = "2", search = "3", sparkle = "4h" }
+image_style_guide = { _ = { 0 = "_", u = [1, 1] } }
 info = { _ = "2", sparkle = "1" }
 ink_stroke = "2"
 keyboard = "2"
@@ -1719,6 +1720,7 @@ icons = [
   "laptop",
   "layout_row_two",
   "layout_row_two_focus_top",
+  "link",
   "location",
   "mail",
   "mic",
@@ -2068,6 +2070,7 @@ icons = [
   "crop_interim[off]",
   "drink_coffee",
   "headset_vr[off]",
+  "image_style_guide",
   "live[off]",
   "local_language@zh:ja",
   "math_formula",
