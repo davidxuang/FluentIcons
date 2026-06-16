@@ -31,7 +31,7 @@ jobs:
           path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
       - name: Setup .NET workloads
         run: |
-          dotnet workload install android ios maccatalyst macos maui wasm-tools
+          dotnet workload install android ios maccatalyst macos tvos maui wasm-tools
           Invoke-RestMethod 'https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.ps1' | Invoke-Expression
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v3
