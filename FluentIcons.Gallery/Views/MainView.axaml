@@ -57,7 +57,7 @@
                 <AutoCompleteBox
                     Grid.Column="2"
                     Text="{CompiledBinding SearchText, Mode=TwoWay}"
-                    Watermark="Search…" />
+                    PlaceholderText="Search…" />
                 <TabStrip
                     Grid.Column="4"
                     SelectionChanged="FlowDirection_SelectionChanged"
@@ -116,7 +116,6 @@
                                                       RelativeSource={RelativeSource FindAncestor,
                                                                                      AncestorType=local:MainView}}"
                             CommandParameter="{CompiledBinding}"
-                            Foreground="{DynamicResource TextFillColorPrimaryBrush}"
                             IsChecked="{CompiledBinding IsSelected}"
                             Theme="{DynamicResource TransparentToggleButton}"
                             ToolTip.Tip="{CompiledBinding Name}">

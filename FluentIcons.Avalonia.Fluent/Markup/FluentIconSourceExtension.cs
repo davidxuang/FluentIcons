@@ -1,6 +1,6 @@
 using System;
-using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Metadata;
 using FluentIcons.Common;
 
 namespace FluentIcons.Avalonia.Fluent.Markup;

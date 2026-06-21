@@ -1,6 +1,8 @@
 using System.ComponentModel;
 using Avalonia;
+using Avalonia.Data;
 using Avalonia.Media;
+using FluentAvalonia.UI.Controls;
 using FluentIcons.Avalonia.Fluent.Internals;
 using FluentIcons.Common.Internals;
 using FluentIcons.Resources.Avalonia;
@@ -15,12 +17,32 @@ public class SymbolIconSource : GenericIconSource, IValue<Symbol>
 
     static SymbolIconSource()
     {
-        SymbolProperty.Changed.AddClassHandler<SymbolIconSource>(OnCorePropertyChanged);
-    }
+        FAIconHelpers.RegisterCustomIconSourceFactory(
+            typeof(SymbolIconSource),
+            static (s) =>
+            {
+                if (s is SymbolIconSource sis)
+                {
+                    var si = new SymbolIcon()
+                    {
+                        [!SymbolIcon.SymbolProperty] = sis[!SymbolProperty],
+                        [!SymbolIcon.IconVariantProperty] = sis[!IconVariantProperty],
+                        [!SymbolIcon.FontSizeProperty] = sis[!FontSizeProperty],
+                    };
 
-    public SymbolIconSource()
-    {
-        InvalidateText();
+                    var observable = sis.GetBindingObservable(ForegroundProperty);
+                    if (sis.IsSet(ForegroundProperty))
+                    {
+                        si.Bind(SymbolIcon.ForegroundProperty, observable, BindingPriority.LocalValue);
+                    }
+                    else
+                    {
+                        si.Bind(SymbolIcon.ForegroundProperty, observable.SkipOne(), BindingPriority.LocalValue);
+                    }
+                    return si;
+                }
+                return null;
+            });
     }
 
     public Symbol Symbol

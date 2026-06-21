@@ -5,7 +5,7 @@
 
   <ItemGroup>
     <PackageVersion Include="Avalonia" Version="12.0.0" />
-    <PackageVersion Include="FluentAvaloniaUI" Version="2.0.0" />
+    <PackageVersion Include="FluentAvaloniaUI" Version="3.0.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
     <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Graphics.Win2D" Version="1.4.0" />
@@ -16,8 +16,8 @@
     <PackageVersion Include="Microsoft.Windows.SDK.CPP" Version="10.0.26100.2161" />
     <PackageVersion Include="Microsoft.Web.WebView2" Version="1.0.3179.45" />
     <PackageVersion Include="PolySharp" Version="1.15.0" />
-    <PackageVersion Include="Win2D.uwp" Version="1.28.3" />
     <PackageVersion Include="Uno.UI" Version="5.4.22" />
     <PackageVersion Include="Uno.WinUI" Version="6.0.465" />
+    <PackageVersion Include="Win2D.uwp" Version="1.28.3" />
   </ItemGroup>
 </Project>

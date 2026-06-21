@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using Avalonia;
+using Avalonia.Data;
 using Avalonia.Media;
+using FluentAvalonia.UI.Controls;
 using FluentIcons.Avalonia.Fluent.Internals;
 using FluentIcons.Common;
 using FluentIcons.Common.Internals;
@@ -15,13 +17,33 @@ public class FluentIconSource : GenericIconSource, IValue<Icon>
 
     static FluentIconSource()
     {
-        IconProperty.Changed.AddClassHandler<FluentIconSource>(OnCorePropertyChanged);
-        IconSizeProperty.Changed.AddClassHandler<FluentIconSource>(OnCorePropertyChanged);
-    }
+        FAIconHelpers.RegisterCustomIconSourceFactory(
+            typeof(FluentIconSource),
+            static (s) =>
+            {
+                if (s is FluentIconSource fis)
+                {
+                    var fi = new FluentIcon()
+                    {
+                        [!FluentIcon.IconProperty] = fis[!IconProperty],
+                        [!FluentIcon.IconVariantProperty] = fis[!IconVariantProperty],
+                        [!FluentIcon.IconSizeProperty] = fis[!IconSizeProperty],
+                        [!FluentIcon.FontSizeProperty] = fis[!FontSizeProperty],
+                    };
 
-    public FluentIconSource()
-    {
-        InvalidateText();
+                    var observable = fis.GetBindingObservable(ForegroundProperty);
+                    if (fis.IsSet(ForegroundProperty))
+                    {
+                        fi.Bind(FluentIcon.ForegroundProperty, observable, BindingPriority.LocalValue);
+                    }
+                    else
+                    {
+                        fi.Bind(FluentIcon.ForegroundProperty, observable.SkipOne(), BindingPriority.LocalValue);
+                    }
+                    return fi;
+                }
+                return null;
+            });
     }
 
     public Icon Icon

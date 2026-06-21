@@ -1,4 +1,5 @@
-﻿using Avalonia.Media;
+﻿using Avalonia.Input.Platform;
+using Avalonia.Media;
 using CommunityToolkit.Mvvm.Input;
 using FluentIcons.Gallery.Helpers;
 using FluentIcons.Gallery.Models;

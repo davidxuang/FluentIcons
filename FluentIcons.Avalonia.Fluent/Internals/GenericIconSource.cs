@@ -10,34 +10,8 @@ using FluentIcons.Common.Internals;
 namespace FluentIcons.Avalonia.Fluent.Internals;
 
 [EditorBrowsable(EditorBrowsableState.Never)]
-public abstract class GenericIconSource : FontIconSource
+public abstract class GenericIconSource : FAIconSource
 {
-    static GenericIconSource()
-    {
-        IconVariantProperty.Changed.AddClassHandler<GenericIconSource>(OnCorePropertyChanged);
-        FontSizeProperty.Changed.AddClassHandler<GenericIconSource>(OnCorePropertyChanged);
-        FlowDirectionProperty.Changed.AddClassHandler<GenericIconSource>(OnCorePropertyChanged);
-
-        GlyphProperty.OverrideMetadata<GenericIconSource>(
-            new(coerce: static (o, v) => (o as GenericIconSource)?.IconText ?? v));
-        FontIconSource.FontSizeProperty.OverrideMetadata<GenericIconSource>(
-            new(defaultValue: FontSizeProperty.GetDefaultValue(typeof(GenericIconSource)),
-                coerce: static (o, v) => (o as GenericIconSource)?.FontSize ?? v));
-        FontFamilyProperty.OverrideMetadata<GenericIconSource>(
-            new(coerce: static (o, v) => (o as GenericIconSource)?.IconFont.FontFamily ?? v));
-        FontStyleProperty.OverrideMetadata<GenericIconSource>(
-            new(coerce: static (o, v) => FontStyle.Normal));
-        FontWeightProperty.OverrideMetadata<GenericIconSource>(
-            new(coerce: static (o, v) => FontWeight.Regular));
-    }
-
-    public GenericIconSource()
-    {
-        base.FontSize = FontSize;
-        FontStyle = FontStyle.Normal;
-        FontWeight = FontWeight.Regular;
-    }
-
     public IconVariant IconVariant
     {
         get => GetValue(IconVariantProperty);
@@ -54,27 +28,16 @@ public abstract class GenericIconSource : FontIconSource
     public static readonly StyledProperty<FlowDirection> FlowDirectionProperty
         = Visual.FlowDirectionProperty.AddOwner<GenericIconSource>();
 
-    public new double FontSize
+    public double FontSize
     {
         get => GetValue(FontSizeProperty);
         set => SetValue(FontSizeProperty, value);
     }
-    public static new readonly StyledProperty<double> FontSizeProperty
+    public static readonly StyledProperty<double> FontSizeProperty
         = GenericIcon.FontSizeProperty.AddOwner<GenericIconSource>();
 
     protected abstract string IconText { get; }
     protected abstract Typeface IconFont { get; }
-
-    protected static void OnCorePropertyChanged(GenericIconSource element, AvaloniaPropertyChangedEventArgs? _)
-    {
-        element.InvalidateText();
-    }
-
-    protected void InvalidateText()
-    {
-        Glyph = IconText;
-        FontFamily = IconFont.FontFamily;
-    }
 }
 
 public class GenericIconSourceConverter<V, T> : TypeConverter
