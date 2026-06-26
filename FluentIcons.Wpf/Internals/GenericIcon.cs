@@ -97,7 +97,7 @@ public abstract class GenericIcon : FrameworkElement
 
     protected static void OnCorePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is GenericIcon element) element.InvalidateText();
+        (d as GenericIcon)?.InvalidateText();
     }
 
     protected void InvalidateText()

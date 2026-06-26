@@ -78,15 +78,10 @@ public abstract class GenericImage : AvaloniaObject, IDisposable, IImage
         }
     }
 
-    protected static void OnCorePropertyChanged(GenericImage element, AvaloniaPropertyChangedEventArgs? _)
+    protected static void OnCorePropertyChanged(GenericImage obj, AvaloniaPropertyChangedEventArgs? _)
     {
-        element.InvalidateText();
-    }
-
-    protected void InvalidateText()
-    {
-        _updating = true;
-        VisualChanged?.Invoke(this, EventArgs.Empty);
+        obj._updating = true;
+        obj.VisualChanged?.Invoke(obj, EventArgs.Empty);
     }
 
     public void Draw(DrawingContext context, Rect sourceRect, Rect destRect)

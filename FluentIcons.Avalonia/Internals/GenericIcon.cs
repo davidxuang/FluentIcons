@@ -88,7 +88,7 @@ public abstract class GenericIcon
 
     protected override void OnLoaded(RoutedEventArgs e)
     {
-        InvalidateText();
+        OnCorePropertyChanged(this, null);
         base.OnLoaded(e);
     }
 
@@ -98,13 +98,10 @@ public abstract class GenericIcon
         base.OnUnloaded(e);
     }
 
-    protected static void OnCorePropertyChanged(GenericIcon element, AvaloniaPropertyChangedEventArgs? _)
+    protected static void OnCorePropertyChanged(GenericIcon obj, AvaloniaPropertyChangedEventArgs? _)
     {
-        element.InvalidateText();
+        obj._core.Update(obj.IconText, obj.IconFont, obj.FontSize, obj.Foreground);
     }
-
-    protected void InvalidateText()
-        => _core.Update(IconText, IconFont, FontSize, Foreground);
 
     internal void AddHandIn(Control control)
         => _panel.Children.Add(control);
