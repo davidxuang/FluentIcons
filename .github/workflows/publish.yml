@@ -14,6 +14,8 @@ jobs:
   publish:
     name: Publish
     runs-on: windows-2025-vs2026 # windows-latest
+    permissions:
+      id-token: write
     steps:
       - name: Setup environments
         id: vars
@@ -53,12 +55,18 @@ jobs:
         with:
           key: dotnet-${{ runner.os }}-${{ runner.arch }}-nuget-${{ hashFiles('**/Directory.Packages.props') }}
           path: ~/.nuget/packages
+      - name: Login to NuGet
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        uses: NuGet/login@v1
+        id: nuget
+        with:
+          user: davidxuang
       - name: Build NuGet packages
         if: ${{ github.event_name != 'workflow_dispatch' }}
         run: |
           $env:VERSION_SUFFIX = "${{ steps.tag_name.outputs.tag }}" -replace "^[^\-]+-?", ""
           MSBuild -restore -t:pack -p:Configuration=Release -p:PackageOutputPath=".." -v:minimal
-          dotnet nuget push FluentIcons.*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+          dotnet nuget push FluentIcons.*.nupkg -k ${{ steps.nuget.outputs.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
       - name: Build GitHub Pages
         if: ${{ github.event_name == 'workflow_dispatch' || !contains(steps.tag_name.outputs.tag, '-') }}
         run: |
