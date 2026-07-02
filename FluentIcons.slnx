@@ -3,7 +3,7 @@
     <Project Path="FluentIcons.Resources/FluentIcons.Resources.Avalonia.csproj" />
     <Project Path="FluentIcons.Resources/FluentIcons.Resources.Uno.csproj" />
   </Folder>
-  <!-- <Folder Name="/Samples/">
+  <Folder Name="/Samples/">
     <File Path="samples/Directory.Build.props" />
     <File Path="samples/Directory.Packages.props" />
     <Project Path="samples/Avalonia/FluentIcons.Samples.Avalonia.csproj" />
@@ -12,7 +12,7 @@
       <Platform Project="x64" />
     </Project>
     <Project Path="samples/Wpf/FluentIcons.Samples.Wpf.csproj" Id="16bdcaac-3dc9-4e4a-bda1-64bb80c0beeb" />
-  </Folder> -->
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path="Directory.Build.props" />
