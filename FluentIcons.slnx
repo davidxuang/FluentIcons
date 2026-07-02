@@ -5,6 +5,7 @@
   </Folder>
   <!-- <Folder Name="/Samples/">
     <File Path="samples/Directory.Build.props" />
+    <Project Path="samples/Avalonia/FluentIcons.Samples.Avalonia.csproj" />
     <Project Path="samples/Maui/FluentIcons.Samples.Maui.csproj" Id="634125c9-e102-4890-93a8-99fb1918feb3" />
     <Project Path="samples/WinUI/FluentIcons.Samples.WinUI.csproj">
       <Platform Project="x64" />
