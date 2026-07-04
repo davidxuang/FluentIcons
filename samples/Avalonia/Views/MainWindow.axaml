@@ -1,38 +1,46 @@
-﻿<Window
-    x:Class="FluentIcons.Samples.Wpf.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:ic="clr-namespace:FluentIcons.Wpf;assembly=FluentIcons.Wpf"
-    xmlns:icc="clr-namespace:FluentIcons.Common;assembly=FluentIcons.Common"
-    xmlns:icx="clr-namespace:FluentIcons.Wpf.Markup;assembly=FluentIcons.Wpf"
-    xmlns:local="clr-namespace:FluentIcons.Samples.Wpf"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="FluentIcons.Samples.Wpf"
-    Width="800"
-    Height="450"
-    mc:Ignorable="d">
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:FluentIcons.Samples.Avalonia.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:ic="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+        xmlns:icx="clr-namespace:FluentIcons.Avalonia.Markup;assembly=FluentIcons.Avalonia"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="FluentIcons.Samples.Avalonia.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/Icon.png"
+        Title="FluentIcons.Samples.Avalonia">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
     <Window.Resources>
-        <Style x:Key="SubtitleStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20" />
-            <Setter Property="LineHeight" Value="28" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-        </Style>
         <LinearGradientBrush x:Key="SampleGradientBrush" StartPoint="0,0" EndPoint="1,1">
             <GradientStop Offset="0.0" Color="Goldenrod" />
             <GradientStop Offset="1.0" Color="Gold" />
         </LinearGradientBrush>
     </Window.Resources>
+    <Window.Styles>
+        <Style Selector="TextBlock.subtitle">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="LineHeight" Value="28" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+    </Window.Styles>
+
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="16">
-            <StackPanel.Resources>
-                <Style x:Key="SectionStackStyle" TargetType="StackPanel">
+            <StackPanel.Styles>
+                <Style Selector="StackPanel.sectionStack">
                     <Setter Property="Margin" Value="0,0,0,8" />
                 </Style>
-            </StackPanel.Resources>
+            </StackPanel.Styles>
 
-            <StackPanel Style="{StaticResource SectionStackStyle}">
-                <TextBlock Style="{StaticResource SubtitleStyle}" Text="Elements" />
+            <StackPanel Classes="sectionStack">
+                <TextBlock Classes="subtitle" Text="Elements" />
                 <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
                     <ic:FluentIcon Icon="Alert" IconVariant="Regular" />
                     <ic:FluentIcon Icon="Alert" IconVariant="Filled" />
@@ -47,8 +55,8 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Style="{StaticResource SectionStackStyle}">
-                <TextBlock Style="{StaticResource SubtitleStyle}" Text="Markup extensions" />
+            <StackPanel Classes="sectionStack">
+                <TextBlock Classes="subtitle" Text="Markup extensions" />
                 <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
                     <ContentControl Content="{icx:FluentIcon Icon=ClockAlarm, IconVariant=Regular}" />
                     <ContentControl Content="{icx:FluentIcon Icon=ClockAlarm, IconVariant=Filled}" />
@@ -62,8 +70,8 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Style="{StaticResource SectionStackStyle}">
-                <TextBlock Style="{StaticResource SubtitleStyle}" Text="Outline overlay" />
+            <StackPanel Classes="sectionStack">
+                <TextBlock Classes="subtitle" Text="Outline overlay" />
                 <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
                     <ic:FluentIcon
                         ic:Outline.Foreground="{DynamicResource SampleGradientBrush}"
@@ -147,9 +155,9 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Style="{StaticResource SectionStackStyle}">
-                <TextBlock Style="{StaticResource SubtitleStyle}" Text="Icon catalog" />
-                <ItemsControl Margin="-1,3,-1,-1" ItemsSource="{Binding Symbols, RelativeSource={RelativeSource AncestorType=Window}}">
+            <StackPanel Classes="sectionStack">
+                <TextBlock Classes="subtitle" Text="Icon catalog" />
+                <ItemsControl Margin="-1,3,-1,-1" ItemsSource="{Binding Symbols}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" />
@@ -164,4 +172,5 @@
             </StackPanel>
         </StackPanel>
     </ScrollViewer>
+
 </Window>

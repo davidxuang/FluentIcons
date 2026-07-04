@@ -55,7 +55,7 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>FluentIcons.WinUI\Assets\%(Filename)%(Extension)</Link>
         </Content>
-        <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.3.2" />
+        <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.4.0" />
       </ItemGroup>
     </When>
     <Otherwise>

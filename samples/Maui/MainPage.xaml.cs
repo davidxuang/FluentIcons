@@ -7,5 +7,5 @@ public partial class MainPage : ContentPage
         InitializeComponent();
     }
 
-    public IEnumerable<Common.Symbol> Symbols { get; } = Enum.GetValues<Common.Symbol>();
+    public IEnumerable<Common.Symbol> Symbols { get; } = Enum.GetValues<Common.Symbol>().OrderBy(s => s.ToString());
 }
