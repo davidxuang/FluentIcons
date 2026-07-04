@@ -5,26 +5,26 @@ Browse the icons in [the online gallery](https://davidxuang.github.io/FluentIcon
 
 ## Packages
 
-| Package                                                                                                                                                                                    | Platform                                                                                                                                                                                                                                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![FluentIcons.Common](https://img.shields.io/nuget/v/FluentIcons.Common?label=FluentIcons.Common)](https://www.nuget.org/packages/FluentIcons.Common)                                     | _meta package_                                                                                                                                                                                                                                                                                                                     |
-| [![FluentIcons.Avalonia](https://img.shields.io/nuget/v/FluentIcons.Avalonia?label=FluentIcons.Avalonia)](https://www.nuget.org/packages/FluentIcons.Avalonia)                             | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia.svg) Avalonia 12](https://www.nuget.org/packages/Avalonia/12.0.0)                                                                                                                                                                                   |
-| [![FluentIcons.Avalonia.Fluent](https://img.shields.io/nuget/v/FluentIcons.Avalonia.Fluent?label=FluentIcons.Avalonia.Fluent)](https://www.nuget.org/packages/FluentIcons.Avalonia.Fluent) | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia-fluent.svg) FluentAvalonia 3](https://www.nuget.org/packages/FluentAvaloniaUI/3.0.0) (Avalonia 12)                                                                                                                                                  |
-| [![FluentIcons.Maui](https://img.shields.io/nuget/v/FluentIcons.Maui?label=FluentIcons.Maui)](https://www.nuget.org/packages/FluentIcons.Maui)                                             | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/maui.svg) MAUI 10](https://www.nuget.org/packages/Microsoft.Maui.Sdk/10.0.0)                                                                                                                                                                                 |
-| [![FluentIcons.Uwp](https://img.shields.io/nuget/v/FluentIcons.Uwp?label=FluentIcons.Uwp)](https://www.nuget.org/packages/FluentIcons.Uwp)                                                 | ![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/windows-10.svg) UWP 10.0.10773 <br/> [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/uno.svg) Uno.UI 5.4](https://www.nuget.org/packages/Uno.UI/5.4.22)                                                                                 |
+| Package                                                                                                                                                                                    | Platform                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [![FluentIcons.Common](https://img.shields.io/nuget/v/FluentIcons.Common?label=FluentIcons.Common)](https://www.nuget.org/packages/FluentIcons.Common)                                     | _meta package_                                                                                                                                                                                                                                                                                                                            |
+| [![FluentIcons.Avalonia](https://img.shields.io/nuget/v/FluentIcons.Avalonia?label=FluentIcons.Avalonia)](https://www.nuget.org/packages/FluentIcons.Avalonia)                             | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia.svg) Avalonia 12](https://www.nuget.org/packages/Avalonia/12.0.0)                                                                                                                                                                                          |
+| [![FluentIcons.Avalonia.Fluent](https://img.shields.io/nuget/v/FluentIcons.Avalonia.Fluent?label=FluentIcons.Avalonia.Fluent)](https://www.nuget.org/packages/FluentIcons.Avalonia.Fluent) | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia-fluent.svg) FluentAvalonia 3](https://www.nuget.org/packages/FluentAvaloniaUI/3.0.0) (Avalonia 12)                                                                                                                                                         |
+| [![FluentIcons.Maui](https://img.shields.io/nuget/v/FluentIcons.Maui?label=FluentIcons.Maui)](https://www.nuget.org/packages/FluentIcons.Maui)                                             | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/maui.svg) MAUI 10](https://www.nuget.org/packages/Microsoft.Maui.Sdk/10.0.0)                                                                                                                                                                                        |
+| [![FluentIcons.Uwp](https://img.shields.io/nuget/v/FluentIcons.Uwp?label=FluentIcons.Uwp)](https://www.nuget.org/packages/FluentIcons.Uwp)                                                 | ![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/windows-10.svg) UWP 10.0.10773 <br/> [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/uno.svg) Uno.UI 5.4](https://www.nuget.org/packages/Uno.UI/5.4.22)                                                                                        |
 | [![FluentIcons.WinUI](https://img.shields.io/nuget/v/FluentIcons.WinUI?label=FluentIcons.WinUI)](https://www.nuget.org/packages/FluentIcons.WinUI)                                         | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/wasdk.svg) Windows App SDK 1.8.5](https://www.nuget.org/packages/Microsoft.WindowsAppSDK.WinUI/1.8.260204000) <br/> [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/uno.svg) Uno.WinUI 6.0](https://www.nuget.org/packages/Uno.WinUI/6.0.465) |
-| [![FluentIcons.Wpf](https://img.shields.io/nuget/v/FluentIcons.Wpf?label=FluentIcons.Wpf)](https://www.nuget.org/packages/FluentIcons.Wpf)                                                 | ![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/dotnet.svg) .NET Framework 4.6.2 <br/> ![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/dotnet.svg) .NET 6                                                                                                                                |
+| [![FluentIcons.Wpf](https://img.shields.io/nuget/v/FluentIcons.Wpf?label=FluentIcons.Wpf)](https://www.nuget.org/packages/FluentIcons.Wpf)                                                 | ![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/dotnet.svg) .NET Framework 4.6.2 <br/> ![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/dotnet.svg) .NET 6                                                                                                                                       |
 
 ### Version 2.x
 
 Starting with version 2.0, the underlying fonts have been migrated from TTF to CFF.
 
-| Package                | Version | Platform                                                                                                                                                                    |
-| ---------------------- | - | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `FluentIcons.WinUI`    | 2.1 | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/wasdk.svg) Windows App SDK 1.6.3](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.6.241114003) <br/> [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/uno.svg) Uno.WinUI 5.4](https://www.nuget.org/packages/Uno.WinUI/5.4.22) |
-| `FluentIcons.Avalonia` | 2.0 | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia.svg) Avalonia 11](https://www.nuget.org/packages/Avalonia/11.0.0)                            |
-| `FluentIcons.Avalonia.Fluent` | 2.0 | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia-fluent.svg) FluentAvalonia 2](https://www.nuget.org/packages/FluentAvaloniaUI/2.0.0) (Avalonia 11)                             |
-| `FluentIcons.WinUI`    | 2.0 | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/wasdk.svg) Windows App SDK 1.6](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.6.240829007) |
+| Package                       | Version | Platform                                                                                                                                                                                                                                                                                                                           |
+| ----------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `FluentIcons.WinUI`           | 2.1     | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/wasdk.svg) Windows App SDK 1.6.3](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.6.241114003) <br/> [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/uno.svg) Uno.WinUI 5.4](https://www.nuget.org/packages/Uno.WinUI/5.4.22) |
+| `FluentIcons.Avalonia`        | 2.0     | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia.svg) Avalonia 11](https://www.nuget.org/packages/Avalonia/11.0.0)                                                                                                                                                                                   |
+| `FluentIcons.Avalonia.Fluent` | 2.0     | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/avalonia-fluent.svg) FluentAvalonia 2](https://www.nuget.org/packages/FluentAvaloniaUI/2.0.0) (Avalonia 11)                                                                                                                                                  |
+| `FluentIcons.WinUI`           | 2.0     | [![](https://cdn.jsdelivr.net/gh/davidxuang/FluentIcons@static/assets/wasdk.svg) Windows App SDK 1.6](https://www.nuget.org/packages/Microsoft.WindowsAppSDK/1.6.240829007)                                                                                                                                                        |
 
 ### Version 1.3
 
@@ -60,7 +60,20 @@ This package features `<FluentIcon>`/`<SymbolIcon>` element, and `<FluentIconSou
 - **FontSize** : `double`
 - **Foreground** : `Brush`
 
-The _Fluent_ variant provides all sizes of icons untouched compared to upstream, while the _Symbol_ variant mimics the APIs and appearances of `SymbolIcon` and [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font) from WinUI, which is powered by a derived version from the child project [Seagull Icons](./seagull-icons/README.md).
+### Variants
+
+| Grid              | `Fluent` variant           | `Symbol` variant     |
+| ----------------- | -------------------------- | -------------------- |
+| Resizable         | 20 × 20 (upstream)         | 16 × 16 (Segoe-like) |
+| Resizable (light) | 32 × 32 (upstream)         | 28 × 28              |
+| Other sizes       | 12, 16, 20, 24, 28, 32, 48 | _None_               |
+
+The _Fluent_ variant provides all sizes of icons untouched compared to upstream,
+while the _Symbol_ variant mimics the APIs and appearances of `SymbolIcon` and [Segoe Fluent Icons](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font) from WinUI,
+where the borders of the icons are trimmed and some overflowed shapes are rearranged,
+to match the geometric metrics of Segoe (read more at the child project [Seagull Icons](./seagull-icons/README.md)).
+
+### Markup extension
 
 ```xml
 <Page xmlns:icx="using:FluentIcons.WinUI.Markup">
@@ -68,9 +81,9 @@ The _Fluent_ variant provides all sizes of icons untouched compared to upstream,
 </Page>
 ```
 
-Markup extension classes have been added since version 1.1.242.
-These extensions will bind their `FlowDirection` to that of the parent control, except `FluentIconSourceExtension`/`SymbolIconSourceExtension` on (non-Uno) UWP where `IXamlServiceProvider` is not available.
-They are moved to a child namespace since version 1.3.
+Markup extensiones have been added since version 1.1.242, and then moved to a child namespace since version 1.3.
+
+### Outline
 
 ```xml
 <Page xmlns:ic="using:FluentIcons.WinUI">
@@ -98,21 +111,31 @@ The static class include following attached properties which could be applied to
 - **Foreground** : `Brush`
 
 Please note that due to limitations in rendering precision, unexpected color leakage may occur at the edges of the icons.
-To achieve a good display effect, you may need to avoid using combinations of fill and stroke colors with large hue differences.
+To achieve a good display, you may need to avoid using combinations of fill and stroke colors with significant hue differences.
 
-### MAUI
+### Platform-specific
 
-⚠️ The extension method `UseFluentIcons(this MauiAppBuilder builder)` must be called to register fonts properly.
+#### MAUI
+
+⚠️ The extension method `UseFluentIcons(this MauiAppBuilder builder)` must be called at start-up to register fonts properly.
 
 `<SymbolImageSource>` and `SymbolImageSourceExtension` are provided on MAUI as stand-ins.
 
 All properties of type `Brush` are defined as `Color` instead, with the `Color` suffix added to the name.
 
-### UWP / WinUI
+#### UWP / WinUI
 
 The Win2D package is referenced by this library for the “Outline” feature, but with a relatively old version.
 While this brings you more flexibility, it is still recommended to override with the latest version of the package.
 
-## Known issues
+#### WPF
 
-Color icons are broken on _WPF_, because of the lack of [COLR](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) rendering support. It also stops working in environments like macOS and WebAssembly when rendering with SkiaSharp 2, possibly affecting _Avalonia_ and _Uno_.
+🚧 Color icons are broken on WPF, because of the lack of [COLR](https://learn.microsoft.com/en-us/typography/opentype/spec/colr) rendering support. It also stops working in environments like macOS and WebAssembly when rendering with SkiaSharp 2, possibly affecting _Avalonia_ and _Uno_.
+
+## Building
+
+To clone and build this project with Git for Windows, support for symbolic links are required:
+
+```sh
+git config --global core.symlinks true
+```
