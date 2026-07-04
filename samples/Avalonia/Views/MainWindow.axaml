@@ -8,8 +8,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="FluentIcons.Samples.Avalonia.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="MainWindow">
+        Icon="/Assets/Icon.png"
+        Title="FluentIcons.Samples.Avalonia">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,

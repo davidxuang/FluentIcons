@@ -11,5 +11,5 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-    public IEnumerable<Common.Symbol> Symbols { get; } = Enum.GetValues<Common.Symbol>();
+    public IEnumerable<Common.Symbol> Symbols { get; } = Enum.GetValues<Common.Symbol>().OrderBy(s => s.ToString());
 }

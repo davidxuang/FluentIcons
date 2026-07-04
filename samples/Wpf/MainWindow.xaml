@@ -8,7 +8,7 @@
     xmlns:icx="clr-namespace:FluentIcons.Wpf.Markup;assembly=FluentIcons.Wpf"
     xmlns:local="clr-namespace:FluentIcons.Samples.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
+    Title="FluentIcons.Samples.Wpf"
     Width="800"
     Height="450"
     mc:Ignorable="d">
