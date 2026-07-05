@@ -56,7 +56,7 @@ jobs:
           Invoke-RestMethod 'https://raw.githubusercontent.com/Samsung/Tizen.NET/main/workload/scripts/workload-install.ps1' | Invoke-Expression
       - name: Restore NuGet packages
         if: steps.cache-nuget.outputs.cache-hit != 'true'
-        run: dotnet restore
+        run: dotnet restore ./FluentIcons.slnx
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
         with:
