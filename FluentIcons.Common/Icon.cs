@@ -3003,4 +3003,7 @@ public enum Icon : int
     TextBulletListEdit = 2908,
     WindowToolbox = 2909,
     XboxOneConsole = 2910,
+    ClipboardMarkdown = 2911,
+    DatabaseSettings = 2912,
+    DoorAdd = 2913,
 }
