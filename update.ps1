@@ -44,7 +44,9 @@ try {
 
         git add -A
         git commit -m "Upstream version v$upstream"
-        git tag "$tag-ci"
+        if (@(git diff --name-only HEAD~1 HEAD -- '*.otf').Count -gt 0) {
+            git tag "$tag-ci"
+        }
     }
 } finally {
     Pop-Location
