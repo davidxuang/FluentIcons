@@ -8,6 +8,12 @@ internal static class Extensions
 {
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal static int GetOffset<T>(this T value, IconVariant iconVariant)
+        where T : struct, Enum
+        => (4 * Convert.ToInt32(value)) + (int)iconVariant;
+
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static string ToString<T>(this T value, IconVariant iconVariant, bool isRtl)
         where T : struct, Enum
         => char.ConvertFromUtf32(0xf0000 + 4 * Convert.ToInt32(value) + (int)iconVariant + (Convert.ToInt32(isRtl) * 0x10000));

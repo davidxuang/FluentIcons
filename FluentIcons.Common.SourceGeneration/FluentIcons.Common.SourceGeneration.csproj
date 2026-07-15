@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="../FluentIcons.Common/Internals/BitSetView.cs" />
+  </ItemGroup>
+
 </Project>
