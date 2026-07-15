@@ -15,6 +15,7 @@ jobs:
     name: Publish
     runs-on: windows-2025-vs2026 # windows-latest
     permissions:
+      contents: write
       id-token: write
     steps:
       - name: Setup environments
