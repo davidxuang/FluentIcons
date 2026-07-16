@@ -1,19 +1,20 @@
 <UserControl
     x:Class="FluentIcons.Gallery.Views.MainView"
+    x:Name="host"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:FluentIcons.Gallery.Views"
-    xmlns:c="clr-namespace:FluentIcons.Gallery.Controls"
-    xmlns:ic="clr-namespace:FluentIcons.Avalonia.Fluent;assembly=FluentIcons.Avalonia.Fluent"
-    xmlns:icx="clr-namespace:FluentIcons.Avalonia.Fluent.Markup;assembly=FluentIcons.Avalonia.Fluent"
-    xmlns:m="clr-namespace:FluentIcons.Gallery.Models"
-    xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
-    xmlns:vm="clr-namespace:FluentIcons.Gallery.ViewModels"
+    xmlns:local="using:FluentIcons.Gallery.Views"
+    xmlns:c="using:FluentIcons.Gallery.Controls"
+    xmlns:i="using:FluentIcons.Common"
+    xmlns:ic="using:FluentIcons.Avalonia.Fluent"
+    xmlns:icx="using:FluentIcons.Avalonia.Fluent.Markup"
+    xmlns:m="using:FluentIcons.Gallery.Models"
+    xmlns:vm="using:FluentIcons.Gallery.ViewModels"
     x:DataType="vm:MainViewModel" d:DesignHeight="800" d:DesignWidth="800"
-    SizeChanged="OnSizeChanged"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Container.Name="host" Container.Sizing="Width">
     <Design.DataContext>
         <vm:MainViewModel />
     </Design.DataContext>
@@ -30,7 +31,14 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid x:Name="RootGrid">
+    <UserControl.Styles>
+        <Style Selector="TabStrip.segmented">
+            <Setter Property="Theme" Value="{DynamicResource AlternateTabStripTheme}" />
+            <Setter Property="ItemContainerTheme" Value="{DynamicResource CompactTabStripItemTheme}" />
+        </Style>
+    </UserControl.Styles>
+
+    <Grid x:Name="root">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" MinHeight="72" />
@@ -38,113 +46,269 @@
             <RowDefinition Height="*" MinHeight="72" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" MinWidth="288" />
+            <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="12" />
-            <ColumnDefinition
-                Width="*" MinWidth="320" MaxWidth="400" />
+            <ColumnDefinition Width="*" MinWidth="320" MaxWidth="400" />
         </Grid.ColumnDefinitions>
 
-        <Border Grid.ColumnSpan="3" Background="{DynamicResource SolidBackgroundFillColorSecondary}">
-            <Grid ColumnDefinitions="Auto,8,*,8,Auto,8,Auto" Margin="8">
-                <TabStrip SelectionChanged="UsesSymbol_SelectionChanged" Theme="{DynamicResource AlternateTabStripTheme}">
-                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="FluentIcon">
-                        <ic:FluentIcon FlowDirection="{CompiledBinding FlowDirection}" Icon="TextFontSize" />
-                    </TabStripItem>
-                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="SymbolIcon">
-                        <ic:SymbolIcon FlowDirection="{CompiledBinding FlowDirection}" Symbol="TextFontSize" />
-                    </TabStripItem>
-                </TabStrip>
+        <Grid.Styles>
+            <Style Selector="Grid#root > ScrollViewer#items">
+                <Setter Property="Grid.Row" Value="1" />
+                <Setter Property="Grid.RowSpan" Value="3" />
+                <Setter Property="Grid.Column" Value="0" />
+                <Setter Property="Grid.ColumnSpan" Value="1" />
+            </Style>
+            <Style Selector="Grid#root > GridSplitter#splitter">
+                <Setter Property="Grid.Row" Value="1" />
+                <Setter Property="Grid.RowSpan" Value="3" />
+                <Setter Property="Grid.Column" Value="1" />
+                <Setter Property="Grid.ColumnSpan" Value="1" />
+                <Setter Property="ResizeDirection" Value="Columns"/>
+            </Style>
+            <Style Selector="Grid#root > ScrollViewer#info">
+                <Setter Property="Grid.Row" Value="1" />
+                <Setter Property="Grid.RowSpan" Value="3" />
+                <Setter Property="Grid.Column" Value="2" />
+                <Setter Property="Grid.ColumnSpan" Value="1" />
+            </Style>
+
+            <ContainerQuery Name="host" Query="max-width:640">
+                <Style Selector="Grid#root > ScrollViewer#items">
+                    <Setter Property="Grid.Row" Value="1" />
+                    <Setter Property="Grid.RowSpan" Value="1" />
+                    <Setter Property="Grid.Column" Value="0" />
+                    <Setter Property="Grid.ColumnSpan" Value="3" />
+                </Style>
+                <Style Selector="Grid#root > GridSplitter#splitter">
+                    <Setter Property="Grid.Row" Value="2" />
+                    <Setter Property="Grid.RowSpan" Value="1" />
+                    <Setter Property="Grid.Column" Value="0" />
+                    <Setter Property="Grid.ColumnSpan" Value="3" />
+                    <Setter Property="ResizeDirection" Value="Rows"/>
+                </Style>
+                <Style Selector="Grid#root > ScrollViewer#info">
+                    <Setter Property="Grid.Row" Value="3" />
+                    <Setter Property="Grid.RowSpan" Value="1" />
+                    <Setter Property="Grid.Column" Value="0" />
+                    <Setter Property="Grid.ColumnSpan" Value="3" />
+                </Style>
+            </ContainerQuery>
+        </Grid.Styles>
+
+        <Border x:Name="commands" Grid.ColumnSpan="3" Background="{DynamicResource SolidBackgroundFillColorSecondary}">
+            <Grid Margin="8" RowSpacing="8" RowDefinitions="Auto,Auto"
+                  ColumnSpacing="8" ColumnDefinitions="Auto,*,Auto,Auto,Auto">
+                <Grid.Styles>
+                    <Style Selector="ToggleButton#filters">
+                        <Setter Property="Grid.Row" Value="0" />
+                        <Setter Property="Grid.RowSpan" Value="2" />
+                        <Setter Property="Grid.Column" Value="0" />
+                        <Setter Property="Grid.ColumnSpan" Value="1" />
+                    </Style>
+                    <Style Selector="AutoCompleteBox#search">
+                        <Setter Property="Grid.Row" Value="0" />
+                        <Setter Property="Grid.RowSpan" Value="2" />
+                        <Setter Property="Grid.Column" Value="1" />
+                        <Setter Property="Grid.ColumnSpan" Value="1" />
+                    </Style>
+                    <Style Selector="TabStrip#directions">
+                        <Setter Property="Grid.Row" Value="0" />
+                        <Setter Property="Grid.RowSpan" Value="2" />
+                        <Setter Property="Grid.Column" Value="2" />
+                        <Setter Property="Grid.ColumnSpan" Value="1" />
+                    </Style>
+                    <Style Selector="TabStrip#sizes">
+                        <Setter Property="Grid.Row" Value="0" />
+                        <Setter Property="Grid.RowSpan" Value="2" />
+                        <Setter Property="Grid.Column" Value="3" />
+                        <Setter Property="Grid.ColumnSpan" Value="1" />
+                    </Style>
+                    <Style Selector="TabStrip#variants">
+                        <Setter Property="Grid.Row" Value="0" />
+                        <Setter Property="Grid.RowSpan" Value="2" />
+                        <Setter Property="Grid.Column" Value="4" />
+                        <Setter Property="Grid.ColumnSpan" Value="1" />
+                    </Style>
+
+                    <ContainerQuery Name="host" Query="max-width:640">
+                        <Style Selector="ToggleButton#filters">
+                            <Setter Property="Grid.Row" Value="1" />
+                            <Setter Property="Grid.RowSpan" Value="1" />
+                            <Setter Property="Grid.Column" Value="0" />
+                            <Setter Property="Grid.ColumnSpan" Value="1" />
+                        </Style>
+                        <Style Selector="AutoCompleteBox#search">
+                            <Setter Property="Grid.Row" Value="0" />
+                            <Setter Property="Grid.RowSpan" Value="1" />
+                            <Setter Property="Grid.Column" Value="0" />
+                            <Setter Property="Grid.ColumnSpan" Value="5" />
+                        </Style>
+                        <Style Selector="TabStrip#directions">
+                            <Setter Property="Grid.Row" Value="1" />
+                            <Setter Property="Grid.RowSpan" Value="1" />
+                            <Setter Property="Grid.Column" Value="2" />
+                            <Setter Property="Grid.ColumnSpan" Value="1" />
+                        </Style>
+                        <Style Selector="TabStrip#sizes">
+                            <Setter Property="Grid.Row" Value="1" />
+                            <Setter Property="Grid.RowSpan" Value="1" />
+                            <Setter Property="Grid.Column" Value="3" />
+                            <Setter Property="Grid.ColumnSpan" Value="1" />
+                        </Style>
+                        <Style Selector="TabStrip#variants">
+                            <Setter Property="Grid.Row" Value="1" />
+                            <Setter Property="Grid.RowSpan" Value="1" />
+                            <Setter Property="Grid.Column" Value="4" />
+                            <Setter Property="Grid.ColumnSpan" Value="1" />
+                        </Style>
+                    </ContainerQuery>
+                </Grid.Styles>
+
+                <ToggleButton
+                    x:Name="filters" HorizontalAlignment="Left"
+                    IsChecked="{CompiledBinding IsFilterEnabled}" ToolTip.Tip="Filter">
+                    <c:ShowcaseIcon
+                        FlowDirection="LeftToRight" Icon="Filter"
+                        UsesSymbol="{CompiledBinding UsesSymbol}" />
+                </ToggleButton>
+
                 <AutoCompleteBox
-                    Grid.Column="2"
+                    x:Name="search"
                     Text="{CompiledBinding SearchText, Mode=TwoWay}"
-                    PlaceholderText="Search…" />
+                    PlaceholderText="Search…">
+                    <AutoCompleteBox.InnerRightContent>
+                        <Button
+                            Content="{icx:FluentIcon Icon=Dismiss, IconSize=12, FontSize=12}"
+                            Command="{CompiledBinding $parent[TextBox].Clear}"
+                            IsVisible="{CompiledBinding SearchText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                            Theme="{StaticResource TransparentButton}" />
+                    </AutoCompleteBox.InnerRightContent>
+                </AutoCompleteBox>
+
                 <TabStrip
-                    Grid.Column="4"
-                    SelectionChanged="FlowDirection_SelectionChanged"
-                    Theme="{DynamicResource AlternateTabStripTheme}">
-                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="LTR">
-                        <c:FlexibleIcon
+                    x:Name="directions" Classes="segmented"
+                    SelectionChanged="FlowDirection_SelectionChanged">
+                    <TabStripItem ToolTip.Tip="LTR">
+                        <c:ShowcaseIcon
                             FlowDirection="LeftToRight" Icon="TextDirectionHorizontal"
-                            Symbol="TextDirectionHorizontalRight" UsesSymbol="{CompiledBinding UsesSymbol}" />
+                            UsesSymbol="{CompiledBinding UsesSymbol}" />
                     </TabStripItem>
-                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="RTL">
-                        <c:FlexibleIcon
+                    <TabStripItem ToolTip.Tip="RTL">
+                        <c:ShowcaseIcon
                             FlowDirection="RightToLeft" Icon="TextDirectionHorizontal"
-                            Symbol="TextDirectionHorizontalLeft" UsesSymbol="{CompiledBinding UsesSymbol}" />
+                            UsesSymbol="{CompiledBinding UsesSymbol}" />
                     </TabStripItem>
                 </TabStrip>
+
                 <TabStrip
-                    Grid.Column="6"
-                    SelectionChanged="IconVariant_SelectionChanged"
-                    Theme="{DynamicResource AlternateTabStripTheme}">
-                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="Regular">
-                        <c:FlexibleIcon
-                            Icon="PaintBrush" Symbol="PaintBrush"
+                    x:Name="sizes" Classes="segmented"
+                    SelectionChanged="UsesSymbol_SelectionChanged">
+                    <TabStripItem ToolTip.Tip="SymbolIcon">
+                        <ic:SymbolIcon FlowDirection="{CompiledBinding FlowDirection}" Symbol="BorderNone" />
+                    </TabStripItem>
+                    <TabStripItem Tapped="FluentIcon_Tapped" ToolTip.Tip="FluentIcon">
+                        <ic:FluentIcon FlowDirection="{CompiledBinding FlowDirection}" Icon="BorderNone" />
+                        <FlyoutBase.AttachedFlyout>
+                            <MenuFlyout
+                                ItemsSource="{x:Static i:IconSizeValues.Enumerable}"
+                                Placement="BottomEdgeAlignedRight"
+                                OverlayInputPassThroughElement="{CompiledBinding #commands}">
+                                <MenuFlyout.ItemContainerTheme>
+                                    <ControlTheme TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}"
+                                                    x:DataType="i:IconSize">
+                                        <Setter Property="Header" Value="{CompiledBinding}"/>
+                                        <Setter Property="ToggleType" Value="Radio"/>
+                                        <Setter Property="Command" Value="{CompiledBinding #host.((vm:MainViewModel)DataContext).SetIconSizeCommand}"/>
+                                        <Setter Property="CommandParameter" Value="{CompiledBinding}"/>
+                                        <Setter Property="IsChecked">
+                                            <Setter.Value>
+                                                <MultiBinding Converter="{StaticResource EqualityConverter}" Mode="OneWay">
+                                                    <Binding Path="#host.((vm:MainViewModel)DataContext).IconSize" />
+                                                    <Binding Path="" />
+                                                </MultiBinding>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </ControlTheme>
+                                </MenuFlyout.ItemContainerTheme>
+                            </MenuFlyout>
+                        </FlyoutBase.AttachedFlyout>
+                    </TabStripItem>
+                </TabStrip>
+
+                <TabStrip
+                    x:Name="variants" Classes="segmented"
+                    SelectionChanged="IconVariant_SelectionChanged">
+                    <TabStripItem ToolTip.Tip="Regular">
+                        <c:ShowcaseIcon Icon="PaintBrush" UsesSymbol="{CompiledBinding UsesSymbol}" />
+                    </TabStripItem>
+                    <TabStripItem ToolTip.Tip="Filled">
+                        <c:ShowcaseIcon
+                            Icon="PaintBrush" IconVariant="Filled"
                             UsesSymbol="{CompiledBinding UsesSymbol}" />
                     </TabStripItem>
-                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="Filled">
-                        <c:FlexibleIcon
-                            Icon="PaintBrush" IconVariant="Filled" Symbol="PaintBrush"
+                    <TabStripItem ToolTip.Tip="Color">
+                        <c:ShowcaseIcon
+                            Icon="PaintBrush" IconVariant="Color"
                             UsesSymbol="{CompiledBinding UsesSymbol}" />
                     </TabStripItem>
-                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="Color">
-                        <c:FlexibleIcon
-                            Icon="PaintBrush" IconVariant="Color" Symbol="PaintBrush"
-                            UsesSymbol="{CompiledBinding UsesSymbol}" />
-                    </TabStripItem>
-                    <TabStripItem Theme="{DynamicResource CompactTabStripItemTheme}" ToolTip.Tip="Light">
-                        <c:FlexibleIcon
-                            Icon="PaintBrush" IconVariant="Light" Symbol="PaintBrush"
+                    <TabStripItem ToolTip.Tip="Light">
+                        <c:ShowcaseIcon
+                            FontSize="20" Icon="PaintBrush" IconVariant="Light"
                             UsesSymbol="{CompiledBinding UsesSymbol}" />
                     </TabStripItem>
                 </TabStrip>
             </Grid>
         </Border>
 
-        <ScrollViewer
-            x:Name="Primary"
-            Grid.Row="1" Grid.RowSpan="3">
-            <ItemsRepeater ItemsSource="{CompiledBinding Icons}">
+        <ScrollViewer x:Name="items">
+            <ItemsRepeater ItemsSource="{CompiledBinding IconsView}">
                 <ItemsRepeater.Layout>
-                    <UniformGridLayout MinItemHeight="36" MinItemWidth="36" />
+                    <UniformGridLayout>
+                        <UniformGridLayout.MinItemHeight>
+                            <MultiBinding Converter="{x:Static local:MainView.IconContainerSizeConverter}">
+                                <Binding Path="UsesSymbol" />
+                                <Binding Path="IconSize" />
+                                <Binding Path="IconVariant" />
+                            </MultiBinding>
+                        </UniformGridLayout.MinItemHeight>
+                        <UniformGridLayout.MinItemWidth>
+                            <MultiBinding Converter="{x:Static local:MainView.IconContainerSizeConverter}">
+                                <Binding Path="UsesSymbol" />
+                                <Binding Path="IconSize" />
+                                <Binding Path="IconVariant" />
+                            </MultiBinding>
+                        </UniformGridLayout.MinItemWidth>
+                    </UniformGridLayout>
                 </ItemsRepeater.Layout>
                 <ItemsRepeater.ItemTemplate>
                     <DataTemplate DataType="m:IconInfo">
                         <ToggleButton
                             Padding="8"
-                            Command="{CompiledBinding ((vm:MainViewModel)DataContext).SelectIconCommand,
-                                                      RelativeSource={RelativeSource FindAncestor,
-                                                                                     AncestorType=local:MainView}}"
+                            Command="{CompiledBinding #host.((vm:MainViewModel)DataContext).SetIconCommand}"
                             CommandParameter="{CompiledBinding}"
-                            IsChecked="{CompiledBinding IsSelected}"
                             Theme="{DynamicResource TransparentToggleButton}"
                             ToolTip.Tip="{CompiledBinding Name}">
-                            <c:FlexibleIcon
-                                FlowDirection="{CompiledBinding ((vm:MainViewModel)DataContext).FlowDirection,
-                                                             RelativeSource={RelativeSource FindAncestor,
-                                                                                            AncestorType=local:MainView}}"
+                            <ToggleButton.IsChecked>
+                                <MultiBinding Converter="{StaticResource EqualityConverter}" Mode="OneWay">
+                                    <Binding Path="#host.((vm:MainViewModel)DataContext).Selected" />
+                                    <Binding Path="" />
+                                </MultiBinding>
+                            </ToggleButton.IsChecked>
+                            <c:ShowcaseIcon
+                                FlowDirection="{CompiledBinding #host.((vm:MainViewModel)DataContext).FlowDirection}"
                                 Icon="{CompiledBinding Value}"
-                                IconVariant="{CompiledBinding ((vm:MainViewModel)DataContext).IconVariant,
-                                                              RelativeSource={RelativeSource FindAncestor,
-                                                                                             AncestorType=local:MainView}}"
-                                Symbol="{CompiledBinding SymbolValue}"
-                                UsesSymbol="{CompiledBinding ((vm:MainViewModel)DataContext).UsesSymbol,
-                                                             RelativeSource={RelativeSource FindAncestor,
-                                                                                            AncestorType=local:MainView}}" />
+                                IconSize="{CompiledBinding #host.((vm:MainViewModel)DataContext).IconSize}"
+                                IconVariant="{CompiledBinding #host.((vm:MainViewModel)DataContext).IconVariant}"
+                                UsesSymbol="{CompiledBinding #host.((vm:MainViewModel)DataContext).UsesSymbol}" />
                         </ToggleButton>
                     </DataTemplate>
                 </ItemsRepeater.ItemTemplate>
             </ItemsRepeater>
         </ScrollViewer>
 
-        <GridSplitter
-            x:Name="Splitter"
-            Grid.Row="1" Grid.RowSpan="3" Grid.Column="1"
-            ResizeDirection="Columns" />
+        <GridSplitter x:Name="splitter" />
 
-        <ScrollViewer
-            x:Name="Info"
-            Grid.Row="1" Grid.RowSpan="3" Grid.Column="2">
+        <ScrollViewer x:Name="info">
 
             <Grid RowDefinitions="*,12,Auto" Margin="16">
 
@@ -170,12 +334,12 @@
                     HorizontalAlignment="Right" VerticalAlignment="Top"
                     Background="{DynamicResource SolidBackgroundFillColorTertiary}"
                     CornerRadius="6">
-                    <c:FlexibleIcon
+                    <c:ShowcaseIcon
                         FlowDirection="{CompiledBinding FlowDirection}"
                         FontSize="96"
                         Icon="{CompiledBinding Selected.Value}"
+                        IconSize="{CompiledBinding IconSize}"
                         IconVariant="{CompiledBinding IconVariant}"
-                        Symbol="{CompiledBinding Selected.SymbolValue}"
                         UsesSymbol="{CompiledBinding UsesSymbol}" />
                 </Border>
 
@@ -191,28 +355,24 @@
                         <StackPanel
                             Grid.Column="2"
                             Orientation="Horizontal" Spacing="4">
-                            <c:FlexibleIcon
+                            <c:ShowcaseIcon
                                 FlowDirection="{CompiledBinding FlowDirection}"
                                 Icon="{CompiledBinding Selected.Value}"
-                                Symbol="{CompiledBinding Selected.SymbolValue}"
                                 UsesSymbol="{CompiledBinding UsesSymbol}" />
-                            <c:FlexibleIcon
+                            <c:ShowcaseIcon
                                 FlowDirection="{CompiledBinding FlowDirection}"
                                 Icon="{CompiledBinding Selected.Value}"
                                 IconVariant="Filled"
-                                Symbol="{CompiledBinding Selected.SymbolValue}"
                                 UsesSymbol="{CompiledBinding UsesSymbol}" />
-                            <c:FlexibleIcon
+                            <c:ShowcaseIcon
                                 FlowDirection="{CompiledBinding FlowDirection}"
                                 Icon="{CompiledBinding Selected.Value}"
                                 IconVariant="Color"
-                                Symbol="{CompiledBinding Selected.SymbolValue}"
                                 UsesSymbol="{CompiledBinding UsesSymbol}" />
-                            <c:FlexibleIcon
+                            <c:ShowcaseIcon
                                 FlowDirection="{CompiledBinding FlowDirection}"
                                 Icon="{CompiledBinding Selected.Value}"
                                 IconVariant="Light"
-                                Symbol="{CompiledBinding Selected.SymbolValue}"
                                 UsesSymbol="{CompiledBinding UsesSymbol}" />
                         </StackPanel>
                     </StackPanel>

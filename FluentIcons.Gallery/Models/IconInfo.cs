@@ -1,15 +1,8 @@
 namespace FluentIcons.Gallery.Models;
 
-public sealed partial class IconInfo : ObservableObject, IComparable<IconInfo>
+public record class IconInfo(Icon Value)
 {
-    public required string Name { get; init; }
-    public required Icon Value { get; init; }
+    public string Name { get; init; } = Value.ToString();
 
-    [ObservableProperty]
-    public partial bool IsSelected { get; set; }
-
-    public Symbol SymbolValue => (Symbol)(int)Value;
-    public bool HasSymbol => Enum.IsDefined(SymbolValue);
-
-    public int CompareTo(IconInfo? other) => Value.CompareTo(other?.Value ?? (Icon)int.MaxValue);
+    public bool IsSymbolAvailable => Enum.IsDefined((Symbol)(int)Value);
 }

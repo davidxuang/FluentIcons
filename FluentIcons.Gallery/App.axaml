@@ -3,9 +3,38 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:sty="using:FluentAvalonia.Styling"
+    xmlns:conv="using:FluentIcons.Gallery.Converters"
     RequestedThemeVariant="Default">
 
+    <Application.Styles>
+        <sty:FluentAvaloniaTheme />
+    </Application.Styles>
+
     <Application.Resources>
+        <conv:CoalesceConverter x:Key="CoalesceConverter" />
+        <conv:EqualityConverter x:Key="EqualityConverter" />
+        
+        <ControlTheme
+            x:Key="TransparentToggleButton"
+            BasedOn="{StaticResource TransparentToggleButton}"
+            TargetType="ToggleButton">
+
+            <Style Selector="^:checked">
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonBackgroundChecked}" />
+                    <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForegroundChecked}" />
+                </Style>
+                <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonBackgroundCheckedPointerOver}" />
+                    <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForegroundCheckedPointerOver}" />
+                </Style>
+                <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="Background" Value="{DynamicResource ToggleButtonBackgroundCheckedPressed}" />
+                    <Setter Property="Foreground" Value="{DynamicResource ToggleButtonForegroundCheckedPressed}" />
+                </Style>
+            </Style>
+        </ControlTheme>
+
         <x:Double x:Key="CaptionTextBlockLineHeight">16</x:Double>
         <x:Double x:Key="BodyTextBlockLineHeight">20</x:Double>
         <x:Double x:Key="SubtitleTextBlockLineHeight">26</x:Double>
@@ -77,9 +106,5 @@
             <Setter Property="ClipToBounds" Value="False" />
         </ControlTheme>
     </Application.Resources>
-
-    <Application.Styles>
-        <sty:FluentAvaloniaTheme />
-    </Application.Styles>
 
 </Application>

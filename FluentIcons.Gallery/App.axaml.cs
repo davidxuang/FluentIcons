@@ -1,10 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core.Plugins;
 using Avalonia.Input.Platform;
 using Avalonia.Markup.Xaml;
-using Avalonia.VisualTree;
 using FluentIcons.Gallery.ViewModels;
 using FluentIcons.Gallery.Views;
 

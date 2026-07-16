@@ -1,0 +1,55 @@
+<UserControl
+    x:Class="FluentIcons.Gallery.Controls.ShowcaseIcon"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:FluentIcons.Gallery.Controls"
+    xmlns:i="using:FluentIcons.Common"
+    xmlns:ic="using:FluentIcons.Avalonia.Fluent"
+    HorizontalAlignment="Center" VerticalAlignment="Center"
+    d:DesignHeight="450" d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.Styles>
+        <Style Selector="local|ShowcaseIcon">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid>
+                        <ic:FluentIcon
+                            IsVisible="{TemplateBinding UsesSymbol, Converter={x:Static BoolConverters.Not}}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Icon="{TemplateBinding Icon}"
+                            IconSize="{TemplateBinding IconSize}"
+                            IconVariant="{TemplateBinding IconVariant}">
+                            <ic:FluentIcon.FontSize>
+                                <MultiBinding Converter="{StaticResource CoalesceConverter}">
+                                    <TemplateBinding Property="FontSize" />
+                                    <MultiBinding Converter="{x:Static local:ShowcaseIcon.FluentIconSizeConverter}">
+                                        <TemplateBinding Property="IconSize" />
+                                        <TemplateBinding Property="IconVariant" />
+                                    </MultiBinding>
+                                </MultiBinding>
+                            </ic:FluentIcon.FontSize>
+                        </ic:FluentIcon>
+                        <ic:SymbolIcon
+                            IsVisible="{TemplateBinding UsesSymbol}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            IconVariant="{TemplateBinding IconVariant}"
+                            Symbol="{TemplateBinding Icon, Converter={x:Static local:ShowcaseIcon.IconToSymbolConverter}}">
+                            <ic:SymbolIcon.FontSize>
+                                <MultiBinding Converter="{StaticResource CoalesceConverter}">
+                                    <TemplateBinding Property="FontSize" />
+                                    <MultiBinding Converter="{x:Static local:ShowcaseIcon.FluentIconSizeConverter}">
+                                        <Binding Source="{x:Static i:IconSize.Resizable}" />
+                                        <TemplateBinding Property="IconVariant" />
+                                    </MultiBinding>
+                                </MultiBinding>
+                            </ic:SymbolIcon.FontSize>
+                        </ic:SymbolIcon>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+</UserControl>
