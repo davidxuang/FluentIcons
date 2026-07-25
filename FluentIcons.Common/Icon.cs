@@ -3006,4 +3006,6 @@ public enum Icon : int
     ClipboardMarkdown = 2911,
     DatabaseSettings = 2912,
     DoorAdd = 2913,
+    ColorOff = 2914,
+    LinkOff = 2915,
 }
