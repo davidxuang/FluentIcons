@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using FluentIcons.Common.Internals;
 
-namespace FluentIcons.Common;
+namespace FluentIcons.Common.Extensions;
 
 public static partial class IconExtensions
 {

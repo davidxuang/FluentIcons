@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Common": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\FluentIcons.Common\\FluentIcons.Common.csproj"
+    },
+    "Common.Extensions": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\FluentIcons.Common.Extensions\\FluentIcons.Common.Extensions.csproj"
+    }
+  }
+}

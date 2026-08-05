@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace FluentIcons.Common.Internals;
+namespace FluentIcons.Common.Extensions.Collections;
 
 internal readonly struct BitSetView(byte[] bytes)
 {
@@ -29,9 +29,14 @@ internal readonly struct BitSetView(byte[] bytes)
             _bytes[index / 8] &= (byte)~(1 << (index % 8));
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Clear() => _bytes.AsSpan().Clear(); 
+
     public bool this[int index]
     {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         get => Get(index);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         set => Set(index, value);
     }
 }

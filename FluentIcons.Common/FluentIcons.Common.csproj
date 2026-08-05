@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="FluentIcons.Common.Extensions" />
     <InternalsVisibleTo Include="FluentIcons.Avalonia" />
     <InternalsVisibleTo Include="FluentIcons.Avalonia.Fluent" />
     <InternalsVisibleTo Include="FluentIcons.Maui" />
@@ -17,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FluentIcons.Common.SourceGeneration\FluentIcons.Common.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    <AdditionalFiles Include="..\seagull-icons\assets\*.otf" Link="Assets\%(Filename)%(Extension)" />
   </ItemGroup>
 
 </Project>

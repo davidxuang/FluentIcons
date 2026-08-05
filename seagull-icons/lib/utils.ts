@@ -3,8 +3,7 @@ import fs from 'fs';
 import paper from 'paper';
 import { Renderable } from './types.js';
 
-const _resolve_warns = new Set<string>();
-export function resolveAsset(dname: string, fname: string) {
+export function resolveAssetDir(dname: string) {
   let direction = null;
   let m = dname.match(/ Temp (RTL|LTR)$/);
   if (m) {
@@ -25,6 +24,18 @@ export function resolveAsset(dname: string, fname: string) {
     .replace(/\b[a-z]/g, (m) => m.toUpperCase()) // `iOS` -> `IOS`
     .replace(/(?<=[A-Z])[A-Z]+\b/g, (m) => m.toLowerCase()); // `IOS` -> `Ios`
 
+  return {
+    name,
+    name_enum: name.replace(/\s/g, ''), // name for C# enum
+    name_snake: snake,
+    direction,
+  };
+}
+
+const _resolve_warns = new Set<string>();
+export function resolveAsset(dname: string, fname: string) {
+  let { name, name_enum, name_snake, direction } = resolveAssetDir(dname);
+
   // remove 'ic_fluent_' prefix
   fname = fname.replace(/^ic_(?:fluent_)?/, '');
   // identify Bidi suffixes
@@ -39,8 +50,8 @@ export function resolveAsset(dname: string, fname: string) {
 
   const matches = fname.match(/^(.+)_(\d+)_(regular|filled|color|light)(\.svg)?$/);
   if (matches) {
-    if (matches[1] !== snake) {
-      const warning = `[WARN] ${matches[1]}${direction ? `@${direction}` : ''} => ${snake}`;
+    if (matches[1] !== name_snake) {
+      const warning = `[WARN] ${matches[1]}${direction ? `@${direction}` : ''} => ${name_snake}`;
       if (!_resolve_warns.has(warning)) {
         console.warn(warning);
         _resolve_warns.add(warning);
@@ -48,7 +59,7 @@ export function resolveAsset(dname: string, fname: string) {
     }
     return {
       name_glyph: name.replace(/_*\s+_*/g, '_').toLowerCase(),
-      name_enum: name.replace(/\s/g, ''), // name for C# enum
+      name_enum: name_enum,
       direction: direction,
       size: parseInt(matches[2]),
       variant: matches[3],
@@ -264,40 +275,3 @@ export function divideTransform(
 
   return [first, second];
 }
-
-const langauges = {
-  ar: { arab: ['dflt', 'ARA '] },
-  bg: { cyrl: 'BGR ' },
-  ca: { latn: 'CAT ' },
-  da: { latn: 'DAN ' },
-  de: { latn: 'DEU ' },
-  el: { grek: ['dflt', 'ELL ', 'PGR '] }, // `gr`
-  en: { latn: 'ENG ' },
-  es: { latn: 'ESP ' },
-  et: { latn: 'ETI ' },
-  eu: { latn: 'EUQ ' },
-  fi: { latn: 'FIN ' },
-  fr: { latn: 'FRA ' },
-  gl: { latn: 'GAL ' },
-  he: { hebr: ['dflt', 'IWR '] },
-  hu: { latn: 'HUN ' },
-  it: { latn: 'ITA ' },
-  ja: { hani: 'JAN ', kana: ['dflt', 'JAN '] },
-  kk: { cyrl: 'KAZ ' },
-  ko: { hang: ['dflt', 'KOR '] },
-  lt: { latn: 'LTH ' },
-  lv: { latn: 'LVI ' },
-  ms: { latn: 'MLY ' },
-  no: { latn: ['NOR ', 'NYN '] },
-  pt: { latn: 'PTG ' },
-  ru: { cyrl: 'RUS ' },
-  se: { latn: 'NSM ' },
-  sl: { latn: 'SLV ' },
-  sr: { cyrl: ['SRB ', 'BOS '], latn: ['SRB ', 'BOS ', 'HRV '] },
-  'sr-cyrl': { cyrl: ['SRB ', 'BOS '] },
-  'sr-latn': { latn: ['SRB ', 'BOS ', 'HRV '] },
-  sv: { latn: 'SVE ' },
-  tr: { latn: 'TRK ' },
-  uk: { cyrl: 'UKR ' },
-  zh: { hani: ['dflt', 'ZHH ', 'ZHS ', 'ZHT ', 'ZHTM'], bopo: ['dflt', 'ZHP '] },
-};

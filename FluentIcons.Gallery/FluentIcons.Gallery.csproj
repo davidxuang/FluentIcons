@@ -45,6 +45,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FluentIcons.Avalonia.Fluent\FluentIcons.Avalonia.Fluent.csproj" />
+    <ProjectReference Include="..\FluentIcons.Common.Extensions\FluentIcons.Common.Extensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

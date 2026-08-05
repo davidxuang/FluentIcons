@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>obj/$(Configuration)/$(TargetFramework)/Generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Memory" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="FluentIcons.Gallery" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluentIcons.Common.SourceGeneration\FluentIcons.Common.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <AdditionalFiles Include="..\seagull-icons\assets\*.otf" Link="Assets\%(Filename)%(Extension)" />
+    <AdditionalFiles Include="..\seagull-icons\assets\metaphors.json" Link="Assets\%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <Target Name="AddSourceGeneratorDependencies"
+          AfterTargets="ResolveProjectReferences"
+          BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <_SourceGeneratorDependency Include="$(MSBuildProjectDirectory)\..\FluentIcons.Common.SourceGeneration\bin\$(Configuration)\netstandard2.0\*.dll"
+                                  Exclude="**\FluentIcons.Common.SourceGeneration.dll;**\Microsoft.CodeAnalysis*.dll" />
+      <Analyzer Include="@(_SourceGeneratorDependency)" />
+    </ItemGroup>
+  </Target>
+
+</Project>

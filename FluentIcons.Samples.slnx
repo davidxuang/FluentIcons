@@ -6,8 +6,9 @@
   <Folder Name="/Libraries/">
     <Project Path="FluentIcons.Avalonia.Fluent/FluentIcons.Avalonia.Fluent.csproj" />
     <Project Path="FluentIcons.Avalonia/FluentIcons.Avalonia.csproj" />
-    <Project Path="FluentIcons.Common.SourceGeneration/FluentIcons.Common.SourceGeneration.csproj" />
     <Project Path="FluentIcons.Common/FluentIcons.Common.csproj" />
+    <Project Path="FluentIcons.Common.Extensions/FluentIcons.Common.Extensions.csproj" />
+    <Project Path="FluentIcons.Common.SourceGeneration/FluentIcons.Common.SourceGeneration.csproj" />
     <Project Path="FluentIcons.Maui/FluentIcons.Maui.csproj" />
     <Project Path="FluentIcons.Uwp/FluentIcons.Uwp.csproj" />
     <Project Path="FluentIcons.WinUI/FluentIcons.WinUI.csproj" />

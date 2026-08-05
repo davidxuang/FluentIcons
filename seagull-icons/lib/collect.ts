@@ -2,12 +2,13 @@ import assert from 'assert';
 import fs from 'fs';
 import path from 'path';
 import { Argv } from 'yargs';
-import { ensure, resolveAsset } from './utils.js';
+import { ensure, resolveAsset, resolveAssetDir } from './utils.js';
 
 const names = new Set<string>();
 const resizable_names = new Set<string>();
 const glyph_names = new Map<string, string>();
 const mirror_glyphs = new Set<string>();
+const metaphors = new Map<string, string[]>();
 
 type MetaData = {
   name: string;
@@ -40,9 +41,26 @@ function collect(
         src_set = dname;
         const meta_name = path.join(src_item, 'metadata.json');
         if (fs.existsSync(meta_name)) {
-          mirror =
-            (JSON.parse(fs.readFileSync(meta_name).toString()) as MetaData).directionType ===
-            'mirror';
+          const metadata = JSON.parse(fs.readFileSync(meta_name).toString()) as MetaData;
+          mirror = metadata.directionType === 'mirror';
+          if (metadata.metaphor) {
+            const metaphor: string[] = [];
+            let defer = false;
+            for (let str of metadata.metaphor) {
+              if (defer) break;
+              str = str?.trim();
+              if (str == null || str.length == 0) continue;
+              let m = str.match(/^([^\s]+)\.(?:\n|$)/);
+              if (m) {
+                metaphor.push(m[1]);
+                defer = true;
+              }
+              m = str.match(/[^\s]\.(?:\s+[^\s]|$)/);
+              if (m) break;
+              metaphor.push(str);
+            }
+            if (metaphor.length > 0) metaphors.set(resolveAssetDir(dname).name_enum, metaphor);
+          }
         }
       } else if (dname === 'PDF') {
         return;
@@ -115,6 +133,7 @@ export default function fun(
   const CSV = path.join(argv.root, '../collect.csv');
   const ICONS_JSON = path.join(argv.root, 'icons.json');
   const MIRROR_JSON = path.join(argv.root, 'mirror.json');
+  const METAPHOR_JSON = path.join(argv.root, 'metaphors.json');
   const ICON_CS = path.join(argv.root, 'Icon.cs');
 
   if (fs.existsSync(MONO_DIR)) {
@@ -264,5 +283,6 @@ public enum Icon : int
   fs.writeFileSync(CSV, enum_list.join('\n'));
   fs.writeFileSync(ICONS_JSON, JSON.stringify(icons));
   fs.writeFileSync(MIRROR_JSON, JSON.stringify([...mirror_glyphs].sort()));
+  fs.writeFileSync(METAPHOR_JSON, JSON.stringify(Object.fromEntries(metaphors.entries()), null, 2));
   fs.writeFileSync(ICON_CS, icon_cs_lines.join('\n'));
 }

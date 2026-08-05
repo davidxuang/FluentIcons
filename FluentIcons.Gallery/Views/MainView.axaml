@@ -371,6 +371,7 @@
                                 UsesSymbol="{CompiledBinding UsesSymbol}" />
                             <c:ShowcaseIcon
                                 FlowDirection="{CompiledBinding FlowDirection}"
+                                FontSize="20"
                                 Icon="{CompiledBinding Selected.Value}"
                                 IconVariant="Light"
                                 UsesSymbol="{CompiledBinding UsesSymbol}" />

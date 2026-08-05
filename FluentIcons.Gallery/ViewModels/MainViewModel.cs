@@ -2,6 +2,7 @@
 using Avalonia.Input.Platform;
 using Avalonia.Media;
 using CommunityToolkit.Mvvm.Input;
+using FluentIcons.Common.Extensions;
 using FluentIcons.Gallery.Models;
 
 namespace FluentIcons.Gallery.ViewModels;
@@ -12,14 +13,15 @@ public sealed partial class MainViewModel : ViewModelBase
         .Select(icon => new IconInfo(icon))
         .OrderBy(x => x.Name, StringComparer.Ordinal)
         .ToImmutableArray();
+
     [ObservableProperty]
-    public partial DataGridCollectionView IconsView { get; set; } = new DataGridCollectionView(Icons);
+    public partial DataGridCollectionView IconsView { get; private set; } = new DataGridCollectionView(Icons);
 
     public MainViewModel()
     {
         IconsView.Filter = (item) => item is IconInfo info
             && (!IsFilterEnabled || info.Value.IsAvailable(UsesSymbol ? IconSize.Resizable : IconSize, IconVariant))
-            && (string.IsNullOrEmpty(SearchText) || _searchTerms.All(term => info.Name.Contains(term, StringComparison.OrdinalIgnoreCase)))
+            && (string.IsNullOrEmpty(SearchText) || _searchTerms.All(term => term.Icons.Contains(info.Value) || info.Name.Contains(term.Value, StringComparison.OrdinalIgnoreCase)))
             && (!UsesSymbol || info.IsSymbolAvailable);
     }
 
@@ -36,12 +38,16 @@ public sealed partial class MainViewModel : ViewModelBase
     public partial bool IsFilterEnabled { get; set; } = true;
     partial void OnIsFilterEnabledChanged(bool value) => RefreshIconsView();
 
-    private IEnumerable<string> _searchTerms = Array.Empty<string>();
+    private IEnumerable<(string Value, HashSet<Icon> Icons)> _searchTerms = [];
     [ObservableProperty]
     public partial string SearchText { get; set; } = string.Empty;
     partial void OnSearchTextChanged(string value)
     {
-        _searchTerms = value.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        _searchTerms = value.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .Select(term => (term, IconMetadata.Metaphors
+                .Where(m => m.Contains(term, StringComparison.OrdinalIgnoreCase))
+                .SelectMany(IconMetadata.GetIconsByMetaphor)
+                .ToHashSet()));
         IconsView.Refresh();
     }
 

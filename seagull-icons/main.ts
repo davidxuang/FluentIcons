@@ -148,6 +148,7 @@ const _ = yargs()
               `./assets/FluentSystemIcons-Size${dir.name}.${format}`,
             );
           });
+          fs.copyFileSync('./obj/metaphors.json', './assets/metaphors.json');
         });
     },
   )
