@@ -152,15 +152,18 @@ public abstract class GenericIcon
             }
 
             Rect bounds = Bounds;
-            using (context.PushClip(new Rect(bounds.Size)))
+            IDisposable? flip = null;
+            try
             {
-                IDisposable? flip = null;
                 if (FlowDirection == FlowDirection.RightToLeft)
                     flip = context.PushTransform(new Matrix(-1, 0, 0, 1, bounds.Width, 0));
                 var origin = new Point(
                     (bounds.Width - _size) / 2,
                     (bounds.Height - _size) / 2);
                 _textLayout.Draw(context, origin);
+            }
+            finally
+            {
                 flip?.Dispose();
             }
         }

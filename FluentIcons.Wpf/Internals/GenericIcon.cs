@@ -156,8 +156,6 @@ public abstract class GenericIcon : FrameworkElement
             }
 
             var canvas = new Rect(0, 0, ActualWidth, ActualHeight);
-            context.PushClip(new RectangleGeometry(canvas));
-
             var flip = FlowDirection == FlowDirection.RightToLeft;
             if (flip) context.PushTransform(new MatrixTransform(-1, 0, 0, 1, canvas.Width, 0));
             var origin = new Point(
@@ -165,8 +163,6 @@ public abstract class GenericIcon : FrameworkElement
                 (canvas.Height - _formattedText.Height) / 2);
             context.DrawText(_formattedText, origin);
             if (flip) context.Pop();
-
-            context.Pop();
         }
     }
 }
