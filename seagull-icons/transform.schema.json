@@ -1,0 +1,229 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "https://github.com/davidxuang/FluentIcons/blob/main/seagull-icons/transform.schema.json",
+  "title": "Icon transform configuration",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "redirect": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/stringOrCategoryMap"
+      }
+    },
+    "base": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/baseEntry"
+      }
+    },
+    "template": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/badgeTemplate"
+      }
+    },
+    "compose": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/badgeCompose"
+      }
+    }
+  },
+  "required": [
+    "redirect",
+    "base",
+    "template",
+    "compose"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "translate": {
+      "type": "array",
+      "items": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "additionalItems": false,
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "stringMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "stringOrCategoryMap": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/definitions/stringMap"
+        }
+      ]
+    },
+    "baseMeta": {
+      "type": "object",
+      "properties": {
+        "0": {
+          "type": "string",
+          "description": "Badge placement category."
+        },
+        "u": {
+          "$ref": "#/definitions/translate",
+          "description": "Base translation for 16 px icons."
+        },
+        "v": {
+          "$ref": "#/definitions/translate",
+          "description": "Badge translation for 16 px icons."
+        },
+        "ul": {
+          "$ref": "#/definitions/translate",
+          "description": "Base translation for 28 px light icons."
+        },
+        "vl": {
+          "$ref": "#/definitions/translate",
+          "description": "Badge translation for 28 px light icons."
+        },
+        "vflip": {
+          "type": "boolean",
+          "description": "Mirror the badge placement category for RTL output."
+        }
+      },
+      "required": [
+        "0"
+      ],
+      "additionalProperties": false
+    },
+    "baseEntry": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/definitions/baseMeta"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "badgeMeta": {
+      "type": "object",
+      "properties": {
+        "window": {
+          "$ref": "#/definitions/translate"
+        },
+        "mask": {
+          "$ref": "#/definitions/stringOrCategoryMap"
+        },
+        "badge": {
+          "$ref": "#/definitions/stringOrCategoryMap"
+        }
+      },
+      "additionalProperties": false
+    },
+    "badgeTemplate": {
+      "type": "object",
+      "properties": {
+        "window": {
+          "$ref": "#/definitions/translate"
+        },
+        "mask": {
+          "$ref": "#/definitions/stringOrCategoryMap"
+        },
+        "badge": {
+          "$ref": "#/definitions/stringOrCategoryMap"
+        },
+        "regular": {
+          "$ref": "#/definitions/badgeMeta"
+        },
+        "filled": {
+          "$ref": "#/definitions/badgeMeta"
+        },
+        "light": {
+          "$ref": "#/definitions/badgeMeta"
+        }
+      },
+      "additionalProperties": false
+    },
+    "iconList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "badgeComposeVariant": {
+      "type": "object",
+      "properties": {
+        "window": {
+          "$ref": "#/definitions/translate"
+        },
+        "mask": {
+          "$ref": "#/definitions/stringOrCategoryMap"
+        },
+        "badge": {
+          "$ref": "#/definitions/stringOrCategoryMap"
+        },
+        "icons": {
+          "$ref": "#/definitions/iconList"
+        },
+        "icons_rtl": {
+          "$ref": "#/definitions/iconList"
+        }
+      },
+      "additionalProperties": false
+    },
+    "badgeCompose": {
+      "type": "object",
+      "properties": {
+        "window": {
+          "$ref": "#/definitions/translate"
+        },
+        "mask": {
+          "$ref": "#/definitions/stringOrCategoryMap"
+        },
+        "badge": {
+          "$ref": "#/definitions/stringOrCategoryMap"
+        },
+        "icons": {
+          "$ref": "#/definitions/iconList"
+        },
+        "icons_rtl": {
+          "$ref": "#/definitions/iconList"
+        },
+        "inherits": {
+          "type": "string"
+        },
+        "subst_rtl": {
+          "type": "string"
+        },
+        "regular": {
+          "$ref": "#/definitions/badgeComposeVariant"
+        },
+        "filled": {
+          "$ref": "#/definitions/badgeComposeVariant"
+        },
+        "light": {
+          "$ref": "#/definitions/badgeComposeVariant"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

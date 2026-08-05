@@ -1,3 +1,5 @@
+"$schema" = "./transform.schema.json"
+
 [redirect]
 arrow_repeat = "arrow_repeat_all"
 battery = "battery_0"
@@ -287,7 +289,8 @@ table_column_top_bottom = { _ = "2", search = "3" }
 table_offset = { _ = { 0 = "2", u = [-1, -1] } }
 tag = { _ = "2", "[accent]" = "2m" }
 target = { _ = "2", sparkle = "1" }
-tasks_app = { _ = ["2"] }
+tasks_app = { _ = "2" }
+text = { _ = { 0 = "2", ul = [-2, 0] } }                                                                                                             # light
 task_list = { _ = { 0 = "2", u = [0, -1] } }
 task_list_square = { _ = "2", sparkle = "1" }
 text_a12 = "2"
@@ -316,7 +319,7 @@ text_superscript = { "" = { 0 = "", u = [0, 0.25] } }                           
 text_t = { _ = { 0 = "2", u = [-1, 0] } }
 text_wrap = ""
 textbox = "2"
-textbox_align_top_arrow_clockwise = { _ = { 0 = "_", u = [0, -1] } }                                                                                         # TEMP
+textbox_align_top_arrow_clockwise = { _ = { 0 = "_", u = [0, -1] } }                                                                                 # TEMP
 timer = "2"
 trophy = "2"
 tv = { _ = "2", arrow_right = "1" }
@@ -510,10 +513,12 @@ icons = [
   badge = "M7.5,15c-4.1421,0 -7.5,-3.3579 -7.5,-7.5c0,-4.1421 3.3579,-7.5 7.5,-7.5c4.1421,0 7.5,3.3579 7.5,7.5c0,4.1421 -3.3579,7.5 -7.5,7.5zM8.5,2.75c0,-0.4142 -0.3358,-0.75 -0.75,-0.75c-0.4142,0 -0.75,0.3358 -0.75,0.75v3.75h-3.75c-0.4142,0 -0.75,0.3358 -0.75,0.75c0,0.4142 0.3358,0.75 0.75,0.75h3.75v3.75c0,0.4142 0.3358,0.75 0.75,0.75c0.4142,0 0.75,-0.3358 0.75,-0.75v-3.75h3.75c0.4142,0 0.75,-0.3358 0.75,-0.75c0,-0.4142 -0.3358,-0.75 -0.75,-0.75h-3.75z"
   icons = [
     "comment",
+    "form#/form_new",
     "image_add:image", # image-light
     "people",
     "person",
     "tab_add:tab",     # tab-light
+    "text",
   ]
 
 [compose."alert#"]

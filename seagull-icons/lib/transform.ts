@@ -76,9 +76,6 @@ export default function fun(
 
   // read configurations
   const data = parse(fs.readFileSync(CONFIG).toString()) as {
-    translate: {
-      [icon: string]: Translate;
-    };
     redirect: { [icon: string]: string | { [cat: string]: string } };
     base: {
       [icon: string]: string | { [badge: string]: string | BaseMeta };
