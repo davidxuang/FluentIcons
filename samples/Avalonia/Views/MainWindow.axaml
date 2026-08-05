@@ -2,8 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:FluentIcons.Samples.Avalonia.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:ic="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-        xmlns:icx="clr-namespace:FluentIcons.Avalonia.Markup;assembly=FluentIcons.Avalonia"
+        xmlns:i="using:FluentIcons.Common"
+        xmlns:ic="using:FluentIcons.Avalonia"
+        xmlns:icx="using:FluentIcons.Avalonia.Markup"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="FluentIcons.Samples.Avalonia.Views.MainWindow"
@@ -157,15 +158,15 @@
 
             <StackPanel Classes="sectionStack">
                 <TextBlock Classes="subtitle" Text="Icon catalog" />
-                <ItemsControl Margin="-1,3,-1,-1" ItemsSource="{Binding Symbols}">
+                <ItemsControl Margin="-1,3,-1,-1" ItemsSource="{CompiledBinding Symbols}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <ic:SymbolIcon Margin="1" Symbol="{Binding}" />
+                        <DataTemplate x:DataType="i:Symbol">
+                            <ic:SymbolIcon Margin="1" Symbol="{CompiledBinding}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

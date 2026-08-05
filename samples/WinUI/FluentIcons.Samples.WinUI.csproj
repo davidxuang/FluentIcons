@@ -1,4 +1,4 @@
-<Project Sdk="Uno.Sdk/6.4.31">
+<Project Sdk="Uno.Sdk/6.6.42">
   <PropertyGroup>
     <IsPackable>false</IsPackable>
     <TargetFrameworks>net10.0-desktop;net10.0-windows10.0.26100</TargetFrameworks>
@@ -55,6 +55,7 @@
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
           <Link>FluentIcons.WinUI\Assets\%(Filename)%(Extension)</Link>
         </Content>
+        <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260209005" />
         <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.4.0" />
       </ItemGroup>
     </When>
