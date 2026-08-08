@@ -3008,4 +3008,7 @@ public enum Icon : int
     DoorAdd = 2913,
     ColorOff = 2914,
     LinkOff = 2915,
+    CalendarAgendaClock = 2916,
+    FolderDismiss = 2917,
+    OrientationPortrait = 2918,
 }
