@@ -58,6 +58,7 @@ building_government = { _ = "2", search = "3" }
 building_retail = "2"
 calculator = "2"
 calendar = { _ = "2", sparkle = "1", search = "3" }
+calendar_agenda = "2"
 calendar_checkmark = { _ = "2", sparkle = "1", search = "3" }
 call = { _ = { 0 = "1", u = [-1.75, 0] } }
 calligraphy_pen = "1"
@@ -519,6 +520,7 @@ icons = [
     "person",
     "tab_add:tab",     # tab-light
     "text",
+    "text[t]",
   ]
 
 [compose."alert#"]
@@ -909,6 +911,7 @@ inherits = "circle"
 badge = "M9,4.5c0,2.4853 -2.0147,4.5 -4.5,4.5c-2.4853,0 -4.5,-2.0147 -4.5,-4.5c0,-2.4853 2.0147,-4.5 4.5,-4.5c2.4853,0 4.5,2.0147 4.5,4.5zM4.5,2c-0.2761,0 -0.5,0.2239 -0.5,0.5v2c0,0.2761 0.2239,0.5 0.5,0.5h1.5c0.2761,0 0.5,-0.2239 0.5,-0.5c0,-0.2761 -0.2239,-0.5 -0.5,-0.5h-1v-1.5c0,-0.2761 -0.2239,-0.5 -0.5,-0.5z"
 icons = [
   "archive",
+  "calendar_agenda",
   "calendar_empty:calendar",
   "credit_card",
   "document_bullet_list",
@@ -1009,6 +1012,7 @@ icons = [
   "drawer",
   "dual_screen",
   "filter",
+  "folder",
   "group",
   "history",
   "image",
