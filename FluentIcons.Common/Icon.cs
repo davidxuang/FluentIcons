@@ -3011,4 +3011,10 @@ public enum Icon : int
     CalendarAgendaClock = 2916,
     FolderDismiss = 2917,
     OrientationPortrait = 2918,
+    AgentsPerson = 2919,
+    Autopilot = 2920,
+    FilmstripArrowUp = 2921,
+    FilmstripGlobe = 2922,
+    PanelLeftTall = 2923,
+    TableSelectRange = 2924,
 }
