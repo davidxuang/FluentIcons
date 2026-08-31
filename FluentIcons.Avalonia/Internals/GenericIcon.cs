@@ -152,7 +152,7 @@ public abstract class GenericIcon
             }
 
             Rect bounds = Bounds;
-            IDisposable? flip = null;
+            DrawingContext.PushedState? flip = null;
             try
             {
                 if (FlowDirection == FlowDirection.RightToLeft)

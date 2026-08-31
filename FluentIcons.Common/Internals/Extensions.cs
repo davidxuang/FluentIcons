@@ -22,7 +22,7 @@ internal static class Extensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     internal static double Or(this double value, double other)
     {
-#if NETSTANDARD2_1_OR_GREATER
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP2_1_OR_GREATER
         return double.IsFinite(value) ? value : other;
 #else
         return !double.IsNaN(value) && !double.IsInfinity(value) ? value : other;

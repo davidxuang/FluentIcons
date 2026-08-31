@@ -15,7 +15,7 @@ internal static class FontManager
         "FluentIcons.Resources.Uno";
 #endif
 
-    private static readonly Dictionary<IconSize, FontFamily> _fluent = IconSizeValues.Enumerable
+    private static readonly Dictionary<IconSize, FontFamily> _fluent = IconSize.Values
         .Where(size => (byte)size > 0)
         .ToDictionary(k => k, k => new FontFamily($"ms-appx:///{AssetsAssembly}/Assets/FluentSystemIcons-{k}.otf#Fluent System Icons {k}"));
 

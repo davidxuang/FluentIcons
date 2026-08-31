@@ -7,7 +7,7 @@ namespace FluentIcons.Resources.Avalonia;
 
 internal static class TypefaceManager
 {
-    private static readonly Dictionary<IconSize, Typeface> _fluent = IconSizeValues.Enumerable
+    private static readonly Dictionary<IconSize, Typeface> _fluent = IconSize.Values
         .Where(size => (byte)size > 0)
         .ToDictionary(k => k, k => new Typeface($"avares://FluentIcons.Resources.Avalonia/Assets#Fluent System Icons {k}"));
     internal static Typeface GetFluent(IconSize size, IconVariant variant)

@@ -11,7 +11,6 @@ global using FluentIcons.Common;
 global using FluentIcons.Common.Internals;
 global using Symbol = FluentIcons.Common.Symbol;
 #if WINDOWS_WINAPPSDK || HAS_UNO_WINUI
-global using Microsoft.Extensions.Hosting;
 global using Microsoft.UI.Text;
 global using Microsoft.UI.Xaml;
 global using Microsoft.UI.Composition;

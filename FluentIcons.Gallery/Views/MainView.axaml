@@ -210,7 +210,7 @@
                         <ic:FluentIcon FlowDirection="{CompiledBinding FlowDirection}" Icon="BorderNone" />
                         <FlyoutBase.AttachedFlyout>
                             <MenuFlyout
-                                ItemsSource="{x:Static i:IconSizeValues.Enumerable}"
+                                ItemsSource="{x:Static i:IconSizeValues.List}"
                                 Placement="BottomEdgeAlignedRight"
                                 OverlayInputPassThroughElement="{CompiledBinding #commands}">
                                 <MenuFlyout.ItemContainerTheme>

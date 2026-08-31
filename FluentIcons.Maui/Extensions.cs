@@ -12,7 +12,7 @@ public static class Extensions
         var assembly = typeof(SymbolIcon).Assembly;
         return builder.ConfigureFonts(fonts =>
         {
-            foreach (var size in IconSizeValues.Enumerable.Where(size => (byte)size > 0))
+            foreach (var size in IconSize.Values.Where(size => (byte)size > 0))
             {
                 fonts.AddEmbeddedResourceFont(assembly, $"FluentSystemIcons-{size}.otf", $"FluentSystemIcons{size}");
             }

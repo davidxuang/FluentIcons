@@ -9,7 +9,7 @@ namespace FluentIcons.Wpf.Internals;
 
 internal static class TypefaceManager
 {
-    private static readonly Dictionary<IconSize, Typeface> _fluent = IconSizeValues.Enumerable
+    private static readonly Dictionary<IconSize, Typeface> _fluent = IconSize.Values
         .Where(size => (byte)size > 0)
         .ToDictionary(k => k, k => new Typeface(
             new FontFamily(new Uri("pack://application:,,,/FluentIcons.Wpf;component/"), $"./Assets/#Fluent System Icons {k}"),

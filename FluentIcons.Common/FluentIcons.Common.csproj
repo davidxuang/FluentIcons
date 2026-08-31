@@ -1,10 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
     <Description>A shared library for FluentUI System Icons control library.</Description>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
   </PropertyGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
+    <PackageReference Include="System.Collections.Immutable" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluentIcons.Common.SourceGeneration\FluentIcons.Common.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
 
   <ItemGroup>
     <InternalsVisibleTo Include="FluentIcons.Common.Extensions" />
@@ -14,10 +22,6 @@
     <InternalsVisibleTo Include="FluentIcons.Uwp" />
     <InternalsVisibleTo Include="FluentIcons.WinUI" />
     <InternalsVisibleTo Include="FluentIcons.Wpf" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\FluentIcons.Common.SourceGeneration\FluentIcons.Common.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
 </Project>

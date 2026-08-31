@@ -14,7 +14,7 @@ namespace FluentIcons.Wpf;
 
 public class FluentIcon : GenericIcon, IValue<Icon>
 {
-    private static readonly Dictionary<IconSize, Typeface> _typefaces = IconSizeValues.Enumerable
+    private static readonly Dictionary<IconSize, Typeface> _typefaces = IconSize.Values
         .Where(size => (byte)size > 0)
         .ToDictionary(k => k, k => new Typeface(
             new FontFamily(new Uri("pack://application:,,,/FluentIcons.Wpf;component/"), $"./Assets/#Fluent System Icons {k}"),
