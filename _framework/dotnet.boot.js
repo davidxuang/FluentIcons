@@ -1,7 +1,7 @@
 export const config = /*json-start*/{
   "mainAssemblyName": "FluentIcons.Gallery.dll",
   "resources": {
-    "hash": "sha256-knGwg6tkre9wJqhnXykBmIAv/KphCWnUYLPu9CTbi7E=",
+    "hash": "sha256-wEZwYMBnu+5jF8r4yIx5y0zrCM7TbYrf1yOccnwfap8=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.js"
@@ -141,27 +141,27 @@ export const config = /*json-start*/{
       {
         "virtualPath": "FluentIcons.Avalonia.Fluent.wasm",
         "name": "FluentIcons.Avalonia.Fluent.wasm",
-        "hash": "sha256-5TARqwUlnqIO1q6j8H31I2T1a/e6b4b0UmeU0fqoN9I="
+        "hash": "sha256-WgZJrycDys3f/Sy96mPDGNL9udn4qnsJoX+X55qAo5Y="
       },
       {
         "virtualPath": "FluentIcons.Common.wasm",
         "name": "FluentIcons.Common.wasm",
-        "hash": "sha256-/ytoCSlw5L4N/Elw4yb5QqEe+Ar1Q8TYWDO/wtDNU8A="
+        "hash": "sha256-qjaWFtdBTH3RPXSHgee7ghtZpgVEmBtLeDMsqGeHBUU="
       },
       {
         "virtualPath": "FluentIcons.Common.Extensions.wasm",
         "name": "FluentIcons.Common.Extensions.wasm",
-        "hash": "sha256-T0ds51iOdNIyRgnZ6lGLR0ztQw9SBeqS7XqX+p8HFZM="
+        "hash": "sha256-w5jhkvFoceEULUz5EnYUBHwXQrbjybUE2DVBaC9oSJw="
       },
       {
         "virtualPath": "FluentIcons.Gallery.wasm",
         "name": "FluentIcons.Gallery.wasm",
-        "hash": "sha256-G0saAq9hMP9PeJNmE6ySYI5g2IWtPtxjx5ejfZfRlaU="
+        "hash": "sha256-NaL3p2tNhIS++tP7FsWhz93jwWsI5JE1ccREDIPBHtk="
       },
       {
         "virtualPath": "FluentIcons.Resources.Avalonia.wasm",
         "name": "FluentIcons.Resources.Avalonia.wasm",
-        "hash": "sha256-O3DUrgRBMAPAvAPuU9+h7gWMCUuN86JSv/62xKF8QvA="
+        "hash": "sha256-6PHB8Iom/ZgyhrD4SmQ+MAJb7s9agLcc5W91BaDbdIw="
       },
       {
         "virtualPath": "Fonts.Avalonia.JetBrainsMono.wasm",
@@ -196,7 +196,7 @@ export const config = /*json-start*/{
       {
         "virtualPath": "System.Collections.Immutable.wasm",
         "name": "System.Collections.Immutable.wasm",
-        "hash": "sha256-eFTrlQkBteZuM1tfvjiEYD7sNCmC9rnVy+OJdYQHpG4="
+        "hash": "sha256-5S3Iojh5LORsthdkqpHpwGILC5IGJKkzWdXQMDruSt8="
       },
       {
         "virtualPath": "System.Collections.NonGeneric.wasm",
