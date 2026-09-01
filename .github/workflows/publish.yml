@@ -43,7 +43,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          submodules: true
+          submodules: false
       - name: Setup Java
         uses: actions/setup-java@v5
         if: ${{ github.event_name != 'workflow_dispatch'}}

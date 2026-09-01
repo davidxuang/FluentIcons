@@ -43,7 +43,7 @@ public sealed class EnumValuesGenerator : IIncrementalGenerator
                         {
                             public static class {{name}}Values
                             {
-                                public static readonly IImmutableList<{{name}}> List = new ImmutableArray<{{name}}>() { {{string.Join(", ", members.Select(m => $"{name}.{m.Name}"))}} };
+                                public static readonly IImmutableList<{{name}}> List = ImmutableArray.Create([{{string.Join(", ", members.Select(m => $"{name}.{m.Name}"))}}]);
 
                                 extension({{name}})
                                 {
