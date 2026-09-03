@@ -15,7 +15,7 @@ public partial class FluentIcon : GenericIcon
 
     public FluentIcon()
     {
-        _font = TypefaceManager.GetFluent(IconSize, IconVariant).GetResource(ScaledFontSize);
+        _font = FontManager.GetFluent(IconSize, IconVariant).GetResource(ScaledFontSize);
     }
 
     protected override void Dispose(bool disposing)
@@ -54,24 +54,24 @@ public partial class FluentIcon : GenericIcon
         }
     } = IconSize.Resizable;
 
-    private void OnIconSizeChanged(EventArgs e)
+    private void OnIconSizeChanged(EventArgs _)
     {
         _font.Dispose();
-        _font = TypefaceManager.GetFluent(IconSize, IconVariant).GetResource(ScaledFontSize);
+        _font = FontManager.GetFluent(IconSize, IconVariant).GetResource(ScaledFontSize);
         Invalidate();
     }
 
     protected override void OnIconVariantChanged(EventArgs e)
     {
         _font.Dispose();
-        _font = TypefaceManager.GetFluent(IconSize, IconVariant).GetResource(ScaledFontSize);
+        _font = FontManager.GetFluent(IconSize, IconVariant).GetResource(ScaledFontSize);
         base.OnIconVariantChanged(e);
     }
 
     protected override void OnScaledFontSizeChanged(EventArgs e)
     {
         _font.Dispose();
-        _font = TypefaceManager.GetFluent(IconSize, IconVariant).GetResource(ScaledFontSize);
+        _font = FontManager.GetFluent(IconSize, IconVariant).GetResource(ScaledFontSize);
         base.OnScaledFontSizeChanged(e);
     }
 

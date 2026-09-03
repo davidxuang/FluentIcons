@@ -2,14 +2,26 @@
 
   <PropertyGroup>
     <VersionSuffix Condition="'$(VersionSuffix)' == ''">preview</VersionSuffix>
-    <TargetFrameworks>net462;net47;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net45;net47;net6.0-windows</TargetFrameworks>
     <Description>FluentUI System Icons control library for WinForms.</Description>
     <PackageTags>$(PackageTags);WinForms</PackageTags>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <Choose>
+    <When Condition="!$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard2.0'))">
+      <ItemGroup>
+        <PackageReference Include="System.Memory" VersionOverride="4.5.5" />
+      </ItemGroup>
+    </When>
+    <When Condition="!$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netcoreapp2.1'))">
+      <ItemGroup>
+        <PackageReference Include="System.Memory" />
+      </ItemGroup>
+    </When>
+  </Choose>
+
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.HighPerformance" Condition="$([MSBuild]::GetTargetFrameworkIdentifier('$(TargetFramework)')) == '.NETFramework'" />
     <PackageReference Include="Microsoft.Windows.CsWin32" PrivateAssets="All">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

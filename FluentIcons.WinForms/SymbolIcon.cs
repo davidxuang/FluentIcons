@@ -14,7 +14,7 @@ public sealed partial class SymbolIcon : GenericIcon
 
     public SymbolIcon()
     {
-        _font = TypefaceManager.GetSeagull().GetResource(ScaledFontSize);
+        _font = FontManager.GetSeagull().GetResource(ScaledFontSize);
     }
 
     protected override void Dispose(bool disposing)
@@ -41,7 +41,7 @@ public sealed partial class SymbolIcon : GenericIcon
     protected override void OnScaledFontSizeChanged(EventArgs e)
     {
         _font.Dispose();
-        _font = TypefaceManager.GetSeagull().GetResource(ScaledFontSize);
+        _font = FontManager.GetSeagull().GetResource(ScaledFontSize);
         base.OnScaledFontSizeChanged(e);
     }
 

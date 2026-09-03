@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
@@ -9,10 +10,6 @@ using FluentIcons.Common;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.Graphics.Gdi;
-
-#if NETFRAMEWORK
-using CommunityToolkit.HighPerformance;
-#endif
 
 namespace FluentIcons.WinForms.Internals;
 
@@ -76,7 +73,20 @@ internal abstract class Renderer : IDisposable
             try
             {
                 var span = new Span<byte>(buffer.ToPointer(), (int)stream.Length);
+#if NETCOREAPP2_1_OR_GREATER
                 stream.Read(span);
+#else
+                var array = ArrayPool<byte>.Shared.Rent((int)stream.Length);
+                try
+                {
+                    stream.Read(array, 0, (int)stream.Length);
+                    array.AsSpan(0, (int)stream.Length).CopyTo(span);
+                }
+                finally
+                {
+                    ArrayPool<byte>.Shared.Return(array);
+                }
+#endif
 
                 uint count = 0;
                 IntPtr handle = PInvoke.AddFontMemResourceEx(unchecked(buffer.ToPointer()), (uint)stream.Length, (void*)0, &count);
@@ -153,7 +163,20 @@ internal abstract class Renderer : IDisposable
             try
             {
                 var span = new Span<byte>(buffer.ToPointer(), (int)stream.Length);
+#if NETCOREAPP2_1_OR_GREATER
                 stream.Read(span);
+#else
+                var array = ArrayPool<byte>.Shared.Rent((int)stream.Length);
+                try
+                {
+                    stream.Read(array, 0, (int)stream.Length);
+                    array.AsSpan(0, (int)stream.Length).CopyTo(span);
+                }
+                finally
+                {
+                    ArrayPool<byte>.Shared.Return(array);
+                }
+#endif
                 collection.AddMemoryFont(buffer, (int)stream.Length);
             }
             catch

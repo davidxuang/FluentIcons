@@ -1,17 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
+    <TargetFrameworks>net45;netstandard2.0;netstandard2.1;net6.0</TargetFrameworks>
     <Description>A shared library for FluentUI System Icons control library.</Description>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
-    <PackageReference Include="System.Collections.Immutable" />
-  </ItemGroup>
+  <Choose>
+    <When Condition="!$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netstandard2.0'))">
+      <ItemGroup>
+        <PackageReference Include="System.Collections.Immutable" VersionOverride="5.0.0" />
+      </ItemGroup>
+    </When>
+    <When Condition="!$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'netcoreapp1.0'))">
+      <ItemGroup>
+        <PackageReference Include="System.Collections.Immutable" />
+      </ItemGroup>
+    </When>
+  </Choose>
 
   <ItemGroup>
-    <ProjectReference Include="..\FluentIcons.Common.SourceGeneration\FluentIcons.Common.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\FluentIcons.Common.SourceGeneration\FluentIcons.Common.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" SkipGetTargetFrameworkProperties="true" UndefineProperties="TargetFramework" />
   </ItemGroup>
 
   <ItemGroup>

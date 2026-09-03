@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFrameworks>net462;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net45;net462;net6.0-windows</TargetFrameworks>
     <Description>FluentUI System Icons control library for WPF.</Description>
     <PackageTags>$(PackageTags);WPF</PackageTags>
     <UseWPF>true</UseWPF>

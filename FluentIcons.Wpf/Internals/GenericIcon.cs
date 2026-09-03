@@ -147,8 +147,11 @@ public abstract class GenericIcon : FrameworkElement
                     FlowDirection,
                     _typeface!,
                     _size,
-                    _foreground,
-                    VisualTreeHelper.GetDpi(this).PixelsPerDip);
+                    _foreground
+#if NET462_OR_GREATER || NETCOREAPP3_0_OR_GREATER
+                    , VisualTreeHelper.GetDpi(this).PixelsPerDip
+#endif
+                    );
             }
             else if (_formattedText is null)
             {
