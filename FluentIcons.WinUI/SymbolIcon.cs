@@ -11,13 +11,6 @@ public partial class SymbolIcon : GenericIcon
         InvalidateText();
     }
 
-#if WINDOWS_UWP
-    internal SymbolIcon(bool bindFlowDirection) : base(bindFlowDirection)
-    {
-        InvalidateText();
-    }
-#endif
-
     public Symbol Symbol
     {
         get { return (Symbol)GetValue(SymbolProperty); }

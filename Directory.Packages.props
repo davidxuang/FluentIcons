@@ -4,11 +4,13 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Avalonia" Version="12.0.0" />
+    <PackageVersion Include="CommunityToolkit.HighPerformance" Version="8.3.2" />
     <PackageVersion Include="FluentAvaloniaUI" Version="3.0.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.9.0" />
     <PackageVersion Include="Microsoft.Graphics.Win2D" Version="1.4.0" />
     <PackageVersion Include="Microsoft.Maui.Controls" Version="10.0.0" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Windows.CsWin32" Version="0.3.321" />
     <PackageVersion Include="Microsoft.WindowsAppSDK.WinUI" Version="1.8.260204000" />
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4654" />
     <PackageVersion Include="Microsoft.Windows.SDK.CPP" Version="10.0.26100.2161" />
@@ -17,6 +19,7 @@
     <PackageVersion Include="SortSharp" Version="0.3.0" />
     <PackageVersion Include="System.Collections.Immutable" Version="10.0.11" />
     <PackageVersion Include="System.Memory" Version="4.6.3" />
+    <PackageVersion Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
     <PackageVersion Include="System.Text.Json" Version="10.0.11" />
     <PackageVersion Include="Uno.UI" Version="5.4.22" />
     <PackageVersion Include="Uno.WinUI" Version="6.0.465" />

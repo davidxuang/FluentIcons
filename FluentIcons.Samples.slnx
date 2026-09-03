@@ -6,11 +6,12 @@
   <Folder Name="/Libraries/">
     <Project Path="FluentIcons.Avalonia.Fluent/FluentIcons.Avalonia.Fluent.csproj" />
     <Project Path="FluentIcons.Avalonia/FluentIcons.Avalonia.csproj" />
-    <Project Path="FluentIcons.Common/FluentIcons.Common.csproj" />
     <Project Path="FluentIcons.Common.Extensions/FluentIcons.Common.Extensions.csproj" />
     <Project Path="FluentIcons.Common.SourceGeneration/FluentIcons.Common.SourceGeneration.csproj" />
+    <Project Path="FluentIcons.Common/FluentIcons.Common.csproj" />
     <Project Path="FluentIcons.Maui/FluentIcons.Maui.csproj" />
     <Project Path="FluentIcons.Uwp/FluentIcons.Uwp.csproj" />
+    <Project Path="FluentIcons.WinForms/FluentIcons.WinForms.csproj" />
     <Project Path="FluentIcons.WinUI/FluentIcons.WinUI.csproj" />
     <Project Path="FluentIcons.Wpf/FluentIcons.Wpf.csproj" />
   </Folder>
@@ -28,6 +29,7 @@
   <Project Path="FluentIcons.Gallery/FluentIcons.Gallery.csproj" />
   <Project Path="samples/Avalonia/FluentIcons.Samples.Avalonia.csproj" />
   <Project Path="samples/Maui/FluentIcons.Samples.Maui.csproj" Id="634125c9-e102-4890-93a8-99fb1918feb3" />
+  <Project Path="samples/WinForms/FluentIcons.Samples.WinForms.csproj" />
   <Project Path="samples/WinUI/FluentIcons.Samples.WinUI.csproj">
     <Platform Project="x64" />
   </Project>

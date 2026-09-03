@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <VersionSuffix Condition="'$(VersionSuffix)' == ''">preview</VersionSuffix>
+    <TargetFrameworks>net462;net47;net6.0-windows</TargetFrameworks>
+    <Description>FluentUI System Icons control library for WinForms.</Description>
+    <PackageTags>$(PackageTags);WinForms</PackageTags>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.HighPerformance" Condition="$([MSBuild]::GetTargetFrameworkIdentifier('$(TargetFramework)')) == '.NETFramework'" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" PrivateAssets="All">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="PolySharp" PrivateAssets="All">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluentIcons.Common\FluentIcons.Common.csproj" ExactVersion="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\seagull-icons\assets\*.otf">
+      <Link>Assets/%(FileName)%(Extension)</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

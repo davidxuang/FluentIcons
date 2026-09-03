@@ -17,7 +17,7 @@
     <!-- for MAUI -->
     <CheckEolWorkloads>false</CheckEolWorkloads>
     <!-- PolySharp -->
-    <PolySharpIncludeGeneratedTypes>System.Diagnostics.CodeAnalysis.ExperimentalAttribute</PolySharpIncludeGeneratedTypes>
+    <PolySharpIncludeGeneratedTypes>System.Diagnostics.CodeAnalysis.ExperimentalAttribute;System.Runtime.CompilerServices.IsExternalInit</PolySharpIncludeGeneratedTypes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(ANDROID_SDK_ROOT)' != ''">

@@ -11,13 +11,6 @@ public partial class FluentIcon : GenericIcon
         InvalidateText();
     }
 
-#if WINDOWS_UWP
-    internal FluentIcon(bool bindFlowDirection) : base(bindFlowDirection)
-    {
-        InvalidateText();
-    }
-#endif
-
     public Icon Icon
     {
         get { return (Icon)GetValue(IconProperty); }

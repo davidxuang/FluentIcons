@@ -1,0 +1,9 @@
+AddFontMemResourceEx
+CreateFontIndirectW
+SaveDC
+SelectObject
+SetBkMode
+SetTextColor
+DrawTextW
+RestoreDC
+RemoveFontMemResourceEx
