@@ -195,13 +195,22 @@ internal abstract class Renderer : IDisposable
                 throw new ArgumentException("Invalid font type.", nameof(font));
             using SolidBrush brush = new(color);
 
-            graphics.DrawString(
-                glyph,
-                f,
-                brush,
-                bounds.X + bounds.Width / 2.0f,
-                bounds.Y + (bounds.Height - f.Size) / 2.0f,
-                format);
+            var hint = graphics.TextRenderingHint;
+            try
+            {
+                graphics.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
+                graphics.DrawString(
+                    glyph,
+                    f,
+                    brush,
+                    bounds.X + bounds.Width / 2.0f,
+                    bounds.Y + (bounds.Height - f.Size) / 2.0f,
+                    format);
+            }
+            finally
+            {
+                graphics.TextRenderingHint = hint;
+            }
         }
 
         public override void Dispose()
