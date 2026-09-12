@@ -12,13 +12,20 @@ if ($DebugPreference -ne 'SilentlyContinue') {
 }
 $Debug = $PSCmdlet.MyInvocation.BoundParameters['Debug']
 
-
 Push-Location .
 try {
     Set-Location $PSScriptRoot
-    [version] $local = Select-Xml -Path "./Directory.Build.props" -XPath "//VersionPrefix" |
-        Select-Object -First 1 -ExpandProperty 'Node' |
-        Select-Object -ExpandProperty '#text'
+    $local = [version]::new(
+        (Select-Xml -Path "./Directory.Build.props" -XPath "//VersionMajor" |
+            Select-Object -First 1 -ExpandProperty 'Node' |
+            Select-Object -ExpandProperty '#text'),
+        (Select-Xml -Path "./Directory.Build.props" -XPath "//VersionMinor" |
+            Select-Object -First 1 -ExpandProperty 'Node' |
+            Select-Object -ExpandProperty '#text'),
+        (Select-Xml -Path "./Directory.Build.props" -XPath "//VersionBuild" |
+            Select-Object -First 1 -ExpandProperty 'Node' |
+            Select-Object -ExpandProperty '#text')
+    )
     Write-Host "Local at $local"
 
     Set-Location "./seagull-icons/upstream"
@@ -34,7 +41,7 @@ try {
     }
 
     Set-Location "$PSScriptRoot/seagull-icons"
-    pnpm start
+    pnpm build
     Set-Location "$PSScriptRoot"
 
     # update enums

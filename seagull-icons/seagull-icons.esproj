@@ -1,6 +1,11 @@
-<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.3864779">
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.6578810">
   <PropertyGroup>
     <IsPackable>false</IsPackable>
-    <StartupCommand>pnpm start</StartupCommand>
+    <ShouldRunNpmInstall>false</ShouldRunNpmInstall>
+    <BuildCommand>pnpm build</BuildCommand>
   </PropertyGroup>
+
+  <Target Name="InstallCommand" BeforeTargets="Restore">
+    <Exec Command="pnpm install" UseUtf8Encoding="true" />
+  </Target>
 </Project>
