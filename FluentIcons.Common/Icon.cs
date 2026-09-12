@@ -3017,4 +3017,12 @@ public enum Icon : int
     FilmstripGlobe = 2922,
     PanelLeftTall = 2923,
     TableSelectRange = 2924,
+    ChannelArrowRight = 2925,
+    Cowork = 2926,
+    FlowArrow = 2927,
+    HandMultipleStack = 2928,
+    LightbulbSparkle = 2929,
+    Omega = 2930,
+    OptionsSpeaker = 2931,
+    SlideArrowForward = 2932,
 }
