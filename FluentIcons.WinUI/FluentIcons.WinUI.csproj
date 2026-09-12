@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <VersionPrefix>2.2.$([System.Version]::Parse($(VersionPrefix)).Build)</VersionPrefix>
+    <VersionMinor>2</VersionMinor>
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">
-      $(TargetFrameworks);net6.0-windows10.0.19041.0;net8.0-windows10.0.19041.0
+      net6.0-windows10.0.19041.0;net8.0-windows10.0.19041.0
     </TargetFrameworks>
     <TargetFrameworks>$(TargetFrameworks);net8.0;net8.0-android;net9.0-ios;net9.0-maccatalyst;net9.0-macos;net9.0-tvos</TargetFrameworks>
     <Description>FluentUI System Icons control library for WinUI.</Description>
@@ -11,6 +11,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Win2DWarnNoPlatform>false</Win2DWarnNoPlatform>
   </PropertyGroup>
 
   <Choose>

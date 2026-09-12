@@ -1,7 +1,9 @@
 <Project>
 
   <PropertyGroup>
-    <VersionPrefix>2.1.341</VersionPrefix>
+    <VersionMajor>2</VersionMajor>
+    <VersionMinor>1</VersionMinor>
+    <VersionBuild>341</VersionBuild>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <Authors>davidxuang</Authors>
@@ -34,6 +36,7 @@
 
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <NoWarn>$(NoWarn);Uno0001</NoWarn>
+    <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(EnableTizenTargeting)' == ''">

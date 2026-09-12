@@ -44,7 +44,7 @@ try {
     if (-not $Debug) {
         # patch project version
         $tag = "$($local.Major).$($local.Minor).$($upstream.Build)"
-        (Get-Content "./Directory.Build.props") -replace '<VersionPrefix>(.*)<\/VersionPrefix>', "<VersionPrefix>$tag</VersionPrefix>" |
+        (Get-Content "./Directory.Build.props") -replace '<VersionBuild>(.*)<\/VersionBuild>', "<VersionBuild>$($upstream.Build)</VersionBuild>" |
             Out-File "./Directory.Build.props"
 
         git add -A

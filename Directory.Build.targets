@@ -1,5 +1,12 @@
 <Project>
 
+  <PropertyGroup>
+    <VersionPrefix>$(VersionMajor).$(VersionMinor).$(VersionBuild)</VersionPrefix>
+    <VersionPrefix Condition="'$(VersionRevision)' != ''">$(VersionPrefix).$(VersionRevision)</VersionPrefix>
+    <Version>$(VersionPrefix)</Version>
+    <Version Condition="'$(VersionSuffix)' != ''">$(VersionPrefix)-$(VersionSuffix)</Version>
+  </PropertyGroup>
+
   <Target Name="UseExplicitPackageVersions" BeforeTargets="GenerateNuspec">
     <ItemGroup>
       <_ProjectReferenceWithExactPackageVersion Include="@(ProjectReference->'%(FullPath)')" Condition="'%(ProjectReference.ExactVersion)' == 'true'" />
