@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Items/">
     <File Path="samples/Directory.Build.props" />
+    <File Path="samples/Directory.Build.targets" />
     <File Path="samples/Directory.Packages.props" />
   </Folder>
   <Folder Name="/Libraries/">
