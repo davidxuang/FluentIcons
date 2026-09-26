@@ -2206,7 +2206,6 @@ public enum Icon : int
     [NonResizable]
     DocumentVb = 2155,
     FolderMultiple = 2156,
-    [NonResizable]
     KeyboardMouse = 2157,
     [NonResizable]
     Memory = 2158,
@@ -3025,4 +3024,6 @@ public enum Icon : int
     Omega = 2930,
     OptionsSpeaker = 2931,
     SlideArrowForward = 2932,
+    CircleImageOff = 2933,
+    KeyboardMouseOff = 2934,
 }
