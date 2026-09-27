@@ -1,7 +1,7 @@
 export const config = /*json-start*/{
   "mainAssemblyName": "FluentIcons.Gallery.dll",
   "resources": {
-    "hash": "sha256-E9MAxgzaU4++Lc8ctCCsq15edu/OplQdmpUIxJ4FTFA=",
+    "hash": "sha256-5v3AgHox3e5WlJaFH9JjgsUr2AvLSNHvO8Fvu11qR5c=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.js"
@@ -56,77 +56,77 @@ export const config = /*json-start*/{
       {
         "virtualPath": "Avalonia.Base.wasm",
         "name": "Avalonia.Base.wasm",
-        "hash": "sha256-kI9lEalkzhnt3FKe6JYoK00XMxEkV65OZhTZT6BcEa8="
+        "hash": "sha256-ThghUruS0slnE/Wg3l3bTwAPD/Q3TwqrNDHEnKiYufQ="
       },
       {
         "virtualPath": "Avalonia.Browser.wasm",
         "name": "Avalonia.Browser.wasm",
-        "hash": "sha256-qxWNbU3G2ctVR7KsRT4aoBwaW/zij/n/xRkA0JE+8wU="
+        "hash": "sha256-pC1s9MMbQ97NjtB9/Z5Vj/AB3ggtQGGg6ewSnJrlYSA="
       },
       {
         "virtualPath": "Avalonia.Controls.ColorPicker.wasm",
         "name": "Avalonia.Controls.ColorPicker.wasm",
-        "hash": "sha256-iY9j1EvBq3MtPMJOKTeValFOKS1g81yp5qkfXpweks8="
+        "hash": "sha256-r5zZyzsGqU0D+8jQnINh1Z/3ccSXlRoA75o1x9jkgps="
       },
       {
         "virtualPath": "Avalonia.Controls.DataGrid.wasm",
         "name": "Avalonia.Controls.DataGrid.wasm",
-        "hash": "sha256-EMcgxZhQuWtnlQtIfLe6INdHp5RtaYjtXnVBHTO90Ek="
+        "hash": "sha256-KvK3tYATWoInDtbPLyHEsMiSP3CqoPOA67JRpMGe1HM="
       },
       {
         "virtualPath": "Avalonia.Controls.wasm",
         "name": "Avalonia.Controls.wasm",
-        "hash": "sha256-t1QMs6PfXjRHtjUjf+aQYX/FMRWjZ83oTiFnEuSZwas="
+        "hash": "sha256-Hzf+cZKAUuyeqY6OqyhmtWMSEgvXAdS8NOPXyTrE/PE="
       },
       {
         "virtualPath": "Avalonia.Controls.ItemsRepeater.wasm",
         "name": "Avalonia.Controls.ItemsRepeater.wasm",
-        "hash": "sha256-cpnkgVdSh6g3elb6FnI4aZruIJ1dZHlrp7PaKysoAyA="
+        "hash": "sha256-2yYgJob/yT2CF7bm20NbqkkFiHtlSXH8tSTd/6giboc="
       },
       {
         "virtualPath": "Avalonia.Dialogs.wasm",
         "name": "Avalonia.Dialogs.wasm",
-        "hash": "sha256-DMKTk1rr3MnOYj9UqjroPXGleJtOCWmLo+RkDLj7xwY="
+        "hash": "sha256-KEqwc0fNZnBPPdWmC7V8iNNSSIHIWpWlXEjkZpl++rU="
       },
       {
         "virtualPath": "Avalonia.Fonts.Inter.wasm",
         "name": "Avalonia.Fonts.Inter.wasm",
-        "hash": "sha256-pjSw7to1gLtJDRQHsMh7tqtbkom+RGFouMniPpPW6DI="
+        "hash": "sha256-pEhJVLlXiDpIfh+kDDX63rUEwte9qUAPwAlaHky/9aw="
       },
       {
         "virtualPath": "Avalonia.HarfBuzz.wasm",
         "name": "Avalonia.HarfBuzz.wasm",
-        "hash": "sha256-pgV+6tmk8cCgqCziXtjIoZ+WpwwgfdC9Q6LZve2VcDo="
+        "hash": "sha256-1sNjslaI2vNcIFfphEN+4BFHvw6d3lAGtwjBMo1aQ50="
       },
       {
         "virtualPath": "Avalonia.Markup.wasm",
         "name": "Avalonia.Markup.wasm",
-        "hash": "sha256-992Ay3K81Ke1Sb62CpY+8n6ODmIekj57N33sDu6G3Rk="
+        "hash": "sha256-WggUjnq/KpQ0BW9m+yMgPJyij+KCrRxi/tjVTj99tuc="
       },
       {
         "virtualPath": "Avalonia.Markup.Xaml.wasm",
         "name": "Avalonia.Markup.Xaml.wasm",
-        "hash": "sha256-8tpRhBaB8YWBwm8/WKBOyaPdCyQe7/JbwyfTROXj/EU="
+        "hash": "sha256-09tgbtEq21dOExMfB/h9NR1M3UIMmh8PoYY9J4MYtwg="
       },
       {
         "virtualPath": "Avalonia.Metal.wasm",
         "name": "Avalonia.Metal.wasm",
-        "hash": "sha256-xP3yhUw5Vsg5j8i3aDzODhue8CtnYX7zLkbasmg9nT4="
+        "hash": "sha256-D96Ce05FsV5x6tlKZPj5oYSBKqaPc98KwrZQDc2Hu84="
       },
       {
         "virtualPath": "Avalonia.OpenGL.wasm",
         "name": "Avalonia.OpenGL.wasm",
-        "hash": "sha256-3IBuI8W62jj8uE5IyiamJ0pgBzJMTzkgC3b6lR107u8="
+        "hash": "sha256-cLaFi23XrzOt7unAVbZywqPjnBBf1e8TicBrtsKqdT8="
       },
       {
         "virtualPath": "Avalonia.Skia.wasm",
         "name": "Avalonia.Skia.wasm",
-        "hash": "sha256-SkIXxtog5P2VtM/zcv61ikC+f+4WsFTp4ql9C9E9CW4="
+        "hash": "sha256-A2i3oFIzQSztIuSWfTh2uVR5XlNJtm23WPYqlX6EypI="
       },
       {
         "virtualPath": "Avalonia.Vulkan.wasm",
         "name": "Avalonia.Vulkan.wasm",
-        "hash": "sha256-9DfOteoAAJHan4AcRatGhBvSb2SVD++yCAlyPW6WMYg="
+        "hash": "sha256-fxkGGGf5uJh3RzP/MRhpk+jSXwcjy1JcFoGipUHprNw="
       },
       {
         "virtualPath": "CommunityToolkit.Mvvm.wasm",
@@ -136,37 +136,37 @@ export const config = /*json-start*/{
       {
         "virtualPath": "FluentAvalonia.wasm",
         "name": "FluentAvalonia.wasm",
-        "hash": "sha256-K6s7Eb0/S3YSR5SZcBebfNbpOA5TdSKHFyZnL5BD3Oc="
+        "hash": "sha256-ud/ejYMAeLMZUJJm9lcy4lckYY8sFao5a2sKX/SpNBw="
       },
       {
         "virtualPath": "FluentIcons.Avalonia.Fluent.wasm",
         "name": "FluentIcons.Avalonia.Fluent.wasm",
-        "hash": "sha256-xxob6f8iBF54d3poEk0ZuoWLWI18tBoAzz1+VUyd7Hg="
+        "hash": "sha256-M0TXsW5EHhyjs+cQxOW2SaHgaCeE3OO6aD2wRSugCCk="
       },
       {
         "virtualPath": "FluentIcons.Common.wasm",
         "name": "FluentIcons.Common.wasm",
-        "hash": "sha256-EkHu0JxMsUZ2jjqRavu5OycacbBLXPlgD0qHH9QOS9A="
+        "hash": "sha256-6SCchc/vMcZYxjZXnu3JFQ4cfSgpGhS0++cmeHjjS7o="
       },
       {
         "virtualPath": "FluentIcons.Common.Extensions.wasm",
         "name": "FluentIcons.Common.Extensions.wasm",
-        "hash": "sha256-5psUncXMJBUqBVHMPRPxPELAKGjHucnwySZviUbDjZg="
+        "hash": "sha256-PDpmI7U47cvq19n2uGFgFz6KHLnrc9/3nOiA9WvcNgo="
       },
       {
         "virtualPath": "FluentIcons.Gallery.wasm",
         "name": "FluentIcons.Gallery.wasm",
-        "hash": "sha256-mbY3g65sp88NDCzBxel+no9JpirZjgFFCCzWzug5+HI="
+        "hash": "sha256-78L4dX3tVPxB/yFgy2u6/t8J99yXbOgi8JRyEZu96cE="
       },
       {
         "virtualPath": "FluentIcons.Resources.Avalonia.wasm",
         "name": "FluentIcons.Resources.Avalonia.wasm",
-        "hash": "sha256-1FG2IaPt/JHNdx5D4/iFmqmQ2z3DzL5IAUyjz7WRekE="
+        "hash": "sha256-uNEBNsbVbx2u4jl9GVVDMhyW48SebEfqn1V/s6DHgmE="
       },
       {
         "virtualPath": "Fonts.Avalonia.JetBrainsMono.wasm",
         "name": "Fonts.Avalonia.JetBrainsMono.wasm",
-        "hash": "sha256-cWXmz8/AqaIHAJgvObWydiEuDG48Kldycv8bDYSzBgw="
+        "hash": "sha256-HVDUTTRG2IDidr9eZz8t/fFN4J91NWH3Ny79SJOMmOo="
       },
       {
         "virtualPath": "HarfBuzzSharp.wasm",
@@ -186,7 +186,7 @@ export const config = /*json-start*/{
       {
         "virtualPath": "System.Collections.Concurrent.wasm",
         "name": "System.Collections.Concurrent.wasm",
-        "hash": "sha256-XsIF95ZLTrsUtkceKldBm+obJBJgfnqaZ25RxvjufzE="
+        "hash": "sha256-HATouoqxjF39dm+SjArObqFqBMUvL2EHD/ceJoMY2Z8="
       },
       {
         "virtualPath": "System.Collections.wasm",
