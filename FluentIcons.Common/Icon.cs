@@ -3026,4 +3026,7 @@ public enum Icon : int
     SlideArrowForward = 2932,
     CircleImageOff = 2933,
     KeyboardMouseOff = 2934,
+    CircleMultipleConcentricDashes = 2935,
+    LayoutInfographicTwoSparkle = 2936,
+    PlugPuzzle = 2937,
 }
