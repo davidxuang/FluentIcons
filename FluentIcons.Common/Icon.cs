@@ -3029,4 +3029,9 @@ public enum Icon : int
     CircleMultipleConcentricDashes = 2935,
     LayoutInfographicTwoSparkle = 2936,
     PlugPuzzle = 2937,
+    AppFolderHint = 2938,
+    BoxQuestionMark = 2939,
+    ConferenceRoomSparkle = 2940,
+    DocumentExcel = 2941,
+    DocumentPowerPoint = 2942,
 }

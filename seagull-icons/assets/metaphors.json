@@ -297,6 +297,11 @@
     "collection",
     "ui"
   ],
+  "AppFolderHint": [
+    "app",
+    "folder",
+    "hint"
+  ],
   "AppGeneric": [
     "collection",
     "ui"
@@ -1746,6 +1751,11 @@
     "shipping",
     "cargo",
     "production"
+  ],
+  "BoxQuestionMark": [
+    "package",
+    "box",
+    "question"
   ],
   "BoxSearch": [
     "package",
@@ -3805,6 +3815,11 @@
     "door",
     "meeting"
   ],
+  "ConferenceRoomSparkle": [
+    "room",
+    "meeting",
+    "sparkle"
+  ],
   "Connected": [
     "x",
     "star",
@@ -4947,6 +4962,11 @@
     "exclamation",
     "vertical"
   ],
+  "DocumentExcel": [
+    "document",
+    "spreadsheet",
+    "excel"
+  ],
   "DocumentFit": [
     "point",
     "direction",
@@ -5355,6 +5375,11 @@
     "horizontal",
     "medical",
     "hospital"
+  ],
+  "DocumentPowerPoint": [
+    "document",
+    "presentation",
+    "powerpoint"
   ],
   "DocumentPrint": [
     "paper",
