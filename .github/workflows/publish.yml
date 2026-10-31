@@ -32,6 +32,46 @@ jobs:
         with:
           key: dotnet-${{ runner.os }}-${{ runner.arch }}-workloads-${{ steps.vars.outputs.dotnet_workload_version }}
           path: ${{ steps.vars.outputs.program_data }}\dotnet\workloads
+      - name: Fix permissions
+        run: |
+          $path = '${{ steps.vars.outputs.program_data }}\dotnet'
+          if (-not (Test-Path -LiteralPath $path)) { return }
+
+          $item = Get-Item -LiteralPath $path -Force
+          if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) {
+            throw "Refusing to modify a reparse point: $path"
+          }
+
+          # Windows built-in SIDs
+          $admins   = [Security.Principal.SecurityIdentifier]'S-1-5-32-544'
+          $system   = [Security.Principal.SecurityIdentifier]'S-1-5-18'
+          $users    = [Security.Principal.SecurityIdentifier]'S-1-5-32-545'
+          $everyone = [Security.Principal.SecurityIdentifier]'S-1-1-0'
+
+          # Rebuild the directory ACL
+          $acl = New-Object Security.AccessControl.DirectorySecurity
+          $acl.SetOwner($admins)
+          $acl.SetAccessRuleProtection($true, $false)
+
+          $inherit = [Security.AccessControl.InheritanceFlags]'ContainerInherit,ObjectInherit'
+          $propagation = [Security.AccessControl.PropagationFlags]::None
+          $allow = [Security.AccessControl.AccessControlType]::Allow
+
+          foreach ($entry in @(
+            @($admins,   [Security.AccessControl.FileSystemRights]::FullControl),
+            @($system,   [Security.AccessControl.FileSystemRights]::FullControl),
+            @($users,    [Security.AccessControl.FileSystemRights]::ReadAndExecute),
+            @($everyone, [Security.AccessControl.FileSystemRights]::ReadAndExecute)
+          )) {
+            $rule = New-Object Security.AccessControl.FileSystemAccessRule(
+              $entry[0], $entry[1], $inherit, $propagation, $allow
+            )
+            $acl.AddAccessRule($rule)
+          }
+
+          Set-Acl -LiteralPath $path -AclObject $acl
+
+          icacls $path
       - name: Setup .NET workloads
         run: |
           dotnet workload install android ios maccatalyst macos tvos maui wasm-tools
