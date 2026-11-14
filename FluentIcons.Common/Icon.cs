@@ -3034,4 +3034,7 @@ public enum Icon : int
     ConferenceRoomSparkle = 2940,
     DocumentExcel = 2941,
     DocumentPowerPoint = 2942,
+    AutopilotFace = 2943,
+    CardUiSparkle = 2944,
+    ThreatActor = 2945,
 }
